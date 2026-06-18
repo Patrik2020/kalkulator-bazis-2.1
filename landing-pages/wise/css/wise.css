@@ -313,6 +313,7 @@ h3 {
 .faq-item,
 .cta,
 .reality-list,
+.wise-caution,
 .use-case-list article {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -499,6 +500,19 @@ h3 {
 .use-case-list p,
 .reality-list span {
   color: var(--muted);
+}
+
+.wise-caution {
+  align-self: start;
+  border-color: rgba(245, 158, 11, 0.32);
+  color: #5f4212;
+  grid-column: 1 / -1;
+  line-height: 1.65;
+  padding: 18px;
+}
+
+.wise-caution strong {
+  color: var(--text);
 }
 
 .calculator-links {
