@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Idő átváltó kalkulátor másodperc, perc, óra, nap, hét, hónap és év között. Gyors és pontos online időátváltás."
+    />
+  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/ido-atvalto-kalkulator.html" />
+<title>Idő átváltó kalkulátor</title>
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/pages/ido.css" />
+
+    <script src="../js/global-head.js"></script>
+  </head>
+
+  <body>
+    <div id="header"></div>
+
+    <main class="container page-ido">
+      <section class="hero">
+        <h1>Idő átváltó kalkulátor</h1>
+
+        <p>
+          Másodperc, perc, óra, nap, hét, hónap és év közötti gyors és pontos
+          átváltás online.
+        </p>
+      </section>
+
+      <!-- KALKULÁTOR -->
+
+      <section class="card card-calculator">
+        <h2>Idő átváltó</h2>
+
+        <div class="calc-grid">
+          <input
+            type="number"
+            id="inputValue"
+            placeholder="Adj meg egy időtartamot"
+          />
+
+          <select id="fromUnit">
+            <option value="sec">Másodperc</option>
+            <option value="min">Perc</option>
+            <option value="hour" selected>Óra</option>
+            <option value="day">Nap</option>
+            <option value="week">Hét</option>
+            <option value="month">Hónap</option>
+            <option value="year">Év</option>
+          </select>
+
+          <select id="toUnit">
+            <option value="sec">Másodperc</option>
+            <option value="min" selected>Perc</option>
+            <option value="hour">Óra</option>
+            <option value="day">Nap</option>
+            <option value="week">Hét</option>
+            <option value="month">Hónap</option>
+            <option value="year">Év</option>
+          </select>
+        </div>
+
+        <div class="result-box">
+          <p id="result">–</p>
+        </div>
+      </section>
+
+      <!-- SEO SZÖVEG -->
+
+      <section class="article">
+        <div class="info-box">
+          <strong>Tipp:</strong>
+          Az idő átváltás hasznos lehet munkaidő számításoknál, projektek
+          tervezésénél, tanulás során és különböző tudományos számításoknál.
+        </div>
+
+        <h2>Mi az az idő átváltás?</h2>
+
+        <p>
+          Az idő átváltás során egy adott időtartamot alakítunk át egyik
+          mértékegységből egy másikba. A különböző feladatok eltérő
+          időegységeket használhatnak, ezért gyakran szükség lehet az
+          átváltásra.
+        </p>
+
+        <p>
+          A mindennapi életben leggyakrabban a másodpercet, percet és órát
+          használjuk, de hosszabb időszakok esetén a nap, hét, hónap és év is
+          gyakran előfordul.
+        </p>
+
+        <h2>Milyen időegységeket támogat a kalkulátor?</h2>
+
+        <ul>
+          <li>Másodperc</li>
+          <li>Perc</li>
+          <li>Óra</li>
+          <li>Nap</li>
+          <li>Hét</li>
+          <li>Hónap</li>
+          <li>Év</li>
+        </ul>
+
+        <h2>Mi az a másodperc?</h2>
+
+        <p>
+          A másodperc a Nemzetközi Mértékegységrendszer (SI) alapegysége az idő
+          mérésére. Szinte minden időmérés alapját képezi.
+        </p>
+
+        <p>
+          Sportversenyek, műszaki rendszerek és számítógépes folyamatok esetében
+          gyakran másodpercben mérjük az események időtartamát.
+        </p>
+
+        <h2>Mi az a perc?</h2>
+
+        <p>
+          Egy perc pontosan 60 másodpercnek felel meg. A mindennapi életben
+          rendkívül gyakran használjuk találkozók, utazások és különböző
+          tevékenységek időtartamának meghatározására.
+        </p>
+
+        <h2>Mi az az óra?</h2>
+
+        <p>
+          Egy óra 60 percből vagy 3600 másodpercből áll. A munkaidő, tanulási
+          idő és számos egyéb tevékenység mérésének egyik leggyakoribb egysége.
+        </p>
+
+        <h2>Mi az a nap?</h2>
+
+        <p>
+          Egy nap 24 órából áll. A naptári rendszerek és a mindennapi élet
+          alapvető időegysége.
+        </p>
+
+        <h2>Mi az a hét?</h2>
+
+        <p>
+          Egy hét 7 napból áll. Munkaidő-tervezésnél, oktatásban és
+          projektmenedzsment során gyakran használják.
+        </p>
+
+        <h2>Mi az a hónap?</h2>
+
+        <p>
+          A hónap a naptári rendszer egyik alapegysége. Hossza változó, ezért az
+          átváltások során általában átlagos hónaphosszal számolunk.
+        </p>
+
+        <h2>Mi az az év?</h2>
+
+        <p>
+          Egy év körülbelül 365,2425 napból áll. Hosszabb időszakok, életkorok,
+          futamidők és befektetési időtávok meghatározására használják.
+        </p>
+
+        <h2>Gyakori idő átváltások</h2>
+
+        <table class="conversion-table">
+          <thead>
+            <tr>
+              <th>Időegység</th>
+              <th>Átváltás</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>1 perc</td>
+              <td>60 másodperc</td>
+            </tr>
+
+            <tr>
+              <td>1 óra</td>
+              <td>60 perc</td>
+            </tr>
+
+            <tr>
+              <td>1 nap</td>
+              <td>24 óra</td>
+            </tr>
+
+            <tr>
+              <td>1 hét</td>
+              <td>7 nap</td>
+            </tr>
+
+            <tr>
+              <td>1 év</td>
+              <td>365,2425 nap</td>
+            </tr>
+
+            <tr>
+              <td>1 év</td>
+              <td>12 hónap</td>
+            </tr>
+
+            <tr>
+              <td>1 nap</td>
+              <td>86 400 másodperc</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Példák idő átváltásra</h2>
+
+        <h3>120 perc hány óra?</h3>
+
+        <p>120 perc pontosan 2 órának felel meg.</p>
+
+        <h3>48 óra hány nap?</h3>
+
+        <p>48 óra pontosan 2 nap.</p>
+
+        <h3>14 nap hány hét?</h3>
+
+        <p>14 nap pontosan 2 hét.</p>
+
+        <h3>365 nap hány év?</h3>
+
+        <p>365 nap megközelítőleg 1 évnek felel meg.</p>
+
+        <h3>10 000 másodperc hány óra?</h3>
+
+        <p>10 000 másodperc körülbelül 2,78 óra.</p>
+
+        <h2>Mikor lehet szükség idő átváltásra?</h2>
+
+        <ul>
+          <li>munkaidő nyilvántartás során</li>
+          <li>projektek tervezésekor</li>
+          <li>tanulási idő követésekor</li>
+          <li>sporteredmények elemzésekor</li>
+          <li>befektetési időtávok meghatározásakor</li>
+          <li>programozási és műszaki feladatoknál</li>
+          <li>utazások és események szervezésekor</li>
+        </ul>
+
+        <h2>Hogyan kezeljük a hónapokat és éveket?</h2>
+
+        <p>
+          A hónapok hossza nem minden esetben azonos, hiszen vannak 28, 29, 30
+          és 31 napos hónapok is. Emiatt az idő átváltó kalkulátorok általában
+          átlagos hónaphosszal számolnak.
+        </p>
+
+        <p>
+          Egy átlagos hónap körülbelül 30,436875 napnak felel meg, míg egy év
+          átlagosan 365,2425 napból áll. Ez biztosítja a pontosabb átváltást
+          hosszabb időtávok esetén.
+        </p>
+
+        <h2>GYIK</h2>
+
+        <h3>1 perc hány másodperc?</h3>
+
+        <p>1 perc pontosan 60 másodperc.</p>
+
+        <h3>1 óra hány perc?</h3>
+
+        <p>1 óra pontosan 60 perc.</p>
+
+        <h3>1 nap hány óra?</h3>
+
+        <p>1 nap pontosan 24 óra.</p>
+
+        <h3>1 hét hány nap?</h3>
+
+        <p>1 hét pontosan 7 nap.</p>
+
+        <h3>1 év hány nap?</h3>
+
+        <p>Egy év átlagosan 365,2425 napból áll.</p>
+
+        <h3>Miért nem pontosan 30 nap egy hónap?</h3>
+
+        <p>
+          A naptári hónapok eltérő hosszúságúak, ezért az átváltások során
+          általában átlagos hónaphosszal számolunk.
+        </p>
+
+        <h2>Érdekességek az idő méréséről</h2>
+
+        <p>
+          Az idő mérése az emberiség egyik legrégebbi tudományos tevékenysége.
+          Már az ókori civilizációk is használtak napórákat, vízórákat és más
+          eszközöket az idő múlásának követésére.
+        </p>
+
+        <p>
+          Napjainkban az atomórák rendkívül pontos időmérést tesznek lehetővé,
+          amelyek évente csupán néhány milliárdod másodpercet tévednek.
+        </p>
+
+        <h2>Kapcsolódó átváltók</h2>
+
+        <ul>
+          <li>Hőmérséklet átváltó kalkulátor</li>
+          <li>Hosszúság átváltó kalkulátor</li>
+          <li>Tömeg átváltó kalkulátor</li>
+          <li>Terület átváltó kalkulátor</li>
+          <li>Térfogat átváltó kalkulátor</li>
+          <li>Sebesség átváltó kalkulátor</li>
+          <li>Adatmennyiség átváltó kalkulátor</li>
+        </ul>
+      </section>
+    
+    <section class="article generated-seo" data-generated-seo="calculator">
+      <h2>Idő átváltó használata</h2>
+      <p>
+        A idő átváltó gyors segítséget ad, ha pontosabb képet szeretnél kapni egy gyakori
+        átváltók számítás eredményéről. A kalkulátor egyszerűen használható:
+        add meg a szükséges adatokat, az eredmény pedig azonnal megjelenik.
+      </p>
+      <p>
+        Másodperc, perc, óra, nap és hét átváltása. Az eszköz célja, hogy a számolás ne vegyen el felesleges időt,
+        és mobilon is könnyen ellenőrizhető legyen az eredmény.
+      </p>
+      <p>
+        A kapott értékek tájékoztató jellegűek. Pénzügyi, egészségügyi, építőipari vagy nagyobb értékű
+        döntés előtt érdemes a számítást saját adatokkal többször is ellenőrizni, illetve szükség esetén
+        szakértői tanácsot kérni.
+      </p>
+
+      <h2>Gyakori kérdések</h2>
+      <div class="faq-list">
+        <details>
+          <summary>Mire jó a idő átváltó?</summary>
+          <p>Másodperc, perc, óra, nap és hét átváltása. Akkor hasznos, ha gyors, áttekinthető eredményt szeretnél kapni kézi számolás nélkül.</p>
+        </details>
+        <details>
+          <summary>Ingyenes a kalkulátor használata?</summary>
+          <p>Igen, a Kalkulátor Bázis kalkulátorai ingyenesen használhatók, külön regisztráció nélkül.</p>
+        </details>
+        <details>
+          <summary>Mobilon is működik?</summary>
+          <p>Igen, a kalkulátor mobil-first felülettel készült, ezért telefonon és tableten is kényelmesen használható.</p>
+        </details>
+        <details>
+          <summary>Mennyire pontos az eredmény?</summary>
+          <p>Az eredmény a megadott adatokból számított tájékoztató érték. Ha hivatalos, szerződéses vagy egészségügyi döntéshez használod, ellenőrizd más forrásból is.</p>
+        </details>
+      </div>
+    </section>
+    </main>
+
+    <div id="footer"></div>
+    <script src="../js/utils.js"></script>
+    <script src="../js/atvaltok/ido.js" defer></script>
+  </body>
+</html>

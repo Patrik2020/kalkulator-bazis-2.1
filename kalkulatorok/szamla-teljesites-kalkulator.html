@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Számla teljesítési dátum kalkulátor: számold ki a teljesítés és fizetési határidő dátumát." />
+  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/szamla-teljesites-kalkulator.html" />
+<title>Számla teljesítés kalkulátor</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages/szamla-teljesites.css" />
+  <script src="../js/global-head.js"></script>
+</head>
+
+<body>
+
+<div id="header"></div>
+
+<main class="container page-szamla">
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Számla teljesítés kalkulátor</h1>
+    <p>Határozd meg a számla teljesítési dátumát és fizetési határidejét.</p>
+  </section>
+
+  <!-- KALKULÁTOR -->
+  <section class="card card-calculator">
+
+    <div class="calc-grid">
+
+      <div>
+        <label>Számla kiállítás dátuma</label>
+        <input type="date" id="issueDate" />
+      </div>
+
+      <div>
+        <label>Teljesítés dátuma</label>
+        <input type="date" id="performanceDate" />
+      </div>
+
+      <div>
+        <label>Fizetési határidő (nap)</label>
+        <input type="number" id="days" placeholder="pl. 8 vagy 30" />
+      </div>
+
+    </div>
+
+    <div class="result-box">
+
+      <p>Fizetési határidő:</p>
+      <p id="result-deadline">–</p>
+
+      <p id="result-info"></p>
+
+    </div>
+
+  </section>
+
+  <!-- SEO -->
+  <section class="article">
+
+    <div class="info-box">
+      <strong>Fontos:</strong> A teljesítési dátum meghatározza az áfa fizetési kötelezettséget.
+    </div>
+
+    <h2>Mi az a teljesítési dátum?</h2>
+    <p>
+      A teljesítési dátum az a nap, amikor a szolgáltatás vagy termék ténylegesen teljesült.
+      Ez kulcsfontosságú a számlázás és az adózás szempontjából.
+    </p>
+
+    <h2>Mi a különbség a kiállítás és a teljesítés között?</h2>
+    <p>
+      A számla kiállításának dátuma és a teljesítés dátuma nem feltétlen egyezik meg.
+      A teljesítés az a nap, amikor a gazdasági esemény megtörtént.
+    </p>
+
+    <h2>Fizetési határidő számítása</h2>
+    <p>
+      A fizetési határidő általában a teljesítés dátumától számított meghatározott nap.
+    </p>
+
+    <h2>Példa</h2>
+    <ul>
+      <li>Teljesítés: 2025.01.01</li>
+      <li>Határidő: 8 nap</li>
+      <li>Fizetés: 2025.01.09</li>
+    </ul>
+
+    <h2>Mire figyelj?</h2>
+
+    <ul>
+      <li>helyes dátumok használata</li>
+      <li>áfa időszak</li>
+      <li>könyvelési pontosság</li>
+    </ul>
+
+    <h2>Miért fontos?</h2>
+    <p>
+      A hibás teljesítési dátum komoly adózási problémákat okozhat,
+      ezért mindig pontosan kell meghatározni.
+    </p>
+
+  </section>
+    
+    <section class="article generated-seo" data-generated-seo="calculator">
+      <h2>Számla teljesítés kalkulátor használata</h2>
+      <p>
+        A számla teljesítés kalkulátor gyors segítséget ad, ha pontosabb képet szeretnél kapni egy gyakori
+        pénzügyi számítás eredményéről. A kalkulátor egyszerűen használható:
+        add meg a szükséges adatokat, az eredmény pedig azonnal megjelenik.
+      </p>
+      <p>
+        Számla teljesítési dátumának kiszámítása. Az eszköz célja, hogy a számolás ne vegyen el felesleges időt,
+        és mobilon is könnyen ellenőrizhető legyen az eredmény.
+      </p>
+      <p>
+        A kapott értékek tájékoztató jellegűek. Pénzügyi, egészségügyi, építőipari vagy nagyobb értékű
+        döntés előtt érdemes a számítást saját adatokkal többször is ellenőrizni, illetve szükség esetén
+        szakértői tanácsot kérni.
+      </p>
+
+      <h2>Gyakori kérdések</h2>
+      <div class="faq-list">
+        <details>
+          <summary>Mire jó a számla teljesítés kalkulátor?</summary>
+          <p>Számla teljesítési dátumának kiszámítása. Akkor hasznos, ha gyors, áttekinthető eredményt szeretnél kapni kézi számolás nélkül.</p>
+        </details>
+        <details>
+          <summary>Ingyenes a kalkulátor használata?</summary>
+          <p>Igen, a Kalkulátor Bázis kalkulátorai ingyenesen használhatók, külön regisztráció nélkül.</p>
+        </details>
+        <details>
+          <summary>Mobilon is működik?</summary>
+          <p>Igen, a kalkulátor mobil-first felülettel készült, ezért telefonon és tableten is kényelmesen használható.</p>
+        </details>
+        <details>
+          <summary>Mennyire pontos az eredmény?</summary>
+          <p>Az eredmény a megadott adatokból számított tájékoztató érték. Ha hivatalos, szerződéses vagy egészségügyi döntéshez használod, ellenőrizd más forrásból is.</p>
+        </details>
+      </div>
+    </section>
+    </main>
+
+<div id="footer"></div>
+    <script src="../js/utils.js"></script>
+<script src="../js/penzugyi/szamlazasi/szamla-teljesites.js" defer></script>
+</body>
+
+</html>

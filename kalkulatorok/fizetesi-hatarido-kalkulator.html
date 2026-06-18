@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fizetési határidő kalkulátor: számold ki mikor kell fizetni számla alapján." />
+  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/fizetesi-hatarido-kalkulator.html" />
+<title>Fizetési határidő kalkulátor</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages/hatarido.css" />
+  <script src="../js/global-head.js"></script>
+</head>
+
+<body>
+
+  <div id="header"></div>
+
+  <main class="container page-hatarido">
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1>Fizetési határidő kalkulátor</h1>
+      <p>Számold ki pontosan, mikor jár le egy számla fizetési határideje.</p>
+    </section>
+
+    <!-- KALKULÁTOR -->
+    <section class="card card-calculator">
+
+      <div class="calc-grid">
+
+        <div>
+          <label>Számla kiállítás dátuma</label>
+          <input type="date" id="startDate" />
+        </div>
+
+        <div>
+          <label>Fizetési határidő (nap)</label>
+          <input type="number" id="days" placeholder="pl. 8 vagy 30" />
+        </div>
+
+      </div>
+
+      <div class="radio-group">
+        <label>
+          <input type="radio" name="mode" value="calendar" checked />
+          Naptári napok
+        </label>
+
+        <label>
+          <input type="radio" name="mode" value="workdays" />
+          Munkanapok
+        </label>
+      </div>
+
+      <div class="result-box">
+        <p>Fizetési határidő:</p>
+        <p id="result-date">–</p>
+      </div>
+
+    </section>
+
+    <!-- SEO -->
+    <section class="article">
+
+      <div class="info-box">
+        <strong>Fontos:</strong> A fizetési határidő számítása jogilag is fontos, különösen vállalkozások esetén.
+      </div>
+
+      <h2>Mi az a fizetési határidő?</h2>
+      <p>
+        A fizetési határidő az a dátum, ameddig a számla ellenértékét ki kell egyenlíteni.
+        Ez általában a számla kiállításától számított 8, 15 vagy 30 nap.
+      </p>
+
+      <h2>Hogyan számoljuk?</h2>
+      <p>
+        A kalkulátor a kiállítás dátumához hozzáadja a megadott napok számát.
+        Beállítható, hogy naptári napokkal vagy csak munkanapokkal számoljon.
+      </p>
+
+      <h2>Munkanap vs naptári nap</h2>
+
+      <ul>
+        <li><strong>Naptári nap:</strong> minden nap számít</li>
+        <li><strong>Munkanap:</strong> hétvége nem számít</li>
+      </ul>
+
+      <h2>Mire használható?</h2>
+
+      <ul>
+        <li>számlázásnál</li>
+        <li>könyvelésnél</li>
+        <li>kintlévőség kezelésnél</li>
+      </ul>
+
+    </section>
+    
+    <section class="article generated-seo" data-generated-seo="calculator">
+      <h2>Fizetési határidő kalkulátor használata</h2>
+      <p>
+        A fizetési határidő kalkulátor gyors segítséget ad, ha pontosabb képet szeretnél kapni egy gyakori
+        pénzügyi számítás eredményéről. A kalkulátor egyszerűen használható:
+        add meg a szükséges adatokat, az eredmény pedig azonnal megjelenik.
+      </p>
+      <p>
+        Fizetési határidő kiszámítása számlázáshoz. Az eszköz célja, hogy a számolás ne vegyen el felesleges időt,
+        és mobilon is könnyen ellenőrizhető legyen az eredmény.
+      </p>
+      <p>
+        A kapott értékek tájékoztató jellegűek. Pénzügyi, egészségügyi, építőipari vagy nagyobb értékű
+        döntés előtt érdemes a számítást saját adatokkal többször is ellenőrizni, illetve szükség esetén
+        szakértői tanácsot kérni.
+      </p>
+
+      <h2>Gyakori kérdések</h2>
+      <div class="faq-list">
+        <details>
+          <summary>Mire jó a fizetési határidő kalkulátor?</summary>
+          <p>Fizetési határidő kiszámítása számlázáshoz. Akkor hasznos, ha gyors, áttekinthető eredményt szeretnél kapni kézi számolás nélkül.</p>
+        </details>
+        <details>
+          <summary>Ingyenes a kalkulátor használata?</summary>
+          <p>Igen, a Kalkulátor Bázis kalkulátorai ingyenesen használhatók, külön regisztráció nélkül.</p>
+        </details>
+        <details>
+          <summary>Mobilon is működik?</summary>
+          <p>Igen, a kalkulátor mobil-first felülettel készült, ezért telefonon és tableten is kényelmesen használható.</p>
+        </details>
+        <details>
+          <summary>Mennyire pontos az eredmény?</summary>
+          <p>Az eredmény a megadott adatokból számított tájékoztató érték. Ha hivatalos, szerződéses vagy egészségügyi döntéshez használod, ellenőrizd más forrásból is.</p>
+        </details>
+      </div>
+    </section>
+    </main>
+
+  <div id="footer"></div>
+    <script src="../js/utils.js"></script>
+  <script src="../js/penzugyi/szamlazasi/fizetesi-hatarido.js" defer></script>
+</body>
+
+</html>

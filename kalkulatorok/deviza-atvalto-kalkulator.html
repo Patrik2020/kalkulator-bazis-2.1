@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Deviza átváltó kalkulátor aktuális árfolyamokkal. Euró, dollár, font, svájci frank, forint és további devizák közötti gyors online átváltás."
+    />
+  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/deviza-atvalto-kalkulator.html" />
+<title>Deviza átváltó kalkulátor | Forint, euró, dollár és árfolyam</title>
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/pages/deviza.css" />
+
+    <script src="../js/global-head.js"></script>
+  </head>
+
+  <body>
+    <div id="header"></div>
+
+    <main class="container page-deviza">
+      <section class="hero">
+        <h1>Deviza átváltó kalkulátor</h1>
+
+        <p>
+          Aktuális árfolyamok alapján történő deviza átváltás euró, amerikai
+          dollár, angol font, svájci frank, magyar forint és további pénznemek
+          között.
+        </p>
+      </section>
+
+      <!-- KALKULÁTOR -->
+
+      <section class="card card-calculator">
+        <h2>Deviza átváltó</h2>
+
+        <div class="calc-grid">
+          <input
+            type="number"
+            id="inputValue"
+            placeholder="Adj meg egy összeget"
+          />
+
+          <select id="fromCurrency">
+            <option value="HUF" selected>Magyar forint (HUF)</option>
+            <option value="EUR">Euró (EUR)</option>
+            <option value="USD">Amerikai dollár (USD)</option>
+            <option value="GBP">Angol font (GBP)</option>
+            <option value="CHF">Svájci frank (CHF)</option>
+            <option value="PLN">Lengyel zloty (PLN)</option>
+            <option value="CZK">Cseh korona (CZK)</option>
+            <option value="RON">Román lej (RON)</option>
+            <option value="SEK">Svéd korona (SEK)</option>
+            <option value="NOK">Norvég korona (NOK)</option>
+            <option value="DKK">Dán korona (DKK)</option>
+            <option value="JPY">Japán jen (JPY)</option>
+            <option value="CAD">Kanadai dollár (CAD)</option>
+            <option value="AUD">Ausztrál dollár (AUD)</option>
+            <option value="CNY">Kínai jüan (CNY)</option>
+          </select>
+
+          <select id="toCurrency">
+            <option value="HUF">Magyar forint (HUF)</option>
+            <option value="EUR" selected>Euró (EUR)</option>
+            <option value="USD">Amerikai dollár (USD)</option>
+            <option value="GBP">Angol font (GBP)</option>
+            <option value="CHF">Svájci frank (CHF)</option>
+            <option value="PLN">Lengyel zloty (PLN)</option>
+            <option value="CZK">Cseh korona (CZK)</option>
+            <option value="RON">Román lej (RON)</option>
+            <option value="SEK">Svéd korona (SEK)</option>
+            <option value="NOK">Norvég korona (NOK)</option>
+            <option value="DKK">Dán korona (DKK)</option>
+            <option value="JPY">Japán jen (JPY)</option>
+            <option value="CAD">Kanadai dollár (CAD)</option>
+            <option value="AUD">Ausztrál dollár (AUD)</option>
+            <option value="CNY">Kínai jüan (CNY)</option>
+          </select>
+        </div>
+
+        <div class="result-box">
+          <p id="result">Árfolyam betöltése...</p>
+        </div>
+
+        <div class="info-box">
+          <strong>Figyelem:</strong>
+          Az árfolyamok tájékoztató jellegűek és külső árfolyam-szolgáltatótól
+          származnak. A kalkulátor nem minősül pénzügyi vagy befektetési
+          tanácsadásnak.
+        </div>
+
+        <div class="exchange-update">
+          <small>
+            Árfolyamok utolsó frissítése:
+            <span id="lastUpdate">Betöltés...</span>
+          </small>
+        </div>
+      </section>
+
+      <!-- SEO SZÖVEG -->
+
+      <section class="article">
+        <h2>Deviza átváltás aktuális árfolyam alapján</h2>
+
+        <p>
+          A deviza átváltó kalkulátor az aktuális árfolyamok segítségével
+          számolja ki a különböző pénznemek közötti átváltást. A rendszer
+          automatikusan lekéri a legfrissebb árfolyamokat, így mindig naprakész
+          eredményeket biztosít.
+        </p>
+
+        <p>
+          A kalkulátor segítségével egyszerűen átváltható a magyar forint, az
+          euró, az amerikai dollár, az angol font, a svájci frank, valamint
+          számos további nemzetközi deviza.
+        </p>
+
+        <h2>Milyen devizákat támogat a kalkulátor?</h2>
+
+        <ul>
+          <li>Magyar forint (HUF)</li>
+          <li>Euró (EUR)</li>
+          <li>Amerikai dollár (USD)</li>
+          <li>Angol font (GBP)</li>
+          <li>Svájci frank (CHF)</li>
+          <li>Lengyel zloty (PLN)</li>
+          <li>Cseh korona (CZK)</li>
+          <li>Román lej (RON)</li>
+          <li>Svéd korona (SEK)</li>
+          <li>Norvég korona (NOK)</li>
+          <li>Dán korona (DKK)</li>
+          <li>Japán jen (JPY)</li>
+          <li>Kanadai dollár (CAD)</li>
+          <li>Ausztrál dollár (AUD)</li>
+          <li>Kínai jüan (CNY)</li>
+        </ul>
+
+        <h2>Miért hasznos a deviza átváltó?</h2>
+
+        <p>
+          Külföldi utazások, online vásárlások, nemzetközi munkavállalás,
+          befektetések és pénzügyi tervezés során gyakran szükség van különböző
+          pénznemek közötti átváltásra.
+        </p>
+
+        <p>
+          Az aktuális árfolyamok folyamatosan változnak, ezért fontos, hogy a
+          számítás mindig naprakész adatok alapján történjen.
+        </p>
+
+        <h2>Leggyakrabban használt devizapárok</h2>
+
+        <ul>
+          <li>Euró → Forint (EUR/HUF)</li>
+          <li>Dollár → Forint (USD/HUF)</li>
+          <li>Font → Forint (GBP/HUF)</li>
+          <li>Svájci frank → Forint (CHF/HUF)</li>
+          <li>Euró → Dollár (EUR/USD)</li>
+          <li>Dollár → Euró (USD/EUR)</li>
+        </ul>
+
+        <h2>Hogyan működik a deviza átváltás?</h2>
+
+        <p>
+          A deviza átváltás során egy pénznem értékét alakítjuk át egy másik
+          pénznemre az aktuális árfolyam alapján. Az árfolyam azt mutatja meg,
+          hogy egy adott devizából mennyit ér egy másik deviza.
+        </p>
+
+        <p>
+          A kalkulátor automatikusan lekéri a legfrissebb elérhető árfolyamokat,
+          így a számítások naprakész adatok alapján történnek.
+        </p>
+
+        <h2>Legnépszerűbb deviza átváltások</h2>
+
+        <table class="conversion-table">
+          <thead>
+            <tr>
+              <th>Devizapár</th>
+              <th>Felhasználás</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>EUR → HUF</td>
+              <td>Euró forint átváltás</td>
+            </tr>
+
+            <tr>
+              <td>USD → HUF</td>
+              <td>Dollár forint átváltás</td>
+            </tr>
+
+            <tr>
+              <td>GBP → HUF</td>
+              <td>Angol font forint átváltás</td>
+            </tr>
+
+            <tr>
+              <td>CHF → HUF</td>
+              <td>Svájci frank forint átváltás</td>
+            </tr>
+
+            <tr>
+              <td>EUR → USD</td>
+              <td>Euró dollár átváltás</td>
+            </tr>
+
+            <tr>
+              <td>USD → EUR</td>
+              <td>Dollár euró átváltás</td>
+            </tr>
+
+            <tr>
+              <td>PLN → HUF</td>
+              <td>Zloty forint átváltás</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Euró forint átváltás</h2>
+
+        <p>
+          Az EUR/HUF árfolyam Magyarország egyik legfontosabb devizapárja.
+          Külföldi utazások, online vásárlások, befektetések és vállalkozások
+          számára is kiemelten fontos információ.
+        </p>
+
+        <h2>Dollár forint átváltás</h2>
+
+        <p>
+          Az USD/HUF árfolyam jelentős hatással lehet a nemzetközi
+          kereskedelemre, a technológiai termékek áraira és számos befektetési
+          lehetőségre.
+        </p>
+
+        <h2>Angol font forint átváltás</h2>
+
+        <p>
+          Az Egyesült Királyság továbbra is fontos gazdasági partner, ezért a
+          GBP/HUF árfolyamot sok magyar munkavállaló és vállalkozás figyelemmel
+          követi.
+        </p>
+
+        <h2>Svájci frank forint átváltás</h2>
+
+        <p>
+          A svájci frank hagyományosan stabil devizának számít. A CHF/HUF
+          árfolyamot különösen sokan figyelik pénzügyi és befektetési célból.
+        </p>
+
+        <h2>Mikor lehet szükség deviza átváltásra?</h2>
+
+        <ul>
+          <li>külföldi utazások előtt</li>
+          <li>online vásárlások során</li>
+          <li>külföldi munkavállalás esetén</li>
+          <li>befektetések tervezésekor</li>
+          <li>nemzetközi számlák kiegyenlítésekor</li>
+          <li>külföldi ingatlanvásárlás előtt</li>
+          <li>vállalkozások pénzügyi tervezésénél</li>
+        </ul>
+
+        <h2>Miért térhet el a banki árfolyam?</h2>
+
+        <p>
+          A kalkulátor a piaci árfolyamok alapján számol. A bankok, pénzváltók
+          és pénzügyi szolgáltatók azonban saját vételi és eladási árfolyamot
+          alkalmazhatnak.
+        </p>
+
+        <p>
+          Emiatt a ténylegesen kapott összeg eltérhet a kalkulátor által
+          mutatott értéktől. A különbséget általában a szolgáltató árfolyamrése
+          és díjai okozzák.
+        </p>
+
+        <h2>GYIK</h2>
+
+        <h3>Milyen gyakran frissülnek az árfolyamok?</h3>
+
+        <p>
+          Az árfolyamok automatikusan külső árfolyamforrásból érkeznek, és
+          rendszeresen frissülnek.
+        </p>
+
+        <h3>Pontosak az itt megjelenített árfolyamok?</h3>
+
+        <p>
+          A kalkulátor törekszik a lehető legpontosabb eredmények
+          megjelenítésére, azonban az árfolyamok folyamatosan változnak, ezért
+          az eredmények tájékoztató jellegűek.
+        </p>
+
+        <h3>Miért kapok más eredményt a bankomnál?</h3>
+
+        <p>
+          A bankok és pénzváltók saját árfolyamokat és díjakat alkalmaznak,
+          ezért az általuk kínált árfolyam eltérhet a piaci árfolyamtól.
+        </p>
+
+        <h3>Melyik devizák a legnépszerűbbek Magyarországon?</h3>
+
+        <p>
+          Magyarországon általában az euró, amerikai dollár, angol font, svájci
+          frank, cseh korona, lengyel zloty és román lej a leggyakrabban
+          keresett devizák.
+        </p>
+
+        <h3>Használható a kalkulátor befektetési döntésekhez?</h3>
+
+        <p>
+          A kalkulátor kizárólag tájékoztató jellegű számításokra szolgál, és
+          nem minősül befektetési vagy pénzügyi tanácsadásnak.
+        </p>
+
+        <h2>Kapcsolódó átváltók</h2>
+
+        <ul>
+          <li>Hőmérséklet átváltó kalkulátor</li>
+          <li>Hosszúság átváltó kalkulátor</li>
+          <li>Tömeg átváltó kalkulátor</li>
+          <li>Terület átváltó kalkulátor</li>
+          <li>Térfogat átváltó kalkulátor</li>
+          <li>Idő átváltó kalkulátor</li>
+          <li>Sebesség átváltó kalkulátor</li>
+          <li>Adatméret átváltó kalkulátor</li>
+        </ul>
+      </section>
+    <section class="adsense-content" data-adsense-upgrade="deviza">
+      <h2>Deviza átváltás utazás, vásárlás és pénzügyi tervezés előtt</h2>
+      <p>A deviza átváltó kalkulátor segít gyorsan megbecsülni, mennyit ér egy összeg másik pénznemben. Hasznos lehet külföldi utazás, online vásárlás, külföldi bevétel vagy devizás megtakarítás tervezésekor.</p>
+      <p>Az árfolyamok apró eltérései nagyobb összegeknél már látványos különbséget okozhatnak. Ezért nem mindegy, hogy milyen árfolyamon, milyen költség mellett és milyen szolgáltatón keresztül váltasz.</p>
+
+      <h3>Hogyan működik a számítás?</h3>
+      <p>A számítás a megadott összeget megszorozza vagy elosztja az árfolyammal attól függően, hogy milyen irányú átváltást választasz. A kalkulátor gyors becslést ad, de a tényleges banki vagy szolgáltatói árfolyam, díj és időzítés eltérhet.</p>
+
+      <div class="example-box">
+        <h3>Konkrét példaszámítás</h3>
+        <p>Ha 1 000 eurót szeretnél forintra váltani 390 Ft/EUR árfolyamon, akkor az eredmény 390 000 Ft. Ha ugyanez az árfolyam 400 Ft/EUR lenne, az összeg 400 000 Ft lenne, vagyis már 10 000 Ft különbség keletkezik.</p>
+      </div>
+
+      <h3>Mikor hasznos ez a kalkulátor?</h3>
+      <ul>
+        <li>utazási költség tervezésekor</li>
+        <li>külföldi online vásárlás előtt</li>
+        <li>devizás bevétel vagy kiadás becslésénél</li>
+        <li>árfolyamkülönbségek összehasonlításakor</li>
+      </ul>
+
+      <div class="notice-box">
+        <strong>Fontos tudni:</strong> A tényleges átváltási árfolyam szolgáltatónként és időponttól függően változhat. Mindig nézd meg a díjakat és a végleges jóváírandó összeget is.
+      </div>
+
+      <h3>Gyakori kérdések</h3>
+      <div class="faq-list">
+        <details><summary>Mi a különbség deviza és valuta között?</summary><p>A valuta jellemzően készpénzes külföldi pénz, a deviza számlapénz vagy elektronikus pénznem.</p></details>
+        <details><summary>Miért más a banki árfolyam?</summary><p>Mert a bank vagy szolgáltató saját vételi, eladási árfolyamot és díjat alkalmazhat.</p></details>
+        <details><summary>Használható utazás előtt?</summary><p>Igen, gyors költségbecslésre nagyon hasznos.</p></details>
+        <details><summary>A kalkulátor valós idejű árfolyamot ad?</summary><p>Ez az adott oldal működésétől függ; az eredményt mindig érdemes a tényleges szolgáltatói árfolyammal ellenőrizni.</p></details>
+        <details><summary>Nagyobb összegnél mire figyeljek?</summary><p>Az árfolyam mellett a díjra, teljesítési időre és a végösszegre.</p></details>
+      </div>
+
+      <h3>Kapcsolódó kalkulátorok</h3>
+      <div class="related-links">
+        <a href="../landing-pages/wise/wise.html">Wise bemutató</a>
+        <a href="inflacio-kalkulator.html">Infláció kalkulátor</a>
+        <a href="etf-kalkulator.html">ETF kalkulátor</a>
+        <a href="szazalek-kalkulator.html">Százalék kalkulátor</a>
+      </div>
+    </section>
+    </main>
+
+    <div id="footer"></div>
+    <script src="../js/utils.js"></script>
+    <script src="../js/atvaltok/deviza.js" defer></script>
+  </body>
+</html>

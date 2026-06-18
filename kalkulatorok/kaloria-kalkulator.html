@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Kalória kalkulátor: napi kalóriaszükséglet számítás fogyáshoz, szintentartáshoz vagy tömegnöveléshez." />
+  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/kaloria-kalkulator.html" />
+<title>Kalória kalkulátor | Napi energiaigény becslése</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/pages/kaloria.css" /> 
+  <script src="../js/global-head.js"></script>
+</head>
+
+<body>
+
+  <div id="header"></div>
+
+  <main class="container page-kaloria">
+
+    <!-- HERO -->
+    <section class="hero">
+      <h1>Kalória kalkulátor</h1>
+      <p>Számold ki a napi kalóriaszükségletedet.</p>
+    </section>
+
+    <!-- KALKULÁTOR -->
+    <section class="card card-calculator">
+
+      <div class="calc-grid">
+
+        <div>
+          <label>Nem</label>
+          <select id="gender">
+            <option value="male">Férfi</option>
+            <option value="female">Nő</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Testsúly (kg)</label>
+          <input type="number" id="weight" placeholder="pl. 75" />
+        </div>
+
+        <div>
+          <label>Magasság (cm)</label>
+          <input type="number" id="height" placeholder="pl. 175" />
+        </div>
+
+        <div>
+          <label>Életkor</label>
+          <input type="number" id="age" placeholder="pl. 30" />
+        </div>
+
+        <div>
+          <label>Aktivitási szint</label>
+          <select id="activity">
+            <option value="1.2">Ülő életmód</option>
+            <option value="1.375">Könnyű mozgás</option>
+            <option value="1.55">Közepes aktivitás</option>
+            <option value="1.725">Magas aktivitás</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="result-box">
+        <p>Napi kalóriaszükséglet:</p>
+        <p id="result-calories">–</p>
+
+        <p id="result-goal"></p>
+      </div>
+
+    </section>
+
+    <!-- SEO -->
+    <section class="article">
+
+      <div class="info-box">
+        <strong>Tipp:</strong> A kalóriaszükséglet egyéni, életmódtól és céltól függ.
+      </div>
+
+      <h2>Mi az a kalóriaszükséglet?</h2>
+      <p>
+        A napi kalóriaszükséglet azt mutatja meg, mennyi energiára van szükséged a testsúlyod fenntartásához.
+      </p>
+
+      <h2>Hogyan számoljuk?</h2>
+      <p>
+        A kalkulátor a Mifflin–St Jeor képletet használja, amely figyelembe veszi a testsúlyt,
+        magasságot, életkort és nemet.
+      </p>
+
+      <h2>Mi történik, ha eltérsz?</h2>
+
+      <ul>
+        <li>több kalória → hízás</li>
+        <li>kevesebb kalória → fogyás</li>
+      </ul>
+
+      <h2>Célok</h2>
+
+      <ul>
+        <li>fogyás: -300–500 kcal</li>
+        <li>szintentartás: aktuális érték</li>
+        <li>tömegnövelés: +300–500 kcal</li>
+      </ul>
+
+    </section>
+    <section class="adsense-content" data-adsense-upgrade="kaloria">
+      <h2>Kalóriaszükséglet: kiindulópont az étrendhez</h2>
+      <p>A kalória kalkulátor segít megbecsülni a napi energiaigényt testsúly, magasság, életkor, nem és aktivitás alapján. Ez hasznos lehet fogyási, szintentartási vagy tömegnövelési célok tervezésénél.</p>
+      <p>Az eredmény nem személyre szabott étrend, hanem kiindulási pont. A tényleges szükségletet befolyásolja az anyagcsere, hormonális állapot, alvás, stressz, edzésmennyiség és a mindennapi aktivitás is.</p>
+
+      <h3>Hogyan működik a számítás?</h3>
+      <p>A kalkulátor először becsli az alapanyagcserét, majd aktivitási szorzóval számolhatja a napi teljes energiafelhasználást. Cél szerint ehhez lehet deficitet vagy többletet választani, de túl nagy eltérés hosszú távon nehezen tartható.</p>
+
+      <div class="example-box">
+        <h3>Konkrét példaszámítás</h3>
+        <p>Ha valakinek a becsült napi energiaigénye 2 500 kcal, akkor mérsékelt fogyási célnál például napi 2 000-2 200 kcal lehet egy óvatos kiindulási tartomány. Tömegnövelésnél ezzel szemben kisebb többletet szokás vizsgálni.</p>
+      </div>
+
+      <h3>Mikor hasznos ez a kalkulátor?</h3>
+      <ul>
+        <li>fogyási cél tervezésénél</li>
+        <li>szintentartó étrend becslésénél</li>
+        <li>sport és táplálkozás összehangolásakor</li>
+        <li>makrókalkulátor használata előtt</li>
+      </ul>
+
+      <div class="notice-box">
+        <strong>Fontos tudni:</strong> Egészségügyi probléma, várandósság, evészavar gyanúja vagy speciális étrendi igény esetén kérj szakembertől segítséget. A kalkulátor nem orvosi tanács.
+      </div>
+
+      <h3>Gyakori kérdések</h3>
+      <div class="faq-list">
+        <details><summary>Pontosan megmondja, mennyit ehetek?</summary><p>Nem, becslést ad. A testsúly és közérzet változása alapján érdemes finomítani.</p></details>
+        <details><summary>Mi az alapanyagcsere?</summary><p>Az az energia, amelyre a szervezetnek nyugalomban is szüksége van az alapműködéshez.</p></details>
+        <details><summary>Miért fontos az aktivitás?</summary><p>Mert két azonos testsúlyú ember energiaigénye nagyon eltérhet mozgás és életmód alapján.</p></details>
+        <details><summary>Mekkora deficit jó fogyáshoz?</summary><p>Általában óvatos, fenntartható deficit életszerűbb, mint a drasztikus csökkentés.</p></details>
+        <details><summary>Makrókat is számol?</summary><p>Ha külön makró kalkulátort használsz, a kalóriaeredmény jó alap lehet hozzá.</p></details>
+      </div>
+
+      <h3>Kapcsolódó kalkulátorok</h3>
+      <div class="related-links">
+        <a href="bmi-kalkulator.html">BMI kalkulátor</a>
+        <a href="bmr-kalkulator.html">BMR kalkulátor</a>
+        <a href="makro-kalkulator.html">Makró kalkulátor</a>
+        <a href="feherje-szukseglet-kalkulator.html">Fehérje szükséglet kalkulátor</a>
+      </div>
+    </section>
+    </main>
+
+  <div id="footer"></div>
+    <script src="../js/utils.js"></script>
+  <script src="../js/egeszseg/kaloria.js" defer></script>
+</body>
+
+</html>

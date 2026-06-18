@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, follow" />
+  <title>404 - Az oldal nem található | Kalkulátor Bázis</title>
+  <meta name="description" content="A keresett oldal nem található. Keress kalkulátort vagy térj vissza a Kalkulátor Bázis főoldalára." />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/global-head.js"></script>
+</head>
+
+<body>
+  <div id="header"></div>
+
+  <main class="container not-found-page">
+    <section class="page-hero">
+      <h1>404 - Az oldal nem található</h1>
+      <p>
+        Lehet, hogy az oldal elköltözött, törölve lett, vagy hibás linkre kattintottál.
+        Keress rá a kalkulátorra, vagy válassz egy kategóriát.
+      </p>
+    </section>
+
+    <div class="search-box">
+      <label class="visually-hidden" for="calculatorSearch">Keresés kalkulátorok között</label>
+      <input type="search" id="calculatorSearch" placeholder="Keresés kalkulátorok között..." autocomplete="off" />
+      <div class="search-results" id="calculatorSearchResults" aria-live="polite"></div>
+    </div>
+
+    <section class="section-block">
+      <h2 class="section-heading">Kalkulátor kategóriák</h2>
+      <div class="category-grid" data-render="home-categories"></div>
+    </section>
+
+    <section class="article">
+      <h2>Merre tovább?</h2>
+      <p>
+        A főoldalon megtalálod az összes pénzügyi, építőipari, egészségügyi,
+        autós, mindennapi és átváltó kalkulátort.
+      </p>
+      <p>
+        <a class="button" href="index.html">Vissza a főoldalra</a>
+      </p>
+    </section>
+  </main>
+
+  <div id="footer"></div>
+
+  <script src="js/site-data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/site-ui.js"></script>
+</body>
+
+</html>

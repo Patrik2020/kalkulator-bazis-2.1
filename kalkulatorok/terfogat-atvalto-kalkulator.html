@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Térfogat átváltó kalkulátor milliliter, centiliter, deciliter, liter, köbméter, gallon és egyéb térfogatmértékek között. Gyors és pontos online átváltás."
+    />
+  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/terfogat-atvalto-kalkulator.html" />
+<title>Térfogat átváltó kalkulátor</title>
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/pages/terfogat.css" />
+
+    <script src="../js/global-head.js"></script>
+  </head>
+
+  <body>
+    <div id="header"></div>
+
+    <main class="container page-terfogat">
+      <section class="hero">
+        <h1>Térfogat átváltó kalkulátor</h1>
+
+        <p>
+          Milliliter, centiliter, deciliter, liter, köbméter és gallon közötti
+          gyors és pontos átváltás online.
+        </p>
+      </section>
+
+      <!-- KALKULÁTOR -->
+
+      <section class="card card-calculator">
+        <h2>Térfogat átváltó</h2>
+
+        <div class="calc-grid">
+          <input
+            type="number"
+            id="inputValue"
+            placeholder="Adj meg egy térfogatot"
+          />
+
+          <select id="fromUnit">
+            <option value="ml">Milliliter (ml)</option>
+            <option value="cl">Centiliter (cl)</option>
+            <option value="dl">Deciliter (dl)</option>
+            <option value="l" selected>Liter (l)</option>
+            <option value="m3">Köbméter (m³)</option>
+            <option value="gal">Gallon (US)</option>
+          </select>
+
+          <select id="toUnit">
+            <option value="ml">Milliliter (ml)</option>
+            <option value="cl">Centiliter (cl)</option>
+            <option value="dl">Deciliter (dl)</option>
+            <option value="l">Liter (l)</option>
+            <option value="m3">Köbméter (m³)</option>
+            <option value="gal" selected>Gallon (US)</option>
+          </select>
+        </div>
+
+        <div class="result-box">
+          <p id="result">–</p>
+        </div>
+      </section>
+
+      <!-- SEO SZÖVEG -->
+
+      <section class="article">
+        <div class="info-box">
+          <strong>Tipp:</strong>
+          A térfogat átváltás különösen hasznos főzés, építőipari számítások,
+          folyadékok mennyiségének meghatározása és nemzetközi receptek
+          használata során.
+        </div>
+
+        <h2>Mi az a térfogat átváltás?</h2>
+
+        <p>
+          A térfogat átváltás során egy adott anyag vagy folyadék által
+          elfoglalt hely nagyságát alakítjuk át egyik mértékegységből egy
+          másikba. A különböző országok és szakterületek eltérő mértékegységeket
+          használhatnak, ezért gyakran szükség lehet az átváltásra.
+        </p>
+
+        <p>
+          Magyarországon a liter és a köbméter a legelterjedtebb térfogategység,
+          míg az Egyesült Államokban gyakran gallonban adják meg a folyadékok
+          mennyiségét.
+        </p>
+
+        <h2>Milyen mértékegységeket támogat a kalkulátor?</h2>
+
+        <ul>
+          <li>Milliliter (ml)</li>
+          <li>Centiliter (cl)</li>
+          <li>Deciliter (dl)</li>
+          <li>Liter (l)</li>
+          <li>Köbméter (m³)</li>
+          <li>Gallon (US gallon)</li>
+        </ul>
+
+        <h2>Mi az a milliliter?</h2>
+
+        <p>
+          A milliliter a liter ezredrésze. Kis mennyiségű folyadékok,
+          gyógyszerek, laboratóriumi minták és italok térfogatának
+          meghatározására használják.
+        </p>
+
+        <h2>Mi az a centiliter?</h2>
+
+        <p>
+          A centiliter a liter századrésze. Italok, koktélok és különböző
+          vendéglátóipari mennyiségek megadásakor találkozhatunk vele.
+        </p>
+
+        <h2>Mi az a deciliter?</h2>
+
+        <p>
+          A deciliter a liter tizedrésze. Magyarországon receptekben, háztartási
+          méréseknél és italok mennyiségének megadásakor gyakran használják.
+        </p>
+
+        <h2>Mi az a liter?</h2>
+
+        <p>
+          A liter az egyik legismertebb térfogategység. Italok, üzemanyagok,
+          folyadékok és különböző anyagok mennyiségét világszerte gyakran
+          literben adják meg.
+        </p>
+
+        <p>
+          Egy liter pontosan 1000 milliliternek és 1 köbdeciméternek felel meg.
+        </p>
+
+        <h2>Mi az a köbméter?</h2>
+
+        <p>
+          A köbméter (m³) nagyobb mennyiségek mérésére szolgáló egység.
+          Építőanyagok, beton, föld, víz vagy egyéb ömlesztett anyagok
+          mennyiségének meghatározásakor használják.
+        </p>
+
+        <p>Egy köbméter pontosan 1000 liternek felel meg.</p>
+
+        <h2>Mi az a gallon?</h2>
+
+        <p>
+          A gallon az angolszász mértékegységrendszer térfogategysége. Az
+          Egyesült Államokban üzemanyagok, italok és egyéb folyadékok
+          mennyiségét gyakran gallonban adják meg.
+        </p>
+
+        <p>Egy amerikai gallon körülbelül 3,785 liternek felel meg.</p>
+
+        <h2>Gyakori térfogat átváltások</h2>
+
+        <table class="conversion-table">
+          <thead>
+            <tr>
+              <th>Mértékegység</th>
+              <th>Átváltás</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>1 liter</td>
+              <td>1000 ml</td>
+            </tr>
+
+            <tr>
+              <td>1 liter</td>
+              <td>100 cl</td>
+            </tr>
+
+            <tr>
+              <td>1 liter</td>
+              <td>10 dl</td>
+            </tr>
+
+            <tr>
+              <td>1 m³</td>
+              <td>1000 liter</td>
+            </tr>
+
+            <tr>
+              <td>1 gallon (US)</td>
+              <td>3,78541 liter</td>
+            </tr>
+
+            <tr>
+              <td>1 liter</td>
+              <td>0,26417 gallon</td>
+            </tr>
+
+            <tr>
+              <td>500 ml</td>
+              <td>0,5 liter</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Példák térfogat átváltásra</h2>
+
+        <h3>1000 milliliter hány liter?</h3>
+
+        <p>1000 milliliter pontosan 1 liternek felel meg.</p>
+
+        <h3>1 köbméter hány liter?</h3>
+
+        <p>
+          1 köbméter pontosan 1000 liter. Ez az egyik leggyakrabban használt
+          átváltás építőipari és vízügyi számítások során.
+        </p>
+
+        <h3>5 liter hány deciliter?</h3>
+
+        <p>5 liter pontosan 50 deciliter.</p>
+
+        <h3>10 gallon hány liter?</h3>
+
+        <p>10 amerikai gallon körülbelül 37,85 liternek felel meg.</p>
+
+        <h3>250 milliliter hány deciliter?</h3>
+
+        <p>250 milliliter 2,5 deciliternek felel meg.</p>
+
+        <h2>Mikor lehet szükség térfogat átváltásra?</h2>
+
+        <ul>
+          <li>főzés és sütés során</li>
+          <li>külföldi receptek használatakor</li>
+          <li>üzemanyag-fogyasztás értelmezésekor</li>
+          <li>medencék és tartályok méretének számításakor</li>
+          <li>építőipari számításoknál</li>
+          <li>vízfogyasztás meghatározásakor</li>
+          <li>laboratóriumi mérések során</li>
+        </ul>
+
+        <h2>GYIK</h2>
+
+        <h3>1 liter hány milliliter?</h3>
+
+        <p>1 liter pontosan 1000 milliliter.</p>
+
+        <h3>1 liter hány deciliter?</h3>
+
+        <p>1 liter pontosan 10 deciliter.</p>
+
+        <h3>1 liter hány centiliter?</h3>
+
+        <p>1 liter pontosan 100 centiliter.</p>
+
+        <h3>1 köbméter hány liter?</h3>
+
+        <p>1 köbméter pontosan 1000 liter.</p>
+
+        <h3>1 gallon hány liter?</h3>
+
+        <p>1 amerikai gallon körülbelül 3,78541 liter.</p>
+
+        <h3>Mi a különbség a liter és a köbméter között?</h3>
+
+        <p>
+          Mindkettő térfogategység. A köbmétert elsősorban nagyobb mennyiségek
+          mérésére használják, míg a liter a mindennapi életben elterjedtebb.
+        </p>
+
+        <h2>Térfogat és űrtartalom - ugyanaz?</h2>
+
+        <p>
+          A hétköznapi beszédben gyakran szinonimaként használjuk őket, azonban
+          a térfogat egy test által elfoglalt hely nagyságát jelenti, míg az
+          űrtartalom egy tárolóedény befogadóképességét fejezi ki.
+        </p>
+
+        <p>
+          A gyakorlatban a két fogalom sok esetben nagyon hasonló értelmezést
+          kap, ezért a mindennapi használat során ritkán teszünk különbséget
+          közöttük.
+        </p>
+
+        <h2>Kapcsolódó átváltók</h2>
+
+        <ul>
+          <li>Hőmérséklet átváltó kalkulátor</li>
+          <li>Hosszúság átváltó kalkulátor</li>
+          <li>Tömeg átváltó kalkulátor</li>
+          <li>Terület átváltó kalkulátor</li>
+          <li>Idő átváltó kalkulátor</li>
+          <li>Sebesség átváltó kalkulátor</li>
+          <li>Adatmennyiség átváltó kalkulátor</li>
+        </ul>
+      </section>
+    
+    <section class="article generated-seo" data-generated-seo="calculator">
+      <h2>Térfogat átváltó használata</h2>
+      <p>
+        A térfogat átváltó gyors segítséget ad, ha pontosabb képet szeretnél kapni egy gyakori
+        átváltók számítás eredményéről. A kalkulátor egyszerűen használható:
+        add meg a szükséges adatokat, az eredmény pedig azonnal megjelenik.
+      </p>
+      <p>
+        Milliliter, liter, köbméter és gallon átváltása. Az eszköz célja, hogy a számolás ne vegyen el felesleges időt,
+        és mobilon is könnyen ellenőrizhető legyen az eredmény.
+      </p>
+      <p>
+        A kapott értékek tájékoztató jellegűek. Pénzügyi, egészségügyi, építőipari vagy nagyobb értékű
+        döntés előtt érdemes a számítást saját adatokkal többször is ellenőrizni, illetve szükség esetén
+        szakértői tanácsot kérni.
+      </p>
+
+      <h2>Gyakori kérdések</h2>
+      <div class="faq-list">
+        <details>
+          <summary>Mire jó a térfogat átváltó?</summary>
+          <p>Milliliter, liter, köbméter és gallon átváltása. Akkor hasznos, ha gyors, áttekinthető eredményt szeretnél kapni kézi számolás nélkül.</p>
+        </details>
+        <details>
+          <summary>Ingyenes a kalkulátor használata?</summary>
+          <p>Igen, a Kalkulátor Bázis kalkulátorai ingyenesen használhatók, külön regisztráció nélkül.</p>
+        </details>
+        <details>
+          <summary>Mobilon is működik?</summary>
+          <p>Igen, a kalkulátor mobil-first felülettel készült, ezért telefonon és tableten is kényelmesen használható.</p>
+        </details>
+        <details>
+          <summary>Mennyire pontos az eredmény?</summary>
+          <p>Az eredmény a megadott adatokból számított tájékoztató érték. Ha hivatalos, szerződéses vagy egészségügyi döntéshez használod, ellenőrizd más forrásból is.</p>
+        </details>
+      </div>
+    </section>
+    </main>
+
+    <div id="footer"></div>
+    <script src="../js/utils.js"></script>
+    <script src="../js/atvaltok/terfogat.js" defer></script>
+  </body>
+</html>

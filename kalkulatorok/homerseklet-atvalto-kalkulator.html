@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Hőmérséklet átváltó kalkulátor Celsius, Fahrenheit és Kelvin között. Gyors és pontos hőmérséklet átváltás online."
+    />
+  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/homerseklet-atvalto-kalkulator.html" />
+<title>Hőmérséklet átváltó kalkulátor</title>
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/pages/homerseklet.css" />
+
+    <script src="../js/global-head.js"></script>
+  </head>
+
+  <body>
+    <div id="header"></div>
+
+    <main class="container page-homerseklet">
+      <section class="hero">
+        <h1>Hőmérséklet átváltó kalkulátor</h1>
+
+        <p>
+          Celsius, Fahrenheit és Kelvin közötti gyors és pontos átváltás online.
+        </p>
+      </section>
+
+      <!-- Celsius ↔ Fahrenheit -->
+
+      <section class="card card-calculator">
+        <h2>Celsius ↔ Fahrenheit átváltó</h2>
+
+        <div class="converter-header">
+          <span id="cfDirection">Celsius → Fahrenheit</span>
+
+          <button id="swapCF" class="swap-btn">⇄ Irány váltása</button>
+        </div>
+
+        <div class="calc-grid">
+          <input
+            type="number"
+            id="cfInput"
+            placeholder="Adj meg egy hőmérsékletet"
+          />
+        </div>
+
+        <div class="result-box">
+          <p id="cfResult">–</p>
+        </div>
+      </section>
+
+      <!-- Celsius ↔ Kelvin -->
+
+      <section class="card card-calculator">
+        <h2>Celsius ↔ Kelvin átváltó</h2>
+
+        <div class="converter-header">
+          <span id="ckDirection">Celsius → Kelvin</span>
+
+          <button id="swapCK" class="swap-btn">⇄ Irány váltása</button>
+        </div>
+
+        <div class="calc-grid">
+          <input
+            type="number"
+            id="ckInput"
+            placeholder="Adj meg egy hőmérsékletet"
+          />
+        </div>
+
+        <div class="result-box">
+          <p id="ckResult">–</p>
+        </div>
+      </section>
+
+      <!-- Fahrenheit ↔ Kelvin -->
+
+      <section class="card card-calculator">
+        <h2>Fahrenheit ↔ Kelvin átváltó</h2>
+
+        <div class="converter-header">
+          <span id="fkDirection">Fahrenheit → Kelvin</span>
+
+          <button id="swapFK" class="swap-btn">⇄ Irány váltása</button>
+        </div>
+
+        <div class="calc-grid">
+          <input
+            type="number"
+            id="fkInput"
+            placeholder="Adj meg egy hőmérsékletet"
+          />
+        </div>
+
+        <div class="result-box">
+          <p id="fkResult">–</p>
+        </div>
+      </section>
+
+      <!-- SEO SZÖVEG -->
+
+      <section class="article">
+        <div class="info-box">
+          <strong>Tipp:</strong>
+          A hőmérséklet átváltás gyakran szükséges utazás, tudományos
+          számítások, időjárási adatok értelmezése vagy műszaki dokumentációk
+          használata során.
+        </div>
+
+        <h2>Mi az a Celsius-fok?</h2>
+
+        <p>
+          A Celsius-skála Magyarországon és Európa nagy részén a legelterjedtebb
+          hőmérséklet-mérési rendszer. A víz normál légköri nyomáson 0 °C-on
+          fagy meg, és 100 °C-on forr fel.
+        </p>
+
+        <p>
+          A mindennapi életben szinte minden időjárás-jelentés, háztartási
+          eszköz és műszaki adat Celsius-fokban jeleníti meg a hőmérsékletet.
+        </p>
+
+        <h2>Mi az a Fahrenheit?</h2>
+
+        <p>
+          A Fahrenheit-skálát elsősorban az Egyesült Államokban használják.
+          Időjárás-előrejelzésekben, sütési receptekben és különböző műszaki
+          dokumentációkban is gyakran találkozhatunk vele.
+        </p>
+
+        <p>Ezen a skálán a víz 32 °F-on fagy meg és 212 °F-on forr fel.</p>
+
+        <h2>Mi az a Kelvin?</h2>
+
+        <p>
+          A Kelvin a Nemzetközi Mértékegységrendszer (SI) hivatalos
+          hőmérséklet-egysége. Tudományos és mérnöki számításoknál széles körben
+          használják.
+        </p>
+
+        <p>
+          A Kelvin-skála különlegessége, hogy nincs negatív értéke. A 0 Kelvin
+          az abszolút nulla hőmérsékletet jelenti, amely elméletileg a lehető
+          legalacsonyabb hőmérséklet.
+        </p>
+
+        <h2>Mikor lehet szükség hőmérséklet átváltásra?</h2>
+
+        <ul>
+          <li>külföldi időjárás-előrejelzések értelmezéséhez</li>
+          <li>amerikai receptek használatához</li>
+          <li>műszaki dokumentációk olvasásához</li>
+          <li>tudományos számításokhoz</li>
+          <li>iskolai feladatok megoldásához</li>
+          <li>fizikai és kémiai számításokhoz</li>
+        </ul>
+
+        <h2>Gyakori hőmérséklet átváltások</h2>
+
+        <table class="conversion-table">
+          <thead>
+            <tr>
+              <th>Celsius</th>
+              <th>Fahrenheit</th>
+              <th>Kelvin</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>-40 °C</td>
+              <td>-40 °F</td>
+              <td>233,15 K</td>
+            </tr>
+
+            <tr>
+              <td>0 °C</td>
+              <td>32 °F</td>
+              <td>273,15 K</td>
+            </tr>
+
+            <tr>
+              <td>20 °C</td>
+              <td>68 °F</td>
+              <td>293,15 K</td>
+            </tr>
+
+            <tr>
+              <td>25 °C</td>
+              <td>77 °F</td>
+              <td>298,15 K</td>
+            </tr>
+
+            <tr>
+              <td>37 °C</td>
+              <td>98,6 °F</td>
+              <td>310,15 K</td>
+            </tr>
+
+            <tr>
+              <td>100 °C</td>
+              <td>212 °F</td>
+              <td>373,15 K</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>Példák hőmérséklet átváltásra</h2>
+
+        <h3>25 Celsius-fok átváltása Fahrenheitre</h3>
+
+        <p>
+          A 25 °C hőmérséklet Fahrenheitben 77 °F-nak felel meg. Ez egy tipikus
+          kellemes szobahőmérséklet vagy nyári nappali hőmérséklet.
+        </p>
+
+        <h3>0 Celsius-fok átváltása Kelvinre</h3>
+
+        <p>
+          A 0 °C pontosan 273,15 Kelvinnek felel meg. A Kelvin-skála innen indul
+          a mindennapi hőmérsékletek tartományában.
+        </p>
+
+        <h3>100 Celsius-fok átváltása Fahrenheitre</h3>
+
+        <p>
+          A víz normál légköri nyomáson 100 °C-on forr, amely 212 °F-nak felel
+          meg.
+        </p>
+
+        <h2>Hogyan működik a hőmérséklet átváltás?</h2>
+
+        <p>
+          A különböző hőmérsékleti skálák eltérő referenciaértékeket használnak.
+          Emiatt az átváltás nem egyszerű szorzással történik, hanem matematikai
+          képletek segítségével.
+        </p>
+
+        <p>
+          A Celsius és Fahrenheit közötti átváltás során figyelembe kell venni a
+          két skála eltérő kezdőpontját és osztásközét is. A Kelvin-skála pedig
+          az abszolút nulla hőmérséklettől indul.
+        </p>
+
+        <h2>GYIK</h2>
+
+        <h3>Mennyi 0 Celsius Fahrenheitben?</h3>
+
+        <p>0 °C = 32 °F</p>
+
+        <h3>Mennyi 100 Celsius Fahrenheitben?</h3>
+
+        <p>100 °C = 212 °F</p>
+
+        <h3>Mennyi 25 Celsius Kelvinben?</h3>
+
+        <p>25 °C = 298,15 K</p>
+
+        <h3>Mennyi az abszolút nulla fok?</h3>
+
+        <p>
+          Az abszolút nulla hőmérséklet 0 Kelvin, amely -273,15 Celsius-foknak
+          felel meg.
+        </p>
+
+        <h3>Miért használják a Kelvint a tudományban?</h3>
+
+        <p>
+          A Kelvin a Nemzetközi Mértékegységrendszer hivatalos
+          hőmérséklet-egysége, ezért fizikai, kémiai és mérnöki számítások során
+          ezt használják.
+        </p>
+
+        <h2>Kapcsolódó átváltók</h2>
+
+        <ul>
+          <li>Hosszúság átváltó</li>
+          <li>Tömeg átváltó</li>
+          <li>Terület átváltó</li>
+          <li>Térfogat átváltó</li>
+          <li>Idő átváltó</li>
+          <li>Sebesség átváltó</li>
+        </ul>
+      </section>
+    
+    <section class="article generated-seo" data-generated-seo="calculator">
+      <h2>Hőmérséklet átváltó használata</h2>
+      <p>
+        A hőmérséklet átváltó gyors segítséget ad, ha pontosabb képet szeretnél kapni egy gyakori
+        átváltók számítás eredményéről. A kalkulátor egyszerűen használható:
+        add meg a szükséges adatokat, az eredmény pedig azonnal megjelenik.
+      </p>
+      <p>
+        Celsius, Fahrenheit és Kelvin átváltása. Az eszköz célja, hogy a számolás ne vegyen el felesleges időt,
+        és mobilon is könnyen ellenőrizhető legyen az eredmény.
+      </p>
+      <p>
+        A kapott értékek tájékoztató jellegűek. Pénzügyi, egészségügyi, építőipari vagy nagyobb értékű
+        döntés előtt érdemes a számítást saját adatokkal többször is ellenőrizni, illetve szükség esetén
+        szakértői tanácsot kérni.
+      </p>
+
+      <h2>Gyakori kérdések</h2>
+      <div class="faq-list">
+        <details>
+          <summary>Mire jó a hőmérséklet átváltó?</summary>
+          <p>Celsius, Fahrenheit és Kelvin átváltása. Akkor hasznos, ha gyors, áttekinthető eredményt szeretnél kapni kézi számolás nélkül.</p>
+        </details>
+        <details>
+          <summary>Ingyenes a kalkulátor használata?</summary>
+          <p>Igen, a Kalkulátor Bázis kalkulátorai ingyenesen használhatók, külön regisztráció nélkül.</p>
+        </details>
+        <details>
+          <summary>Mobilon is működik?</summary>
+          <p>Igen, a kalkulátor mobil-first felülettel készült, ezért telefonon és tableten is kényelmesen használható.</p>
+        </details>
+        <details>
+          <summary>Mennyire pontos az eredmény?</summary>
+          <p>Az eredmény a megadott adatokból számított tájékoztató érték. Ha hivatalos, szerződéses vagy egészségügyi döntéshez használod, ellenőrizd más forrásból is.</p>
+        </details>
+      </div>
+    </section>
+    </main>
+
+    <div id="footer"></div>
+    <script src="../js/utils.js"></script>
+    <script src="../js/atvaltok/homerseklet.js" defer></script>
+  </body>
+</html>

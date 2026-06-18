@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content="Modern nettó-bruttó kalkulátor 2026-ra. Számolj nettóból bruttót, bruttóból nettót, családi kedvezményt, 25 év alatti SZJA mentességet és munkáltatói költséget."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/netto-brutto-kalkulator.html" />
+<title>Nettó - bruttó kalkulátor 2026 | Fizetés és bérkalkuláció</title>
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/pages/netto-brutto.css" />
+    <script src="../js/global-head.js"></script>
+  </head>
+
+  <body>
+    <div id="header"></div>
+
+    <main class="container page-netto">
+      <!-- HERO -->
+      <section class="hero">
+        <h1>Nettó–bruttó kalkulátor</h1>
+        <p>
+          Számold ki pontosan, mennyi marad a fizetésedből adók és járulékok
+          után.
+        </p>
+      </section>
+
+      <!-- KALKULÁTOR -->
+      <section class="card card-calculator">
+        <div class="mode-switch">
+          <label>
+            <input type="radio" name="calc-type" value="gross-to-net" checked />
+            Bruttóból nettó
+          </label>
+
+          <label>
+            <input type="radio" name="calc-type" value="net-to-gross" />
+            Nettóból bruttó
+          </label>
+        </div>
+
+        <div class="calc-grid">
+          <div id="gross-wrapper">
+            <label>Bruttó fizetés (Ft)</label>
+
+            <input type="text" id="gross" placeholder="pl. 500 000" />
+          </div>
+
+          <div id="net-wrapper" class="hidden">
+            <label>Nettó fizetés (Ft)</label>
+
+            <input type="text" id="net-input" placeholder="pl. 332 500" />
+          </div>
+        </div>
+
+        <div class="options-grid">
+          <label class="checkbox-row">
+            <input type="checkbox" id="under25" />
+            25 év alatti SZJA kedvezmény
+          </label>
+
+          <label class="checkbox-row">
+            <input type="checkbox" id="first-married" />
+            Első házas kedvezmény
+          </label>
+        </div>
+
+        <div class="family-box">
+          <label>Családi kedvezmény. Gyermek(ek) száma:</label>
+
+          <input
+            type="number"
+            id="family"
+            min="0"
+            max="20"
+            placeholder="pl. 2"
+          />
+        </div>
+
+        <div class="radio-group">
+          <label>
+            <input type="radio" name="mode" value="current" checked />
+            Jelenlegi adózás
+          </label>
+
+          <label>
+            <input type="radio" name="mode" value="alt" />
+            Alternatív modell (9% SZJA)
+          </label>
+        </div>
+
+        <div class="result-box">
+          <p id="result-title">Nettó fizetés:</p>
+          <p id="result-net">–</p>
+          <p id="result-gross"></p>
+          <p id="result-szja"></p>
+          <p id="result-tb"></p>
+          <p id="result-family"></p>
+          <p id="result-married"></p>
+          <p id="result-under25"></p>
+          <p id="result-employer"></p>
+          <p id="result-diff"></p>
+        </div>
+      </section>
+
+      <!-- SEO BLOKK -->
+      <section class="article">
+        <div class="info-box">
+          <strong>Fontos:</strong> Az alternatív számítás egy feltételezett
+          modell, nem a jelenlegi hivatalos adózási szabályok alapján történik.
+        </div>
+
+        <h2>Nettóból bruttó fizetés számítása</h2>
+
+        <p>
+          Sok esetben nem a bruttó fizetést ismerjük, hanem azt az összeget,
+          amelyet ténylegesen kézhez szeretnénk kapni.
+        </p>
+
+        <p>
+          A nettóból bruttó kalkulátor segít meghatározni, hogy mekkora bruttó
+          bér szükséges a kívánt nettó fizetés eléréséhez.
+        </p>
+
+        <p>
+          Ez különösen hasznos lehet állásinterjúk, bértárgyalások vagy külföldi
+          munkavállalás esetén.
+        </p>
+
+        <h2>25 év alatti SZJA kedvezmény</h2>
+
+        <p>
+          Magyarországon a 25 év alatti munkavállalók bizonyos feltételek
+          mellett SZJA mentességet kaphatnak, amely jelentősen növelheti a nettó
+          fizetést.
+        </p>
+
+        <p>
+          Ez a kedvezmény több tízezer forintos havi különbséget is jelenthet,
+          ezért fontos figyelembe venni fizetés számításkor.
+        </p>
+
+        <h2>Családi kedvezmény számítása</h2>
+
+        <p>
+          A családi adókedvezmény a gyermekek számától függően növeli a nettó
+          fizetést.
+        </p>
+
+        <ul>
+          <li>1 gyermek esetén akár havi 20 000 Ft</li>
+          <li>2 gyermek esetén akár havi 80 000 Ft</li>
+          <li>3 vagy több gyermek esetén gyermekenként akár 66 000 Ft</li>
+        </ul>
+
+        <p>
+          A kalkulátor automatikusan figyelembe veszi a megadott gyermekek
+          számát.
+        </p>
+
+        <h2>Első házas kedvezmény</h2>
+
+        <p>
+          Az első házasok kedvezménye további adócsökkentést biztosíthat, amely
+          növeli a kézhez kapott nettó fizetést.
+        </p>
+
+        <p>
+          A kalkulátor ezt a kedvezményt is figyelembe tudja venni a számítás
+          során.
+        </p>
+
+        <h2>Teljes munkáltatói bérköltség</h2>
+
+        <p>
+          A munkáltató számára a bruttó fizetésnél magasabb a tényleges
+          foglalkoztatási költség.
+        </p>
+
+        <p>
+          A kalkulátor megmutatja, hogy a munkáltató számára összesen mennyibe
+          kerül egy munkavállaló foglalkoztatása.
+        </p>
+
+        <h2>Gyakori kérdések</h2>
+
+        <h3>Mennyi a nettó fizetés 500 000 Ft bruttóból?</h3>
+
+        <p>
+          Ez függ az adókedvezményektől és az aktuális adózási szabályoktól.
+        </p>
+
+        <h3>Hogyan számolható a nettóból bruttó fizetés?</h3>
+
+        <p>
+          A nettóból bruttó számítás során a rendszer visszaszámolja az adókat
+          és járulékokat.
+        </p>
+
+        <h3>Mekkora a TB járulék?</h3>
+
+        <p>A társadalombiztosítási járulék jelenleg 18,5%.</p>
+      </section>
+
+      <section class="article-recommendation">
+        <h2>Érdekelhet még</h2>
+
+        <p>
+          Ha külföldön dolgozol, devizában kapod a fizetésed vagy rendszeresen
+          váltasz pénzt különböző pénznemek között, érdemes megismerned a Wise
+          szolgáltatásait és lehetőségeit.
+        </p>
+
+        <a
+          href="../landing-pages/wise/wise.html"
+          class="wise-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Wise bemutató →
+        </a>
+      </section>
+    <section class="adsense-content" data-adsense-upgrade="netto-brutto">
+      <h2>Nettó - bruttó számítás érthetően</h2>
+      <p>A nettó - bruttó kalkulátor akkor hasznos, amikor egy állásajánlat, fizetésemelés vagy bértervezés kapcsán szeretnéd látni, mennyi pénz érkezhet ténylegesen a számládra. A bruttó bér önmagában nem mutatja meg a havi mozgásteredet, mert abból adók, járulékok és esetleges kedvezmények is levonásra kerülhetnek.</p>
+      <p>A kalkulátor célja nem az, hogy munkaszerződést vagy hivatalos bérszámfejtést helyettesítsen, hanem hogy gyors, követhető becslést adjon. Így könnyebb összehasonlítani két ajánlatot, megtervezni a havi költségvetést, vagy megnézni, mekkora bruttó bérre lenne szükség egy kívánt nettó összeghez.</p>
+
+      <h3>Hogyan működik a számítás?</h3>
+      <p>A számítás iránya lehet bruttóból nettó vagy nettóból bruttó. Bruttóból nettó esetén a kalkulátor a beállított levonási logika alapján kiszámolja a várható nettó összeget. Nettóból bruttó irányban azt becsüli meg, hogy mekkora bruttó bérre lehet szükség a megadott nettó célhoz. A kedvezmények, például családi vagy életkorhoz kötött kedvezmények jelentősen módosíthatják az eredményt.</p>
+
+      <div class="example-box">
+        <h3>Konkrét példaszámítás</h3>
+        <p>Például 600 000 Ft bruttó bérnél, kedvezmények nélkül, egy egyszerűsített 33,5%-os levonási aránnyal számolva a levonás 201 000 Ft, a becsült nettó pedig körülbelül 399 000 Ft. Ha ugyanilyen logikával 450 000 Ft nettó célt adsz meg, a kalkulátor a szükséges bruttó bért segít visszabecsülni.</p>
+      </div>
+
+      <h3>Mikor hasznos ez a kalkulátor?</h3>
+      <ul>
+        <li>állásajánlatok összehasonlításakor</li>
+        <li>fizetésemelési cél meghatározásakor</li>
+        <li>havi költségvetés tervezésekor</li>
+        <li>nettó bérigény bruttósításakor</li>
+      </ul>
+
+      <div class="notice-box">
+        <strong>Fontos tudni:</strong> A bérszámítás jogszabályi környezete és a kedvezmények rendszere változhat. Az eredmény tájékoztató jellegű, munkaszerződés, bérpapír vagy hivatalos döntés előtt ellenőrizd a munkáltatói/bérszámfejtési adatokat.
+      </div>
+
+      <h3>Gyakori kérdések</h3>
+      <div class="faq-list">
+        <details><summary>Miért térhet el a kalkulátor eredménye a bérpapíromtól?</summary><p>Mert a tényleges bérszámfejtésben szerepelhetnek pótlékok, levonások, cafeteria elemek, kedvezmények vagy egyedi munkáltatói tételek.</p></details>
+        <details><summary>Bruttó vagy nettó bért érdemes megadni állásinterjún?</summary><p>A munkáltatók jellemzően bruttó bérben gondolkodnak, de neked a nettó mozgástér is fontos. Érdemes mindkettőt átszámolni.</p></details>
+        <details><summary>Mit jelent a nettóból bruttó számítás?</summary><p>Azt, hogy egy kívánt kézhez kapott összeghez becsüli meg a szükséges bruttó bért.</p></details>
+        <details><summary>Kedvezményekkel is lehet számolni?</summary><p>Ha az adott kalkulátor mezői ezt támogatják, a kedvezmények hatását is figyelembe veheted.</p></details>
+        <details><summary>Hivatalos bérszámfejtésre alkalmas?</summary><p>Nem. Gyors tájékozódásra készült, hivatalos számításhoz bérszámfejtői vagy munkáltatói adat szükséges.</p></details>
+      </div>
+
+      <h3>Kapcsolódó kalkulátorok</h3>
+      <div class="related-links">
+        <a href="havi-koltsegvetes-kalkulator.html">Havi költségvetés kalkulátor</a>
+        <a href="hitelkepesseg-kalkulator.html">Hitelképesség kalkulátor</a>
+        <a href="inflacio-kalkulator.html">Infláció kalkulátor</a>
+        <a href="oraber-kalkulator.html">Órabér kalkulátor</a>
+      </div>
+    </section>
+    </main>
+
+    <div id="footer"></div>
+    <script src="../js/utils.js"></script>
+    <script src="../js/penzugyi/netto-brutto.js" defer></script>
+  </body>
+</html>

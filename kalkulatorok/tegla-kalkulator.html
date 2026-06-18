@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Tégla kalkulátor: számold ki mennyi tégla szükséges falazáshoz, házépítéshez vagy válaszfal készítéséhez. Porotherm és egyedi téglák támogatásával."
+    />
+  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/tegla-kalkulator.html" />
+<title>Tégla kalkulátor | Falazat és darabszám becslése</title>
+
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/pages/tegla-kalkulator.css" />
+
+    <script src="../js/global-head.js"></script>
+  </head>
+
+  <body>
+    <div id="header"></div>
+
+    <main class="container page-tegla">
+      <!-- HERO -->
+
+      <section class="hero">
+        <h1>Tégla kalkulátor</h1>
+        <p>
+          Számold ki gyorsan és pontosan, hogy mennyi tégla szükséges
+          falazáshoz, válaszfal építéshez vagy akár egy teljes ház
+          kivitelezéséhez.
+        </p>
+      </section>
+
+      <!-- KALKULÁTOR -->
+
+      <section class="card card-calculator">
+        <h2>Tégla mennyiség kalkulátor</h2>
+
+        <div class="calc-grid">
+          <div>
+            <label>Fal hossza (m)</label>
+            <input
+              type="number"
+              id="wallLength"
+              step="0.1"
+              placeholder="pl. 5"
+            />
+          </div>
+
+          <div>
+            <label>Fal magassága (m)</label>
+            <input
+              type="number"
+              id="wallHeight"
+              step="0.1"
+              placeholder="pl. 2.7"
+            />
+          </div>
+
+          <div>
+            <label>Ablakok összterülete (m²)</label>
+            <small>Add meg az összes ablak együttes területét.</small>
+            <input type="number" id="windowArea" step="0.1" value="0" />
+          </div>
+
+          <div>
+            <label>Ajtók összterülete (m²)</label>
+            <small>Add meg az összes ajtó együttes területét.</small>
+            <input type="number" id="doorArea" step="0.1" value="0" />
+          </div>
+
+          <div>
+            <label>Téglatípus</label>
+
+            <select id="brickType">
+              <option value="porotherm10">Porotherm 10 N+F</option>
+              <option value="porotherm20">Porotherm 20 N+F</option>
+              <option value="porotherm30" selected>Porotherm 30 N+F</option>
+              <option value="porotherm38">Porotherm 38 N+F</option>
+              <option value="kisméretű">Kisméretű tömör tégla</option>
+              <option value="custom">Egyedi méretű tégla</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Ráhagyás (%)</label>
+            <input type="number" id="wastePercent" value="5" />
+          </div>
+
+          <div>
+            <label>Tégla ára (Ft/db)</label>
+            <small>Ha nem tudod, hagyd üresen.</small>
+            <input type="number" id="brickPrice" placeholder="pl. 900" />
+          </div>
+        </div>
+
+        <!-- EGYEDI TÉGLA -->
+
+        <div id="customBrickFields" style="display: none">
+          <div class="calc-grid">
+            <div>
+              <label>Tégla hossza (cm)</label>
+              <input type="number" id="brickLength" placeholder="pl. 30" />
+            </div>
+
+            <div>
+              <label>Tégla magassága (cm)</label>
+              <input type="number" id="brickHeight" placeholder="pl. 25" />
+            </div>
+          </div>
+        </div>
+
+        <!-- TÉGLA INFORMÁCIÓ -->
+
+        <div class="info-box" id="brickInfo">
+          Porotherm 30 N+F
+
+          <br /><br />
+
+          Méret: 30 × 25 × 24,9 cm
+
+          <br />
+
+          Átlagos szükséglet: körülbelül 16 db/m²
+        </div>
+
+        <!-- EREDMÉNYEK -->
+
+        <div class="result-box">
+          <h3>Eredmények</h3>
+
+          <p>
+            <strong>Fal teljes felülete:</strong>
+            <span id="wallAreaResult">–</span>
+          </p>
+
+          <p>
+            <strong>Nyílászárók összterülete:</strong>
+            <span id="openingAreaResult">–</span>
+          </p>
+
+          <p>
+            <strong>Nettó falfelület:</strong>
+            <span id="netWallAreaResult">–</span>
+          </p>
+
+          <p>
+            <strong>Szükséges téglák száma:</strong>
+            <span id="brickCountResult">–</span>
+          </p>
+
+          <p>
+            <strong>Ajánlott mennyiség:</strong>
+            <span id="recommendedBrickCountResult">–</span>
+          </p>
+
+          <p>
+            <strong>Becsült anyagköltség:</strong>
+            <span id="costResult">–</span>
+          </p>
+        </div>
+
+        <!-- DINAMIKUS ÖSSZESÍTŐ -->
+
+        <div class="info-box summary-box" id="summaryText">
+          Add meg az adatokat a számításhoz.
+        </div>
+      </section>
+
+      <!-- SEO TARTALOM -->
+
+      <section class="article">
+        <div class="info-box">
+          <strong>Tipp:</strong>
+          Falazás esetén érdemes legalább 5–10% ráhagyással számolni a vágások,
+          sérülések és veszteségek miatt.
+        </div>
+
+        <h2>Mennyi tégla kell egy falhoz?</h2>
+
+        <p>
+          Az egyik leggyakoribb kérdés építkezés vagy felújítás során, hogy
+          mennyi tégla szükséges egy adott fal vagy épület kivitelezéséhez. A
+          pontos mennyiség kiszámítása jelentős költségmegtakarítást
+          eredményezhet, hiszen elkerülhető a túlzott anyagvásárlás és az is,
+          hogy a munkálatok közben fogyjon el a szükséges építőanyag.
+        </p>
+
+        <p>
+          Tégla kalkulátorunk segítségével néhány másodperc alatt
+          meghatározhatod a szükséges téglamennyiséget különböző falazóelemek
+          esetén, beleértve a népszerű Porotherm téglacsaládot és az egyedi
+          méretű falazóelemeket is.
+        </p>
+
+        <h2>Tégla kalkulátor használata</h2>
+
+        <p>
+          A számításhoz add meg a fal hosszát és magasságát méterben. Ezután
+          vond le a nyílászárók területét, majd válaszd ki a használni kívánt
+          téglatípust.
+        </p>
+
+        <p>
+          A kalkulátor figyelembe veszi a ráhagyást is, így nem csupán az
+          elméleti minimum mennyiséget kapod meg, hanem a gyakorlatban is
+          biztonságosan felhasználható darabszámot.
+        </p>
+
+        <h2>Tégla mennyiség számítása</h2>
+
+        <p>
+          A számítás alapja a nettó falfelület meghatározása. Ehhez a teljes fal
+          területéből levonjuk az ablakok és ajtók összterületét.
+        </p>
+
+        <p>
+          A nettó falfelületet ezután megszorozzuk az adott téglatípus
+          négyzetméterenként szükséges darabszámával.
+        </p>
+
+        <p>
+          A kapott eredményhez végül hozzáadjuk a megadott ráhagyást, amely
+          általában 5–10% között mozog.
+        </p>
+
+        <h2>Miért fontos a pontos téglaszámítás?</h2>
+
+        <p>
+          A téglák jelentős költséget képviselnek egy építkezés során. Egy
+          pontatlan becslés akár több tíz vagy százezer forintos többletkiadást
+          is eredményezhet.
+        </p>
+
+        <p>
+          Ha túl kevés anyagot vásárolsz, a kivitelezés megszakadhat. Ha túl
+          sokat rendelsz, felesleges pénzt kötsz le és tárolási problémák is
+          felmerülhetnek.
+        </p>
+
+        <h2>Porotherm tégla méretek és felhasználás</h2>
+
+        <p>
+          A Porotherm falazóelemek Magyarország legnépszerűbb építőanyagai közé
+          tartoznak. Jó hőszigetelő képességük, pontos méretük és gyors
+          beépíthetőségük miatt családi házak, társasházak és ipari épületek
+          építésénél egyaránt gyakran alkalmazzák őket.
+        </p>
+
+        <p>
+          A különböző vastagságú falazóelemek eltérő célokra használhatók. A
+          Porotherm 10 jellemzően válaszfalakhoz, míg a Porotherm 30 vagy 38
+          teherhordó falak kialakításához ajánlott.
+        </p>
+
+        <ul>
+          <li>Porotherm 10 – válaszfalakhoz</li>
+          <li>Porotherm 20 – kisebb teherhordó falakhoz</li>
+          <li>Porotherm 30 – családi házak külső falaihoz</li>
+          <li>Porotherm 38 – fokozott hőszigetelési igény esetén</li>
+        </ul>
+
+        <h2>Kisméretű tégla számítás</h2>
+
+        <p>
+          A hagyományos kisméretű tömör tégla ma is gyakran előfordul
+          felújításoknál, melléképületeknél vagy régebbi épületek
+          helyreállításánál.
+        </p>
+
+        <p>
+          Egy négyzetméter falazathoz átlagosan 50–70 darab kisméretű tégla
+          szükséges, a fal vastagságától és a fugák méretétől függően.
+        </p>
+
+        <h2>Mennyi tégla kell egy házhoz?</h2>
+
+        <p>
+          Egy családi ház teljes téglaigénye rendkívül változó. Befolyásolja az
+          alapterület, a falmagasság, a nyílászárók száma, valamint a választott
+          falazóelem típusa is.
+        </p>
+
+        <p>
+          Egy átlagos, 100 négyzetméteres családi ház külső falazatához akár
+          több ezer darab tégla is szükséges lehet.
+        </p>
+
+        <p>
+          A pontos mennyiséget mindig egyedi számítás alapján érdemes
+          meghatározni.
+        </p>
+
+        <h2>Falazás költsége</h2>
+
+        <p>
+          A falazás teljes költsége nem kizárólag a téglák árától függ. Számolni
+          kell a falazóhabarccsal vagy ragasztóval, a szállítási költségekkel,
+          valamint a munkadíjjal is.
+        </p>
+
+        <p>
+          Az építőanyagok árának folyamatos változása miatt különösen fontos a
+          költségek előzetes tervezése.
+        </p>
+
+        <p>
+          Kalkulátorunk a megadott darabár alapján becsült anyagköltséget is
+          számol, így könnyebben tervezhető a beruházás.
+        </p>
+
+        <h2>Tégla árak Magyarországon</h2>
+
+        <p>
+          A tégla ára jelentős eltérést mutathat a gyártó, a típus és a
+          beszerzési hely függvényében.
+        </p>
+
+        <p>
+          A modern Porotherm falazóelemek általában drágábbak, mint a
+          hagyományos téglák, ugyanakkor jobb hőtechnikai tulajdonságokat és
+          gyorsabb kivitelezést biztosítanak.
+        </p>
+
+        <p>
+          Nagyobb mennyiség vásárlása esetén gyakran kedvezőbb egységár érhető
+          el.
+        </p>
+
+        <h2>Mekkora ráhagyással számoljunk?</h2>
+
+        <p>
+          Az építőiparban általánosan elfogadott gyakorlat, hogy a szükséges
+          mennyiségen felül legalább 5–10% tartalék anyaggal számolunk.
+        </p>
+
+        <p>
+          A ráhagyás fedezi a vágásokból, sérülésekből és esetleges kivitelezési
+          hibákból eredő veszteségeket.
+        </p>
+
+        <p>
+          Nagyobb vagy bonyolultabb épületeknél akár 10–15% ráhagyás alkalmazása
+          is indokolt lehet.
+        </p>
+
+        <h2>Gyakori hibák falazáskor</h2>
+
+        <ul>
+          <li>Túl kevés tégla megrendelése</li>
+          <li>Nyílászárók figyelmen kívül hagyása</li>
+          <li>Ráhagyás elfelejtése</li>
+          <li>Nem megfelelő falazóelem kiválasztása</li>
+          <li>Hibás méretek megadása</li>
+          <li>Anyagveszteség alábecslése</li>
+          <li>Nem megfelelő tárolás</li>
+          <li>Sérült téglák beépítése</li>
+        </ul>
+
+        <h2>Porotherm vagy hagyományos tégla?</h2>
+
+        <p>
+          A modern falazóelemek jobb hőszigetelő képességgel és gyorsabb
+          kivitelezhetőséggel rendelkeznek, ezért új építésű családi házak
+          esetén általában ezek használata javasolt.
+        </p>
+
+        <p>
+          A hagyományos tömör téglák elsősorban felújítási munkáknál vagy
+          speciális építészeti megoldásoknál maradtak népszerűek.
+        </p>
+
+        <h2>Hogyan csökkenthető az építési költség?</h2>
+
+        <p>
+          A pontos tervezés, az előzetes mennyiségszámítás és az anyagok
+          megfelelő időben történő beszerzése jelentős megtakarítást
+          eredményezhet.
+        </p>
+
+        <p>
+          A tégla kalkulátor használatával elkerülhető a túlzott anyagrendelés
+          és az ebből fakadó felesleges költség.
+        </p>
+
+        <h2>Porotherm 30 tégla ára</h2>
+
+        <p>
+          A Porotherm 30 N+F az egyik legnépszerűbb falazóelem Magyarországon.
+          Ára kereskedőtől, mennyiségtől és szállítási feltételektől függően
+          jelentősen eltérhet.
+        </p>
+
+        <p>
+          Nagyobb mennyiség rendelése esetén gyakran kedvezőbb darabár érhető
+          el, ezért érdemes több kereskedő ajánlatát összehasonlítani.
+        </p>
+
+        <h2>Mennyi tégla kell egy 100 m²-es házhoz?</h2>
+
+        <p>
+          Egy 100 négyzetméteres családi ház esetében a szükséges téglamennyiség
+          nagyban függ az épület alaprajzától, a falmagasságtól és a nyílászárók
+          számától.
+        </p>
+
+        <p>
+          Egy átlagos családi ház külső falazatához több ezer darab tégla is
+          szükséges lehet, ezért a pontos számítás különösen fontos.
+        </p>
+
+        <h2>Falazási hibák</h2>
+
+        <p>
+          A falazás során elkövetett hibák jelentős többletköltséget
+          eredményezhetnek. A pontatlan kitűzés, a nem megfelelő habarcs
+          használata vagy a rosszul tárolt falazóelemek mind problémákhoz
+          vezethetnek.
+        </p>
+
+        <p>
+          A megfelelő tervezés és az anyagszükséglet előzetes kiszámítása segít
+          elkerülni a kivitelezési hibákat.
+        </p>
+
+        <h2>Raklapos téglarendelés</h2>
+
+        <p>
+          A téglákat általában raklapos kiszerelésben szállítják. Nagyobb
+          építkezéseknél célszerű a szükséges mennyiséget egyszerre megrendelni,
+          mert ezzel gyakran csökkenthető a szállítási költség.
+        </p>
+
+        <p>
+          A kalkulátor segítségével gyorsan meghatározható, hogy várhatóan hány
+          darab falazóelemre lesz szükség.
+        </p>
+
+        <h2>Gyakran Ismételt Kérdések (GYIK)</h2>
+
+        <details class="faq-item">
+          <summary>Mennyi tégla kell 10 m² falhoz?</summary>
+          <p>
+            A szükséges mennyiség a választott téglatípustól függ, de általában
+            80–160 darab közötti mennyiséggel érdemes számolni.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Mennyi tégla kell 100 m² falhoz?</summary>
+          <p>
+            Téglatípustól függően akár több mint 1500 darab falazóelemre is
+            szükség lehet.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Le kell vonni az ablakokat?</summary>
+          <p>
+            Igen, a pontos számítás érdekében az ablakok területét érdemes
+            levonni a teljes falfelületből.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Le kell vonni az ajtókat?</summary>
+          <p>
+            Igen, az ajtók által elfoglalt felületet is figyelembe kell venni.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Mekkora ráhagyás ajánlott?</summary>
+          <p>Általában 5–10%.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Melyik a legnépszerűbb Porotherm tégla?</summary>
+          <p>
+            Magyarországon a Porotherm 30 és Porotherm 38 falazóelemek különösen
+            népszerűek.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Mennyibe kerül egy tégla?</summary>
+          <p>
+            Az ár jelentősen változhat a típustól és a kereskedőtől függően.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Mikor kell több téglával számolni?</summary>
+          <p>Bonyolult falgeometria vagy nagyobb vágási veszteség esetén.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Használható a kalkulátor válaszfalhoz?</summary>
+          <p>Igen, a megfelelő téglatípus kiválasztásával.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Mennyire pontos a kalkulátor?</summary>
+          <p>
+            A számítás becslés, de megfelelő adatok esetén nagyon jó közelítést
+            ad.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Számol a kalkulátor ráhagyással?</summary>
+          <p>
+            Igen, a megadott százalékos ráhagyást automatikusan figyelembe
+            veszi.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Használható felújításnál is?</summary>
+          <p>Igen, különösen falbővítések és javítások esetén hasznos.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Kell habarcsot is számolni?</summary>
+          <p>
+            Ez a kalkulátor kizárólag a szükséges téglamennyiséget számolja.
+          </p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Egyedi méretű tégla is megadható?</summary>
+          <p>Igen, az Egyedi méret opció kiválasztásával.</p>
+        </details>
+
+        <details class="faq-item">
+          <summary>Mekkora falhoz használható?</summary>
+          <p>
+            Nincs méretkorlát, kisebb válaszfaltól akár teljes épületig
+            használható.
+          </p>
+        </details>
+      </section>
+    <section class="adsense-content" data-adsense-upgrade="tegla">
+      <h2>Téglaszükséglet becslése falazás előtt</h2>
+      <p>A tégla kalkulátor célja, hogy gyors becslést adjon a falazáshoz szükséges tégladarabszámra. Építkezésnél vagy kisebb falazási munkánál már a korai tervezésnél hasznos tudni, milyen nagyságrendű anyagmennyiséggel kell számolni.</p>
+      <p>A pontos mennyiség függ a tégla méretétől, falvastagságtól, kötésmódtól, vágásoktól, nyílásoktól és veszteségtől. Ezért a kalkulátor eredményét mindig becslésként érdemes kezelni.</p>
+
+      <h3>Hogyan működik a számítás?</h3>
+      <p>A számítás a fal hosszából és magasságából felületet képez, majd ezt szorozza az egy négyzetméterre jutó téglaszámmal. A ráhagyás segít kezelni a törést, vágást, selejtet és kisebb mérési eltéréseket.</p>
+
+      <div class="example-box">
+        <h3>Konkrét példaszámítás</h3>
+        <p>Ha egy fal 10 méter hosszú és 2,8 méter magas, a felület 28 m². Ha 16 tégla kell egy négyzetméterre, az alap mennyiség 448 darab. 10% ráhagyással már nagyjából 493 darabbal érdemes számolni.</p>
+      </div>
+
+      <h3>Mikor hasznos ez a kalkulátor?</h3>
+      <ul>
+        <li>falazási anyagtervezésnél</li>
+        <li>árajánlat előkészítésekor</li>
+        <li>kisebb melléképület vagy válaszfal tervezésénél</li>
+        <li>anyagköltség becsléséhez</li>
+      </ul>
+
+      <div class="notice-box">
+        <strong>Fontos tudni:</strong> A végleges mennyiséget mindig a konkrét tégla típusa, falazási technológia és terv alapján ellenőrizd. Statikai vagy engedélyköteles munkához szakember szükséges.
+      </div>
+
+      <h3>Gyakori kérdések</h3>
+      <div class="faq-list">
+        <details><summary>Le kell vonni az ablakokat és ajtókat?</summary><p>Nagyobb nyílásoknál igen, de a veszteség és vágás miatt óvatosan számolj.</p></details>
+        <details><summary>Mennyi ráhagyás kell?</summary><p>Gyakran 5-10% kiindulásnak jó, de bonyolult falnál több is lehet.</p></details>
+        <details><summary>Minden téglatípusra jó?</summary><p>Csak akkor, ha a megfelelő darab/m² értéket adod meg.</p></details>
+        <details><summary>A habarcsot is számolja?</summary><p>Ha nincs külön mező, akkor nem; ehhez külön anyagbecslés kell.</p></details>
+        <details><summary>Elég a kalkulátor rendeléshez?</summary><p>Első becslésre jó, végleges rendelés előtt egyeztess kivitelezővel vagy kereskedővel.</p></details>
+      </div>
+
+      <h3>Kapcsolódó kalkulátorok</h3>
+      <div class="related-links">
+        <a href="beton-kalkulator.html">Beton kalkulátor</a>
+        <a href="vakolat-kalkulator.html">Vakolat kalkulátor</a>
+        <a href="hoszigeteles-kalkulator.html">Hőszigetelés kalkulátor</a>
+        <a href="gipszkarton-kalkulator.html">Gipszkarton kalkulátor</a>
+      </div>
+    </section>
+    </main>
+
+    <div id="footer"></div>
+    <script src="../js/utils.js"></script>
+    <script src="../js/epitoipari/tegla-kalkulator.js" defer></script>
+  </body>
+</html>
