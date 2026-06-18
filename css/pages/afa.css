@@ -1,0 +1,81 @@
+/* ===== KÖZÉPRE HÚZÁS ===== */
+.page-afa {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+/* ===== HERO ===== */
+.page-afa .hero {
+  margin-bottom: 18px;
+}
+
+/* ===== CARD ===== */
+.page-afa .card-calculator {
+  padding: 22px;
+}
+
+/* ===== INPUT GRID ===== */
+.page-afa .calc-grid {
+  display: grid;
+  gap: 14px;
+}
+
+/* ===== LABEL ===== */
+.page-afa label {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #475569;
+}
+
+/* ===== INPUT ===== */
+.page-afa input:not([type="checkbox"]):not([type="radio"]) {
+  padding: 12px;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+/* ===== GOMBOK – KÖZÉPRE! ===== */
+.page-afa .button-group {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.page-afa .button-group button {
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+/* ===== RADIO – KÖZÉPRE ===== */
+.page-afa .radio-group {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 14px;
+}
+
+/* ===== RESULT – ERŐSEBB ===== */
+.page-afa .result-box {
+  margin-top: 18px;
+  padding: 20px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #eef2f7, #e2e8f0);
+  border: none;
+}
+
+.page-afa #result-value {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* ===== INFO BOX – SZEBB ===== */
+.page-afa .info-box {
+  margin-top: 16px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.page-afa .button-group button.active {
+  background: #1d4ed8;
+}

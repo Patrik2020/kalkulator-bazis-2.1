@@ -1,0 +1,14 @@
+.page-festek .result-box {
+  text-align: center;
+}
+
+.page-festek #result {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+.summary-box {
+    margin-top: 20px;
+    line-height: 1.7;
+}

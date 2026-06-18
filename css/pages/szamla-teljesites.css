@@ -1,0 +1,30 @@
+.page-szamla {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.page-szamla .calc-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.page-szamla input:not([type="checkbox"]):not([type="radio"]) {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d0d7e2;
+  background: #f8fafc;
+}
+
+.page-szamla .result-box {
+  margin-top: 18px;
+  padding: 20px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #eef2f7, #e2e8f0);
+  text-align: center;
+}
+
+.page-szamla #result-deadline {
+  font-size: 22px;
+  font-weight: 700;
+}

@@ -1,0 +1,76 @@
+.page-netto {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.page-netto .calc-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.page-netto input:not([type="checkbox"]):not([type="radio"]) {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d0d7e2;
+  background: #f8fafc;
+}
+
+.page-netto .radio-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 14px;
+}
+
+.page-netto .result-box {
+  margin-top: 18px;
+  padding: 20px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #eef2f7, #e2e8f0);
+  text-align: center;
+}
+
+.page-netto #result-net {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.page-netto #result-diff {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #16a34a;
+}
+
+/* ===== ARTICLE ===== */
+.page-netto .article {
+  margin-top: 30px;
+  line-height: 1.6;
+}
+
+/* alcímek */
+.page-netto .article h2 {
+  margin-top: 24px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.page-netto .article h3 {
+  margin-top: 18px;
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+/* lista */
+.page-netto .article ul {
+  margin: 10px 0 10px 18px;
+}
+
+/* info box */
+.page-netto .info-box {
+  margin-bottom: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  font-size: 14px;
+}

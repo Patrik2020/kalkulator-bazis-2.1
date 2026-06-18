@@ -1,0 +1,137 @@
+/* Deviza átváltó */
+
+.page-deviza .hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.page-deviza .hero p {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Kalkulátor */
+
+.card-calculator {
+  margin-bottom: 2rem;
+}
+
+.calc-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.calc-grid input,
+.calc-grid select {
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+.calc-grid input:focus,
+.calc-grid select:focus {
+  outline: none;
+}
+
+.result-box {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.result-box p {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  word-break: break-word;
+}
+
+/* Árfolyam frissítés */
+
+.exchange-update {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.exchange-update small {
+  opacity: 0.8;
+}
+
+/* SEO tartalom */
+
+.article {
+  margin-top: 3rem;
+}
+
+.article h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.article h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.article p,
+.article li {
+  line-height: 1.8;
+}
+
+.article ul {
+  padding-left: 1.5rem;
+}
+
+/* Információs doboz */
+
+.info-box {
+  padding: 1rem;
+  border-left: 4px solid #0077ff;
+  border-radius: 8px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Táblázat */
+
+.conversion-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.conversion-table th,
+.conversion-table td {
+  padding: 0.9rem;
+  text-align: center;
+}
+
+.conversion-table th {
+  font-weight: 700;
+}
+
+.conversion-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Mobil */
+
+@media (max-width: 768px) {
+  .result-box p {
+    font-size: 1.15rem;
+  }
+
+  .conversion-table {
+    font-size: 0.9rem;
+  }
+
+  .conversion-table th,
+  .conversion-table td {
+    padding: 0.6rem;
+  }
+}

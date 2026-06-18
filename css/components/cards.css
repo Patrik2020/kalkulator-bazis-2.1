@@ -1,0 +1,104 @@
+/* ===== ALAP CARD ===== */
+.card {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card-link {
+  background:
+    linear-gradient(135deg, var(--card-tint, rgba(37, 99, 235, 0.08)), transparent 55%),
+    #ffffff;
+}
+
+/* ===== LINK KÁRTYA (index, kategória) ===== */
+.card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.card-link h3,
+.card-link p {
+  position: relative;
+  z-index: 1;
+}
+
+.card-link:hover {
+  transform: translateY(-2px);
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-md);
+}
+
+/* ===== KALKULÁTOR KÁRTYA ===== */
+.card-calculator {
+  cursor: default;
+}
+
+/* ===== KÉPEK ===== */
+
+.card-link::before {
+  content: "";
+  position: absolute;
+  right: -10px;
+  bottom: -14px;
+  width: 112px;
+  height: 112px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.22;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.card-link:hover::before {
+  opacity: 0.3;
+  transform: scale(1.04);
+}
+
+.card-finance {
+  --card-tint: rgba(37, 99, 235, 0.1);
+}
+
+.card-finance::before {
+  background-image: url("./images/finance.png");
+}
+
+.card-building {
+  --card-tint: rgba(22, 163, 74, 0.1);
+}
+
+.card-building::before {
+  background-image: url("./images/building.png");
+}
+
+.card-health {
+  --card-tint: rgba(219, 39, 119, 0.1);
+}
+
+.card-health::before {
+  background-image: url("./images/health.png");
+}
+
+.card-general {
+  --card-tint: rgba(124, 58, 237, 0.1);
+}
+
+.card-general::before {
+  background-image: url("./images/general.png");
+}
+
+.card-auto {
+  --card-tint: rgba(234, 88, 12, 0.1);
+}
+
+.card-auto::before {
+  background-image: url("./images/auto.png");
+}

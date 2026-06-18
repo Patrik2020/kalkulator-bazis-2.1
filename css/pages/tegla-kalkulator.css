@@ -1,0 +1,171 @@
+.page-tegla .hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.page-tegla .hero p {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.page-tegla .card-calculator {
+  margin-bottom: 2rem;
+}
+
+.page-tegla .calc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.page-tegla label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.page-tegla small {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #666;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.page-tegla input,
+.page-tegla select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d8d8d8;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.page-tegla input:focus,
+.page-tegla select:focus {
+  outline: none;
+  border-color: #2d6cdf;
+}
+
+.page-tegla #customBrickFields {
+  margin-top: 1rem;
+}
+
+.page-tegla .result-box {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  background: #f7f9fc;
+}
+
+.page-tegla .result-box h3 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.page-tegla .result-box p {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0.75rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.page-tegla .result-box p:last-child {
+  border-bottom: none;
+}
+
+.page-tegla .result-box span {
+  font-weight: 700;
+}
+
+.page-tegla .summary-box {
+  margin-top: 1.5rem;
+  line-height: 1.8;
+}
+
+.page-tegla #brickInfo {
+  margin-top: 1.5rem;
+  line-height: 1.7;
+}
+
+.page-tegla .article {
+  margin-top: 3rem;
+}
+
+.page-tegla .article h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.page-tegla .article h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.page-tegla .article p {
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.page-tegla .article ul {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.page-tegla .article li {
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .page-tegla .result-box p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}
+
+/* GYIK */
+
+.page-tegla .faq-item {
+    margin-bottom: 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+}
+
+.page-tegla .faq-item summary {
+    padding: 15px;
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+    position: relative;
+}
+
+.page-tegla .faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.page-tegla .faq-item summary::after {
+    content: "+";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.page-tegla .faq-item[open] summary::after {
+    content: "−";
+}
+
+.page-tegla .faq-item p {
+    margin: 0;
+    padding: 0 15px 15px;
+    line-height: 1.7;
+}

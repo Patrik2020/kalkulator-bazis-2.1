@@ -1,0 +1,27 @@
+.page-szazalek {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.page-szazalek .card-calculator {
+  margin-bottom: 20px;
+}
+
+.page-szazalek .calc-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.page-szazalek input:not([type="checkbox"]):not([type="radio"]) {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d0d7e2;
+}
+
+.page-szazalek .result-box {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  text-align: center;
+}

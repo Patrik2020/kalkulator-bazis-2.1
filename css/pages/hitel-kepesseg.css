@@ -1,0 +1,34 @@
+.page-hitelkep {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.page-hitelkep .card-calculator {
+  padding: 22px;
+}
+
+.page-hitelkep .calc-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.page-hitelkep input:not([type="checkbox"]):not([type="radio"]) {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d0d7e2;
+  background: #f8fafc;
+}
+
+.page-hitelkep .result-box {
+  margin-top: 18px;
+  padding: 20px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #eef2f7, #e2e8f0);
+  text-align: center;
+}
+
+.page-hitelkep #result-monthly {
+  font-size: 24px;
+  font-weight: 700;
+}

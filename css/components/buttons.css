@@ -1,0 +1,48 @@
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: var(--primary-hover);
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  text-align: center;
+  justify-content: center;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  text-align: center;
+  justify-content: center;
+}
+
+/* Desktop */
+@media (min-width: 768px) {
+  button {
+    width: auto;
+  }
+}
+@media (min-width: 374px) {
+  .cookie-buttons {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #decline-button {
+    margin: 15px;
+  }
+}

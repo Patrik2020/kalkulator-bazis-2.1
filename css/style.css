@@ -1,0 +1,235 @@
+/* BASE */
+@import url('./base/reset.css');
+@import url('./base/variables.css');
+@import url('./base/typography.css');
+
+/* LAYOUT */
+@import url('./layout/grid.css');
+@import url('./layout/header.css');
+@import url('./layout/footer.css');
+
+/* COMPONENTS */
+@import url('./components/buttons.css');
+@import url('./components/forms.css');
+@import url('./components/calculator.css');
+@import url('./components/cards.css');
+@import url('./components/site-sections.css');
+
+/* ==========================
+   KAPCSOLÓDÓ AJÁNLÓ BLOKK
+========================== */
+
+.article-recommendation {
+    margin-top: 3rem;
+    padding: 2rem;
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.article-recommendation h2 {
+    margin-bottom: 1rem;
+}
+
+.article-recommendation p {
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.7;
+    color: #4b5563;
+}
+
+
+/* ==========================
+   WISE GOMB
+========================== */
+
+.wise-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+
+    padding: 14px 28px;
+
+    background: linear-gradient(
+        135deg,
+        #163300 0%,
+        #2e5b00 100%
+    );
+
+    color: #ffffff;
+    text-decoration: none;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    border-radius: 999px;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+
+    box-shadow:
+        0 10px 25px rgba(22, 51, 0, .18);
+}
+
+.wise-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 14px 35px rgba(22, 51, 0, .28);
+}
+
+.wise-btn:active {
+    transform: translateY(0);
+}
+
+.wise-btn::after {
+    content: "↗";
+    font-size: 0.9rem;
+}
+
+/* ==========================
+   FŐOLDALI KIEMELT AJÁNLÓ
+========================== */
+
+.homepage-highlight {
+    margin: 4rem 0;
+}
+
+.homepage-highlight-content {
+    background: linear-gradient(
+        135deg,
+        #f8fafc 0%,
+        #eef6f2 100%
+    );
+
+    border: 1px solid #dbe7df;
+    border-radius: 8px;
+
+    padding: 2.5rem;
+    text-align: center;
+}
+
+.homepage-highlight-badge {
+    display: inline-block;
+
+    padding: 6px 12px;
+
+    background: #e8f5ec;
+    color: #245c31;
+
+    border-radius: 999px;
+
+    font-size: .85rem;
+    font-weight: 600;
+
+    margin-bottom: 1rem;
+}
+
+.homepage-highlight h2 {
+    margin-bottom: 1rem;
+}
+
+.homepage-highlight p {
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.7;
+}
+
+.ad-section {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* =========================
+   SEO LENYITHATÓ BLOKK
+========================= */
+
+.seo-details {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 0 15px;
+}
+
+.seo-details summary {
+    list-style: none;
+    cursor: pointer;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 18px 24px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.seo-details summary::-webkit-details-marker {
+    display: none;
+}
+
+.seo-details summary:hover {
+    transform: translateY(-2px);
+}
+
+.seo-details[open] summary {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.seo-content {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    line-height: 1.8;
+}
+
+.seo-content h2 {
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.seo-content h3 {
+    margin-top: 30px;
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+}
+
+.seo-content p {
+    margin-bottom: 18px;
+    text-align: justify;
+}
+
+.seo-content ul {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+
+.seo-content li {
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .seo-content {
+        padding: 20px;
+    }
+
+    .seo-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .seo-content h3 {
+        font-size: 1.15rem;
+    }
+
+    .seo-details summary {
+        font-size: 1rem;
+        padding: 15px;
+    }
+}
+

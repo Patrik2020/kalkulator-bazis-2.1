@@ -1,0 +1,31 @@
+.page-kaloria {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.page-kaloria .calc-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.page-kaloria input,
+.page-kaloria select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d0d7e2;
+  background: #f8fafc;
+}
+
+.page-kaloria .result-box {
+  margin-top: 18px;
+  padding: 20px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #eef2f7, #e2e8f0);
+  text-align: center;
+}
+
+.page-kaloria #result-calories {
+  font-size: 26px;
+  font-weight: 700;
+}

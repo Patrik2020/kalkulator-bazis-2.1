@@ -1,0 +1,62 @@
+.page-hitel {
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.page-hitel .card-calculator {
+  padding: 22px;
+}
+
+.page-hitel .calc-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.page-hitel input:not([type="checkbox"]):not([type="radio"]) {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d0d7e2;
+  background: #f8fafc;
+}
+
+.page-hitel .result-box {
+  margin-top: 18px;
+  padding: 20px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #eef2f7, #e2e8f0);
+  text-align: center;
+}
+
+.page-hitel #result-monthly {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.page-hitel #thm-wrapper.hidden {
+  display: none !important;
+}
+
+.page-hitel .checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  cursor: pointer;
+}
+
+.page-hitel .checkbox-row input:not([type="checkbox"]):not([type="radio"]) {
+  width: 18px;
+  height: 18px;
+}
+
+.page-hitel .input-help {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  opacity: 0.8;
+}
+
+.page-hitel .advanced-options {
+  margin-top: 18px;
+}

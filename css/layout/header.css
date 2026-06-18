@@ -1,0 +1,123 @@
+#header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-shell {
+  background: rgba(255, 255, 255, 0.96);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(10px);
+}
+
+.header-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 12px var(--space-md);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.logo-mark {
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  background: url("../../favicon/kb-logo-mark.png") center / contain no-repeat;
+  filter: drop-shadow(0 4px 8px rgba(11, 102, 242, 0.12));
+}
+
+.logo-text {
+  white-space: nowrap;
+}
+
+#menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: var(--space-md);
+  left: var(--space-md);
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+}
+
+#menu.active {
+  display: flex;
+}
+
+#menu a {
+  padding: 10px 12px;
+  border-radius: 6px;
+  color: var(--text-light);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#menu a:hover,
+#menu a:focus {
+  background: #f1f5f9;
+  color: var(--primary);
+  outline: none;
+}
+
+.menu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
+@media (max-width: 420px) {
+  .logo {
+    gap: 8px;
+    font-size: 0.95rem;
+  }
+
+  .logo-mark {
+    flex-basis: 31px;
+    width: 31px;
+    height: 31px;
+  }
+}
+
+@media (min-width: 860px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  #menu {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,371 @@
+.page-hero {
+  padding: var(--space-xl) 0 var(--space-lg);
+  text-align: center;
+}
+
+.page-hero h1 {
+  margin-bottom: var(--space-md);
+}
+
+.page-hero p {
+  max-width: 680px;
+  margin: 0 auto;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+.section-block {
+  margin: var(--space-xl) 0;
+}
+
+.section-heading {
+  margin-bottom: var(--space-md);
+}
+
+.calculator-card h3 {
+  margin-bottom: 8px;
+}
+
+.calculator-card p {
+  color: var(--text-light);
+  line-height: 1.55;
+}
+
+.search-box {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto var(--space-xl);
+}
+
+.search-box input {
+  width: 100%;
+  padding: 16px 18px;
+  border: 1px solid #d6dce5;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-box input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 10px 28px rgba(37, 99, 235, 0.14);
+  outline: none;
+}
+
+.search-results {
+  display: none;
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 8px);
+  right: 0;
+  left: 0;
+  max-height: 420px;
+  overflow-y: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.16);
+}
+
+.search-results.is-visible {
+  display: block;
+}
+
+.search-result {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.search-result:last-child {
+  border-bottom: 0;
+}
+
+.search-result:hover,
+.search-result:focus {
+  background: #f8fafc;
+  outline: none;
+}
+
+.search-result strong,
+.search-result small {
+  display: block;
+}
+
+.search-result small {
+  margin-top: 4px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.search-result em {
+  flex: 0 0 auto;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #eef2ff;
+  color: #3730a3;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.search-empty {
+  margin: 0;
+  padding: 16px;
+  color: #64748b;
+}
+
+.category-seo,
+.related-section {
+  margin: var(--space-xl) 0;
+}
+
+.category-seo {
+  padding: var(--space-lg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  line-height: 1.7;
+}
+
+.category-seo h2,
+.related-section h2 {
+  margin-bottom: var(--space-md);
+}
+
+.generated-seo {
+  scroll-margin-top: 90px;
+}
+
+.faq-list {
+  display: grid;
+  gap: 10px;
+  margin-top: var(--space-md);
+}
+
+.faq-list details {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.faq-list summary {
+  cursor: pointer;
+  padding: 14px 16px;
+  color: var(--text);
+  font-weight: 700;
+}
+
+.faq-list details[open] summary {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-list p {
+  margin: 0;
+  padding: 14px 16px;
+}
+
+.wise-banner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin: var(--space-xl) 0;
+  padding: 20px;
+  border: 1px solid #dbe7df;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: inherit;
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.wise-banner strong,
+.wise-banner small {
+  display: block;
+}
+
+.wise-banner small {
+  margin-top: 4px;
+  color: var(--text-light);
+}
+
+.wise-banner-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.wise-banner img {
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  height: auto;
+  max-height: 230px;
+  object-fit: contain;
+  border: 0;
+}
+
+.ad-section {
+  min-height: 120px;
+  margin: var(--space-xl) 0;
+}
+
+.ad-placeholder {
+  display: grid;
+  min-height: 120px;
+  place-items: center;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  background: #f8fafc;
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+.adsense-content,
+.portal-content {
+  margin: var(--space-xl) 0;
+  padding: var(--space-lg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+  line-height: 1.75;
+}
+
+.adsense-content h2,
+.portal-content h2 {
+  margin: 0 0 var(--space-md);
+}
+
+.adsense-content h3,
+.portal-content h3 {
+  margin: var(--space-lg) 0 var(--space-sm);
+}
+
+.adsense-content p,
+.portal-content p {
+  margin-bottom: var(--space-md);
+  color: #4b5563;
+}
+
+.adsense-content ul,
+.portal-content ul {
+  margin: var(--space-md) 0;
+  padding-left: 20px;
+}
+
+.adsense-content li,
+.portal-content li {
+  margin-bottom: 8px;
+}
+
+.example-box,
+.notice-box {
+  margin: var(--space-lg) 0;
+  padding: var(--space-md);
+  border-radius: 8px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.notice-box {
+  background: #fff7ed;
+  border-color: #fed7aa;
+}
+
+.related-links {
+  display: grid;
+  gap: 10px;
+  margin-top: var(--space-md);
+}
+
+.related-links a {
+  display: block;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #f8fafc;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.related-links a:hover,
+.related-links a:focus {
+  border-color: var(--primary);
+  color: var(--primary);
+  outline: none;
+}
+
+.portal-grid {
+  display: grid;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0;
+}
+
+.portal-card {
+  padding: var(--space-md);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.portal-card h3 {
+  margin-top: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (min-width: 700px) {
+  .related-links,
+  .portal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .wise-banner {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .wise-banner > span:first-child {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .wise-banner-media {
+    flex: 0 1 650px;
+    justify-content: flex-end;
+  }
+}
+
+@media (min-width: 1024px) {
+  .wise-banner {
+    padding: 24px;
+  }
+
+  .wise-banner-media {
+    flex-basis: 720px;
+  }
+}

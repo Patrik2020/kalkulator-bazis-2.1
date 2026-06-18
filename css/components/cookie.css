@@ -1,0 +1,89 @@
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: calc(100% - 32px);
+  max-width: 600px;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+
+  padding: 16px;
+  z-index: 999;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: slideUp 0.3s ease;
+}
+
+/* SZÖVEG */
+.cookie-banner p {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+.cookie-banner a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+/* GOMBOK */
+.cookie-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.cookie-banner button {
+  flex: 1;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* elfogad */
+#accept-cookies {
+  background: var(--primary);
+  color: white;
+}
+
+/* elutasít */
+#decline-cookies {
+  background: #f3f4f6;
+  color: var(--text);
+}
+
+/* DESKTOP */
+@media (min-width: 768px) {
+  .cookie-banner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .cookie-buttons {
+    flex: none;
+    width: auto;
+  }
+
+  .cookie-banner button {
+    width: auto;
+    padding: 8px 14px;
+  }
+}
+@keyframes slideUp {
+  from {
+    transform: translate(-50%, 20px);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}

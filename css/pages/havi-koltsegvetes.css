@@ -1,0 +1,26 @@
+.page-koltsegvetes {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.page-koltsegvetes #balanceResult {
+  color: var(--primary);
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.budget-status {
+  margin-top: 8px;
+}
+
+.budget-status.is-good {
+  color: #15803d;
+}
+
+.budget-status.is-neutral {
+  color: #2563eb;
+}
+
+.budget-status.is-warning {
+  color: #b45309;
+}
