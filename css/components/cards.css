@@ -24,10 +24,18 @@
   cursor: pointer;
 }
 
+.card-link h2,
 .card-link h3,
 .card-link p {
   position: relative;
   z-index: 1;
+}
+
+.card-link h2,
+.card-link h3 {
+  font-size: 1.08rem;
+  line-height: 1.35;
+  letter-spacing: 0;
 }
 
 .card-link:hover {
@@ -68,7 +76,7 @@
 }
 
 .card-finance::before {
-  background-image: url("./images/finance.png");
+  background-image: url("./images/finance.webp");
 }
 
 .card-building {
@@ -76,7 +84,7 @@
 }
 
 .card-building::before {
-  background-image: url("./images/building.png");
+  background-image: url("./images/building.webp");
 }
 
 .card-health {
@@ -84,7 +92,7 @@
 }
 
 .card-health::before {
-  background-image: url("./images/health.png");
+  background-image: url("./images/health.webp");
 }
 
 .card-general {
@@ -92,7 +100,7 @@
 }
 
 .card-general::before {
-  background-image: url("./images/general.png");
+  background-image: url("./images/general.webp");
 }
 
 .card-auto {
@@ -100,5 +108,5 @@
 }
 
 .card-auto::before {
-  background-image: url("./images/auto.png");
+  background-image: url("./images/auto.webp");
 }
