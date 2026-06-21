@@ -62,6 +62,26 @@
     </url>
 
     <url>
+        <loc>https://kalkulatorbazis.hu/landing-pages/wise/adatkezelesi-tajekoztato.html</loc>
+        <priority>0.3</priority>
+    </url>
+
+    <url>
+        <loc>https://kalkulatorbazis.hu/landing-pages/wise/cookie-tajekoztato.html</loc>
+        <priority>0.3</priority>
+    </url>
+
+    <url>
+        <loc>https://kalkulatorbazis.hu/landing-pages/wise/jogi-nyilatkozat.html</loc>
+        <priority>0.3</priority>
+    </url>
+
+    <url>
+        <loc>https://kalkulatorbazis.hu/landing-pages/wise/kapcsolat.html</loc>
+        <priority>0.3</priority>
+    </url>
+
+    <url>
         <loc>https://kalkulatorbazis.hu/landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html</loc>
         <priority>0.8</priority>
     </url>

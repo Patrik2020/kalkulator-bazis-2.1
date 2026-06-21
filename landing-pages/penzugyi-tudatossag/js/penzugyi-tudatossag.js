@@ -100,6 +100,7 @@
   }
 
   const faqButtons = document.querySelectorAll(".faq-question");
+  const faqItems = [];
 
   faqButtons.forEach((button, index) => {
     const answer = button.nextElementSibling;
@@ -121,8 +122,13 @@
       }
     };
 
+    faqItems.push({ button, setExpanded });
+
     button.addEventListener("click", () => {
       const isExpanded = button.getAttribute("aria-expanded") === "true";
+      faqItems.forEach((item) => {
+        if (item.button !== button) item.setExpanded(false);
+      });
       setExpanded(!isExpanded);
     });
 

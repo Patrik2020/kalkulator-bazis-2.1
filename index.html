@@ -28,72 +28,50 @@
   <link rel="stylesheet" href="css/pages/index.css" />
 
   <script src="js/global-head.js"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812"
+     crossorigin="anonymous"></script>
 </head>
 
 <body>
   <div id="header"></div>
 
-  <main class="container">
-    <!-- HERO -->
-    <section class="hero page-hero">
-      <h1>KalkulátorBázis – Ingyenes online kalkulátorok és átváltók</h1>
+  <main>
+    <section class="home-hero">
+      <div class="container home-hero-inner">
+        <span class="section-label">Gyors számítás, érthető eredmény</span>
+        <h1>Online kalkulátorok egy helyen</h1>
+        <p>Pénzügy, autózás, felújítás, egészség és hétköznapi döntések magyar magyarázatokkal.</p>
 
-      <p>
-        Gyors és egyszerű számítások pénzügyekhez, építkezéshez, egészséghez
-        és mindennapi élethez.
-      </p>
-    </section>
+        <div class="search-box home-search">
+          <label for="calculatorSearch">Mire szeretnél számolni?</label>
+          <input
+            type="search"
+            id="calculatorSearch"
+            placeholder="Például: nettó bér, festék, BMI"
+            autocomplete="off"
+            role="combobox"
+            aria-autocomplete="list"
+            aria-controls="calculatorSearchResults"
+            aria-expanded="false"
+          />
+          <div class="search-results" id="calculatorSearchResults" role="listbox" aria-live="polite"></div>
+        </div>
 
-    <div class="search-box">
-      <label class="visually-hidden" for="calculatorSearch">Keresés kalkulátorok között</label>
-      <input type="search" id="calculatorSearch" placeholder="Keresés kalkulátorok között..." autocomplete="off" />
-      <div class="search-results" id="calculatorSearchResults" aria-live="polite"></div>
-    </div>
-
-    <section class="portal-content learning-highlight">
-      <div>
-        <span class="section-label">Pénzügyi alapozó</span>
-        <h2>Tanulj számolás előtt</h2>
-        <p>
-          A pénzügyi döntések előtt érdemes megérteni az alapokat. A Pénzügyi
-          tudatosság alapjai útmutató segít átlátni a bevételeket, kiadásokat,
-          vésztartalékot, hiteleket, inflációt és a befektetés előtti
-          legfontosabb lépéseket.
-        </p>
-      </div>
-      <a class="highlight-link" href="landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html">
-        Pénzügyi tudatosság alapjai
-      </a>
-    </section>
-
-    <section class="portal-content">
-      <h2>Miért hasznos a Kalkulátor Bázis?</h2>
-      <p>A Kalkulátor Bázis célja, hogy a gyakori számítások ne vegyenek el több időt, mint amennyit muszáj. A portálon pénzügyi, autós, építőipari, egészségügyi, átváltó és mindennapi kalkulátorok találhatók, rövid magyarázatokkal és tájékoztató jellegű eredményekkel.</p>
-      <p>Az oldal nem hivatalos tanácsadó szolgáltatás, hanem gyors számolási segítség. A kalkulátorok akkor a leghasznosabbak, ha döntés előtt szeretnél nagyságrendet látni: mennyi lehet egy hitel törlesztője, mennyi festék kellhet egy szobához, mennyibe kerülhet egy autóút, vagy hogyan változhat a pénzed vásárlóereje infláció mellett.</p>
-      <div class="portal-grid">
-        <div class="portal-card"><h3>Pénzügyi döntések</h3><p>Bér, hitel, infláció, kamatos kamat, ETF, osztalék és deviza számítások egy helyen.</p></div>
-        <div class="portal-card"><h3>Felújítás és építkezés</h3><p>Beton, festék, tégla, burkolat, hőszigetelés és más anyagbecslések tervezéshez.</p></div>
-        <div class="portal-card"><h3>Autózás</h3><p>Üzemanyagköltség, fogyasztás, hatótáv, kilométerdíj és éves fenntartási becslések.</p></div>
-        <div class="portal-card"><h3>Egészség és életmód</h3><p>BMI, kalória, BMR és más tájékoztató számítások, óvatos értelmezési figyelmeztetéssel.</p></div>
-      </div>
-      <h2>Kiemelt indulási pontok</h2>
-      <div class="related-links">
-        <a href="penzugyi.html">Pénzügyi kalkulátorok</a>
-        <a href="kalkulatorok/netto-brutto-kalkulator.html">Nettó - bruttó kalkulátor</a>
-        <a href="kalkulatorok/hitel-torleszto-kalkulator.html">Hitel törlesztő kalkulátor</a>
-        <a href="landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html">Pénzügyi tudatosság alapjai</a>
-      </div>
-      <h2>Gyakori kérdések</h2>
-      <div class="faq-list">
-        <details><summary>Ingyenesek a kalkulátorok?</summary><p>Igen, a kalkulátorok külön regisztráció nélkül használhatók.</p></details>
-        <details><summary>Pontos eredményt kapok?</summary><p>A számítások a megadott adatok alapján tájékoztató becslést adnak. Hivatalos, egészségügyi, pénzügyi vagy szerződéses döntés előtt ellenőrizd az adatokat szakmai forrásból is.</p></details>
-        <details><summary>Mobilon is használható az oldal?</summary><p>Igen, a felület mobil-first szemlélettel készült, így telefonon is gyorsan elérhetők a fő kalkulátorok.</p></details>
-        <details><summary>Melyik kalkulátorral kezdjem?</summary><p>A keresőmezővel gyorsan megtalálod a megfelelő eszközt. Pénzügyeknél a nettó-bruttó, költségvetés, infláció és hitel kalkulátorok jó első lépések.</p></details>
+        <a class="primary-link" href="kalkulatorok.html">Összes kalkulátor</a>
       </div>
     </section>
 
-    <!-- KATEGÓRIÁK -->
-    <section class="category-grid" data-render="home-categories">
+    <div class="container home-sections">
+      <section class="home-section" aria-labelledby="categoriesTitle">
+        <div class="section-intro">
+          <div>
+            <span class="section-label">Gyors választás</span>
+            <h2 id="categoriesTitle">Milyen témában számolnál?</h2>
+          </div>
+          <p>Válassz döntési helyzetet, és azon belül megtalálod a hozzá tartozó eszközöket.</p>
+        </div>
+
+        <div class="category-grid home-category-grid" data-render="home-categories">
 
       <a href="penzugyi.html" class="card card-link card-finance">
         <h3>Pénzügyi kalkulátorok</h3>
@@ -124,13 +102,19 @@
         <h3>Átváltók</h3>
         <p>Mértékegységek, adatmennyiségek, sebesség, idő és deviza átváltása.</p>
       </a>
-    </section>
+        </div>
+      </section>
 
-    <!-- NÉPSZERŰ -->
-    <section class="popular">
-      <h2>🔥 Népszerű kalkulátorok</h2>
+      <section class="home-section popular" aria-labelledby="popularTitle">
+        <div class="section-intro">
+          <div>
+            <span class="section-label">Gyakori számítások</span>
+            <h2 id="popularTitle">Népszerű kalkulátorok</h2>
+          </div>
+          <a class="text-link" href="kalkulatorok.html">Teljes lista</a>
+        </div>
 
-      <div class="category-grid" data-render="popular-calculators">
+        <div class="category-grid popular-grid" data-render="popular-calculators">
 
       <a class="card card-link calculator-card card-finance" href="kalkulatorok/netto-brutto-kalkulator.html">
         <h3>Nettó - bruttó kalkulátor</h3>
@@ -161,11 +145,54 @@
         <h3>Autós kalkulátor</h3>
         <p>Utazási és autós költségek kiszámítása.</p>
       </a>
+        </div>
+      </section>
+
+      <section class="learning-highlight" aria-labelledby="learningTitle">
+        <div class="learning-mark" aria-hidden="true"></div>
+        <div>
+          <span class="section-label">Pénzügyi alapozó</span>
+          <h2 id="learningTitle">Előbb legyen biztos alap, utána jöhet a befektetés</h2>
+          <p>A bevétel, kiadás, vésztartalék, hitel és infláció összefüggéseit az alapoktól vesszük végig, túlzó ígéretek nélkül.</p>
+        </div>
+        <a class="highlight-link" href="landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html">Megnézem az útmutatót</a>
+      </section>
+
+      <section class="trust-band" aria-label="A Kalkulátor Bázis előnyei">
+        <ul>
+          <li><strong>Ingyenes</strong><span>Nincs regisztráció</span></li>
+          <li><strong>Mobilbarát</strong><span>Telefonon is kényelmes</span></li>
+          <li><strong>Magyar</strong><span>Érthető magyarázatok</span></li>
+          <li><strong>Gyors</strong><span>Az adatok a böngészőben maradnak</span></li>
+        </ul>
+        <p>Az eredmények tájékoztató becslések; hivatalos vagy egészségügyi döntéshez ellenőrzés szükséges.</p>
+      </section>
+
+      <section class="about-home" aria-labelledby="aboutTitle">
+        <div>
+          <span class="section-label">A portálról</span>
+          <h2 id="aboutTitle">Számok, amelyek segítenek dönteni</h2>
+        </div>
+        <div>
+          <p>A Kalkulátor Bázis a gyakran előkerülő számításokat teszi gyorsan elérhetővé. Nem csak eredményt mutat: az egyes oldalak elmagyarázzák, mit jelent a kapott érték, milyen feltételezésből indul, és mikor érdemes más forrást vagy szakembert bevonni.</p>
+          <p>A számítás a saját adataiddal indul. Hitel előtt havi terhet, festés előtt anyagmennyiséget, utazás előtt költséget, életmódváltásnál pedig tájékozódási pontot kaphatsz.</p>
+        </div>
+      </section>
+
+      <section class="home-faq" aria-labelledby="faqTitle">
+        <span class="section-label">Rövid válaszok</span>
+        <h2 id="faqTitle">Amit első használat előtt érdemes tudni</h2>
+        <div class="faq-list" data-accordion="single">
+          <details><summary>Ingyenesek a kalkulátorok?</summary><p>Igen, minden kalkulátor regisztráció és előfizetés nélkül használható.</p></details>
+          <details><summary>Elmenti az oldal a beírt adataimat?</summary><p>A számítások a böngészőben futnak; a kalkulátormezőkbe írt adatokat nem küldjük saját szerverre.</p></details>
+          <details><summary>Mennyire tekinthető pontosnak az eredmény?</summary><p>A képlet és a megadott adatok alapján pontos, de a valós helyzet további feltételeket tartalmazhat. Minden kalkulátor külön jelzi a fontos korlátokat.</p></details>
+          <details><summary>Ékezet nélkül is működik a kereső?</summary><p>Igen. A „hitel”, „epitoanyag” vagy „uzemanyag” típusú kereséseket is felismeri.</p></details>
+        </div>
+      </section>
+
+      <section data-render="wise-banner"></section>
+      <section class="ad-section" data-render="ad-slot"></section>
     </div>
-    </section>
-    <section data-render="wise-banner"></section>
-    <!-- Hirdetési blokk -->
-    <section class="ad-section" data-render="ad-slot"></section>
   </main>
 
   <!-- COOKIE -->
