@@ -63,6 +63,15 @@
   const getCategory = (id) =>
     data.categories.find((category) => category.id === id);
 
+  const categorySearchAliases = {
+    penzugyi: "penz ber fizetes adozas megtakaritas befektetes hitel bank",
+    epitoipari: "epitoanyag epitkezes felujitas anyagszukseglet burkolas falazas",
+    egeszseg: "eletmod taplalkozas edzes testsuly szervezet",
+    mindennapi: "hetkoznapi vasarlas munka datum szamla haztartas",
+    auto: "jarmu utazas tankolas benzin dizel fenntartas",
+    atvaltok: "mertekegyseg valtas konverter fizika technika",
+  };
+
   const getCalculatorSearchText = (calculator) => {
     const category = getCategory(calculator.category);
 
@@ -73,6 +82,7 @@
         calculator.keywords,
         category ? category.title : "",
         category ? category.shortTitle : "",
+        categorySearchAliases[calculator.category] || "",
       ].join(" ")
     );
   };
@@ -85,13 +95,14 @@
 
   window.KB_TRACK_EVENT = trackEvent;
 
-  const calculatorCard = (calculator, basePath) => {
+  const calculatorCard = (calculator, basePath, headingLevel = 3) => {
     const category = getCategory(calculator.category);
     const cardClass = category ? safeClassName(category.cardClass) : "";
+    const headingTag = headingLevel === 2 ? "h2" : "h3";
 
     return `
       <a class="card card-link calculator-card ${cardClass}" href="${escapeAttribute(buildInternalHref(basePath, calculator.url))}">
-        <h3>${escapeHtml(calculator.title)}</h3>
+        <${headingTag}>${escapeHtml(calculator.title)}</${headingTag}>
         <p>${escapeHtml(calculator.description)}</p>
       </a>
     `;
@@ -234,43 +245,111 @@
     if (!input || !results) return;
 
     const basePath = getBasePath();
+    input.setAttribute("role", "combobox");
+    input.setAttribute("aria-autocomplete", "list");
+    input.setAttribute("aria-controls", results.id);
+    input.setAttribute("aria-expanded", "false");
+    results.setAttribute("role", "listbox");
+    let activeIndex = -1;
+    let visibleMatches = [];
+
+    const closeResults = () => {
+      results.innerHTML = "";
+      results.classList.remove("is-visible");
+      input.setAttribute("aria-expanded", "false");
+      input.removeAttribute("aria-activedescendant");
+      activeIndex = -1;
+      visibleMatches = [];
+    };
+
+    const scoreCalculator = (calculator, query, queryTokens) => {
+      const title = normalizeText(calculator.title);
+      const description = normalizeText(calculator.description);
+      const keywords = normalizeText(calculator.keywords || "");
+      const searchText = getCalculatorSearchText(calculator);
+
+      if (!queryTokens.every((token) => searchText.includes(token))) return 0;
+
+      let score = 20;
+      if (title === query) score += 120;
+      else if (title.startsWith(query)) score += 90;
+      else if (title.includes(query)) score += 65;
+      if (keywords.includes(query)) score += 35;
+      if (description.includes(query)) score += 20;
+      if (calculator.popular) score += 4;
+      return score;
+    };
+
+    const setActiveResult = (index) => {
+      const links = [...results.querySelectorAll(".search-result")];
+      if (!links.length) return;
+
+      activeIndex = Math.max(0, Math.min(index, links.length - 1));
+      links.forEach((link, linkIndex) => {
+        const isActive = linkIndex === activeIndex;
+        link.classList.toggle("is-active", isActive);
+        link.setAttribute("aria-selected", String(isActive));
+      });
+      input.setAttribute("aria-activedescendant", links[activeIndex].id);
+      links[activeIndex].scrollIntoView({ block: "nearest" });
+    };
 
     const renderResults = () => {
       const query = normalizeText(input.value.trim());
 
       if (!query) {
-        results.innerHTML = "";
-        results.classList.remove("is-visible");
+        closeResults();
         return;
       }
 
-      const matches = data.calculators.filter((calculator) =>
-        getCalculatorSearchText(calculator).includes(query)
-      );
+      const queryTokens = query.split(/\s+/).filter((token) => token.length >= 2);
+      if (!queryTokens.length) {
+        results.innerHTML = '<p class="search-empty" role="status">Írj be legalább két karaktert.</p>';
+        results.classList.add("is-visible");
+        input.setAttribute("aria-expanded", "true");
+        return;
+      }
+
+      visibleMatches = data.calculators
+        .map((calculator) => ({
+          calculator,
+          score: scoreCalculator(calculator, query, queryTokens),
+        }))
+        .filter((item) => item.score > 0)
+        .sort(
+          (a, b) =>
+            b.score - a.score ||
+            a.calculator.title.localeCompare(b.calculator.title, "hu")
+        )
+        .slice(0, 10)
+        .map((item) => item.calculator);
 
       if (query.length >= 2 && input.dataset.lastTrackedQuery !== query) {
         input.dataset.lastTrackedQuery = query;
         trackEvent("calculator_search", {
           search_term: input.value.trim(),
-          results: matches.length,
+          results: visibleMatches.length,
           context: document.querySelector(".not-found-page") ? "404" : "site",
         });
       }
 
       results.classList.add("is-visible");
+      input.setAttribute("aria-expanded", "true");
+      activeIndex = -1;
+      input.removeAttribute("aria-activedescendant");
 
-      if (!matches.length) {
+      if (!visibleMatches.length) {
         results.innerHTML =
-          '<p class="search-empty">Nincs találat erre a keresésre.</p>';
+          '<p class="search-empty" role="status">Nincs találat. Próbálj másik kifejezést vagy válassz kategóriát.</p>';
         return;
       }
 
-      results.innerHTML = matches
-        .map((calculator) => {
+      results.innerHTML = visibleMatches
+        .map((calculator, index) => {
           const category = getCategory(calculator.category);
 
           return `
-            <a class="search-result" href="${escapeAttribute(buildInternalHref(basePath, calculator.url))}">
+            <a class="search-result" id="calculatorSearchResult${index}" role="option" aria-selected="false" href="${escapeAttribute(buildInternalHref(basePath, calculator.url))}">
               <span>
                 <strong>${escapeHtml(calculator.title)}</strong>
                 <small>${escapeHtml(calculator.description)}</small>
@@ -284,14 +363,39 @@
 
     input.addEventListener("input", renderResults);
     input.addEventListener("keydown", (event) => {
-      if (event.key !== "Enter") return;
+      const links = [...results.querySelectorAll(".search-result")];
 
-      const firstResult = results.querySelector(".search-result");
-
-      if (firstResult) {
+      if (event.key === "ArrowDown" && links.length) {
         event.preventDefault();
-        firstResult.click();
+        setActiveResult(activeIndex + 1);
+      } else if (event.key === "ArrowUp" && links.length) {
+        event.preventDefault();
+        setActiveResult(activeIndex <= 0 ? links.length - 1 : activeIndex - 1);
+      } else if (event.key === "Enter" && links.length) {
+        event.preventDefault();
+        links[activeIndex >= 0 ? activeIndex : 0].click();
+      } else if (event.key === "Escape") {
+        closeResults();
       }
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!event.target.closest(".search-box")) closeResults();
+    });
+  };
+
+  const bindSingleAccordions = () => {
+    document.querySelectorAll(".faq-list").forEach((group) => {
+      const details = [...group.querySelectorAll(":scope > details")];
+
+      details.forEach((item) => {
+        item.addEventListener("toggle", () => {
+          if (!item.open) return;
+          details.forEach((other) => {
+            if (other !== item) other.open = false;
+          });
+        });
+      });
     });
   };
 
@@ -345,7 +449,7 @@
     if (grid) {
       grid.innerHTML = data.calculators
         .filter((calculator) => calculator.category === categoryId)
-        .map((calculator) => calculatorCard(calculator, basePath))
+        .map((calculator) => calculatorCard(calculator, basePath, 2))
         .join("");
     }
 
@@ -368,6 +472,8 @@
 
     let target = document.querySelector("[data-render='related-calculators']");
     const main = document.querySelector("main");
+
+    if (main?.querySelector(".related-links")) return;
 
     if (!target && main) {
       target = document.createElement("div");
@@ -510,48 +616,23 @@
 
       setStructuredData({
         "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "SoftwareApplication",
-            name: currentCalculator.title,
-            applicationCategory: "CalculatorApplication",
-            operatingSystem: "Web",
-            url: `${origin}/${currentCalculator.url}`,
-            description: currentCalculator.description,
-            offers: {
-              "@type": "Offer",
-              price: "0",
-              priceCurrency: "HUF",
-            },
-            isPartOf: {
-              "@type": "WebSite",
-              name: "Kalkulátor Bázis",
-              url: `${origin}/`,
-            },
-            about: category ? category.title : "Online kalkulátor",
-          },
-          {
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: `Mire jó a ${currentCalculator.title.toLowerCase()}?`,
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: currentCalculator.description,
-                },
-              },
-              {
-                "@type": "Question",
-                name: "Ingyenes a kalkulátor használata?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Igen, a Kalkulátor Bázis kalkulátorai ingyenesen használhatók.",
-                },
-              },
-            ],
-          },
-        ],
+        "@type": "SoftwareApplication",
+        name: currentCalculator.title,
+        applicationCategory: "CalculatorApplication",
+        operatingSystem: "Web",
+        url: `${origin}/${currentCalculator.url}`,
+        description: currentCalculator.description,
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "HUF",
+        },
+        isPartOf: {
+          "@type": "WebSite",
+          name: "Kalkulátor Bázis",
+          url: `${origin}/`,
+        },
+        about: category ? category.title : "Online kalkulátor",
       });
       return;
     }
@@ -563,34 +644,17 @@
 
       setStructuredData({
         "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "ItemList",
-            name: category.title,
-            description: category.description,
-            itemListElement: data.calculators
-              .filter((calculator) => calculator.category === category.id)
-              .map((calculator, index) => ({
-                "@type": "ListItem",
-                position: index + 1,
-                url: `${origin}/${calculator.url}`,
-                name: calculator.title,
-              })),
-          },
-          {
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: `Mire jók a ${category.title.toLowerCase()}?`,
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: category.seo,
-                },
-              },
-            ],
-          },
-        ],
+        "@type": "ItemList",
+        name: category.title,
+        description: category.description,
+        itemListElement: data.calculators
+          .filter((calculator) => calculator.category === category.id)
+          .map((calculator, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: `${origin}/${calculator.url}`,
+            name: calculator.title,
+          })),
       });
       return;
     }
@@ -622,6 +686,7 @@
       .forEach((target) => renderAdSlot(target));
     renderStructuredData();
     bindTrackingEvents();
+    bindSingleAccordions();
 
     document.addEventListener("kb:consent-updated", () => {
       document

@@ -157,14 +157,30 @@ function initMobileMenu() {
 
   if (!toggle || !menu) return;
 
+  const setMenuState = (isOpen) => {
+    menu.classList.toggle("active", isOpen);
+    toggle.setAttribute("aria-expanded", String(isOpen));
+    toggle.setAttribute("aria-label", isOpen ? "Menü bezárása" : "Menü megnyitása");
+  };
+
   toggle.addEventListener("click", () => {
-    menu.classList.toggle("active");
+    setMenuState(!menu.classList.contains("active"));
   });
 
-  // 💥 kattintás kívül = bezárás
   document.addEventListener("click", (e) => {
     if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-      menu.classList.remove("active");
+      setMenuState(false);
     }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && menu.classList.contains("active")) {
+      setMenuState(false);
+      toggle.focus();
+    }
+  });
+
+  menu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setMenuState(false));
   });
 }

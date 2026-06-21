@@ -6,9 +6,9 @@
       shortTitle: "Pénzügyi",
       url: "penzugyi.html",
       description:
-        "Befektetés, hitel, infláció, osztalék és fizetéssel kapcsolatos számítások.",
+        "Nettó bér, háztartási keret, hitelteher és hosszú távú megtakarítás egy átgondolható sorrendben.",
       seo:
-        "Pénzügyi kalkulátorainkkal gyorsan kiszámolhatod a hitelek, befektetések, infláció, osztalék és számlázási határidők legfontosabb értékeit.",
+        "A pénzügyi eszközök a jövedelem tisztázásától a hitel teherbírásán át a megtakarítás és befektetés forgatókönyveiig támogatják a döntés előkészítését.",
       cardClass: "card-finance",
     },
     {
@@ -17,9 +17,9 @@
       shortTitle: "Építőipari",
       url: "epitoipari.html",
       description:
-        "Beton, csempe, festék és tégla mennyiségének tervezése felújításhoz.",
+        "Anyagigény, csomagszám és ráhagyás felújítás vagy építkezés helyszíni méreteihez.",
       seo:
-        "Építőipari kalkulátoraink segítenek megbecsülni a felújításhoz vagy építkezéshez szükséges alapanyagok mennyiségét.",
+        "A felületből, vastagságból és gyártói kiadósságból készülő becslések segítenek a rendelés előkészítésében, miközben külön jelzik a veszteség és kivitelezés fontos korlátait.",
       cardClass: "card-building",
     },
     {
@@ -28,9 +28,9 @@
       shortTitle: "Egészség",
       url: "egeszseg.html",
       description:
-        "BMI és kalóriaszükséglet számítás az egészségtudatos mindennapokhoz.",
+        "Testösszetétel, energiaigény, edzés és regeneráció tájékozódási pontjai óvatos értelmezéssel.",
       seo:
-        "Egészség kalkulátoraink gyors tájékoztatást adnak testtömegindexről, napi kalóriaszükségletről és alapvető egészségügyi mutatókról.",
+        "Az egészségkalkulátorok a mérhető trendek követését segítik, de minden eredménynél bemutatják, miért nem helyettesítik a diagnózist vagy a személyre szabott szakmai tanácsot.",
       cardClass: "card-health",
     },
     {
@@ -39,9 +39,9 @@
       shortTitle: "Mindennapi",
       url: "mindennapi.html",
       description:
-        "Százalék, ÁFA és gyakori hétköznapi számítások egyszerűen.",
+        "Akciók, egységárak, közös költségek, munkaidő és dátumok gyors ellenőrzése.",
       seo:
-        "Mindennapi kalkulátoraink a gyors százalékszámításhoz, ÁFA számításhoz és gyakori hétköznapi pénzügyi műveletekhez adnak segítséget.",
+        "A mindennapi eszközök bevásárlás, számlák megosztása, munkanapok és egyszerű arányok során veszik le a fejben számolás terhét.",
       cardClass: "card-general",
     },
     {
@@ -50,9 +50,9 @@
       shortTitle: "Autó",
       url: "auto.html",
       description:
-        "Fogyasztás, utazási költség és autózással kapcsolatos számítások.",
+        "Útiköltség indulás előtt, valós fogyasztás tankolás után és teljes fenntartás éves szinten.",
       seo:
-        "Autós kalkulátorainkkal gyorsan megbecsülheted az utazási költségeket, fogyasztást és az autóhasználathoz kapcsolódó kiadásokat.",
+        "Az autós kalkulátorok külön kezelik az út tervezését, a mért fogyasztást, a fenntartási költségeket és a jármű műszaki összehasonlítását.",
       cardClass: "card-auto",
     },
     {
@@ -61,9 +61,9 @@
       shortTitle: "Átváltók",
       url: "atvaltok.html",
       description:
-        "Mértékegységek, adatmennyiségek, sebesség, idő és deviza átváltása.",
+        "Hétköznapi, műszaki és digitális mértékegységek átváltása egyértelmű egységjelöléssel.",
       seo:
-        "Átváltóinkkal hosszúságot, tömeget, területet, térfogatot, időt, sebességet, adatmennyiséget, hőmérsékletet és devizát válthatsz át.",
+        "Az átváltók a fizikai mennyiségek mellett az adatméret, energia, nyomás, teljesítmény és deviza értelmezésében is segítenek, a gyakran összekevert fogalmak tisztázásával.",
       cardClass: "card-general",
     },
   ];
