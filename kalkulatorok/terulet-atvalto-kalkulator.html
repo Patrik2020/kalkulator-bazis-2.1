@@ -15,7 +15,16 @@
     <link rel="stylesheet" href="../css/pages/terulet.css" />
 
     <script src="../js/global-head.js"></script>
-  </head>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalkulátor Bázis" />
+  <meta property="og:title" content="Terület átváltó kalkulátor" />
+  <meta property="og:description" content="Terület átváltó kalkulátor négyzetméter, négyzetkilométer, hektár, ár, négyzetcentiméter, négyzetmilliméter, négyzetláb és négyzethüvelyk között." />
+  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/terulet-atvalto-kalkulator.html" />
+  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812"
+     crossorigin="anonymous"></script>
+</head>
 
   <body>
     <div id="header"></div>
@@ -36,11 +45,14 @@
         <h2>Terület átváltó</h2>
 
         <div class="calc-grid">
+          <label class="visually-hidden" for="inputValue">Átváltandó terület</label>
           <input
             type="number"
             id="inputValue"
             placeholder="Adj meg egy területet"
           />
+
+          <label class="visually-hidden" for="fromUnit">Kiinduló területegység</label>
 
           <select id="fromUnit">
             <option value="mm2">Négyzetmilliméter (mm²)</option>
@@ -52,6 +64,8 @@
             <option value="ft2">Négyzetláb (ft²)</option>
             <option value="in2">Négyzethüvelyk (in²)</option>
           </select>
+
+          <label class="visually-hidden" for="toUnit">Cél területegység</label>
 
           <select id="toUnit">
             <option value="mm2">Négyzetmilliméter (mm²)</option>
@@ -301,41 +315,21 @@
           <li>Adatmennyiség átváltó kalkulátor</li>
         </ul>
       </section>
-    
-    <section class="article generated-seo" data-generated-seo="calculator">
-      <h2>Terület átváltó használata</h2>
-      <p>
-        A terület átváltó gyors segítséget ad, ha pontosabb képet szeretnél kapni egy gyakori
-        átváltók számítás eredményéről. A kalkulátor egyszerűen használható:
-        add meg a szükséges adatokat, az eredmény pedig azonnal megjelenik.
-      </p>
-      <p>
-        Négyzetméter, hektár és négyzetkilométer átváltása. Az eszköz célja, hogy a számolás ne vegyen el felesleges időt,
-        és mobilon is könnyen ellenőrizhető legyen az eredmény.
-      </p>
-      <p>
-        A kapott értékek tájékoztató jellegűek. Pénzügyi, egészségügyi, építőipari vagy nagyobb értékű
-        döntés előtt érdemes a számítást saját adatokkal többször is ellenőrizni, illetve szükség esetén
-        szakértői tanácsot kérni.
-      </p>
-
-      <h2>Gyakori kérdések</h2>
-      <div class="faq-list">
+    <section class="article calculator-guide">
+      <h2>Négyzetméter, hektár és négyzetláb</h2>
+      <div class="content-split">
+        <div><h3>A térképi és hasznos terület eltérhet</h3><p>Ingatlannál a nettó, bruttó, hasznos és tulajdoni lap szerinti terület más fogalom lehet. Az átváltó az egységet változtatja, a mérési vagy jogi definíciót nem.</p></div>
+        <p>Ingatlan, telek, burkolat vagy külföldi alaprajz adatai könnyen közös egységre hozhatók. Területnél a hosszúság váltószáma négyzetre emelkedik, ezért 1 m² nem 100, hanem 10 000 cm².</p>
+      </div>
+      <h2>Területegységek</h2>
+      <div class="faq-list" data-accordion="single">
         <details>
-          <summary>Mire jó a terület átváltó?</summary>
-          <p>Négyzetméter, hektár és négyzetkilométer átváltása. Akkor hasznos, ha gyors, áttekinthető eredményt szeretnél kapni kézi számolás nélkül.</p>
+          <summary>Mekkora egy hektár?</summary>
+          <p>10 000 m², vagyis egy 100 méter oldalhosszúságú négyzet területe.</p>
         </details>
         <details>
-          <summary>Ingyenes a kalkulátor használata?</summary>
-          <p>Igen, a Kalkulátor Bázis kalkulátorai ingyenesen használhatók, külön regisztráció nélkül.</p>
-        </details>
-        <details>
-          <summary>Mobilon is működik?</summary>
-          <p>Igen, a kalkulátor mobil-first felülettel készült, ezért telefonon és tableten is kényelmesen használható.</p>
-        </details>
-        <details>
-          <summary>Mennyire pontos az eredmény?</summary>
-          <p>Az eredmény a megadott adatokból számított tájékoztató érték. Ha hivatalos, szerződéses vagy egészségügyi döntéshez használod, ellenőrizd más forrásból is.</p>
+          <summary>Átváltható a folyóméter négyzetméterre?</summary>
+          <p>Csak ismert szélességgel; a folyóméter hosszúság, a négyzetméter terület.</p>
         </details>
       </div>
     </section>

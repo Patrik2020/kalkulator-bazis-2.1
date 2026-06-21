@@ -13,7 +13,16 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/pages/osztalek.css" />
     <script src="../js/global-head.js"></script>
-  </head>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalkulátor Bázis" />
+  <meta property="og:title" content="Osztalék kalkulátor | Passzív jövedelem becslése" />
+  <meta property="og:description" content="Osztalék kalkulátor: számold ki mennyi nettó osztalékot kapsz adózás után." />
+  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/osztalek-kalkulator.html" />
+  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812"
+     crossorigin="anonymous"></script>
+</head>
 
   <body>
     <div id="header"></div>
@@ -29,17 +38,17 @@
       <section class="card card-calculator">
         <div class="calc-grid">
           <div>
-            <label>Befektetett összeg (Ft)</label>
+            <label for="amount">Befektetett összeg (Ft)</label>
             <input type="text" id="amount" placeholder="pl. 1 000 000" />
           </div>
 
           <div>
-            <label>Osztalékhozam (%)</label>
+            <label for="yield">Osztalékhozam (%)</label>
             <input type="number" id="yield" placeholder="pl. 5" />
           </div>
 
           <div>
-            <label>Adó (%)</label>
+            <label for="tax">Adó (%)</label>
             <input type="number" id="tax" value="15" />
           </div>
         </div>
@@ -54,111 +63,6 @@
       </section>
 
       <!-- SEO / TARTALOM -->
-      <section class="article">
-        <div class="info-box">
-          <strong>Tipp:</strong> Az osztalék egy passzív jövedelem forma, amely
-          hosszú távon jelentős bevételt hozhat.
-        </div>
-
-        <h2>Mi az osztalék?</h2>
-        <p>
-          Az osztalék a vállalat nyereségének azon része, amelyet a részvényesek
-          között osztanak szét. Ha részvényt vásárolsz, tulajdonrészt szerzel a
-          cégben, és jogosult lehetsz osztalékra.
-        </p>
-
-        <h2>Hogyan működik az osztalék?</h2>
-        <p>
-          A cégek évente vagy negyedévente fizetnek osztalékot. Az osztalék
-          mértéke függ a vállalat teljesítményétől és döntéseitől.
-        </p>
-
-        <h2>Mi az osztalékhozam?</h2>
-        <p>
-          Az osztalékhozam azt mutatja meg, hogy a befektetett összeg hány
-          százalékát kapod vissza évente osztalékként.
-        </p>
-
-        <p><strong>Példa:</strong></p>
-        <ul>
-          <li>1 000 000 Ft befektetés</li>
-          <li>5% hozam → 50 000 Ft évente</li>
-        </ul>
-
-        <h2>Mennyi osztalék szükséges havi 100 000 Ft bevételhez?</h2>
-
-        <p>
-          Sokan azért építenek osztalékportfóliót, hogy rendszeres passzív
-          jövedelemhez jussanak. Ha például havi 100 000 Ft nettó
-          osztalékbevételt szeretnél elérni, akkor a szükséges befektetési
-          összeg az átlagos osztalékhozamtól függ.
-        </p>
-
-        <p>
-          5%-os osztalékhozam mellett nagyjából 24 millió forintos befektetett
-          tőkére lehet szükség a cél eléréséhez.
-        </p>
-
-        <h2>Adózás</h2>
-        <p>
-          Magyarországon az osztalék után általában 15% személyi jövedelemadót
-          kell fizetni. Egyes esetekben további terhek is felmerülhetnek (pl.
-          szocho).
-        </p>
-
-        <h2>Miért jó az osztalék?</h2>
-
-        <ul>
-          <li>passzív jövedelem</li>
-          <li>rendszeres bevétel</li>
-          <li>hosszú távú vagyonépítés</li>
-        </ul>
-
-        <h2>Osztalék vs növekedési részvények</h2>
-        <p>
-          Az osztalékfizető részvények stabilabb bevételt adhatnak, míg a
-          növekedési részvények inkább árfolyamnyereségre építenek.
-        </p>
-
-        <h2>Mire figyelj?</h2>
-
-        <ul>
-          <li>túl magas hozam kockázatos lehet</li>
-          <li>osztalék nem garantált</li>
-          <li>adózás országonként eltér</li>
-        </ul>
-
-        <h2>Hogyan építs osztalék portfóliót?</h2>
-        <p>
-          A diverzifikáció kulcsfontosságú. Érdemes több iparágból és régióból
-          választani osztalékfizető részvényeket vagy ETF-eket.
-        </p>
-
-        <p>
-          Hosszú távon az újrabefektetett osztalék jelentősen növeli a hozamot a
-          kamatos kamat hatása miatt.
-        </p>
-      </section>
-
-      <section class="article-recommendation">
-        <h2>Érdekelhet még</h2>
-
-        <p>
-          Ha külföldi részvényekből vagy ETF-ekből is kapsz osztalékot,
-          előfordulhat, hogy több pénznemben kell kezelned a bevételeidet.
-          Ilyenkor hasznos lehet megismerni a Wise szolgáltatásait és
-          devizakezelési lehetőségeit.
-        </p>
-
-        <a
-          href="../landing-pages/wise/wise.html"
-          class="wise-btn"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Wise bemutató →
-        </a>
-      </section>
     <section class="adsense-content" data-adsense-upgrade="osztalek">
       <h2>Osztalék: jövedelemnek tűnik, de befektetési kockázattal jár</h2>
       <p>Az osztalék kalkulátor azt mutatja meg, hogy egy adott portfólióméret és osztalékhozam mellett mekkora éves vagy havi osztalékbevétel képzelhető el. Hasznos lehet passzív jövedelmi célok első becslésére.</p>

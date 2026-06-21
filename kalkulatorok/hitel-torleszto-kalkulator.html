@@ -12,6 +12,15 @@
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/pages/hitel-torleszto.css?v=123" />
   <script src="../js/global-head.js"></script>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalkulátor Bázis" />
+  <meta property="og:title" content="Hitel törlesztő kalkulátor | Havi törlesztés és teljes visszafizetés" />
+  <meta property="og:description" content="Hitel kalkulátor: számold ki a havi törlesztőt, teljes visszafizetést és kamatot." />
+  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/hitel-torleszto-kalkulator.html" />
+  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812"
+     crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -30,12 +39,12 @@
       <div class="calc-grid">
 
         <div>
-          <label>Hitel összege (Ft)</label>
+          <label for="amount">Hitel összege (Ft)</label>
           <input type="text" id="amount" placeholder="pl. 5 000 000" />
         </div>
 
         <div>
-          <label>Kamat (%)</label>
+          <label for="rate">Kamat (%)</label>
           <input type="number" id="rate" placeholder="pl. 8" />
 
           <p class="input-help">
@@ -44,7 +53,7 @@
         </div>
 
         <div>
-          <label>Futamidő (év)</label>
+          <label for="years">Futamidő (év)</label>
           <input type="number" id="years" placeholder="pl. 20" />
         </div>
 
@@ -59,7 +68,7 @@
 
         <div id="thm-wrapper" class="hidden">
 
-          <label>THM (%)</label>
+          <label for="thm">THM (%)</label>
 
           <input type="number" id="thm" placeholder="pl. 9.4" />
 
@@ -85,171 +94,6 @@
         <p id="result-thm-info"></p>
 
       </div>
-
-    </section>
-
-    <section class="article">
-
-      <div class="info-box">
-        <strong>Tipp:</strong>
-        Már 1-2%-os kamatkülönbség is több százezer vagy akár több millió forinttal
-        módosíthatja a teljes visszafizetést hosszú futamidő esetén.
-      </div>
-
-      <h2>Mi az a hitel kalkulátor?</h2>
-
-      <p>
-        A hitel kalkulátor segít gyorsan kiszámolni, hogy egy adott hitelösszeg,
-        kamat és futamidő mellett mekkora havi törlesztőrészlettel kell számolnod.
-        Legyen szó személyi kölcsönről, lakáshitelről vagy autóhitelről,
-        a pontos tervezés rendkívül fontos.
-      </p>
-
-      <p>
-        Egy online hitel kalkulátor használatával néhány másodperc alatt megtudhatod,
-        hogy mennyibe kerülhet számodra a hitel teljes visszafizetése,
-        illetve mekkora havi terhet jelenthet a családi költségvetésben.
-      </p>
-
-      <h2>Hogyan működik a havi törlesztő számítása?</h2>
-
-      <p>
-        A legtöbb hitel annuitásos törlesztéssel működik.
-        Ez azt jelenti, hogy minden hónapban azonos összegű törlesztőrészletet fizetsz.
-        A havi részleten belül azonban folyamatosan változik a kamat és a tőketörlesztés aránya.
-      </p>
-
-      <p>
-        A futamidő elején nagyobb arányban fizetsz kamatot,
-        később pedig egyre nagyobb rész jut a tőketartozás csökkentésére.
-      </p>
-
-      <h2>A hitel törlesztő képlete</h2>
-
-      <p>
-        A havi törlesztőrészlet kiszámítása az alábbi képlettel történik:
-      </p>
-
-      <p>
-        Havi törlesztő = P × r / (1 − (1 + r)^−n)
-      </p>
-
-      <p>
-        A képletben:
-      </p>
-
-      <ul>
-        <li><strong>P</strong> = hitel összege</li>
-        <li><strong>r</strong> = havi kamatláb</li>
-        <li><strong>n</strong> = hónapok száma</li>
-      </ul>
-
-      <h2>Mi befolyásolja a havi törlesztőt?</h2>
-
-      <p>
-        A havi törlesztőrészlet nagyságát több fontos tényező is meghatározza.
-      </p>
-
-      <ul>
-        <li>felvett hitel összege</li>
-        <li>kamat mértéke</li>
-        <li>futamidő hossza</li>
-        <li>fix vagy változó kamatozás</li>
-        <li>THM értéke</li>
-        <li>banki költségek és díjak</li>
-      </ul>
-
-      <h2>Mi a THM és miért fontos a hitelfelvételnél?</h2>
-
-      <p>
-        A THM, vagyis teljes hiteldíj mutató az egyik legfontosabb adat hitelfelvétel előtt.
-        Megmutatja, hogy éves szinten mennyibe kerül valójában a hitel,
-        beleértve a kamatokat és egyéb költségeket is.
-      </p>
-
-      <p>
-        A THM segít összehasonlítani a különböző banki ajánlatokat,
-        ezért hitel választáskor nem érdemes kizárólag a havi törlesztőrészlet alapján dönteni.
-      </p>
-
-      <p>
-        Előfordulhat, hogy két hitel havi törlesztője hasonló,
-        azonban a teljes visszafizetés között több százezer forintos különbség is lehet.
-      </p>
-
-      <h3>Mit tartalmazhat a THM?</h3>
-
-      <ul>
-        <li>hitelkamat</li>
-        <li>kezelési költségek</li>
-        <li>szerződéskötési díjak</li>
-        <li>banki adminisztrációs költségek</li>
-        <li>egyes kötelező szolgáltatások díjai</li>
-      </ul>
-
-      <h3>Mit nem tartalmaz a THM?</h3>
-
-      <p>
-        Bizonyos esetekben a THM nem tartalmaz minden járulékos költséget,
-        például késedelmi díjakat vagy egyes biztosítási költségeket,
-        ezért mindig érdemes részletesen átnézni a hitelszerződést.
-      </p>
-
-      <h2>Fix vagy változó kamatozás?</h2>
-
-      <p>
-        A fix kamatozású hitel előnye,
-        hogy a törlesztőrészlet kiszámítható marad a kamatperiódus alatt.
-        Ez biztonságosabb lehet hosszabb futamidő esetén.
-      </p>
-
-      <p>
-        A változó kamatozású hitelek kezdetben kedvezőbbek lehetnek,
-        azonban a kamatok emelkedése esetén a havi törlesztőrészlet is növekedhet.
-      </p>
-
-      <h2>Példa hitel számításra</h2>
-
-      <p>
-        Tegyük fel, hogy 5 millió forint hitelt veszel fel 20 évre 8%-os kamattal.
-        Ebben az esetben a havi törlesztőrészlet megközelítőleg
-        41-42 ezer forint körül alakulhat.
-      </p>
-
-      <p>
-        A teljes visszafizetés azonban a futamidő végére jelentősen magasabb lehet,
-        ezért fontos előre átgondolni a hitelfelvételt.
-      </p>
-
-      <h2>Milyen hibákat érdemes elkerülni?</h2>
-
-      <ul>
-        <li>túl hosszú futamidő választása</li>
-        <li>túl magas havi terhelés vállalása</li>
-        <li>THM figyelmen kívül hagyása</li>
-        <li>vésztartalék nélküli hitelfelvétel</li>
-        <li>csak a legkisebb havi törlesztő figyelése</li>
-      </ul>
-
-      <h2>Mikor érdemes hitel kalkulátort használni?</h2>
-
-      <p>
-        Hitel kalkulátor használata ajánlott minden hitelfelvétel előtt,
-        legyen szó lakásvásárlásról, autóvásárlásról vagy személyi kölcsönről.
-      </p>
-
-      <p>
-        A kalkulátor segítségével könnyebben összehasonlíthatod a különböző lehetőségeket,
-        és pontosabb képet kaphatsz a várható havi kiadásokról.
-      </p>
-
-      <h2>Összefoglalás</h2>
-
-      <p>
-        A hitel kalkulátor hasznos eszköz a tudatos pénzügyi döntésekhez.
-        Segítségével gyorsan kiszámolhatod a havi törlesztőrészletet,
-        a teljes visszafizetést és jobban átláthatod a hitel valódi költségeit.
-      </p>
 
     </section>
     <section class="adsense-content" data-adsense-upgrade="hitel-torleszto">

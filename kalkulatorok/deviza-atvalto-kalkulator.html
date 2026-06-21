@@ -15,7 +15,16 @@
     <link rel="stylesheet" href="../css/pages/deviza.css" />
 
     <script src="../js/global-head.js"></script>
-  </head>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalkulátor Bázis" />
+  <meta property="og:title" content="Deviza átváltó kalkulátor | Forint, euró, dollár és árfolyam" />
+  <meta property="og:description" content="Deviza átváltó kalkulátor aktuális árfolyamokkal. Euró, dollár, font, svájci frank, forint és további devizák közötti gyors online átváltás." />
+  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/deviza-atvalto-kalkulator.html" />
+  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812"
+     crossorigin="anonymous"></script>
+</head>
 
   <body>
     <div id="header"></div>
@@ -37,11 +46,14 @@
         <h2>Deviza átváltó</h2>
 
         <div class="calc-grid">
+          <label class="visually-hidden" for="inputValue">Átváltandó összeg</label>
           <input
             type="number"
             id="inputValue"
             placeholder="Adj meg egy összeget"
           />
+
+          <label class="visually-hidden" for="fromCurrency">Kiinduló pénznem</label>
 
           <select id="fromCurrency">
             <option value="HUF" selected>Magyar forint (HUF)</option>
@@ -60,6 +72,8 @@
             <option value="AUD">Ausztrál dollár (AUD)</option>
             <option value="CNY">Kínai jüan (CNY)</option>
           </select>
+
+          <label class="visually-hidden" for="toCurrency">Cél pénznem</label>
 
           <select id="toCurrency">
             <option value="HUF">Magyar forint (HUF)</option>

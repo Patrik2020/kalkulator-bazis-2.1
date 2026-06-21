@@ -11,6 +11,15 @@
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/pages/auto.css" />
   <script src="../js/global-head.js"></script>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalkulátor Bázis" />
+  <meta property="og:title" content="Autó kalkulátor – fogyasztás és költség számítás" />
+  <meta property="og:description" content="Autó kalkulátor: fogyasztás és utazási költség kiszámítása egyszerűen." />
+  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/auto-kalkulator.html" />
+  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812"
+     crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -32,12 +41,12 @@
 
       <div class="calc-grid">
         <div>
-          <label>Megtett távolság (km)</label>
+          <label for="distance">Megtett távolság (km)</label>
           <input type="number" id="distance" />
         </div>
 
         <div>
-          <label>Elhasznált üzemanyag (liter)</label>
+          <label for="fuelUsed">Elhasznált üzemanyag (liter)</label>
           <input type="number" id="fuelUsed" />
         </div>
       </div>
@@ -56,17 +65,17 @@
 
       <div class="calc-grid">
         <div>
-          <label>Távolság (km)</label>
+          <label for="distance-cost">Távolság (km)</label>
           <input type="number" id="distance-cost" />
         </div>
 
         <div>
-          <label>Fogyasztás (l/100km)</label>
+          <label for="consumption-cost">Fogyasztás (l/100km)</label>
           <input type="number" id="consumption-cost" />
         </div>
 
         <div>
-          <label>Üzemanyag ár (Ft/l)</label>
+          <label for="fuelPrice">Üzemanyag ár (Ft/l)</label>
           <input type="number" id="fuelPrice" />
         </div>
       </div>
@@ -85,12 +94,12 @@
 
       <div class="calc-grid">
         <div>
-          <label>Tank mérete (liter)</label>
+          <label for="tankSize">Tank mérete (liter)</label>
           <input type="number" id="tankSize" />
         </div>
 
         <div>
-          <label>Fogyasztás (l/100km)</label>
+          <label for="consumption-range">Fogyasztás (l/100km)</label>
           <input type="number" id="consumption-range" />
         </div>
       </div>
@@ -107,40 +116,20 @@
       <p>Egy út költsége nemcsak az üzemanyagról szól. Autópályadíj, parkolás, kopás, biztosítás és szerviz is része lehet a valós költségnek.</p>
       <p>Ha rendszeresen autózol, érdemes havi vagy éves szinten is ránézni a teljes fenntartási költségre.</p>
     </section>
-    <section class="article generated-seo" data-generated-seo="calculator">
-      <h2>Autós kalkulátor használata</h2>
-      <p>
-        A autós kalkulátor gyors segítséget ad, ha pontosabb képet szeretnél kapni egy gyakori
-        autó számítás eredményéről. A kalkulátor egyszerűen használható:
-        add meg a szükséges adatokat, az eredmény pedig azonnal megjelenik.
-      </p>
-      <p>
-        Utazási és autós költségek kiszámítása. Az eszköz célja, hogy a számolás ne vegyen el felesleges időt,
-        és mobilon is könnyen ellenőrizhető legyen az eredmény.
-      </p>
-      <p>
-        A kapott értékek tájékoztató jellegűek. Pénzügyi, egészségügyi, építőipari vagy nagyobb értékű
-        döntés előtt érdemes a számítást saját adatokkal többször is ellenőrizni, illetve szükség esetén
-        szakértői tanácsot kérni.
-      </p>
-
-      <h2>Gyakori kérdések</h2>
-      <div class="faq-list">
+    <section class="article calculator-guide">
+      <h2>Három külön kérdés egy autós oldalon</h2>
+      <p>A fogyasztás, az út üzemanyagköltsége és a tankkal elérhető hatótáv más-más döntést támogat. Tankolási adatokból valós fogyasztást, út előtt várható kiadást, hosszabb szakasz előtt pedig biztonságos hatótávot becsülhetsz.</p>
+      <h3>A valós út mindig hozzátesz valamit</h3>
+      <p>Forgalom, hidegindítás, tetőcsomagtartó, terhelés, guminyomás és vezetési tempó mind eltérítheti az eredményt. Költségtervezésnél az autópályadíj, parkolás és az autó kopása nincs benne az üzemanyagárban.</p>
+      <h2>Autós számítások röviden</h2>
+      <div class="faq-list" data-accordion="single">
         <details>
-          <summary>Mire jó a autós kalkulátor?</summary>
-          <p>Utazási és autós költségek kiszámítása. Akkor hasznos, ha gyors, áttekinthető eredményt szeretnél kapni kézi számolás nélkül.</p>
+          <summary>Miért tér el a fedélzeti számítógép értéke?</summary>
+          <p>A kijelzett adat kalibráció és mérési módszer miatt eltérhet; a több tankolásból számított átlag megbízhatóbb összevetés.</p>
         </details>
         <details>
-          <summary>Ingyenes a kalkulátor használata?</summary>
-          <p>Igen, a Kalkulátor Bázis kalkulátorai ingyenesen használhatók, külön regisztráció nélkül.</p>
-        </details>
-        <details>
-          <summary>Mobilon is működik?</summary>
-          <p>Igen, a kalkulátor mobil-first felülettel készült, ezért telefonon és tableten is kényelmesen használható.</p>
-        </details>
-        <details>
-          <summary>Mennyire pontos az eredmény?</summary>
-          <p>Az eredmény a megadott adatokból számított tájékoztató érték. Ha hivatalos, szerződéses vagy egészségügyi döntéshez használod, ellenőrizd más forrásból is.</p>
+          <summary>Nullára tervezhetem a tankot?</summary>
+          <p>Nem. A kijelzett hatótáv becslés, ezért hosszabb úton mindig hagyj érdemi üzemanyag-tartalékot.</p>
         </details>
       </div>
     </section>

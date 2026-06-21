@@ -13,7 +13,16 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/pages/inflacio.css" />
     <script src="../js/global-head.js"></script>
-  </head>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalkulátor Bázis" />
+  <meta property="og:title" content="Infláció kalkulátor | Vásárlóerő és pénzromlás becslése" />
+  <meta property="og:description" content="Infláció kalkulátor: számold ki pénzed értékének változását az infláció hatására." />
+  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/inflacio-kalkulator.html" />
+  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812"
+     crossorigin="anonymous"></script>
+</head>
 
   <body>
     <div id="header"></div>
@@ -27,17 +36,17 @@
       <section class="card card-calculator">
         <div class="calc-grid">
           <div>
-            <label>Összeg (Ft)</label>
+            <label for="amount">Összeg (Ft)</label>
             <input type="text" id="amount" placeholder="pl. 1 000 000" />
           </div>
 
           <div>
-            <label>Infláció (%)</label>
+            <label for="rate">Infláció (%)</label>
             <input type="number" id="rate" placeholder="pl. 5" />
           </div>
 
           <div>
-            <label>Időtáv (év)</label>
+            <label for="years">Időtáv (év)</label>
             <input type="number" id="years" placeholder="pl. 10" />
           </div>
         </div>

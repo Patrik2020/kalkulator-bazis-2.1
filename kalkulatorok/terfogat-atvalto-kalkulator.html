@@ -15,7 +15,16 @@
     <link rel="stylesheet" href="../css/pages/terfogat.css" />
 
     <script src="../js/global-head.js"></script>
-  </head>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalkulátor Bázis" />
+  <meta property="og:title" content="Térfogat átváltó kalkulátor" />
+  <meta property="og:description" content="Térfogat átváltó kalkulátor milliliter, centiliter, deciliter, liter, köbméter, gallon és egyéb térfogatmértékek között. Gyors és pontos online átváltás." />
+  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/terfogat-atvalto-kalkulator.html" />
+  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812"
+     crossorigin="anonymous"></script>
+</head>
 
   <body>
     <div id="header"></div>
@@ -36,11 +45,14 @@
         <h2>Térfogat átváltó</h2>
 
         <div class="calc-grid">
+          <label class="visually-hidden" for="inputValue">Átváltandó térfogat</label>
           <input
             type="number"
             id="inputValue"
             placeholder="Adj meg egy térfogatot"
           />
+
+          <label class="visually-hidden" for="fromUnit">Kiinduló térfogategység</label>
 
           <select id="fromUnit">
             <option value="ml">Milliliter (ml)</option>
@@ -50,6 +62,8 @@
             <option value="m3">Köbméter (m³)</option>
             <option value="gal">Gallon (US)</option>
           </select>
+
+          <label class="visually-hidden" for="toUnit">Cél térfogategység</label>
 
           <select id="toUnit">
             <option value="ml">Milliliter (ml)</option>
@@ -296,41 +310,21 @@
           <li>Adatmennyiség átváltó kalkulátor</li>
         </ul>
       </section>
-    
-    <section class="article generated-seo" data-generated-seo="calculator">
-      <h2>Térfogat átváltó használata</h2>
-      <p>
-        A térfogat átváltó gyors segítséget ad, ha pontosabb képet szeretnél kapni egy gyakori
-        átváltók számítás eredményéről. A kalkulátor egyszerűen használható:
-        add meg a szükséges adatokat, az eredmény pedig azonnal megjelenik.
-      </p>
-      <p>
-        Milliliter, liter, köbméter és gallon átváltása. Az eszköz célja, hogy a számolás ne vegyen el felesleges időt,
-        és mobilon is könnyen ellenőrizhető legyen az eredmény.
-      </p>
-      <p>
-        A kapott értékek tájékoztató jellegűek. Pénzügyi, egészségügyi, építőipari vagy nagyobb értékű
-        döntés előtt érdemes a számítást saját adatokkal többször is ellenőrizni, illetve szükség esetén
-        szakértői tanácsot kérni.
-      </p>
-
-      <h2>Gyakori kérdések</h2>
-      <div class="faq-list">
+    <section class="article calculator-guide">
+      <h2>Liter, köbméter és más térfogategységek</h2>
+      <div class="content-split">
+        <div><h3>Térfogat és tömeg csak sűrűséggel kapcsolható össze</h3><p>Egy liter víz tömege közel egy kilogramm, de olajnál, üzemanyagnál vagy ömlesztett anyagnál ez nem igaz. Literből kilogrammot csak az adott anyag sűrűségével válts.</p></div>
+        <p>Folyadék, tartály vagy építőanyag mennyiségénél ugyanaz a térfogat több egységben szerepelhet. Egy köbméter pontosan 1000 liter, ami nagyobb mennyiségeknél gyors ellenőrzési pont.</p>
+      </div>
+      <h2>Térfogatváltás</h2>
+      <div class="faq-list" data-accordion="single">
         <details>
-          <summary>Mire jó a térfogat átváltó?</summary>
-          <p>Milliliter, liter, köbméter és gallon átváltása. Akkor hasznos, ha gyors, áttekinthető eredményt szeretnél kapni kézi számolás nélkül.</p>
+          <summary>A milliliter és köbcentiméter azonos?</summary>
+          <p>Igen, 1 ml pontosan 1 cm³.</p>
         </details>
         <details>
-          <summary>Ingyenes a kalkulátor használata?</summary>
-          <p>Igen, a Kalkulátor Bázis kalkulátorai ingyenesen használhatók, külön regisztráció nélkül.</p>
-        </details>
-        <details>
-          <summary>Mobilon is működik?</summary>
-          <p>Igen, a kalkulátor mobil-first felülettel készült, ezért telefonon és tableten is kényelmesen használható.</p>
-        </details>
-        <details>
-          <summary>Mennyire pontos az eredmény?</summary>
-          <p>Az eredmény a megadott adatokból számított tájékoztató érték. Ha hivatalos, szerződéses vagy egészségügyi döntéshez használod, ellenőrizd más forrásból is.</p>
+          <summary>A tartály névleges térfogata teljesen használható?</summary>
+          <p>Nem feltétlenül; holttér, biztonsági légrés és forma miatt a hasznos térfogat kisebb lehet.</p>
         </details>
       </div>
     </section>

@@ -13,7 +13,16 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/pages/etf.css" />
     <script src="../js/global-head.js"></script>
-  </head>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalkulátor Bázis" />
+  <meta property="og:title" content="ETF kalkulátor | Befektetés, hozam és rendszeres megtakarítás" />
+  <meta property="og:description" content="ETF kalkulátor: számold ki a befektetésed várható értékét kamatos kamattal." />
+  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/etf-kalkulator.html" />
+  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812"
+     crossorigin="anonymous"></script>
+</head>
 
   <body>
     <div id="header"></div>
@@ -29,7 +38,7 @@
       <section class="card card-calculator">
         <div class="calc-grid">
           <div>
-            <label>Kezdőtőke (Ft)</label>
+            <label for="initial">Kezdőtőke (Ft)</label>
             <input
               type="text"
               id="initial"
@@ -39,7 +48,7 @@
           </div>
 
           <div>
-            <label>Havi befektetés (Ft)</label>
+            <label for="monthly">Havi befektetés (Ft)</label>
             <input
               type="text"
               id="monthly"
@@ -49,12 +58,12 @@
           </div>
 
           <div>
-            <label>Éves hozam (%)</label>
+            <label for="rate">Éves hozam (%)</label>
             <input type="number" id="rate" placeholder="pl. 7" />
           </div>
 
           <div>
-            <label>Időtáv (év)</label>
+            <label for="years">Időtáv (év)</label>
             <input type="number" id="years" placeholder="pl. 20" />
           </div>
         </div>

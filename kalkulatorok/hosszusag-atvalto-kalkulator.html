@@ -15,7 +15,16 @@
     <link rel="stylesheet" href="../css/pages/hosszusag.css" />
 
     <script src="../js/global-head.js"></script>
-  </head>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalkulátor Bázis" />
+  <meta property="og:title" content="Hosszúság átváltó kalkulátor" />
+  <meta property="og:description" content="Hosszúság átváltó kalkulátor milliméter, centiméter, méter, kilométer, inch, láb, yard és mérföld között. Gyors és pontos online átváltás." />
+  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/hosszusag-atvalto-kalkulator.html" />
+  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812"
+     crossorigin="anonymous"></script>
+</head>
 
   <body>
     <div id="header"></div>
@@ -36,11 +45,14 @@
         <h2>Hosszúság átváltó</h2>
 
         <div class="calc-grid">
+          <label class="visually-hidden" for="inputValue">Átváltandó hosszúság</label>
           <input
             type="number"
             id="inputValue"
             placeholder="Adj meg egy értéket"
           />
+
+          <label class="visually-hidden" for="fromUnit">Kiinduló hosszúságegység</label>
 
           <select id="fromUnit">
             <option value="mm">Milliméter (mm)</option>
@@ -52,6 +64,8 @@
             <option value="yd">Yard (yd)</option>
             <option value="mi">Mérföld (mi)</option>
           </select>
+
+          <label class="visually-hidden" for="toUnit">Cél hosszúságegység</label>
 
           <select id="toUnit">
             <option value="mm">Milliméter (mm)</option>
@@ -317,41 +331,20 @@
           <li>Adatmennyiség átváltó kalkulátor</li>
         </ul>
       </section>
-    
-    <section class="article generated-seo" data-generated-seo="calculator">
-      <h2>Hosszúság átváltó használata</h2>
-      <p>
-        A hosszúság átváltó gyors segítséget ad, ha pontosabb képet szeretnél kapni egy gyakori
-        átváltók számítás eredményéről. A kalkulátor egyszerűen használható:
-        add meg a szükséges adatokat, az eredmény pedig azonnal megjelenik.
-      </p>
-      <p>
-        Milliméter, centiméter, méter, kilométer, inch és mérföld. Az eszköz célja, hogy a számolás ne vegyen el felesleges időt,
-        és mobilon is könnyen ellenőrizhető legyen az eredmény.
-      </p>
-      <p>
-        A kapott értékek tájékoztató jellegűek. Pénzügyi, egészségügyi, építőipari vagy nagyobb értékű
-        döntés előtt érdemes a számítást saját adatokkal többször is ellenőrizni, illetve szükség esetén
-        szakértői tanácsot kérni.
-      </p>
-
-      <h2>Gyakori kérdések</h2>
-      <div class="faq-list">
+    <section class="article calculator-guide">
+      <h2>A pontosságot ne növeld mesterségesen</h2>
+      <p>Egy durván mért adat átváltva sem lesz pontosabb. Műszaki munkánál annyi tizedest tarts meg, amennyit az eredeti mérés és a szükséges tűrés indokol.</p>
+      <h3>Hosszúságegységek közös skálán</h3>
+      <p>Millimétertől kilométerig vagy hüvelyktől lábig ugyanaz a méret más számmal jelenik meg. Tervrajz, képernyőméret, utazás vagy külföldi termékadat esetén az átváltó csökkenti az egységkeverés kockázatát.</p>
+      <h2>Hosszúságváltás</h2>
+      <div class="faq-list" data-accordion="single">
         <details>
-          <summary>Mire jó a hosszúság átváltó?</summary>
-          <p>Milliméter, centiméter, méter, kilométer, inch és mérföld. Akkor hasznos, ha gyors, áttekinthető eredményt szeretnél kapni kézi számolás nélkül.</p>
+          <summary>A col és a hüvelyk ugyanaz?</summary>
+          <p>Igen, a magyar köznyelvi col az inch megfelelője; 1 inch pontosan 25,4 mm.</p>
         </details>
         <details>
-          <summary>Ingyenes a kalkulátor használata?</summary>
-          <p>Igen, a Kalkulátor Bázis kalkulátorai ingyenesen használhatók, külön regisztráció nélkül.</p>
-        </details>
-        <details>
-          <summary>Mobilon is működik?</summary>
-          <p>Igen, a kalkulátor mobil-first felülettel készült, ezért telefonon és tableten is kényelmesen használható.</p>
-        </details>
-        <details>
-          <summary>Mennyire pontos az eredmény?</summary>
-          <p>Az eredmény a megadott adatokból számított tájékoztató érték. Ha hivatalos, szerződéses vagy egészségügyi döntéshez használod, ellenőrizd más forrásból is.</p>
+          <summary>Miért tér el a kijelzett kerek érték?</summary>
+          <p>A véges tizedesre kerekítés miatt; továbbszámoláshoz lehetőleg a nem kerekített értéket használd.</p>
         </details>
       </div>
     </section>

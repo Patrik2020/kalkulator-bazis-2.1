@@ -13,7 +13,16 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/pages/netto-brutto.css" />
     <script src="../js/global-head.js"></script>
-  </head>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalkulátor Bázis" />
+  <meta property="og:title" content="Nettó - bruttó kalkulátor 2026 | Fizetés és bérkalkuláció" />
+  <meta property="og:description" content="Modern nettó-bruttó kalkulátor 2026-ra. Számolj nettóból bruttót, bruttóból nettót, családi kedvezményt, 25 év alatti SZJA mentességet és munkáltatói költséget." />
+  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/netto-brutto-kalkulator.html" />
+  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812"
+     crossorigin="anonymous"></script>
+</head>
 
   <body>
     <div id="header"></div>
@@ -44,13 +53,13 @@
 
         <div class="calc-grid">
           <div id="gross-wrapper">
-            <label>Bruttó fizetés (Ft)</label>
+            <label for="gross">Bruttó fizetés (Ft)</label>
 
             <input type="text" id="gross" placeholder="pl. 500 000" />
           </div>
 
           <div id="net-wrapper" class="hidden">
-            <label>Nettó fizetés (Ft)</label>
+            <label for="net-input">Nettó fizetés (Ft)</label>
 
             <input type="text" id="net-input" placeholder="pl. 332 500" />
           </div>
@@ -69,7 +78,7 @@
         </div>
 
         <div class="family-box">
-          <label>Családi kedvezmény. Gyermek(ek) száma:</label>
+          <label for="family">Családi kedvezmény. Gyermek(ek) száma:</label>
 
           <input
             type="number"

@@ -15,7 +15,16 @@
     <link rel="stylesheet" href="../css/pages/tomeg.css" />
 
     <script src="../js/global-head.js"></script>
-  </head>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalkulátor Bázis" />
+  <meta property="og:title" content="Tömeg átváltó kalkulátor" />
+  <meta property="og:description" content="Tömeg átváltó kalkulátor gramm, kilogramm, tonna, milligramm, font és uncia között. Gyors és pontos online tömegátváltás." />
+  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/tomeg-atvalto-kalkulator.html" />
+  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812"
+     crossorigin="anonymous"></script>
+</head>
 
   <body>
     <div id="header"></div>
@@ -36,11 +45,14 @@
         <h2>Tömeg átváltó</h2>
 
         <div class="calc-grid">
+          <label class="visually-hidden" for="inputValue">Átváltandó tömeg</label>
           <input
             type="number"
             id="inputValue"
             placeholder="Adj meg egy tömegértéket"
           />
+
+          <label class="visually-hidden" for="fromUnit">Kiinduló tömegegység</label>
 
           <select id="fromUnit">
             <option value="mg">Milligramm (mg)</option>
@@ -50,6 +62,8 @@
             <option value="oz">Uncia (oz)</option>
             <option value="lb">Font (lb)</option>
           </select>
+
+          <label class="visually-hidden" for="toUnit">Cél tömegegység</label>
 
           <select id="toUnit">
             <option value="mg">Milligramm (mg)</option>
@@ -309,41 +323,21 @@
           <li>Adatmennyiség átváltó kalkulátor</li>
         </ul>
       </section>
-    
-    <section class="article generated-seo" data-generated-seo="calculator">
-      <h2>Tömeg átváltó használata</h2>
-      <p>
-        A tömeg átváltó gyors segítséget ad, ha pontosabb képet szeretnél kapni egy gyakori
-        átváltók számítás eredményéről. A kalkulátor egyszerűen használható:
-        add meg a szükséges adatokat, az eredmény pedig azonnal megjelenik.
-      </p>
-      <p>
-        Gramm, kilogramm, tonna, font és uncia átváltása. Az eszköz célja, hogy a számolás ne vegyen el felesleges időt,
-        és mobilon is könnyen ellenőrizhető legyen az eredmény.
-      </p>
-      <p>
-        A kapott értékek tájékoztató jellegűek. Pénzügyi, egészségügyi, építőipari vagy nagyobb értékű
-        döntés előtt érdemes a számítást saját adatokkal többször is ellenőrizni, illetve szükség esetén
-        szakértői tanácsot kérni.
-      </p>
-
-      <h2>Gyakori kérdések</h2>
-      <div class="faq-list">
+    <section class="article calculator-guide">
+      <h2>Milligrammtól tonnáig, illetve fontig</h2>
+      <div class="content-split">
+        <div><h3>A tömeg és a súly a hétköznapokban keveredik</h3><p>A kilogramm tömeg, a fizikai súly pedig erő és newtonban mérhető. Hétköznapi mérlegelésnél a kilogrammos átváltás megfelelő, mérnöki számításnál viszont a fogalmakat külön kell kezelni.</p></div>
+        <p>Recept, csomagsúly vagy külföldi termékadat esetén a tömeg egysége gyorsan átváltható. Nagy léptékkülönbségnél különösen figyelj a tizedesjelre, mert egy elütés ezerszeres hibát okozhat.</p>
+      </div>
+      <h2>Tömegegységek</h2>
+      <div class="faq-list" data-accordion="single">
         <details>
-          <summary>Mire jó a tömeg átváltó?</summary>
-          <p>Gramm, kilogramm, tonna, font és uncia átváltása. Akkor hasznos, ha gyors, áttekinthető eredményt szeretnél kapni kézi számolás nélkül.</p>
+          <summary>Mennyi egy font?</summary>
+          <p>Egy nemzetközi avoirdupois font pontosan 0,45359237 kilogramm.</p>
         </details>
         <details>
-          <summary>Ingyenes a kalkulátor használata?</summary>
-          <p>Igen, a Kalkulátor Bázis kalkulátorai ingyenesen használhatók, külön regisztráció nélkül.</p>
-        </details>
-        <details>
-          <summary>Mobilon is működik?</summary>
-          <p>Igen, a kalkulátor mobil-first felülettel készült, ezért telefonon és tableten is kényelmesen használható.</p>
-        </details>
-        <details>
-          <summary>Mennyire pontos az eredmény?</summary>
-          <p>Az eredmény a megadott adatokból számított tájékoztató érték. Ha hivatalos, szerződéses vagy egészségügyi döntéshez használod, ellenőrizd más forrásból is.</p>
+          <summary>Literből válthatok kilogrammra?</summary>
+          <p>Csak az anyag sűrűségének ismeretében; vízre használható közelítés más folyadékra nem általánosítható.</p>
         </details>
       </div>
     </section>

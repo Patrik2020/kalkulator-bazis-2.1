@@ -11,6 +11,15 @@
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/pages/hitel-kepesseg.css" />
   <script src="../js/global-head.js"></script>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalkulátor Bázis" />
+  <meta property="og:title" content="Hitelképesség kalkulátor" />
+  <meta property="og:description" content="Hitelképesség kalkulátor: számold ki mekkora hitelt kaphatsz a jövedelmed alapján." />
+  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/hitelkepesseg-kalkulator.html" />
+  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812"
+     crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -29,22 +38,22 @@
       <div class="calc-grid">
 
         <div>
-          <label>Havi nettó jövedelem (Ft)</label>
+          <label for="income">Havi nettó jövedelem (Ft)</label>
           <input type="text" id="income" placeholder="pl. 400 000" />
         </div>
 
         <div>
-          <label>Meglévő törlesztések (Ft)</label>
+          <label for="existing">Meglévő törlesztések (Ft)</label>
           <input type="text" id="existing" placeholder="pl. 50 000" />
         </div>
 
         <div>
-          <label>Kamat (%)</label>
+          <label for="rate">Kamat (%)</label>
           <input type="number" id="rate" placeholder="pl. 8" />
         </div>
 
         <div>
-          <label>Futamidő (év)</label>
+          <label for="years">Futamidő (év)</label>
           <input type="number" id="years" placeholder="pl. 20" />
         </div>
 
@@ -98,41 +107,20 @@
       </ul>
 
     </section>
-    
-    <section class="article generated-seo" data-generated-seo="calculator">
-      <h2>Hitelképesség kalkulátor használata</h2>
-      <p>
-        A hitelképesség kalkulátor gyors segítséget ad, ha pontosabb képet szeretnél kapni egy gyakori
-        pénzügyi számítás eredményéről. A kalkulátor egyszerűen használható:
-        add meg a szükséges adatokat, az eredmény pedig azonnal megjelenik.
-      </p>
-      <p>
-        Becsüld meg, mekkora hitel férhet bele a jövedelmedbe. Az eszköz célja, hogy a számolás ne vegyen el felesleges időt,
-        és mobilon is könnyen ellenőrizhető legyen az eredmény.
-      </p>
-      <p>
-        A kapott értékek tájékoztató jellegűek. Pénzügyi, egészségügyi, építőipari vagy nagyobb értékű
-        döntés előtt érdemes a számítást saját adatokkal többször is ellenőrizni, illetve szükség esetén
-        szakértői tanácsot kérni.
-      </p>
-
-      <h2>Gyakori kérdések</h2>
-      <div class="faq-list">
+    <section class="article calculator-guide">
+      <h2>A bank döntése ennél több adatból áll</h2>
+      <p>A JTM-korlát mellett számít a jövedelem elfogadhatósága, munkaviszony, fedezet, életkor, hitelmúlt és banki belső szabály. Az eredmény nem hitelígéret és nem tartalmaz minden díjat; konkrét döntéshez banki előminősítés kell.</p>
+      <h3>Jövedelmi teherbírás banki ajánlat előtt</h3>
+      <p>A nettó jövedelem, meglévő törlesztések, kamat és futamidő alapján becsülhető, mekkora új havi részlet férhet bele. Több kamatszinttel érdemes számolni, hogy egy drágább ajánlat hatása is látható legyen.</p>
+      <h2>Hitelkeret értelmezése</h2>
+      <div class="faq-list" data-accordion="single">
         <details>
-          <summary>Mire jó a hitelképesség kalkulátor?</summary>
-          <p>Becsüld meg, mekkora hitel férhet bele a jövedelmedbe. Akkor hasznos, ha gyors, áttekinthető eredményt szeretnél kapni kézi számolás nélkül.</p>
+          <summary>A maximális részletet célszerű teljesen kihasználni?</summary>
+          <p>Általában nem: a jogszabályi plafon nem azonos a kényelmes háztartási teherrel, ezért hagyj tartalékot.</p>
         </details>
         <details>
-          <summary>Ingyenes a kalkulátor használata?</summary>
-          <p>Igen, a Kalkulátor Bázis kalkulátorai ingyenesen használhatók, külön regisztráció nélkül.</p>
-        </details>
-        <details>
-          <summary>Mobilon is működik?</summary>
-          <p>Igen, a kalkulátor mobil-first felülettel készült, ezért telefonon és tableten is kényelmesen használható.</p>
-        </details>
-        <details>
-          <summary>Mennyire pontos az eredmény?</summary>
-          <p>Az eredmény a megadott adatokból számított tájékoztató érték. Ha hivatalos, szerződéses vagy egészségügyi döntéshez használod, ellenőrizd más forrásból is.</p>
+          <summary>A hitelkártya-keret is meglévő teher?</summary>
+          <p>A bankok a fel nem használt keret egy részét is figyelembe vehetik; ezt az adott intézménynél ellenőrizd.</p>
         </details>
       </div>
     </section>

@@ -15,7 +15,16 @@
     <link rel="stylesheet" href="../css/pages/adatmeret.css" />
 
     <script src="../js/global-head.js"></script>
-  </head>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalkulátor Bázis" />
+  <meta property="og:title" content="Adatmennyiség átváltó kalkulátor" />
+  <meta property="og:description" content="Adatmennyiség átváltó kalkulátor bit, byte, KB, MB, GB, TB és PB között. Gyors és pontos online adatméret átváltás." />
+  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/adatmeret-atvalto-kalkulator.html" />
+  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812"
+     crossorigin="anonymous"></script>
+</head>
 
   <body>
     <div id="header"></div>
@@ -36,11 +45,14 @@
         <h2>Adatmennyiség átváltó</h2>
 
         <div class="calc-grid">
+          <label class="visually-hidden" for="inputValue">Átváltandó adatmennyiség</label>
           <input
             type="number"
             id="inputValue"
             placeholder="Adj meg egy adatméretet"
           />
+
+          <label class="visually-hidden" for="fromUnit">Kiinduló adatmértékegység</label>
 
           <select id="fromUnit">
             <option value="bit">Bit (b)</option>
@@ -51,6 +63,8 @@
             <option value="tb">Terabájt (TB)</option>
             <option value="pb">Petabájt (PB)</option>
           </select>
+
+          <label class="visually-hidden" for="toUnit">Cél adatmértékegység</label>
 
           <select id="toUnit">
             <option value="bit">Bit (b)</option>
@@ -371,41 +385,20 @@
           <li>Sebesség átváltó kalkulátor</li>
         </ul>
       </section>
-    
-    <section class="article generated-seo" data-generated-seo="calculator">
-      <h2>Adatmennyiség átváltó használata</h2>
-      <p>
-        A adatmennyiség átváltó gyors segítséget ad, ha pontosabb képet szeretnél kapni egy gyakori
-        átváltók számítás eredményéről. A kalkulátor egyszerűen használható:
-        add meg a szükséges adatokat, az eredmény pedig azonnal megjelenik.
-      </p>
-      <p>
-        KB, MB, GB és TB átváltása. Az eszköz célja, hogy a számolás ne vegyen el felesleges időt,
-        és mobilon is könnyen ellenőrizhető legyen az eredmény.
-      </p>
-      <p>
-        A kapott értékek tájékoztató jellegűek. Pénzügyi, egészségügyi, építőipari vagy nagyobb értékű
-        döntés előtt érdemes a számítást saját adatokkal többször is ellenőrizni, illetve szükség esetén
-        szakértői tanácsot kérni.
-      </p>
-
-      <h2>Gyakori kérdések</h2>
-      <div class="faq-list">
+    <section class="article calculator-guide">
+      <h2>Bájt, megabájt vagy gigabájt?</h2>
+      <p>Fájlmásolás, tárhelyválasztás és adatforgalom becslése közben könnyű összekeverni az egységeket. Az átváltó ugyanazt az adatmennyiséget mutatja meg több léptékben, így például egy videó mérete összevethető a rendelkezésre álló tárhellyel.</p>
+      <h3>A gyártói és informatikai jelölés eltérhet</h3>
+      <p>A tárhelygyártók gyakran ezres, az operációs rendszerek sokszor 1024-es váltószámot használnak. Emiatt egy névleg 1 TB-os meghajtó kijelzett kapacitása kisebbnek tűnhet; vásárlásnál mindig nézd meg, melyik definíció szerepel a specifikációban.</p>
+      <h2>Adatméretnél felmerül</h2>
+      <div class="faq-list" data-accordion="single">
         <details>
-          <summary>Mire jó a adatmennyiség átváltó?</summary>
-          <p>KB, MB, GB és TB átváltása. Akkor hasznos, ha gyors, áttekinthető eredményt szeretnél kapni kézi számolás nélkül.</p>
+          <summary>Ugyanaz a GB és a GiB?</summary>
+          <p>Nem. A GB tízes alapú, a GiB kettes alapú egység; 1 GiB 1 073 741 824 bájt.</p>
         </details>
         <details>
-          <summary>Ingyenes a kalkulátor használata?</summary>
-          <p>Igen, a Kalkulátor Bázis kalkulátorai ingyenesen használhatók, külön regisztráció nélkül.</p>
-        </details>
-        <details>
-          <summary>Mobilon is működik?</summary>
-          <p>Igen, a kalkulátor mobil-first felülettel készült, ezért telefonon és tableten is kényelmesen használható.</p>
-        </details>
-        <details>
-          <summary>Mennyire pontos az eredmény?</summary>
-          <p>Az eredmény a megadott adatokból számított tájékoztató érték. Ha hivatalos, szerződéses vagy egészségügyi döntéshez használod, ellenőrizd más forrásból is.</p>
+          <summary>A fájl ténylegesen ennyi helyet foglal?</summary>
+          <p>Nem feltétlenül: a fájlrendszer blokkmérete, a tömörítés és a metaadatok is módosíthatják a lemezen elfoglalt helyet.</p>
         </details>
       </div>
     </section>

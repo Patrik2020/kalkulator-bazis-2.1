@@ -15,7 +15,16 @@
     <link rel="stylesheet" href="../css/pages/ido.css" />
 
     <script src="../js/global-head.js"></script>
-  </head>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalkulátor Bázis" />
+  <meta property="og:title" content="Idő átváltó kalkulátor" />
+  <meta property="og:description" content="Idő átváltó kalkulátor másodperc, perc, óra, nap, hét, hónap és év között. Gyors és pontos online időátváltás." />
+  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/ido-atvalto-kalkulator.html" />
+  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812"
+     crossorigin="anonymous"></script>
+</head>
 
   <body>
     <div id="header"></div>
@@ -36,11 +45,14 @@
         <h2>Idő átváltó</h2>
 
         <div class="calc-grid">
+          <label class="visually-hidden" for="inputValue">Átváltandó időtartam</label>
           <input
             type="number"
             id="inputValue"
             placeholder="Adj meg egy időtartamot"
           />
+
+          <label class="visually-hidden" for="fromUnit">Kiinduló időegység</label>
 
           <select id="fromUnit">
             <option value="sec">Másodperc</option>
@@ -51,6 +63,8 @@
             <option value="month">Hónap</option>
             <option value="year">Év</option>
           </select>
+
+          <label class="visually-hidden" for="toUnit">Cél időegység</label>
 
           <select id="toUnit">
             <option value="sec">Másodperc</option>
@@ -309,41 +323,20 @@
           <li>Adatmennyiség átváltó kalkulátor</li>
         </ul>
       </section>
-    
-    <section class="article generated-seo" data-generated-seo="calculator">
-      <h2>Idő átváltó használata</h2>
-      <p>
-        A idő átváltó gyors segítséget ad, ha pontosabb képet szeretnél kapni egy gyakori
-        átváltók számítás eredményéről. A kalkulátor egyszerűen használható:
-        add meg a szükséges adatokat, az eredmény pedig azonnal megjelenik.
-      </p>
-      <p>
-        Másodperc, perc, óra, nap és hét átváltása. Az eszköz célja, hogy a számolás ne vegyen el felesleges időt,
-        és mobilon is könnyen ellenőrizhető legyen az eredmény.
-      </p>
-      <p>
-        A kapott értékek tájékoztató jellegűek. Pénzügyi, egészségügyi, építőipari vagy nagyobb értékű
-        döntés előtt érdemes a számítást saját adatokkal többször is ellenőrizni, illetve szükség esetén
-        szakértői tanácsot kérni.
-      </p>
-
-      <h2>Gyakori kérdések</h2>
-      <div class="faq-list">
+    <section class="article calculator-guide">
+      <h2>Másodperctől napig ugyanaz az időtartam</h2>
+      <p>Munkaidő, sporteredmény vagy technikai adat átváltásakor az időtartamot lehet más egységben kifejezni. A számítás 60 másodperces perccel és 60 perces órával dolgozik.</p>
+      <h3>Az időtartam nem naptári idő</h3>
+      <p>Egy hónap nem állandó számú nap, egy nap pedig óraátállításkor helyi idő szerint lehet 23 vagy 25 óra. Naptári határidőhöz dátumkalkulátor, időzónákhoz külön időpont-átváltás szükséges.</p>
+      <h2>Időegységek</h2>
+      <div class="faq-list" data-accordion="single">
         <details>
-          <summary>Mire jó a idő átváltó?</summary>
-          <p>Másodperc, perc, óra, nap és hét átváltása. Akkor hasznos, ha gyors, áttekinthető eredményt szeretnél kapni kézi számolás nélkül.</p>
+          <summary>Átváltható egy hónap órákra?</summary>
+          <p>Csak választott feltételezéssel, mert a hónapok hossza eltér.</p>
         </details>
         <details>
-          <summary>Ingyenes a kalkulátor használata?</summary>
-          <p>Igen, a Kalkulátor Bázis kalkulátorai ingyenesen használhatók, külön regisztráció nélkül.</p>
-        </details>
-        <details>
-          <summary>Mobilon is működik?</summary>
-          <p>Igen, a kalkulátor mobil-first felülettel készült, ezért telefonon és tableten is kényelmesen használható.</p>
-        </details>
-        <details>
-          <summary>Mennyire pontos az eredmény?</summary>
-          <p>Az eredmény a megadott adatokból számított tájékoztató érték. Ha hivatalos, szerződéses vagy egészségügyi döntéshez használod, ellenőrizd más forrásból is.</p>
+          <summary>A tizedes óra mit jelent?</summary>
+          <p>Például 1,5 óra 1 óra 30 perc, nem 1 óra 50 perc.</p>
         </details>
       </div>
     </section>

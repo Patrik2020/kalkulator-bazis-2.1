@@ -12,6 +12,15 @@
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/pages/havi-koltsegvetes.css" />
   <script src="../js/global-head.js"></script>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalkulátor Bázis" />
+  <meta property="og:title" content="Havi költségvetés kalkulátor" />
+  <meta property="og:description" content="Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod." />
+  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/havi-koltsegvetes-kalkulator.html" />
+  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812"
+     crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -26,42 +35,42 @@
     <section class="card card-calculator">
       <div class="calc-grid">
         <div>
-          <label>Havi nettó bevétel (Ft)</label>
+          <label for="income">Havi nettó bevétel (Ft)</label>
           <input type="text" id="income" placeholder="pl. 550 000" />
         </div>
 
         <div>
-          <label>Lakhatás (Ft)</label>
+          <label for="housing">Lakhatás (Ft)</label>
           <input type="text" id="housing" placeholder="pl. 180 000" />
         </div>
 
         <div>
-          <label>Rezsi és előfizetések (Ft)</label>
+          <label for="utilities">Rezsi és előfizetések (Ft)</label>
           <input type="text" id="utilities" placeholder="pl. 65 000" />
         </div>
 
         <div>
-          <label>Élelmiszer (Ft)</label>
+          <label for="food">Élelmiszer (Ft)</label>
           <input type="text" id="food" placeholder="pl. 120 000" />
         </div>
 
         <div>
-          <label>Közlekedés (Ft)</label>
+          <label for="transport">Közlekedés (Ft)</label>
           <input type="text" id="transport" placeholder="pl. 35 000" />
         </div>
 
         <div>
-          <label>Hitel / tartozás (Ft)</label>
+          <label for="debt">Hitel / tartozás (Ft)</label>
           <input type="text" id="debt" placeholder="pl. 60 000" />
         </div>
 
         <div>
-          <label>Egyéb kiadások (Ft)</label>
+          <label for="other">Egyéb kiadások (Ft)</label>
           <input type="text" id="other" placeholder="pl. 70 000" />
         </div>
 
         <div>
-          <label>Tervezett megtakarítás (Ft)</label>
+          <label for="savings">Tervezett megtakarítás (Ft)</label>
           <input type="text" id="savings" placeholder="pl. 50 000" />
         </div>
       </div>
@@ -100,41 +109,20 @@
         <li>és egy rövid értékelést arról, hogy stabil-e a költségvetésed.</li>
       </ul>
     </section>
-    
-    <section class="article generated-seo" data-generated-seo="calculator">
-      <h2>Havi költségvetés kalkulátor használata</h2>
-      <p>
-        A havi költségvetés kalkulátor gyors segítséget ad, ha pontosabb képet szeretnél kapni egy gyakori
-        pénzügyi számítás eredményéről. A kalkulátor egyszerűen használható:
-        add meg a szükséges adatokat, az eredmény pedig azonnal megjelenik.
-      </p>
-      <p>
-        Tervezd meg a havi bevételeidet, kiadásaidat és megtakarítási arányodat. Az eszköz célja, hogy a számolás ne vegyen el felesleges időt,
-        és mobilon is könnyen ellenőrizhető legyen az eredmény.
-      </p>
-      <p>
-        A kapott értékek tájékoztató jellegűek. Pénzügyi, egészségügyi, építőipari vagy nagyobb értékű
-        döntés előtt érdemes a számítást saját adatokkal többször is ellenőrizni, illetve szükség esetén
-        szakértői tanácsot kérni.
-      </p>
-
-      <h2>Gyakori kérdések</h2>
-      <div class="faq-list">
+    <section class="article calculator-guide">
+      <h2>A hónap végi maradvány legyen tervezett, ne véletlen</h2>
+      <p>A bevétel és a fő kiadási csoportok egy helyen megmutatják, mekkora összeg marad megtakarításra vagy váratlan tételekre. A legjobb bemenetet bankszámlakivonatból és több hónap átlagából kapod.</p>
+      <h3>A ritka kiadásokat alakítsd havi tétellé</h3>
+      <p>Biztosítás, éves előfizetés, iskolakezdés vagy autószerviz akkor is része a költségvetésnek, ha nem minden hónapban jelentkezik. Ha az eredmény tartósan negatív, előbb a fix kötelezettségeket és a nagy változó kategóriákat vizsgáld meg.</p>
+      <h2>Költségvetési döntések</h2>
+      <div class="faq-list" data-accordion="single">
         <details>
-          <summary>Mire jó a havi költségvetés kalkulátor?</summary>
-          <p>Tervezd meg a havi bevételeidet, kiadásaidat és megtakarítási arányodat. Akkor hasznos, ha gyors, áttekinthető eredményt szeretnél kapni kézi számolás nélkül.</p>
+          <summary>A hitelkártyás vásárlást mikor számoljam el?</summary>
+          <p>A költés hónapjában, különben a következő havi visszafizetés hamis képet adhat a fogyasztás időpontjáról.</p>
         </details>
         <details>
-          <summary>Ingyenes a kalkulátor használata?</summary>
-          <p>Igen, a Kalkulátor Bázis kalkulátorai ingyenesen használhatók, külön regisztráció nélkül.</p>
-        </details>
-        <details>
-          <summary>Mobilon is működik?</summary>
-          <p>Igen, a kalkulátor mobil-first felülettel készült, ezért telefonon és tableten is kényelmesen használható.</p>
-        </details>
-        <details>
-          <summary>Mennyire pontos az eredmény?</summary>
-          <p>Az eredmény a megadott adatokból számított tájékoztató érték. Ha hivatalos, szerződéses vagy egészségügyi döntéshez használod, ellenőrizd más forrásból is.</p>
+          <summary>Mekkora megtakarítási arány a jó?</summary>
+          <p>Nincs mindenkire érvényes százalék; a stabil, fenntartható és célhoz kötött összeg fontosabb.</p>
         </details>
       </div>
     </section>

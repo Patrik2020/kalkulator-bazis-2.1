@@ -15,7 +15,16 @@
     <link rel="stylesheet" href="../css/pages/homerseklet.css" />
 
     <script src="../js/global-head.js"></script>
-  </head>
+  
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kalkulátor Bázis" />
+  <meta property="og:title" content="Hőmérséklet átváltó kalkulátor" />
+  <meta property="og:description" content="Hőmérséklet átváltó kalkulátor Celsius, Fahrenheit és Kelvin között. Gyors és pontos hőmérséklet átváltás online." />
+  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/homerseklet-atvalto-kalkulator.html" />
+  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812"
+     crossorigin="anonymous"></script>
+</head>
 
   <body>
     <div id="header"></div>
@@ -41,6 +50,7 @@
         </div>
 
         <div class="calc-grid">
+          <label class="visually-hidden" for="cfInput">Celsius érték Fahrenheit átváltáshoz</label>
           <input
             type="number"
             id="cfInput"
@@ -65,6 +75,7 @@
         </div>
 
         <div class="calc-grid">
+          <label class="visually-hidden" for="ckInput">Celsius érték Kelvin átváltáshoz</label>
           <input
             type="number"
             id="ckInput"
@@ -89,6 +100,7 @@
         </div>
 
         <div class="calc-grid">
+          <label class="visually-hidden" for="fkInput">Fahrenheit érték Kelvin átváltáshoz</label>
           <input
             type="number"
             id="fkInput"
@@ -286,41 +298,21 @@
           <li>Sebesség átváltó</li>
         </ul>
       </section>
-    
-    <section class="article generated-seo" data-generated-seo="calculator">
-      <h2>Hőmérséklet átváltó használata</h2>
-      <p>
-        A hőmérséklet átváltó gyors segítséget ad, ha pontosabb képet szeretnél kapni egy gyakori
-        átváltók számítás eredményéről. A kalkulátor egyszerűen használható:
-        add meg a szükséges adatokat, az eredmény pedig azonnal megjelenik.
-      </p>
-      <p>
-        Celsius, Fahrenheit és Kelvin átváltása. Az eszköz célja, hogy a számolás ne vegyen el felesleges időt,
-        és mobilon is könnyen ellenőrizhető legyen az eredmény.
-      </p>
-      <p>
-        A kapott értékek tájékoztató jellegűek. Pénzügyi, egészségügyi, építőipari vagy nagyobb értékű
-        döntés előtt érdemes a számítást saját adatokkal többször is ellenőrizni, illetve szükség esetén
-        szakértői tanácsot kérni.
-      </p>
-
-      <h2>Gyakori kérdések</h2>
-      <div class="faq-list">
+    <section class="article calculator-guide">
+      <h2>Celsius, Fahrenheit és Kelvin között</h2>
+      <div class="content-split">
+        <div><h3>A Kelvin nem fok</h3><p>A kelvin abszolút skála, ezért a jelölése K, fokjel nélkül. Fizikailag 0 K alatti klasszikus hőmérséklet nem értelmezhető; a kerekítés tudományos számításnál érdemi eltérést okozhat.</p></div>
+        <p>Utazás, recept, időjárási adat vagy műszaki leírás esetén a hőmérséklet-skálák közötti átváltás gyorsan elvégezhető. A Celsius–Fahrenheit kapcsolat nem egyszerű szorzás, mert a nullapontjuk is eltér.</p>
+      </div>
+      <h2>Hőmérsékleti kérdések</h2>
+      <div class="faq-list" data-accordion="single">
         <details>
-          <summary>Mire jó a hőmérséklet átváltó?</summary>
-          <p>Celsius, Fahrenheit és Kelvin átváltása. Akkor hasznos, ha gyors, áttekinthető eredményt szeretnél kapni kézi számolás nélkül.</p>
+          <summary>Mikor azonos a Celsius és Fahrenheit számértéke?</summary>
+          <p>–40-nél: –40 °C pontosan –40 °F.</p>
         </details>
         <details>
-          <summary>Ingyenes a kalkulátor használata?</summary>
-          <p>Igen, a Kalkulátor Bázis kalkulátorai ingyenesen használhatók, külön regisztráció nélkül.</p>
-        </details>
-        <details>
-          <summary>Mobilon is működik?</summary>
-          <p>Igen, a kalkulátor mobil-first felülettel készült, ezért telefonon és tableten is kényelmesen használható.</p>
-        </details>
-        <details>
-          <summary>Mennyire pontos az eredmény?</summary>
-          <p>Az eredmény a megadott adatokból számított tájékoztató érték. Ha hivatalos, szerződéses vagy egészségügyi döntéshez használod, ellenőrizd más forrásból is.</p>
+          <summary>Átváltható a sütő fokozata is?</summary>
+          <p>A hőfok igen, de a légkeverés és a sütő tényleges kalibrációja miatt a recept eredménye eltérhet.</p>
         </details>
       </div>
     </section>
