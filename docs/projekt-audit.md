@@ -1,10 +1,10 @@
 # Kalkulátor Bázis – projekt-audit
 
-Készült: 2026-06-21
+Készült: 2026-06-22
 
 ## Hatókör és módszer
 
-- 90 nyilvános HTML-oldal, 49 CSS-fájl és 48 JavaScript-fájl statikus vizsgálata.
+- 90 nyilvános HTML-oldal, 49 CSS-fájl és 50 JavaScript-fájl statikus vizsgálata.
 - Ellenőrzés: metaadatok, címsorok, linkek, képek, ID-k, scriptbetöltések, AdSense, szó szerinti tartalmi ismétlések, sablonos SEO/GYIK és nagy erőforrások.
 - A statikus audit a böngészős működési és vizuális tesztet nem helyettesíti; az a módosítások után külön következik.
 
@@ -14,7 +14,7 @@ Készült: 2026-06-21
 - Generált/sablonos SEO-blokkot tartalmazó oldalak: **0**.
 - A kért statikus AdSense-kódot nélkülöző nyilvános oldalak: **0**.
 - Hibás helyi hivatkozással érintett oldalak: **0**.
-- Egymással megegyező CSS-deklarációs csoportok: **100**; ezek közül csak komponensazonosság esetén javasolt összevonás.
+- Egymással megegyező CSS-deklarációs csoportok: **102**; ezek közül csak komponensazonosság esetén javasolt összevonás.
 - 500 KB-nál nagyobb helyi erőforrások: **0**.
 - A korábbi generikus SEO/GYIK és AdSense head-eltérések a jelenlegi állapotban nem mutathatók ki.
 
@@ -422,7 +422,7 @@ Készült: 2026-06-21
 - `css/pages/adatmeret.css` (.conversion-table th, .conversion-table td); `css/pages/deviza.css` (.conversion-table th, .conversion-table td); `css/pages/homerseklet.css` (.conversion-table th, .conversion-table td); `css/pages/hosszusag.css` (.conversion-table th, .conversion-table td); `css/pages/ido.css` (.conversion-table th, .conversion-table td); `css/pages/sebesseg.css` (.conversion-table th, .conversion-table td); `css/pages/terfogat.css` (.conversion-table th, .conversion-table td); `css/pages/terulet.css` (.conversion-table th, .conversion-table td); `css/pages/tomeg.css` (.conversion-table th, .conversion-table td)
 - `css/pages/afa.css` (.page-afa); `css/pages/auto.css` (.page-auto); `css/pages/beton.css` (.page-beton); `css/pages/bmi.css` (.page-bmi); `css/pages/csempe.css` (.page-csempe); `css/pages/etf.css` (.page-etf); `css/pages/hatarido.css` (.page-hatarido); `css/pages/hitel-kepesseg.css` (.page-hitelkep); `css/pages/hitel-torleszto.css` (.page-hitel); `css/pages/inflacio.css` (.page-inflacio); `css/pages/kaloria.css` (.page-kaloria); `css/pages/kamatos-kamat.css` (.page-kamatos); `css/pages/lakashitel-onero.css` (.page-onero); `css/pages/milliomos.css` (.page-milliomos); `css/pages/netto-brutto.css` (.page-netto); `css/pages/osztalek.css` (.page-osztalek); `css/pages/szamla-teljesites.css` (.page-szamla); `css/pages/szazalek.css` (.page-szazalek)
 - `css/pages/afa.css` (.page-afa .hero); `css/pages/auto.css` (.page-auto .hero); `css/pages/beton.css` (.page-beton .hero); `css/pages/bmi.css` (.page-bmi .hero); `css/pages/csempe.css` (.page-csempe .hero); `css/pages/etf.css` (.page-etf .hero); `css/pages/hatarido.css` (.page-hatarido .hero)
-- További 60 csoport a gépi auditban található.
+- További 62 csoport a gépi auditban található.
 
 ## Nagy erőforrások
 

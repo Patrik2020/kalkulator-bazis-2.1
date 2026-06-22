@@ -215,10 +215,10 @@
       keywords: "áfa nettó bruttó adó számla",
     },
     {
-      title: "Autós kalkulátor",
+      title: "Autós út- és hatótáv kalkulátor",
       url: "kalkulatorok/auto-kalkulator.html",
       category: "auto",
-      description: "Utazási és autós költségek kiszámítása.",
+      description: "Fogyasztás, üzemanyagköltség és becsült hatótáv egy összetett eszközben.",
       keywords: "fogyasztás üzemanyag utazás benzin dízel",
       popular: true,
     },
@@ -580,6 +580,149 @@
       keywords: "teljesítmény watt kilowatt lóerő átváltás",
     },
   ];
+
+  const relatedGroups = [
+    [
+      "kalkulatorok/netto-brutto-kalkulator.html",
+      "kalkulatorok/hitelkepesseg-kalkulator.html",
+      "kalkulatorok/hitel-torleszto-kalkulator.html",
+      "kalkulatorok/lakas-hitel-onero-kalkulator.html",
+      "kalkulatorok/havi-koltsegvetes-kalkulator.html",
+    ],
+    [
+      "kalkulatorok/etf-kalkulator.html",
+      "kalkulatorok/kamatos-kamat-kalkulator.html",
+      "kalkulatorok/osztalek-kalkulator.html",
+      "kalkulatorok/inflacio-kalkulator.html",
+      "kalkulatorok/milliomos-kalkulator.html",
+    ],
+    [
+      "kalkulatorok/afa-kalkulator.html",
+      "kalkulatorok/szamla-teljesites-kalkulator.html",
+      "kalkulatorok/fizetesi-hatarido-kalkulator.html",
+      "kalkulatorok/oraber-kalkulator.html",
+    ],
+    [
+      "kalkulatorok/beton-kalkulator.html",
+      "kalkulatorok/tegla-kalkulator.html",
+      "kalkulatorok/vakolat-kalkulator.html",
+      "kalkulatorok/gipszkarton-kalkulator.html",
+      "kalkulatorok/hoszigeteles-kalkulator.html",
+    ],
+    [
+      "kalkulatorok/csempe-kalkulator.html",
+      "kalkulatorok/fuga-kalkulator.html",
+      "kalkulatorok/padlo-burkolat-kalkulator.html",
+      "kalkulatorok/terkovezes-kalkulator.html",
+      "kalkulatorok/festek-kalkulator.html",
+      "kalkulatorok/tapeta-kalkulator.html",
+    ],
+    [
+      "kalkulatorok/tetocserep-kalkulator.html",
+      "kalkulatorok/terulet-atvalto-kalkulator.html",
+      "kalkulatorok/terfogat-atvalto-kalkulator.html",
+      "kalkulatorok/hoszigeteles-kalkulator.html",
+    ],
+    [
+      "kalkulatorok/bmi-kalkulator.html",
+      "kalkulatorok/idealis-testsuly-kalkulator.html",
+      "kalkulatorok/testzsir-kalkulator.html",
+      "kalkulatorok/derek-csipo-kalkulator.html",
+      "kalkulatorok/bmr-kalkulator.html",
+    ],
+    [
+      "kalkulatorok/kaloria-kalkulator.html",
+      "kalkulatorok/makro-kalkulator.html",
+      "kalkulatorok/feherje-szukseglet-kalkulator.html",
+      "kalkulatorok/bmr-kalkulator.html",
+      "kalkulatorok/vizfogyasztas-kalkulator.html",
+    ],
+    [
+      "kalkulatorok/pulzus-zona-kalkulator.html",
+      "kalkulatorok/alvasciklus-kalkulator.html",
+      "kalkulatorok/kaloria-kalkulator.html",
+      "kalkulatorok/terhessegi-kalkulator.html",
+    ],
+    [
+      "kalkulatorok/szazalek-kalkulator.html",
+      "kalkulatorok/arany-kalkulator.html",
+      "kalkulatorok/atlag-kalkulator.html",
+      "kalkulatorok/ar-kedvezmeny-kalkulator.html",
+      "kalkulatorok/egysegar-kalkulator.html",
+    ],
+    [
+      "kalkulatorok/munkaido-kalkulator.html",
+      "kalkulatorok/oraber-kalkulator.html",
+      "kalkulatorok/datum-kulonbseg-kalkulator.html",
+      "kalkulatorok/eletkor-kalkulator.html",
+    ],
+    [
+      "kalkulatorok/borravalo-kalkulator.html",
+      "kalkulatorok/rezsi-megosztas-kalkulator.html",
+      "kalkulatorok/egysegar-kalkulator.html",
+      "kalkulatorok/havi-koltsegvetes-kalkulator.html",
+    ],
+    [
+      "kalkulatorok/auto-kalkulator.html",
+      "kalkulatorok/uzemanyag-koltseg-kalkulator.html",
+      "kalkulatorok/auto-fogyasztas-kalkulator.html",
+      "kalkulatorok/hatotav-kalkulator.html",
+      "kalkulatorok/utazasi-ido-kalkulator.html",
+    ],
+    [
+      "kalkulatorok/eves-auto-koltseg-kalkulator.html",
+      "kalkulatorok/kilometerdij-kalkulator.html",
+      "kalkulatorok/auto-ertekvesztes-kalkulator.html",
+      "kalkulatorok/tankolas-kalkulator.html",
+      "kalkulatorok/autopalyadij-kalkulator.html",
+    ],
+    [
+      "kalkulatorok/co2-kibocsatas-kalkulator.html",
+      "kalkulatorok/auto-fogyasztas-kalkulator.html",
+      "kalkulatorok/uzemanyag-koltseg-kalkulator.html",
+      "kalkulatorok/hatotav-kalkulator.html",
+    ],
+    [
+      "kalkulatorok/gumi-meret-kalkulator.html",
+      "kalkulatorok/sebesseg-atvalto-kalkulator.html",
+      "kalkulatorok/hatotav-kalkulator.html",
+      "kalkulatorok/kilometerdij-kalkulator.html",
+    ],
+    [
+      "kalkulatorok/hosszusag-atvalto-kalkulator.html",
+      "kalkulatorok/terulet-atvalto-kalkulator.html",
+      "kalkulatorok/terfogat-atvalto-kalkulator.html",
+      "kalkulatorok/tomeg-atvalto-kalkulator.html",
+    ],
+    [
+      "kalkulatorok/homerseklet-atvalto-kalkulator.html",
+      "kalkulatorok/energia-atvalto-kalkulator.html",
+      "kalkulatorok/teljesitmeny-atvalto-kalkulator.html",
+      "kalkulatorok/nyomas-atvalto-kalkulator.html",
+    ],
+    [
+      "kalkulatorok/ido-atvalto-kalkulator.html",
+      "kalkulatorok/sebesseg-atvalto-kalkulator.html",
+      "kalkulatorok/adatmeret-atvalto-kalkulator.html",
+      "kalkulatorok/deviza-atvalto-kalkulator.html",
+    ],
+  ];
+
+  calculators.forEach((calculator, index) => {
+    const group = relatedGroups.find((items) => items.includes(calculator.url)) || [];
+    const categoryPeers = calculators.filter(
+      (item) => item.category === calculator.category && item.url !== calculator.url
+    );
+    const ordered = [
+      ...group.filter((url) => url !== calculator.url),
+      ...categoryPeers
+        .slice(index % Math.max(categoryPeers.length, 1))
+        .concat(categoryPeers.slice(0, index % Math.max(categoryPeers.length, 1)))
+        .map((item) => item.url),
+    ];
+
+    calculator.related = [...new Set(ordered)].slice(0, 3);
+  });
 
   window.KB_DATA = {
     categories,

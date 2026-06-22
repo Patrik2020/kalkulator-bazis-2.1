@@ -232,7 +232,7 @@
           <small>Deviza, utalás és külföldi pénzkezelés egyszerűbben.</small>
         </span>
         <span class="wise-banner-media">
-          <img src="${escapeAttribute(wiseImage)}" alt="Wise partner ajánlat" loading="lazy" />
+          <img src="${escapeAttribute(wiseImage)}" alt="Wise partner ajánlat" width="728" height="90" loading="lazy" />
         </span>
       </a>
     `;
@@ -432,13 +432,6 @@
 
     if (!category) return;
 
-    document.title = `${category.title} | Kalkulátor Bázis`;
-
-    const description = document.querySelector("meta[name='description']");
-    if (description) {
-      description.setAttribute("content", category.description);
-    }
-
     if (intro) {
       intro.innerHTML = `
         <h1>${escapeHtml(category.title)}</h1>
@@ -462,6 +455,40 @@
     }
   };
 
+  const renderBreadcrumb = () => {
+    const main = document.querySelector("main");
+    if (!main || main.querySelector(".breadcrumb")) return;
+
+    const currentPath = window.location.pathname.replace(/\\/g, "/");
+    const calculator = data.calculators.find((item) => currentPath.endsWith(item.url));
+    const categoryPage = document.querySelector("[data-category-page]");
+    const category = calculator
+      ? getCategory(calculator.category)
+      : categoryPage
+        ? getCategory(categoryPage.dataset.categoryPage)
+        : null;
+
+    if (!calculator && !category) return;
+
+    const basePath = getBasePath();
+    const items = [
+      `<a href="${escapeAttribute(`${basePath}index.html`)}">Főoldal</a>`,
+      calculator
+        ? `<a href="${escapeAttribute(buildInternalHref(basePath, category.url))}">${escapeHtml(category.shortTitle)}</a>`
+        : `<span aria-current="page">${escapeHtml(category.shortTitle)}</span>`,
+    ];
+
+    if (calculator) {
+      items.push(`<span aria-current="page">${escapeHtml(calculator.title)}</span>`);
+    }
+
+    const nav = document.createElement("nav");
+    nav.className = "breadcrumb";
+    nav.setAttribute("aria-label", "Morzsamenü");
+    nav.innerHTML = `<ol>${items.map((item) => `<li>${item}</li>`).join("")}</ol>`;
+    main.prepend(nav);
+  };
+
   const renderRelatedCalculators = () => {
     const currentPath = window.location.pathname.replace(/\\/g, "/");
     const current = data.calculators.find((calculator) =>
@@ -473,7 +500,10 @@
     let target = document.querySelector("[data-render='related-calculators']");
     const main = document.querySelector("main");
 
-    if (main?.querySelector(".related-links")) return;
+    const hasRelatedCalculatorSection = [...(main?.querySelectorAll("h2, h3") || [])].some(
+      (heading) => normalizeText(heading.textContent).includes("kapcsolodo kalkulator")
+    );
+    if (hasRelatedCalculatorSection) return;
 
     if (!target && main) {
       target = document.createElement("div");
@@ -482,31 +512,10 @@
     }
 
     const basePath = getBasePath();
-    const currentTokens = normalizeText(
-      `${current.title} ${current.description} ${current.keywords || ""}`
-    )
-      .split(/\s+/)
-      .filter((token) => token.length > 3);
-    const related = data.calculators
-      .filter((calculator) => calculator.url !== current.url)
-      .map((calculator) => {
-        const candidateTokens = normalizeText(
-          `${calculator.title} ${calculator.description} ${calculator.keywords || ""}`
-        ).split(/\s+/);
-        const shared = currentTokens.filter((token) =>
-          candidateTokens.includes(token)
-        ).length;
-        const categoryBoost = calculator.category === current.category ? 8 : 0;
-
-        return {
-          calculator,
-          score: categoryBoost + shared,
-        };
-      })
-      .filter((item) => item.score > 0)
-      .sort((a, b) => b.score - a.score)
-      .slice(0, 3)
-      .map((item) => item.calculator);
+    const related = (current.related || [])
+      .map((url) => data.calculators.find((calculator) => calculator.url === url))
+      .filter(Boolean)
+      .slice(0, 3);
 
     if (!related.length) return;
 
@@ -604,35 +613,77 @@
   };
 
   const renderStructuredData = () => {
-    const origin = window.location.origin || "https://kalkulatorbazis.hu";
+    const siteOrigin = "https://kalkulatorbazis.hu";
+    const canonicalUrl =
+      document.querySelector('link[rel="canonical"]')?.href || window.location.href;
     const path = window.location.pathname.replace(/\\/g, "/");
     const currentCalculator = data.calculators.find((calculator) =>
       path.endsWith(calculator.url)
     );
     const categoryPage = document.querySelector("[data-category-page]");
+    const visibleFaq = [...document.querySelectorAll(".faq-list > details")]
+      .map((details) => ({
+        question: details.querySelector("summary")?.textContent.trim() || "",
+        answer: [...details.children]
+          .filter((child) => child.tagName !== "SUMMARY")
+          .map((child) => child.textContent.trim())
+          .join(" ")
+          .replace(/\s+/g, " ")
+          .trim(),
+      }))
+      .filter((item) => item.question && item.answer);
+    const faqSchema = visibleFaq.length
+      ? {
+          "@type": "FAQPage",
+          "@id": `${canonicalUrl}#gyik`,
+          mainEntity: visibleFaq.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: { "@type": "Answer", text: item.answer },
+          })),
+        }
+      : null;
 
     if (currentCalculator) {
       const category = getCategory(currentCalculator.category);
 
       setStructuredData({
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        name: currentCalculator.title,
-        applicationCategory: "CalculatorApplication",
-        operatingSystem: "Web",
-        url: `${origin}/${currentCalculator.url}`,
-        description: currentCalculator.description,
-        offers: {
-          "@type": "Offer",
-          price: "0",
-          priceCurrency: "HUF",
-        },
-        isPartOf: {
-          "@type": "WebSite",
-          name: "Kalkulátor Bázis",
-          url: `${origin}/`,
-        },
-        about: category ? category.title : "Online kalkulátor",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": `${canonicalUrl}#webpage`,
+            url: canonicalUrl,
+            name: document.title,
+            description:
+              document.querySelector('meta[name="description"]')?.content ||
+              currentCalculator.description,
+            inLanguage: "hu-HU",
+            isPartOf: { "@id": `${siteOrigin}/#website` },
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": `${canonicalUrl}#calculator`,
+            name: currentCalculator.title,
+            applicationCategory: "CalculatorApplication",
+            operatingSystem: "Web",
+            url: canonicalUrl,
+            description: currentCalculator.description,
+            offers: { "@type": "Offer", price: "0", priceCurrency: "HUF" },
+            isPartOf: { "@id": `${siteOrigin}/#website` },
+            about: category ? category.title : "Online kalkulátor",
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": `${canonicalUrl}#breadcrumb`,
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Főoldal", item: `${siteOrigin}/` },
+              { "@type": "ListItem", position: 2, name: category.shortTitle, item: `${siteOrigin}/${category.url}` },
+              { "@type": "ListItem", position: 3, name: currentCalculator.title, item: canonicalUrl },
+            ],
+          },
+          ...(faqSchema ? [faqSchema] : []),
+        ],
       });
       return;
     }
@@ -644,17 +695,40 @@
 
       setStructuredData({
         "@context": "https://schema.org",
-        "@type": "ItemList",
-        name: category.title,
-        description: category.description,
-        itemListElement: data.calculators
-          .filter((calculator) => calculator.category === category.id)
-          .map((calculator, index) => ({
-            "@type": "ListItem",
-            position: index + 1,
-            url: `${origin}/${calculator.url}`,
-            name: calculator.title,
-          })),
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": `${canonicalUrl}#webpage`,
+            url: canonicalUrl,
+            name: category.title,
+            description: category.description,
+            inLanguage: "hu-HU",
+            isPartOf: { "@id": `${siteOrigin}/#website` },
+          },
+          {
+            "@type": "ItemList",
+            "@id": `${canonicalUrl}#calculator-list`,
+            name: category.title,
+            description: category.description,
+            itemListElement: data.calculators
+              .filter((calculator) => calculator.category === category.id)
+              .map((calculator, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                url: `${siteOrigin}/${calculator.url}`,
+                name: calculator.title,
+              })),
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": `${canonicalUrl}#breadcrumb`,
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Főoldal", item: `${siteOrigin}/` },
+              { "@type": "ListItem", position: 2, name: category.shortTitle, item: canonicalUrl },
+            ],
+          },
+          ...(faqSchema ? [faqSchema] : []),
+        ],
       });
       return;
     }
@@ -662,14 +736,38 @@
     if (document.getElementById("calculatorSearch")) {
       setStructuredData({
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        name: "Kalkulátor Bázis",
-        url: `${origin}/`,
-        potentialAction: {
-          "@type": "SearchAction",
-          target: `${origin}/?kereses={search_term_string}`,
-          "query-input": "required name=search_term_string",
-        },
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": `${siteOrigin}/#organization`,
+            name: "Kalkulátor Bázis",
+            url: `${siteOrigin}/`,
+            logo: `${siteOrigin}/favicon/kb-logo-mark.png`,
+          },
+          {
+            "@type": "WebSite",
+            "@id": `${siteOrigin}/#website`,
+            name: "Kalkulátor Bázis",
+            url: `${siteOrigin}/`,
+            publisher: { "@id": `${siteOrigin}/#organization` },
+            inLanguage: "hu-HU",
+            potentialAction: {
+              "@type": "SearchAction",
+              target: `${siteOrigin}/?kereses={search_term_string}`,
+              "query-input": "required name=search_term_string",
+            },
+          },
+          {
+            "@type": "WebPage",
+            "@id": `${siteOrigin}/#webpage`,
+            url: `${siteOrigin}/`,
+            name: document.title,
+            description: document.querySelector('meta[name="description"]')?.content || "",
+            isPartOf: { "@id": `${siteOrigin}/#website` },
+            inLanguage: "hu-HU",
+          },
+          ...(faqSchema ? [faqSchema] : []),
+        ],
       });
     }
   };
@@ -678,6 +776,7 @@
     renderGlobalSearch();
     renderHomePage();
     renderCategoryPage();
+    renderBreadcrumb();
     renderRelatedCalculators();
     renderCalculatorPageExtras();
     renderWiseBanner(document.querySelector("[data-render='wise-banner']"));

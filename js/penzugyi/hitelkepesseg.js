@@ -35,19 +35,19 @@ function calc() {
     return;
   }
 
-  const maxRatio = 0.4; // 40%
-  const maxMonthly = inc * maxRatio - ex;
+  const planningRatio = 0.4;
+  const maxMonthly = inc * planningRatio - ex;
 
   if (maxMonthly <= 0) {
     resultMonthly.textContent = "0 Ft";
-    resultLoan.textContent = "Nincs hitelképesség";
+    resultLoan.textContent = "Nincs becsülhető szabad havi részlet";
     return;
   }
 
   const loan = maxMonthly * (1 - Math.pow(1 + r, -n)) / r;
 
   resultMonthly.textContent = format(maxMonthly) + " Ft";
-  resultLoan.textContent = "Max hitel: " + format(loan) + " Ft";
+  resultLoan.textContent = "Becsült hitelösszeg: " + format(loan) + " Ft";
 }
 
 // format
