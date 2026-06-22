@@ -97,6 +97,36 @@ const records = htmlFiles.map((file) => {
       head,
       /<meta\b(?=[^>]*\bproperty\s*=\s*["']og:description["'])(?=[^>]*\bcontent\s*=\s*["']([^"']*)["'])[^>]*>/i
     ),
+    ogUrl: first(
+      head,
+      /<meta\b(?=[^>]*\bproperty\s*=\s*["']og:url["'])(?=[^>]*\bcontent\s*=\s*["']([^"']*)["'])[^>]*>/i
+    ),
+    ogImage: first(
+      head,
+      /<meta\b(?=[^>]*\bproperty\s*=\s*["']og:image["'])(?=[^>]*\bcontent\s*=\s*["']([^"']*)["'])[^>]*>/i
+    ),
+    twitterCard: first(
+      head,
+      /<meta\b(?=[^>]*\bname\s*=\s*["']twitter:card["'])(?=[^>]*\bcontent\s*=\s*["']([^"']*)["'])[^>]*>/i
+    ),
+    twitterTitle: first(
+      head,
+      /<meta\b(?=[^>]*\bname\s*=\s*["']twitter:title["'])(?=[^>]*\bcontent\s*=\s*["']([^"']*)["'])[^>]*>/i
+    ),
+    twitterDescription: first(
+      head,
+      /<meta\b(?=[^>]*\bname\s*=\s*["']twitter:description["'])(?=[^>]*\bcontent\s*=\s*["']([^"']*)["'])[^>]*>/i
+    ),
+    twitterImage: first(
+      head,
+      /<meta\b(?=[^>]*\bname\s*=\s*["']twitter:image["'])(?=[^>]*\bcontent\s*=\s*["']([^"']*)["'])[^>]*>/i
+    ),
+    robots: first(
+      head,
+      /<meta\b(?=[^>]*\bname\s*=\s*["']robots["'])(?=[^>]*\bcontent\s*=\s*["']([^"']*)["'])[^>]*>/i
+    ),
+    hreflangTags: matches(head, /<link\b(?=[^>]*\bhreflang\s*=)[^>]*>/gi).map((match) => match[0]),
+    jsonLdBlocks: matches(head, /<script\b[^>]*type\s*=\s*["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi).map((match) => match[1]),
     lang: first(html, /<html\b[^>]*\blang\s*=\s*["']([^"']+)["']/i),
     headings,
     paragraphs,
@@ -158,9 +188,50 @@ const issuesFor = (record) => {
   if (!record.title) add("Hiányzik a title.", "<head>", "Adj egyedi, témaspecifikus címet.", "Hozzáadni");
   if (!record.description) add("Hiányzik a meta description.", "<head>", "Adj egyedi leírást.", "Hozzáadni");
   if (!record.canonical) add("Hiányzik a canonical URL.", "<head>", "Adj önmagára mutató canonical linket.", "Hozzáadni");
+  const expectedCanonical =
+    record.name === "index.html"
+      ? "https://kalkulatorbazis.hu/"
+      : `https://kalkulatorbazis.hu/${record.name}`;
+  if (record.canonical && record.canonical !== expectedCanonical) {
+    add("A canonical nem a saját publikus HTTPS URL-re mutat.", "<head>", `Állítsd erre: ${expectedCanonical}.`, "Átírni", "Magas");
+  }
   if (!record.ogTitle || !record.ogDescription) {
     add("Hiányos Open Graph metaadatok.", "<head>", "Adj releváns og:title és og:description értékeket.", "Hozzáadni");
   }
+  if (!record.ogUrl || !record.ogImage) {
+    add("Hiányos Open Graph URL vagy kép.", "<head>", "Adj og:url és og:image értéket.", "Hozzáadni");
+  }
+  if (
+    record.ogTitle !== record.title ||
+    record.ogDescription !== record.description ||
+    record.ogUrl !== record.canonical
+  ) {
+    add("Az Open Graph adatok eltérnek a title, description vagy canonical értékétől.", "<head>", "Szinkronizáld a közösségi metaadatokat.", "Átírni");
+  }
+  if (
+    !record.twitterCard ||
+    record.twitterTitle !== record.title ||
+    record.twitterDescription !== record.description ||
+    !record.twitterImage
+  ) {
+    add("Hiányos vagy eltérő Twitter Card metaadatok.", "<head>", "Adj szinkronizált Twitter Card cím-, leírás- és képadatokat.", "Hozzáadni");
+  }
+  if (record.hreflangTags.length) {
+    add("A kizárólag magyar webhelyen felesleges hreflang jelölés szerepel.", "<head>", "Távolítsd el a nem létező nyelvi változatra mutató elemet.", "Törölni");
+  }
+  if (record.name === "404.html" && !/\bnoindex\b/i.test(record.robots)) {
+    add("A 404-es dokumentum nincs noindexre állítva.", "<head>", "Adj noindex, follow robots jelölést.", "Hozzáadni", "Magas");
+  }
+  if (record.name !== "404.html" && /\bnoindex\b/i.test(record.robots)) {
+    add("Indexelendő oldal noindex jelölést tartalmaz.", "<head>", "Távolítsd el a noindexet.", "Törölni", "Magas");
+  }
+  record.jsonLdBlocks.forEach((block) => {
+    try {
+      JSON.parse(block);
+    } catch (error) {
+      add("Érvénytelen JSON-LD szintaxis.", "Strukturált adatok", "Javítsd a JSON szintaxisát.", "Átírni", "Magas");
+    }
+  });
   const h1Count = record.headings.filter((heading) => heading.level === 1).length;
   if (h1Count !== 1) {
     add(`A H1-ek száma ${h1Count}, az elvárt 1 helyett.`, "Címsorhierarchia", "Maradjon egyetlen oldalfőcím.", "Összevonni/átírni", "Közepes");
@@ -179,6 +250,12 @@ const issuesFor = (record) => {
   const missingAlts = record.imageTags.filter((tag) => getAttribute(tag, "alt") === null);
   if (missingAlts.length) {
     add(`${missingAlts.length} kép alt attribútum nélkül szerepel.`, "Képek", "Adj értelmes altot, dekoratív képnél üres altot.", "Hozzáadni");
+  }
+  const missingDimensions = record.imageTags.filter(
+    (tag) => getAttribute(tag, "width") === null || getAttribute(tag, "height") === null
+  );
+  if (missingDimensions.length) {
+    add(`${missingDimensions.length} kép width vagy height attribútum nélkül szerepel.`, "Képek", "Adj valós képméretet a layout shift csökkentéséhez.", "Hozzáadni");
   }
   const emptyLinks = record.links.filter((tag) => {
     const href = getAttribute(tag, "href");

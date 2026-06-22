@@ -40,7 +40,13 @@ const attribute = (value) =>
     .replace(/>/g, "&gt;");
 const first = (html, pattern) => html.match(pattern)?.[1]?.trim() || "";
 
-const stats = { scanned: files.length, descriptions: [], canonicals: [], openGraph: [] };
+const stats = {
+  scanned: files.length,
+  descriptions: [],
+  canonicals: [],
+  openGraph: [],
+  twitter: [],
+};
 
 files.forEach((file) => {
   const name = relative(file);
@@ -68,32 +74,41 @@ files.forEach((file) => {
       `$1\n  <link rel="canonical" href="${canonicalUrl}" />`
     );
     stats.canonicals.push(name);
+  } else {
+    html = html.replace(
+      /<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/i,
+      `<link rel="canonical" href="${canonicalUrl}" />`
+    );
   }
 
-  const ogTags = [];
-  if (!/<meta\b(?=[^>]*\bproperty=["']og:type["'])[^>]*>/i.test(html)) {
-    ogTags.push('<meta property="og:type" content="website" />');
-  }
-  if (!/<meta\b(?=[^>]*\bproperty=["']og:site_name["'])[^>]*>/i.test(html)) {
-    ogTags.push('<meta property="og:site_name" content="Kalkulátor Bázis" />');
-  }
-  if (!/<meta\b(?=[^>]*\bproperty=["']og:title["'])[^>]*>/i.test(html)) {
-    ogTags.push(`<meta property="og:title" content="${attribute(title || h1)}" />`);
-  }
-  if (!/<meta\b(?=[^>]*\bproperty=["']og:description["'])[^>]*>/i.test(html)) {
-    ogTags.push(`<meta property="og:description" content="${attribute(description)}" />`);
-  }
-  if (!/<meta\b(?=[^>]*\bproperty=["']og:url["'])[^>]*>/i.test(html)) {
-    ogTags.push(`<meta property="og:url" content="${canonicalUrl}" />`);
-  }
-  if (!/<meta\b(?=[^>]*\bproperty=["']og:image["'])[^>]*>/i.test(html)) {
-    ogTags.push(`<meta property="og:image" content="${siteUrl}/images/kalkulator-bazis-og.jpg" />`);
-  }
+  const socialTags = [
+    ["property", "og:type", "website"],
+    ["property", "og:site_name", "Kalkulátor Bázis"],
+    ["property", "og:title", title || h1],
+    ["property", "og:description", description],
+    ["property", "og:url", canonicalUrl],
+    ["property", "og:image", `${siteUrl}/images/kalkulator-bazis-og.jpg`],
+    ["name", "twitter:card", "summary_large_image"],
+    ["name", "twitter:title", title || h1],
+    ["name", "twitter:description", description],
+    ["name", "twitter:image", `${siteUrl}/images/kalkulator-bazis-og.jpg`],
+  ];
 
-  if (ogTags.length) {
-    html = html.replace(/\s*<\/head>/i, `\n  ${ogTags.join("\n  ")}\n</head>`);
-    stats.openGraph.push(name);
-  }
+  socialTags.forEach(([attributeName, key, content]) => {
+    const pattern = new RegExp(
+      `<meta\\b(?=[^>]*\\b${attributeName}=["']${key.replace(":", "\\:")}["'])[^>]*>`,
+      "i"
+    );
+    const tag = `<meta ${attributeName}="${key}" content="${attribute(content)}" />`;
+
+    if (pattern.test(html)) {
+      html = html.replace(pattern, tag);
+    } else {
+      html = html.replace(/\s*<\/head>/i, `\n  ${tag}\n</head>`);
+      if (key.startsWith("og:")) stats.openGraph.push(`${name}:${key}`);
+      if (key.startsWith("twitter:")) stats.twitter.push(`${name}:${key}`);
+    }
+  });
 
   if (!/global-head\.js/i.test(html)) {
     const prefix = name.startsWith("landing-pages/") ? "../../" : name.startsWith("kalkulatorok/") ? "../" : "";

@@ -3,10 +3,12 @@ const { spawnSync } = require("child_process");
 
 const scripts = [
   "refine-content.js",
+  "refine-metadata.js",
   "normalize-adsense.js",
   "normalize-heads.js",
   "normalize-form-labels.js",
   "generate-sitemap.js",
+  "seo-inventory.js",
   "audit-site.js"
 ];
 
@@ -23,4 +25,3 @@ scripts.forEach((script) => {
 });
 
 console.log("A tartalom, a technikai head-elemek, a sitemap és az audit frissítése elkészült.");
-

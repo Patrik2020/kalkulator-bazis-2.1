@@ -891,3 +891,33 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+main > .breadcrumb {
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 16px 24px 0;
+}
+
+main > .breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+main > .breadcrumb li {
+  color: #596579;
+  font-size: 0.9rem;
+}
+
+main > .breadcrumb li:not(:last-child)::after {
+  color: #8791a3;
+  content: "/";
+  margin-left: 6px;
+}
+
+main > .breadcrumb a {
+  color: #075985;
+  text-underline-offset: 3px;
+}
