@@ -63,39 +63,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   loadComponent("header", base + "components/header.html");
   loadComponent("footer", base + "components/footer.html");
-  ensureCookieBanner(base);
-  loadSiteScripts(base);
+  ensureCookieBanner(base, () => loadSiteScripts(base));
 });
 
-function ensureCookieBanner(base) {
-  if (document.getElementById("cookie-banner")) {
-    loadScriptOnce(base + "js/cookie.js");
+function ensureCookieBanner(base, onReady) {
+  if (window.KB_CONSENT_MANAGER?.isReady) {
+    if (onReady) onReady();
     return;
   }
 
-  const banner = document.createElement("div");
-  banner.id = "cookie-banner";
-  banner.className = "cookie-banner";
-  banner.innerHTML = `
-    <p>
-      Ez a weboldal sütiket használ.
-      <a href="${base}adatvedelem.html">Részletek</a>
-    </p>
-    <div class="cookie-buttons">
-      <button id="accept-cookies">Elfogadom</button>
-      <button id="decline-cookies">Elutasítom</button>
-    </div>
-  `;
-
-  document.body.appendChild(banner);
-  loadScriptOnce(base + "js/cookie.js");
+  loadScriptOnce(base + "js/cookie.js", () => {
+    if (onReady) onReady();
+  });
 }
 
 function loadScriptOnce(src, onLoad) {
-  const existing = document.querySelector(`script[src="${src}"]`);
+  const targetUrl = new URL(src, window.location.href).href;
+  const existing = [...document.querySelectorAll("script[src]")].find(
+    (script) => script.src === targetUrl
+  );
 
   if (existing) {
-    if (onLoad) existing.addEventListener("load", onLoad, { once: true });
+    if (onLoad) {
+      if (existing.dataset.loaded === "true") {
+        onLoad();
+      } else {
+        existing.addEventListener("load", onLoad, { once: true });
+      }
+    }
     return;
   }
 
@@ -104,21 +99,40 @@ function loadScriptOnce(src, onLoad) {
   script.defer = true;
 
   if (onLoad) {
-    script.addEventListener("load", onLoad, { once: true });
+    script.addEventListener(
+      "load",
+      () => {
+        script.dataset.loaded = "true";
+        onLoad();
+      },
+      { once: true }
+    );
+  } else {
+    script.addEventListener(
+      "load",
+      () => {
+        script.dataset.loaded = "true";
+      },
+      { once: true }
+    );
   }
 
   document.body.appendChild(script);
 }
 
 function loadSiteScripts(base) {
-  if (window.KB_DATA) {
+  const loadUi = () => {
+    document.dispatchEvent(new CustomEvent("kb:site-data-loaded"));
+    markActiveNavigation(document.getElementById("header"));
     loadScriptOnce(base + "js/site-ui.js");
+  };
+
+  if (window.KB_DATA) {
+    loadUi();
     return;
   }
 
-  loadScriptOnce(base + "js/site-data.js", () => {
-    loadScriptOnce(base + "js/site-ui.js");
-  });
+  loadScriptOnce(base + "js/site-data.js", loadUi);
 }
 
 function loadComponent(id, path) {
@@ -134,7 +148,12 @@ function loadComponent(id, path) {
 
       if (id === "header") {
         initMobileMenu();
+        markActiveNavigation(target);
       }
+
+      document.dispatchEvent(
+        new CustomEvent("kb:component-loaded", { detail: { id } })
+      );
     })
     .catch((err) => console.error(err));
 }
@@ -145,6 +164,69 @@ function normalizeRootLinks(container, base) {
     if (!href || href.startsWith("//")) return;
 
     link.setAttribute("href", base + href.replace(/^\/+/, ""));
+  });
+}
+
+function getActiveNavTarget() {
+  const path = decodeURIComponent(window.location.pathname).replace(/\\/g, "/");
+
+  if (path.includes("/kalkulatorok/")) {
+    const calculator = window.KB_DATA?.calculators?.find((item) =>
+      path.endsWith(`/${item.url}`) || path.endsWith(item.url)
+    );
+    const category = calculator
+      ? window.KB_DATA?.categories?.find((item) => item.id === calculator.category)
+      : null;
+
+    return category?.url || "kalkulatorok.html";
+  }
+
+  const fileName = path.split("/").filter(Boolean).pop() || "index.html";
+  const knownTargets = new Set([
+    "index.html",
+    "penzugyi.html",
+    "epitoipari.html",
+    "egeszseg.html",
+    "mindennapi.html",
+    "auto.html",
+    "atvaltok.html",
+    "kalkulatorok.html",
+  ]);
+
+  return knownTargets.has(fileName) ? fileName : "";
+}
+
+function linkMatchesTarget(link, target) {
+  if (!target) return false;
+
+  try {
+    const href = new URL(link.getAttribute("href"), window.location.href);
+    const path = decodeURIComponent(href.pathname).replace(/\\/g, "/");
+
+    if (target === "index.html") {
+      return /\/(?:index\.html)?$/.test(path);
+    }
+
+    return path.endsWith(`/${target}`) || path.endsWith(target);
+  } catch (error) {
+    return false;
+  }
+}
+
+function markActiveNavigation(container) {
+  if (!container) return;
+
+  const target = getActiveNavTarget();
+
+  container.querySelectorAll("#menu a").forEach((link) => {
+    const isActive = linkMatchesTarget(link, target);
+
+    link.classList.toggle("is-active", isActive);
+    if (isActive) {
+      link.setAttribute("aria-current", "page");
+    } else {
+      link.removeAttribute("aria-current");
+    }
   });
 }
 

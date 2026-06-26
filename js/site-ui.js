@@ -63,6 +63,16 @@
   const getCategory = (id) =>
     data.categories.find((category) => category.id === id);
 
+  const hasConsent = (category) => {
+    const manager = window.KB_CONSENT_MANAGER;
+
+    if (!manager?.isReady || typeof manager.hasConsent !== "function") {
+      return false;
+    }
+
+    return Boolean(manager.hasConsent(category));
+  };
+
   const categorySearchAliases = {
     penzugyi: "penz ber fizetes adozas megtakaritas befektetes hitel bank",
     epitoipari: "epitoanyag epitkezes felujitas anyagszukseglet burkolas falazas",
@@ -88,7 +98,7 @@
   };
 
   const trackEvent = (eventName, params = {}) => {
-    if (typeof window.gtag === "function") {
+    if (hasConsent("analytics") && typeof window.gtag === "function") {
       window.gtag("event", eventName, params);
     }
   };
@@ -124,7 +134,7 @@
 
     if (!adClient || !adSlot) return;
 
-    if (localStorage.getItem("cookieConsent") !== "accepted") {
+    if (!hasConsent("ads")) {
       if (target.dataset.adState !== "placeholder") {
         target.innerHTML = '<div class="ad-placeholder">Reklámhely</div>';
         target.dataset.adState = "placeholder";
@@ -187,6 +197,8 @@
   };
 
   const loadAdSenseScript = (callback) => {
+    if (!hasConsent("ads")) return;
+
     const adClient = /^ca-pub-\d+$/.test(data.adsense?.client || "")
       ? data.adsense.client
       : "";
@@ -223,7 +235,19 @@
     const wiseUrl = safeExternalUrl(data.wise.url, ["wise.prf.hn"]);
     const wiseImage = safeExternalUrl(data.wise.image, ["wise-creative.prf.hn"]);
 
-    if (wiseUrl === "#" || wiseImage === "#") return;
+    if (wiseUrl === "#") return;
+
+    if (!hasConsent("ads") || wiseImage === "#") {
+      target.innerHTML = `
+        <a class="wise-banner" href="${escapeAttribute(wiseUrl)}" rel="sponsored noopener noreferrer" target="_blank">
+          <span>
+            <strong>Nemzetközi pénzügyekhez Wise</strong>
+            <small>Deviza, utalás és külföldi pénzkezelés egyszerűbben. Külső partnerlink, a bannerkép csak marketing-hozzájárulás után tölt be.</small>
+          </span>
+        </a>
+      `;
+      return;
+    }
 
     target.innerHTML = `
       <a class="wise-banner" href="${escapeAttribute(wiseUrl)}" rel="sponsored noopener noreferrer" target="_blank">
@@ -557,6 +581,52 @@
     }
   };
 
+  const renderReliabilityNote = () => {
+    const currentPath = window.location.pathname.replace(/\\/g, "/");
+    const current = data.calculators.find((calculator) =>
+      currentPath.endsWith(calculator.url)
+    );
+    const main = document.querySelector("main");
+
+    if (!current || !main || main.querySelector(".reliability-note")) return;
+
+    const messages = {
+      penzugyi:
+        "Az eredmény tájékoztató becslés, nem pénzügyi, befektetési vagy adótanács, hitelajánlat vagy garantált eredmény. Döntés előtt ellenőrizd az aktuális feltételeket és szükség esetén kérj szakértői segítséget.",
+      egeszseg:
+        "Az eredmény általános tájékoztatást ad, nem diagnózis és nem helyettesít orvosi vizsgálatot vagy személyre szabott kezelési javaslatot.",
+      epitoipari:
+        "Az eredmény a megadott méretek és anyagjellemzők alapján készült becslés. Beszerzés előtt ellenőrizd a gyártói kiadósságot, a helyszíni adottságokat és a szükséges ráhagyást.",
+      auto:
+        "Az eredmény a megadott fogyasztási, ár- és útadatokból készülő becslés. A tényleges értéket a vezetési körülmények, a jármű állapota és a díjak változása is módosíthatja.",
+      atvaltok:
+        "Az átváltás a megadott érték és a kalkulátorban használt mértékegység-kapcsolat alapján készül.",
+      mindennapi:
+        "Az eredmény a megadott adatok és az oldalon bemutatott számítási logika alapján készül.",
+    };
+    const canonicalUrl =
+      document.querySelector('link[rel="canonical"]')?.href || window.location.href;
+    const subject = encodeURIComponent(`Hibabejelentés – ${current.title}`);
+    const body = encodeURIComponent(
+      `Kalkulátor: ${current.title}\nOldal: ${canonicalUrl}\n\nA hiba rövid leírása:\n`
+    );
+    const reportHref = `mailto:kalkulatorbazis@gmail.com?subject=${subject}&body=${body}`;
+    const basePath = getBasePath();
+    const section = document.createElement("section");
+    section.className = "reliability-note";
+    section.innerHTML = `
+      <div>
+        <h2>A számítás megbízhatósága</h2>
+        <p>${escapeHtml(messages[current.category] || messages.mindennapi)}</p>
+      </div>
+      <div class="reliability-actions">
+        <a href="${escapeAttribute(`${basePath}atlathatosag-es-minoseg.html`)}">További információ a számításokról és az ellenőrzésről</a>
+        <a href="${escapeAttribute(reportHref)}">Hibát vagy pontatlanságot találtál? Írj nekünk.</a>
+      </div>
+    `;
+    main.appendChild(section);
+  };
+
   const bindTrackingEvents = () => {
     document.addEventListener("click", (event) => {
       const calculatorLink = event.target.closest(".calculator-card");
@@ -772,26 +842,31 @@
     }
   };
 
+  const refreshConsentControlledUi = () => {
+    document
+      .querySelectorAll("[data-render='ad-slot'], [data-render='calculator-ad-slot']")
+      .forEach((target) => renderAdSlot(target));
+
+    document
+      .querySelectorAll("[data-render='wise-banner'], [data-render='calculator-wise-banner']")
+      .forEach((target) => renderWiseBanner(target));
+  };
+
   const init = () => {
     renderGlobalSearch();
     renderHomePage();
     renderCategoryPage();
     renderBreadcrumb();
     renderRelatedCalculators();
+    renderReliabilityNote();
     renderCalculatorPageExtras();
-    renderWiseBanner(document.querySelector("[data-render='wise-banner']"));
-    document
-      .querySelectorAll("[data-render='ad-slot']")
-      .forEach((target) => renderAdSlot(target));
+    refreshConsentControlledUi();
     renderStructuredData();
     bindTrackingEvents();
     bindSingleAccordions();
 
-    document.addEventListener("kb:consent-updated", () => {
-      document
-        .querySelectorAll("[data-render='ad-slot'], [data-render='calculator-ad-slot']")
-        .forEach((target) => renderAdSlot(target));
-    });
+    document.addEventListener("kb:consent-ready", refreshConsentControlledUi);
+    document.addEventListener("kb:consent-updated", refreshConsentControlledUi);
   };
 
   if (document.readyState === "loading") {

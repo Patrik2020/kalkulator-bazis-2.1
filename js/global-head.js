@@ -1,3 +1,22 @@
+const themeStorageKey = "kalkulatorbazis-theme";
+let initialTheme = "light";
+
+try {
+  const storedTheme = localStorage.getItem(themeStorageKey);
+  if (storedTheme === "light" || storedTheme === "dark") {
+    initialTheme = storedTheme;
+  } else if (window.matchMedia?.("(prefers-color-scheme: dark)").matches) {
+    initialTheme = "dark";
+  }
+} catch (error) {
+  initialTheme = window.matchMedia?.("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+}
+
+document.documentElement.dataset.theme = initialTheme;
+document.documentElement.style.colorScheme = initialTheme;
+
 const pathParts = window.location.pathname.split("/").filter(Boolean);
 const sectionIndex = ["kalkulatorok", "landing-pages"].reduce((found, section) => {
   const index = pathParts.indexOf(section);
@@ -17,6 +36,26 @@ const rootParts =
       : [];
 const projectRoot = rootParts.length ? `/${rootParts.join("/")}` : "";
 const basePath = `${projectRoot}/favicon`;
+const themeCssPath = `${projectRoot}/css/theme.css`;
+const footerCssPath = `${projectRoot}/css/layout/footer.css`;
+const cookieCssPath = `${projectRoot}/css/components/cookie.css`;
+const themeScriptPath = `${projectRoot}/js/theme.js`;
+
+window.dataLayer = window.dataLayer || [];
+window.gtag =
+  window.gtag ||
+  function () {
+    window.dataLayer.push(arguments);
+  };
+
+window.gtag("consent", "default", {
+  analytics_storage: "denied",
+  ad_storage: "denied",
+  ad_user_data: "denied",
+  ad_personalization: "denied",
+  functionality_storage: "granted",
+  security_storage: "granted",
+});
 
 const appendElement = (tagName, attributes) => {
   const element = document.createElement(tagName);
@@ -28,6 +67,17 @@ const appendElement = (tagName, attributes) => {
   document.head.appendChild(element);
 };
 
+const hasMainStylesheet = () =>
+  [...document.querySelectorAll('link[rel~="stylesheet"][href]')].some((link) => {
+    const rawHref = link.getAttribute("href") || "";
+    const resolvedHref = link.href || "";
+
+    return (
+      /(^|\/)css\/style\.css(?:[?#].*)?$/i.test(rawHref) ||
+      /\/css\/style\.css(?:[?#].*)?$/i.test(resolvedHref)
+    );
+  });
+
 [
   { rel: "icon", type: "image/png", href: `${basePath}/favicon-16x16.png`, sizes: "16x16" },
   { rel: "icon", type: "image/png", href: `${basePath}/favicon-32x32.png`, sizes: "32x32" },
@@ -38,11 +88,20 @@ const appendElement = (tagName, attributes) => {
   { rel: "manifest", href: `${basePath}/site.webmanifest` },
 ].forEach((attributes) => appendElement("link", attributes));
 
+appendElement("link", { rel: "stylesheet", href: themeCssPath });
+
+if (!hasMainStylesheet()) {
+  appendElement("link", { rel: "stylesheet", href: footerCssPath });
+  appendElement("link", { rel: "stylesheet", href: cookieCssPath });
+}
+
+appendElement("script", { src: themeScriptPath, defer: "" });
+
 [
   { name: "application-name", content: "KalkulátorBázis" },
   { name: "apple-mobile-web-app-title", content: "KalkulátorBázis" },
   { name: "referrer", content: "strict-origin-when-cross-origin" },
-  { name: "theme-color", content: "#0b66f2" },
+  { name: "theme-color", content: initialTheme === "dark" ? "#111827" : "#ffffff" },
   {
     "http-equiv": "Content-Security-Policy",
     content: "object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests",
