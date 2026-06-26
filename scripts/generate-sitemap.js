@@ -19,6 +19,7 @@ const staticPages = [
   { url: "adatvedelem.html", priority: "0.5" },
   { url: "cookie.html", priority: "0.5" },
   { url: "felhasznalasi-feltetelek.html", priority: "0.5" },
+  { url: "atlathatosag-es-minoseg.html", priority: "0.7" },
   { url: "landing-pages/wise/wise.html", priority: "0.8" },
   { url: "landing-pages/wise/adatkezelesi-tajekoztato.html", priority: "0.3" },
   { url: "landing-pages/wise/cookie-tajekoztato.html", priority: "0.3" },

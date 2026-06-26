@@ -266,12 +266,14 @@ const issuesFor = (record) => {
   }
 
   const adsenseScripts = record.scripts.filter((script) => script.src === adsenseSrc);
-  if (adsenseScripts.length === 0) {
-    add("A kért statikus AdSense betöltőkód hiányzik.", "<head>", "Helyezd el pontosan egyszer a headben; a hozzájárulási működést külön ellenőrizd.", "Hozzáadni", "Közepes");
-  } else if (adsenseScripts.length > 1) {
-    add(`Az AdSense betöltőkód ${adsenseScripts.length} alkalommal szerepel.`, "<head>", "Csak egy példány maradjon.", "Összevonni", "Közepes");
-  } else if (!adsenseScripts[0].inHead) {
-    add("Az AdSense betöltőkód nem a headben van.", "<body>", "Mozgasd a headbe.", "Áthelyezni", "Közepes");
+  if (adsenseScripts.length) {
+    add(
+      `Közvetlen AdSense betöltőkód szerepel az oldalon (${adsenseScripts.length} db).`,
+      "<head>",
+      "Távolítsd el a statikus betöltést; a hirdetési scriptet a hozzájárulás után a site-ui.js töltse be.",
+      "Törölni",
+      "Magas"
+    );
   }
 
   const scriptGroups = new Map();
@@ -379,8 +381,8 @@ const largeResources = allFiles
 
 const totalIssues = [...issues.values()].reduce((sum, list) => sum + list.length, 0);
 const genericPages = records.filter((record) => record.html.includes("data-generated-seo"));
-const adsenseMissing = records.filter(
-  (record) => !record.scripts.some((script) => script.src === adsenseSrc)
+const staticAdsensePages = records.filter((record) =>
+  record.scripts.some((script) => script.src === adsenseSrc)
 );
 const brokenLinkPages = [...issues].filter(([, list]) =>
   list.some((issue) => issue.section === "Relatív útvonalak")
@@ -394,20 +396,20 @@ const lines = [
   "## Hatókör és módszer",
   "",
   `- ${records.length} nyilvános HTML-oldal, ${cssFiles.length} CSS-fájl és ${allFiles.filter((file) => file.endsWith(".js")).length} JavaScript-fájl statikus vizsgálata.`,
-  "- Ellenőrzés: metaadatok, címsorok, linkek, képek, ID-k, scriptbetöltések, AdSense, szó szerinti tartalmi ismétlések, sablonos SEO/GYIK és nagy erőforrások.",
+  "- Ellenőrzés: metaadatok, címsorok, linkek, képek, ID-k, scriptbetöltések, hozzájáruláshoz kötött AdSense, szó szerinti tartalmi ismétlések, sablonos SEO/GYIK és nagy erőforrások.",
   "- A statikus audit a böngészős működési és vizuális tesztet nem helyettesíti; az a módosítások után külön következik.",
   "",
   "## Vezetői összefoglaló",
   "",
   `- Összes feltárt fájlszintű tétel: **${totalIssues}**.`,
   `- Generált/sablonos SEO-blokkot tartalmazó oldalak: **${genericPages.length}**.`,
-  `- A kért statikus AdSense-kódot nélkülöző nyilvános oldalak: **${adsenseMissing.length}**.`,
+  `- Közvetlen, hozzájárulás előtti AdSense betöltőkódot tartalmazó oldalak: **${staticAdsensePages.length}**.`,
   `- Hibás helyi hivatkozással érintett oldalak: **${brokenLinkPages.length}**.`,
   `- Egymással megegyező CSS-deklarációs csoportok: **${duplicateCssBlocks.length}**; ezek közül csak komponensazonosság esetén javasolt összevonás.`,
   `- 500 KB-nál nagyobb helyi erőforrások: **${largeResources.length}**.`,
-  genericPages.length || adsenseMissing.length
-    ? "- Nyitott prioritás: a fennmaradó generikus tartalom és AdSense-eltérések rendezése."
-    : "- A korábbi generikus SEO/GYIK és AdSense head-eltérések a jelenlegi állapotban nem mutathatók ki.",
+  genericPages.length || staticAdsensePages.length
+    ? "- Nyitott prioritás: a fennmaradó generikus tartalom és hozzájárulás előtti AdSense-betöltések rendezése."
+    : "- A korábbi generikus SEO/GYIK és hozzájárulás előtti AdSense-betöltési eltérések a jelenlegi állapotban nem mutathatók ki.",
   "",
   "## Fájlonkénti audit",
   "",
@@ -456,7 +458,7 @@ lines.push(
   "3. A hat kategóriaoldal saját döntési helyzetet, kezdőpontot és válogatási logikát kap.",
   "4. A főoldalt a hero + kereső, gyors kategóriaválasztó, népszerű kalkulátorok, pénzügyi alapozó, bizalmi blokk, rövid bemutatkozás és akadálymentes GYIK sorrendre rendezzük.",
   "5. A pénzügyi tudatosság landing fejlécében a meglévő `favicon/kb-logo-mark.png` logót használjuk.",
-  "6. Az AdSense betöltőkódot minden nyilvános HTML headjében pontosan egyszer egységesítjük; a hirdetési blokkok és publisher ID változatlanok maradnak.",
+  "6. Az AdSense globális betöltését nem statikus head-kóddal, hanem hirdetési hozzájárulás után, a közös `site-ui.js` logikával kezeljük; a publisher ID változatlan marad.",
   "7. Javítjuk a bizonyítható HTML-, meta-, link-, focus-, label- és accordion-problémákat; a számítási logikát csak dokumentált hiba esetén érintjük.",
   "8. A módosítások után újrafuttatjuk ezt az auditot, a link- és szintaxisellenőrzést, majd több szélességen böngészős ellenőrzést végzünk.",
   ""
