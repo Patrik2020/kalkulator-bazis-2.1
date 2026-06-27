@@ -12,7 +12,8 @@ async function loadRates() {
         result.textContent = "Árfolyamok betöltése...";
 
         const response = await fetch(
-            "https://api.frankfurter.dev/v1/latest"
+            "https://api.frankfurter.dev/v1/latest",
+            { cache: "no-store" }
         );
 
         const data = await response.json();
@@ -24,10 +25,10 @@ async function loadRates() {
 
         convertCurrency();
     } catch (error) {
-        console.error(error);
-
-        result.textContent =
-            "Nem sikerült betölteni az árfolyamokat.";
+        result.textContent = navigator.onLine
+            ? "Nem sikerült betölteni az árfolyamokat. Próbáld újra később."
+            : "Az aktuális árfolyamok betöltéséhez internetkapcsolat szükséges.";
+        lastUpdate.textContent = "Nincs friss adat";
     }
 }
 

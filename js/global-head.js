@@ -40,6 +40,9 @@ const themeCssPath = `${projectRoot}/css/theme.css`;
 const footerCssPath = `${projectRoot}/css/layout/footer.css`;
 const cookieCssPath = `${projectRoot}/css/components/cookie.css`;
 const themeScriptPath = `${projectRoot}/js/theme.js`;
+const pwaScriptPath = `${projectRoot}/js/pwa.js`;
+
+window.KB_PROJECT_ROOT = projectRoot;
 
 window.dataLayer = window.dataLayer || [];
 window.gtag =
@@ -85,7 +88,7 @@ const hasMainStylesheet = () =>
   { rel: "icon", type: "image/svg+xml", href: `${basePath}/favicon.svg` },
   { rel: "shortcut icon", href: `${basePath}/favicon.ico` },
   { rel: "apple-touch-icon", sizes: "180x180", href: `${basePath}/apple-touch-icon.png` },
-  { rel: "manifest", href: `${basePath}/site.webmanifest` },
+  { rel: "manifest", href: `${projectRoot}/manifest.webmanifest` },
 ].forEach((attributes) => appendElement("link", attributes));
 
 appendElement("link", { rel: "stylesheet", href: themeCssPath });
@@ -96,6 +99,7 @@ if (!hasMainStylesheet()) {
 }
 
 appendElement("script", { src: themeScriptPath, defer: "" });
+appendElement("script", { src: pwaScriptPath, defer: "" });
 
 [
   { name: "application-name", content: "KalkulátorBázis" },

@@ -125,6 +125,9 @@ function loadSiteScripts(base) {
     document.dispatchEvent(new CustomEvent("kb:site-data-loaded"));
     markActiveNavigation(document.getElementById("header"));
     loadScriptOnce(base + "js/site-ui.js");
+    if (window.location.pathname.toLowerCase().includes("/kalkulatorok/")) {
+      loadScriptOnce(base + "js/retention-cta.js");
+    }
   };
 
   if (window.KB_DATA) {

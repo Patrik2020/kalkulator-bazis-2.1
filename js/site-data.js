@@ -110,8 +110,8 @@
       title: "ETF kalkulátor",
       url: "kalkulatorok/etf-kalkulator.html",
       category: "penzugyi",
-      description: "ETF befektetés várható növekedésének becslése.",
-      keywords: "befektetés tőzsde hozam rendszeres megtakarítás",
+      description: "ETF befektetés, célösszeg, TER és infláció becslése.",
+      keywords: "befektetés tőzsde hozam rendszeres megtakarítás ETF TER infláció célösszeg",
       popular: true,
     },
     {

@@ -448,26 +448,72 @@
     return overlay;
   };
 
+  const focusWithoutScroll = (element) => {
+    if (!element || typeof element.focus !== "function") return false;
+
+    const hadTabIndex = element.hasAttribute("tabindex");
+    const previousTabIndex = element.getAttribute("tabindex");
+
+    if (!hadTabIndex && !/^(?:A|BUTTON|INPUT|SELECT|TEXTAREA)$/i.test(element.tagName)) {
+      element.setAttribute("tabindex", "-1");
+    }
+
+    try {
+      element.focus({ preventScroll: true });
+    } catch (error) {
+      element.focus();
+    }
+
+    if (!hadTabIndex) {
+      element.removeAttribute("tabindex");
+    } else if (previousTabIndex !== null) {
+      element.setAttribute("tabindex", previousTabIndex);
+    }
+
+    return document.activeElement === element;
+  };
+
+  const getSafeCloseFocusTarget = (overlay, restoreFocus) => {
+    if (
+      restoreFocus &&
+      lastFocusedElement &&
+      document.contains(lastFocusedElement) &&
+      !overlay.contains(lastFocusedElement) &&
+      typeof lastFocusedElement.focus === "function"
+    ) {
+      return lastFocusedElement;
+    }
+
+    return (
+      document.querySelector("[data-cookie-settings]") ||
+      document.querySelector("#header a, header a, main h1, main, body")
+    );
+  };
+
+  const moveFocusOutOfModal = (overlay, restoreFocus) => {
+    if (!overlay.contains(document.activeElement)) return;
+
+    const target = getSafeCloseFocusTarget(overlay, restoreFocus);
+    focusWithoutScroll(target || document.body);
+  };
+
   const closeModal = (restoreFocus = true) => {
     const overlay = document.getElementById("cookie-banner");
     if (!overlay) return;
 
+    moveFocusOutOfModal(overlay, restoreFocus);
     overlay.classList.remove("is-visible");
     overlay.setAttribute("aria-hidden", "true");
     hideSettingsPanel();
     document.body.classList.remove("cookie-modal-open");
-
-    if (restoreFocus && lastFocusedElement && typeof lastFocusedElement.focus === "function") {
-      lastFocusedElement.focus();
-    }
   };
 
-  const openModal = ({ settings = false, fromSavedChoice = false } = {}) => {
+  const openModal = ({ settings = false, fromSavedChoice = false, opener = null } = {}) => {
     const overlay = document.getElementById("cookie-banner") || createModal();
     const modal = overlay.querySelector(".cookie-modal");
 
     openedFromSavedChoice = fromSavedChoice;
-    lastFocusedElement = document.activeElement;
+    lastFocusedElement = opener || document.activeElement;
     overlay.classList.add("is-visible");
     overlay.setAttribute("aria-hidden", "false");
     document.body.classList.add("cookie-modal-open");
@@ -606,7 +652,11 @@
       if (!trigger) return;
 
       event.preventDefault();
-      openModal({ settings: true, fromSavedChoice: Boolean(getConsentSnapshot()) });
+      openModal({
+        settings: true,
+        fromSavedChoice: Boolean(getConsentSnapshot()),
+        opener: trigger,
+      });
     });
 
     document.addEventListener("keydown", (event) => {
