@@ -5,160 +5,443 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="ETF kalkulátor: számold ki a befektetésed várható értékét kamatos kamattal."
+      content="ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással."
     />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/etf-kalkulator.html" />
-<title>ETF kalkulátor | Befektetés, hozam és rendszeres megtakarítás</title>
+    <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/etf-kalkulator.html" />
+    <title>ETF kalkulátor | Befektetés, célösszeg, TER és infláció</title>
 
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/pages/etf.css" />
+    <link rel="stylesheet" href="../css/pages/etf.css?v=20260627-2" />
     <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="ETF kalkulátor | Befektetés, hozam és rendszeres megtakarítás" />
-  <meta property="og:description" content="ETF kalkulátor: számold ki a befektetésed várható értékét kamatos kamattal." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/etf-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ETF kalkulátor | Befektetés, hozam és rendszeres megtakarítás" />
-  <meta name="twitter:description" content="ETF kalkulátor: számold ki a befektetésed várható értékét kamatos kamattal." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-</head>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kalkulátor Bázis" />
+    <meta property="og:title" content="ETF kalkulátor | Befektetés, célösszeg, TER és infláció" />
+    <meta
+      property="og:description"
+      content="Tervezd meg az ETF-befektetésed várható értékét vagy számold ki, mekkora havi befektetés kell a célodhoz."
+    />
+    <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/etf-kalkulator.html" />
+    <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ETF kalkulátor | Befektetés, célösszeg, TER és infláció" />
+    <meta
+      name="twitter:description"
+      content="ETF-tervező rendszeres befizetéssel, célösszeggel, inflációval, TER-költséggel és éves bontással."
+    />
+    <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  </head>
 
   <body>
     <div id="header"></div>
 
     <main class="container page-etf">
-      <!-- HERO -->
-      <section class="hero">
+      <section class="hero etf-hero">
+        <p class="eyebrow">ETF tervező</p>
         <h1>ETF kalkulátor</h1>
-        <p>Számold ki, mennyit érhet a befektetésed hosszú távon.</p>
+        <p>
+          Becsüld meg, mennyit érhet a rendszeres ETF-befektetésed, vagy számold ki,
+          mekkora kezdő havi összeg kell egy pénzügyi cél eléréséhez.
+        </p>
       </section>
 
-      <!-- KALKULÁTOR -->
-      <section class="card card-calculator">
-        <div class="calc-grid">
+      <section class="card card-calculator etf-calculator" aria-labelledby="etfCalculatorTitle">
+        <div class="etf-card-heading">
           <div>
-            <label for="initial">Kezdőtőke (Ft)</label>
-            <input
-              type="text"
-              id="initial"
-              inputmode="numeric"
-              placeholder="pl. 100000"
-            />
+            <p class="eyebrow">Kalkulátor</p>
+            <h2 id="etfCalculatorTitle">ETF befektetés tervezése</h2>
           </div>
-
-          <div>
-            <label for="monthly">Havi befektetés (Ft)</label>
-            <input
-              type="text"
-              id="monthly"
-              inputmode="numeric"
-              placeholder="pl. 20000"
-            />
-          </div>
-
-          <div>
-            <label for="rate">Éves hozam (%)</label>
-            <input type="number" id="rate" placeholder="pl. 7" />
-          </div>
-
-          <div>
-            <label for="years">Időtáv (év)</label>
-            <input type="number" id="years" placeholder="pl. 20" />
-          </div>
+          <p>
+            A számítás havi bontású becslés. A befizetés a hónap végén kerül a
+            portfólióba, és a következő hónaptól vesz részt a hozamtermelésben.
+          </p>
         </div>
 
-        <div class="result-box">
-          <p>Végösszeg:</p>
-          <p id="result-final">–</p>
+        <fieldset class="etf-mode-switch" aria-label="Számítási mód">
+          <legend>Mit szeretnél kiszámolni?</legend>
+          <label>
+            <input type="radio" name="etfMode" value="future" checked />
+            <span>Mennyim lehet?</span>
+          </label>
+          <label>
+            <input type="radio" name="etfMode" value="goal" />
+            <span>Mennyit kell befektetnem?</span>
+          </label>
+        </fieldset>
 
-          <p id="result-profit"></p>
+        <form id="etfForm" class="etf-form" novalidate>
+          <div class="calc-grid etf-input-grid">
+            <div class="input-group etf-field" data-field="target" data-mode-panel="goal" hidden>
+              <label for="target">Célösszeg (Ft)</label>
+              <input
+                type="text"
+                id="target"
+                inputmode="decimal"
+                autocomplete="off"
+                placeholder="pl. 30 000 000"
+                aria-describedby="target-help target-error"
+              />
+              <small id="target-help">Az az összeg, amit a megadott időtáv végére szeretnél elérni.</small>
+              <p class="field-error" id="target-error" role="alert"></p>
+            </div>
+
+            <div class="input-group etf-field" data-field="initial">
+              <label for="initial">Kezdőtőke (Ft)</label>
+              <input
+                type="text"
+                id="initial"
+                inputmode="decimal"
+                autocomplete="off"
+                value="0"
+                placeholder="pl. 200 000"
+                aria-describedby="initial-help initial-error"
+              />
+              <small id="initial-help">A már meglévő befektethető összeg. Ha nincs ilyen, maradhat 0 Ft.</small>
+              <p class="field-error" id="initial-error" role="alert"></p>
+            </div>
+
+            <div class="input-group etf-field" data-field="monthly" data-mode-panel="future">
+              <label for="monthly">Havi befektetés (Ft)</label>
+              <input
+                type="text"
+                id="monthly"
+                inputmode="decimal"
+                autocomplete="off"
+                value="50 000"
+                placeholder="pl. 50 000"
+                aria-describedby="monthly-help monthly-error"
+              />
+              <small id="monthly-help">A havonta, rendszeresen befektetett összeg.</small>
+              <p class="field-error" id="monthly-error" role="alert"></p>
+            </div>
+
+            <div class="input-group etf-field" data-field="rate">
+              <label for="rate">Éves várható hozam (%)</label>
+              <input
+                type="text"
+                id="rate"
+                inputmode="decimal"
+                value="6"
+                placeholder="pl. 6"
+                aria-describedby="rate-help rate-error"
+              />
+              <small id="rate-help">Nem ígéret, hanem feltételezés. A múltbeli hozam nem garancia.</small>
+              <p class="field-error" id="rate-error" role="alert"></p>
+            </div>
+
+            <div class="input-group etf-field" data-field="years">
+              <label for="years">Időtáv (év)</label>
+              <input
+                type="text"
+                id="years"
+                inputmode="decimal"
+                value="20"
+                placeholder="pl. 20"
+                aria-describedby="years-help years-error"
+              />
+              <small id="years-help">ETF-eknél a hosszabb időtáv segíthet tompítani a rövid távú kilengéseket.</small>
+              <p class="field-error" id="years-error" role="alert"></p>
+            </div>
+          </div>
+
+          <fieldset class="etf-goal-type" data-mode-panel="goal" hidden>
+            <legend>A célösszeg értelmezése</legend>
+            <label>
+              <input type="radio" name="targetType" value="nominal" checked />
+              <span>Jövőbeni nominális célösszeg</span>
+            </label>
+            <label>
+              <input type="radio" name="targetType" value="real" />
+              <span>Mai vásárlóértéken megadott célösszeg</span>
+            </label>
+          </fieldset>
+
+          <details class="etf-advanced" id="etfAdvanced">
+            <summary>Haladó beállítások</summary>
+            <div class="calc-grid etf-input-grid">
+              <div class="input-group etf-field" data-field="ter">
+                <label for="ter">ETF éves költsége, TER (%)</label>
+                <input
+                  type="text"
+                  id="ter"
+                  inputmode="decimal"
+                  value="0,20"
+                  placeholder="pl. 0,20"
+                  aria-describedby="ter-help ter-error"
+                />
+                <small id="ter-help">Az ETF alapkezelési költsége, amely évente csökkenti a várható értéket.</small>
+                <p class="field-error" id="ter-error" role="alert"></p>
+              </div>
+
+              <div class="input-group etf-field" data-field="inflation">
+                <label for="inflation">Éves infláció (%)</label>
+                <input
+                  type="text"
+                  id="inflation"
+                  inputmode="decimal"
+                  value="3"
+                  placeholder="pl. 3"
+                  aria-describedby="inflation-help inflation-error"
+                />
+                <small id="inflation-help">A pénz vásárlóerejének feltételezett éves csökkenése.</small>
+                <p class="field-error" id="inflation-error" role="alert"></p>
+              </div>
+
+              <div class="input-group etf-field" data-field="increase">
+                <label for="increase">Havi befizetés éves emelése (%)</label>
+                <input
+                  type="text"
+                  id="increase"
+                  inputmode="decimal"
+                  value="0"
+                  placeholder="pl. 5"
+                  aria-describedby="increase-help increase-error"
+                />
+                <small id="increase-help">Évente ennyivel nő a havi befektetés az új befektetési év kezdetén.</small>
+                <p class="field-error" id="increase-error" role="alert"></p>
+              </div>
+            </div>
+          </details>
+        </form>
+
+        <div class="notice-box etf-legal-note">
+          <strong>Fontos:</strong> A kalkulátor eredménye becslés, nem minősül
+          befektetési tanácsadásnak vagy hozamígéretnek. A befektetések értéke
+          csökkenhet és növekedhet, a tényleges eredmény eltérhet a számított értéktől.
         </div>
+
+        <div class="result-box etf-result" aria-live="polite">
+          <div class="etf-result-header">
+            <p class="eyebrow">Eredmény</p>
+            <h2 id="result-heading">Várható végösszeg</h2>
+            <p id="result-final">–</p>
+          </div>
+
+          <div class="etf-result-grid">
+            <div>
+              <span>Teljes saját befizetés</span>
+              <strong id="result-invested">–</strong>
+            </div>
+            <div>
+              <span>Várható nyereség</span>
+              <strong id="result-profit">–</strong>
+            </div>
+            <div>
+              <span>Mai vásárlóértéken</span>
+              <strong id="result-real">–</strong>
+            </div>
+            <div>
+              <span>A költségek becsült hosszú távú hatása</span>
+              <strong id="result-cost">–</strong>
+            </div>
+          </div>
+
+          <p class="etf-result-note" id="result-interpretation">
+            Adj meg értelmezhető adatokat, és a kalkulátor megmutatja a becsült eredményt.
+          </p>
+        </div>
+
+        <section class="etf-scenarios" aria-labelledby="etfScenarioTitle">
+          <div class="etf-section-heading">
+            <p class="eyebrow">Forgatókönyvek</p>
+            <h2 id="etfScenarioTitle">Három lehetséges hozampálya</h2>
+          </div>
+          <p class="etf-muted">
+            A forgatókönyvek nem hozamígéretek, csak eltérő feltételezéseken alapuló becslések.
+          </p>
+          <div class="etf-scenario-grid" id="scenarioGrid"></div>
+        </section>
+
+        <section class="etf-chart-section" aria-labelledby="etfChartTitle">
+          <div class="etf-section-heading">
+            <p class="eyebrow">Grafikon</p>
+            <h2 id="etfChartTitle">Portfólióérték és saját befizetés évenként</h2>
+          </div>
+          <div class="etf-chart-wrap" id="etfChartWrap">
+            <svg
+              id="etfChart"
+              class="etf-chart"
+              role="img"
+              aria-labelledby="etfChartTitle etfChartSummary"
+              viewBox="0 0 760 340"
+              preserveAspectRatio="xMidYMid meet"
+            ></svg>
+            <div class="etf-chart-tooltip" id="etfChartTooltip" hidden></div>
+          </div>
+          <p class="sr-only" id="etfChartSummary">
+            A grafikon a saját befizetés, a becsült portfólióérték és az inflációval korrigált érték alakulását mutatja.
+          </p>
+          <div class="etf-chart-legend" aria-hidden="true">
+            <span><i class="legend-invested"></i>Saját befizetés</span>
+            <span><i class="legend-balance"></i>Portfólióérték</span>
+            <span><i class="legend-real"></i>Mai vásárlóérték</span>
+          </div>
+        </section>
+
+        <details class="etf-yearly" id="etfYearlyDetails">
+          <summary>Éves bontás megtekintése</summary>
+          <div class="etf-table-wrap">
+            <table>
+              <caption>
+                Éves becsült befizetés, hozam és portfólióérték
+              </caption>
+              <thead>
+                <tr>
+                  <th>Év</th>
+                  <th>Adott évben befizetett összeg</th>
+                  <th>Addigi teljes saját befizetés</th>
+                  <th>Adott év becsült hozama</th>
+                  <th>Portfólió év végi értéke</th>
+                  <th>Inflációval korrigált érték</th>
+                </tr>
+              </thead>
+              <tbody id="yearlyTableBody">
+                <tr>
+                  <td colspan="6">Adj meg adatokat az éves bontáshoz.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
       </section>
 
-      <!-- SEO -->
-      <section class="article">
+      <section class="article etf-guide">
         <div class="info-box">
-          <strong>Tipp:</strong> A hosszú távú befektetésnél a kamatos kamat a
-          legnagyobb erő.
+          <strong>Röviden:</strong> az ETF kalkulátor nem azt mondja meg, mi fog
+          történni a piacon, hanem azt teszi láthatóvá, hogy a befizetés, az
+          időtáv, a költség és az infláció hogyan változtathatja a hosszú távú
+          pénzügyi képet.
         </div>
 
         <h2>Mi az ETF?</h2>
         <p>
-          Az ETF (tőzsdén kereskedett alap) egy befektetési forma, amely több
-          részvényt vagy eszközt tartalmaz. Segítségével egyszerre több
-          vállalatba fektethetsz.
+          Az ETF, vagyis tőzsdén kereskedett alap olyan befektetési eszköz,
+          amely egyetlen terméken keresztül több részvényt, kötvényt, árupiaci
+          eszközt vagy ezek valamilyen kosarát követheti. A befektető nem külön-külön
+          vásárolja meg az összes mögöttes értékpapírt, hanem egy alap jegyét veszi
+          meg a tőzsdén.
         </p>
-
-        <h2>Hogyan működik a kamatos kamat?</h2>
         <p>
-          A hozam nemcsak az eredeti befektetésedre, hanem a már megszerzett
-          nyereségre is számítódik. Ez hosszú távon exponenciális növekedést
-          eredményez.
+          A legnagyobb előnye az egyszerű diverzifikáció: egy széles piaci ETF
+          akár több száz vagy több ezer vállalat teljesítményéhez adhat kitettséget.
+          Ez nem szünteti meg a kockázatot, de csökkentheti annak esélyét, hogy egyetlen
+          vállalat problémája határozza meg az egész befektetésed sorsát.
         </p>
 
-        <h2>Példa</h2>
+        <h2>Hogyan működik az ETF-befektetés?</h2>
         <p>
-          Ha havonta 20 000 Ft-ot fektetsz be 7%-os hozammal 20 éven keresztül,
-          a befektetésed több millió forintra nőhet.
+          Az ETF árfolyama a mögöttes eszközök értékével együtt mozog. Ha a kosárban
+          lévő piacok emelkednek, az ETF értéke is nőhet; ha esnek, az ETF árfolyama
+          is csökkenhet. A hozam jöhet árfolyamnyereségből, osztalékból vagy ezek
+          kombinációjából, de adózás, devizaárfolyam és költségek is befolyásolják
+          a tényleges eredményt.
         </p>
-        <h2>Milyen hozam várható ETF befektetés esetén?</h2>
 
+        <h2>Mit jelent a várható éves hozam?</h2>
         <p>
-          Az ETF-ek várható hozama nagyban függ a választott piactól, az
-          időtávtól és a gazdasági környezettől. Történelmi adatok alapján a
-          széles körben diverzifikált részvénypiaci ETF-ek hosszú távon gyakran
-          évi 6-10% közötti átlagos hozamot értek el, azonban a múltbeli
-          teljesítmény nem jelent garanciát a jövőre nézve.
+          A kalkulátorban megadott éves hozam feltételezés. Nem biztos jövőbeni
+          eredmény, hanem egy számítási alap, amellyel modellezni lehet a lehetséges
+          pályákat. A tőzsde nem egyenletesen hoz évről évre: lehetnek kiemelkedő,
+          gyenge vagy akár veszteséges időszakok is.
         </p>
 
+        <h2>Kamatos kamat és hosszú időtáv</h2>
         <p>
-          A rövid távú árfolyam-ingadozások természetesek. Egy jól megválasztott
-          ETF befektetés esetén általában a hosszú távú, rendszeres befektetés
-          bizonyul eredményes stratégiának.
+          A kamatos kamat lényege, hogy a korábbi hozam is újabb hozam alapjává
+          válhat. Ezért számít sokat az idő: ugyanaz a havi befizetés hosszabb
+          időtávon aránytalanul nagyobb eredményt hozhat, mint rövid távon. A hosszú
+          időtáv ugyanakkor nem teszi kockázatmentessé a befektetést.
         </p>
 
-        <h2>Hogyan használd az ETF kalkulátort?</h2>
-
+        <h2>Mi az a TER, és miért fontos?</h2>
         <p>
-          Add meg a kezdőtőkéd összegét, a rendszeresen befektetni kívánt havi
-          összeget, a várható éves hozamot és a befektetés időtartamát években.
+          A TER az ETF éves teljes költségmutatója. Ez a költség nem külön számlaként
+          érkezik, hanem az alap teljesítményét csökkenti. Egy 0,20%-os és egy 0,80%-os
+          költség első ránézésre nem tűnik nagy különbségnek, de több évtized alatt
+          látványos eltérést okozhat a végösszegben.
         </p>
 
+        <h2>Infláció, nominális érték és reálérték</h2>
         <p>
-          A kalkulátor ezután kiszámolja a befektetés várható jövőbeli értékét a
-          kamatos kamat hatásának figyelembevételével. Az eredmény becslés,
-          amely segíthet a hosszú távú pénzügyi tervezésben.
+          A nominális érték azt mutatja, mennyi forintod lehet a jövőben. A reálérték
+          azt becsüli, hogy ez mai vásárlóerőn körülbelül mennyit érhet. Ha a portfólió
+          20 év múlva 30 millió forintot ér, az nem ugyanazt jelenti, mint ma 30 millió
+          forint, mert közben az árak is változhatnak.
         </p>
 
-        <h2>Miért fontos a rendszeres ETF befektetés?</h2>
-
+        <h2>Miért csak becslés az eredmény?</h2>
         <p>
-          A rendszeres befektetés egyik legnagyobb előnye, hogy nem kell a piac
-          időzítésével foglalkoznod. Ha minden hónapban ugyanakkora összeget
-          fektetsz be, akkor magasabb és alacsonyabb árfolyamokon is vásárolsz,
-          ami hosszú távon kiegyensúlyozhatja a piaci mozgások hatását.
+          A kalkulátor havi bontásban számol, figyelembe veszi a TER-t, az inflációt
+          és a befizetések emelését, de nem látja előre a piaci válságokat, a jövőbeli
+          adózást, a devizaárfolyamokat vagy az ETF pontos összetételének változását.
+          Ezért a számítás tervezési segédlet, nem befektetési döntés helyettesítője.
         </p>
 
-        <p>
-          Sok befektető ezért választ havi rendszeres ETF vásárlást ahelyett,
-          hogy egyetlen nagyobb összeget fektetne be egyszerre.
-        </p>
+        <h2>Kapcsolódó kalkulátorok</h2>
+        <div class="related-links etf-related-links">
+          <a href="kamatos-kamat-kalkulator.html">Kamatos kamat kalkulátor</a>
+          <a href="inflacio-kalkulator.html">Infláció kalkulátor</a>
+          <a href="osztalek-kalkulator.html">Osztalék kalkulátor</a>
+          <a href="milliomos-kalkulator.html">Mikor leszek milliomos?</a>
+          <a href="../penzugyi.html">Pénzügyi kalkulátorok</a>
+        </div>
 
+        <h2>Gyakori kérdések ETF befektetés előtt</h2>
+        <div class="faq-list" id="gyik">
+          <details>
+            <summary>Garantálja a kalkulátor az ETF-befektetés jövőbeni értékét?</summary>
+            <p>
+              Nem. A kalkulátor matematikai becslést készít a megadott feltételek
+              alapján. A tényleges piaci teljesítmény ennél jobb és rosszabb is lehet.
+            </p>
+          </details>
+          <details>
+            <summary>Miért szerepel külön a TER a számításban?</summary>
+            <p>
+              Mert az éves alapkezelési költség hosszú idő alatt jelentősen csökkentheti
+              a portfólió várható értékét. A kalkulátor megmutatja a becsült költséghatást is.
+            </p>
+          </details>
+          <details>
+            <summary>Mi a különbség a nominális és a mai vásárlóérték között?</summary>
+            <p>
+              A nominális érték a jövőbeni forintösszeg. A mai vásárlóérték azt becsüli,
+              hogy ez inflációval korrigálva nagyjából mennyit érne mai pénzben.
+            </p>
+          </details>
+          <details>
+            <summary>Miért számít a havi befizetés éves emelése?</summary>
+            <p>
+              Ha a bevételed idővel nő, a befizetés emelése segíthet tartani a tempót
+              az inflációval és gyorsíthatja a cél elérését. A kalkulátor ezt éves lépésekben kezeli.
+            </p>
+          </details>
+          <details>
+            <summary>Használható az ETF kalkulátor nyugdíjcél tervezésére?</summary>
+            <p>
+              Igen, előzetes becslésre alkalmas, de nyugdíjcél esetén érdemes külön figyelni
+              az időtávra, adózásra, devizakitettségre, kockázattűrésre és a likvid tartalékra.
+            </p>
+          </details>
+          <details>
+            <summary>Mi történik, ha a nettó hozam negatív?</summary>
+            <p>
+              A kalkulátor ilyenkor is számol, de az eredmény csökkenő vagy lassabban
+              növekvő portfóliót mutathat. Ez segít látni, hogy a költség és a gyenge
+              hozam milyen hatással lehet a hosszú távú tervre.
+            </p>
+          </details>
+        </div>
       </section>
 
       <section class="article-recommendation">
         <h2>Hasznos pénzügyi téma</h2>
-
         <p>
-          A befektetések mellett egyre többen kezelnek több pénznemet, váltanak
-          devizát vagy utalnak külföldre. Ha érdekelnek az ilyen pénzügyi
-          megoldások, érdemes megismerned a Wise működését is.
+          ETF-eknél gyakori, hogy a befektetés devizája eltér a mindennapi kiadásaid
+          pénznemétől. Ha több pénznemet kezelsz, külföldre utalsz vagy devizát váltasz,
+          érdemes megismerned a Wise működését is.
         </p>
-
         <a
           href="../landing-pages/wise/wise.html"
           target="_blank"
@@ -168,52 +451,10 @@
           Wise bemutató →
         </a>
       </section>
-    <section class="adsense-content" data-adsense-upgrade="etf">
-      <h2>ETF befektetés tervezése számokkal, nem érzésből</h2>
-      <p>Az ETF kalkulátor azt segít megbecsülni, hogyan alakulhat egy tőzsdén kereskedett alapba épített hosszú távú befektetés. Az ETF-ek népszerűsége részben abból fakad, hogy sok értékpapírt foghatnak össze egyetlen termékben, de ettől még befektetési kockázatot hordoznak.</p>
-      <p>A kalkulátor különösen hasznos, ha szeretnéd látni, mit jelent a kezdőtőke, a havi befizetés, a feltételezett hozam és az időtáv együtt. Nem jövőt jósol, hanem forgatókönyveket tesz összehasonlíthatóvá.</p>
-
-      <h3>Hogyan működik a számítás?</h3>
-      <p>A számítás a kezdő összeget, a rendszeres befizetést, az éves hozamfeltételezést és az időtávot használja. A kamatos kamat elve itt is fontos: a befektetés hozama hosszabb távon újabb hozam alapjává válhat. A költségek, adózás és piaci mozgások a tényleges eredményt befolyásolják.</p>
-
-      <div class="example-box">
-        <h3>Konkrét példaszámítás</h3>
-        <p>Ha 5 000 000 Ft kezdőtőkével indulsz, havonta 100 000 Ft-ot fektetsz be, és 15 évre évi 7% feltételezett hozammal számolsz, a modell 45 millió Ft körüli végösszeget is mutathat. Ez nem ígéret, hanem matematikai forgatókönyv.</p>
-      </div>
-
-      <h3>Mikor hasznos ez a kalkulátor?</h3>
-      <ul>
-        <li>hosszú távú befektetési cél tervezésekor</li>
-        <li>rendszeres megtakarítás hatásának vizsgálatakor</li>
-        <li>hozamforgatókönyvek összehasonlításakor</li>
-        <li>nyugdíj- vagy vagyonépítési gondolkodásnál</li>
-      </ul>
-
-      <div class="notice-box">
-        <strong>Fontos tudni:</strong> Az ETF árfolyama csökkenhet is, akár hosszabb ideig. Befektetés előtt értsd meg az alap összetételét, devizáját, költségét, kockázatát és adózási környezetét.
-      </div>
-
-      <h3>Gyakori kérdések</h3>
-      <div class="faq-list">
-        <details><summary>Mi az ETF?</summary><p>Tőzsdén kereskedett alap, amely jellemzően több eszközt követ vagy tartalmaz.</p></details>
-        <details><summary>Garantált a kalkulált hozam?</summary><p>Nem. A hozam csak feltételezés, a piac ettől eltérhet.</p></details>
-        <details><summary>Miért fontos a költség?</summary><p>Mert a díjak hosszú távon jelentősen csökkenthetik a végösszeget.</p></details>
-        <details><summary>Devizakockázat is van?</summary><p>Igen, ha a befektetés devizája eltér attól, amiben a kiadásaid vannak.</p></details>
-        <details><summary>Kezdőknek való?</summary><p>Csak akkor, ha értik az alapfogalmakat és nem rövid távú pénzt kockáztatnak.</p></details>
-      </div>
-
-      <h3>Kapcsolódó kalkulátorok</h3>
-      <div class="related-links">
-        <a href="kamatos-kamat-kalkulator.html">Kamatos kamat kalkulátor</a>
-        <a href="inflacio-kalkulator.html">Infláció kalkulátor</a>
-        <a href="milliomos-kalkulator.html">Mikor leszek milliomos?</a>
-        <a href="deviza-atvalto-kalkulator.html">Deviza átváltó</a>
-      </div>
-    </section>
     </main>
 
     <div id="footer"></div>
     <script src="../js/utils.js"></script>
-    <script src="../js/penzugyi/etf.js" defer></script>
+    <script src="../js/penzugyi/etf.js?v=20260627-2" defer></script>
   </body>
 </html>
