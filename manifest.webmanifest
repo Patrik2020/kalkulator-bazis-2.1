@@ -1,0 +1,26 @@
+{
+  "id": "./",
+  "name": "KalkulátorBázis",
+  "short_name": "KBázis",
+  "description": "Ingyenes online kalkulátorok pénzügyekhez, építkezéshez, egészséghez, autózáshoz és mindennapi számításokhoz.",
+  "lang": "hu-HU",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0b66f2",
+  "icons": [
+    {
+      "src": "favicon/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "favicon/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
