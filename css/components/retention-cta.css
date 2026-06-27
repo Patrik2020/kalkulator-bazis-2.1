@@ -1,0 +1,184 @@
+.retention-cta {
+  background:
+    linear-gradient(135deg, rgba(11, 102, 242, 0.08), rgba(45, 212, 191, 0.08)),
+    var(--surface, #ffffff);
+  border: 1px solid rgba(11, 102, 242, 0.18);
+  border-radius: 8px;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.08);
+  display: grid;
+  gap: 16px;
+  margin-top: 22px;
+  overflow: hidden;
+  padding: 18px;
+}
+
+.retention-cta[hidden] {
+  display: none !important;
+}
+
+.retention-cta.is-revealed {
+  animation: retentionCtaIn 0.28s ease-out both;
+}
+
+.retention-cta-copy {
+  display: grid;
+  gap: 8px;
+}
+
+.retention-cta-kicker {
+  color: var(--primary, #0b66f2);
+  font-size: 0.82rem;
+  font-weight: 850;
+  letter-spacing: 0;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.retention-cta h2 {
+  color: var(--text, #111827);
+  font-size: clamp(1.15rem, 2.2vw, 1.55rem);
+  line-height: 1.22;
+  margin: 0;
+}
+
+.retention-cta-copy p:not(.retention-cta-kicker),
+.retention-cta-guide,
+.retention-cta-status {
+  color: var(--text-light, #64748b);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.retention-cta-actions {
+  display: grid;
+  gap: 10px;
+}
+
+.retention-cta-button {
+  align-items: center;
+  background: var(--surface, #ffffff);
+  border: 1px solid rgba(11, 102, 242, 0.22);
+  border-radius: 8px;
+  color: var(--text, #111827);
+  cursor: pointer;
+  display: inline-flex;
+  font: inherit;
+  font-weight: 850;
+  gap: 9px;
+  justify-content: center;
+  min-height: 46px;
+  padding: 11px 13px;
+  text-align: center;
+  width: 100%;
+}
+
+.retention-cta-button[hidden] {
+  display: none !important;
+}
+
+.retention-cta-button:hover,
+.retention-cta-button:focus-visible {
+  background: rgba(11, 102, 242, 0.08);
+  border-color: rgba(11, 102, 242, 0.4);
+  color: var(--primary, #0b66f2);
+  outline: none;
+}
+
+.retention-cta-button span[aria-hidden="true"] {
+  flex: 0 0 auto;
+  font-size: 1.08em;
+  line-height: 1;
+}
+
+.retention-cta-panels {
+  display: grid;
+  gap: 10px;
+}
+
+.retention-cta-guide {
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.retention-cta-guide[hidden] {
+  display: none !important;
+}
+
+.retention-cta-guide p {
+  margin: 0;
+}
+
+.retention-cta-guide label {
+  color: var(--text, #111827);
+  display: block;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.retention-cta-guide input {
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #cbd5e1);
+  border-radius: 8px;
+  color: var(--text, #111827);
+  font: inherit;
+  min-height: 44px;
+  padding: 10px 12px;
+  width: 100%;
+}
+
+.retention-cta-status {
+  min-height: 1.2em;
+}
+
+html[data-theme="dark"] .retention-cta {
+  background:
+    linear-gradient(135deg, rgba(110, 168, 255, 0.12), rgba(45, 212, 191, 0.1)),
+    var(--surface, #172033);
+  border-color: rgba(110, 168, 255, 0.22);
+  box-shadow: 0 18px 44px rgba(2, 6, 23, 0.28);
+}
+
+html[data-theme="dark"] .retention-cta-button,
+html[data-theme="dark"] .retention-cta-guide,
+html[data-theme="dark"] .retention-cta-guide input {
+  background: var(--surface-secondary, #1c273a);
+  border-color: var(--border, #36455d);
+  color: var(--text, #f1f5f9);
+}
+
+html[data-theme="dark"] .retention-cta-copy p:not(.retention-cta-kicker),
+html[data-theme="dark"] .retention-cta-guide,
+html[data-theme="dark"] .retention-cta-status {
+  color: var(--text-light, #c4cfdd);
+}
+
+@keyframes retentionCtaIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 680px) {
+  .retention-cta {
+    padding: 20px;
+  }
+
+  .retention-cta-actions {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .retention-cta.is-revealed {
+    animation: none;
+  }
+}
