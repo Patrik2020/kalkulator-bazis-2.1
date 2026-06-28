@@ -3,124 +3,582 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Osztalék kalkulátor befektetett összeghez és osztalékhozamhoz. Lásd az éves bruttó és a megadott adókulccsal becsült nettó bevételt." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/osztalek-kalkulator.html" />
-<title>Osztalék kalkulátor | Bruttó és nettó bevétel</title>
+    <meta
+      name="description"
+      content="Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
+    />
+    <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/osztalek-kalkulator.html" />
+    <title>Osztalék kalkulátor - havi és éves nettó bevétel</title>
 
     <link rel="stylesheet" href="../css/style.css" />
-    <link rel="stylesheet" href="../css/pages/osztalek.css" />
+    <link rel="stylesheet" href="../css/pages/osztalek.css?v=20260628-1" />
     <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Osztalék kalkulátor | Bruttó és nettó bevétel" />
-  <meta property="og:description" content="Osztalék kalkulátor befektetett összeghez és osztalékhozamhoz. Lásd az éves bruttó és a megadott adókulccsal becsült nettó bevételt." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/osztalek-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Osztalék kalkulátor | Bruttó és nettó bevétel" />
-  <meta name="twitter:description" content="Osztalék kalkulátor befektetett összeghez és osztalékhozamhoz. Lásd az éves bruttó és a megadott adókulccsal becsült nettó bevételt." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-</head>
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="KalkulátorBázis" />
+    <meta property="og:title" content="Osztalék kalkulátor - havi és éves nettó bevétel" />
+    <meta
+      property="og:description"
+      content="Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
+    />
+    <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/osztalek-kalkulator.html" />
+    <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Osztalék kalkulátor - havi és éves nettó bevétel" />
+    <meta
+      name="twitter:description"
+      content="Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
+    />
+    <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  </head>
 
   <body>
     <div id="header"></div>
 
     <main class="container page-osztalek">
-      <!-- HERO -->
-      <section class="hero">
+      <section class="hero dividend-hero">
+        <p class="eyebrow">Osztaléktervező</p>
         <h1>Osztalék kalkulátor</h1>
-        <p>Számold ki, mennyi osztalékot kapsz kézhez adózás után.</p>
+        <p>
+          Becsüld meg a várható éves és havi osztalékbevételedet, számold ki a
+          céljövedelemhez szükséges tőkét, vagy modellezd, hogyan változhat az
+          osztalékod újrabefektetéssel és rendszeres vásárlással.
+        </p>
       </section>
 
-      <!-- KALKULÁTOR -->
-      <section class="card card-calculator">
-        <div class="calc-grid">
+      <section class="card card-calculator dividend-calculator" aria-labelledby="dividendCalculatorTitle">
+        <div class="dividend-card-heading">
           <div>
-            <label for="amount">Befektetett összeg (Ft)</label>
-            <input type="text" id="amount" placeholder="pl. 1 000 000" />
+            <p class="eyebrow">Kalkulátor</p>
+            <h2 id="dividendCalculatorTitle">Osztalékbevétel tervezése</h2>
           </div>
-
-          <div>
-            <label for="yield">Osztalékhozam (%)</label>
-            <input type="number" id="yield" placeholder="pl. 5" />
-          </div>
-
-          <div>
-            <label for="tax">Adó (%)</label>
-            <input type="number" id="tax" value="15" />
-          </div>
+          <p>
+            A kalkulátor a megadott feltételek alapján készít matematikai becslést.
+            Nem végez automatikus adójogi minősítést, ezért az adó- és levonási arányokat
+            saját becslésként add meg.
+          </p>
         </div>
 
-        <div class="result-box">
-          <p>Éves bruttó osztalék:</p>
-          <p id="result-gross">–</p>
+        <fieldset class="dividend-mode-switch" aria-label="Számítási mód">
+          <legend>Mit szeretnél kiszámolni?</legend>
+          <label>
+            <input type="radio" name="dividendMode" value="income" checked />
+            <span>Mennyi osztalékot kaphatok?</span>
+          </label>
+          <label>
+            <input type="radio" name="dividendMode" value="target" />
+            <span>Mekkora tőke kell?</span>
+          </label>
+          <label>
+            <input type="radio" name="dividendMode" value="projection" />
+            <span>Hogyan nőhet az osztalékbevételem?</span>
+          </label>
+        </fieldset>
 
-          <p id="result-net"></p>
-          <p id="result-monthly"></p>
+        <form id="dividendForm" class="dividend-form" novalidate>
+          <div class="calc-grid dividend-input-grid">
+            <div class="input-group dividend-field" data-field="incomeAmount" data-modes="income">
+              <label for="incomeAmount">Befektetett összeg (Ft)</label>
+              <input
+                type="text"
+                id="incomeAmount"
+                inputmode="decimal"
+                autocomplete="off"
+                value="3 000 000"
+                placeholder="pl. 3 000 000"
+                aria-describedby="incomeAmount-help incomeAmount-error"
+              />
+              <small id="incomeAmount-help">Az aktuális osztaléktermelő portfólió becsült értéke.</small>
+              <p class="field-error" id="incomeAmount-error" role="alert"></p>
+            </div>
+
+            <div class="input-group dividend-field" data-field="targetIncome" data-modes="target">
+              <label for="targetIncome">Kívánt osztalékjövedelem (Ft)</label>
+              <input
+                type="text"
+                id="targetIncome"
+                inputmode="decimal"
+                autocomplete="off"
+                value="100 000"
+                placeholder="pl. 100 000"
+                aria-describedby="targetIncome-help targetIncome-error"
+              />
+              <small id="targetIncome-help">Add meg, mekkora havi vagy éves osztalékbevételt szeretnél becsülni.</small>
+              <p class="field-error" id="targetIncome-error" role="alert"></p>
+            </div>
+
+            <fieldset class="dividend-inline-choice" data-modes="target">
+              <legend>Cél időszaka</legend>
+              <label>
+                <input type="radio" name="targetPeriod" value="monthly" checked />
+                <span>Havi cél</span>
+              </label>
+              <label>
+                <input type="radio" name="targetPeriod" value="annual" />
+                <span>Éves cél</span>
+              </label>
+            </fieldset>
+
+            <fieldset class="dividend-inline-choice" data-modes="target">
+              <legend>Cél típusa</legend>
+              <label>
+                <input type="radio" name="targetBasis" value="net" checked />
+                <span>Nettó cél</span>
+              </label>
+              <label>
+                <input type="radio" name="targetBasis" value="gross" />
+                <span>Bruttó cél</span>
+              </label>
+            </fieldset>
+
+            <div class="input-group dividend-field" data-field="initialPortfolio" data-modes="projection">
+              <label for="initialPortfolio">Kezdő portfólió (Ft)</label>
+              <input
+                type="text"
+                id="initialPortfolio"
+                inputmode="decimal"
+                autocomplete="off"
+                value="3 000 000"
+                placeholder="pl. 3 000 000"
+                aria-describedby="initialPortfolio-help initialPortfolio-error"
+              />
+              <small id="initialPortfolio-help">A már meglévő osztaléktermelő befektetés becsült értéke.</small>
+              <p class="field-error" id="initialPortfolio-error" role="alert"></p>
+            </div>
+
+            <div class="input-group dividend-field" data-field="monthlyContribution" data-modes="projection">
+              <label for="monthlyContribution">Rendszeres havi befektetés (Ft)</label>
+              <input
+                type="text"
+                id="monthlyContribution"
+                inputmode="decimal"
+                autocomplete="off"
+                value="50 000"
+                placeholder="pl. 50 000"
+                aria-describedby="monthlyContribution-help monthlyContribution-error"
+              />
+              <small id="monthlyContribution-help">A hónap végén befektetett összeg, amely a következő időszaktól termelhet osztalékot.</small>
+              <p class="field-error" id="monthlyContribution-error" role="alert"></p>
+            </div>
+
+            <div class="input-group dividend-field" data-field="dividendYield">
+              <label for="dividendYield">Éves bruttó osztalékhozam (%)</label>
+              <input
+                type="text"
+                id="dividendYield"
+                inputmode="decimal"
+                value="4"
+                placeholder="pl. 4"
+                aria-describedby="dividendYield-help dividendYield-error"
+              />
+              <small id="dividendYield-help">Becslés, nem garancia. A magas hozam gyakran magasabb kockázattal járhat.</small>
+              <p class="field-error" id="dividendYield-error" role="alert"></p>
+            </div>
+
+            <div class="input-group dividend-field" data-field="simpleDeduction">
+              <label for="simpleDeduction">Becsült teljes adó és levonás (%)</label>
+              <input
+                type="text"
+                id="simpleDeduction"
+                inputmode="decimal"
+                value="15"
+                placeholder="pl. 15"
+                aria-describedby="simpleDeduction-help simpleDeduction-error"
+              />
+              <small id="simpleDeduction-help">Egyszerű mód: egyetlen százalékban adod meg a várható teljes levonást.</small>
+              <p class="field-error" id="simpleDeduction-error" role="alert"></p>
+            </div>
+
+            <div class="input-group dividend-field" data-field="payoutFrequency">
+              <label for="payoutFrequency">Kifizetési gyakoriság</label>
+              <select id="payoutFrequency" aria-describedby="payoutFrequency-help payoutFrequency-error">
+                <option value="12">Havi</option>
+                <option value="4" selected>Negyedéves</option>
+                <option value="2">Féléves</option>
+                <option value="1">Éves</option>
+              </select>
+              <small id="payoutFrequency-help">A havi összeg éves átlag; a tényleges kifizetési időpontok ettől eltérhetnek.</small>
+              <p class="field-error" id="payoutFrequency-error" role="alert"></p>
+            </div>
+
+            <div class="input-group dividend-field" data-field="projectionYears" data-modes="projection">
+              <label for="projectionYears">Időtáv (év)</label>
+              <input
+                type="text"
+                id="projectionYears"
+                inputmode="decimal"
+                value="20"
+                placeholder="pl. 20"
+                aria-describedby="projectionYears-help projectionYears-error"
+              />
+              <small id="projectionYears-help">1 és 60 év közötti időtávval érdemes becsülni.</small>
+              <p class="field-error" id="projectionYears-error" role="alert"></p>
+            </div>
+          </div>
+
+          <fieldset class="dividend-inline-choice" data-modes="projection">
+            <legend>Osztalék kezelése</legend>
+            <label>
+              <input type="radio" name="reinvestDividends" value="yes" checked />
+              <span>Az osztalékot újrabefektetem</span>
+            </label>
+            <label>
+              <input type="radio" name="reinvestDividends" value="no" />
+              <span>Az osztalékot kiveszem</span>
+            </label>
+          </fieldset>
+
+          <details class="dividend-advanced" id="dividendAdvanced">
+            <summary>Haladó beállítások</summary>
+            <div class="dividend-advanced-body">
+              <fieldset class="dividend-inline-choice dividend-tax-choice">
+                <legend>Levonási mód</legend>
+                <label>
+                  <input type="radio" name="taxMode" value="simple" checked />
+                  <span>Egyszerű összesített levonás</span>
+                </label>
+                <label>
+                  <input type="radio" name="taxMode" value="detailed" />
+                  <span>Részletes levonási mód</span>
+                </label>
+              </fieldset>
+
+              <div class="notice-box dividend-tax-note" data-tax-panel="detailed" hidden>
+                Ez egyszerű matematikai becslés. A tényleges adókötelezettség, adóbeszámítás,
+                forrásadó és számlatípus szerinti kezelés eltérhet.
+              </div>
+
+              <div class="calc-grid dividend-input-grid" data-tax-panel="detailed" hidden>
+                <div class="input-group dividend-field" data-field="withholdingTax">
+                  <label for="withholdingTax">Forrásadó vagy külföldi levonás (%)</label>
+                  <input type="text" id="withholdingTax" inputmode="decimal" value="15" aria-describedby="withholdingTax-help withholdingTax-error" />
+                  <small id="withholdingTax-help">A bruttó osztalékból becsült elsődleges levonás.</small>
+                  <p class="field-error" id="withholdingTax-error" role="alert"></p>
+                </div>
+                <div class="input-group dividend-field" data-field="extraTax">
+                  <label for="extraTax">További becsült adó (%)</label>
+                  <input type="text" id="extraTax" inputmode="decimal" value="0" aria-describedby="extraTax-help extraTax-error" />
+                  <small id="extraTax-help">Egyéb, általad becsült százalékos adó vagy levonás.</small>
+                  <p class="field-error" id="extraTax-error" role="alert"></p>
+                </div>
+                <div class="input-group dividend-field" data-field="variableCost">
+                  <label for="variableCost">Kifizetési vagy devizaváltási költség (%)</label>
+                  <input type="text" id="variableCost" inputmode="decimal" value="0" aria-describedby="variableCost-help variableCost-error" />
+                  <small id="variableCost-help">Százalékos költség, amelyet a bruttó osztalékból vonunk le.</small>
+                  <p class="field-error" id="variableCost-error" role="alert"></p>
+                </div>
+              </div>
+
+              <div class="calc-grid dividend-input-grid">
+                <div class="input-group dividend-field" data-field="fixedCost">
+                  <label for="fixedCost">Éves fix költség (Ft)</label>
+                  <input type="text" id="fixedCost" inputmode="decimal" value="0" aria-describedby="fixedCost-help fixedCost-error" />
+                  <small id="fixedCost-help">Éves számla-, adat-, platform- vagy egyéb becsült fix költség.</small>
+                  <p class="field-error" id="fixedCost-error" role="alert"></p>
+                </div>
+
+                <div class="input-group dividend-field" data-field="dividendGrowth" data-modes="projection">
+                  <label for="dividendGrowth">Éves osztaléknövekedés (%)</label>
+                  <input type="text" id="dividendGrowth" inputmode="decimal" value="4" aria-describedby="dividendGrowth-help dividendGrowth-error" />
+                  <small id="dividendGrowth-help">Az egy egységre jutó osztalék feltételezett éves változása.</small>
+                  <p class="field-error" id="dividendGrowth-error" role="alert"></p>
+                </div>
+
+                <div class="input-group dividend-field" data-field="priceGrowth" data-modes="projection">
+                  <label for="priceGrowth">Éves árfolyamváltozás (%)</label>
+                  <input type="text" id="priceGrowth" inputmode="decimal" value="5" aria-describedby="priceGrowth-help priceGrowth-error" />
+                  <small id="priceGrowth-help">Effektív havi rátára alakítva hat az egységárra.</small>
+                  <p class="field-error" id="priceGrowth-error" role="alert"></p>
+                </div>
+
+                <div class="input-group dividend-field" data-field="inflation" data-modes="projection">
+                  <label for="inflation">Éves infláció (%)</label>
+                  <input type="text" id="inflation" inputmode="decimal" value="3" aria-describedby="inflation-help inflation-error" />
+                  <small id="inflation-help">Nem csökkenti a nominális eredményt; a mai vásárlóérték becsléséhez használjuk.</small>
+                  <p class="field-error" id="inflation-error" role="alert"></p>
+                </div>
+
+                <div class="input-group dividend-field" data-field="contributionIncrease" data-modes="projection">
+                  <label for="contributionIncrease">Havi befizetés éves emelése (%)</label>
+                  <input type="text" id="contributionIncrease" inputmode="decimal" value="0" aria-describedby="contributionIncrease-help contributionIncrease-error" />
+                  <small id="contributionIncrease-help">Minden új befektetési év elején változtatja a havi befizetést.</small>
+                  <p class="field-error" id="contributionIncrease-error" role="alert"></p>
+                </div>
+              </div>
+
+              <fieldset class="dividend-stress" data-modes="projection">
+                <legend>Osztalékvágás stresszteszt</legend>
+                <label class="dividend-check">
+                  <input type="checkbox" id="stressEnabled" />
+                  <span>Osztalékvágás modellezése</span>
+                </label>
+                <div class="calc-grid dividend-input-grid">
+                  <div class="input-group dividend-field" data-field="stressCut">
+                    <label for="stressCut">Egyszeri osztalékcsökkentés (%)</label>
+                    <input type="text" id="stressCut" inputmode="decimal" value="30" aria-describedby="stressCut-help stressCut-error" />
+                    <small id="stressCut-help">Például 30% osztalékvágás.</small>
+                    <p class="field-error" id="stressCut-error" role="alert"></p>
+                  </div>
+                  <div class="input-group dividend-field" data-field="stressYear">
+                    <label for="stressYear">Melyik évben történik?</label>
+                    <input type="text" id="stressYear" inputmode="decimal" value="5" aria-describedby="stressYear-help stressYear-error" />
+                    <small id="stressYear-help">Az adott év elején egyszeri vágást alkalmazunk.</small>
+                    <p class="field-error" id="stressYear-error" role="alert"></p>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </details>
+        </form>
+
+        <div class="notice-box dividend-legal-note">
+          <strong>Fontos:</strong> A kalkulátor eredménye becslés, nem minősül befektetési,
+          adózási vagy pénzügyi tanácsadásnak. Az osztalék nem garantált, a vállalat
+          csökkentheti vagy megszüntetheti. Az árfolyam, az adózás, a forrásadó, a
+          devizaárfolyam és a költségek miatt a tényleges eredmény eltérhet a számított értéktől.
+        </div>
+
+        <div class="result-box dividend-result" aria-live="polite">
+          <div class="dividend-result-header">
+            <p class="eyebrow">Eredmény</p>
+            <h2 id="result-heading">Éves nettó osztalék</h2>
+            <p id="result-primary">-</p>
+          </div>
+          <div class="dividend-result-grid" id="resultGrid"></div>
+          <p class="dividend-result-note" id="result-interpretation">
+            Adj meg reális osztalékadatokat, és a kalkulátor frissíti a nettó bevételi becslést.
+          </p>
+          <p class="dividend-warning" id="result-warning" hidden></p>
         </div>
       </section>
 
-      <!-- SEO / TARTALOM -->
-    <section class="adsense-content" data-adsense-upgrade="osztalek">
-      <h2>Osztalék: jövedelemnek tűnik, de befektetési kockázattal jár</h2>
-      <p>Az osztalék kalkulátor azt mutatja meg, hogy egy adott portfólióméret és osztalékhozam mellett mekkora éves vagy havi osztalékbevétel képzelhető el. Hasznos lehet passzív jövedelmi célok első becslésére.</p>
-      <p>Fontos azonban, hogy az osztalék nem garantált bérleti díj vagy fizetés. A vállalat csökkentheti, felfüggesztheti vagy megszüntetheti, az árfolyam pedig közben jelentősen ingadozhat.</p>
-
-      <h3>Hogyan működik a számítás?</h3>
-      <p>A kalkulátor a befektetett összeget megszorozza az osztalékhozammal, majd éves és havi bontásban is értelmezhetővé teszi az eredményt. A valós nettó összegre hatással lehet az adózás, devizaárfolyam, kifizetési gyakoriság és a portfólió összetétele.</p>
-
-      <div class="example-box">
-        <h3>Konkrét példaszámítás</h3>
-        <p>Ha 3 000 000 Ft értékű portfólióval és 4% éves osztalékhozammal számolsz, az éves bruttó osztalék 120 000 Ft, ami havi átlagban 10 000 Ft-nak felel meg. Adózás és árfolyamhatás ezt módosíthatja.</p>
-      </div>
-
-      <h3>Mikor hasznos ez a kalkulátor?</h3>
-      <ul>
-        <li>passzív jövedelmi cél becslésénél</li>
-        <li>osztalékhozamok összehasonlításakor</li>
-        <li>portfólióméret tervezésénél</li>
-        <li>havi bevételi cél visszaszámolásánál</li>
-      </ul>
-
-      <div class="notice-box">
-        <strong>Fontos tudni:</strong> Magas osztalékhozam mögött gyakran magasabb kockázat vagy árfolyamesés is állhat. Ne csak a hozam százalékát nézd, hanem a vállalat és a portfólió minőségét is.
-      </div>
-
-      <h3>Gyakori kérdések</h3>
-      <div class="faq-list">
-        <details><summary>Az osztalék garantált?</summary><p>Nem. A vállalat dönthet az osztalék csökkentéséről vagy elhagyásáról.</p></details>
-        <details><summary>Bruttó vagy nettó eredményt kapok?</summary><p>A kalkulátor jellemzően bruttó becslést ad; adózás és díjak csökkenthetik.</p></details>
-        <details><summary>Miért veszélyes csak osztalékhozamot nézni?</summary><p>Mert a magas hozam mögött árfolyamesés vagy fenntarthatatlan kifizetés is lehet.</p></details>
-        <details><summary>Havi osztalékot jelent az eredmény?</summary><p>Nem feltétlenül. Sok részvény negyedévente, félévente vagy évente fizet.</p></details>
-        <details><summary>Mekkora portfólió kell jelentős jövedelemhez?</summary><p>Ezt a céljövedelem és a reális hozamfeltételezés alapján lehet becsülni.</p></details>
-      </div>
-
-      <div class="notice-box source-note">
-        <strong>Források és tájékoztatás:</strong>
-        az osztalékból származó jövedelem adózása a befektetés típusától,
-        országtól, számlától és az aktuális szabályoktól is függhet. A kalkulátor
-        tájékoztató jellegű becslést ad, nem minősül adó- vagy befektetési
-        tanácsadásnak.
-        <div class="related-links">
-          <a href="https://nav.gov.hu/ado/szja" target="_blank" rel="noopener noreferrer">NAV személyi jövedelemadó információk</a>
-          <a href="https://nav.gov.hu/ugyfeliranytu/adokulcsok_jarulekmertekek/szocialis_hozzajarulasi_ado" target="_blank" rel="noopener noreferrer">NAV szociális hozzájárulási adó</a>
+      <section class="dividend-scenarios" aria-labelledby="dividendScenarioTitle">
+        <div class="dividend-section-heading">
+          <p class="eyebrow">Forgatókönyvek</p>
+          <h2 id="dividendScenarioTitle">Három óvatosan értelmezendő feltételezés</h2>
         </div>
-      </div>
+        <p class="dividend-muted">
+          A forgatókönyvek nem hozam- vagy osztalékígéretek. Eltérő feltételezéseken alapuló becslések.
+        </p>
+        <div class="dividend-scenario-grid" id="scenarioGrid"></div>
+      </section>
 
-      <h3>Kapcsolódó kalkulátorok</h3>
-      <div class="related-links">
-        <a href="etf-kalkulator.html">ETF kalkulátor</a>
-        <a href="kamatos-kamat-kalkulator.html">Kamatos kamat kalkulátor</a>
-        <a href="inflacio-kalkulator.html">Infláció kalkulátor</a>
-        <a href="deviza-atvalto-kalkulator.html">Deviza átváltó</a>
-      </div>
-    </section>
+      <section class="dividend-chart-section" aria-labelledby="dividendChartTitle">
+        <div class="dividend-section-heading">
+          <p class="eyebrow">Grafikon</p>
+          <h2 id="dividendChartTitle">Osztalék és portfólió vizuális becslése</h2>
+        </div>
+        <fieldset class="dividend-chart-mode" data-modes="projection" aria-label="Grafikon típusa">
+          <label>
+            <input type="radio" name="chartMode" value="portfolio" checked />
+            <span>Portfólió alakulása</span>
+          </label>
+          <label>
+            <input type="radio" name="chartMode" value="dividend" />
+            <span>Osztalékjövedelem alakulása</span>
+          </label>
+        </fieldset>
+        <div class="dividend-chart-wrap" id="dividendChartWrap">
+          <svg
+            id="dividendChart"
+            class="dividend-chart"
+            role="img"
+            aria-labelledby="dividendChartTitle dividendChartSummary"
+            viewBox="0 0 760 340"
+            preserveAspectRatio="xMidYMid meet"
+          ></svg>
+          <div class="dividend-chart-tooltip" id="dividendChartTooltip" hidden></div>
+        </div>
+        <p class="sr-only" id="dividendChartSummary">
+          A grafikon az osztalékbevétel, a portfólióérték vagy a szükséges tőke becsült alakulását mutatja.
+        </p>
+        <div class="dividend-chart-legend" id="chartLegend" aria-hidden="true"></div>
+      </section>
+
+      <details class="dividend-yearly" id="dividendYearlyDetails" data-modes="projection">
+        <summary>Éves bontás megtekintése</summary>
+        <div class="dividend-table-wrap">
+          <table>
+            <caption>Éves becsült befizetés, portfólióérték, osztalék és reálérték</caption>
+            <thead>
+              <tr>
+                <th>Év</th>
+                <th>Adott évi saját befizetés</th>
+                <th>Addigi teljes saját befizetés</th>
+                <th>Év végi portfólióérték</th>
+                <th>Éves bruttó osztalék</th>
+                <th>Éves levonás és költség</th>
+                <th>Éves nettó osztalék</th>
+                <th>Újrabefektetett osztalék</th>
+                <th>Kivett osztalék</th>
+                <th>Összes addigi nettó osztalék</th>
+                <th>Következő évi nettó osztalék</th>
+                <th>Mai vásárlóértékű portfólió</th>
+              </tr>
+            </thead>
+            <tbody id="yearlyTableBody">
+              <tr>
+                <td colspan="12">Adj meg adatokat az éves bontáshoz.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+
+      <section class="article dividend-guide">
+        <div class="info-box">
+          <strong>Röviden:</strong> az osztalék kalkulátor nem garantált passzív jövedelmet
+          ígér, hanem megmutatja, hogy a hozam, a levonások, a kifizetési gyakoriság,
+          az újrabefektetés és az infláció hogyan alakíthatja a becsült osztaléktervet.
+        </div>
+
+        <h2>Mi az osztalék?</h2>
+        <p>
+          Az osztalék a vállalat nyereségéből vagy felhalmozott eredményéből kifizetett
+          összeg, amelyet a részvényesek a tulajdoni arányuk alapján kaphatnak. Nem
+          automatikus és nem garantált: a vállalat vezetése és közgyűlése dönthet úgy,
+          hogy csökkenti, felfüggeszti vagy teljesen megszünteti a kifizetést.
+        </p>
+
+        <h2>Mit jelent az osztalékhozam?</h2>
+        <p>
+          Az osztalékhozam azt mutatja meg, hogy az éves bruttó osztalék a befektetett
+          összeg hány százaléka. Ha egy 3 millió forintos portfólió 4% bruttó
+          osztalékhozammal számolható, akkor az éves bruttó osztalék becslés szerint
+          120 000 Ft. A nettó összeg ettől eltérhet az adók, levonások, devizaváltás és
+          egyéb költségek miatt.
+        </p>
+
+        <h2>Bruttó és nettó osztalék</h2>
+        <p>
+          A bruttó osztalék a levonások előtti összeg. A nettó osztalék az, amely a
+          megadott becsült adók és költségek után megmaradhat. A kalkulátor nem alkalmaz
+          automatikusan aktuális adójogi szabályokat, mert a tényleges kezelés függhet
+          az országtól, a számlatípustól, az értékpapírtól, a forrásadótól és az egyéni
+          körülményektől.
+        </p>
+
+        <h2>Miért lehet veszélyes a túl magas osztalékhozam?</h2>
+        <p>
+          A magas osztalékhozam elsőre vonzó, de nem feltétlenül jelent jó befektetést.
+          Gyakran előfordul, hogy a hozam azért magas, mert az árfolyam jelentősen esett,
+          a piac osztalékvágást áraz, vagy a kifizetés hosszú távon nem fenntartható.
+          Osztaléktervezéskor érdemes a vállalat minőségét, adósságát, nyereségességét
+          és diverzifikációját is figyelni.
+        </p>
+
+        <h2>Kifizetési gyakoriság és havi átlag</h2>
+        <p>
+          A részvények és ETF-ek fizethetnek havonta, negyedévente, félévente vagy évente.
+          A kalkulátor havi nettó átlagot is mutat, de ez nem jelenti azt, hogy minden
+          hónapban ugyanakkora összeg érkezik. A havi érték inkább tervezési átlag, amely
+          segíthet a céljövedelem nagyságrendjének megértésében.
+        </p>
+
+        <h2>Osztalék újrabefektetése</h2>
+        <p>
+          Ha az osztalékot újrabefekteted, akkor a nettó kifizetésből további egységeket
+          vásárolsz. Ezek később maguk is osztalékot termelhetnek. Hosszú idő alatt ez
+          látványos különbséget okozhat, de a valós eredményt árfolyam, adózás, deviza és
+          piaci kockázat is módosíthatja.
+        </p>
+
+        <h2>Osztaléknövekedés, árfolyamváltozás és infláció</h2>
+        <p>
+          A hosszú távú modell külön kezeli az egységárat, az egységenkénti osztalékot,
+          a rendszeres vásárlásokat és az újrabefektetést. Az infláció nem újabb levonás:
+          azt becsüli, hogy a jövőbeni forintösszeg mai vásárlóértéken körülbelül mennyit
+          érhet.
+        </p>
+
+        <h2>Mekkora tőke kell egy választott céljövedelemhez?</h2>
+        <p>
+          A céljövedelem mód visszaszámolja, hogy a megadott bruttó osztalékhozam és
+          becsült levonások mellett mekkora portfólióra lehet szükség. Nettó cél esetén
+          a kalkulátor a fix éves költséget is hozzáadja a célhoz, majd felfelé kerekített
+          tőkével újraszámol, hogy a becsült nettó osztalék legalább elérje a célt.
+        </p>
+
+        <h2>Miért csak becslés az eredmény?</h2>
+        <p>
+          Az osztalék és a teljes hozam nem ugyanaz. Egy befektetés hozama jöhet
+          osztalékból, árfolyamnyereségből vagy veszteségből, devizahatásból és költségek
+          változásából. A kalkulátor hasznos tervezési segédlet, de nem helyettesíti az
+          egyedi adózási vagy befektetési döntést.
+        </p>
+
+        <h2>Kapcsolódó kalkulátorok</h2>
+        <div class="related-links dividend-related-links">
+          <a href="etf-kalkulator.html">ETF kalkulátor</a>
+          <a href="kamatos-kamat-kalkulator.html">Kamatos kamat kalkulátor</a>
+          <a href="inflacio-kalkulator.html">Infláció kalkulátor</a>
+          <a href="milliomos-kalkulator.html">Mikor leszek milliomos?</a>
+          <a href="deviza-atvalto-kalkulator.html">Deviza átváltó</a>
+          <a href="../penzugyi.html">Pénzügyi kalkulátorok</a>
+        </div>
+
+        <h2>Gyakori kérdések osztaléktervezés előtt</h2>
+        <div class="faq-list" id="gyik">
+          <details>
+            <summary>Garantált az osztalék?</summary>
+            <p>Nem. A vállalat csökkentheti, felfüggesztheti vagy megszüntetheti az osztalékot.</p>
+          </details>
+          <details>
+            <summary>Mit jelent az osztalékhozam?</summary>
+            <p>Az éves bruttó osztalék és a befektetett összeg arányát mutatja százalékban.</p>
+          </details>
+          <details>
+            <summary>Bruttó vagy nettó osztalékkal számoljak?</summary>
+            <p>Tervezésnél érdemes a nettó becslést nézni, mert a levonások és költségek csökkenthetik a kézhez kapott összeget.</p>
+          </details>
+          <details>
+            <summary>Miért lehet veszélyes a túl magas osztalékhozam?</summary>
+            <p>Mert jelezhet árfolyamesést, fenntarthatatlan kifizetést vagy magasabb üzleti kockázatot.</p>
+          </details>
+          <details>
+            <summary>Milyen gyakran fizetnek osztalékot?</summary>
+            <p>Értékpapírtól függően havonta, negyedévente, félévente vagy évente, de a tényleges időpontok eltérhetnek.</p>
+          </details>
+          <details>
+            <summary>Érdemes újrabefektetni az osztalékot?</summary>
+            <p>Hosszú távon növelheti a portfóliót és a későbbi osztalékot, de a döntés függhet a kockázattűréstől és a céloktól.</p>
+          </details>
+          <details>
+            <summary>Mekkora portfólió kell havi 100 000 Ft osztalékhoz?</summary>
+            <p>Ez a hozamtól és a levonásoktól függ. Például 5% bruttó hozam és 15% levonás mellett körülbelül 28,2 millió Ft szükséges a havi 100 000 Ft nettó célhoz.</p>
+          </details>
+          <details>
+            <summary>Hogyan hat az infláció az osztalékjövedelemre?</summary>
+            <p>Az infláció csökkentheti a jövőbeni osztalék vásárlóerejét, ezért a kalkulátor külön mai vásárlóértéket is mutat.</p>
+          </details>
+          <details>
+            <summary>Az adózás minden befektetésnél ugyanaz?</summary>
+            <p>Nem. Ország, számlatípus, forrásadó, befektetési forma és egyéni helyzet alapján eltérhet, ezért a levonási arányt saját becslésként kell megadni.</p>
+          </details>
+        </div>
+      </section>
+
+      <section class="article-recommendation">
+        <h2>Hasznos pénzügyi téma</h2>
+        <p>
+          Osztalékbefektetésnél gyakori a devizás kitettség. Ha külföldi részvényeket,
+          ETF-eket vagy több pénznemet kezelsz, érdemes előre átgondolni a devizaváltási
+          és utalási költségeket is.
+        </p>
+        <a
+          href="../landing-pages/wise/wise.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="wise-btn"
+        >
+          Wise bemutató
+        </a>
+      </section>
     </main>
 
     <div id="footer"></div>
     <script src="../js/utils.js"></script>
-    <script src="../js/penzugyi/osztalek.js" defer></script>
+    <script src="../js/penzugyi/osztalek.js?v=20260628-1" defer></script>
   </body>
 </html>
