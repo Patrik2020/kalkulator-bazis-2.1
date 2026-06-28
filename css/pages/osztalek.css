@@ -1,30 +1,499 @@
 .page-osztalek {
-  max-width: 620px;
+  max-width: 1040px;
   margin: 0 auto;
 }
 
-.page-osztalek .calc-grid {
+.page-osztalek .eyebrow {
+  margin: 0 0 6px;
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.dividend-hero {
+  margin-bottom: var(--space-lg);
+  text-align: left;
+}
+
+.dividend-hero p:last-child {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.dividend-calculator,
+.dividend-scenarios,
+.dividend-chart-section,
+.dividend-yearly {
+  margin-bottom: var(--space-lg);
+}
+
+.dividend-calculator {
   display: grid;
-  gap: 14px;
+  gap: var(--space-lg);
+  padding: clamp(16px, 4vw, 28px);
+  overflow: hidden;
 }
 
-.page-osztalek input:not([type="checkbox"]):not([type="radio"]) {
+.dividend-card-heading,
+.dividend-section-heading {
+  display: grid;
+  gap: 8px;
+}
+
+.dividend-card-heading h2,
+.dividend-section-heading h2 {
+  margin: 0;
+}
+
+.dividend-card-heading p,
+.dividend-section-heading p,
+.dividend-muted {
+  margin: 0;
+  color: var(--text-light);
+}
+
+.dividend-mode-switch,
+.dividend-inline-choice,
+.dividend-chart-mode,
+.dividend-stress {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.dividend-mode-switch legend,
+.dividend-inline-choice legend,
+.dividend-chart-mode legend,
+.dividend-stress legend {
+  margin-bottom: 8px;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.dividend-mode-switch label,
+.dividend-inline-choice label,
+.dividend-chart-mode label,
+.dividend-check {
+  display: flex;
+  align-items: center;
+  min-height: 46px;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-secondary, #f8fafc);
+  color: var(--text);
+}
+
+.dividend-mode-switch label:has(input:checked),
+.dividend-inline-choice label:has(input:checked),
+.dividend-chart-mode label:has(input:checked),
+.dividend-check:has(input:checked) {
+  border-color: var(--primary);
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.dividend-form {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.dividend-input-grid {
+  align-items: start;
+}
+
+.dividend-field {
+  min-width: 0;
+}
+
+.dividend-field input:not([type="checkbox"]):not([type="radio"]),
+.dividend-field select {
   width: 100%;
+  min-height: 48px;
   padding: 12px;
+  border: 1px solid var(--border);
   border-radius: 8px;
-  border: 1px solid #d0d7e2;
-  background: #f8fafc;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
 }
 
-.page-osztalek .result-box {
-  margin-top: 18px;
-  padding: 20px;
+.dividend-field input:focus,
+.dividend-field select:focus {
+  border-color: var(--primary);
+  outline: 3px solid rgba(37, 99, 235, 0.18);
+  outline-offset: 1px;
+}
+
+.dividend-field small {
+  display: block;
+  margin-top: 6px;
+  color: var(--text-light);
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.field-error {
+  min-height: 1.1em;
+  margin: 6px 0 0;
+  color: var(--danger);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.dividend-field input[aria-invalid="true"],
+.dividend-field select[aria-invalid="true"] {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 3px rgba(180, 35, 24, 0.12);
+}
+
+.dividend-advanced,
+.dividend-yearly {
+  border: 1px solid var(--border);
   border-radius: 8px;
-  background: linear-gradient(135deg, #eef2f7, #e2e8f0);
+  background: var(--surface-secondary, #f8fafc);
+}
+
+.dividend-advanced summary,
+.dividend-yearly summary {
+  cursor: pointer;
+  padding: 14px 16px;
+  color: var(--text);
+  font-weight: 850;
+}
+
+.dividend-advanced-body {
+  display: grid;
+  gap: var(--space-md);
+  padding: 0 16px 16px;
+}
+
+.dividend-tax-note,
+.dividend-legal-note {
+  margin: 0;
+}
+
+.dividend-result {
+  display: grid;
+  gap: var(--space-md);
+  text-align: left;
+}
+
+.dividend-result-header {
   text-align: center;
 }
 
-.page-osztalek #result-gross {
-  font-size: 24px;
-  font-weight: 700;
+.dividend-result-header h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(1rem, 4vw, 1.25rem);
+}
+
+.page-osztalek #result-primary {
+  margin: 8px 0 0;
+  color: var(--text);
+  font-size: clamp(1.8rem, 8vw, 3rem);
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.dividend-result-grid,
+.dividend-scenario-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.dividend-result-card,
+.dividend-scenario {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.dividend-result-card span,
+.dividend-scenario span,
+.dividend-scenario small {
+  color: var(--text-light);
+  font-size: 0.86rem;
+}
+
+.dividend-result-card strong,
+.dividend-scenario strong {
+  color: var(--text);
+  font-size: 1.08rem;
+}
+
+.dividend-result-note {
+  margin: 0;
+  color: var(--text);
+  font-weight: 650;
+  line-height: 1.55;
+}
+
+.dividend-warning {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid rgba(180, 35, 24, 0.25);
+  border-radius: 8px;
+  background: rgba(180, 35, 24, 0.08);
+  color: var(--danger);
+  font-weight: 750;
+}
+
+.dividend-scenarios,
+.dividend-chart-section {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.dividend-chart-mode {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dividend-chart-wrap {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.dividend-chart {
+  display: block;
+  width: 100%;
+  min-height: 230px;
+}
+
+.dividend-chart-grid line,
+.dividend-chart-axis line {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.dividend-chart-grid text,
+.dividend-chart-axis text,
+.dividend-chart-label {
+  fill: var(--text-light);
+  font-size: 12px;
+}
+
+.dividend-chart polyline {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 4;
+}
+
+.dividend-chart-bar {
+  rx: 8;
+}
+
+.line-invested,
+.bar-gross {
+  stroke: #16a34a;
+  fill: #16a34a;
+}
+
+.line-portfolio,
+.line-net,
+.bar-net {
+  stroke: #2563eb;
+  fill: #2563eb;
+}
+
+.line-real,
+.bar-deduction {
+  stroke: #9333ea;
+  fill: #9333ea;
+}
+
+.line-gross {
+  stroke: #0f766e;
+}
+
+.line-withdrawn {
+  stroke: #dc2626;
+}
+
+.dividend-chart-points circle {
+  cursor: pointer;
+  fill: #2563eb;
+  stroke: #ffffff;
+  stroke-width: 2;
+}
+
+.dividend-chart-points circle:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.32);
+  outline-offset: 3px;
+}
+
+.dividend-chart-tooltip {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  display: grid;
+  gap: 3px;
+  max-width: min(340px, calc(100% - 24px));
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.88rem;
+}
+
+.dividend-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+.dividend-chart-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dividend-chart-legend i {
+  width: 22px;
+  height: 4px;
+  border-radius: 999px;
+}
+
+.legend-invested,
+.legend-gross {
+  background: #16a34a;
+}
+
+.legend-portfolio,
+.legend-net {
+  background: #2563eb;
+}
+
+.legend-real {
+  background: #9333ea;
+}
+
+.legend-deduction,
+.legend-withdrawn {
+  background: #dc2626;
+}
+
+.dividend-table-wrap {
+  overflow-x: auto;
+  padding: 0 12px 12px;
+}
+
+.dividend-table-wrap table {
+  width: 100%;
+  min-width: 1180px;
+  border-collapse: collapse;
+  background: var(--surface);
+}
+
+.dividend-table-wrap caption {
+  padding: 0 0 10px;
+  color: var(--text-light);
+  text-align: left;
+}
+
+.dividend-table-wrap th,
+.dividend-table-wrap td {
+  padding: 10px;
+  border: 1px solid var(--border);
+  text-align: right;
+  vertical-align: top;
+}
+
+.dividend-table-wrap th:first-child,
+.dividend-table-wrap td:first-child {
+  text-align: left;
+}
+
+.dividend-guide {
+  line-height: 1.7;
+}
+
+.dividend-related-links {
+  margin: var(--space-md) 0;
+}
+
+html[data-theme="dark"] .dividend-mode-switch label,
+html[data-theme="dark"] .dividend-inline-choice label,
+html[data-theme="dark"] .dividend-chart-mode label,
+html[data-theme="dark"] .dividend-check,
+html[data-theme="dark"] .dividend-advanced,
+html[data-theme="dark"] .dividend-yearly,
+html[data-theme="dark"] .dividend-chart-wrap {
+  background: var(--surface-secondary) !important;
+  border-color: var(--border) !important;
+}
+
+html[data-theme="dark"] .dividend-result-card,
+html[data-theme="dark"] .dividend-scenario,
+html[data-theme="dark"] .dividend-chart-tooltip {
+  background: #111b2d !important;
+  border-color: var(--border) !important;
+}
+
+html[data-theme="dark"] .dividend-chart-points circle {
+  stroke: #111b2d;
+}
+
+@media (min-width: 700px) {
+  .dividend-card-heading {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: start;
+  }
+
+  .dividend-mode-switch,
+  .dividend-inline-choice,
+  .dividend-result-grid,
+  .dividend-scenario-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 900px) {
+  .dividend-mode-switch,
+  .dividend-scenario-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .dividend-result-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .dividend-chart-mode {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  .dividend-calculator {
+    padding: 14px;
+  }
+
+  .dividend-chart {
+    min-height: 210px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-osztalek * {
+    scroll-behavior: auto !important;
+  }
 }
