@@ -102,8 +102,8 @@
       title: "Osztalék kalkulátor",
       url: "kalkulatorok/osztalek-kalkulator.html",
       category: "penzugyi",
-      description: "Osztalék és várható passzív jövedelem számítása.",
-      keywords: "részvény hozam passzív jövedelem",
+      description: "Osztalékbevétel, céljövedelemhez szükséges tőke és hosszú távú újrabefektetés becslése.",
+      keywords: "osztalék részvény hozam passzív jövedelem nettó bevétel újrabefektetés céljövedelem",
       popular: true,
     },
     {

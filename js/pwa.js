@@ -4,7 +4,7 @@
 
   const projectRoot = window.KB_PROJECT_ROOT || "";
   const serviceWorkerPath = `${projectRoot}/sw.js`;
-  const reloadStorageKey = "kb-sw-controller-reload-2026-06-27-etf-pro-fix-v2";
+  const reloadStorageKey = "kb-sw-controller-reload-2026-06-28-dividend-pro-v1";
   let deferredPrompt = null;
   let installed = false;
 
