@@ -278,6 +278,10 @@ const run = async () => {
 
     await navigate();
     await evaluate(`navigator.serviceWorker.ready`);
+    const oldHasController = await evaluate(`!!navigator.serviceWorker.controller`);
+    if (!oldHasController) {
+      await navigate();
+    }
     await sleep(500);
     const oldState = await evaluate(`(async () => ({
       oldLoaded: !!window.__OLD_ETF_JS_LOADED,
@@ -368,7 +372,7 @@ const run = async () => {
         resourceVersions: resources.filter((resource) => /etf\\.(?:css|js)/.test(resource)),
         cacheKeys: await caches.keys(),
         controllerScript: navigator.serviceWorker.controller?.scriptURL || "",
-        reloadGuard: sessionStorage.getItem("kb-sw-controller-reload-2026-06-27-etf-pro-fix-v2")
+        reloadGuard: sessionStorage.getItem("kb-sw-controller-reload-2026-06-28-dividend-pro-v1")
       };
     })()`);
 
@@ -383,7 +387,7 @@ const run = async () => {
     if (numeric(newState.costText) !== 539645) failures.push(`Hibás B kontroll TER-hatás frissítés után: ${newState.costText}`);
     if (newState.rows < 20) failures.push("Az éves táblázat nem frissült 20 sorra.");
     if (!newState.chartPointsOk) failures.push("A grafikon frissítés után üres vagy hibás pontokat tartalmaz.");
-    if (!newState.cacheKeys.includes("kalkulatorbazis-static-2026-06-27-etf-pro-fix-v2")) failures.push("Az új service worker cache-verzió nem aktiválódott.");
+    if (!newState.cacheKeys.includes("kalkulatorbazis-static-2026-06-28-dividend-pro-v1")) failures.push("Az új service worker cache-verzió nem aktiválódott.");
     if (newState.cacheKeys.some((key) => key === "kalkulatorbazis-static-old-etf-cache-first")) failures.push("A régi cache nem törlődött az új SW aktiválása után.");
 
     if (!/havi befektet/i.test(newState.goalState.heading)) failures.push("A celosszeg mod nem valtott at havi befektetes eredmenyre.");
