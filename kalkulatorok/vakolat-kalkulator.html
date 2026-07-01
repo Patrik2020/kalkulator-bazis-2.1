@@ -1,68 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Vakolat kalkulátor falfelület, rétegvastagság és anyagkiadósság alapján. Becsüld meg a szükséges szárazhabarcs mennyiségét ráhagyással." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/vakolat-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Vakolat kalkulátor falfelület, rétegvastagság és anyagkiadósság alapján. Becsüld meg a szükséges szárazhabarcs mennyiségét ráhagyással." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/vakolat-kalkulator.html" rel="canonical"/>
 <title>Vakolat kalkulátor | Habarcs- és anyagszükséglet</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Vakolat kalkulátor | Habarcs- és anyagszükséglet" />
-  <meta property="og:description" content="Vakolat kalkulátor falfelület, rétegvastagság és anyagkiadósság alapján. Becsüld meg a szükséges szárazhabarcs mennyiségét ráhagyással." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/vakolat-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Vakolat kalkulátor | Habarcs- és anyagszükséglet" />
-  <meta name="twitter:description" content="Vakolat kalkulátor falfelület, rétegvastagság és anyagkiadósság alapján. Becsüld meg a szükséges szárazhabarcs mennyiségét ráhagyással." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Vakolat kalkulátor | Habarcs- és anyagszükséglet" property="og:title"/>
+<meta content="Vakolat kalkulátor falfelület, rétegvastagság és anyagkiadósság alapján. Becsüld meg a szükséges szárazhabarcs mennyiségét ráhagyással." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/vakolat-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Vakolat kalkulátor | Habarcs- és anyagszükséglet" name="twitter:title"/>
+<meta content="Vakolat kalkulátor falfelület, rétegvastagság és anyagkiadósság alapján. Becsüld meg a szükséges szárazhabarcs mennyiségét ráhagyással." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="vakolat-kalkulator">
+<section class="hero">
+<h1>Vakolat kalkulátor</h1>
+<p>Becsüld meg a vakolat vagy glettanyag mennyiségét felület és rétegvastagság alapján.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Vakolat- vagy glettanyag mennyiségének becslése</h2>
+<p>A kalkulátor a felület, a tervezett rétegvastagság, a gyártó által megadott fajlagos anyagigény és a zsákméret alapján számol kilogrammot és teljes zsákszámot. Kézi vagy gépi vakolat, illetve megfelelő adatokkal más poranyag előzetes tervezésére használható.</p>
+<p>A legfontosabb bemenet a fogyási adat, amely termékenként eltér. Mindig a konkrét termék adatlapjának kg/m²/mm értékét használd.</p>
+<h2>A képlet</h2><p><strong>Anyag kg = felület × vastagság mm × fogyás kg/m²/mm</strong>. A zsákszám az össztömeg osztva a zsák tömegével, felfelé kerekítve.</p>
+<div class="example-box"><h3>Példa</h3><p>30 m² fal, 10 mm átlagvastagság és 1,4 kg/m²/mm fogyás esetén 420 kg anyag szükséges. 25 kg-os kiszerelésből ez 17 zsák.</p></div>
+<h2>Az átlagvastagság szerepe</h2><p>Egyenetlen falnál a névleges 10 mm nem biztos, hogy valódi átlag. Mélyedések, javítások és lehulló anyag növelhetik a felhasználást. Nagyobb munkánál próbaszakasz vagy helyszíni felmérés pontosabb.</p>
+<h2>Gyakori hibák</h2><ul><li>A rétegvastagságot centiméterben adják meg milliméter helyett.</li><li>Más termék fogyási adatát használják.</li><li>Nem számolnak az aljzat egyenetlenségével és veszteséggel.</li><li>A zsákszámot lefelé kerekítik.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>Glettre is használható?</summary><p>Igen, ha a gyártó ugyanilyen egységben megadott fogyási adatát használod.</p></details>
+<details><summary>Ajtót és ablakot levonjak?</summary><p>Nagy nyílásokat igen, de kávák és javítások miatt maradjon tartalék.</p></details>
+<details><summary>A vizet is számolja?</summary><p>Nem, a keverővíz mennyiségét a gyártó zsákonként adja meg.</p></details>
+<details><summary>Miért lehet több a valós fogyás?</summary><p>Felületi egyenetlenség, vastagabb réteg és kivitelezési veszteség miatt.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="festek-kalkulator.html">Festék kalkulátor</a><a href="gipszkarton-kalkulator.html">Gipszkarton</a><a href="hoszigeteles-kalkulator.html">Hőszigetelés</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="vakolat-kalkulator">
-    <section class="hero">
-      <h1>Vakolat kalkulátor</h1>
-      <p>Becsüld meg a vakolat vagy glettanyag mennyiségét felület és rétegvastagság alapján.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>A névleges vastagság ritkán mindenhol azonos</h2>
-      <p>Élek, javítások, keverési veszteség és lehulló anyag növeli a fogyást. A megengedett egy- vagy többrétegű vastagságot, alapozást és száradási feltételeket a termék adatlapja szerint tartsd be.</p>
-      <h3>Zsákszám felületből és rétegvastagságból</h3>
-      <p>A vakolandó négyzetméter, az átlagos vastagság és a gyártói kg/m²/mm fogyás alapján becsülhető az anyagtömeg. A fal egyenetlenségét több ponton mérve reálisabb átlag adható meg.</p>
-      <h2>Vakolási anyagigény</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>Levonjam a nyílásokat?</summary>
-          <p>Nagy ajtót és ablakot igen, de a kávák felületét add vissza a számításhoz.</p>
-        </details>
-        <details>
-          <summary>Minden vakolat fogyása azonos?</summary>
-          <p>Nem; gipszes, meszes, cementes és gépi termékek kiadóssága eltér, ezért a csomag adatát használd.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

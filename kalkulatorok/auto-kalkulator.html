@@ -1,147 +1,119 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Autós út- és hatótáv kalkulátor: számold ki a fogyasztást, az üzemanyagköltséget és a becsült hatótávot egyetlen eszközben." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/auto-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Autós út- és hatótáv kalkulátor: számold ki a fogyasztást, az üzemanyagköltséget és a becsült hatótávot egyetlen eszközben." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/auto-kalkulator.html" rel="canonical"/>
 <title>Autós út- és hatótáv kalkulátor | Fogyasztás</title>
-
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/auto.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Autós út- és hatótáv kalkulátor | Fogyasztás" />
-  <meta property="og:description" content="Autós út- és hatótáv kalkulátor: számold ki a fogyasztást, az üzemanyagköltséget és a becsült hatótávot egyetlen eszközben." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/auto-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Autós út- és hatótáv kalkulátor | Fogyasztás" />
-  <meta name="twitter:description" content="Autós út- és hatótáv kalkulátor: számold ki a fogyasztást, az üzemanyagköltséget és a becsült hatótávot egyetlen eszközben." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/auto.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Autós út- és hatótáv kalkulátor | Fogyasztás" property="og:title"/>
+<meta content="Autós út- és hatótáv kalkulátor: számold ki a fogyasztást, az üzemanyagköltséget és a becsült hatótávot egyetlen eszközben." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/auto-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Autós út- és hatótáv kalkulátor | Fogyasztás" name="twitter:title"/>
+<meta content="Autós út- és hatótáv kalkulátor: számold ki a fogyasztást, az üzemanyagköltséget és a becsült hatótávot egyetlen eszközben." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
+<div id="header"></div>
+<main class="container page-auto">
+<!-- HERO -->
+<section class="hero">
+<h1>Autós út- és hatótáv kalkulátor</h1>
+<p>Fogyasztás, költség és üzemanyag számítás egy helyen.</p>
+</section>
+<!-- 1. KALKULÁTOR -->
+<section class="card card-calculator">
+<h2>Fogyasztás kalkulátor</h2>
+<div class="calc-grid">
+<div>
+<label for="distance">Megtett távolság (km)</label>
+<input id="distance" type="number"/>
+</div>
+<div>
+<label for="fuelUsed">Elhasznált üzemanyag (liter)</label>
+<input id="fuelUsed" type="number"/>
+</div>
+</div>
+<div class="result-box">
+<p>Fogyasztás:</p>
+<p id="result-consumption">–</p>
+</div>
+</section>
+<!-- 2. KALKULÁTOR -->
+<section class="card card-calculator">
+<h2>Utazási költség kalkulátor</h2>
+<div class="calc-grid">
+<div>
+<label for="distance-cost">Távolság (km)</label>
+<input id="distance-cost" type="number"/>
+</div>
+<div>
+<label for="consumption-cost">Fogyasztás (l/100km)</label>
+<input id="consumption-cost" type="number"/>
+</div>
+<div>
+<label for="fuelPrice">Üzemanyag ár (Ft/l)</label>
+<input id="fuelPrice" type="number"/>
+</div>
+</div>
+<div class="result-box">
+<p>Költség:</p>
+<p id="result-cost">–</p>
+</div>
+</section>
+<!-- 3. KALKULÁTOR -->
+<section class="card card-calculator">
+<h2>Hatótáv kalkulátor</h2>
+<div class="calc-grid">
+<div>
+<label for="tankSize">Tank mérete (liter)</label>
+<input id="tankSize" type="number"/>
+</div>
+<div>
+<label for="consumption-range">Fogyasztás (l/100km)</label>
+<input id="consumption-range" type="number"/>
+</div>
+</div>
+<div class="result-box">
+<p>Hatótáv:</p>
+<p id="result-range">–</p>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Három autós számítás egy oldalon</h2>
+<p>Az összetett autós kalkulátor három külön kérdésre ad választ: mennyi volt a tényleges átlagfogyasztás egy megtett szakaszon, mennyibe kerülhet egy tervezett út, illetve mekkora elméleti hatótáv tartozik a tankban lévő üzemanyaghoz. A három eredmény összefügg, de más bemeneti adatokat igényel.</p>
+<h2>1. Tényleges átlagfogyasztás</h2>
+<p>A fogyasztás képlete: <strong>elhasznált liter / megtett kilométer × 100</strong>. A legjobb összehasonlításhoz teletankolástól teletankolásig mért adatot használj, lehetőleg több tankolás átlagából.</p>
+<div class="example-box"><h3>Példa fogyasztásra</h3><p>Ha 620 km alatt 39,5 liter fogyott, az átlag 39,5 / 620 × 100 = 6,37 l/100 km.</p></div>
+<h2>2. Egy út várható üzemanyagköltsége</h2>
+<p>A szükséges üzemanyag a távolság és fogyasztás szorzata százal osztva. Ezt szorozza a kalkulátor a literárral. Oda-vissza útnál a teljes távolságot add meg, és számolj az autópályadíjjal, parkolással, valamint egyéb költségekkel is.</p>
+<div class="example-box"><h3>Példa útiköltségre</h3><p>240 km, 6,5 l/100 km és 640 Ft/l esetén 15,6 liter, azaz körülbelül 9 984 Ft üzemanyagköltség adódik.</p></div>
+<h2>3. Elméleti hatótáv</h2>
+<p>A hatótáv képlete: <strong>üzemanyag liter / fogyasztás × 100</strong>. A tank méretének megadásakor ne feledd, hogy a névleges kapacitás nem feltétlenül azonos a pillanatnyilag felhasználható mennyiséggel. Mindig hagyj biztonsági tartalékot.</p>
+<h2>Miért térhet el a valós eredmény?</h2>
+<ul><li>városi forgalom, hidegindítás és rövid utak;</li><li>sebesség, emelkedők és erős szél;</li><li>klíma, fűtés, terhelés és tetőcsomagtartó;</li><li>guminyomás, gumiabroncs és műszaki állapot;</li><li>a fedélzeti számítógép és a tankolás mérési hibája.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>Melyik fogyasztási adatot használjam úttervezéshez?</summary><p>Az adott út jellegéhez hasonló korábbi utak átlagát. Autópályára ne feltétlenül a városi értéket add meg.</p></details>
+<details><summary>Miért más a fedélzeti számítógép?</summary><p>A jármű becsült befecskendezési és távolságadatai eltérhetnek a tankolásból számolt értéktől.</p></details>
+<details><summary>Elektromos autóra használható?</summary><p>Nem közvetlenül; ott kWh/100 km, akkukapacitás és áramár szükséges.</p></details>
+<details><summary>A teljes autóköltséget mutatja?</summary><p>Nem. Az értékvesztés, biztosítás, szerviz, adók és kopás külön számolandó.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="auto-fogyasztas-kalkulator.html">Autófogyasztás</a><a href="uzemanyag-koltseg-kalkulator.html">Üzemanyagköltség</a><a href="eves-auto-koltseg-kalkulator.html">Éves autóköltség</a><a href="gumi-meret-kalkulator.html">Gumiméret-váltó</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <div id="header"></div>
 
-  <main class="container page-auto">
-
-    <!-- HERO -->
-    <section class="hero">
-      <h1>Autós út- és hatótáv kalkulátor</h1>
-      <p>Fogyasztás, költség és üzemanyag számítás egy helyen.</p>
-    </section>
-
-    <!-- 1. KALKULÁTOR -->
-    <section class="card card-calculator">
-
-      <h2>Fogyasztás kalkulátor</h2>
-
-      <div class="calc-grid">
-        <div>
-          <label for="distance">Megtett távolság (km)</label>
-          <input type="number" id="distance" />
-        </div>
-
-        <div>
-          <label for="fuelUsed">Elhasznált üzemanyag (liter)</label>
-          <input type="number" id="fuelUsed" />
-        </div>
-      </div>
-
-      <div class="result-box">
-        <p>Fogyasztás:</p>
-        <p id="result-consumption">–</p>
-      </div>
-
-    </section>
-
-    <!-- 2. KALKULÁTOR -->
-    <section class="card card-calculator">
-
-      <h2>Utazási költség kalkulátor</h2>
-
-      <div class="calc-grid">
-        <div>
-          <label for="distance-cost">Távolság (km)</label>
-          <input type="number" id="distance-cost" />
-        </div>
-
-        <div>
-          <label for="consumption-cost">Fogyasztás (l/100km)</label>
-          <input type="number" id="consumption-cost" />
-        </div>
-
-        <div>
-          <label for="fuelPrice">Üzemanyag ár (Ft/l)</label>
-          <input type="number" id="fuelPrice" />
-        </div>
-      </div>
-
-      <div class="result-box">
-        <p>Költség:</p>
-        <p id="result-cost">–</p>
-      </div>
-
-    </section>
-
-    <!-- 3. KALKULÁTOR -->
-    <section class="card card-calculator">
-
-      <h2>Hatótáv kalkulátor</h2>
-
-      <div class="calc-grid">
-        <div>
-          <label for="tankSize">Tank mérete (liter)</label>
-          <input type="number" id="tankSize" />
-        </div>
-
-        <div>
-          <label for="consumption-range">Fogyasztás (l/100km)</label>
-          <input type="number" id="consumption-range" />
-        </div>
-      </div>
-
-      <div class="result-box">
-        <p>Hatótáv:</p>
-        <p id="result-range">–</p>
-      </div>
-
-    </section>
-    
-    <section class="article priority-seo" data-priority-seo="calculator">
-      <h2>Autós költségnél a kis tételek is összeadódnak</h2>
-      <p>Egy út költsége nemcsak az üzemanyagról szól. Autópályadíj, parkolás, kopás, biztosítás és szerviz is része lehet a valós költségnek.</p>
-      <p>Ha rendszeresen autózol, érdemes havi vagy éves szinten is ránézni a teljes fenntartási költségre.</p>
-    </section>
-    <section class="article calculator-guide">
-      <h2>Három külön kérdés egy autós oldalon</h2>
-      <p>A fogyasztás, az út üzemanyagköltsége és a tankkal elérhető hatótáv más-más döntést támogat. Tankolási adatokból valós fogyasztást, út előtt várható kiadást, hosszabb szakasz előtt pedig biztonságos hatótávot becsülhetsz.</p>
-      <h3>A valós út mindig hozzátesz valamit</h3>
-      <p>Forgalom, hidegindítás, tetőcsomagtartó, terhelés, guminyomás és vezetési tempó mind eltérítheti az eredményt. Költségtervezésnél az autópályadíj, parkolás és az autó kopása nincs benne az üzemanyagárban.</p>
-      <h2>Autós számítások röviden</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>Miért tér el a fedélzeti számítógép értéke?</summary>
-          <p>A kijelzett adat kalibráció és mérési módszer miatt eltérhet; a több tankolásból számított átlag megbízhatóbb összevetés.</p>
-        </details>
-        <details>
-          <summary>Nullára tervezhetem a tankot?</summary>
-          <p>Nem. A kijelzett hatótáv becslés, ezért hosszabb úton mindig hagyj érdemi üzemanyag-tartalékot.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/cookie.js" defer></script>
-    <script src="../js/utils.js"></script>
-  <script src="../js/autos/auto-super.js" defer></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/cookie.js"></script>
+<script src="../js/utils.js"></script>
+<script defer="" src="../js/autos/auto-super.js"></script>
 </body>
-
 </html>

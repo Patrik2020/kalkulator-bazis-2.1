@@ -1,68 +1,64 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Nyomás átváltó pascal, kilopascal, bar, atmoszféra és PSI között. Válassz kiinduló és célmértékegységet a gyors konverzióhoz." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/nyomas-atvalto-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Nyomás átváltó pascal, kilopascal, bar, atmoszféra és PSI között. Válassz kiinduló és célmértékegységet a gyors konverzióhoz." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/nyomas-atvalto-kalkulator.html" rel="canonical"/>
 <title>Nyomás átváltó | Pascal, bar, atmoszféra és PSI</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Nyomás átváltó | Pascal, bar, atmoszféra és PSI" />
-  <meta property="og:description" content="Nyomás átváltó pascal, kilopascal, bar, atmoszféra és PSI között. Válassz kiinduló és célmértékegységet a gyors konverzióhoz." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/nyomas-atvalto-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Nyomás átváltó | Pascal, bar, atmoszféra és PSI" />
-  <meta name="twitter:description" content="Nyomás átváltó pascal, kilopascal, bar, atmoszféra és PSI között. Válassz kiinduló és célmértékegységet a gyors konverzióhoz." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Nyomás átváltó | Pascal, bar, atmoszféra és PSI" property="og:title"/>
+<meta content="Nyomás átváltó pascal, kilopascal, bar, atmoszféra és PSI között. Válassz kiinduló és célmértékegységet a gyors konverzióhoz." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/nyomas-atvalto-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Nyomás átváltó | Pascal, bar, atmoszféra és PSI" name="twitter:title"/>
+<meta content="Nyomás átváltó pascal, kilopascal, bar, atmoszféra és PSI között. Válassz kiinduló és célmértékegységet a gyors konverzióhoz." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="nyomas-atvalto-kalkulator">
+<section class="hero">
+<h1>Nyomás átváltó kalkulátor</h1>
+<p>Válts át pascal, bar, atmoszféra és PSI között.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Mire használható a nyomás átváltó?</h2>
+<p>A nyomás ugyanazt a fizikai mennyiséget jelöli, mégis más egységgel találkozhatsz egy autó kézikönyvében, egy kompresszor adattábláján, egy időjárási jelentésben vagy egy műszaki leírásban. A kalkulátor pascal, bar, standard atmoszféra és PSI között vált, így nem kell külön átváltási tényezőket keresned.</p>
+<p>A számítás csak az egységet alakítja át. Nem dönti el, hogy a megadott adat abszolút nyomás vagy a környezeti légnyomáshoz viszonyított túlnyomás. Ez a különbség gépészeti és laboratóriumi számításoknál lényeges lehet.</p>
+<h2>Az átváltás alapja</h2>
+<p>A kalkulátor minden megadott értéket először pascalra vezet vissza, majd abból számolja ki a többi egységet. A használt összefüggések: <strong>1 bar = 100 000 Pa</strong>, <strong>1 atm = 101 325 Pa</strong>, valamint <strong>1 psi ≈ 6 894,76 Pa</strong>. A kijelzett tizedesek kerekítettek, ezért visszafelé átváltva nagyon kis eltérés előfordulhat.</p>
+<div class="example-box"><h3>Példa: guminyomás átváltása</h3><p>Ha a gyártó 2,3 bar hideg guminyomást ír elő, akkor ez 230 000 Pa, körülbelül 2,27 atm és 33,36 psi. A gyakorlatban mindig annak az egységnek megfelelő értéket használd, amelyet a mérőműszer mutat.</p></div>
+<h2>Mit jelent az eredmény?</h2>
+<p>Az átváltott számok ugyanazt a nyomást fejezik ki. Autóguminál az ajtóoszlopon vagy a kézikönyvben szereplő gyártói adat az irányadó; kazánnál, kompresszornál és ipari berendezésnél pedig az adott készülék dokumentációját kell követni. A kalkulátor nem állapít meg biztonságos üzemi nyomást.</p>
+<h2>Gyakori hibák</h2>
+<ul><li>A kPa és a Pa összekeverése ezerszeres eltérést okoz.</li><li>A bar és az atm közel van egymáshoz, de nem azonos.</li><li>A hideg és meleg abroncs nyomása eltérhet.</li><li>Abszolút nyomást nem szabad automatikusan túlnyomásként kezelni.</li></ul>
+<h2>Gyakori kérdések</h2>
+<div class="faq-list" data-accordion="single">
+<details><summary>Mennyi 1 bar PSI-ben?</summary><p>1 bar körülbelül 14,50 psi.</p></details>
+<details><summary>Mennyi 1 atmoszféra barban?</summary><p>1 standard atmoszféra körülbelül 1,01325 bar.</p></details>
+<details><summary>Használható kerékpár- és autógumihoz?</summary><p>Igen, az egységváltás használható, de a megfelelő nyomásértéket mindig a gyártói előírásból vedd.</p></details>
+<details><summary>Miért nem pontosan ugyanazt kapom vissza újabb átváltáskor?</summary><p>A kijelzés kerekítése néhány utolsó tizedesjegynél eltérést okozhat.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="teljesitmeny-atvalto-kalkulator.html">Teljesítmény átváltó</a><a href="energia-atvalto-kalkulator.html">Energia átváltó</a><a href="homerseklet-atvalto-kalkulator.html">Hőmérséklet átváltó</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="nyomas-atvalto-kalkulator">
-    <section class="hero">
-      <h1>Nyomás átváltó kalkulátor</h1>
-      <p>Válts át pascal, bar, atmoszféra és PSI között.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>Abszolút és túlnyomás nem ugyanaz</h2>
-      <p>A műszerek gyakran a légköri nyomáshoz viszonyított túlnyomást mutatják, miközben műszaki számítás abszolút nyomást kérhet. Az egységváltás ezt a referencia-különbséget nem korrigálja automatikusan.</p>
-      <h3>Pascal, bar és psi egy rendszerben</h3>
-      <p>Guminyomás, gépészet vagy időjárási adat esetén ugyanaz a nyomás több egységben jelenhet meg. Átváltás előtt ellenőrizd, hogy tizedesvesszőt és megfelelő nagyságrendet adtál-e meg.</p>
-      <h2>Nyomásegységek</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>Mennyi 1 bar pascalban?</summary>
-          <p>1 bar pontosan 100 000 pascal.</p>
-        </details>
-        <details>
-          <summary>Autóguminál hideg vagy meleg értéket használjak?</summary>
-          <p>A gyártói ajánlás jellemzően hideg abroncsra vonatkozik; az autó kézikönyve az irányadó.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

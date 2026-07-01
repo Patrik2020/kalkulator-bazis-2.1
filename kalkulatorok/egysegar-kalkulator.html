@@ -1,69 +1,63 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/egysegar-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/egysegar-kalkulator.html" rel="canonical"/>
 <title>Egységár kalkulátor | Kiszerelések összehasonlítása</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Egységár kalkulátor | Kiszerelések összehasonlítása" />
-  <meta property="og:description" content="Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/egysegar-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Egységár kalkulátor | Kiszerelések összehasonlítása" />
-  <meta name="twitter:description" content="Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Egységár kalkulátor | Kiszerelések összehasonlítása" property="og:title"/>
+<meta content="Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/egysegar-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Egységár kalkulátor | Kiszerelések összehasonlítása" name="twitter:title"/>
+<meta content="Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="egysegar-kalkulator">
+<section class="hero">
+<h1>Egységár kalkulátor</h1>
+<p>Hasonlítsd össze termékek egységárát kiszerelés alapján.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Hasonlítsd össze a különböző kiszereléseket</h2>
+<p>Az egységár kalkulátor akkor segít, amikor két termék ára önmagában nem hasonlítható össze, mert eltér a tömegük, térfogatuk vagy darabszámuk. Megmutatja, mennyibe kerül ugyanakkora mennyiség: például 1 kilogramm, 1 liter, 100 gramm vagy 1 darab.</p>
+<p>A mezőkben minden mennyiséget ugyanabban az egységben adj meg. Ha a csomagon gramm szerepel, a csomag mennyisége legyen gramm, az összehasonlítási mennyiség pedig 1000, ha kilogrammonkénti árat szeretnél látni. Literes terméknél általában 1 az összehasonlítási mennyiség.</p>
+<h2>Hogyan számol?</h2>
+<p>A képlet: <strong>egységár = csomag ára / csomag mennyisége × összehasonlítási mennyiség</strong>. A kalkulátor nem váltja át magától a grammot kilogrammra vagy a millilitert literre, ezért a harmadik mezővel te határozod meg, milyen mennyiségre kéred az árat.</p>
+<div class="example-box"><h3>Példa: két kávé összehasonlítása</h3><p>Az egyik csomag 250 gramm és 1 799 Ft. Az 1 000 grammra számított egységár: 1 799 / 250 × 1 000 = 7 196 Ft/kg. Egy 500 grammos, 3 399 Ft-os csomag egységára 6 798 Ft/kg, tehát a nagyobb kiszerelés ebben a példában olcsóbb kilogrammonként.</p></div>
+<h2>Az olcsóbb egységár nem mindig jobb vétel</h2>
+<p>Az eredmény a puszta árkülönbséget mutatja. Érdemes figyelembe venni a minőséget, összetételt, lejárati időt, felhasználhatóságot és azt is, hogy a nagyobb csomag valóban elfogy-e. Egy olcsóbb kilogrammonkénti ár pazarlássá válhat, ha a termék egy része megromlik.</p>
+<h2>Gyakori hibák</h2>
+<ul><li>Az egyik terméket grammban, a másikat kilogrammban adják meg átváltás nélkül.</li><li>Az összehasonlítási mennyiségnél 1-et írnak be, miközben Ft/kg eredményt várnak grammban megadott csomagból.</li><li>A lecsöpögtetett tömeg helyett a teljes töltőtömeget használják.</li><li>Akciós többdarabos csomagnál nem a ténylegesen fizetett árat adják meg.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>Hogyan számoljak Ft/kg árat?</summary><p>Add meg a csomag tömegét grammban, majd az összehasonlítási mennyiségnél 1000-et.</p></details>
+<details><summary>Hogyan számoljak Ft/100 g árat?</summary><p>Ha a csomag tömege grammban van, az összehasonlítási mennyiség legyen 100.</p></details>
+<details><summary>Darabárra is használható?</summary><p>Igen. A mennyiséghez írd a darabszámot, az összehasonlítási mennyiséghez pedig 1-et.</p></details>
+<details><summary>Milliliterből literárat hogyan kapok?</summary><p>A mennyiséget milliliterben add meg, az összehasonlítási mennyiség legyen 1000.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="ar-kedvezmeny-kalkulator.html">Árkedvezmény kalkulátor</a><a href="szazalek-kalkulator.html">Százalék kalkulátor</a><a href="havi-koltsegvetes-kalkulator.html">Havi költségvetés</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="egysegar-kalkulator">
-    <section class="hero">
-      <h1>Egységár kalkulátor</h1>
-      <p>Hasonlítsd össze termékek egységárát kiszerelés alapján.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>Különböző kiszerelések közös nevezőn</h2>
-      <div class="content-split">
-        <div><h3>Csak azonos tartalmat hasonlíts össze</h3><p>A nettó tömeg, darabszám, koncentráció és minőség különbségeit is vedd figyelembe. A nagyobb csomag egységára lehet alacsonyabb, de pazarlás esetén mégsem az a gazdaságosabb választás.</p></div>
-        <p>Az egységár megmutatja, mennyibe kerül egy kilogramm, liter, darab vagy más azonos mennyiség. Akciók és eltérő csomagméretek összevetésekor ez gyakran többet mond, mint a polcon látható végösszeg.</p>
-      </div>
-      <h2>Egységáras döntések</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>A csomagolás tömegét beleszámítsam?</summary>
-          <p>Nem, élelmiszernél és terméknél a nettó tömegből vagy térfogatból indulj ki.</p>
-        </details>
-        <details>
-          <summary>Összehasonlítható a darabár és a kilogrammár?</summary>
-          <p>Csak akkor, ha ismered egy darab tömegét és egységes mértékegységre váltasz.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

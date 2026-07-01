@@ -1,68 +1,63 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Utazási idő kalkulátor távolság és átlagsebesség alapján. Becsüld meg a menetidőt, majd tervezz külön tartalékot a megállásokra." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/utazasi-ido-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Utazási idő kalkulátor távolság és átlagsebesség alapján. Becsüld meg a menetidőt, majd tervezz külön tartalékot a megállásokra." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/utazasi-ido-kalkulator.html" rel="canonical"/>
 <title>Utazási idő kalkulátor | Távolság és átlagsebesség</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Utazási idő kalkulátor | Távolság és átlagsebesség" />
-  <meta property="og:description" content="Utazási idő kalkulátor távolság és átlagsebesség alapján. Becsüld meg a menetidőt, majd tervezz külön tartalékot a megállásokra." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/utazasi-ido-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Utazási idő kalkulátor | Távolság és átlagsebesség" />
-  <meta name="twitter:description" content="Utazási idő kalkulátor távolság és átlagsebesség alapján. Becsüld meg a menetidőt, majd tervezz külön tartalékot a megállásokra." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Utazási idő kalkulátor | Távolság és átlagsebesség" property="og:title"/>
+<meta content="Utazási idő kalkulátor távolság és átlagsebesség alapján. Becsüld meg a menetidőt, majd tervezz külön tartalékot a megállásokra." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/utazasi-ido-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Utazási idő kalkulátor | Távolság és átlagsebesség" name="twitter:title"/>
+<meta content="Utazási idő kalkulátor távolság és átlagsebesség alapján. Becsüld meg a menetidőt, majd tervezz külön tartalékot a megállásokra." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="utazasi-ido-kalkulator">
+<section class="hero">
+<h1>Utazási idő kalkulátor</h1>
+<p>Számold ki a várható menetidőt távolság és átlagsebesség alapján.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Menetidő becslése távolságból</h2>
+<p>Az utazási idő kalkulátor a távolság, a teljes útra becsült átlagsebesség és a tervezett pihenők alapján számít várható menetidőt. Használható autós kirándulás, kerékpározás vagy más, közel állandó átlagsebességgel leírható út előzetes tervezéséhez.</p>
+<p>Az átlagsebesség nem azonos a megengedett legnagyobb sebességgel vagy azzal, amit az út egy részén mutat a sebességmérő. Városi szakaszok, forgalom, lehajtók, lassítások és megállások miatt a teljes út átlaga mindig alacsonyabb lehet.</p>
+<h2>A képlet</h2>
+<p>Az alap menetidő: <strong>távolság / átlagsebesség</strong>. A kalkulátor ezt óráról percre váltja, majd hozzáadja a külön megadott pihenőidőt. A váratlan torlódást, határátlépést vagy időjárási késést nem tudja előre jelezni.</p>
+<div class="example-box"><h3>Példa: 360 km-es út</h3><p>360 km távolság 90 km/h teljes útra vetített átlaggal 4 óra tiszta menetidőt jelent. Ha két, egyenként 20 perces pihenőt tervezel, a várható teljes idő 4 óra 40 perc.</p></div>
+<h2>Hogyan válassz reális átlagsebességet?</h2>
+<p>Autópályán sem célszerű automatikusan 130 km/h átlaggal számolni. Egy vegyes, városi és országúti szakaszokat is tartalmazó útnál az átlag akár jóval alacsonyabb lehet. Korábbi hasonló utak navigációs adata vagy egy útvonaltervező által becsült tiszta menetidő jó támpont.</p>
+<h2>Gyakori hibák</h2>
+<ul><li>A maximális sebességet átlagsebességként adják meg.</li><li>Csak az egyirányú távolságot írják be, de oda-vissza eredményt várnak.</li><li>A pihenőt órában adják meg, miközben a mező percet kér.</li><li>A parkolókeresést, tankolást vagy határátlépést nem tervezik bele.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>Oda-vissza útra mit adjak meg?</summary><p>A teljes oda-vissza távolságot írd be, és a mindkét irányra tervezett pihenőt add hozzá.</p></details>
+<details><summary>A dugót figyelembe veszi?</summary><p>Nem. A forgalom hatását csak úgy tudod közelíteni, ha alacsonyabb átlagsebességet használsz.</p></details>
+<details><summary>Miért hosszabb a valós út, mint a számítás?</summary><p>A tényleges forgalom, terelések, megállások és a változó sebesség növelhetik az időt.</p></details>
+<details><summary>Kerékpáros útra is használható?</summary><p>Igen, ha reális kerékpáros átlagsebességet és a pihenőket adod meg.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="uzemanyag-koltseg-kalkulator.html">Üzemanyagköltség</a><a href="sebesseg-atvalto-kalkulator.html">Sebesség átváltó</a><a href="autopalyadij-kalkulator.html">Autópályadíj megosztó</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="utazasi-ido-kalkulator">
-    <section class="hero">
-      <h1>Utazási idő kalkulátor</h1>
-      <p>Számold ki a várható menetidőt távolság és átlagsebesség alapján.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>Menetidő távolságból és átlagsebességből</h2>
-      <p>Az elméleti idő jó útvonal-összehasonlításra és indulási idő becslésére. Reális bemenetként ne a megengedett legnagyobb sebességet, hanem az út típusához illő várható átlagot add meg.</p>
-      <h3>A megállások külön időt jelentenek</h3>
-      <p>Forgalom, pihenő, tankolás, határátkelés és parkolókeresés nincs benne az egyenletes sebességű modellben. Hosszabb útnál biztonsági és pihenőidő-tartalékot is adj a kapott eredményhez.</p>
-      <h2>Menetidő tervezése</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>Autópályán 130 km/h-val számoljak?</summary>
-          <p>Nem célszerű, mert lassítások és forgalom miatt a teljes út átlaga alacsonyabb lesz.</p>
-        </details>
-        <details>
-          <summary>Kompot vagy időzónát kezel a számítás?</summary>
-          <p>Nem; ezek menetrendi, várakozási és helyi idő szerinti korrekciót igényelnek.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

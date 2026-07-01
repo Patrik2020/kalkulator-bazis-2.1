@@ -1,69 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Órabér kalkulátor havi bér és ledolgozott munkaóra alapján. Számold ki a becsült bruttó vagy nettó óradíjat összehasonlításhoz." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/oraber-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Órabér kalkulátor havi bér és ledolgozott munkaóra alapján. Számold ki a becsült bruttó vagy nettó óradíjat összehasonlításhoz." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/oraber-kalkulator.html" rel="canonical"/>
 <title>Órabér kalkulátor | Havi fizetésből óradíj</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Órabér kalkulátor | Havi fizetésből óradíj" />
-  <meta property="og:description" content="Órabér kalkulátor havi bér és ledolgozott munkaóra alapján. Számold ki a becsült bruttó vagy nettó óradíjat összehasonlításhoz." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/oraber-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Órabér kalkulátor | Havi fizetésből óradíj" />
-  <meta name="twitter:description" content="Órabér kalkulátor havi bér és ledolgozott munkaóra alapján. Számold ki a becsült bruttó vagy nettó óradíjat összehasonlításhoz." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Órabér kalkulátor | Havi fizetésből óradíj" property="og:title"/>
+<meta content="Órabér kalkulátor havi bér és ledolgozott munkaóra alapján. Számold ki a becsült bruttó vagy nettó óradíjat összehasonlításhoz." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/oraber-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Órabér kalkulátor | Havi fizetésből óradíj" name="twitter:title"/>
+<meta content="Órabér kalkulátor havi bér és ledolgozott munkaóra alapján. Számold ki a becsült bruttó vagy nettó óradíjat összehasonlításhoz." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="oraber-kalkulator">
+<section class="hero">
+<h1>Órabér kalkulátor</h1>
+<p>Számold ki az órabéred havi bér és munkaóra alapján.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Havi bér átszámítása óradíjra</h2>
+<p>Az órabér kalkulátor a megadott havi bért elosztja a havi munkaórák számával, majd megmutatja egy nyolcórás munkanap egyszerű értékét is. Állásajánlatok, részmunkaidős lehetőségek vagy eltérő óraszámú hónapok összehasonlításához ad gyors támpontot.</p>
+<p>Először döntsd el, bruttó vagy nettó összeget hasonlítasz. A kalkulátor nem von le adót és járulékot, ezért a bevitt bér típusát őrzi meg: bruttóból bruttó, nettóból nettó óradíj készül.</p>
+<h2>A képlet</h2><p><strong>Órabér = havi bér / havi munkaóra</strong>. A nyolcórás nap értéke az órabér nyolcszorosa. A számítás nem tartalmaz pótlékot, túlóradíjat, bónuszt vagy cafeteriaelemet.</p>
+<div class="example-box"><h3>Példa</h3><p>600 000 Ft havi bér és 174 munkaóra mellett az egyszerű óradíj körülbelül 3 448 Ft. Egy nyolcórás nap alapértéke nagyjából 27 586 Ft.</p></div>
+<h2>Melyik óraszámot használd?</h2><p>Átlagos összehasonlításhoz gyakran 174 órával számolnak, de a konkrét hónap munkanapjai eltérnek. Munkaidőkeret, műszakos beosztás vagy részmunkaidő esetén a tényleges elszámolandó órát add meg.</p>
+<h2>Gyakori hibák</h2><ul><li>Bruttó bért nettó óradíjként értelmeznek.</li><li>A jelenléti időt és a fizetett munkaórát összekeverik.</li><li>A pótlékokat kétszer számolják bele.</li><li>A havi bónuszt rendszeres alapbérként kezelik.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>Miért nem egyezik a bérpapírral?</summary><p>A bérpapír adókat, pótlékokat, távollétet és egyéb tételeket is tartalmazhat.</p></details>
+<details><summary>Részmunkaidőnél használható?</summary><p>Igen, a tényleges havi bért és munkaórát add meg.</p></details>
+<details><summary>Túlórát számol?</summary><p>Nem, a túlóra alapját és pótlékát külön kell kezelni.</p></details>
+<details><summary>Vállalkozói óradíjhoz jó?</summary><p>Kiindulásnak igen, de ott költségeket, adót, nem számlázható időt és kockázatot is hozzá kell adni.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="munkaido-kalkulator.html">Munkaidő kalkulátor</a><a href="netto-brutto-kalkulator.html">Nettó–bruttó</a><a href="havi-koltsegvetes-kalkulator.html">Havi költségvetés</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="oraber-kalkulator">
-    <section class="hero">
-      <h1>Órabér kalkulátor</h1>
-      <p>Számold ki az órabéred havi bér és munkaóra alapján.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>Havi jövedelemből valódi óradíj</h2>
-      <div class="content-split">
-        <div><h3>Bruttó, nettó és vállalkozói díj külön fogalom</h3><p>Munkabérnél az adók és pótlékok, vállalkozásnál a költségek, szabadság és kockázat változtatja a kézhez kapott összeget. Ajánlatadáshoz ne csak a kívánt nettó jövedelmet oszd el 160 órával.</p></div>
-        <p>A havi összeg és ledolgozott órák alapján kiszámítható az alap órabér. Vállalkozói díjnál azonban a számlázható órák száma kisebb a teljes munkaidőnél, mert adminisztráció és ügyfélszerzés is időt visz el.</p>
-      </div>
-      <h2>Óradíj-számítás</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>A fizetett szabadságot beleszámítsam?</summary>
-          <p>Alkalmazotti összehasonlításnál igen, vállalkozói célárnál pedig a nem számlázható napokat külön fedezni kell.</p>
-        </details>
-        <details>
-          <summary>Miért más a túlóra óradíja?</summary>
-          <p>Pótlék vagy eltérő megállapodás kapcsolódhat hozzá, amit az alap órabér önmagában nem tartalmaz.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

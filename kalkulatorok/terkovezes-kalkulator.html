@@ -1,68 +1,63 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Térkövezés kalkulátor felület, térkőméret és ráhagyás alapján. Becsüld meg a szükséges darabszámot és anyagmennyiséget." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/terkovezes-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Térkövezés kalkulátor felület, térkőméret és ráhagyás alapján. Becsüld meg a szükséges darabszámot és anyagmennyiséget." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/terkovezes-kalkulator.html" rel="canonical"/>
 <title>Térkövezés kalkulátor | Térkő és ágyazat mennyisége</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Térkövezés kalkulátor | Térkő és ágyazat mennyisége" />
-  <meta property="og:description" content="Térkövezés kalkulátor felület, térkőméret és ráhagyás alapján. Becsüld meg a szükséges darabszámot és anyagmennyiséget." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/terkovezes-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Térkövezés kalkulátor | Térkő és ágyazat mennyisége" />
-  <meta name="twitter:description" content="Térkövezés kalkulátor felület, térkőméret és ráhagyás alapján. Becsüld meg a szükséges darabszámot és anyagmennyiséget." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Térkövezés kalkulátor | Térkő és ágyazat mennyisége" property="og:title"/>
+<meta content="Térkövezés kalkulátor felület, térkőméret és ráhagyás alapján. Becsüld meg a szükséges darabszámot és anyagmennyiséget." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/terkovezes-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Térkövezés kalkulátor | Térkő és ágyazat mennyisége" name="twitter:title"/>
+<meta content="Térkövezés kalkulátor felület, térkőméret és ráhagyás alapján. Becsüld meg a szükséges darabszámot és anyagmennyiséget." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="terkovezes-kalkulator">
+<section class="hero">
+<h1>Térkövezés kalkulátor</h1>
+<p>Számold ki térkő, szegélykő és ráhagyás becsült mennyiségét.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Térkődarabszám és szegélyhossz becslése</h2>
+<p>A térkövezés kalkulátor egy téglalap alakú felület hosszából és szélességéből kiszámítja a burkolandó területet, majd a négyzetméterenkénti térkőigény és a ráhagyás alapján megbecsüli a szükséges darabszámot. Emellett megadja a külső kerületet, amely kiindulópont lehet a szegélykő tervezéséhez.</p>
+<p>A tényleges kivitelezéshez az ágyazat, alapréteg, geotextília, vízelvezetés, lejtés és tömörítés külön tervezést igényel. A kalkulátor ezek mennyiségét nem számolja.</p>
+<h2>A számítás képlete</h2>
+<p>Az alapterület <strong>hossz × szélesség</strong>. A szükséges térkődarab: <strong>terület × db/m² × (1 + ráhagyás / 100)</strong>, felfelé kerekítve. A kerület téglalapnál <strong>2 × (hossz + szélesség)</strong>.</p>
+<div class="example-box"><h3>Példa egy 6 × 4 méteres beállóra</h3><p>A terület 24 m². Ha a választott kőből 36 db szükséges négyzetméterenként, 5% ráhagyással 24 × 36 × 1,05 = 907,2, vagyis legalább 908 darab kő kell. A külső kerület 20 méter.</p></div>
+<h2>Mikor kell nagyobb ráhagyás?</h2>
+<p>Egyenes soros fektetésnél és egyszerű téglalapnál kisebb, íves széleknél, átlós mintánál, sok aknafedélnél vagy összetett rajzolatnál nagyobb vágási veszteség várható. A pótlás miatt is hasznos lehet néhány tartalék kő ugyanabból a gyártási tételből.</p>
+<h2>Gyakori hibák</h2>
+<ul><li>A raklap vagy csomag m²-adatát darab/m² értékként adják meg.</li><li>A behajtó szabálytalan részeit nem bontják külön alakzatokra.</li><li>A szegély hosszából nem vonják le a nyitott kapubejárót.</li><li>Nem veszik figyelembe a kiválasztott minta vágási igényét.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>Hol találom a db/m² adatot?</summary><p>A gyártó termékadatlapján vagy a kereskedő leírásában. Formátumtól függően jelentősen eltérhet.</p></details>
+<details><summary>A szegélykő darabszámát is megkapom?</summary><p>A kalkulátor méterben adja meg a kerületet. A darabszámhoz oszd el a tényleges szegélykő hosszával, és kerekíts felfelé.</p></details>
+<details><summary>Az alapozó zúzottkő benne van?</summary><p>Nem. Az alapréteg vastagságát és tömörödését a terhelés és a talaj alapján kell tervezni.</p></details>
+<details><summary>Szabálytalan területet hogyan számoljak?</summary><p>Bontsd egyszerű téglalapokra vagy háromszögekre, majd add össze a részeredményeket.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="beton-kalkulator.html">Beton kalkulátor</a><a href="csempe-kalkulator.html">Csempe kalkulátor</a><a href="padlo-burkolat-kalkulator.html">Padlóburkolat kalkulátor</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="terkovezes-kalkulator">
-    <section class="hero">
-      <h1>Térkövezés kalkulátor</h1>
-      <p>Számold ki térkő, szegélykő és ráhagyás becsült mennyiségét.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>A felső burkolat csak a rendszer egyik része</h2>
-      <p>Szegély, ágyazóanyag, tömörített alapréteg, geotextil és vízelvezetés nincs benne a térkő darabszámában. Teherautóval terhelt felületnél a rétegrendet szakemberrel kell méretezni.</p>
-      <h3>Térkő darabszám felületből és ráhagyásból</h3>
-      <p>A burkolandó terület és az egy négyzetméterre jutó kőmennyiség alapján tervezhető a rendelés. Íves szél, sok vágás vagy összetett minta nagyobb tartalékot kíván, mint egy egyszerű téglalap.</p>
-      <h2>Térköves anyagterv</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>Mennyi követ tegyek félre javításhoz?</summary>
-          <p>Néhány százalék azonos gyártási tételből hasznos lehet, mert később az árnyalat nehezen pótolható.</p>
-        </details>
-        <details>
-          <summary>Lejtést is számol a kalkulátor?</summary>
-          <p>Nem; a megfelelő vízelvezetési lejtést helyszíni magassági terv alapján kell kialakítani.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

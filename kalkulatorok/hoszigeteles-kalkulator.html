@@ -1,68 +1,63 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Hőszigetelés kalkulátor homlokzati felülethez. Becsüld meg a szükséges szigetelőlap-mennyiséget, csomagszámot és ráhagyást." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/hoszigeteles-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Hőszigetelés kalkulátor homlokzati felülethez. Becsüld meg a szükséges szigetelőlap-mennyiséget, csomagszámot és ráhagyást." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/hoszigeteles-kalkulator.html" rel="canonical"/>
 <title>Hőszigetelés kalkulátor | Anyagmennyiség és csomagszám</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Hőszigetelés kalkulátor | Anyagmennyiség és csomagszám" />
-  <meta property="og:description" content="Hőszigetelés kalkulátor homlokzati felülethez. Becsüld meg a szükséges szigetelőlap-mennyiséget, csomagszámot és ráhagyást." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/hoszigeteles-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Hőszigetelés kalkulátor | Anyagmennyiség és csomagszám" />
-  <meta name="twitter:description" content="Hőszigetelés kalkulátor homlokzati felülethez. Becsüld meg a szükséges szigetelőlap-mennyiséget, csomagszámot és ráhagyást." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Hőszigetelés kalkulátor | Anyagmennyiség és csomagszám" property="og:title"/>
+<meta content="Hőszigetelés kalkulátor homlokzati felülethez. Becsüld meg a szükséges szigetelőlap-mennyiséget, csomagszámot és ráhagyást." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/hoszigeteles-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Hőszigetelés kalkulátor | Anyagmennyiség és csomagszám" name="twitter:title"/>
+<meta content="Hőszigetelés kalkulátor homlokzati felülethez. Becsüld meg a szükséges szigetelőlap-mennyiséget, csomagszámot és ráhagyást." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="hoszigeteles-kalkulator">
+<section class="hero">
+<h1>Hőszigetelés kalkulátor</h1>
+<p>Tervezd meg a homlokzati vagy födémszigetelés lapmennyiségét.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Szigetelőanyag és csomagszám tervezése</h2>
+<p>A hőszigetelés kalkulátor a lemért felületből, a választott ráhagyásból és egy csomag gyártó által megadott fedéséből becsüli meg a megvásárolandó mennyiséget. Homlokzati lap, födémszigetelés vagy más táblás anyag előzetes rendelési tervéhez használható.</p>
+<p>Az oldal nem számít energetikai méretezést: nem mondja meg, milyen anyagot, vastagságot, dübelt vagy rétegrendet kell alkalmazni. Ezeket az épület szerkezete, páratechnikai viszonyai, tűzvédelmi követelményei és a rendszer gyártói előírásai alapján kell meghatározni.</p>
+<h2>Hogyan készül a becslés?</h2>
+<p>Először a nettó szigetelendő felületet kell megadni négyzetméterben. A program ezt megszorozza a ráhagyással: <strong>szükséges felület = nettó felület × (1 + ráhagyás / 100)</strong>. Ezután a szükséges felületet elosztja az egy csomagban lévő négyzetméterrel, és felfelé kerekít egész csomagra.</p>
+<div class="example-box"><h3>Példa: 82 m² homlokzat</h3><p>82 m² nettó felületnél 5% ráhagyással 86,1 m² anyag szükséges. Ha egy csomag 4,8 m²-t fed, 86,1 / 4,8 = 17,94, ezért 18 teljes csomaggal kell számolni.</p></div>
+<h2>Milyen felületet adj meg?</h2>
+<p>A teljes fal- vagy födémfelületből az ajtók és nagyobb ablakok felülete levonható, de a kávák, lábazat, sarkok és egyedi csomópontok plusz anyagot igényelhetnek. Kis nyílásoknál előfordul, hogy a kivágások vesztesége miatt nem érdemes mindent teljesen levonni.</p>
+<h2>Tipikus hibák</h2>
+<ul><li>A csomagon szereplő darabszámot összekeverik a csomag négyzetméter-fedésével.</li><li>Nem az adott vastagsághoz tartozó csomagfedést használják.</li><li>Elmarad a vágási veszteség és a sérült lapok tartaléka.</li><li>A ragasztó, háló, dübel és kiegészítők mennyiségét a lapokból próbálják levezetni gyártói adat nélkül.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>Mekkora ráhagyást érdemes megadni?</summary><p>Egyszerű, nagy sík felületnél gyakran 3–5%, sok nyílásnál és vágásnál ennél több is indokolt lehet.</p></details>
+<details><summary>Levonjam az ablakokat?</summary><p>A nagy nyílásokat általában igen, de a kávák és vágási veszteség miatt a tényleges megtakarítás kisebb lehet.</p></details>
+<details><summary>A kalkulátor meghatározza a szigetelés vastagságát?</summary><p>Nem. A vastagság kiválasztásához energetikai és szerkezeti szempontokat kell vizsgálni.</p></details>
+<details><summary>Miért kerekít felfelé?</summary><p>Mert a gyakorlatban csak teljes csomagot lehet megvásárolni.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="festek-kalkulator.html">Festék kalkulátor</a><a href="vakolat-kalkulator.html">Vakolat kalkulátor</a><a href="gipszkarton-kalkulator.html">Gipszkarton kalkulátor</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="hoszigeteles-kalkulator">
-    <section class="hero">
-      <h1>Hőszigetelés kalkulátor</h1>
-      <p>Tervezd meg a homlokzati vagy födémszigetelés lapmennyiségét.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>Szigetelőanyag csomagszámra kerekítve</h2>
-      <p>A nettó felülethez adott ráhagyásból és a csomag fedéséből becsülhető a rendelési mennyiség. Homlokzatnál külön mérd a falsíkokat, és csak ezután vond le a nagy nyílásokat.</p>
-      <h3>A négyzetméter nem mondja meg a megfelelő rétegrendet</h3>
-      <p>Anyagtípus, vastagság, hővezetési tényező, dübelezés, ragasztás és páratechnika szakmai tervezést igényel. A kalkulátor csomagszámot ad, energetikai megfelelőséget nem igazol.</p>
-      <h2>Szigetelési anyagterv</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>Mennyi ráhagyás indokolt?</summary>
-          <p>Egyszerű sík felületen kisebb, sok éllel és nyílással tagolt homlokzaton nagyobb tartalék lehet ésszerű.</p>
-        </details>
-        <details>
-          <summary>A ragasztó és háló is benne van?</summary>
-          <p>Nem; ezeket a választott rendszer gyártói fogyási adata alapján külön kell számolni.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

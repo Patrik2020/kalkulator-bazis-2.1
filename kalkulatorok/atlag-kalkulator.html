@@ -1,68 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Átlag kalkulátor tetszőleges számsorhoz. Add meg az értékeket, és az eszköz megmutatja az összeget, a darabszámot és a számtani átlagot." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/atlag-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Átlag kalkulátor tetszőleges számsorhoz. Add meg az értékeket, és az eszköz megmutatja az összeget, a darabszámot és a számtani átlagot." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/atlag-kalkulator.html" rel="canonical"/>
 <title>Átlag kalkulátor | Számtani közép több értékből</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Átlag kalkulátor | Számtani közép több értékből" />
-  <meta property="og:description" content="Átlag kalkulátor tetszőleges számsorhoz. Add meg az értékeket, és az eszköz megmutatja az összeget, a darabszámot és a számtani átlagot." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/atlag-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Átlag kalkulátor | Számtani közép több értékből" />
-  <meta name="twitter:description" content="Átlag kalkulátor tetszőleges számsorhoz. Add meg az értékeket, és az eszköz megmutatja az összeget, a darabszámot és a számtani átlagot." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Átlag kalkulátor | Számtani közép több értékből" property="og:title"/>
+<meta content="Átlag kalkulátor tetszőleges számsorhoz. Add meg az értékeket, és az eszköz megmutatja az összeget, a darabszámot és a számtani átlagot." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/atlag-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Átlag kalkulátor | Számtani közép több értékből" name="twitter:title"/>
+<meta content="Átlag kalkulátor tetszőleges számsorhoz. Add meg az értékeket, és az eszköz megmutatja az összeget, a darabszámot és a számtani átlagot." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="atlag-kalkulator">
+<section class="hero">
+<h1>Átlag kalkulátor</h1>
+<p>Számold ki több érték átlagát darabszám és összeg alapján.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Számtani átlag összegből és darabszámból</h2>
+<p>Az átlag kalkulátor akkor gyors, ha már ismered az értékek összegét és azt, hány adatból áll a halmaz. A teljes összeget elosztja a darabszámmal, így például havi kiadások, jegyek, fogyasztási adatok vagy mérések átlagát adja meg.</p>
+<p>A kalkulátor egyszerű számtani közepet számol. Nem súlyozott átlag, medián vagy módusz, ezért szélsőséges értékek erősen befolyásolhatják.</p>
+<h2>A képlet</h2><p><strong>Átlag = értékek összege / darabszám</strong>. A darabszámnak nullánál nagyobbnak kell lennie.</p>
+<div class="example-box"><h3>Példa</h3><p>Öt havi villanyszámla összege 78 500 Ft. Az átlag 78 500 / 5 = 15 700 Ft havonta.</p></div>
+<h2>Mikor félrevezető az átlag?</h2><p>Ha néhány adat nagyon nagy vagy nagyon kicsi, az átlag nem feltétlenül jellemzi a tipikus értéket. Például négy 300 000 Ft-os és egy 2 000 000 Ft-os fizetés átlaga jóval magasabb a legtöbb értéknél; ilyenkor a medián is hasznos.</p>
+<h2>Gyakori hibák</h2><ul><li>Rosszul számolják meg az adatok darabszámát.</li><li>A hiányzó értéket nullának veszik, pedig nincs mérés.</li><li>Százalékokat súlyozás nélkül átlagolnak eltérő alapok mellett.</li><li>A darabszámhoz az összeg értékét írják.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>Tizedes értékekkel működik?</summary><p>Igen, a mezők pontot és vesszőt is elfogadnak.</p></details>
+<details><summary>Jegyátlaghoz jó?</summary><p>Igen, ha minden jegy azonos súlyú. Eltérő súlyozásnál külön számítás kell.</p></details>
+<details><summary>Mi a medián?</summary><p>A sorba rendezett adatok középső értéke, amely kevésbé érzékeny a szélsőségekre.</p></details>
+<details><summary>Átlagsebességet így számoljak?</summary><p>Nem mindig; eltérő távoknál teljes távolságot kell osztani teljes idővel.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="arany-kalkulator.html">Arány kalkulátor</a><a href="szazalek-kalkulator.html">Százalék kalkulátor</a><a href="egysegar-kalkulator.html">Egységár kalkulátor</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="atlag-kalkulator">
-    <section class="hero">
-      <h1>Átlag kalkulátor</h1>
-      <p>Számold ki több érték átlagát darabszám és összeg alapján.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>Néha a medián a jobb választás</h2>
-      <p>Jövedelmeknél, ingatlanáraknál vagy ferde eloszlásnál érdemes az átlag mellett a mediánt és a minimum–maximum tartományt is megnézni. Súlyozott eredményhez – például eltérő kreditértékű jegyeknél – az egyszerű átlag nem elegendő.</p>
-      <h3>Mit mond el az átlag az adatsorról?</h3>
-      <p>Az egyszerű számtani átlag jól összefoglalhat hasonló értékeket, például havi kiadásokat vagy mérési eredményeket. Nagyon eltérő adatoknál azonban egyetlen szélsőséges érték is erősen elhúzhatja.</p>
-      <h2>Átlagolási kérdések</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>Beírhatok negatív értéket?</summary>
-          <p>Igen, ha az adat jelentése megengedi; például hőmérsékletnél vagy egyenlegváltozásnál ez természetes lehet.</p>
-        </details>
-        <details>
-          <summary>Az üres és a nulla ugyanaz?</summary>
-          <p>Nem. A nulla valódi adat, az üres elem pedig hiányzó megfigyelés, ezért ne kezeld őket automatikusan azonosként.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

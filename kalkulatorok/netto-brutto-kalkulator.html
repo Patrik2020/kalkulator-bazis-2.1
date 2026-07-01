@@ -32,8 +32,7 @@
       <section class="hero">
         <h1>Nettó–bruttó kalkulátor</h1>
         <p>
-          Számold ki pontosan, mennyi marad a fizetésedből adók és járulékok
-          után.
+          Becsüld meg a 2026-os alapvető adók, járulékok és a választható kedvezmények alapján, mennyi maradhat a fizetésedből.
         </p>
       </section>
 
@@ -89,16 +88,8 @@
           />
         </div>
 
-        <div class="radio-group">
-          <label>
-            <input type="radio" name="mode" value="current" checked />
-            Jelenlegi adózás
-          </label>
-
-          <label>
-            <input type="radio" name="mode" value="alt" />
-            Alternatív modell (9% SZJA)
-          </label>
+        <div class="notice-box compact-note">
+          A számítás a 2026-os, hagyományos munkabérre alkalmazott 15% SZJA-, 18,5% TB-járulék- és 13% munkáltatói szocho-kulccsal dolgozik.
         </div>
 
         <div class="result-box">
@@ -125,7 +116,7 @@
 
       <div class="example-box">
         <h3>Konkrét példaszámítás</h3>
-        <p>Például 600 000 Ft bruttó bérnél, kedvezmények nélkül, egy egyszerűsített 33,5%-os levonási aránnyal számolva a levonás 201 000 Ft, a becsült nettó pedig körülbelül 399 000 Ft. Ha ugyanilyen logikával 450 000 Ft nettó célt adsz meg, a kalkulátor a szükséges bruttó bért segít visszabecsülni.</p>
+        <p>Például 600 000 Ft bruttó bérnél, kedvezmények nélkül 90 000 Ft SZJA és 111 000 Ft TB-járulék adódik, így a becsült nettó 399 000 Ft. Nettóból bruttó módban a program ugyanennek a számítási modellnek a visszafelé megoldását keresi, nem egyszerű osztással becsül.</p>
       </div>
 
       <h3>Mikor hasznos ez a kalkulátor?</h3>
@@ -144,16 +135,12 @@
         ember eltérő nettó összeget is kaphat. A kalkulátor ezek hatását
         becslésként kezeli, a jogosultságot mindig külön kell ellenőrizni.
       </p>
-      <p>
-        Az alternatív adózási modell csak összehasonlító, feltételezett
-        számítás. Nem a jelenlegi hivatalos adózási szabályokat helyettesíti,
-        hanem azt mutatja meg, hogyan változna az eredmény más SZJA-kulcs mellett.
-      </p>
 
       <div class="notice-box">
         <strong>Fontos tudni:</strong> A bérszámítás jogszabályi környezete és a kedvezmények rendszere változhat. Az eredmény tájékoztató jellegű, munkaszerződés, bérpapír vagy hivatalos döntés előtt ellenőrizd a munkáltatói/bérszámfejtési adatokat.
       </div>
-      <p>A 25 év alatti kedvezmény kapcsoló egyszerűsített becslést ad, és nem kezeli a jogszabályban meghatározott jövedelmi értékhatárt. Magasabb bérnél ezért a tényleges nettó eltérhet a kijelzett összegtől.</p>
+      <p>A 25 év alatti kedvezménynél a kalkulátor a 2026-os havi 715 765 Ft-os adóalap-korlátot is figyelembe veszi. A családi kedvezményt először a fennmaradó SZJA-ból, majd a rendelkezésre álló TB-járulékból vonja le, ezért a nettó összeg nem nőhet a bruttó fölé.</p>
+      <p>A modell nem kezeli többek között a 30 év alatti anyák, a két-, három-, illetve négy vagy több gyermeket nevelő anyák külön SZJA-mentességét, a személyi kedvezményt, a pótlékokat, letiltásokat, cafeteriát és egyedi bérszámfejtési tételeket.</p>
 
       <h3>Gyakori kérdések</h3>
       <div class="faq-list">

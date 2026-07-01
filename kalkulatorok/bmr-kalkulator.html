@@ -1,69 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="BMR kalkulátor az alapanyagcsere becsléséhez életkor, nem, testsúly és magasság alapján. Az eredmény tájékoztató energiaszükséglet." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/bmr-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="BMR kalkulátor az alapanyagcsere becsléséhez életkor, nem, testsúly és magasság alapján. Az eredmény tájékoztató energiaszükséglet." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/bmr-kalkulator.html" rel="canonical"/>
 <title>BMR kalkulátor | Alapanyagcsere becslése</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="BMR kalkulátor | Alapanyagcsere becslése" />
-  <meta property="og:description" content="BMR kalkulátor az alapanyagcsere becsléséhez életkor, nem, testsúly és magasság alapján. Az eredmény tájékoztató energiaszükséglet." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/bmr-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="BMR kalkulátor | Alapanyagcsere becslése" />
-  <meta name="twitter:description" content="BMR kalkulátor az alapanyagcsere becsléséhez életkor, nem, testsúly és magasság alapján. Az eredmény tájékoztató energiaszükséglet." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="BMR kalkulátor | Alapanyagcsere becslése" property="og:title"/>
+<meta content="BMR kalkulátor az alapanyagcsere becsléséhez életkor, nem, testsúly és magasság alapján. Az eredmény tájékoztató energiaszükséglet." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/bmr-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="BMR kalkulátor | Alapanyagcsere becslése" name="twitter:title"/>
+<meta content="BMR kalkulátor az alapanyagcsere becsléséhez életkor, nem, testsúly és magasság alapján. Az eredmény tájékoztató energiaszükséglet." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="bmr-kalkulator">
+<section class="hero">
+<h1>BMR kalkulátor</h1>
+<p>Számold ki az alapanyagcserédet Mifflin-St Jeor képlettel.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Alapanyagcsere becslése</h2>
+<p>A BMR azt a napi energiamennyiséget közelíti, amelyet a szervezet teljes nyugalomban az alapvető életműködésekre használ fel. A kalkulátor nem, testsúly, magasság és életkor alapján számol, majd példaként egy könnyű aktivitású napi értéket is megjelenít.</p>
+<p>A BMR nem azonos a tényleges napi kalóriaszükséglettel. Mozgás, munka, emésztés, testösszetétel, egészségi állapot és egyéni anyagcsere mind módosítja a teljes energiafelhasználást.</p>
+<h2>A használt képlet</h2><p>A program a Mifflin–St Jeor képletet használja: testsúly és magasság növeli, életkor csökkenti a becsült értéket, a nemhez külön korrekció tartozik. A könnyű aktivitás példája a BMR 1,375-szöröse.</p>
+<div class="example-box"><h3>Példa</h3><p>Egy 35 éves, 75 kg-os, 175 cm magas férfi becsült BMR-je körülbelül 1 674 kcal/nap. Könnyű aktivitással a példaszorzó nagyjából 2 302 kcal/nap értéket ad.</p></div>
+<h2>Hogyan használd?</h2><p>Kiindulópontként, majd a testsúly többhetes változásával ellenőrizd, hogy a becslés közel áll-e a valósághoz. Nagy kalóriamegvonás vagy gyors testsúlyváltoztatás előtt szakember bevonása célszerű.</p>
+<h2>Gyakori hibák</h2><ul><li>A BMR-t fogyási célkalóriának tekintik.</li><li>Túl magas aktivitási szorzót választanak.</li><li>Rövid távú testsúlyingadozásból következtetnek.</li><li>Gyermekre vagy várandósságra felnőtt képletet alkalmaznak.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>A BMR alatt kell ennem fogyáshoz?</summary><p>Nem ez az általános cél; a biztonságos energiamérleg egyéni és szakmai kérdés.</p></details>
+<details><summary>Miért más az okosórám értéke?</summary><p>Más képletet, aktivitási adatot vagy pulzusmérést használhat.</p></details>
+<details><summary>Izomtömeget figyelembe vesz?</summary><p>Közvetlenül nem, ezért különösen izmos testalkatnál eltérhet.</p></details>
+<details><summary>Milyen gyakran számoljam újra?</summary><p>Jelentős testsúlyváltozáskor vagy életkor előrehaladtával érdemes frissíteni.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="kaloria-kalkulator.html">Kalória kalkulátor</a><a href="makro-kalkulator.html">Makró kalkulátor</a><a href="feherje-szukseglet-kalkulator.html">Fehérjeigény</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="bmr-kalkulator">
-    <section class="hero">
-      <h1>BMR kalkulátor</h1>
-      <p>Számold ki az alapanyagcserédet Mifflin-St Jeor képlettel.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>Az alapanyagcsere a nyugalmi minimum becslése</h2>
-      <div class="content-split">
-        <div><h3>Képletből nem lesz személyre szabott mérés</h3><p>A testösszetétel, életkor, hormonális állapot és betegségek miatt az egyenlet eltérhet a tényleges energiafelhasználástól. Hosszabb távú testsúlyváltozás alapján érdemes finomítani, egészségügyi cél esetén dietetikussal egyeztetve.</p></div>
-        <p>A BMR azt közelíti, mennyi energiát használna fel a szervezet teljes nyugalomban az alapvető működéshez. Nem azonos a napi kalóriakerettel, mert a mozgás, munka és emésztés további energiát igényel.</p>
-      </div>
-      <h2>BMR-értelmezés</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>Ehetek tartósan a BMR alatt?</summary>
-          <p>Önállóan nem célszerű ilyen célt kitűzni; túl alacsony bevitel mellett nő a hiányállapot és az izomvesztés kockázata.</p>
-        </details>
-        <details>
-          <summary>Miért más a kalóriakalkulátor eredménye?</summary>
-          <p>A napi szükséglet a BMR-t aktivitási szorzóval egészíti ki, ezért természetesen magasabb.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

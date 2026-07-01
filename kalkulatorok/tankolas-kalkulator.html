@@ -4,23 +4,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Tankolás kalkulátor üzemanyag-mennyiséghez és költséghez. Számold ki, hány liter fér a keretbe, vagy mennyibe kerül a megadott tankolás." />
+  <meta name="description" content="Tankolás kalkulátor tankolási kerethez és literenkénti üzemanyagárhoz. Számold ki, hány liter benzint vagy dízelt kapsz a megadott összegből." />
   <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/tankolas-kalkulator.html" />
-<title>Tankolás kalkulátor | Liter, üzemanyagár és végösszeg</title>
+<title>Tankolás kalkulátor | Hány liter fér a keretbe?</title>
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
   <script src="../js/global-head.js"></script>
   
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Tankolás kalkulátor | Liter, üzemanyagár és végösszeg" />
-  <meta property="og:description" content="Tankolás kalkulátor üzemanyag-mennyiséghez és költséghez. Számold ki, hány liter fér a keretbe, vagy mennyibe kerül a megadott tankolás." />
+  <meta property="og:title" content="Tankolás kalkulátor | Hány liter fér a keretbe?" />
+  <meta property="og:description" content="Tankolás kalkulátor tankolási kerethez és literenkénti üzemanyagárhoz. Számold ki, hány liter benzint vagy dízelt kapsz a megadott összegből." />
   <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/tankolas-kalkulator.html" />
   <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
   
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Tankolás kalkulátor | Liter, üzemanyagár és végösszeg" />
-  <meta name="twitter:description" content="Tankolás kalkulátor üzemanyag-mennyiséghez és költséghez. Számold ki, hány liter fér a keretbe, vagy mennyibe kerül a megadott tankolás." />
+  <meta name="twitter:title" content="Tankolás kalkulátor | Hány liter fér a keretbe?" />
+  <meta name="twitter:description" content="Tankolás kalkulátor tankolási kerethez és literenkénti üzemanyagárhoz. Számold ki, hány liter benzint vagy dízelt kapsz a megadott összegből." />
   <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
 </head>
 
@@ -30,7 +30,7 @@
   <main class="container page-simple-calculator" data-simple-calc="tankolas-kalkulator">
     <section class="hero">
       <h1>Tankolás kalkulátor</h1>
-      <p>Számold ki, mennyibe kerül a tankolás és mennyi liter fér bele.</p>
+      <p>Számold ki, hány liter üzemanyagot kapsz a megadott tankolási keretből.</p>
     </section>
 
     <section class="card card-calculator">
@@ -40,23 +40,52 @@
         <div id="simpleCalcResults">–</div>
       </div>
     </section>
-    <section class="article calculator-guide">
-      <h2>Két tele tankolás között mérhető a fogyasztás</h2>
-      <div class="content-split">
-        <div><h3>Egyetlen tankolás még nem trend</h3><p>Kút dőlése, pisztoly leoldása, rövid utak és időjárás eltéríthetik az értéket. Több tankolás gördülő átlaga jobb alap a fogyasztás változásának észlelésére.</p></div>
-        <p>A megtett kilométer és az utántöltött liter alapján számítható a l/100 km érték. Összehasonlítható eredményhez hasonló módon, lehetőleg ugyanazon kút automata leállásáig tankolj.</p>
+    <section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+      <h2>Mire jó a tankolás kalkulátor?</h2>
+      <p>Ez az oldal azt mutatja meg, hogy egy megadott tankolási keretből hány liter üzemanyagot tudsz vásárolni az aktuális literenkénti ár mellett. Akkor hasznos, ha indulás előtt szeretnéd látni, mire elég például 10 000, 20 000 vagy 30 000 Ft, vagy ha össze szeretnéd vetni két különböző üzemanyagár hatását.</p>
+      <p>A kalkulátor nem a két tankolás közötti fogyasztást méri. Ahhoz a megtett kilométer és az utántöltött liter szükséges; erre az autó fogyasztás kalkulátor való. Itt a bemenet a tankolásra szánt összeg és a kútoszlopon látott Ft/l ár.</p>
+
+      <h2>Hogyan működik a számítás?</h2>
+      <p>A képlet egyszerű: <strong>tankolható liter = tankolási keret / literenkénti üzemanyagár</strong>. Ha 20 000 Ft-ot szánsz tankolásra, és az üzemanyag ára 640 Ft/l, akkor 20 000 / 640 = 31,25 liter jön ki. A megjelenített eredmény egy tizedesre kerekítve 31,3 liter.</p>
+      <p>A számítás forinttal és literrel dolgozik. A tizedesvessző és a tizedespont közötti különbségre érdemes figyelni, mert egy rosszul beírt üzemanyagár teljesen más eredményt adhat. A kalkulátor a kedvezményeket, pontgyűjtő jóváírást, bankkártyás visszatérítést vagy több üzemanyagtípus keverését nem kezeli külön.</p>
+
+      <div class="example-box">
+        <h3>Konkrét példa</h3>
+        <p>Ha a tankolási keret 15 000 Ft, a benzin ára pedig 625 Ft/l, akkor a számítás: 15 000 / 625 = 24 liter. Ez azt jelenti, hogy ekkora keretből nagyjából 24 liter üzemanyagot tankolhatsz. Ha az autó átlagfogyasztása 6,5 l/100 km, ez a mennyiség körülbelül 369 km elméleti útra lehet elég, de ezt már külön hatótáv- vagy üzemanyagköltség-számítással érdemes ellenőrizni.</p>
       </div>
-      <h2>Tankolási mérés</h2>
+
+      <h2>Az eredmény értelmezése</h2>
+      <p>Az eredmény a megadott keretből vásárolható üzemanyag mennyisége. A valódi kútoszlopos érték néhány tized literrel eltérhet a kerekítés, a pontos literár, a fizetés módja vagy a tankolás megszakítása miatt. Ha teljes útköltséget tervezel, a liter mennyisége önmagában kevés: szükség lesz a fogyasztásra, a távolságra, esetleges autópályadíjra, parkolásra és egyéb útiköltségre is.</p>
+
+      <h2>Korlátok és gyakori hibák</h2>
+      <ul>
+        <li>Ne keverd össze a literenkénti árat a teljes tankolási összeggel.</li>
+        <li>Mindig Ft/l árat adj meg, ne eurós vagy más devizás értéket.</li>
+        <li>Kupon, flottakedvezmény vagy pontbeváltás esetén a tényleges fizetendő ár eltérhet.</li>
+        <li>A kalkulátor nem mondja meg, hány kilométerre elég az üzemanyag; ehhez fogyasztási adat is kell.</li>
+      </ul>
+
+      <h2>Gyakori kérdések</h2>
       <div class="faq-list" data-accordion="single">
         <details>
-          <summary>Részleges tankolással is működik?</summary>
-          <p>Csak akkor lesz megbízható, ha hosszabb időszakon a kezdő és záró üzemanyagszint összevethető.</p>
+          <summary>Mit írjak a tankolási keret mezőbe?</summary>
+          <p>Azt az összeget forintban, amelyet tankolásra szánsz. Ha pontosan 20 000 Ft-ért szeretnél tankolni, akkor 20000 legyen a bemenet.</p>
         </details>
         <details>
-          <summary>Miért nő télen a fogyasztás?</summary>
-          <p>Hidegindítás, téli gumi, fűtés, sűrűbb levegő és rövid utak egyaránt emelhetik.</p>
+          <summary>A kalkulátor kiszámolja az út teljes költségét?</summary>
+          <p>Nem. Ez az oldal a keretből vásárolható litert számolja. Teljes útiköltséghez használd az üzemanyag költség kalkulátort, ahol távolságot és fogyasztást is megadhatsz.</p>
+        </details>
+        <details>
+          <summary>Miért térhet el a kútoszlopon látható érték?</summary>
+          <p>A kút pontos literára, a kerekítés, a fizetési kedvezmény, illetve az, hogy mikor állítod le a tankolást, kisebb eltérést okozhat.</p>
+        </details>
+        <details>
+          <summary>Használható benzinhez és dízelhez is?</summary>
+          <p>Igen. A képlet üzemanyagtípustól független, csak a megfelelő literenkénti árat kell megadni.</p>
         </details>
       </div>
+
+      <p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
     </section>
     </main>
 

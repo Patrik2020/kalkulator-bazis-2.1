@@ -1,68 +1,63 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Autópályadíj kalkulátor közös utazáshoz. Oszd el a matrica vagy útdíj összegét az utasok között, és lásd az egy főre jutó részt." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/autopalyadij-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Autópályadíj kalkulátor közös utazáshoz. Oszd el a matrica vagy útdíj összegét az utasok között, és lásd az egy főre jutó részt." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/autopalyadij-kalkulator.html" rel="canonical"/>
 <title>Autópályadíj megosztó | Költség utasonként</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Autópályadíj megosztó | Költség utasonként" />
-  <meta property="og:description" content="Autópályadíj kalkulátor közös utazáshoz. Oszd el a matrica vagy útdíj összegét az utasok között, és lásd az egy főre jutó részt." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/autopalyadij-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Autópályadíj megosztó | Költség utasonként" />
-  <meta name="twitter:description" content="Autópályadíj kalkulátor közös utazáshoz. Oszd el a matrica vagy útdíj összegét az utasok között, és lásd az egy főre jutó részt." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Autópályadíj megosztó | Költség utasonként" property="og:title"/>
+<meta content="Autópályadíj kalkulátor közös utazáshoz. Oszd el a matrica vagy útdíj összegét az utasok között, és lásd az egy főre jutó részt." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/autopalyadij-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Autópályadíj megosztó | Költség utasonként" name="twitter:title"/>
+<meta content="Autópályadíj kalkulátor közös utazáshoz. Oszd el a matrica vagy útdíj összegét az utasok között, és lásd az egy főre jutó részt." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="autopalyadij-kalkulator">
+<section class="hero">
+<h1>Autópályadíj kalkulátor</h1>
+<p>Oszd el az autópályadíjat utasok között.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Autópályadíj igazságos megosztása</h2>
+<p>Az autópályadíj megosztó azt számolja ki, mekkora összeg jut egy utasra, ha a teljes matricadíjat vagy útdíjat egyenlő arányban osztjátok el. Hasznos lehet közös nyaralásnál, telekocsinál vagy olyan kirándulásnál, ahol előre szeretnétek tisztázni a költségeket.</p>
+<p>A kalkulátor kizárólag a megadott díjat osztja el. Az üzemanyag, parkolás, komp, alagút, külföldi útdíj, járműkopás és a sofőr esetleges külön megállapodása nincs benne.</p>
+<h2>Hogyan működik?</h2>
+<p>A képlet: <strong>egy főre jutó díj = teljes autópályadíj / résztvevők száma</strong>. A résztvevők számába azt is bele kell számítani, aki vezeti az autót, ha ő is azonos arányban fizet. Más megállapodás esetén előbb állapítsátok meg, hány fizető között oszlik meg az összeg.</p>
+<div class="example-box"><h3>Példa négyszemélyes utazásra</h3><p>Ha az utazáshoz összesen 6 620 Ft értékű úthasználati jogosultságot vásároltok, és négyen osztoztok rajta, akkor 6 620 / 4 = 1 655 Ft jut egy főre.</p></div>
+<h2>Mikor nem célszerű egyenlően osztani?</h2>
+<p>Ha valaki csak az út egy részén utazik, több külön ország matricáját nem mindenki használja, vagy a matrica a tulajdonosnak később is értéket ad, arányosabb lehet külön megállapodás. Éves matrica esetén például nem feltétlenül indokolt a teljes éves árat egyetlen út utasaira terhelni.</p>
+<h2>Gyakori hibák</h2>
+<ul><li>Az oda- és visszaúthoz vásárolt külön díjak egyikét kihagyják.</li><li>A sofőrt nem számítják bele a résztvevők közé, miközben ő is fizet.</li><li>Az autópályadíjat összekeverik a teljes útiköltséggel.</li><li>Külföldi pénznemnél az átváltási költséget nem veszik figyelembe.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>A sofőr is egy főnek számít?</summary><p>Igen, ha ugyanúgy részt vesz a költségmegosztásban. Ettől közös megegyezéssel el lehet térni.</p></details>
+<details><summary>Az üzemanyag benne van?</summary><p>Nem. A kalkulátor csak a megadott útdíjat osztja el.</p></details>
+<details><summary>Éves matricát hogyan osszak meg?</summary><p>Érdemes csak az adott útra ésszerűen jutó részt figyelembe venni, nem automatikusan az egész éves díjat.</p></details>
+<details><summary>Mi legyen a kerekítési különbséggel?</summary><p>Néhány forintos eltérést egyik résztvevő vállalhat, vagy a végösszeget egész száz forintra kerekíthetitek.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="uzemanyag-koltseg-kalkulator.html">Üzemanyagköltség kalkulátor</a><a href="utazasi-ido-kalkulator.html">Utazási idő kalkulátor</a><a href="rezsi-megosztas-kalkulator.html">Költségmegosztás kalkulátor</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="autopalyadij-kalkulator">
-    <section class="hero">
-      <h1>Autópályadíj kalkulátor</h1>
-      <p>Oszd el az autópályadíjat utasok között.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>Az aktuális díjtábla az irányadó</h2>
-      <p>Az útdíjak és kategóriaszabályok változhatnak, külföldön pedig kapus, elektronikus és kilométer-alapú rendszer is előfordul. Indulás előtt mindig az útkezelő hivatalos oldalán ellenőrizd az árat és a vásárlás módját.</p>
-      <h3>Matrica vagy szakaszdíj az útvonalhoz</h3>
-      <p>Az autópályadíj előzetes becslése segít eldönteni, hogy egy útvonal gyorsabb vagy olcsóbb alternatívája éri-e meg. A járműkategória, az ország, az érvényesség és az érintett útszakasz mind befolyásolhatja a fizetendő összeget.</p>
-      <h2>Útdíjtervezés</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>Az oda-vissza út mindig két díj?</summary>
-          <p>Nem feltétlenül: időalapú matrica esetén ugyanaz az érvényesség mindkét irányt lefedheti.</p>
-        </details>
-        <details>
-          <summary>A pótdíjat is kiszámolja?</summary>
-          <p>Nem; jogosulatlan úthasználatnál a hivatalos pótdíjszabályok érvényesek.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

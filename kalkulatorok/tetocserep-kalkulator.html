@@ -1,68 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Tetőcserép kalkulátor tetőfelület, négyzetméterenkénti cserépszükséglet és ráhagyás alapján. Tervezd meg a beszerzendő mennyiséget." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/tetocserep-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Tetőcserép kalkulátor tetőfelület, négyzetméterenkénti cserépszükséglet és ráhagyás alapján. Tervezd meg a beszerzendő mennyiséget." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/tetocserep-kalkulator.html" rel="canonical"/>
 <title>Tetőcserép kalkulátor | Darabszám és ráhagyás</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Tetőcserép kalkulátor | Darabszám és ráhagyás" />
-  <meta property="og:description" content="Tetőcserép kalkulátor tetőfelület, négyzetméterenkénti cserépszükséglet és ráhagyás alapján. Tervezd meg a beszerzendő mennyiséget." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/tetocserep-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Tetőcserép kalkulátor | Darabszám és ráhagyás" />
-  <meta name="twitter:description" content="Tetőcserép kalkulátor tetőfelület, négyzetméterenkénti cserépszükséglet és ráhagyás alapján. Tervezd meg a beszerzendő mennyiséget." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Tetőcserép kalkulátor | Darabszám és ráhagyás" property="og:title"/>
+<meta content="Tetőcserép kalkulátor tetőfelület, négyzetméterenkénti cserépszükséglet és ráhagyás alapján. Tervezd meg a beszerzendő mennyiséget." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/tetocserep-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Tetőcserép kalkulátor | Darabszám és ráhagyás" name="twitter:title"/>
+<meta content="Tetőcserép kalkulátor tetőfelület, négyzetméterenkénti cserépszükséglet és ráhagyás alapján. Tervezd meg a beszerzendő mennyiséget." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="tetocserep-kalkulator">
+<section class="hero">
+<h1>Tetőcserép kalkulátor</h1>
+<p>Becsüld meg a tetőfedéshez szükséges cserepek számát.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Tetőcserép-darabszám becslése</h2>
+<p>A kalkulátor a tető tényleges ferde felületéből, a kiválasztott cserép négyzetméterenkénti igényéből és a ráhagyásból számol darabszámot. Első költségbecsléshez használható, de a tetőfedési tervet és a gyártói kiosztási előírást nem helyettesíti.</p>
+<p>A tető alapterületi vetülete nem azonos a ferde tetőfelülettel. Ha csak az épület vízszintes mérete ismert, a hajlásszög és a tetőforma alapján külön kell kiszámítani a valódi felületet.</p>
+<h2>Számítás</h2><p><strong>Darabszám = tetőfelület × db/m² × (1 + ráhagyás / 100)</strong>, felfelé kerekítve. A db/m² értéket mindig a konkrét típus műszaki adatlapjáról vedd.</p>
+<div class="example-box"><h3>Példa</h3><p>140 m² tetőfelületnél, 10 db/m² cserépigénnyel és 8% ráhagyással 140 × 10 × 1,08 = 1 512 darab adódik.</p></div>
+<h2>Mi nincs benne?</h2><p>A gerinc-, szegély-, szellőző- és hófogóelemek, kezdő- és félcserepek, fólia, lécezés, rögzítők és bádogos elemek külön mennyiséget igényelnek. Összetett vápák, kontyok és tetőkibúvók nagyobb vágási veszteséget okozhatnak.</p>
+<h2>Gyakori hibák</h2><ul><li>Az épület alapterületét tetőfelületként használják.</li><li>Más cseréptípus db/m² adatát adják meg.</li><li>A kiegészítő elemeket normál cserépként számolják.</li><li>Túl kevés tartalékot hagynak későbbi javításhoz.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>Hol találom a db/m² értéket?</summary><p>A gyártó műszaki adatlapján, gyakran a léctávolság függvényében.</p></details>
+<details><summary>Miért kell ráhagyás?</summary><p>Vágás, törés, vápa és későbbi javítás miatt.</p></details>
+<details><summary>A gerinccserepet is számolja?</summary><p>Nem, azt a gerinc és élgerinc hossza alapján külön kell számítani.</p></details>
+<details><summary>Palára használható?</summary><p>Csak akkor, ha a megfelelő darab/m² adatot adod meg, de a kiosztás eltérő lehet.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="tegla-kalkulator.html">Tégla kalkulátor</a><a href="hoszigeteles-kalkulator.html">Hőszigetelés</a><a href="beton-kalkulator.html">Beton kalkulátor</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="tetocserep-kalkulator">
-    <section class="hero">
-      <h1>Tetőcserép kalkulátor</h1>
-      <p>Becsüld meg a tetőfedéshez szükséges cserepek számát.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>Hajlatok és kiegészítők növelik az anyaglistát</h2>
-      <p>Vápák, élek, áttörések és vágott sorok több veszteséget okoznak. Kúpcserép, szellőzőelem, rögzítő és alátétfólia külön tétel; a kiosztást és viharbiztos rögzítést tetőfedővel ellenőriztesd.</p>
-      <h3>Tetőfelületből rendelhető cserépmennyiség</h3>
-      <p>A tetősíkok területe, a cserép négyzetméterenkénti igénye és a tartalék alapján becsülhető a darabszám. Minden tetősíkot külön mérj, és a ferde hosszt használd, ne a vízszintes vetületet.</p>
-      <h2>Tetőfedési kérdések</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>A hajlásszög változtatja a darabigényt?</summary>
-          <p>A tényleges tetőfelületet igen, a gyártói fedési szélességet és léctávolságot pedig a termékrendszer határozza meg.</p>
-        </details>
-        <details>
-          <summary>Mennyi tartalék maradjon?</summary>
-          <p>Bonyolult tetőn több, egyszerű nyeregtetőn kevesebb lehet indokolt; néhány ép darabot javításhoz is tegyél félre.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

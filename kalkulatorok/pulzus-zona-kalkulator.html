@@ -1,68 +1,63 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Pulzuszóna kalkulátor életkor és intenzitás alapján. Becsüld meg az edzési pulzustartományokat tájékoztató jelleggel." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/pulzus-zona-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Pulzuszóna kalkulátor életkor és intenzitás alapján. Becsüld meg az edzési pulzustartományokat tájékoztató jelleggel." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/pulzus-zona-kalkulator.html" rel="canonical"/>
 <title>Pulzuszóna kalkulátor | Edzési tartományok becslése</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Pulzuszóna kalkulátor | Edzési tartományok becslése" />
-  <meta property="og:description" content="Pulzuszóna kalkulátor életkor és intenzitás alapján. Becsüld meg az edzési pulzustartományokat tájékoztató jelleggel." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/pulzus-zona-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Pulzuszóna kalkulátor | Edzési tartományok becslése" />
-  <meta name="twitter:description" content="Pulzuszóna kalkulátor életkor és intenzitás alapján. Becsüld meg az edzési pulzustartományokat tájékoztató jelleggel." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Pulzuszóna kalkulátor | Edzési tartományok becslése" property="og:title"/>
+<meta content="Pulzuszóna kalkulátor életkor és intenzitás alapján. Becsüld meg az edzési pulzustartományokat tájékoztató jelleggel." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/pulzus-zona-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Pulzuszóna kalkulátor | Edzési tartományok becslése" name="twitter:title"/>
+<meta content="Pulzuszóna kalkulátor életkor és intenzitás alapján. Becsüld meg az edzési pulzustartományokat tájékoztató jelleggel." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="pulzus-zona-kalkulator">
+<section class="hero">
+<h1>Pulzus zóna kalkulátor</h1>
+<p>Számold ki az edzéshez használható pulzustartományokat.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Edzési pulzustartományok becslése</h2>
+<p>A pulzuszóna kalkulátor életkor és nyugalmi pulzus alapján ad tájékoztató edzési tartományokat. Segíthet megérteni, miért más terhelést jelent ugyanaz a pulzus két különböző embernek, és hogyan lehet az intenzitást a saját kiindulási értékhez viszonyítani.</p>
+<p>Az eredmény nem orvosi vizsgálat és nem teljesítménydiagnosztika. Szív- és érrendszeri betegség, gyógyszerszedés, rosszullét, terhesség vagy hosszabb kihagyás után az edzési intenzitást szakemberrel érdemes egyeztetni.</p>
+<h2>A számítás módszere</h2>
+<p>A kalkulátor a becsült maximális pulzust a <strong>220 − életkor</strong> képlettel számolja, majd a Karvonen-féle pulzustartalékos módszert használja. A pulzustartalék a becsült maximális és a nyugalmi pulzus különbsége. A zónahatár képlete: <strong>nyugalmi pulzus + pulzustartalék × intenzitás</strong>.</p>
+<div class="example-box"><h3>Példa 35 éves sportolónál</h3><p>35 éves korban a képlet szerinti maximum 185 bpm. Ha a nyugalmi pulzus 65 bpm, a pulzustartalék 120. A 60–70%-os tartomány így 137–149 bpm, a 70–85%-os tartomány pedig 149–167 bpm körül alakul.</p></div>
+<h2>Hogyan értelmezd?</h2>
+<p>Az alacsonyabb tartomány általában könnyebb, hosszabban fenntartható terhelést jelez, a magasabb tartomány intenzívebb munkát. A „zsírégető zóna” elnevezés nem jelenti azt, hogy kizárólag ott lehet testzsírt csökkenteni; a teljes energiaegyensúly, az edzés időtartama és az étrend is számít.</p>
+<h2>Korlátok és mérési hibák</h2>
+<ul><li>A 220 − életkor képlet egyéni szinten jelentősen tévedhet.</li><li>A csuklós optikai szenzor gyors intenzitásváltásnál késhet.</li><li>A koffein, stressz, hőség, folyadékhiány és gyógyszerek módosíthatják a pulzust.</li><li>A nyugalmi pulzust pihent állapotban, lehetőleg több reggel átlagából érdemes megadni.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>Mi számít nyugalmi pulzusnak?</summary><p>A teljes nyugalomban, ébredés után mért pulzus jó kiindulás lehet. Egyetlen mérés helyett több nap átlaga pontosabb.</p></details>
+<details><summary>Miért más az órám által mutatott zóna?</summary><p>Az eszköz más maximálispulzus-képletet, saját mért maximumot vagy eltérő zónahatárokat használhat.</p></details>
+<details><summary>Mit tegyek szédülés vagy mellkasi fájdalom esetén?</summary><p>Az edzést azonnal szakítsd meg, és kérj megfelelő egészségügyi segítséget.</p></details>
+<details><summary>Kezdőként a magasabb zónát célozzam?</summary><p>Nem feltétlenül. Kezdéskor a fokozatosság és a könnyen kontrollálható intenzitás általában fontosabb.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="kaloria-kalkulator.html">Kalória kalkulátor</a><a href="bmr-kalkulator.html">BMR kalkulátor</a><a href="vizfogyasztas-kalkulator.html">Folyadékigény kalkulátor</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="pulzus-zona-kalkulator">
-    <section class="hero">
-      <h1>Pulzus zóna kalkulátor</h1>
-      <p>Számold ki az edzéshez használható pulzustartományokat.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>A maximális pulzus képlete átlagot ír le</h2>
-      <p>Egyéni eltérés akár jelentős is lehet, gyógyszerek és szív-érrendszeri állapot pedig módosíthatja a pulzusválaszt. Mellkasi fájdalom, szédülés vagy ismert betegség esetén edzés előtt kérj orvosi tanácsot.</p>
-      <h3>Edzésintenzitás becsült pulzustartományokkal</h3>
-      <p>Az életkorból becsült maximális pulzus és a választott intenzitás alapján kijelölhetők könnyű, közepes vagy erős zónák. Kezdőként a beszédteszt és a terhelésérzet jó kiegészítő visszajelzés.</p>
-      <h2>Pulzuszónák</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>Csuklós óra elég pontos?</summary>
-          <p>Egyenletes mozgásnál hasznos lehet, gyors változásnál vagy rossz illeszkedésnél mellkaspánt pontosabb.</p>
-        </details>
-        <details>
-          <summary>Miért magas a pulzusom ugyanazon a tempón?</summary>
-          <p>Hőség, dehidratáció, stressz, koffein, betegség és fáradtság is emelheti.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

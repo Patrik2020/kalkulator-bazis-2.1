@@ -1,69 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Autó értékvesztés kalkulátor vételár, éves értékcsökkenés és használati idő alapján. Becsüld meg a jármű későbbi maradványértékét." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/auto-ertekvesztes-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Autó értékvesztés kalkulátor vételár, éves értékcsökkenés és használati idő alapján. Becsüld meg a jármű későbbi maradványértékét." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/auto-ertekvesztes-kalkulator.html" rel="canonical"/>
 <title>Autó értékvesztés kalkulátor | Maradványérték becslése</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Autó értékvesztés kalkulátor | Maradványérték becslése" />
-  <meta property="og:description" content="Autó értékvesztés kalkulátor vételár, éves értékcsökkenés és használati idő alapján. Becsüld meg a jármű későbbi maradványértékét." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/auto-ertekvesztes-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Autó értékvesztés kalkulátor | Maradványérték becslése" />
-  <meta name="twitter:description" content="Autó értékvesztés kalkulátor vételár, éves értékcsökkenés és használati idő alapján. Becsüld meg a jármű későbbi maradványértékét." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Autó értékvesztés kalkulátor | Maradványérték becslése" property="og:title"/>
+<meta content="Autó értékvesztés kalkulátor vételár, éves értékcsökkenés és használati idő alapján. Becsüld meg a jármű későbbi maradványértékét." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/auto-ertekvesztes-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Autó értékvesztés kalkulátor | Maradványérték becslése" name="twitter:title"/>
+<meta content="Autó értékvesztés kalkulátor vételár, éves értékcsökkenés és használati idő alapján. Becsüld meg a jármű későbbi maradványértékét." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="auto-ertekvesztes-kalkulator">
+<section class="hero">
+<h1>Autó értékvesztés kalkulátor</h1>
+<p>Számold ki, mennyit veszíthet az autó az értékéből évente.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Autó maradványértékének becslése</h2>
+<p>Az értékvesztés kalkulátor a vételárból, az évenként feltételezett százalékos csökkenésből és az évek számából becsüli meg a későbbi értéket. A számítás kamatos jellegű: minden évben az előző évi maradványérték csökken.</p>
+<p>A használtpiaci ár nem egyenletesen változik. Márka, modell, kor, futásteljesítmény, állapot, szervizmúlt, kereslet és gazdasági környezet miatt a valós érték jelentősen eltérhet.</p>
+<h2>A képlet</h2><p><strong>Maradványérték = vételár × (1 − éves ráta)<sup>évek</sup></strong>. A teljes értékvesztés a vételár és a maradványérték különbsége.</p>
+<div class="example-box"><h3>Példa</h3><p>8 000 000 Ft vételár, 12% éves értékvesztés és 3 év mellett a becsült érték 8 000 000 × 0,88³ ≈ 5 452 000 Ft. A becsült veszteség körülbelül 2 548 000 Ft.</p></div>
+<h2>Hogyan válassz rátát?</h2><p>Használj több forgatókönyvet, például 8%, 12% és 18%. Új autóknál az első évek gyorsabbak lehetnek, idősebb autónál pedig a százalékos ütem lassulhat, miközben a javítási kockázat nő.</p>
+<h2>Gyakori hibák</h2><ul><li>Lineáris levonást várnak a kamatos számítás helyett.</li><li>A vételárba nem számítják a kedvezményt vagy extra felszerelést.</li><li>Az inflációt és a használtpiaci változást biztos előrejelzésként kezelik.</li><li>A nagy javításokat maradványérték-növelésnek tekintik teljes összegben.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>Miért nem egyszerűen ugyanannyit von le évente?</summary><p>A százalék mindig az aktuális, csökkenő értékre vonatkozik.</p></details>
+<details><summary>Veterán autóra jó?</summary><p>Korlátozottan, mert ott az érték akár nőhet is.</p></details>
+<details><summary>Az inflációt figyelembe veszi?</summary><p>Nem, nominális forintértéket számol a megadott rátából.</p></details>
+<details><summary>Lízinghez használható?</summary><p>Tájékoztató becslésre igen, szerződéses maradványértékhez a lízingcég adata az irányadó.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="eves-auto-koltseg-kalkulator.html">Éves autóköltség</a><a href="kilometerdij-kalkulator.html">Kilométerdíj</a><a href="hitel-torleszto-kalkulator.html">Hitel törlesztő</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="auto-ertekvesztes-kalkulator">
-    <section class="hero">
-      <h1>Autó értékvesztés kalkulátor</h1>
-      <p>Számold ki, mennyit veszíthet az autó az értékéből évente.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>Az autó ára évről évre más ütemben változik</h2>
-      <div class="content-split">
-        <div><h3>A piaci ár nem szabályos görbe</h3><p>Új autóknál gyakran az első években a legnagyobb az értékvesztés, később lassulhat. Futásteljesítmény, szervizelőélet, sérülés, felszereltség és a típus keresettsége a százalékos modellnél sokkal erősebben is hathat.</p></div>
-        <p>A vételár, az éves értékvesztési arány és a használati idő alapján becsülhető a későbbi érték. Ez hasznos lehet teljes autóköltség vagy várható cserekeret tervezésekor.</p>
-      </div>
-      <h2>Értékvesztési kérdések</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>Az inflációt figyelembe veszi a becslés?</summary>
-          <p>A százalékos eredmény névleges érték; magas infláció mellett a forintár és a reálérték eltérően mozoghat.</p>
-        </details>
-        <details>
-          <summary>Használható eladási ár meghatározására?</summary>
-          <p>Kiindulópontnak igen, de hirdetés előtt hasonlítsd össze azonos évjáratú és állapotú autók aktuális áraival.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

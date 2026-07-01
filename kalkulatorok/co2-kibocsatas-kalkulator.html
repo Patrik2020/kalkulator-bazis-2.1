@@ -1,68 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="CO2-kibocsátás kalkulátor autós utazáshoz. Becsüld meg a megtett út és az üzemanyag-felhasználás alapján keletkező szén-dioxid mennyiségét." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/co2-kibocsatas-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="CO2-kibocsátás kalkulátor autós utazáshoz. Becsüld meg a megtett út és az üzemanyag-felhasználás alapján keletkező szén-dioxid mennyiségét." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/co2-kibocsatas-kalkulator.html" rel="canonical"/>
 <title>Autós CO2-kibocsátás kalkulátor | Utazási becslés</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Autós CO2-kibocsátás kalkulátor | Utazási becslés" />
-  <meta property="og:description" content="CO2-kibocsátás kalkulátor autós utazáshoz. Becsüld meg a megtett út és az üzemanyag-felhasználás alapján keletkező szén-dioxid mennyiségét." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/co2-kibocsatas-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Autós CO2-kibocsátás kalkulátor | Utazási becslés" />
-  <meta name="twitter:description" content="CO2-kibocsátás kalkulátor autós utazáshoz. Becsüld meg a megtett út és az üzemanyag-felhasználás alapján keletkező szén-dioxid mennyiségét." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Autós CO2-kibocsátás kalkulátor | Utazási becslés" property="og:title"/>
+<meta content="CO2-kibocsátás kalkulátor autós utazáshoz. Becsüld meg a megtett út és az üzemanyag-felhasználás alapján keletkező szén-dioxid mennyiségét." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/co2-kibocsatas-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Autós CO2-kibocsátás kalkulátor | Utazási becslés" name="twitter:title"/>
+<meta content="CO2-kibocsátás kalkulátor autós utazáshoz. Becsüld meg a megtett út és az üzemanyag-felhasználás alapján keletkező szén-dioxid mennyiségét." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="co2-kibocsatas-kalkulator">
+<section class="hero">
+<h1>CO2 kibocsátás kalkulátor</h1>
+<p>Becsüld meg az utazás szén-dioxid kibocsátását üzemanyag alapján.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Autózás közvetlen CO₂-kibocsátásának becslése</h2>
+<p>A kalkulátor a megtett távolság, az átlagfogyasztás és az üzemanyag literenkénti kibocsátási tényezője alapján becsüli meg az elégetéshez kapcsolódó szén-dioxid mennyiségét. A gyári g/km adattól eltérően a saját fogyasztásodat használhatod.</p>
+<p>Az alapértelmezett 2,31 kg/l érték közelítő benzinérték. Dízelhez, LPG-hez vagy más üzemanyaghoz a megfelelő tényezőt kell megadni. A számítás csak a közvetlen kipufogó-kibocsátást közelíti, nem tartalmazza az üzemanyag előállítását, szállítását vagy az autó gyártását.</p>
+<h2>A képlet</h2><p>Először a felhasznált üzemanyag: <strong>távolság × fogyasztás / 100</strong>. Ezt szorozza a program a kg CO₂/liter tényezővel.</p>
+<div class="example-box"><h3>Példa</h3><p>500 km út, 6,5 l/100 km fogyasztás és 2,31 kg/l tényező mellett 32,5 liter üzemanyag fogy, a becsült közvetlen kibocsátás pedig körülbelül 75,1 kg CO₂.</p></div>
+<h2>Hogyan értelmezd?</h2><p>Az érték út- és jármű-összehasonlításra alkalmas. Egy főre jutó kibocsátáshoz oszd el az utasok számával. Tele autó esetén az egy utasra jutó érték alacsonyabb lehet, mint egyedül utazva.</p>
+<h2>Gyakori hibák</h2><ul><li>Nem a tényleges üzemanyaghoz tartozó tényezőt használják.</li><li>A fogyasztást liter/km formában adják meg liter/100 km helyett.</li><li>Oda-vissza útnál csak az egyik irány távolságát írják be.</li><li>A közvetlen kibocsátást teljes életciklus-kibocsátásként értelmezik.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>Elektromos autóra használható?</summary><p>Nem közvetlenül, mert ott kWh/100 km és az áramtermelés kibocsátási tényezője szükséges.</p></details>
+<details><summary>Miért más a forgalmiban szereplő adat?</summary><p>A hivatalos g/km érték szabványos mérésből származik, a kalkulátor pedig a megadott tényleges fogyasztásból.</p></details>
+<details><summary>Utasokra elosztható?</summary><p>Igen, az összes kg értéket eloszthatod az utasok számával.</p></details>
+<details><summary>A klíma hatása benne van?</summary><p>Csak annyiban, amennyiben a megadott átlagfogyasztás már tartalmazza.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="auto-fogyasztas-kalkulator.html">Autófogyasztás</a><a href="uzemanyag-koltseg-kalkulator.html">Üzemanyagköltség</a><a href="hatotav-kalkulator.html">Hatótáv</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="co2-kibocsatas-kalkulator">
-    <section class="hero">
-      <h1>CO2 kibocsátás kalkulátor</h1>
-      <p>Becsüld meg az utazás szén-dioxid kibocsátását üzemanyag alapján.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>A teljes életciklus ennél szélesebb</h2>
-      <p>A számítás általában nem tartalmazza az üzemanyag előállítását, az autó gyártását, az akkumulátort vagy az infrastruktúrát. A valós értéket a tényleges fogyasztás és a választott kibocsátási tényező pontossága határozza meg.</p>
-      <h3>Az üzemanyagból becsült közvetlen kibocsátás</h3>
-      <p>A megtett út, a fogyasztás és az üzemanyagtípus alapján közelíthető az elégetéskor keletkező szén-dioxid. Ez útvonalak, közlekedési módok vagy éves autóhasználat nagyságrendi összevetéséhez hasznos.</p>
-      <h2>Kibocsátás-becslés</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>Miért nem azonos két kalkulátor eredménye?</summary>
-          <p>Eltérő emissziós tényezőt, bioüzemanyag-arányt vagy teljes életciklusú módszert használhatnak.</p>
-        </details>
-        <details>
-          <summary>A fedélzeti fogyasztás jó bemenet?</summary>
-          <p>Kiindulásnak igen, de több tankolás mért átlaga általában közelebb áll a valós használathoz.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

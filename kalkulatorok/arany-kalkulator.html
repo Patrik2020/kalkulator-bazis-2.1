@@ -1,69 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Arány kalkulátor egy rész és az egész kapcsolatának meghatározásához. Számíts százalékos arányt két megadott értékből." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/arany-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Arány kalkulátor egy rész és az egész kapcsolatának meghatározásához. Számíts százalékos arányt két megadott értékből." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/arany-kalkulator.html" rel="canonical"/>
 <title>Arány kalkulátor | Rész, egész és százalék</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Arány kalkulátor | Rész, egész és százalék" />
-  <meta property="og:description" content="Arány kalkulátor egy rész és az egész kapcsolatának meghatározásához. Számíts százalékos arányt két megadott értékből." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/arany-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Arány kalkulátor | Rész, egész és százalék" />
-  <meta name="twitter:description" content="Arány kalkulátor egy rész és az egész kapcsolatának meghatározásához. Számíts százalékos arányt két megadott értékből." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Arány kalkulátor | Rész, egész és százalék" property="og:title"/>
+<meta content="Arány kalkulátor egy rész és az egész kapcsolatának meghatározásához. Számíts százalékos arányt két megadott értékből." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/arany-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Arány kalkulátor | Rész, egész és százalék" name="twitter:title"/>
+<meta content="Arány kalkulátor egy rész és az egész kapcsolatának meghatározásához. Számíts százalékos arányt két megadott értékből." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="arany-kalkulator">
+<section class="hero">
+<h1>Arány kalkulátor</h1>
+<p>Számold ki egy rész arányát az egészhez képest.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Egy rész aránya az egészhez képest</h2>
+<p>Az arány kalkulátor megmutatja, hogy egy rész az egész hány százaléka. Használható költségvetési tételek, teljesítményadatok, csoportlétszámok vagy bármilyen rész–egész kapcsolat gyors ellenőrzésére.</p>
+<p>A nevezőként megadott egész nem lehet nulla. A rész lehet nagyobb az egésznél is; ilyenkor az eredmény 100% feletti, ami növekedést vagy többletet jelezhet.</p>
+<h2>A képlet</h2><p><strong>Arány százalékban = rész / egész × 100</strong>. A kalkulátor a tört alakot is megjeleníti, hogy a bemeneti kapcsolat könnyen ellenőrizhető legyen.</p>
+<div class="example-box"><h3>Példa</h3><p>Ha egy 40 fős csoportból 14 ember választ egy lehetőséget, az arány 14 / 40 × 100 = 35%.</p></div>
+<h2>Arány és százalékpont</h2><p>Ha egy mutató 35%-ról 40%-ra nő, az 5 százalékpontos növekedés, de relatívan körülbelül 14,3%-os emelkedés. A kalkulátor rész–egész arányt számol, nem két százalék különbségét.</p>
+<h2>Gyakori hibák</h2><ul><li>A részt és az egészet felcserélik.</li><li>Nullát adnak meg egésznek.</li><li>A 0,35 értéket 0,35%-nak tekintik 35% helyett.</li><li>Százalékot és százalékpontot összekevernek.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>Lehet az eredmény 100% felett?</summary><p>Igen, ha a rész nagyobb a megadott egész értékénél.</p></details>
+<details><summary>Fordított arányt hogyan számoljak?</summary><p>Cseréld fel a rész és egész mező értékét.</p></details>
+<details><summary>Áremelkedésre is jó?</summary><p>Az új és régi ár arányát megadja, de a változás százalékához a százalékkalkulátor célszerűbb.</p></details>
+<details><summary>Tizedes számokat elfogad?</summary><p>Igen, ponttal vagy vesszővel is megadhatók.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="szazalek-kalkulator.html">Százalék kalkulátor</a><a href="atlag-kalkulator.html">Átlag kalkulátor</a><a href="ar-kedvezmeny-kalkulator.html">Árkedvezmény</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="arany-kalkulator">
-    <section class="hero">
-      <h1>Arány kalkulátor</h1>
-      <p>Számold ki egy rész arányát az egészhez képest.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>Arányok felosztáshoz és összehasonlításhoz</h2>
-      <div class="content-split">
-        <div><h3>Az arány nem százalék</h3><p>A 2:3 arány két rész és három rész kapcsolatát jelenti, míg a százalék száz egységhez viszonyít. Felosztásnál előbb add össze az arányrészeket, majd a teljes mennyiséget oszd el ezzel az összeggel.</p></div>
-        <p>Receptek, keverékek, költségmegosztás vagy képméretezés során az arány azt mutatja meg, hogyan viszonyul két mennyiség egymáshoz. A számítás akkor értelmes, ha a két adat azonos vagy összehasonlítható mértékegységben szerepel.</p>
-      </div>
-      <h2>Arányértelmezés</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>Lehet tizedes szám az arányban?</summary>
-          <p>Igen, de áttekinthetőbb lehet mindkét oldalt ugyanazzal a számmal megszorozva egész arányra hozni.</p>
-        </details>
-        <details>
-          <summary>Mi történik nulla megadásakor?</summary>
-          <p>Nullával osztani nem lehet; ilyen esetben az arány matematikailag nem értelmezhető a szokásos módon.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

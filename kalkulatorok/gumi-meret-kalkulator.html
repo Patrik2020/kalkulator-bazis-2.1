@@ -1,68 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Gumiméret-váltó két abroncsméret összehasonlításához. Nézd meg a teljes átmérőt és a százalékos eltérést csere előtt." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/gumi-meret-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Gumiméret-váltó két abroncsméret összehasonlításához. Nézd meg a teljes átmérőt és a százalékos eltérést csere előtt." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/gumi-meret-kalkulator.html" rel="canonical"/>
 <title>Gumiméret-váltó | Kerékátmérő és eltérés számítása</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Gumiméret-váltó | Kerékátmérő és eltérés számítása" />
-  <meta property="og:description" content="Gumiméret-váltó két abroncsméret összehasonlításához. Nézd meg a teljes átmérőt és a százalékos eltérést csere előtt." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/gumi-meret-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Gumiméret-váltó | Kerékátmérő és eltérés számítása" />
-  <meta name="twitter:description" content="Gumiméret-váltó két abroncsméret összehasonlításához. Nézd meg a teljes átmérőt és a százalékos eltérést csere előtt." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Gumiméret-váltó | Kerékátmérő és eltérés számítása" property="og:title"/>
+<meta content="Gumiméret-váltó két abroncsméret összehasonlításához. Nézd meg a teljes átmérőt és a százalékos eltérést csere előtt." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/gumi-meret-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Gumiméret-váltó | Kerékátmérő és eltérés számítása" name="twitter:title"/>
+<meta content="Gumiméret-váltó két abroncsméret összehasonlításához. Nézd meg a teljes átmérőt és a százalékos eltérést csere előtt." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="gumi-meret-kalkulator">
+<section class="hero">
+<h1>Gumiméret váltó kalkulátor</h1>
+<p>Hasonlíts össze két gumiméretet átmérő és eltérés alapján.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Két gumiabroncs-méret külső átmérőjének összevetése</h2>
+<p>A gumiméret-váltó kiszámolja a régi és az új kerék elméleti külső átmérőjét, majd százalékban megmutatja az eltérést. Segít megérteni, hogyan változhat a kerék gördülési kerülete, a hasmagasság és a sebességmérő jelzése.</p>
+<p>A kalkulátor nem igazolja, hogy egy méret felszerelhető vagy jogszerű. A felni szélessége, ET-száma, terhelési és sebességindex, féknyereg, kerékjárat, gyártói homologizáció és hatósági előírás külön ellenőrzendő.</p>
+<h2>Hogyan épül fel a méret?</h2><p>A 205/55 R16 jelölésben 205 mm a szélesség, 55% az oldalfal magasságának aránya, 16 coll a felni átmérője. A teljes átmérő: felni milliméterben + két oldalfal.</p>
+<div class="example-box"><h3>Példa</h3><p>A 205/55 R16 elméleti átmérője körülbelül 631,9 mm. A 225/45 R17 méreté 634,3 mm, az eltérés körülbelül +0,38%.</p></div>
+<h2>Mit jelent a százalékos eltérés?</h2><p>Nagyobb keréknél ugyanannyi kerékfordulathoz hosszabb út tartozik, így a sebességmérő és kilométer-számláló eltérése változhat. Az abroncs valós mérete gyártónként és kopottságtól is eltérhet az elmélettől.</p>
+<h2>Gyakori hibák</h2><ul><li>A profilértéket milliméternek tekintik százalék helyett.</li><li>A felni collértékét milliméterként adják meg.</li><li>Csak az átmérőt nézik, a terhelési indexet nem.</li><li>A kalkulátor eredményét automatikus engedélyként kezelik.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>Mekkora eltérés fogadható el?</summary><p>Gyakori ökölszabályokat nem szabad hivatalos jóváhagyásnak tekinteni; a jármű gyártói méretlistája az elsődleges.</p></details>
+<details><summary>A felni ET-számát vizsgálja?</summary><p>Nem. Csak az elméleti külső átmérőt számolja.</p></details>
+<details><summary>A sebességmérő pontos eltérését megkapom?</summary><p>Csak közelítést, mert a valós abroncsméret és a műszer gyári hibája is számít.</p></details>
+<details><summary>Téli méretet is összevethetek?</summary><p>Igen, de a járműhöz engedélyezett méretet külön ellenőrizd.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="sebesseg-atvalto-kalkulator.html">Sebesség átváltó</a><a href="auto-fogyasztas-kalkulator.html">Autófogyasztás</a><a href="hatotav-kalkulator.html">Hatótáv</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="gumi-meret-kalkulator">
-    <section class="hero">
-      <h1>Gumiméret váltó kalkulátor</h1>
-      <p>Hasonlíts össze két gumiméretet átmérő és eltérés alapján.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>A geometria önmagában nem engedély</h2>
-      <p>Terhelési és sebességindex, felni szélessége, ET, fékhely, karosszéria és gyártói homologizáció is szükséges a biztonságos választáshoz. Vásárlás előtt ellenőrizd a jármű dokumentációját vagy kérj gumis szakvéleményt.</p>
-      <h3>A váltóméret átmérője számít</h3>
-      <p>A gumi szélességéből, oldalfal-arányából és felniátmérőjéből számítható a teljes kerékátmérő és kerület. A hasonló külső méret segít, hogy a sebességmérő és a futómű geometriája ne térjen el túlzottan.</p>
-      <h2>Váltóméret-kérdések</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>Mekkora eltérés elfogadható?</summary>
-          <p>Gyakori ökölszabály a néhány százalékon belüli átmérő, de a hivatalos gyártói méretlista az elsődleges.</p>
-        </details>
-        <details>
-          <summary>A kalkulátor megmondja, elfér-e a kerék?</summary>
-          <p>Nem; ehhez a felni paraméterei, a futómű és a karosszéria szabad helye is kell.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

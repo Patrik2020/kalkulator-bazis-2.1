@@ -1,69 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Makró kalkulátor napi kalóriacélhoz. Becsüld meg a fehérje, zsír és szénhidrát grammját a választott megoszlás alapján." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/makro-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Makró kalkulátor napi kalóriacélhoz. Becsüld meg a fehérje, zsír és szénhidrát grammját a választott megoszlás alapján." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/makro-kalkulator.html" rel="canonical"/>
 <title>Makró kalkulátor | Fehérje, zsír és szénhidrát</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Makró kalkulátor | Fehérje, zsír és szénhidrát" />
-  <meta property="og:description" content="Makró kalkulátor napi kalóriacélhoz. Becsüld meg a fehérje, zsír és szénhidrát grammját a választott megoszlás alapján." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/makro-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Makró kalkulátor | Fehérje, zsír és szénhidrát" />
-  <meta name="twitter:description" content="Makró kalkulátor napi kalóriacélhoz. Becsüld meg a fehérje, zsír és szénhidrát grammját a választott megoszlás alapján." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Makró kalkulátor | Fehérje, zsír és szénhidrát" property="og:title"/>
+<meta content="Makró kalkulátor napi kalóriacélhoz. Becsüld meg a fehérje, zsír és szénhidrát grammját a választott megoszlás alapján." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/makro-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Makró kalkulátor | Fehérje, zsír és szénhidrát" name="twitter:title"/>
+<meta content="Makró kalkulátor napi kalóriacélhoz. Becsüld meg a fehérje, zsír és szénhidrát grammját a választott megoszlás alapján." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="makro-kalkulator">
+<section class="hero">
+<h1>Makró kalkulátor</h1>
+<p>Oszd fel a napi kalóriát fehérje, szénhidrát és zsír között.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Napi makrotápanyagok elosztása kalóriából</h2>
+<p>A makró kalkulátor a napi kalóriacélt felosztja fehérjére, zsírra és szénhidrátra a megadott százalékok alapján. A fehérje- és zsírarányt te adod meg, a fennmaradó rész automatikusan szénhidrát lesz.</p>
+<p>A százalékoknak együtt legfeljebb 100-at kell kiadniuk. A kalkulátor nem választ személyre szabott arányt, és nem vizsgálja a rostot, mikrotápanyagokat vagy az élelmiszerek minőségét.</p>
+<h2>A számítás</h2><p>A fehérje és szénhidrát 4 kcal/gramm, a zsír 9 kcal/gramm energiatényezővel szerepel. Például a fehérje grammja: <strong>kalória × fehérjeszázalék / 100 / 4</strong>.</p>
+<div class="example-box"><h3>Példa</h3><p>2 000 kcal, 30% fehérje és 25% zsír mellett 150 g fehérje, körülbelül 56 g zsír és 225 g szénhidrát adódik.</p></div>
+<h2>Hogyan értelmezd?</h2><p>Az eredmény matematikai felosztás. Az egyéni szükséglet függ testsúlytól, edzéstől, egészségi állapottól és céltól. Szélsőséges arányok vagy betegségek esetén dietetikusi segítség indokolt.</p>
+<h2>Gyakori hibák</h2><ul><li>A fehérje és zsír együtt meghaladja a 100%-ot.</li><li>A grammot százaléknak adják meg.</li><li>Az alkoholt és rostot nem veszik figyelembe a kalóriakövetésben.</li><li>A számolt cél miatt figyelmen kívül hagyják az étrend minőségét.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>Melyik arány a legjobb?</summary><p>Nincs mindenkire érvényes arány; cél és egyéni tolerancia szerint változik.</p></details>
+<details><summary>Fogyáshoz használható?</summary><p>Igen, de a kalóriadeficit és fenntarthatóság alapvetőbb, mint a pontos arány.</p></details>
+<details><summary>A rost szénhidrát?</summary><p>Tápértékjelölésben a kezelése összetett lehet; a kalkulátor egyszerű 4 kcal/g tényezőt használ.</p></details>
+<details><summary>Miért kerekít?</summary><p>A napi grammcélok gyakorlati használhatósága miatt egész grammra kerekít.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="kaloria-kalkulator.html">Kalória kalkulátor</a><a href="feherje-szukseglet-kalkulator.html">Fehérjeigény</a><a href="bmr-kalkulator.html">BMR kalkulátor</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="makro-kalkulator">
-    <section class="hero">
-      <h1>Makró kalkulátor</h1>
-      <p>Oszd fel a napi kalóriát fehérje, szénhidrát és zsír között.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>Fehérje, zsír és szénhidrát a napi keretben</h2>
-      <div class="content-split">
-        <div><h3>A számok mellett az élelmiszer minősége is számít</h3><p>Rost, vitaminok, telítettség és egyéni tolerancia nem látszik a makróarányból. Sportcél, betegség, várandósság vagy jelentős fogyás esetén személyre szabott étrendet dietetikussal érdemes készíteni.</p></div>
-        <p>A makrók grammban osztják fel a becsült energiabevitelt. Egy gramm fehérje és szénhidrát közel 4, egy gramm zsír körülbelül 9 kilokalóriát képvisel, ezért a százalék és a gramm nem azonos arány.</p>
-      </div>
-      <h2>Makrótervezés</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>Pontosan el kell találnom minden nap?</summary>
-          <p>Nem; a többnapos átlag és a következetes, tartható étkezés fontosabb a grammra tökéletes napoknál.</p>
-        </details>
-        <details>
-          <summary>Az alkohol melyik makró?</summary>
-          <p>Egyik sem, de energiát ad, ezért a napi kalóriamérlegben külön számolni kell vele.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

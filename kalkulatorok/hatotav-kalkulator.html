@@ -1,69 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Hatótáv kalkulátor tankban lévő üzemanyag és átlagfogyasztás alapján. Becsüld meg, hány kilométert tehetsz még meg tankolás előtt." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/hatotav-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Hatótáv kalkulátor tankban lévő üzemanyag és átlagfogyasztás alapján. Becsüld meg, hány kilométert tehetsz még meg tankolás előtt." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/hatotav-kalkulator.html" rel="canonical"/>
 <title>Autó hatótáv kalkulátor | Megtehető kilométer</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Autó hatótáv kalkulátor | Megtehető kilométer" />
-  <meta property="og:description" content="Hatótáv kalkulátor tankban lévő üzemanyag és átlagfogyasztás alapján. Becsüld meg, hány kilométert tehetsz még meg tankolás előtt." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/hatotav-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Autó hatótáv kalkulátor | Megtehető kilométer" />
-  <meta name="twitter:description" content="Hatótáv kalkulátor tankban lévő üzemanyag és átlagfogyasztás alapján. Becsüld meg, hány kilométert tehetsz még meg tankolás előtt." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Autó hatótáv kalkulátor | Megtehető kilométer" property="og:title"/>
+<meta content="Hatótáv kalkulátor tankban lévő üzemanyag és átlagfogyasztás alapján. Becsüld meg, hány kilométert tehetsz még meg tankolás előtt." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/hatotav-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Autó hatótáv kalkulátor | Megtehető kilométer" name="twitter:title"/>
+<meta content="Hatótáv kalkulátor tankban lévő üzemanyag és átlagfogyasztás alapján. Becsüld meg, hány kilométert tehetsz még meg tankolás előtt." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="hatotav-kalkulator">
+<section class="hero">
+<h1>Hatótáv kalkulátor</h1>
+<p>Becsüld meg, hány kilométert tehetsz meg a tankban lévő üzemanyaggal.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Becsült autós hatótáv a tankban lévő üzemanyagból</h2>
+<p>A kalkulátor azt mutatja meg, elméletileg hány kilométer tehető meg a megadott liter üzemanyaggal és átlagfogyasztással. Útvonaltervezéshez vagy tankolási döntéshez ad gyors támpontot.</p>
+<p>A kijelzett érték nem biztonságos „nulláig használható” távolság. A tankban lévő mennyiség becslése, a forgalom, időjárás, emelkedő, terhelés és vezetési stílus jelentősen módosíthatja.</p>
+<h2>A képlet</h2><p><strong>Hatótáv = üzemanyag liter / fogyasztás liter/100 km × 100</strong>.</p>
+<div class="example-box"><h3>Példa</h3><p>32 liter üzemanyag és 6,4 l/100 km fogyasztás mellett az elméleti hatótáv 500 km. Biztonsági tartalékkal célszerű ennél hamarabb tankolni.</p></div>
+<h2>Reális fogyasztás megadása</h2><p>A fedélzeti számítógép helyett több teletankolásból számolt átlag pontosabb lehet. Téli rövid utak, autópálya, tetőbox vagy vontatás eltérő fogyasztást eredményezhet, ezért az adott út jellegéhez illő adatot használj.</p>
+<h2>Gyakori hibák</h2><ul><li>A pillanatnyi fogyasztást adják meg hosszú távú átlag helyett.</li><li>A tank névleges űrtartalmát használják a tényleges mennyiség helyett.</li><li>Nem hagynak tartalékot.</li><li>Liter/100 km helyett km/l adatot írnak be.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>Miért mutat mást az autó?</summary><p>A fedélzeti rendszer saját fogyasztási és üzemanyagszint-adatból számol, amelyek szintén becslések.</p></details>
+<details><summary>A tartalék lámpa után használható?</summary><p>Számolni lehet, de a maradék mennyiség bizonytalan; tankolj mielőbb.</p></details>
+<details><summary>Oda-vissza útra hogyan ellenőrizzem?</summary><p>Hasonlítsd össze a teljes távolságot a tartalékkal csökkentett hatótávval.</p></details>
+<details><summary>Elektromos autóra jó?</summary><p>Nem, ott akkukapacitás és kWh/100 km fogyasztás szükséges.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="auto-fogyasztas-kalkulator.html">Autófogyasztás</a><a href="tankolas-kalkulator.html">Tankolás</a><a href="uzemanyag-koltseg-kalkulator.html">Üzemanyagköltség</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="hatotav-kalkulator">
-    <section class="hero">
-      <h1>Hatótáv kalkulátor</h1>
-      <p>Becsüld meg, hány kilométert tehetsz meg a tankban lévő üzemanyaggal.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>Meddig elég a rendelkezésre álló üzemanyag?</h2>
-      <div class="content-split">
-        <div><h3>A tartalék nem felhasználási cél</h3><p>Emelkedő, szembeszél, utánfutó, hideg és nagy sebesség csökkentheti a hatótávot. Ne az elméleti maximumig tervezz: a műszer pontatlansága és a forgalmi kerülő miatt hagyj biztonsági tartalékot.</p></div>
-        <p>A tankban lévő mennyiség és a várható átlagfogyasztás alapján becsülhető a megtehető távolság. Hosszú út előtt ez segít megtervezni a tankolási pontot, különösen ritkán lakott szakaszon.</p>
-      </div>
-      <h2>Hatótáv-tervezés</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>A névleges tankméret teljesen felhasználható?</summary>
-          <p>Nem biztos; a konstrukció, a betöltés és a jeladó miatt a ténylegesen használható mennyiség eltérhet.</p>
-        </details>
-        <details>
-          <summary>Elektromos autóra is jó?</summary>
-          <p>Ehhez energiafogyasztás és akkukapacitás alapú számítás kell, nem liter és l/100 km.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

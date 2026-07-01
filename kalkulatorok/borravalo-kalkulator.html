@@ -1,68 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Borravaló kalkulátor éttermi számlához. Válassz százalékot, add meg a létszámot, és számold ki a teljes és fejenként fizetendő összeget." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/borravalo-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Borravaló kalkulátor éttermi számlához. Válassz százalékot, add meg a létszámot, és számold ki a teljes és fejenként fizetendő összeget." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/borravalo-kalkulator.html" rel="canonical"/>
 <title>Borravaló kalkulátor | Számla és fejenkénti összeg</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Borravaló kalkulátor | Számla és fejenkénti összeg" />
-  <meta property="og:description" content="Borravaló kalkulátor éttermi számlához. Válassz százalékot, add meg a létszámot, és számold ki a teljes és fejenként fizetendő összeget." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/borravalo-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Borravaló kalkulátor | Számla és fejenkénti összeg" />
-  <meta name="twitter:description" content="Borravaló kalkulátor éttermi számlához. Válassz százalékot, add meg a létszámot, és számold ki a teljes és fejenként fizetendő összeget." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Borravaló kalkulátor | Számla és fejenkénti összeg" property="og:title"/>
+<meta content="Borravaló kalkulátor éttermi számlához. Válassz százalékot, add meg a létszámot, és számold ki a teljes és fejenként fizetendő összeget." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/borravalo-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Borravaló kalkulátor | Számla és fejenkénti összeg" name="twitter:title"/>
+<meta content="Borravaló kalkulátor éttermi számlához. Válassz százalékot, add meg a létszámot, és számold ki a teljes és fejenként fizetendő összeget." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="borravalo-kalkulator">
+<section class="hero">
+<h1>Borravaló kalkulátor</h1>
+<p>Oszd el a számlát és számold ki a borravalót több főre.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Borravaló és fejenkénti fizetendő összeg</h2>
+<p>A kalkulátor a számla összegéből és a választott százalékból meghatározza a borravalót, a teljes fizetendőt, majd egyenlően elosztja a megadott létszám között. Éttermi vagy közös rendelési elszámolásnál használható.</p>
+<p>Ellenőrizd, hogy a számla tartalmaz-e már szervizdíjat. A szervizdíj és a borravaló nem feltétlenül ugyanaz, de ha már van kötelező szolgáltatási díj, a további borravaló személyes döntés.</p>
+<h2>A képlet</h2><p><strong>Borravaló = számla × százalék / 100</strong>. A teljes összeg a számla és borravaló összege, a fejenkénti rész pedig ennek osztása a létszámmal.</p>
+<div class="example-box"><h3>Példa</h3><p>24 000 Ft számla, 10% borravaló és 3 fő esetén a borravaló 2 400 Ft, a teljes fizetendő 26 400 Ft, fejenként 8 800 Ft.</p></div>
+<h2>Egyenlő vagy fogyasztásarányos megosztás?</h2><p>A kalkulátor egyenlően oszt. Ha valaki lényegesen többet vagy kevesebbet fogyasztott, előbb különítsétek el az egyéni tételeket, és csak a közös részt osszátok.</p>
+<h2>Gyakori hibák</h2><ul><li>A szervizdíjas végösszegre véletlenül még egyszer ugyanazt a százalékot számolják.</li><li>A létszámba nem számítanak bele minden fizetőt.</li><li>A borravaló százalékát tizedesként adják meg, például 0,1-et 10 helyett.</li><li>Kártyás és készpénzes kerekítést nem egyeztetnek.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>Szervizdíj mellett kell borravaló?</summary><p>Nem kötelező; a helyi gyakorlat és elégedettség alapján dönthető el.</p></details>
+<details><summary>Fejenként eltérő összeget számol?</summary><p>Nem, egyenlően oszt.</p></details>
+<details><summary>Hogyan kerekítsünk?</summary><p>Egyezzetek meg egész száz vagy ezer forintos összegben, a különbséget valaki vállalhatja.</p></details>
+<details><summary>Külföldön használható?</summary><p>Igen, a matematikához a pénznem nem számít, de a helyi borravalószokások eltérnek.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="rezsi-megosztas-kalkulator.html">Költségmegosztás</a><a href="szazalek-kalkulator.html">Százalék kalkulátor</a><a href="ar-kedvezmeny-kalkulator.html">Árkedvezmény</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="borravalo-kalkulator">
-    <section class="hero">
-      <h1>Borravaló kalkulátor</h1>
-      <p>Oszd el a számlát és számold ki a borravalót több főre.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>Borravaló és számla felosztása vita nélkül</h2>
-      <p>A számlaösszegből és a választott százalékból gyorsan kiszámítható a borravaló, a teljes fizetendő összeg és személyenkénti rész. Csoportnál előre tisztázható, hogy mindenki egyenlően fizet-e vagy a saját fogyasztása alapján.</p>
-      <h3>Nézd meg, van-e már szervizdíj</h3>
-      <p>Az étlap vagy a számla tartalmazhat felszolgálási díjat, amely nem ugyanaz minden helyen és nem feltétlenül indokol további borravalót. Kártyás fizetésnél kérdezd meg, hogyan adható hozzá.</p>
-      <h2>Fizetésnél gyakori</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>A százalékot a nettó vagy a teljes számlából számoljam?</summary>
-          <p>Magánfogyasztásnál általában a vendég által fizetendő teljes számlaösszegből szokás kiindulni.</p>
-        </details>
-        <details>
-          <summary>Hogyan osszak, ha valaki jóval kevesebbet fogyasztott?</summary>
-          <p>Ilyenkor igazságosabb lehet előbb egyéni fogyasztásra bontani, és csak a közös tételeket osztani egyenlően.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

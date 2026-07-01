@@ -1,68 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Árkedvezmény kalkulátor akciós árhoz: add meg az eredeti árat és a kedvezmény százalékát, majd lásd a fizetendő összeget és megtakarítást." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/ar-kedvezmeny-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Árkedvezmény kalkulátor akciós árhoz: add meg az eredeti árat és a kedvezmény százalékát, majd lásd a fizetendő összeget és megtakarítást." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/ar-kedvezmeny-kalkulator.html" rel="canonical"/>
 <title>Árkedvezmény kalkulátor | Akciós ár és megtakarítás</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Árkedvezmény kalkulátor | Akciós ár és megtakarítás" />
-  <meta property="og:description" content="Árkedvezmény kalkulátor akciós árhoz: add meg az eredeti árat és a kedvezmény százalékát, majd lásd a fizetendő összeget és megtakarítást." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/ar-kedvezmeny-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Árkedvezmény kalkulátor | Akciós ár és megtakarítás" />
-  <meta name="twitter:description" content="Árkedvezmény kalkulátor akciós árhoz: add meg az eredeti árat és a kedvezmény százalékát, majd lásd a fizetendő összeget és megtakarítást." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Árkedvezmény kalkulátor | Akciós ár és megtakarítás" property="og:title"/>
+<meta content="Árkedvezmény kalkulátor akciós árhoz: add meg az eredeti árat és a kedvezmény százalékát, majd lásd a fizetendő összeget és megtakarítást." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/ar-kedvezmeny-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Árkedvezmény kalkulátor | Akciós ár és megtakarítás" name="twitter:title"/>
+<meta content="Árkedvezmény kalkulátor akciós árhoz: add meg az eredeti árat és a kedvezmény százalékát, majd lásd a fizetendő összeget és megtakarítást." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="ar-kedvezmeny-kalkulator">
+<section class="hero">
+<h1>Árkedvezmény kalkulátor</h1>
+<p>Számold ki az akciós árat, kedvezményt és megtakarítást.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Akciós ár és megtakarítás kiszámítása</h2>
+<p>Az árkedvezmény kalkulátor az eredeti árból és a megadott kedvezményszázalékból kiszámolja a megtakarítást és a fizetendő akciós árat. Vásárlás közben gyorsan ellenőrizhető vele, mennyit jelent valójában egy százalékos leárazás.</p>
+<p>A kalkulátor egyetlen kedvezményt alkalmaz. Több egymás utáni akció nem egyszerűen összeadható: a második kedvezmény már a csökkentett árra vonatkozik.</p>
+<h2>A képlet</h2><p><strong>Kedvezmény = eredeti ár × százalék / 100</strong>, az akciós ár pedig eredeti ár − kedvezmény.</p>
+<div class="example-box"><h3>Példa</h3><p>32 000 Ft-os termék 25%-os kedvezménnyel 8 000 Ft-tal lesz olcsóbb, így 24 000 Ft-ot kell fizetni.</p></div>
+<h2>Egymás utáni kedvezmények</h2><p>Egy 20%-os, majd további 10%-os kedvezmény nem 30%, hanem összesen 28%: 100 egységből előbb 80, majd annak 90%-a, vagyis 72 marad.</p>
+<h2>Gyakori hibák</h2><ul><li>A kedvezmény összegét fizetendő árnak nézik.</li><li>20% + 10%-ot automatikusan 30%-nak vesznek.</li><li>A kupon minimumköltését vagy felső korlátját figyelmen kívül hagyják.</li><li>Az eredeti árat nem ellenőrzik korábbi piaci árhoz képest.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>100% kedvezménynél mi történik?</summary><p>A fizetendő ár nulla.</p></details>
+<details><summary>Áremelést is számol?</summary><p>Nem ezen a nézeten; a százalékkalkulátor alkalmas növekedésre.</p></details>
+<details><summary>Kuponnal együtt hogyan számoljak?</summary><p>Alkalmazd sorban a kedvezményeket a mindenkori csökkentett árra.</p></details>
+<details><summary>ÁFÁ-t figyelembe veszi?</summary><p>A megadott ár egészére számol, függetlenül attól, hogy nettó vagy bruttó.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="szazalek-kalkulator.html">Százalék kalkulátor</a><a href="egysegar-kalkulator.html">Egységár kalkulátor</a><a href="afa-kalkulator.html">ÁFA kalkulátor</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="ar-kedvezmeny-kalkulator">
-    <section class="hero">
-      <h1>Árkedvezmény kalkulátor</h1>
-      <p>Számold ki az akciós árat, kedvezményt és megtakarítást.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>Az akció valódi értéke</h2>
-      <p>Az eredeti ár és a kedvezmény százaléka alapján látható az új ár és a forintban mért megtakarítás. Több kiszerelés vagy üzlet összehasonlításakor az egységárat is érdemes mellé tenni, mert az alacsonyabb végösszeg nem mindig jelent jobb vételt.</p>
-      <h3>A kedvezmények nem mindig adódnak össze</h3>
-      <p>Két egymás utáni 10%-os engedmény nem 20%, hanem összesen 19% csökkenés: a második kedvezmény már az alacsonyabb árból indul. Kuponnál ellenőrizd azt is, hogy szállítási díjra vagy akciós termékre alkalmazható-e.</p>
-      <h2>Akciós ár kérdések</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>Melyik árból számoljak?</summary>
-          <p>Abból az ellenőrizhető árból, amelyet a kedvezmény előtt ténylegesen alkalmaztak, nem egy pusztán áthúzott referenciaárból.</p>
-        </details>
-        <details>
-          <summary>A pénztári kerekítés eltérést okozhat?</summary>
-          <p>Igen, az üzlet kerekítési szabálya miatt néhány forintos különbség előfordulhat.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>

@@ -1,68 +1,60 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="hu">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Életkor kalkulátor születési dátumból. Nézd meg a betöltött éveket, valamint a pontos életkort években, hónapokban és napokban." />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/eletkor-kalkulator.html" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Életkor kalkulátor születési dátumból. Nézd meg a betöltött éveket, valamint a pontos életkort években, hónapokban és napokban." name="description"/>
+<link href="https://kalkulatorbazis.hu/kalkulatorok/eletkor-kalkulator.html" rel="canonical"/>
 <title>Életkor kalkulátor | Pontos kor évben, hónapban, napban</title>
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
-  <script src="../js/global-head.js"></script>
-  
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Életkor kalkulátor | Pontos kor évben, hónapban, napban" />
-  <meta property="og:description" content="Életkor kalkulátor születési dátumból. Nézd meg a betöltött éveket, valamint a pontos életkort években, hónapokban és napokban." />
-  <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/eletkor-kalkulator.html" />
-  <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Életkor kalkulátor | Pontos kor évben, hónapban, napban" />
-  <meta name="twitter:description" content="Életkor kalkulátor születési dátumból. Nézd meg a betöltött éveket, valamint a pontos életkort években, hónapokban és napokban." />
-  <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+<link href="../css/style.css" rel="stylesheet"/>
+<link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/global-head.js"></script>
+<meta content="website" property="og:type"/>
+<meta content="Kalkulátor Bázis" property="og:site_name"/>
+<meta content="Életkor kalkulátor | Pontos kor évben, hónapban, napban" property="og:title"/>
+<meta content="Életkor kalkulátor születési dátumból. Nézd meg a betöltött éveket, valamint a pontos életkort években, hónapokban és napokban." property="og:description"/>
+<meta content="https://kalkulatorbazis.hu/kalkulatorok/eletkor-kalkulator.html" property="og:url"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Életkor kalkulátor | Pontos kor évben, hónapban, napban" name="twitter:title"/>
+<meta content="Életkor kalkulátor születési dátumból. Nézd meg a betöltött éveket, valamint a pontos életkort években, hónapokban és napokban." name="twitter:description"/>
+<meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
 </head>
-
 <body>
-  <div id="header"></div>
+<div id="header"></div>
+<main class="container page-simple-calculator" data-simple-calc="eletkor-kalkulator">
+<section class="hero">
+<h1>Életkor kalkulátor</h1>
+<p>Számold ki az életkort években, hónapokban és napokban.</p>
+</section>
+<section class="card card-calculator">
+<div class="calc-grid" id="simpleCalcFields"></div>
+<div class="result-box">
+<p>Eredmény:</p>
+<div id="simpleCalcResults">–</div>
+</div>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<h2>Pontos életkor évben, hónapban és napban</h2>
+<p>Az életkor kalkulátor a megadott születési dátum és a mai nap között eltelt időt számolja ki. Az eredmény teljes években, hónapokban és napokban jelenik meg, emellett az összes eltelt napot is megmutatja.</p>
+<p>Ez pontosabb, mint egyszerűen kivonni a születési évet az aktuális évből, mert figyelembe veszi, hogy az idei születésnap már elmúlt-e.</p>
+<h2>Hogyan működik?</h2><p>A program először a teljes éveket, majd a fennmaradó hónapokat és napokat számolja. Az összes nap a két dátum közötti naptári különbségből készül. Szökőévek miatt az eltelt napok száma nem egyszerűen életkor × 365.</p>
+<div class="example-box"><h3>Példa</h3><p>Ha valaki 2000. január 15-én született, a pontos életkora mindig az aktuális dátumtól függ. Január 14-én még eggyel kevesebb teljes évet töltött be, mint január 15-én.</p></div>
+<h2>Mire használható?</h2><p>Születésnapig hátralévő idő ellenőrzéséhez, életkori jogosultságok előzetes áttekintéséhez vagy egyszerű kíváncsiságból. Hivatalos ügyben mindig az adott jogszabály vagy intézmény életkorszámítási szabálya az irányadó.</p>
+<h2>Gyakori hibák</h2><ul><li>Jövőbeli dátumot adnak meg.</li><li>Elírják a hónapot vagy a napot.</li><li>Az összes napot 365-tel osztva várnak pontos éveket.</li><li>Hivatalos korhatárnál figyelmen kívül hagyják a pontos határnapot.</li></ul>
+<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<details><summary>Szökőnapon születetteknél működik?</summary><p>Igen, a naptári dátumkezelés figyelembe veszi a szökőéveket.</p></details>
+<details><summary>Miért nem egyforma minden év napjainak száma?</summary><p>A szökőévek 366 naposak.</p></details>
+<details><summary>Hivatalos nyugdíjkorhatárhoz használható?</summary><p>Csak tájékoztatásra; hivatalos jogosultságnál a vonatkozó szabályt kell ellenőrizni.</p></details>
+<details><summary>Megmutatja a következő születésnapot?</summary><p>Jelenleg a pontos életkort és az eltelt napokat mutatja.</p></details>
+</div>
+<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="datum-kulonbseg-kalkulator.html">Dátumkülönbség</a><a href="terhessegi-kalkulator.html">Terhességi kalkulátor</a><a href="ido-atvalto-kalkulator.html">Idő átváltó</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+</section>
 
-  <main class="container page-simple-calculator" data-simple-calc="eletkor-kalkulator">
-    <section class="hero">
-      <h1>Életkor kalkulátor</h1>
-      <p>Számold ki az életkort években, hónapokban és napokban.</p>
-    </section>
-
-    <section class="card card-calculator">
-      <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
-    </section>
-    <section class="article calculator-guide">
-      <h2>Életkor évben, hónapban és napban</h2>
-      <p>Születési dátum és egy választott viszonyítási nap között pontosabban látható az eltelt idő, mint pusztán az évszámok kivonásával. Ez évforduló, korhatár vagy adminisztratív adat ellenőrzésénél lehet praktikus.</p>
-      <h3>A születésnap még nem mindig telt el</h3>
-      <p>Az adott évben csak a születésnap után növekszik a betöltött évek száma. Február 29-i születésnél és hivatalos korhatárnál az alkalmazandó jogi szabályt külön kell ellenőrizni.</p>
-      <h2>Életkorszámítás</h2>
-      <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>A mai nap beleszámít?</summary>
-          <p>A betöltött életkor a két dátum naptári viszonyán alapul; a napközbeni órák általában nem részei a számításnak.</p>
-        </details>
-        <details>
-          <summary>Jogi korhatárhoz használható?</summary>
-          <p>Ellenőrzésre igen, de vitás vagy hivatalos ügyben az adott szabályozás és okirat az irányadó.</p>
-        </details>
-      </div>
-    </section>
-    </main>
-
-  <div id="footer"></div>
-  <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+</main>
+<div id="footer"></div>
+<script defer="" src="../js/simple-calculators.js"></script>
+<script src="../js/utils.js"></script>
 </body>
-
 </html>
