@@ -908,3 +908,145 @@ main > .breadcrumb a {
   color: #155eef;
   text-underline-offset: 3px;
 }
+
+/* ==========================
+   SÖTÉT TÉMA – PÉNZÜGYI TUDATOSSÁG LANDING
+========================== */
+html[data-theme="dark"] body.financial-awareness {
+  --bg: #0f172a;
+  --surface: #172033;
+  --surface-soft: #202f48;
+  --text: #f1f5f9;
+  --muted: #c4cfdd;
+  --primary: #72a9ff;
+  --primary-dark: #9bc2ff;
+  --green: #5bd8ab;
+  --amber: #f7c65d;
+  --danger: #f5a3a3;
+  --border: #394a63;
+  --shadow: 0 14px 34px rgba(0, 0, 0, 0.3);
+  background:
+    linear-gradient(180deg, #14223a 0, #0f172a 540px),
+    var(--bg);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body.financial-awareness .site-header {
+  background: rgba(15, 23, 42, 0.95);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] body.financial-awareness .main-nav {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] body.financial-awareness .main-nav a {
+  color: var(--text);
+}
+
+html[data-theme="dark"] body.financial-awareness .main-nav a:hover,
+html[data-theme="dark"] body.financial-awareness .main-nav a:focus-visible {
+  background: rgba(114, 169, 255, 0.14);
+  color: var(--primary-dark);
+}
+
+html[data-theme="dark"] body.financial-awareness .nav-cta,
+html[data-theme="dark"] body.financial-awareness .menu-toggle {
+  background: #0b1220;
+  border: 1px solid var(--border);
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] body.financial-awareness .lead {
+  color: #d8e1ec;
+}
+
+html[data-theme="dark"] body.financial-awareness .btn-primary {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+html[data-theme="dark"] body.financial-awareness .btn-primary:hover,
+html[data-theme="dark"] body.financial-awareness .btn-primary:focus-visible {
+  background: #1d4ed8;
+}
+
+
+html[data-theme="dark"] body.financial-awareness .disclaimer {
+  background: #392b14;
+  border-color: #826128;
+  color: #f6d89a;
+}
+
+html[data-theme="dark"] body.financial-awareness .map-header {
+  background:
+    linear-gradient(135deg, rgba(114, 169, 255, 0.16), rgba(91, 216, 171, 0.14)),
+    #1b2940;
+}
+
+html[data-theme="dark"] body.financial-awareness .intro-strip .strip-grid {
+  background: #0b1220;
+  border: 1px solid var(--border);
+}
+
+html[data-theme="dark"] body.financial-awareness .strip-grid div {
+  background: rgba(255, 255, 255, 0.055);
+}
+
+html[data-theme="dark"] body.financial-awareness .strip-grid strong {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] body.financial-awareness .strip-grid span {
+  color: #c9d4e2;
+}
+
+html[data-theme="dark"] body.financial-awareness .foundation-section,
+html[data-theme="dark"] body.financial-awareness .risk-section,
+html[data-theme="dark"] body.financial-awareness .source-section {
+  background: rgba(23, 32, 51, 0.58);
+}
+
+html[data-theme="dark"] body.financial-awareness .triangle-point {
+  background: #111b2d;
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] body.financial-awareness .progress-wrap {
+  background: #28354a;
+}
+
+html[data-theme="dark"] body.financial-awareness .cta {
+  background:
+    linear-gradient(135deg, rgba(114, 169, 255, 0.16), rgba(91, 216, 171, 0.14)),
+    #0b1220;
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] body.financial-awareness .cta .btn-secondary {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+}
+
+html[data-theme="dark"] body.financial-awareness .footer {
+  background: #111d30;
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] body.financial-awareness main > .breadcrumb li,
+html[data-theme="dark"] body.financial-awareness main > .breadcrumb [aria-current="page"] {
+  color: #b8c5d6;
+}
+
+html[data-theme="dark"] body.financial-awareness main > .breadcrumb a {
+  color: #8fc6ff;
+}
+
+@media (min-width: 900px) {
+  html[data-theme="dark"] body.financial-awareness .main-nav {
+    background: transparent;
+    border-color: transparent;
+  }
+}

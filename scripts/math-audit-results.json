@@ -1,0 +1,200 @@
+{
+  "generatedAt": "2026-07-01T15:16:30.609Z",
+  "passed": 48,
+  "failed": 0,
+  "total": 48,
+  "results": [
+    {
+      "id": "padlo-burkolat-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "gipszkarton-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "tapeta-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "vakolat-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "hoszigeteles-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "terkovezes-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "tetocserep-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "fuga-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "vizfogyasztas-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "pulzus-zona-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "terhessegi-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "idealis-testsuly-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "testzsir-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "makro-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "alvasciklus-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "bmr-kalkulator-numeric",
+      "status": "PASS"
+    },
+    {
+      "id": "derek-csipo-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "feherje-szukseglet-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "ar-kedvezmeny-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "borravalo-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "munkaido-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "eletkor-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "datum-kulonbseg-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "atlag-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "egysegar-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "rezsi-megosztas-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "oraber-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "arany-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "uzemanyag-koltseg-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "auto-fogyasztas-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "hatotav-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "eves-auto-koltseg-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "auto-ertekvesztes-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "kilometerdij-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "co2-kibocsatas-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "tankolas-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "gumi-meret-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "autopalyadij-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "utazasi-ido-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "energia-atvalto-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "nyomas-atvalto-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "teljesitmeny-atvalto-kalkulator",
+      "status": "PASS"
+    },
+    {
+      "id": "regression-tapeta-too-short",
+      "status": "PASS"
+    },
+    {
+      "id": "regression-zero-divisions",
+      "status": "PASS"
+    },
+    {
+      "id": "regression-macro-over-100",
+      "status": "PASS"
+    },
+    {
+      "id": "regression-negative-unit-price",
+      "status": "PASS"
+    },
+    {
+      "id": "regression-devine-min-height",
+      "status": "PASS"
+    },
+    {
+      "id": "regression-travel-minute-normalization",
+      "status": "PASS"
+    }
+  ]
+}

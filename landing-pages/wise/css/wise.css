@@ -311,9 +311,10 @@ h3 {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  background-color: var(--primary);
+  background-image: linear-gradient(135deg, var(--primary), var(--primary-dark));
   box-shadow: 0 12px 26px rgba(0, 143, 130, 0.22);
-  color: #ffffff;
+  color: #07111f;
 }
 
 .btn-secondary {
@@ -920,4 +921,169 @@ main > .breadcrumb li:not(:last-child)::after {
 main > .breadcrumb a {
   color: #075985;
   text-underline-offset: 3px;
+}
+
+/* ==========================
+   SÖTÉT TÉMA – WISE LANDING
+   A landing saját változókat kap, így a globális téma nem írja felül vakon
+   a márka- és komponensszíneket.
+========================== */
+html[data-theme="dark"] body.wise-landing {
+  --bg: #0d1729;
+  --surface: #17243a;
+  --surface-soft: #1d3142;
+  --text: #f5f8fc;
+  --muted: #c2ccda;
+  --primary: #31d4bf;
+  --primary-dark: #74e7d8;
+  --blue: #83adff;
+  --amber: #f7c85a;
+  --border: #3a4b63;
+  --shadow: 0 16px 42px rgba(0, 0, 0, 0.32);
+  background:
+    linear-gradient(180deg, rgba(18, 42, 56, 0.96), rgba(13, 23, 41, 0.98) 540px),
+    var(--bg);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body.wise-landing .site-header {
+  background: rgba(13, 23, 41, 0.95);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] body.wise-landing .main-nav {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] body.wise-landing .main-nav a {
+  color: var(--text);
+}
+
+html[data-theme="dark"] body.wise-landing .main-nav a:hover,
+html[data-theme="dark"] body.wise-landing .main-nav a:focus-visible {
+  background: rgba(49, 212, 191, 0.14);
+  color: var(--primary-dark);
+}
+
+html[data-theme="dark"] body.wise-landing .nav-cta {
+  background: #07111f;
+  border: 1px solid #41536b;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] body.wise-landing .nav-cta:hover,
+html[data-theme="dark"] body.wise-landing .nav-cta:focus-visible {
+  background: #20334c;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"] body.wise-landing .menu-toggle {
+  background: #07111f;
+  border: 1px solid var(--border);
+}
+
+html[data-theme="dark"] body.wise-landing .hero-lead {
+  color: #d8e1ec;
+}
+
+html[data-theme="dark"] body.wise-landing .affiliate-note {
+  background: #382b13;
+  border-color: #8c6726;
+  color: #f6dca2;
+}
+
+html[data-theme="dark"] body.wise-landing .affiliate-note strong {
+  color: #fff1cb;
+}
+
+html[data-theme="dark"] body.wise-landing .hero-panel,
+html[data-theme="dark"] body.wise-landing .feature-card,
+html[data-theme="dark"] body.wise-landing .calculator-card,
+html[data-theme="dark"] body.wise-landing .security-card,
+html[data-theme="dark"] body.wise-landing .faq-item,
+html[data-theme="dark"] body.wise-landing .reality-list,
+html[data-theme="dark"] body.wise-landing .use-case-list article {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body.wise-landing .partner-creative {
+  background: var(--surface-soft);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] body.wise-landing .partner-creative img {
+  background: #102a35;
+  border-radius: 10px;
+}
+
+html[data-theme="dark"] body.wise-landing .split-section,
+html[data-theme="dark"] body.wise-landing .reality-section {
+  background: rgba(23, 36, 58, 0.58);
+}
+
+html[data-theme="dark"] body.wise-landing .trust-grid {
+  background: #07111f;
+  border: 1px solid var(--border);
+  color: #ffffff;
+}
+
+html[data-theme="dark"] body.wise-landing .trust-grid div {
+  background: rgba(255, 255, 255, 0.055);
+}
+
+html[data-theme="dark"] body.wise-landing .trust-grid strong {
+  color: #ffffff;
+}
+
+html[data-theme="dark"] body.wise-landing .trust-grid span {
+  color: #c9d4e2;
+}
+
+html[data-theme="dark"] body.wise-landing .wise-caution {
+  background: #382b13;
+  border-color: #8c6726;
+  color: #f6dca2;
+}
+
+html[data-theme="dark"] body.wise-landing .wise-caution strong {
+  color: #fff1cb;
+}
+
+html[data-theme="dark"] body.wise-landing .cta {
+  background:
+    linear-gradient(135deg, rgba(49, 212, 191, 0.16), rgba(131, 173, 255, 0.14)),
+    #07111f;
+  border-color: var(--border);
+  color: #ffffff;
+}
+
+html[data-theme="dark"] body.wise-landing .cta .btn-secondary {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+}
+
+html[data-theme="dark"] body.wise-landing footer,
+html[data-theme="dark"] body.wise-landing .kb-footer-host {
+  background: #111d30;
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] body.wise-landing main > .breadcrumb li,
+html[data-theme="dark"] body.wise-landing main > .breadcrumb [aria-current="page"] {
+  color: #b8c5d6;
+}
+
+html[data-theme="dark"] body.wise-landing main > .breadcrumb a {
+  color: #8fc6ff;
+}
+
+@media (min-width: 900px) {
+  html[data-theme="dark"] body.wise-landing .main-nav {
+    background: transparent;
+    border-color: transparent;
+  }
 }

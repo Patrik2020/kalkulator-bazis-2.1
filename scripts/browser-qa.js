@@ -221,9 +221,11 @@ const run = async () => {
     "/kalkulatorok.html",
     "/atlathatosag-es-minoseg.html",
     "/adatvedelem.html",
+    "/kapcsolat.html",
+    "/szamitasi-modszertan.html",
+    "/jogi-nyilatkozat.html",
     "/landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html",
-    "/landing-pages/wise/wise.html",
-    "/landing-pages/wise/kapcsolat.html"
+    "/landing-pages/wise/wise.html"
   ];
   const viewports = [
     [320, 720],

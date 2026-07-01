@@ -1,0 +1,989 @@
+{
+  "generatedAt": "2026-07-01T15:14:09.739175+00:00",
+  "sitemap": {
+    "passed": 90,
+    "failed": 0,
+    "total": 90,
+    "results": [
+      {
+        "url": "https://kalkulatorbazis.hu/",
+        "status": 200,
+        "bytes": 10057,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/penzugyi.html",
+        "status": 200,
+        "bytes": 8973,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/epitoipari.html",
+        "status": 200,
+        "bytes": 7998,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/egeszseg.html",
+        "status": 200,
+        "bytes": 8212,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/mindennapi.html",
+        "status": 200,
+        "bytes": 7872,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/auto.html",
+        "status": 200,
+        "bytes": 7985,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/atvaltok.html",
+        "status": 200,
+        "bytes": 7846,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok.html",
+        "status": 200,
+        "bytes": 20510,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/rolunk.html",
+        "status": 200,
+        "bytes": 6010,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/szamitasi-modszertan.html",
+        "status": 200,
+        "bytes": 5883,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kapcsolat.html",
+        "status": 200,
+        "bytes": 3799,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/adatvedelem.html",
+        "status": 200,
+        "bytes": 5405,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/cookie.html",
+        "status": 200,
+        "bytes": 4305,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/felhasznalasi-feltetelek.html",
+        "status": 200,
+        "bytes": 3314,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/jogi-nyilatkozat.html",
+        "status": 200,
+        "bytes": 4287,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/atlathatosag-es-minoseg.html",
+        "status": 200,
+        "bytes": 10774,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/landing-pages/wise/wise.html",
+        "status": 200,
+        "bytes": 29821,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html",
+        "status": 200,
+        "bytes": 33983,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/netto-brutto-kalkulator.html",
+        "status": 200,
+        "bytes": 10401,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/hitel-torleszto-kalkulator.html",
+        "status": 200,
+        "bytes": 7359,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/hitelkepesseg-kalkulator.html",
+        "status": 200,
+        "bytes": 5703,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/lakas-hitel-onero-kalkulator.html",
+        "status": 200,
+        "bytes": 7018,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/osztalek-kalkulator.html",
+        "status": 200,
+        "bytes": 30538,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/etf-kalkulator.html",
+        "status": 200,
+        "bytes": 16647,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/milliomos-kalkulator.html",
+        "status": 200,
+        "bytes": 6744,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/inflacio-kalkulator.html",
+        "status": 200,
+        "bytes": 9849,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/kamatos-kamat-kalkulator.html",
+        "status": 200,
+        "bytes": 6482,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/havi-koltsegvetes-kalkulator.html",
+        "status": 200,
+        "bytes": 5977,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/fizetesi-hatarido-kalkulator.html",
+        "status": 200,
+        "bytes": 5287,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/szamla-teljesites-kalkulator.html",
+        "status": 200,
+        "bytes": 5393,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/beton-kalkulator.html",
+        "status": 200,
+        "bytes": 7669,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/csempe-kalkulator.html",
+        "status": 200,
+        "bytes": 5745,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/festek-kalkulator.html",
+        "status": 200,
+        "bytes": 8608,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/tegla-kalkulator.html",
+        "status": 200,
+        "bytes": 9537,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/bmi-kalkulator.html",
+        "status": 200,
+        "bytes": 7260,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/kaloria-kalkulator.html",
+        "status": 200,
+        "bytes": 7491,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/szazalek-kalkulator.html",
+        "status": 200,
+        "bytes": 6804,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/afa-kalkulator.html",
+        "status": 200,
+        "bytes": 7305,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/auto-kalkulator.html",
+        "status": 200,
+        "bytes": 6762,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/homerseklet-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 11316,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/hosszusag-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 12983,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/tomeg-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 12455,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/terulet-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 12688,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/terfogat-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 12145,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/ido-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 12009,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/sebesseg-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 11845,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/adatmeret-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 14259,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/deviza-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 16654,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/padlo-burkolat-kalkulator.html",
+        "status": 200,
+        "bytes": 5508,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/gipszkarton-kalkulator.html",
+        "status": 200,
+        "bytes": 4944,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/tapeta-kalkulator.html",
+        "status": 200,
+        "bytes": 5123,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/vakolat-kalkulator.html",
+        "status": 200,
+        "bytes": 4824,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/hoszigeteles-kalkulator.html",
+        "status": 200,
+        "bytes": 5508,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/terkovezes-kalkulator.html",
+        "status": 200,
+        "bytes": 5388,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/tetocserep-kalkulator.html",
+        "status": 200,
+        "bytes": 4871,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/fuga-kalkulator.html",
+        "status": 200,
+        "bytes": 5473,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/vizfogyasztas-kalkulator.html",
+        "status": 200,
+        "bytes": 5693,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/pulzus-zona-kalkulator.html",
+        "status": 200,
+        "bytes": 5553,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/terhessegi-kalkulator.html",
+        "status": 200,
+        "bytes": 5199,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/idealis-testsuly-kalkulator.html",
+        "status": 200,
+        "bytes": 5003,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/testzsir-kalkulator.html",
+        "status": 200,
+        "bytes": 4731,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/makro-kalkulator.html",
+        "status": 200,
+        "bytes": 4792,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/alvasciklus-kalkulator.html",
+        "status": 200,
+        "bytes": 4990,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/bmr-kalkulator.html",
+        "status": 200,
+        "bytes": 4901,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/derek-csipo-kalkulator.html",
+        "status": 200,
+        "bytes": 4762,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/feherje-szukseglet-kalkulator.html",
+        "status": 200,
+        "bytes": 5092,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/ar-kedvezmeny-kalkulator.html",
+        "status": 200,
+        "bytes": 4681,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/borravalo-kalkulator.html",
+        "status": 200,
+        "bytes": 4913,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/munkaido-kalkulator.html",
+        "status": 200,
+        "bytes": 4667,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/eletkor-kalkulator.html",
+        "status": 200,
+        "bytes": 4903,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/datum-kulonbseg-kalkulator.html",
+        "status": 200,
+        "bytes": 4948,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/atlag-kalkulator.html",
+        "status": 200,
+        "bytes": 4747,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/egysegar-kalkulator.html",
+        "status": 200,
+        "bytes": 5599,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/rezsi-megosztas-kalkulator.html",
+        "status": 200,
+        "bytes": 5466,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/oraber-kalkulator.html",
+        "status": 200,
+        "bytes": 4905,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/arany-kalkulator.html",
+        "status": 200,
+        "bytes": 4572,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/uzemanyag-koltseg-kalkulator.html",
+        "status": 200,
+        "bytes": 5567,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/auto-fogyasztas-kalkulator.html",
+        "status": 200,
+        "bytes": 5456,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/hatotav-kalkulator.html",
+        "status": 200,
+        "bytes": 4818,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/eves-auto-koltseg-kalkulator.html",
+        "status": 200,
+        "bytes": 5079,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/auto-ertekvesztes-kalkulator.html",
+        "status": 200,
+        "bytes": 5048,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/kilometerdij-kalkulator.html",
+        "status": 200,
+        "bytes": 5153,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/co2-kibocsatas-kalkulator.html",
+        "status": 200,
+        "bytes": 5156,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/tankolas-kalkulator.html",
+        "status": 200,
+        "bytes": 6656,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/gumi-meret-kalkulator.html",
+        "status": 200,
+        "bytes": 5046,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/autopalyadij-kalkulator.html",
+        "status": 200,
+        "bytes": 5391,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/utazasi-ido-kalkulator.html",
+        "status": 200,
+        "bytes": 5385,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/energia-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 4770,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/nyomas-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 5475,
+        "ok": true
+      },
+      {
+        "url": "https://kalkulatorbazis.hu/kalkulatorok/teljesitmeny-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 5201,
+        "ok": true
+      }
+    ]
+  },
+  "calculators": {
+    "passed": 72,
+    "failed": 0,
+    "total": 72,
+    "results": [
+      {
+        "file": "adatmeret-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 14259,
+        "ok": true
+      },
+      {
+        "file": "afa-kalkulator.html",
+        "status": 200,
+        "bytes": 7305,
+        "ok": true
+      },
+      {
+        "file": "alvasciklus-kalkulator.html",
+        "status": 200,
+        "bytes": 4990,
+        "ok": true
+      },
+      {
+        "file": "ar-kedvezmeny-kalkulator.html",
+        "status": 200,
+        "bytes": 4681,
+        "ok": true
+      },
+      {
+        "file": "arany-kalkulator.html",
+        "status": 200,
+        "bytes": 4572,
+        "ok": true
+      },
+      {
+        "file": "atlag-kalkulator.html",
+        "status": 200,
+        "bytes": 4747,
+        "ok": true
+      },
+      {
+        "file": "auto-ertekvesztes-kalkulator.html",
+        "status": 200,
+        "bytes": 5048,
+        "ok": true
+      },
+      {
+        "file": "auto-fogyasztas-kalkulator.html",
+        "status": 200,
+        "bytes": 5456,
+        "ok": true
+      },
+      {
+        "file": "auto-kalkulator.html",
+        "status": 200,
+        "bytes": 6762,
+        "ok": true
+      },
+      {
+        "file": "autopalyadij-kalkulator.html",
+        "status": 200,
+        "bytes": 5391,
+        "ok": true
+      },
+      {
+        "file": "beton-kalkulator.html",
+        "status": 200,
+        "bytes": 7669,
+        "ok": true
+      },
+      {
+        "file": "bmi-kalkulator.html",
+        "status": 200,
+        "bytes": 7260,
+        "ok": true
+      },
+      {
+        "file": "bmr-kalkulator.html",
+        "status": 200,
+        "bytes": 4901,
+        "ok": true
+      },
+      {
+        "file": "borravalo-kalkulator.html",
+        "status": 200,
+        "bytes": 4913,
+        "ok": true
+      },
+      {
+        "file": "co2-kibocsatas-kalkulator.html",
+        "status": 200,
+        "bytes": 5156,
+        "ok": true
+      },
+      {
+        "file": "csempe-kalkulator.html",
+        "status": 200,
+        "bytes": 5745,
+        "ok": true
+      },
+      {
+        "file": "datum-kulonbseg-kalkulator.html",
+        "status": 200,
+        "bytes": 4948,
+        "ok": true
+      },
+      {
+        "file": "derek-csipo-kalkulator.html",
+        "status": 200,
+        "bytes": 4762,
+        "ok": true
+      },
+      {
+        "file": "deviza-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 16654,
+        "ok": true
+      },
+      {
+        "file": "egysegar-kalkulator.html",
+        "status": 200,
+        "bytes": 5599,
+        "ok": true
+      },
+      {
+        "file": "eletkor-kalkulator.html",
+        "status": 200,
+        "bytes": 4903,
+        "ok": true
+      },
+      {
+        "file": "energia-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 4770,
+        "ok": true
+      },
+      {
+        "file": "etf-kalkulator.html",
+        "status": 200,
+        "bytes": 16647,
+        "ok": true
+      },
+      {
+        "file": "eves-auto-koltseg-kalkulator.html",
+        "status": 200,
+        "bytes": 5079,
+        "ok": true
+      },
+      {
+        "file": "feherje-szukseglet-kalkulator.html",
+        "status": 200,
+        "bytes": 5092,
+        "ok": true
+      },
+      {
+        "file": "festek-kalkulator.html",
+        "status": 200,
+        "bytes": 8608,
+        "ok": true
+      },
+      {
+        "file": "fizetesi-hatarido-kalkulator.html",
+        "status": 200,
+        "bytes": 5287,
+        "ok": true
+      },
+      {
+        "file": "fuga-kalkulator.html",
+        "status": 200,
+        "bytes": 5473,
+        "ok": true
+      },
+      {
+        "file": "gipszkarton-kalkulator.html",
+        "status": 200,
+        "bytes": 4944,
+        "ok": true
+      },
+      {
+        "file": "gumi-meret-kalkulator.html",
+        "status": 200,
+        "bytes": 5046,
+        "ok": true
+      },
+      {
+        "file": "hatotav-kalkulator.html",
+        "status": 200,
+        "bytes": 4818,
+        "ok": true
+      },
+      {
+        "file": "havi-koltsegvetes-kalkulator.html",
+        "status": 200,
+        "bytes": 5977,
+        "ok": true
+      },
+      {
+        "file": "hitel-torleszto-kalkulator.html",
+        "status": 200,
+        "bytes": 7359,
+        "ok": true
+      },
+      {
+        "file": "hitelkepesseg-kalkulator.html",
+        "status": 200,
+        "bytes": 5703,
+        "ok": true
+      },
+      {
+        "file": "homerseklet-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 11316,
+        "ok": true
+      },
+      {
+        "file": "hosszusag-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 12983,
+        "ok": true
+      },
+      {
+        "file": "hoszigeteles-kalkulator.html",
+        "status": 200,
+        "bytes": 5508,
+        "ok": true
+      },
+      {
+        "file": "idealis-testsuly-kalkulator.html",
+        "status": 200,
+        "bytes": 5003,
+        "ok": true
+      },
+      {
+        "file": "ido-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 12009,
+        "ok": true
+      },
+      {
+        "file": "inflacio-kalkulator.html",
+        "status": 200,
+        "bytes": 9849,
+        "ok": true
+      },
+      {
+        "file": "kaloria-kalkulator.html",
+        "status": 200,
+        "bytes": 7491,
+        "ok": true
+      },
+      {
+        "file": "kamatos-kamat-kalkulator.html",
+        "status": 200,
+        "bytes": 6482,
+        "ok": true
+      },
+      {
+        "file": "kilometerdij-kalkulator.html",
+        "status": 200,
+        "bytes": 5153,
+        "ok": true
+      },
+      {
+        "file": "lakas-hitel-onero-kalkulator.html",
+        "status": 200,
+        "bytes": 7018,
+        "ok": true
+      },
+      {
+        "file": "makro-kalkulator.html",
+        "status": 200,
+        "bytes": 4792,
+        "ok": true
+      },
+      {
+        "file": "milliomos-kalkulator.html",
+        "status": 200,
+        "bytes": 6744,
+        "ok": true
+      },
+      {
+        "file": "munkaido-kalkulator.html",
+        "status": 200,
+        "bytes": 4667,
+        "ok": true
+      },
+      {
+        "file": "netto-brutto-kalkulator.html",
+        "status": 200,
+        "bytes": 10401,
+        "ok": true
+      },
+      {
+        "file": "nyomas-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 5475,
+        "ok": true
+      },
+      {
+        "file": "oraber-kalkulator.html",
+        "status": 200,
+        "bytes": 4905,
+        "ok": true
+      },
+      {
+        "file": "osztalek-kalkulator.html",
+        "status": 200,
+        "bytes": 30538,
+        "ok": true
+      },
+      {
+        "file": "padlo-burkolat-kalkulator.html",
+        "status": 200,
+        "bytes": 5508,
+        "ok": true
+      },
+      {
+        "file": "pulzus-zona-kalkulator.html",
+        "status": 200,
+        "bytes": 5553,
+        "ok": true
+      },
+      {
+        "file": "rezsi-megosztas-kalkulator.html",
+        "status": 200,
+        "bytes": 5466,
+        "ok": true
+      },
+      {
+        "file": "sebesseg-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 11845,
+        "ok": true
+      },
+      {
+        "file": "szamla-teljesites-kalkulator.html",
+        "status": 200,
+        "bytes": 5393,
+        "ok": true
+      },
+      {
+        "file": "szazalek-kalkulator.html",
+        "status": 200,
+        "bytes": 6804,
+        "ok": true
+      },
+      {
+        "file": "tankolas-kalkulator.html",
+        "status": 200,
+        "bytes": 6656,
+        "ok": true
+      },
+      {
+        "file": "tapeta-kalkulator.html",
+        "status": 200,
+        "bytes": 5123,
+        "ok": true
+      },
+      {
+        "file": "tegla-kalkulator.html",
+        "status": 200,
+        "bytes": 9537,
+        "ok": true
+      },
+      {
+        "file": "teljesitmeny-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 5201,
+        "ok": true
+      },
+      {
+        "file": "terfogat-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 12145,
+        "ok": true
+      },
+      {
+        "file": "terhessegi-kalkulator.html",
+        "status": 200,
+        "bytes": 5199,
+        "ok": true
+      },
+      {
+        "file": "terkovezes-kalkulator.html",
+        "status": 200,
+        "bytes": 5388,
+        "ok": true
+      },
+      {
+        "file": "terulet-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 12688,
+        "ok": true
+      },
+      {
+        "file": "testzsir-kalkulator.html",
+        "status": 200,
+        "bytes": 4731,
+        "ok": true
+      },
+      {
+        "file": "tetocserep-kalkulator.html",
+        "status": 200,
+        "bytes": 4871,
+        "ok": true
+      },
+      {
+        "file": "tomeg-atvalto-kalkulator.html",
+        "status": 200,
+        "bytes": 12455,
+        "ok": true
+      },
+      {
+        "file": "utazasi-ido-kalkulator.html",
+        "status": 200,
+        "bytes": 5385,
+        "ok": true
+      },
+      {
+        "file": "uzemanyag-koltseg-kalkulator.html",
+        "status": 200,
+        "bytes": 5567,
+        "ok": true
+      },
+      {
+        "file": "vakolat-kalkulator.html",
+        "status": 200,
+        "bytes": 4824,
+        "ok": true
+      },
+      {
+        "file": "vizfogyasztas-kalkulator.html",
+        "status": 200,
+        "bytes": 5693,
+        "ok": true
+      }
+    ]
+  }
+}

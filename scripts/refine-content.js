@@ -457,15 +457,15 @@ const guides = {
     "Csak az időszakos elszámolás aktuális szabályainak ismeretében; önmagában a napok hozzáadása nem elég."
   ],
   "tankolas-kalkulator": [
-    "Két tele tankolás között mérhető a fogyasztás",
-    "A megtett kilométer és az utántöltött liter alapján számítható a l/100 km érték. Összehasonlítható eredményhez hasonló módon, lehetőleg ugyanazon kút automata leállásáig tankolj.",
-    "Egyetlen tankolás még nem trend",
-    "Kút dőlése, pisztoly leoldása, rövid utak és időjárás eltéríthetik az értéket. Több tankolás gördülő átlaga jobb alap a fogyasztás változásának észlelésére.",
-    "Tankolási mérés",
-    "Részleges tankolással is működik?",
-    "Csak akkor lesz megbízható, ha hosszabb időszakon a kezdő és záró üzemanyagszint összevethető.",
-    "Miért nő télen a fogyasztás?",
-    "Hidegindítás, téli gumi, fűtés, sűrűbb levegő és rövid utak egyaránt emelhetik."
+    "Tankolási keretből számolt liter",
+    "A kalkulátor azt mutatja meg, hogy a megadott forintösszegből hány liter üzemanyagot lehet vásárolni az aktuális literenkénti ár mellett. Nem fogyasztásmérésre szolgál; ahhoz a megtett kilométer és az utántöltött liter szükséges.",
+    "A képlet egyszerű, de az ár legyen pontos",
+    "A számítás a tankolható liter = keret / Ft/l képletet használja. Kupon, flottakedvezmény, pontbeváltás vagy eltérő üzemanyagtípus esetén a ténylegesen fizetett ár módosíthatja az eredményt.",
+    "Tankolási költségtervezés",
+    "A teljes útiköltséget is kiszámolja?",
+    "Nem. Ehhez távolságra és fogyasztásra is szükség van, ezért az üzemanyag költség kalkulátor illik hozzá jobban.",
+    "Benzinhez és dízelhez is használható?",
+    "Igen, ha a megfelelő literenkénti árat adod meg forintban."
   ],
   "tapeta-kalkulator": [
     "Tekercsszám a szükséges csíkokból",

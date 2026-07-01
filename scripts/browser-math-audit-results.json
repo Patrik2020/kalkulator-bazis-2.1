@@ -1,0 +1,542 @@
+{
+  "passed": 66,
+  "failed": 0,
+  "total": 66,
+  "results": [
+    {
+      "name": "Adatméret: 1 MB = 1024 KB",
+      "ok": true,
+      "actual": 1024.0,
+      "text": "1 MB = 1024 KB",
+      "expected": 1024,
+      "tol": 1e-06
+    },
+    {
+      "name": "ÁFA nettó->bruttó 1000 @27%",
+      "ok": true,
+      "text": "Nettó: 1000 Ft\nÁFA (27%): 270 Ft\nBruttó: 1270 Ft",
+      "numbers": [
+        1000.0,
+        27.0,
+        270.0,
+        1270.0
+      ],
+      "expected": [
+        1000,
+        270,
+        1270
+      ]
+    },
+    {
+      "name": "ÁFA bruttó->nettó 1270 @27%",
+      "ok": true,
+      "text": "Bruttó: 1270 Ft\nÁFA (27%): 270 Ft\nNettó: 1000 Ft",
+      "numbers": [
+        1270.0,
+        27.0,
+        270.0,
+        1000.0
+      ],
+      "expected": [
+        1270,
+        270,
+        1000
+      ]
+    },
+    {
+      "name": "Autó fogyasztás 35l/500km",
+      "ok": true,
+      "actual": 7.0,
+      "text": "7.00 l/100 km",
+      "expected": 7,
+      "tol": 1e-08
+    },
+    {
+      "name": "Autó üzemanyagköltség",
+      "ok": true,
+      "actual": 4200.0,
+      "text": "4200 Ft",
+      "expected": 4200,
+      "tol": 1e-06
+    },
+    {
+      "name": "Autó hatótáv",
+      "ok": true,
+      "actual": 600.0,
+      "text": "600 km",
+      "expected": 600,
+      "tol": 1e-06
+    },
+    {
+      "name": "Beton térfogat",
+      "ok": true,
+      "actual": 2.0,
+      "text": "2.00 m³",
+      "expected": 2,
+      "tol": 1e-08
+    },
+    {
+      "name": "BMI 80kg/180cm",
+      "ok": true,
+      "actual": 24.7,
+      "text": "24.7",
+      "expected": 24.7,
+      "tol": 1e-08
+    },
+    {
+      "name": "BMI kategória",
+      "ok": true,
+      "actual": "Normál testsúly",
+      "expected": "Normál"
+    },
+    {
+      "name": "BMI negatív testsúly elutasítva",
+      "ok": true,
+      "actual": "–",
+      "expected": "–"
+    },
+    {
+      "name": "Csempe darabszám 10% ráhagyással",
+      "ok": true,
+      "actual": 74.0,
+      "text": "74 db",
+      "expected": 74,
+      "tol": 1e-06
+    },
+    {
+      "name": "Csempe nulla lapméret elutasítva",
+      "ok": true,
+      "actual": "–",
+      "expected": "–"
+    },
+    {
+      "name": "Deviza 400 HUF = 1 EUR",
+      "ok": true,
+      "actual": 1.0,
+      "text": "400 HUF = 1 EUR",
+      "expected": 1,
+      "tol": 1e-06
+    },
+    {
+      "name": "Deviza 100 EUR = 40000 HUF",
+      "ok": true,
+      "actual": 40000.0,
+      "text": "100 EUR = 40 000 HUF",
+      "expected": 40000,
+      "tol": 1e-06
+    },
+    {
+      "name": "ETF 0%: 12x1000 = 12000",
+      "ok": true,
+      "actual": 12000.0,
+      "text": "12 000 Ft",
+      "expected": 12000,
+      "tol": 1e-06
+    },
+    {
+      "name": "ETF befizetett tőke",
+      "ok": true,
+      "actual": 12000.0,
+      "text": "12 000 Ft",
+      "expected": 12000,
+      "tol": 1e-06
+    },
+    {
+      "name": "ETF 6% effektív éves, hónap végi befizetés",
+      "ok": true,
+      "actual": 229265.0,
+      "text": "229 265 Ft",
+      "expected": 229265,
+      "tol": 2e-05
+    },
+    {
+      "name": "ETF célmód: 120000 Ft / 12 hónap",
+      "ok": true,
+      "actual": 10000.0,
+      "text": "10 000 Ft",
+      "expected": 10000,
+      "tol": 1e-06
+    },
+    {
+      "name": "Festék falfelület",
+      "ok": true,
+      "actual": 45.0,
+      "text": "45,00 m²",
+      "expected": 45,
+      "tol": 1e-06
+    },
+    {
+      "name": "Festék nettó felület",
+      "ok": true,
+      "actual": 43.0,
+      "text": "43,00 m²",
+      "expected": 43,
+      "tol": 1e-06
+    },
+    {
+      "name": "Festék számított liter",
+      "ok": true,
+      "actual": 8.6,
+      "text": "8,60 liter",
+      "expected": 8.6,
+      "tol": 1e-08
+    },
+    {
+      "name": "Festék ajánlott liter",
+      "ok": true,
+      "actual": 10.0,
+      "text": "10 liter",
+      "expected": 10,
+      "tol": 1e-06
+    },
+    {
+      "name": "Festék: nulla fedőképesség elutasítva",
+      "ok": true,
+      "actual": "–",
+      "expected": "–"
+    },
+    {
+      "name": "Fizetési határidő naptári nap",
+      "ok": true,
+      "actual": "2026. 01. 11.",
+      "expected": "2026. 01. 11."
+    },
+    {
+      "name": "Fizetési határidő munkanap (hétvégék nélkül)",
+      "ok": true,
+      "actual": "2026. 01. 15.",
+      "expected": "2026. 01. 15."
+    },
+    {
+      "name": "Havi költségvetés egyenleg",
+      "ok": true,
+      "actual": 75000.0,
+      "text": "75 000 Ft",
+      "expected": 75000,
+      "tol": 1e-06
+    },
+    {
+      "name": "Havi költségvetés összes kiadás",
+      "ok": true,
+      "actual": 425000.0,
+      "text": "Összes kiadás megtakarítással együtt: 425 000 Ft",
+      "expected": 425000,
+      "tol": 1e-06
+    },
+    {
+      "name": "Havi költségvetés megtakarítási arány",
+      "ok": true,
+      "actual": 10.0,
+      "text": "Megtakarítási arány: 10,0%",
+      "expected": 10,
+      "tol": 1e-08
+    },
+    {
+      "name": "Hitel 0% havi részlet",
+      "ok": true,
+      "actual": 83333.0,
+      "text": "83 333 Ft",
+      "expected": 83333,
+      "tol": 2e-05
+    },
+    {
+      "name": "Hitel annuitás 12% nominális",
+      "ok": true,
+      "actual": 88849.0,
+      "text": "88 849 Ft",
+      "expected": 88849,
+      "tol": 2e-05
+    },
+    {
+      "name": "Hitelképesség 40% terhelési keret",
+      "ok": true,
+      "actual": 200000.0,
+      "text": "200 000 Ft",
+      "expected": 200000,
+      "tol": 1e-06
+    },
+    {
+      "name": "Hitelképesség 0% PV",
+      "ok": true,
+      "actual": 2400000.0,
+      "text": "Becsült hitelösszeg: 2 400 000 Ft",
+      "expected": 2400000,
+      "tol": 1e-06
+    },
+    {
+      "name": "Hőmérséklet 0C=32F",
+      "ok": true,
+      "actual": 32.0,
+      "text": "0 °C = 32.00 °F",
+      "expected": 32,
+      "tol": 1e-06
+    },
+    {
+      "name": "Hőmérséklet 0C=273.15K",
+      "ok": true,
+      "actual": 273.15,
+      "text": "0 °C = 273.15 K",
+      "expected": 273.15,
+      "tol": 1e-08
+    },
+    {
+      "name": "Hőmérséklet abszolút nulla validáció",
+      "ok": true,
+      "actual": "A megadott hőmérséklet az abszolút nulla alatt lenne.",
+      "expected": "abszolút nulla"
+    },
+    {
+      "name": "Hosszúság 1 mérföld",
+      "ok": true,
+      "actual": 1609.344,
+      "text": "1 mérföld = 1609,344 m",
+      "expected": 1609.344,
+      "tol": 1e-09
+    },
+    {
+      "name": "Idő: átlagos Gergely-év napban",
+      "ok": true,
+      "actual": 365.2425,
+      "text": "1 év = 365,2425 nap",
+      "expected": 365.2425,
+      "tol": 1e-09
+    },
+    {
+      "name": "Infláció 0%",
+      "ok": true,
+      "actual": 1000000.0,
+      "text": "1 000 000 Ft",
+      "expected": 1000000,
+      "tol": 1e-06
+    },
+    {
+      "name": "Infláció 6% 5 év",
+      "ok": true,
+      "actual": 747258.0,
+      "text": "747 258 Ft",
+      "expected": 747258,
+      "tol": 2e-05
+    },
+    {
+      "name": "Kalóriaszükséglet Mifflin-St Jeor × aktivitás",
+      "ok": true,
+      "actual": 2076.0,
+      "text": "2076 kcal",
+      "expected": 2076,
+      "tol": 1e-06
+    },
+    {
+      "name": "Kamatos kamat 0%",
+      "ok": true,
+      "actual": 12000.0,
+      "text": "12 000 Ft",
+      "expected": 12000,
+      "tol": 1e-06
+    },
+    {
+      "name": "Kamatos kamat 6% effektív éves",
+      "ok": true,
+      "actual": 106000.0,
+      "text": "106 000 Ft",
+      "expected": 106000,
+      "tol": 1e-06
+    },
+    {
+      "name": "Lakáshitel önerő",
+      "ok": true,
+      "actual": 10000000.0,
+      "text": "10 000 000 Ft",
+      "expected": 10000000,
+      "tol": 1e-06
+    },
+    {
+      "name": "Lakáshitel finanszírozás",
+      "ok": true,
+      "actual": 40000000.0,
+      "text": "Finanszírozandó összeg: 40 000 000 Ft",
+      "expected": 40000000,
+      "tol": 1e-06
+    },
+    {
+      "name": "Célösszeg 10 hónap",
+      "ok": true,
+      "actual": "0 év 10 hónap",
+      "expected": "0 év 10 hónap"
+    },
+    {
+      "name": "Elérhetetlen cél felismerése",
+      "ok": true,
+      "actual": "A cél ezekkel a feltételekkel nem érhető el.",
+      "expected": "nem érhető el"
+    },
+    {
+      "name": "Bruttó 600k -> nettó 399k",
+      "ok": true,
+      "actual": 399000.0,
+      "text": "399 000 Ft",
+      "expected": 399000,
+      "tol": 1e-06
+    },
+    {
+      "name": "25 év alatti kedvezmény havi plafonnal",
+      "ok": true,
+      "actual": 772365.0,
+      "text": "772 365 Ft",
+      "expected": 772365,
+      "tol": 1e-06
+    },
+    {
+      "name": "Nettó 399k -> bruttó 600k",
+      "ok": true,
+      "actual": 600000.0,
+      "text": "600 000 Ft",
+      "expected": 600000,
+      "tol": 2e-05
+    },
+    {
+      "name": "Családi kedvezmény: 2 gyermek, SZJA majd TB",
+      "ok": true,
+      "actual": 279500.0,
+      "text": "279 500 Ft",
+      "expected": 279500,
+      "tol": 2e-05
+    },
+    {
+      "name": "Családi kedvezmény felhasznált összeg",
+      "ok": true,
+      "actual": 80000.0,
+      "text": "Felhasznált családi kedvezmény: 80 000 Ft",
+      "expected": 80000,
+      "tol": 2e-05
+    },
+    {
+      "name": "Osztalék jövedelem mód 3m×4%, 15% levonás",
+      "ok": true,
+      "text": "Éves bruttó osztalék\n120 000 Ft\nHavi nettó átlag\n8500 Ft\nEgy kifizetés nettó összege\n25 500 Ft\nTeljes éves levonás\n18 000 Ft\nTényleges nettó osztalékhozam\n3,4%",
+      "numbers": [
+        120000.0,
+        8500.0,
+        25500.0,
+        18000.0,
+        3.4
+      ],
+      "expected": [
+        120000,
+        18000,
+        8500
+      ]
+    },
+    {
+      "name": "Osztalék célmód: havi nettó 10000, 4% hozam, 20% levonás",
+      "ok": true,
+      "actual": 3750000.0,
+      "text": "3 750 000 Ft",
+      "expected": 3750000,
+      "tol": 2e-05
+    },
+    {
+      "name": "Osztalék projekció: 0% hozam, 12x1000 befizetés",
+      "ok": true,
+      "actual": 12000.0,
+      "text": "12 000 Ft",
+      "expected": 12000,
+      "tol": 2e-05
+    },
+    {
+      "name": "Sebesség 100 km/h m/s",
+      "ok": true,
+      "actual": 27.7777777778,
+      "text": "100 km/h = 27,7777777778 m/s",
+      "expected": 27.7777777778,
+      "tol": 1e-08
+    },
+    {
+      "name": "Számla teljesítés +30 nap",
+      "ok": true,
+      "actual": "2026. 01. 31.",
+      "expected": "2026. 01. 31."
+    },
+    {
+      "name": "25% of 200",
+      "ok": true,
+      "actual": 50.0,
+      "text": "50",
+      "expected": 50,
+      "tol": 1e-06
+    },
+    {
+      "name": "50 is 25% of 200",
+      "ok": true,
+      "actual": 25.0,
+      "text": "25 %",
+      "expected": 25,
+      "tol": 1e-06
+    },
+    {
+      "name": "100 to 150 = 50%",
+      "ok": true,
+      "actual": 50.0,
+      "text": "50 %",
+      "expected": 50,
+      "tol": 1e-06
+    },
+    {
+      "name": "0 is 0% of 10",
+      "ok": true,
+      "actual": 0.0,
+      "text": "0 %",
+      "expected": 0,
+      "tol": 1e-06
+    },
+    {
+      "name": "Tégla alap darabszám",
+      "ok": true,
+      "actual": 240.0,
+      "text": "240 db",
+      "expected": 240,
+      "tol": 1e-06
+    },
+    {
+      "name": "Tégla 5% ráhagyás",
+      "ok": true,
+      "actual": 252.0,
+      "text": "252 db",
+      "expected": 252,
+      "tol": 1e-06
+    },
+    {
+      "name": "Tégla 0% ráhagyás valóban nulla",
+      "ok": true,
+      "actual": 240.0,
+      "text": "240 db",
+      "expected": 240,
+      "tol": 1e-06
+    },
+    {
+      "name": "1 US gallon literben",
+      "ok": true,
+      "actual": 3.785411784,
+      "text": "1 US gallon = 3,785411784 l",
+      "expected": 3.785411784,
+      "tol": 1e-09
+    },
+    {
+      "name": "1 hektár m²",
+      "ok": true,
+      "actual": 10000.0,
+      "text": "1 ha = 10 000 m²",
+      "expected": 10000,
+      "tol": 1e-06
+    },
+    {
+      "name": "1 font kg",
+      "ok": true,
+      "actual": 0.45359237,
+      "text": "1 font = 0,45359237 kg",
+      "expected": 0.45359237,
+      "tol": 1e-09
+    }
+  ],
+  "page_errors": [],
+  "console_errors": []
+}

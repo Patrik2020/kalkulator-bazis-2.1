@@ -125,6 +125,7 @@ const records = htmlFiles.map((file) => {
       head,
       /<meta\b(?=[^>]*\bname\s*=\s*["']robots["'])(?=[^>]*\bcontent\s*=\s*["']([^"']*)["'])[^>]*>/i
     ),
+    isRedirect: /<meta\b(?=[^>]*http-equiv\s*=\s*["']refresh["'])[^>]*>/i.test(head),
     hreflangTags: matches(head, /<link\b(?=[^>]*\bhreflang\s*=)[^>]*>/gi).map((match) => match[0]),
     jsonLdBlocks: matches(head, /<script\b[^>]*type\s*=\s*["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi).map((match) => match[1]),
     lang: first(html, /<html\b[^>]*\blang\s*=\s*["']([^"']+)["']/i),
@@ -148,9 +149,10 @@ const duplicateValues = (items, valueSelector) => {
   return new Map([...groups].filter(([, group]) => group.length > 1));
 };
 
-const duplicateTitles = duplicateValues(records, (record) => record.title);
-const duplicateDescriptions = duplicateValues(records, (record) => record.description);
-const paragraphRows = records.flatMap((record) =>
+const indexableRecords = records.filter((record) => !record.isRedirect && !/\bnoindex\b/i.test(record.robots));
+const duplicateTitles = duplicateValues(indexableRecords, (record) => record.title);
+const duplicateDescriptions = duplicateValues(indexableRecords, (record) => record.description);
+const paragraphRows = indexableRecords.flatMap((record) =>
   record.paragraphs.map((paragraph) => ({ record, paragraph }))
 );
 const duplicateParagraphs = duplicateValues(paragraphRows, (row) => row.paragraph);
@@ -192,28 +194,28 @@ const issuesFor = (record) => {
     record.name === "index.html"
       ? "https://kalkulatorbazis.hu/"
       : `https://kalkulatorbazis.hu/${record.name}`;
-  if (record.canonical && record.canonical !== expectedCanonical) {
+  if (!record.isRedirect && record.canonical && record.canonical !== expectedCanonical) {
     add("A canonical nem a saját publikus HTTPS URL-re mutat.", "<head>", `Állítsd erre: ${expectedCanonical}.`, "Átírni", "Magas");
   }
-  if (!record.ogTitle || !record.ogDescription) {
+  if (!record.isRedirect && (!record.ogTitle || !record.ogDescription)) {
     add("Hiányos Open Graph metaadatok.", "<head>", "Adj releváns og:title és og:description értékeket.", "Hozzáadni");
   }
-  if (!record.ogUrl || !record.ogImage) {
+  if (!record.isRedirect && (!record.ogUrl || !record.ogImage)) {
     add("Hiányos Open Graph URL vagy kép.", "<head>", "Adj og:url és og:image értéket.", "Hozzáadni");
   }
-  if (
+  if (!record.isRedirect && (
     record.ogTitle !== record.title ||
     record.ogDescription !== record.description ||
     record.ogUrl !== record.canonical
-  ) {
+  )) {
     add("Az Open Graph adatok eltérnek a title, description vagy canonical értékétől.", "<head>", "Szinkronizáld a közösségi metaadatokat.", "Átírni");
   }
-  if (
+  if (!record.isRedirect && (
     !record.twitterCard ||
     record.twitterTitle !== record.title ||
     record.twitterDescription !== record.description ||
     !record.twitterImage
-  ) {
+  )) {
     add("Hiányos vagy eltérő Twitter Card metaadatok.", "<head>", "Adj szinkronizált Twitter Card cím-, leírás- és képadatokat.", "Hozzáadni");
   }
   if (record.hreflangTags.length) {
@@ -222,7 +224,7 @@ const issuesFor = (record) => {
   if (record.name === "404.html" && !/\bnoindex\b/i.test(record.robots)) {
     add("A 404-es dokumentum nincs noindexre állítva.", "<head>", "Adj noindex, follow robots jelölést.", "Hozzáadni", "Magas");
   }
-  if (record.name !== "404.html" && /\bnoindex\b/i.test(record.robots)) {
+  if (record.name !== "404.html" && !record.isRedirect && /\bnoindex\b/i.test(record.robots)) {
     add("Indexelendő oldal noindex jelölést tartalmaz.", "<head>", "Távolítsd el a noindexet.", "Törölni", "Magas");
   }
   record.jsonLdBlocks.forEach((block) => {

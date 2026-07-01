@@ -168,8 +168,8 @@ const metadata = {
     description: "Rezsi megosztás kalkulátor lakótársaknak és családoknak. Oszd el a közös kiadásokat egyenlően vagy a megadott létszám szerint.",
   },
   "kalkulatorok/tankolas-kalkulator.html": {
-    title: "Tankolás kalkulátor | Liter, üzemanyagár és végösszeg",
-    description: "Tankolás kalkulátor üzemanyag-mennyiséghez és költséghez. Számold ki, hány liter fér a keretbe, vagy mennyibe kerül a megadott tankolás.",
+    title: "Tankolás kalkulátor | Hány liter fér a keretbe?",
+    description: "Tankolás kalkulátor tankolási kerethez és literenkénti üzemanyagárhoz. Számold ki, hány liter benzint vagy dízelt kapsz a megadott összegből.",
   },
   "kalkulatorok/tapeta-kalkulator.html": {
     title: "Tapéta kalkulátor | Tekercsszám falméret alapján",
