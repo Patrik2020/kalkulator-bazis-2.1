@@ -5,9 +5,9 @@ const result = document.getElementById("result");
 
 const factors = {
     ms: 1,
-    kmh: 0.2777777778,
+    kmh: 1 / 3.6,
     mph: 0.44704,
-    knot: 0.5144444444,
+    knot: 1852 / 3600,
 };
 
 function convertSpeed() {

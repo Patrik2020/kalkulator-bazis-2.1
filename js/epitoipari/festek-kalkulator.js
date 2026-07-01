@@ -39,11 +39,14 @@ function calculatePaint() {
         parseFloat(document.getElementById("paintPrice").value) || 0;
 
     if (
-        isNaN(roomLength) ||
-        isNaN(roomWidth) ||
-        isNaN(roomHeight) ||
-        isNaN(layers) ||
-        isNaN(coverage)
+        !Number.isFinite(roomLength) || roomLength <= 0 ||
+        !Number.isFinite(roomWidth) || roomWidth <= 0 ||
+        !Number.isFinite(roomHeight) || roomHeight <= 0 ||
+        !Number.isFinite(windowArea) || windowArea < 0 ||
+        !Number.isFinite(doorArea) || doorArea < 0 ||
+        !Number.isFinite(layers) || layers <= 0 ||
+        !Number.isFinite(coverage) || coverage <= 0 ||
+        !Number.isFinite(paintPrice) || paintPrice < 0
     ) {
 
         wallAreaEl.textContent = "–";

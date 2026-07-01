@@ -215,7 +215,13 @@
 
   const simulate = ({ initial, monthly, rate, years, ter, inflation, increase }) => {
     const months = Math.max(0, Math.round(years * 12));
-    const monthlyRate = (rate - ter) / 100 / 12;
+    // A felhasználó éves effektív hozamot ad meg. A TER-t éves arányként,
+    // multiplikatívan vonjuk le, majd egyenértékű havi rátát képzünk.
+    const grossAnnualFactor = 1 + rate / 100;
+    const costAnnualFactor = 1 - ter / 100;
+    const netAnnualFactor = grossAnnualFactor * costAnnualFactor;
+    if (netAnnualFactor <= 0) throw new Error("A hozam és költség kombinációja nem modellezhető.");
+    const monthlyRate = Math.pow(netAnnualFactor, 1 / 12) - 1;
     const annualIncrease = 1 + increase / 100;
     const annualInflation = 1 + inflation / 100;
     let balance = initial;

@@ -11,28 +11,7 @@
         "A pénzügyi eszközök a jövedelem tisztázásától a hitel teherbírásán át a megtakarítás és befektetés forgatókönyveiig támogatják a döntés előkészítését.",
       cardClass: "card-finance",
     },
-    {
-      id: "epitoipari",
-      title: "Építőipari kalkulátorok",
-      shortTitle: "Építőipari",
-      url: "epitoipari.html",
-      description:
-        "Anyagigény, csomagszám és ráhagyás felújítás vagy építkezés helyszíni méreteihez.",
-      seo:
-        "A felületből, vastagságból és gyártói kiadósságból készülő becslések segítenek a rendelés előkészítésében, miközben külön jelzik a veszteség és kivitelezés fontos korlátait.",
-      cardClass: "card-building",
-    },
-    {
-      id: "egeszseg",
-      title: "Egészség kalkulátorok",
-      shortTitle: "Egészség",
-      url: "egeszseg.html",
-      description:
-        "Testösszetétel, energiaigény, edzés és regeneráció tájékozódási pontjai óvatos értelmezéssel.",
-      seo:
-        "Az egészségkalkulátorok a mérhető trendek követését segítik, de minden eredménynél bemutatják, miért nem helyettesítik a diagnózist vagy a személyre szabott szakmai tanácsot.",
-      cardClass: "card-health",
-    },
+
     {
       id: "mindennapi",
       title: "Mindennapi kalkulátorok",
@@ -44,6 +23,19 @@
         "A mindennapi eszközök bevásárlás, számlák megosztása, munkanapok és egyszerű arányok során veszik le a fejben számolás terhét.",
       cardClass: "card-general",
     },
+
+    {
+      id: "egeszseg",
+      title: "Egészség kalkulátorok",
+      shortTitle: "Egészség",
+      url: "egeszseg.html",
+      description:
+        "Testösszetétel, energiaigény, edzés és regeneráció tájékozódási pontjai óvatos értelmezéssel.",
+      seo:
+        "Az egészségkalkulátorok a mérhető trendek követését segítik, de minden eredménynél bemutatják, miért nem helyettesítik a diagnózist vagy a személyre szabott szakmai tanácsot.",
+      cardClass: "card-health",
+    },
+
     {
       id: "auto",
       title: "Autós kalkulátorok",
@@ -55,6 +47,19 @@
         "Az autós kalkulátorok külön kezelik az út tervezését, a mért fogyasztást, a fenntartási költségeket és a jármű műszaki összehasonlítását.",
       cardClass: "card-auto",
     },
+
+    {
+      id: "epitoipari",
+      title: "Építőipari kalkulátorok",
+      shortTitle: "Építőipari",
+      url: "epitoipari.html",
+      description:
+        "Anyagigény, csomagszám és ráhagyás felújítás vagy építkezés helyszíni méreteihez.",
+      seo:
+        "A felületből, vastagságból és gyártói kiadósságból készülő becslések segítenek a rendelés előkészítésében, miközben külön jelzik a veszteség és kivitelezés fontos korlátait.",
+      cardClass: "card-building",
+    },
+
     {
       id: "atvaltok",
       title: "Átváltók",
@@ -534,7 +539,7 @@
       title: "Tankolás kalkulátor",
       url: "kalkulatorok/tankolas-kalkulator.html",
       category: "auto",
-      description: "Számold ki, mennyibe kerül a tankolás és mennyi liter fér bele.",
+      description: "Számold ki, hány liter üzemanyagot kapsz a megadott tankolási keretből.",
       keywords: "tankolás üzemanyag liter ár",
     },
     {

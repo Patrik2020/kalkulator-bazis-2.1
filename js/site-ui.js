@@ -125,6 +125,57 @@
     </a>
   `;
 
+  const updateAdSlotState = (target, adElement) => {
+    if (!target || !adElement) return;
+
+    const adStatus = adElement.getAttribute("data-ad-status");
+    const hasIframe = Boolean(adElement.querySelector("iframe"));
+
+    if (adStatus === "filled" || (hasIframe && adElement.offsetHeight > 0)) {
+      target.dataset.adState = "filled";
+      return;
+    }
+
+    if (adStatus === "unfilled") {
+      target.innerHTML = "";
+      target.dataset.adState = "empty";
+    }
+  };
+
+  const observeAdSlot = (target, adElement) => {
+    if (!target || !adElement || target.dataset.adObserved === "true") return;
+
+    target.dataset.adObserved = "true";
+
+    const observer = new MutationObserver(() => {
+      updateAdSlotState(target, adElement);
+
+      if (["filled", "empty", "error"].includes(target.dataset.adState)) {
+        observer.disconnect();
+        delete target.dataset.adObserved;
+      }
+    });
+
+    observer.observe(adElement, {
+      attributes: true,
+      childList: true,
+      subtree: true,
+      attributeFilter: ["data-ad-status", "data-adsbygoogle-status", "style"],
+    });
+
+    window.setTimeout(() => {
+      updateAdSlotState(target, adElement);
+
+      if (target.dataset.adState !== "filled") {
+        target.innerHTML = "";
+        target.dataset.adState = "empty";
+      }
+
+      observer.disconnect();
+      delete target.dataset.adObserved;
+    }, 4500);
+  };
+
   const renderAdSlot = (target) => {
     if (!target || !data.adsense) return;
     const adClient = /^ca-pub-\d+$/.test(data.adsense.client || "")
@@ -135,15 +186,12 @@
     if (!adClient || !adSlot) return;
 
     if (!hasConsent("ads")) {
-      if (target.dataset.adState !== "placeholder") {
-        target.innerHTML = '<div class="ad-placeholder">Reklámhely</div>';
-        target.dataset.adState = "placeholder";
-      }
-
+      target.innerHTML = "";
+      target.dataset.adState = "hidden";
       return;
     }
 
-    if (target.dataset.adState === "pushed") return;
+    if (target.dataset.adState === "filled" || target.dataset.adState === "pending") return;
 
     let adElement = target.querySelector("ins.adsbygoogle");
 
@@ -163,34 +211,37 @@
 
     if (!adElement) return;
 
-    if (adElement.getAttribute("data-adsbygoogle-status") === "done") {
-      target.dataset.adState = "pushed";
+    updateAdSlotState(target, adElement);
+    if (target.dataset.adState === "filled") {
       return;
     }
 
     target.dataset.adState = "pending";
+    observeAdSlot(target, adElement);
 
     loadAdSenseScript(() => {
-      if (target.dataset.adState === "pushed") return;
+      if (target.dataset.adState === "filled") return;
 
-      if (adElement.getAttribute("data-adsbygoogle-status") === "done") {
-        target.dataset.adState = "pushed";
+      updateAdSlotState(target, adElement);
+      if (target.dataset.adState === "filled") {
         return;
       }
 
       try {
         (window.adsbygoogle = window.adsbygoogle || []).push({});
-        target.dataset.adState = "pushed";
+        target.dataset.adState = "pending";
+        observeAdSlot(target, adElement);
       } catch (error) {
         if (
           error &&
           error.message &&
           error.message.includes("All 'ins' elements in the DOM")
         ) {
-          target.dataset.adState = "pushed";
+          updateAdSlotState(target, adElement);
           return;
         }
 
+        target.innerHTML = "";
         target.dataset.adState = "error";
       }
     });

@@ -1,7 +1,13 @@
+function formatTemperature(value) {
+    return Number.isFinite(value) ? value.toFixed(2) : "–";
+}
+
+function invalidTemperature(resultElement, message = "A megadott hőmérséklet az abszolút nulla alatt lenne.") {
+    resultElement.textContent = message;
+}
+
 // Celsius ↔ Fahrenheit
-
 let cfMode = "CtoF";
-
 const cfInput = document.getElementById("cfInput");
 const cfResult = document.getElementById("cfResult");
 const cfDirection = document.getElementById("cfDirection");
@@ -9,43 +15,25 @@ const swapCF = document.getElementById("swapCF");
 
 function calculateCF() {
     const value = parseFloat(cfInput.value);
-
-    if (isNaN(value)) {
-        cfResult.textContent = "–";
-        return;
-    }
-
+    if (!Number.isFinite(value)) { cfResult.textContent = "–"; return; }
+    const celsius = cfMode === "CtoF" ? value : ((value - 32) * 5) / 9;
+    if (celsius < -273.15) { invalidTemperature(cfResult); return; }
     if (cfMode === "CtoF") {
-        const result = (value * 9) / 5 + 32;
-
-        cfResult.textContent =
-            `${value} °C = ${result.toFixed(2)} °F`;
+        cfResult.textContent = `${value} °C = ${formatTemperature((value * 9) / 5 + 32)} °F`;
     } else {
-        const result = ((value - 32) * 5) / 9;
-
-        cfResult.textContent =
-            `${value} °F = ${result.toFixed(2)} °C`;
+        cfResult.textContent = `${value} °F = ${formatTemperature(celsius)} °C`;
     }
 }
 
 swapCF.addEventListener("click", () => {
-    if (cfMode === "CtoF") {
-        cfMode = "FtoC";
-        cfDirection.textContent = "Fahrenheit → Celsius";
-    } else {
-        cfMode = "CtoF";
-        cfDirection.textContent = "Celsius → Fahrenheit";
-    }
-
+    cfMode = cfMode === "CtoF" ? "FtoC" : "CtoF";
+    cfDirection.textContent = cfMode === "CtoF" ? "Celsius → Fahrenheit" : "Fahrenheit → Celsius";
     calculateCF();
 });
-
 cfInput.addEventListener("input", calculateCF);
 
 // Celsius ↔ Kelvin
-
 let ckMode = "CtoK";
-
 const ckInput = document.getElementById("ckInput");
 const ckResult = document.getElementById("ckResult");
 const ckDirection = document.getElementById("ckDirection");
@@ -53,43 +41,25 @@ const swapCK = document.getElementById("swapCK");
 
 function calculateCK() {
     const value = parseFloat(ckInput.value);
-
-    if (isNaN(value)) {
-        ckResult.textContent = "–";
-        return;
-    }
-
+    if (!Number.isFinite(value)) { ckResult.textContent = "–"; return; }
+    const kelvin = ckMode === "CtoK" ? value + 273.15 : value;
+    if (kelvin < 0) { invalidTemperature(ckResult); return; }
     if (ckMode === "CtoK") {
-        const result = value + 273.15;
-
-        ckResult.textContent =
-            `${value} °C = ${result.toFixed(2)} K`;
+        ckResult.textContent = `${value} °C = ${formatTemperature(kelvin)} K`;
     } else {
-        const result = value - 273.15;
-
-        ckResult.textContent =
-            `${value} K = ${result.toFixed(2)} °C`;
+        ckResult.textContent = `${value} K = ${formatTemperature(value - 273.15)} °C`;
     }
 }
 
 swapCK.addEventListener("click", () => {
-    if (ckMode === "CtoK") {
-        ckMode = "KtoC";
-        ckDirection.textContent = "Kelvin → Celsius";
-    } else {
-        ckMode = "CtoK";
-        ckDirection.textContent = "Celsius → Kelvin";
-    }
-
+    ckMode = ckMode === "CtoK" ? "KtoC" : "CtoK";
+    ckDirection.textContent = ckMode === "CtoK" ? "Celsius → Kelvin" : "Kelvin → Celsius";
     calculateCK();
 });
-
 ckInput.addEventListener("input", calculateCK);
 
 // Fahrenheit ↔ Kelvin
-
 let fkMode = "FtoK";
-
 const fkInput = document.getElementById("fkInput");
 const fkResult = document.getElementById("fkResult");
 const fkDirection = document.getElementById("fkDirection");
@@ -97,35 +67,19 @@ const swapFK = document.getElementById("swapFK");
 
 function calculateFK() {
     const value = parseFloat(fkInput.value);
-
-    if (isNaN(value)) {
-        fkResult.textContent = "–";
-        return;
-    }
-
+    if (!Number.isFinite(value)) { fkResult.textContent = "–"; return; }
+    const kelvin = fkMode === "FtoK" ? ((value - 32) * 5) / 9 + 273.15 : value;
+    if (kelvin < 0) { invalidTemperature(fkResult); return; }
     if (fkMode === "FtoK") {
-        const result = ((value - 32) * 5) / 9 + 273.15;
-
-        fkResult.textContent =
-            `${value} °F = ${result.toFixed(2)} K`;
+        fkResult.textContent = `${value} °F = ${formatTemperature(kelvin)} K`;
     } else {
-        const result = ((value - 273.15) * 9) / 5 + 32;
-
-        fkResult.textContent =
-            `${value} K = ${result.toFixed(2)} °F`;
+        fkResult.textContent = `${value} K = ${formatTemperature(((value - 273.15) * 9) / 5 + 32)} °F`;
     }
 }
 
 swapFK.addEventListener("click", () => {
-    if (fkMode === "FtoK") {
-        fkMode = "KtoF";
-        fkDirection.textContent = "Kelvin → Fahrenheit";
-    } else {
-        fkMode = "FtoK";
-        fkDirection.textContent = "Fahrenheit → Kelvin";
-    }
-
+    fkMode = fkMode === "FtoK" ? "KtoF" : "FtoK";
+    fkDirection.textContent = fkMode === "FtoK" ? "Fahrenheit → Kelvin" : "Kelvin → Fahrenheit";
     calculateFK();
 });
-
 fkInput.addEventListener("input", calculateFK);

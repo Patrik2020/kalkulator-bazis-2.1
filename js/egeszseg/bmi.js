@@ -7,7 +7,7 @@ function calcBMI() {
   const w = parseFloat(weight.value);
   const h = parseFloat(height.value);
 
-  if (!w || !h) {
+  if (!Number.isFinite(w) || !Number.isFinite(h) || w <= 0 || h <= 0) {
     resultBMI.textContent = "–";
     resultCategory.textContent = "";
     return;

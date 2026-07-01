@@ -1,50 +1,39 @@
-function format(num) {
-  return new Intl.NumberFormat("hu-HU").format(Math.round(num));
-}
-
+function format(num) { return new Intl.NumberFormat("hu-HU").format(Math.round(num)); }
 function parseNumber(value) {
-  return parseFloat(value.replace(/\s/g, "")) || 0;
+  const parsed = Number.parseFloat((value || "").replace(/\s/g, "").replace(",", "."));
+  return Number.isFinite(parsed) ? parsed : null;
 }
-
 function formatInput(input) {
-  input.addEventListener("input", (e) => {
-    let raw = e.target.value.replace(/\s/g, "").replace(/\D/g, "");
-    if (!raw) return e.target.value = "";
-    e.target.value = new Intl.NumberFormat("hu-HU").format(raw);
+  input?.addEventListener("input", (event) => {
+    const raw = event.target.value.replace(/\s/g, "").replace(/\D/g, "");
+    event.target.value = raw ? new Intl.NumberFormat("hu-HU").format(raw) : "";
   });
 }
 
 const amount = document.getElementById("amount");
 const rate = document.getElementById("rate");
 const years = document.getElementById("years");
-
 const resultFinal = document.getElementById("result-final");
 const resultLoss = document.getElementById("result-loss");
 
 function calcInflation() {
-  const A = parseNumber(amount.value);
-  const r = (parseFloat(rate.value) || 0) / 100;
-  const n = parseFloat(years.value) || 0;
-
-  if (!A || !r || !n) {
+  const initial = parseNumber(amount.value);
+  const annualRatePercent = parseNumber(rate.value);
+  const yearValue = parseNumber(years.value);
+  if (initial === null || initial < 0 || annualRatePercent === null || annualRatePercent <= -100 || yearValue === null || yearValue < 0) {
     resultFinal.textContent = "–";
     resultLoss.textContent = "";
     return;
   }
 
-  const final = A / Math.pow(1 + r, n);
-  const loss = A - final;
-
-  resultFinal.textContent = format(final) + " Ft";
-  resultLoss.textContent = "Értékvesztés: " + format(loss) + " Ft";
+  const futurePurchasingPower = initial / Math.pow(1 + annualRatePercent / 100, yearValue);
+  const change = initial - futurePurchasingPower;
+  resultFinal.textContent = `${format(futurePurchasingPower)} Ft`;
+  resultLoss.textContent = change >= 0
+    ? `Vásárlóerő-csökkenés: ${format(change)} Ft`
+    : `Vásárlóerő-növekedés: ${format(Math.abs(change))} Ft`;
 }
 
-// format
 formatInput(amount);
-
-// auto
-[amount, rate, years].forEach(i => {
-  i?.addEventListener("input", calcInflation);
-});
-
+[amount, rate, years].forEach((input) => input?.addEventListener("input", calcInflation));
 calcInflation();

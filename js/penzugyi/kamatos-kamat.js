@@ -1,16 +1,12 @@
-function format(num) {
-  return new Intl.NumberFormat("hu-HU").format(Math.round(num));
-}
-
+function format(num) { return new Intl.NumberFormat("hu-HU").format(Math.round(num)); }
 function parseNumber(value) {
-  return parseFloat(value.replace(/\s/g, "")) || 0;
+  const parsed = Number.parseFloat((value || "").replace(/\s/g, "").replace(",", "."));
+  return Number.isFinite(parsed) ? parsed : 0;
 }
-
 function formatInput(input) {
-  input.addEventListener("input", (e) => {
-    let raw = e.target.value.replace(/\s/g, "").replace(/\D/g, "");
-    if (!raw) return e.target.value = "";
-    e.target.value = new Intl.NumberFormat("hu-HU").format(raw);
+  input?.addEventListener("input", (event) => {
+    const raw = event.target.value.replace(/\s/g, "").replace(/\D/g, "");
+    event.target.value = raw ? new Intl.NumberFormat("hu-HU").format(raw) : "";
   });
 }
 
@@ -18,40 +14,37 @@ const initial = document.getElementById("initial");
 const monthly = document.getElementById("monthly");
 const rate = document.getElementById("rate");
 const years = document.getElementById("years");
-
 const resultFinal = document.getElementById("result-final");
 const resultProfit = document.getElementById("result-profit");
 
 function calc() {
-  const P = parseNumber(initial.value);
-  const M = parseNumber(monthly.value);
-  const r = (parseFloat(rate.value) || 0) / 100 / 12;
-  const n = (parseFloat(years.value) || 0) * 12;
+  const principal = parseNumber(initial.value);
+  const contribution = parseNumber(monthly.value);
+  const annualRate = parseNumber(rate.value);
+  const yearValue = parseNumber(years.value);
+  const months = Math.round(yearValue * 12);
 
-  if (!n) {
+  if (principal < 0 || contribution < 0 || annualRate <= -100 || yearValue <= 0 || months <= 0 || (principal === 0 && contribution === 0)) {
     resultFinal.textContent = "–";
     resultProfit.textContent = "";
     return;
   }
 
-  let total = P;
-
-  for (let i = 0; i < n; i++) {
-    total = total * (1 + r) + M;
+  // Az éves hozamot effektív éves rátának tekintjük, majd matematikailag
+  // egyenértékű havi rátára bontjuk. A havi befizetés hónap végén történik.
+  const monthlyRate = Math.pow(1 + annualRate / 100, 1 / 12) - 1;
+  let total = principal;
+  for (let month = 0; month < months; month += 1) {
+    total = total * (1 + monthlyRate) + contribution;
   }
 
-  const invested = P + M * n;
+  const invested = principal + contribution * months;
   const profit = total - invested;
-
-  resultFinal.textContent = format(total) + " Ft";
-  resultProfit.textContent = "Nyereség: " + format(profit) + " Ft";
+  resultFinal.textContent = `${format(total)} Ft`;
+  resultProfit.textContent = `${profit >= 0 ? "Hozam" : "Veszteség"}: ${format(Math.abs(profit))} Ft · Befizetés: ${format(invested)} Ft`;
 }
 
 formatInput(initial);
 formatInput(monthly);
-
-[initial, monthly, rate, years].forEach(i => {
-  i?.addEventListener("input", calc);
-});
-
+[initial, monthly, rate, years].forEach((input) => input?.addEventListener("input", calc));
 calc();

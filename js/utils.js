@@ -194,6 +194,10 @@ function getActiveNavTarget() {
     "auto.html",
     "atvaltok.html",
     "kalkulatorok.html",
+    "rolunk.html",
+    "szamitasi-modszertan.html",
+    "atlathatosag-es-minoseg.html",
+    "kapcsolat.html",
   ]);
 
   return knownTargets.has(fileName) ? fileName : "";
@@ -220,6 +224,7 @@ function markActiveNavigation(container) {
   if (!container) return;
 
   const target = getActiveNavTarget();
+  let activeInfoLink = false;
 
   container.querySelectorAll("#menu a").forEach((link) => {
     const isActive = linkMatchesTarget(link, target);
@@ -227,10 +232,19 @@ function markActiveNavigation(container) {
     link.classList.toggle("is-active", isActive);
     if (isActive) {
       link.setAttribute("aria-current", "page");
+      if (link.closest(".nav-more")) activeInfoLink = true;
     } else {
       link.removeAttribute("aria-current");
     }
   });
+
+  const infoMenu = container.querySelector(".nav-more");
+  if (infoMenu) {
+    infoMenu.classList.toggle("has-active", activeInfoLink);
+    if (activeInfoLink && window.matchMedia("(max-width: 1199px)").matches) {
+      infoMenu.open = true;
+    }
+  }
 }
 
 // =========================
@@ -239,33 +253,65 @@ function markActiveNavigation(container) {
 function initMobileMenu() {
   const toggle = document.getElementById("menuToggle");
   const menu = document.getElementById("menu");
+  const infoMenu = menu?.querySelector(".nav-more");
+  const desktopQuery = window.matchMedia("(min-width: 1200px)");
 
   if (!toggle || !menu) return;
+
+  const closeInfoMenu = () => {
+    if (infoMenu) infoMenu.open = false;
+  };
 
   const setMenuState = (isOpen) => {
     menu.classList.toggle("active", isOpen);
     toggle.setAttribute("aria-expanded", String(isOpen));
     toggle.setAttribute("aria-label", isOpen ? "Menü bezárása" : "Menü megnyitása");
+
+    if (!isOpen && !desktopQuery.matches) closeInfoMenu();
   };
 
   toggle.addEventListener("click", () => {
     setMenuState(!menu.classList.contains("active"));
   });
 
-  document.addEventListener("click", (e) => {
-    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+  document.addEventListener("click", (event) => {
+    const clickedInsideMenu = menu.contains(event.target);
+    const clickedToggle = toggle.contains(event.target);
+
+    if (!clickedInsideMenu && !clickedToggle) {
       setMenuState(false);
+      closeInfoMenu();
     }
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && menu.classList.contains("active")) {
+    if (event.key !== "Escape") return;
+
+    if (infoMenu?.open) {
+      closeInfoMenu();
+      infoMenu.querySelector("summary")?.focus();
+      return;
+    }
+
+    if (menu.classList.contains("active")) {
       setMenuState(false);
       toggle.focus();
     }
   });
 
   menu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => setMenuState(false));
+    link.addEventListener("click", () => {
+      setMenuState(false);
+      closeInfoMenu();
+    });
   });
+
+  const handleBreakpoint = () => {
+    if (desktopQuery.matches) {
+      setMenuState(false);
+      closeInfoMenu();
+    }
+  };
+
+  desktopQuery.addEventListener?.("change", handleBreakpoint);
 }

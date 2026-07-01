@@ -12,7 +12,10 @@ function calcTiles() {
   const tw = parseFloat(tileWidth.value);
   const th = parseFloat(tileHeight.value);
 
-  if (!w || !h || !tw || !th) {
+  if (
+    !Number.isFinite(w) || !Number.isFinite(h) || !Number.isFinite(tw) || !Number.isFinite(th) ||
+    w <= 0 || h <= 0 || tw <= 0 || th <= 0
+  ) {
     resultTiles.textContent = "–";
     resultArea.textContent = "";
     return;

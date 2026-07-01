@@ -13,7 +13,10 @@ function calcCalories() {
   const a = parseFloat(age.value);
   const act = parseFloat(activity.value);
 
-  if (!w || !h || !a) {
+  if (
+    !Number.isFinite(w) || !Number.isFinite(h) || !Number.isFinite(a) ||
+    !Number.isFinite(act) || w <= 0 || h <= 0 || a <= 0 || act <= 0
+  ) {
     resultCalories.textContent = "–";
     resultGoal.textContent = "";
     return;
@@ -28,6 +31,12 @@ function calcCalories() {
   }
 
   const maintenance = bmr * act;
+
+  if (!Number.isFinite(maintenance) || maintenance <= 0) {
+    resultCalories.textContent = "–";
+    resultGoal.textContent = "A megadott adatokból nem adható életszerű becslés.";
+    return;
+  }
 
   resultCalories.textContent = Math.round(maintenance) + " kcal";
 

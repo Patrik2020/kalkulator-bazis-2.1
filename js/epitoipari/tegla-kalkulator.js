@@ -116,13 +116,20 @@ function calculateBricks() {
     const doorArea =
         parseFloat(document.getElementById("doorArea").value) || 0;
 
-    const wastePercent =
-        parseFloat(document.getElementById("wastePercent").value) || 5;
+    const wasteRaw = parseFloat(document.getElementById("wastePercent").value);
+    const wastePercent = Number.isFinite(wasteRaw) ? wasteRaw : 5;
 
-    const brickPrice =
-        parseFloat(document.getElementById("brickPrice").value) || 0;
+    const priceRaw = parseFloat(document.getElementById("brickPrice").value);
+    const brickPrice = Number.isFinite(priceRaw) ? priceRaw : 0;
 
-    if (isNaN(wallLength) || isNaN(wallHeight)) {
+    if (
+        !Number.isFinite(wallLength) || wallLength <= 0 ||
+        !Number.isFinite(wallHeight) || wallHeight <= 0 ||
+        !Number.isFinite(windowArea) || windowArea < 0 ||
+        !Number.isFinite(doorArea) || doorArea < 0 ||
+        !Number.isFinite(wastePercent) || wastePercent < 0 ||
+        !Number.isFinite(brickPrice) || brickPrice < 0
+    ) {
 
         wallAreaResult.textContent = "–";
         openingAreaResult.textContent = "–";
@@ -158,11 +165,18 @@ function calculateBricks() {
             parseFloat(document.getElementById("brickHeight").value);
 
         if (
-            isNaN(brickLength) ||
-            isNaN(brickHeight) ||
+            !Number.isFinite(brickLength) ||
+            !Number.isFinite(brickHeight) ||
             brickLength <= 0 ||
             brickHeight <= 0
         ) {
+            wallAreaResult.textContent = "–";
+            openingAreaResult.textContent = "–";
+            netWallAreaResult.textContent = "–";
+            brickCountResult.textContent = "–";
+            recommendedBrickCountResult.textContent = "–";
+            costResult.textContent = "–";
+            summaryText.textContent = "Adj meg érvényes egyedi téglaméretet a számításhoz.";
             return;
         }
 

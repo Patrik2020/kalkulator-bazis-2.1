@@ -202,7 +202,7 @@
   };
 
   const placeholderImage =
-    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='600' viewBox='0 0 300 600'%3E%3Crect width='300' height='600' fill='%23e8f0ef'/%3E%3Ctext x='150' y='286' text-anchor='middle' font-family='Arial,sans-serif' font-size='18' font-weight='700' fill='%2307111f'%3EWise partner banner%3C/text%3E%3Ctext x='150' y='318' text-anchor='middle' font-family='Arial,sans-serif' font-size='13' fill='%23607084'%3EMarketing hozzajarulas utan tolt be%3C/text%3E%3C/svg%3E";
+    "data:image/svg+xml,%3Csvg%20xmlns='http%3A//www.w3.org/2000/svg'%20width='300'%20height='600'%20viewBox='0%200%20300%20600'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%23173744'/%3E%3Cstop%20offset='1'%20stop-color='%230d2029'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width='300'%20height='600'%20rx='10'%20fill='url(%23g)'/%3E%3Ccircle%20cx='150'%20cy='235'%20r='34'%20fill='%2331d4bf'/%3E%3Ctext%20x='150'%20y='246'%20text-anchor='middle'%20font-family='Arial,sans-serif'%20font-size='24'%20font-weight='700'%20fill='%2307111f'%3EW%3C/text%3E%3Ctext%20x='150'%20y='310'%20text-anchor='middle'%20font-family='Arial,sans-serif'%20font-size='18'%20font-weight='700'%20fill='%23f3fbfa'%3EWise%20partner%20banner%3C/text%3E%3Ctext%20x='150'%20y='340'%20text-anchor='middle'%20font-family='Arial,sans-serif'%20font-size='13'%20fill='%23c7d7dd'%3EMarketing%20hozz%C3%A1j%C3%A1rul%C3%A1s%20ut%C3%A1n%20t%C3%B6lt%20be%3C/text%3E%3C/svg%3E";
 
   const updateConsentControlledAssets = (categories) => {
     const normalized = normalizeCategories(categories);

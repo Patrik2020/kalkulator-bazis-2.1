@@ -40,7 +40,7 @@ function getUnitLabel(unit) {
         dl: "dl",
         l: "l",
         m3: "m³",
-        gal: "gallon",
+        gal: "US gallon",
     };
 
     return labels[unit];

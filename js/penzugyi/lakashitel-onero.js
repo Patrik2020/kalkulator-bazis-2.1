@@ -1,46 +1,33 @@
-function format(num) {
-  return new Intl.NumberFormat("hu-HU").format(Math.round(num));
-}
-
+function format(num) { return new Intl.NumberFormat("hu-HU").format(Math.round(num)); }
 function parseNumber(value) {
-  return parseFloat(value.replace(/\s/g, "")) || 0;
+  const parsed = Number.parseFloat((value || "").replace(/\s/g, "").replace(",", "."));
+  return Number.isFinite(parsed) ? parsed : 0;
 }
-
 function formatInput(input) {
-  input.addEventListener("input", (e) => {
-    let raw = e.target.value.replace(/\s/g, "").replace(/\D/g, "");
-    if (!raw) return e.target.value = "";
-    e.target.value = new Intl.NumberFormat("hu-HU").format(raw);
+  input?.addEventListener("input", (event) => {
+    const raw = event.target.value.replace(/\s/g, "").replace(/\D/g, "");
+    event.target.value = raw ? new Intl.NumberFormat("hu-HU").format(raw) : "";
   });
 }
 
 const price = document.getElementById("price");
 const percent = document.getElementById("percent");
-
 const resultDown = document.getElementById("result-down");
 const resultLoan = document.getElementById("result-loan");
 
 function calc() {
-  const p = parseNumber(price.value);
-  const perc = (parseFloat(percent.value) || 0) / 100;
-
-  if (!p || !perc) {
+  const propertyPrice = parseNumber(price.value);
+  const downPaymentPercent = parseNumber(percent.value);
+  if (propertyPrice <= 0 || downPaymentPercent < 0 || downPaymentPercent > 100) {
     resultDown.textContent = "–";
-    resultLoan.textContent = "";
+    resultLoan.textContent = downPaymentPercent > 100 ? "Az önerő aránya legfeljebb 100% lehet." : "";
     return;
   }
-
-  const down = p * perc;
-  const loan = p - down;
-
-  resultDown.textContent = format(down) + " Ft";
-  resultLoan.textContent = "Hitel: " + format(loan) + " Ft";
+  const downPayment = propertyPrice * downPaymentPercent / 100;
+  resultDown.textContent = `${format(downPayment)} Ft`;
+  resultLoan.textContent = `Finanszírozandó összeg: ${format(propertyPrice - downPayment)} Ft`;
 }
 
 formatInput(price);
-
-[price, percent].forEach(i => {
-  i?.addEventListener("input", calc);
-});
-
+[price, percent].forEach((input) => input?.addEventListener("input", calc));
 calc();
