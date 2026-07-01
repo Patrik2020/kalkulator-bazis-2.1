@@ -24,14 +24,14 @@
 .page-afa label {
   font-size: 14px;
   margin-bottom: 4px;
-  color: #475569;
+  color: var(--text-light);
 }
 
 /* ===== INPUT ===== */
 .page-afa input:not([type="checkbox"]):not([type="radio"]) {
   padding: 12px;
   border-radius: 8px;
-  background: #f8fafc;
+  background: var(--surface-secondary);
 }
 
 /* ===== GOMBOK – KÖZÉPRE! ===== */
@@ -60,7 +60,7 @@
   margin-top: 18px;
   padding: 20px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #eef2f7, #e2e8f0);
+  background: linear-gradient(135deg, var(--surface-secondary), var(--surface-muted));
   border: none;
 }
 

@@ -19,27 +19,27 @@
 .page-csempe label {
   font-size: 14px;
   margin-bottom: 4px;
-  color: #475569;
+  color: var(--text-light);
 }
 
 .page-csempe input:not([type="checkbox"]):not([type="radio"]) {
   width: 100%;
   padding: 12px;
   border-radius: 8px;
-  border: 1px solid #d0d7e2;
-  background: #f8fafc;
+  border: 1px solid var(--border);
+  background: var(--surface-secondary);
 }
 
 .page-csempe input:focus {
   border-color: #3b82f6;
-  background: #ffffff;
+  background: var(--surface);
 }
 
 .page-csempe .result-box {
   margin-top: 18px;
   padding: 20px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #eef2f7, #e2e8f0);
+  background: linear-gradient(135deg, var(--surface-secondary), var(--surface-muted));
   text-align: center;
 }
 
@@ -51,5 +51,5 @@
 .page-csempe #result-area {
   font-size: 14px;
   margin-top: 6px;
-  color: #475569;
+  color: var(--text-light);
 }

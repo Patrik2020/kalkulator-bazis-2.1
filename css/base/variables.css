@@ -4,9 +4,20 @@
   --primary-hover: #084ec0;
   --background: #f5f7fb;
   --surface: #ffffff;
+  --surface-secondary: #f8fafc;
+  --surface-muted: #f1f5f9;
+  --surface-info: #eff6ff;
+  --surface-warning: #fff7ed;
+  --surface-accent: #eef2ff;
+  --surface-pink: #fdf2f8;
   --text: #111827;
   --text-light: #6b7280;
+  --text-muted: #64748b;
+  --accent-text: #3730a3;
   --border: #e5e7eb;
+  --border-soft: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --warning-border: #fed7aa;
   --success: #16a34a;
 
   /* Spacing */

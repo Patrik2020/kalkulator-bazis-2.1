@@ -118,7 +118,7 @@
 }
 
 .report-button {
-  background: var(--primary);
+  background: var(--action-primary, var(--primary));
   border-radius: 8px;
   color: #ffffff;
   display: flex;
@@ -132,7 +132,7 @@
 
 .report-button:hover,
 .report-button:focus-visible {
-  background: var(--primary-hover);
+  background: var(--action-primary-hover, var(--primary-hover));
   color: #ffffff;
 }
 

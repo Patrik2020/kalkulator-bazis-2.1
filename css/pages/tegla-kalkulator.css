@@ -57,7 +57,7 @@
   margin-top: 2rem;
   padding: 1.5rem;
   border-radius: 8px;
-  background: #f7f9fc;
+  background: var(--surface-secondary);
 }
 
 .page-tegla .result-box h3 {
@@ -135,7 +135,7 @@
     border: 1px solid #dcdcdc;
     border-radius: 8px;
     overflow: hidden;
-    background: #fff;
+    background: var(--surface);
 }
 
 .page-tegla .faq-item summary {

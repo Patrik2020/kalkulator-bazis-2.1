@@ -12,8 +12,8 @@
   width: 100%;
   padding: 12px;
   border-radius: 8px;
-  border: 1px solid #d0d7e2;
-  background: #f8fafc;
+  border: 1px solid var(--border);
+  background: var(--surface-secondary);
 }
 
 .page-netto .radio-group {
@@ -27,7 +27,7 @@
   margin-top: 18px;
   padding: 20px;
   border-radius: 8px;
-  background: linear-gradient(135deg, #eef2f7, #e2e8f0);
+  background: linear-gradient(135deg, var(--surface-secondary), var(--surface-muted));
   text-align: center;
 }
 
@@ -71,6 +71,6 @@
   margin-bottom: 16px;
   padding: 12px;
   border-radius: 8px;
-  background: #f1f5f9;
+  background: var(--surface-muted);
   font-size: 14px;
 }

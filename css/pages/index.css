@@ -1,6 +1,6 @@
 .home-hero {
   border-bottom: 1px solid var(--border);
-  background: #eef4fb;
+  background: var(--surface-info);
 }
 
 .home-hero-inner {
@@ -191,7 +191,7 @@
 
 .about-home p {
   margin: 0 0 14px;
-  color: #4b5563;
+  color: var(--text-light);
   line-height: 1.75;
 }
 

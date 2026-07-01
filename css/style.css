@@ -40,8 +40,8 @@
 .article-recommendation {
     margin-top: 3rem;
     padding: 2rem;
-    background: #f8fafc;
-    border: 1px solid #e5e7eb;
+    background: var(--surface-secondary);
+    border: 1px solid var(--border);
     border-radius: 8px;
     text-align: center;
 }
@@ -54,7 +54,7 @@
     max-width: 700px;
     margin: 0 auto 1.5rem;
     line-height: 1.7;
-    color: #4b5563;
+    color: var(--text-light);
 }
 
 
@@ -110,6 +110,12 @@
 }
 
 .ad-section {
+    display: none;
+    margin: 0;
+}
+
+.ad-section[data-ad-state="filled"] {
+    display: block;
     margin-top: 30px;
     margin-bottom: 30px;
 }

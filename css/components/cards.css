@@ -2,7 +2,7 @@
 .card {
   position: relative;
   overflow: hidden;
-  background: #ffffff;
+  background: var(--surface);
   border-radius: 8px;
   padding: 20px;
   border: 1px solid var(--border);
@@ -13,7 +13,7 @@
 .card-link {
   background:
     linear-gradient(135deg, var(--card-tint, rgba(37, 99, 235, 0.08)), transparent 55%),
-    #ffffff;
+    var(--surface);
 }
 
 /* ===== LINK KÁRTYA (index, kategória) ===== */
@@ -40,7 +40,7 @@
 
 .card-link:hover {
   transform: translateY(-2px);
-  border-color: #cbd5e1;
+  border-color: var(--border-strong);
   box-shadow: var(--shadow-md);
 }
 
