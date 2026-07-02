@@ -1,0 +1,9 @@
+name = "kalkulatorbazis-support"
+main = "worker.js"
+compatibility_date = "2026-07-01"
+
+[vars]
+GITHUB_REPO = "Patrik2020/kalkulator-bazis-2.1"
+GITHUB_LABEL = "felhasználói-hibajegy"
+EMAIL_TO = "kalkulatorbazis@gmail.com"
+EMAIL_FROM = "Kalkulátor Bázis <hibajegy@kalkulatorbazis.hu>"
