@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const API_URL = "https://YOUR-WORKER-SUBDOMAIN.workers.dev/report";
+  const API_URL = "https://formspree.io/f/xgojpond";
   const SUPPORT_EMAIL = "kalkulatorbazis@gmail.com";
   const openedAt = Date.now();
 
@@ -136,26 +136,20 @@
       const submit = form.querySelector("button[type=submit]");
       const data = new FormData(form);
 
-      if (API_URL.includes("YOUR-WORKER")) {
-        status.hidden = false;
-        status.dataset.kind = "error";
-        status.textContent = "A hibabejelentő háttérszolgáltatása még nincs beállítva.";
-        return;
-      }
-
       submit.disabled = true;
       status.hidden = false;
       status.dataset.kind = "";
       status.textContent = "Küldés folyamatban…";
 
       const payload = {
+        _subject: `[Kalkulátor Bázis] ${form.dataset.type}`,
         type: form.dataset.type,
         description: String(data.get("description") || "").trim(),
         expected: String(data.get("expected") || "").trim(),
         inputData: String(data.get("inputData") || "").trim(),
         email: String(data.get("email") || "").trim(),
         website: String(data.get("website") || ""),
-        consent: data.get("consent") === "on",
+        consent: data.get("consent") === "on" ? "igen" : "nem",
         pageUrl: location.href,
         pageTitle: document.title,
         referrer: document.referrer || "nincs",
@@ -170,13 +164,19 @@
       try {
         const response = await fetch(API_URL, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
           body: JSON.stringify(payload)
         });
         const result = await response.json().catch(() => ({}));
-        if (!response.ok) throw new Error(result.error || "A küldés nem sikerült.");
+        if (!response.ok) {
+          const message = result?.errors?.[0]?.message || result?.error || "A küldés nem sikerült.";
+          throw new Error(message);
+        }
         status.dataset.kind = "success";
-        status.textContent = `Köszönjük! A bejelentés megérkezett${result.issueNumber ? ` (#${result.issueNumber})` : ""}.`;
+        status.textContent = "Köszönjük! Az üzenet sikeresen megérkezett.";
         form.reset();
       } catch (error) {
         status.dataset.kind = "error";
