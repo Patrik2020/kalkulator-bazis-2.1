@@ -1,0 +1,143 @@
+
+/* Kalkulátor Bázis – segítség és hibabejelentő widget */
+.kb-help-launcher {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9998;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--primary, #0b66f2);
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, .24);
+  cursor: pointer;
+}
+.kb-help-launcher:hover { transform: translateY(-1px); }
+.kb-help-launcher__icon { font-size: 1.2rem; line-height: 1; }
+.kb-help-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  display: none;
+  background: rgba(15, 23, 42, .38);
+}
+.kb-help-backdrop[data-open="true"] { display: block; }
+.kb-help-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 84px;
+  z-index: 9999;
+  width: min(420px, calc(100vw - 24px));
+  max-height: min(700px, calc(100vh - 110px));
+  overflow: auto;
+  display: none;
+  border: 1px solid var(--border, #d8e0ea);
+  border-radius: 20px;
+  background: var(--surface, #fff);
+  color: var(--text, #172033);
+  box-shadow: 0 24px 70px rgba(15, 23, 42, .28);
+}
+.kb-help-panel[data-open="true"] { display: block; }
+.kb-help-panel__header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px;
+  border-bottom: 1px solid var(--border, #e4eaf1);
+  background: inherit;
+}
+.kb-help-panel__header h2 { margin: 0 0 4px; font-size: 1.2rem; }
+.kb-help-panel__header p { margin: 0; color: var(--text-light, #64748b); font-size: .92rem; }
+.kb-help-close {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border, #d8e0ea);
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  font-size: 1.35rem;
+  cursor: pointer;
+}
+.kb-help-panel__body { padding: 18px 20px 22px; }
+.kb-help-actions { display: grid; gap: 10px; }
+.kb-help-action {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border, #d8e0ea);
+  border-radius: 14px;
+  background: var(--surface-secondary, #f7f9fc);
+  color: inherit;
+  text-align: left;
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+}
+.kb-help-action:hover { border-color: var(--primary, #0b66f2); }
+.kb-help-view[hidden] { display: none !important; }
+.kb-help-back {
+  display: inline-flex;
+  margin: 0 0 14px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--primary, #0b66f2);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.kb-help-form { display: grid; gap: 14px; }
+.kb-help-form label { display: grid; gap: 7px; font-weight: 750; }
+.kb-help-form input,
+.kb-help-form textarea,
+.kb-help-form select {
+  width: 100%;
+  padding: 12px 13px;
+  border: 1px solid var(--border, #cbd5e1);
+  border-radius: 10px;
+  background: var(--surface, #fff);
+  color: inherit;
+  font: inherit;
+}
+.kb-help-form textarea { min-height: 104px; resize: vertical; }
+.kb-help-note { margin: 0; color: var(--text-light, #64748b); font-size: .84rem; line-height: 1.5; }
+.kb-help-submit {
+  min-height: 48px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--primary, #0b66f2);
+  color: #fff;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.kb-help-submit[disabled] { opacity: .65; cursor: wait; }
+.kb-help-status { margin: 0; padding: 12px 14px; border-radius: 10px; font-size: .92rem; }
+.kb-help-status[data-kind="success"] { background: #e9f8ef; color: #17623a; }
+.kb-help-status[data-kind="error"] { background: #fff0f0; color: #8a1f1f; }
+.kb-help-honeypot { position: absolute !important; left: -9999px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
+.kb-help-links { display: grid; gap: 10px; }
+.kb-help-links a {
+  display: block;
+  padding: 13px 14px;
+  border: 1px solid var(--border, #d8e0ea);
+  border-radius: 12px;
+  color: var(--primary, #0b66f2);
+  font-weight: 750;
+  text-decoration: none;
+}
+@media (max-width: 640px) {
+  .kb-help-launcher { right: 12px; bottom: 12px; min-height: 48px; padding: 0 15px; }
+  .kb-help-panel { right: 12px; bottom: 72px; max-height: calc(100vh - 92px); }
+}

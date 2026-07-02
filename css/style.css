@@ -16,6 +16,7 @@
 @import url('./components/cookie.css');
 @import url('./components/retention-cta.css');
 @import url('./components/site-sections.css');
+@import url('./components/help-widget.css');
 
 :where(a, button, summary, input, select, textarea):focus-visible {
     outline: 3px solid rgba(11, 102, 242, 0.32);
