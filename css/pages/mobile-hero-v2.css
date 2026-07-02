@@ -1,0 +1,52 @@
+@media (max-width: 767px) {
+  .home-hero-motion { opacity: .9; }
+
+  .hero-shape {
+    position: absolute;
+    display: block;
+    pointer-events: none;
+    will-change: transform;
+    background: linear-gradient(145deg, rgba(11,102,242,.10), rgba(77,156,255,.03));
+    border: 1px solid rgba(11,102,242,.08);
+  }
+
+  .hero-shape-circle {
+    width: 150px;
+    height: 150px;
+    top: -72px;
+    left: -50px;
+    border-radius: 50%;
+    animation: hero-float-one 11s ease-in-out infinite alternate;
+  }
+
+  .hero-shape-square {
+    width: 118px;
+    height: 118px;
+    right: -30px;
+    bottom: -34px;
+    border-radius: 18px;
+    transform: rotate(14deg);
+    animation: hero-float-two 13s ease-in-out infinite alternate;
+  }
+
+  .hero-shape-triangle {
+    width: 112px;
+    height: 98px;
+    left: 46%;
+    bottom: -20px;
+    clip-path: polygon(50% 0,100% 100%,0 100%);
+    animation: hero-drift 12s ease-in-out -3s infinite alternate;
+  }
+
+  .hero-orb { display: none; }
+
+  .hero-symbol { color: rgba(11,102,242,.18); }
+  .hero-symbol-one { top: 17%; left: 3%; font-size: 2.6rem; animation-duration: 10s; }
+  .hero-symbol-two { top: 11%; right: 5%; font-size: 2.3rem; animation-duration: 12s; }
+  .hero-symbol-three { right: 3%; bottom: 12%; font-size: 2.45rem; animation-duration: 11s; }
+  .hero-symbol-four { left: 8%; bottom: 18%; font-size: 2.2rem; animation: hero-drift 9s ease-in-out -2s infinite alternate-reverse; }
+
+  .hero-chart { width: 122px; height: 54px; opacity: .2; }
+  .hero-chart-one { left: -8px; bottom: 7%; animation-duration: 9s; }
+  .hero-chart-two { top: 21%; right: -18px; width: 104px; height: 46px; animation-duration: 11s; }
+}
