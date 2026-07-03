@@ -105,8 +105,8 @@ if (!hasMainStylesheet()) {
 }
 
 if (isHomePage) {
-  appendElement("link", { rel: "stylesheet", href: `${calculatorCssPath}?v=20260703-1` });
-  appendElement("script", { src: `${calculatorScriptPath}?v=20260703-1`, defer: "" });
+  appendElement("link", { rel: "stylesheet", href: `${calculatorCssPath}?v=20260703-2` });
+  appendElement("script", { src: `${calculatorScriptPath}?v=20260703-2`, defer: "" });
 }
 
 appendElement("script", { src: themeScriptPath, defer: "" });
