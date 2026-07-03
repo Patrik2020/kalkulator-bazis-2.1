@@ -41,6 +41,12 @@ const footerCssPath = `${projectRoot}/css/layout/footer.css`;
 const cookieCssPath = `${projectRoot}/css/components/cookie.css`;
 const themeScriptPath = `${projectRoot}/js/theme.js`;
 const pwaScriptPath = `${projectRoot}/js/pwa.js`;
+const calculatorCssPath = `${projectRoot}/css/pages/calculator-suite.css`;
+const calculatorScriptPath = `${projectRoot}/js/calculator-suite.js`;
+const normalizedPath = window.location.pathname.replace(/\/+$/, "");
+const isHomePage =
+  normalizedPath === projectRoot ||
+  normalizedPath === `${projectRoot}/index.html`;
 
 window.KB_PROJECT_ROOT = projectRoot;
 
@@ -96,6 +102,11 @@ appendElement("link", { rel: "stylesheet", href: themeCssPath });
 if (!hasMainStylesheet()) {
   appendElement("link", { rel: "stylesheet", href: footerCssPath });
   appendElement("link", { rel: "stylesheet", href: cookieCssPath });
+}
+
+if (isHomePage) {
+  appendElement("link", { rel: "stylesheet", href: `${calculatorCssPath}?v=20260703-1` });
+  appendElement("script", { src: `${calculatorScriptPath}?v=20260703-1`, defer: "" });
 }
 
 appendElement("script", { src: themeScriptPath, defer: "" });
