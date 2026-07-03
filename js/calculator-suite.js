@@ -40,9 +40,17 @@
 
   const quickMarkup=()=>`<section class="container quick-calculator-section" aria-labelledby="quickCalculatorTitle"><details class="quick-calculator-disclosure"><summary><span>Gyors számológép</span><small>Megnyitás</small></summary><div class="quick-calculator-card"><div class="quick-calculator-copy"><span class="section-label">Gyors számolás</span><h2 id="quickCalculatorTitle">Egyszerű számológép</h2><p>Végezd el a leggyakoribb alapműveleteket közvetlenül a főoldalon.</p><div class="calculator-note">Összetettebb művelethez, gyökvonáshoz, hatványozáshoz és trigonometriai számításokhoz <a href="${root}/kalkulatorok/multifunkcios-szamologep.html">nyisd meg a multifunkciós számológépet</a>.</div></div><div class="calculator-shell" data-calculator><input class="calculator-display" data-calc-display inputmode="decimal" autocomplete="off" aria-label="Számológép kijelző"><div class="calculator-keys"><button class="danger" data-action="clear">C</button><button data-action="backspace">⌫</button><button class="operator" data-value="/100">%</button><button class="operator" data-value="÷">÷</button><button data-value="7">7</button><button data-value="8">8</button><button data-value="9">9</button><button class="operator" data-value="×">×</button><button data-value="4">4</button><button data-value="5">5</button><button data-value="6">6</button><button class="operator" data-value="−">−</button><button data-value="1">1</button><button data-value="2">2</button><button data-value="3">3</button><button class="operator" data-value="+">+</button><button data-value="0">0</button><button data-value=".">,</button><button data-value="(">(</button><button class="equals" data-action="equals">=</button></div></div></div></details></section>`;
 
+  const syncQuickCalculatorVisibility=()=>{
+    const disclosure=document.querySelector(".quick-calculator-disclosure");
+    if(!disclosure)return;
+    if(window.matchMedia("(max-width: 640px)").matches)disclosure.removeAttribute("open");
+    else disclosure.setAttribute("open","");
+  };
+
   const init=()=>{
     const hero=document.querySelector(".home-hero");
     if(hero&&!document.querySelector(".quick-calculator-section"))hero.insertAdjacentHTML("afterend",quickMarkup());
+    syncQuickCalculatorVisibility();
     document.querySelectorAll("[data-calculator]").forEach(bindCalculator);
   };
   document.readyState==="loading"?document.addEventListener("DOMContentLoaded",init):init();
