@@ -17,7 +17,7 @@ const out = {
 
 const number = input => Number.parseFloat(input.value);
 const positive = value => Number.isFinite(value) && value > 0;
-const format = value => value.toLocaleString("hu-HU", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const formatCsempe = value => value.toLocaleString("hu-HU", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const clear = elements => elements.forEach(element => { element.textContent = "–"; });
 
 function setVisibility() {
@@ -82,12 +82,12 @@ function calculate() {
         const tileArea = (tileWidth / 100) * (tileHeight / 100);
         const tileCount = Math.ceil(purchaseArea / tileArea);
 
-        out.grossWall.textContent = `${format(grossArea)} m²`;
-        out.door.textContent = fields.subtractDoor.checked ? `${format(doorArea)} m²` : "Nincs levonva";
-        out.netWall.textContent = `${format(netArea)} m²`;
-        out.wallBuy.textContent = `${format(purchaseArea)} m²`;
+        out.grossWall.textContent = `${formatCsempe(grossArea)} m²`;
+        out.door.textContent = fields.subtractDoor.checked ? `${formatCsempe(doorArea)} m²` : "Nincs levonva";
+        out.netWall.textContent = `${formatCsempe(netArea)} m²`;
+        out.wallBuy.textContent = `${formatCsempe(purchaseArea)} m²`;
         out.wallCount.textContent = `${tileCount.toLocaleString("hu-HU")} db`;
-        summaries.push(`A négy fal nettó felülete ${format(netArea)} m². ${waste}% ráhagyással ${format(purchaseArea)} m², vagyis körülbelül ${tileCount.toLocaleString("hu-HU")} darab falicsempe szükséges.`);
+        summaries.push(`A négy fal nettó felülete ${formatCsempe(netArea)} m². ${waste}% ráhagyással ${formatCsempe(purchaseArea)} m², vagyis körülbelül ${tileCount.toLocaleString("hu-HU")} darab falicsempe szükséges.`);
       }
     }
   }
@@ -105,10 +105,10 @@ function calculate() {
       const tileArea = (tileWidth / 100) * (tileHeight / 100);
       const tileCount = Math.ceil(purchaseArea / tileArea);
 
-      out.floorArea.textContent = `${format(area)} m²`;
-      out.floorBuy.textContent = `${format(purchaseArea)} m²`;
+      out.floorArea.textContent = `${formatCsempe(area)} m²`;
+      out.floorBuy.textContent = `${formatCsempe(purchaseArea)} m²`;
       out.floorCount.textContent = `${tileCount.toLocaleString("hu-HU")} db`;
-      summaries.push(`A padló felülete ${format(area)} m². ${waste}% ráhagyással ${format(purchaseArea)} m², vagyis körülbelül ${tileCount.toLocaleString("hu-HU")} darab járólap szükséges.`);
+      summaries.push(`A padló felülete ${formatCsempe(area)} m². ${waste}% ráhagyással ${formatCsempe(purchaseArea)} m², vagyis körülbelül ${tileCount.toLocaleString("hu-HU")} darab járólap szükséges.`);
     }
   }
 
