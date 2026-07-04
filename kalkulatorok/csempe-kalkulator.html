@@ -1,145 +1,172 @@
 <!doctype html>
 <html lang="hu">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Csempe kalkulátor: számold ki mennyi csempe szükséges m²-ben és darabszámban." />
+  <meta name="description" content="Csempe és járólap kalkulátor: számold ki egy helyiség négy falának és padlójának burkolandó felületét, az ajtó opcionális levonásával, ráhagyással és darabszámmal." />
   <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/csempe-kalkulator.html" />
-<title>Csempe kalkulátor – mennyi csempe kell?</title>
-
+  <title>Csempe és járólap kalkulátor – 4 fal, padló és ajtólevonás</title>
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/pages/csempe.css" />
   <script src="../js/global-head.js"></script>
-  
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Csempe kalkulátor – mennyi csempe kell?" />
-  <meta property="og:description" content="Csempe kalkulátor: számold ki mennyi csempe szükséges m²-ben és darabszámban." />
+  <meta property="og:title" content="Csempe és járólap kalkulátor – 4 fal, padló és ajtólevonás" />
+  <meta property="og:description" content="Számold ki a négy fal és a padló burkolásához szükséges csempe- és járólapmennyiséget." />
   <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/csempe-kalkulator.html" />
   <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Csempe kalkulátor – mennyi csempe kell?" />
-  <meta name="twitter:description" content="Csempe kalkulátor: számold ki mennyi csempe szükséges m²-ben és darabszámban." />
+  <meta name="twitter:title" content="Csempe és járólap kalkulátor" />
+  <meta name="twitter:description" content="Négy fal, padló, ajtólevonás, ráhagyás és darabszám egy kalkulátorban." />
   <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
 </head>
-
 <body>
-
   <div id="header"></div>
-
   <main class="container page-csempe">
-
-    <!-- HERO -->
     <section class="hero">
-      <h1>Csempe kalkulátor</h1>
-      <p>Számold ki, mennyi csempe szükséges a burkoláshoz.</p>
+      <h1>Csempe és járólap kalkulátor</h1>
+      <p>Számold ki egy téglalap alakú helyiség négy falának és padlójának burkolásához szükséges mennyiséget.</p>
     </section>
 
-    <!-- KALKULÁTOR -->
     <section class="card card-calculator">
+      <h2>Helyiség és burkolat adatai</h2>
 
-      <div class="calc-grid">
-
-        <div>
-          <label for="width">Felület szélessége (m)</label>
-          <input type="number" id="width" placeholder="pl. 3" />
+      <div class="calc-section">
+        <h3>Helyiség méretei</h3>
+        <div class="calc-grid">
+          <div>
+            <label for="roomLength">Helyiség hossza (m)</label>
+            <input type="number" id="roomLength" min="0" step="0.01" inputmode="decimal" placeholder="pl. 1,60" />
+          </div>
+          <div>
+            <label for="roomWidth">Helyiség szélessége (m)</label>
+            <input type="number" id="roomWidth" min="0" step="0.01" inputmode="decimal" placeholder="pl. 1,60" />
+          </div>
+          <div>
+            <label for="wallHeight">Burkolandó falmagasság (m)</label>
+            <small>Nem muszáj a teljes belmagasságot megadni.</small>
+            <input type="number" id="wallHeight" min="0" step="0.01" inputmode="decimal" placeholder="pl. 2,50" />
+          </div>
+          <div>
+            <label for="wastePercent">Ráhagyás</label>
+            <select id="wastePercent">
+              <option value="5">5% – egyszerű kiosztás</option>
+              <option value="10" selected>10% – általános</option>
+              <option value="15">15% – sok vágás vagy minta</option>
+              <option value="20">20% – bonyolult kiosztás</option>
+            </select>
+          </div>
         </div>
-
-        <div>
-          <label for="height">Felület hosszúsága (m)</label>
-          <input type="number" id="height" placeholder="pl. 2.5" />
-        </div>
-
-        <div>
-          <label for="tileWidth">Csempe szélessége (cm)</label>
-          <input type="number" id="tileWidth" placeholder="pl. 30" />
-        </div>
-
-        <div>
-          <label for="tileHeight">Csempe hosszúsága (cm)</label>
-          <input type="number" id="tileHeight" placeholder="pl. 30" />
-        </div>
-
       </div>
 
-      <div class="result-box">
-        <p>Szükséges csempe:</p>
-        <p id="result-tiles">–</p>
-        <p id="result-area"></p>
+      <div class="surface-options" aria-label="Számítandó felületek">
+        <label class="option-card">
+          <input type="checkbox" id="calculateWalls" checked />
+          <span><strong>Négy fal számítása</strong><small>A helyiség teljes kerületével számol.</small></span>
+        </label>
+        <label class="option-card">
+          <input type="checkbox" id="calculateFloor" checked />
+          <span><strong>Padló számítása</strong><small>A járólap mennyiségét külön számolja.</small></span>
+        </label>
       </div>
 
+      <div class="calc-section" id="wallFields">
+        <h3>Falicsempe adatai</h3>
+        <div class="calc-grid">
+          <div>
+            <label for="wallTileWidth">Csempe szélessége (cm)</label>
+            <input type="number" id="wallTileWidth" min="0" step="0.1" inputmode="decimal" placeholder="pl. 30" />
+          </div>
+          <div>
+            <label for="wallTileHeight">Csempe magassága (cm)</label>
+            <input type="number" id="wallTileHeight" min="0" step="0.1" inputmode="decimal" placeholder="pl. 60" />
+          </div>
+        </div>
+        <label class="inline-option">
+          <input type="checkbox" id="subtractDoor" />
+          <span>Ajtó felületének levonása</span>
+        </label>
+        <div class="nested-fields" id="doorFields" hidden>
+          <div class="calc-grid">
+            <div>
+              <label for="doorWidth">Ajtó szélessége (cm)</label>
+              <input type="number" id="doorWidth" min="0" step="0.1" inputmode="decimal" value="90" />
+            </div>
+            <div>
+              <label for="doorHeight">Ajtó magassága (cm)</label>
+              <input type="number" id="doorHeight" min="0" step="0.1" inputmode="decimal" value="210" />
+            </div>
+            <div>
+              <label for="doorCount">Ajtók száma</label>
+              <input type="number" id="doorCount" min="1" step="1" inputmode="numeric" value="1" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-section" id="floorFields">
+        <h3>Járólap adatai</h3>
+        <div class="calc-grid">
+          <div>
+            <label for="floorTileWidth">Járólap szélessége (cm)</label>
+            <input type="number" id="floorTileWidth" min="0" step="0.1" inputmode="decimal" placeholder="pl. 30" />
+          </div>
+          <div>
+            <label for="floorTileHeight">Járólap hossza (cm)</label>
+            <input type="number" id="floorTileHeight" min="0" step="0.1" inputmode="decimal" placeholder="pl. 30" />
+          </div>
+        </div>
+      </div>
+
+      <p class="validation-message" id="validationMessage" role="status" aria-live="polite"></p>
+      <div class="result-box" aria-live="polite">
+        <h3>Eredmények</h3>
+        <div class="result-group" id="wallResults">
+          <h4>Falicsempe</h4>
+          <p><strong>Négy fal bruttó felülete:</strong> <span id="grossWallArea">–</span></p>
+          <p><strong>Levonható ajtófelület:</strong> <span id="doorAreaResult">–</span></p>
+          <p><strong>Nettó burkolandó falfelület:</strong> <span id="netWallArea">–</span></p>
+          <p><strong>Vásárolandó csempe ráhagyással:</strong> <span id="wallPurchaseArea">–</span></p>
+          <p class="highlight-result"><strong>Szükséges falicsempe:</strong> <span id="wallTileCount">–</span></p>
+        </div>
+        <div class="result-group" id="floorResults">
+          <h4>Járólap</h4>
+          <p><strong>Padló nettó felülete:</strong> <span id="floorArea">–</span></p>
+          <p><strong>Vásárolandó járólap ráhagyással:</strong> <span id="floorPurchaseArea">–</span></p>
+          <p class="highlight-result"><strong>Szükséges járólap:</strong> <span id="floorTileCount">–</span></p>
+        </div>
+      </div>
+      <div class="info-box summary-box" id="summaryText">Add meg a helyiség és a burkolólapok méreteit a számításhoz.</div>
     </section>
 
-    <!-- SEO TARTALOM -->
     <section class="article">
-
-      <div class="info-box">
-        <strong>Tipp:</strong> Mindig számolj 10% ráhagyással a vágás és törés miatt.
-      </div>
-
-      <h2>Mennyi csempe kell?</h2>
-      <p>
-        A szükséges csempe mennyisége a burkolandó felület méretétől és a csempe méretétől függ.
-        A kalkulátor kiszámolja a szükséges darabszámot és a teljes felületet.
-      </p>
-
-      <h2>Csempe mennyiség számítás</h2>
-      <p>
-        A felület m²-ben: szélesség × magasság.
-      </p>
-
-      <p>
-        Egy csempe területe: (szélesség × magasság) cm-ben → m²-re átszámolva.
-      </p>
-
-      <h2>Hol használható?</h2>
-
+      <div class="info-box"><strong>Tipp:</strong> A kalkulátor területalapú becslést készít. Sarkoknál, mintás vagy átlós burkolásnál válassz nagyobb ráhagyást.</div>
+      <h2>Hogyan számolja ki a négy fal felületét?</h2>
+      <p>A helyiség kerületét megszorozza a burkolandó falmagassággal. Az ajtó felülete opcionálisan levonható, majd a választott ráhagyás alapján kiszámolja a vásárolandó négyzetmétert és a becsült darabszámot.</p>
+      <h2>Járólap számítása padlóra</h2>
+      <p>A padló felülete a helyiség hosszának és szélességének szorzata. A járólap mérete külön adható meg, ezért a falra és a padlóra eltérő burkolattal is számolhatsz.</p>
+      <h2>Mekkora ráhagyás ajánlott?</h2>
       <ul>
-        <li>fürdőszoba burkolás</li>
-        <li>konyha csempézés</li>
-        <li>padlóburkolás</li>
-        <li>terasz vagy erkély</li>
+        <li>5% egyszerű, egyenes kiosztásnál</li>
+        <li>10% általános felújítási tartaléknak</li>
+        <li>15–20% sok vágás, minta vagy átlós rakás esetén</li>
       </ul>
-
-      <h2>Miért kell ráhagyás?</h2>
-      <p>
-        A csempék vágása, törése és illesztése miatt mindig több darabra lehet szükség.
-        Általában 5–10% ráhagyás ajánlott.
-      </p>
-
+      <h2>Vásárlás előtt</h2>
+      <p>A javasolt négyzetmétert mindig egész dobozra felfelé kerekítsd, és lehetőleg azonos gyártási tételből vásárolj.</p>
     </section>
-    
-    <section class="article priority-seo" data-priority-seo="calculator">
-      <h2>Burkolásnál a vágási veszteség természetes</h2>
-      <p>Csempénél és járólapnál a vágások, minták, törések és későbbi javítások miatt célszerű több anyagot venni a nettó felületnél.</p>
-      <p>Egyszerű burkolásnál kisebb, diagonál vagy mintás lerakásnál nagyobb ráhagyással érdemes számolni.</p>
-    </section>
+
     <section class="article calculator-guide">
-      <h2>Burkolattervezés darabszámmal, nem csak négyzetméterrel</h2>
-      <div class="content-split">
-        <div><h3>A kiosztás határozza meg a ráhagyást</h3><p>Egyenes rakásnál rendszerint kevesebb a vágás, átlós vagy mintába rendezett burkolatnál több. Azonos gyártási tételből érdemes tartalékot venni, mert később a színárnyalat és kaliber nehezen pótolható.</p></div>
-        <p>A felület és a lapméret alapján becsülhető, hány egész csempe szükséges. A helyiség pontos felmérésekor külön kezeld a falakat, nyílásokat, beugrókat és a csak részben burkolt sávokat.</p>
-      </div>
-      <h2>Burkolás előtt</h2>
+      <h2>Gyakori kérdések</h2>
       <div class="faq-list" data-accordion="single">
-        <details>
-          <summary>Levonjam az ajtót és az ablakot?</summary>
-          <p>Nagy nyílásokat igen, de kis felületeknél a levonásnál fontosabb lehet a vágási veszteség és a javítási tartalék.</p>
-        </details>
-        <details>
-          <summary>A ragasztót is kiszámolja?</summary>
-          <p>Nem. A ragasztó mennyisége a lapmérettől, fogazott glettvastól és az aljzat síkjától függ.</p>
-        </details>
+        <details><summary>Levonható az ajtó?</summary><p>Igen. Bekapcsolás után megadható az ajtó szélessége, magassága és darabszáma.</p></details>
+        <details><summary>Külön méretű csempével és járólappal is számolhatok?</summary><p>Igen, a falicsempe és a járólap mérete külön adható meg.</p></details>
+        <details><summary>Dobozszámot is számol?</summary><p>Darabszámot és vásárolandó négyzetmétert ad. A dobozszámhoz oszd el ezt a termék dobozonkénti m²-értékével, majd kerekíts felfelé.</p></details>
       </div>
     </section>
-    </main>
-
+  </main>
   <div id="footer"></div>
-    <script src="../js/utils.js"></script>
+  <script src="../js/utils.js"></script>
   <script src="../js/epitoipari/csempe.js" defer></script>
   <script src="../js/help-widget.js" defer></script>
 </body>
-
 </html>
