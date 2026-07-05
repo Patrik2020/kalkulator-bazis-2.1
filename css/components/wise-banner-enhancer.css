@@ -1,0 +1,110 @@
+.wise-banner--enhanced {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem 1.25rem;
+  align-items: center;
+  width: 100%;
+  padding: 1.25rem 1.35rem;
+  border: 1px solid rgba(47, 116, 103, 0.24);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(159, 232, 112, 0.2), transparent 42%),
+    linear-gradient(135deg, rgba(232, 255, 244, 0.98), rgba(246, 251, 249, 0.98));
+  box-shadow: 0 12px 32px rgba(20, 63, 54, 0.08);
+  color: #163b33;
+  text-decoration: none;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.wise-banner--enhanced:hover,
+.wise-banner--enhanced:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(47, 116, 103, 0.46);
+  box-shadow: 0 17px 40px rgba(20, 63, 54, 0.14);
+}
+
+.wise-banner-copy {
+  min-width: 0;
+}
+
+.wise-banner-eyebrow {
+  display: inline-flex;
+  margin-bottom: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #397d70;
+}
+
+.wise-banner--enhanced strong {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.25;
+  color: #123d34;
+}
+
+.wise-banner--enhanced small {
+  display: block;
+  max-width: 68ch;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #48685f;
+}
+
+.wise-banner-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 158px;
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+  background: #163f36;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.wise-banner-disclosure {
+  grid-column: 1 / -1;
+  margin-top: -0.35rem;
+  font-size: 0.74rem;
+  color: #668078;
+}
+
+@media (max-width: 760px) {
+  .wise-banner--enhanced {
+    grid-template-columns: 1fr;
+  }
+
+  .wise-banner-action {
+    width: 100%;
+  }
+}
+
+[data-theme="dark"] .wise-banner--enhanced {
+  border-color: rgba(159, 232, 112, 0.22);
+  background:
+    radial-gradient(circle at 100% 0, rgba(159, 232, 112, 0.14), transparent 42%),
+    linear-gradient(135deg, #15352e, #102722);
+  color: #e8f7f1;
+}
+
+[data-theme="dark"] .wise-banner--enhanced strong,
+[data-theme="dark"] .wise-banner-eyebrow {
+  color: #baf291;
+}
+
+[data-theme="dark"] .wise-banner--enhanced small,
+[data-theme="dark"] .wise-banner-disclosure {
+  color: #bed2cb;
+}
+
+[data-theme="dark"] .wise-banner-action {
+  background: #9fe870;
+  color: #12372f;
+}
