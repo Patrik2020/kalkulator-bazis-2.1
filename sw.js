@@ -1,4 +1,4 @@
-const KB_SW_VERSION = "2026-07-01-math-audit-v7";
+const KB_SW_VERSION = "2026-07-05-security-v8";
 const KB_CACHE_PREFIX = "kalkulatorbazis-static";
 const KB_STATIC_CACHE = `${KB_CACHE_PREFIX}-${KB_SW_VERSION}`;
 const KB_CORE_ASSETS = [
@@ -22,29 +22,46 @@ const KB_CORE_ASSETS = [
   "./favicon/web-app-manifest-192x192.png",
   "./favicon/web-app-manifest-512x512.png",
 ];
-const KB_STATIC_EXTENSION_PATTERN =
-  /\.(?:png|jpe?g|webp|svg|ico|woff2?)$/i;
+const KB_STATIC_EXTENSION_PATTERN = /\.(?:png|jpe?g|webp|svg|ico|woff2?)$/i;
 const KB_FRESH_EXTENSION_PATTERN = /\.(?:css|js|webmanifest)$/i;
-const KB_EXTERNAL_BYPASS_HOSTS = [
-  "googletagmanager.com",
-  "google-analytics.com",
-  "googlesyndication.com",
-  "doubleclick.net",
-  "wise.prf.hn",
-  "wise-creative.prf.hn",
-  "frankfurter.dev",
-];
 
-const isBypassedExternal = (url) =>
-  url.origin !== self.location.origin ||
-  KB_EXTERNAL_BYPASS_HOSTS.some((host) => url.hostname === host || url.hostname.endsWith(`.${host}`));
+const isSameOrigin = (url) => url.origin === self.location.origin;
+
+const hasPrivateCacheDirective = (response) => {
+  const cacheControl = response.headers.get("cache-control") || "";
+  return /(?:^|,)\s*(?:no-store|private)\b/i.test(cacheControl);
+};
+
+const isCacheableResponse = (response, expectedType = "") => {
+  if (!response || !response.ok || response.type !== "basic") return false;
+  if (hasPrivateCacheDirective(response)) return false;
+
+  if (expectedType) {
+    const contentType = response.headers.get("content-type") || "";
+    if (!contentType.toLowerCase().includes(expectedType.toLowerCase())) return false;
+  }
+
+  return true;
+};
 
 const cacheCoreAssets = async () => {
   const cache = await caches.open(KB_STATIC_CACHE);
+
   await Promise.allSettled(
-    KB_CORE_ASSETS.map((asset) =>
-      cache.add(new Request(new URL(asset, self.registration.scope), { cache: "reload" }))
-    )
+    KB_CORE_ASSETS.map(async (asset) => {
+      const url = new URL(asset, self.registration.scope);
+      if (!isSameOrigin(url)) return;
+
+      const request = new Request(url.href, {
+        cache: "reload",
+        credentials: "same-origin",
+      });
+      const response = await fetch(request);
+
+      if (isCacheableResponse(response)) {
+        await cache.put(request, response.clone());
+      }
+    })
   );
 };
 
@@ -67,26 +84,35 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-const networkFirst = async (request) => {
+const offlineResponse = () =>
+  new Response(
+    '<!doctype html><html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Offline</title></head><body><main><h1>Offline vagy</h1><p>Ehhez az oldalhoz vagy aktuális külső adathoz internetkapcsolat szükséges.</p></main></body></html>',
+    {
+      status: 503,
+      headers: {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "no-store",
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "no-referrer",
+        "Content-Security-Policy": "default-src 'none'; style-src 'unsafe-inline'",
+      },
+    }
+  );
+
+const networkFirst = async (request, expectedType = "") => {
   const cache = await caches.open(KB_STATIC_CACHE);
 
   try {
     const response = await fetch(request);
-    if (response.ok) {
-      cache.put(request, response.clone());
+    if (isCacheableResponse(response, expectedType)) {
+      await cache.put(request, response.clone());
     }
     return response;
   } catch (error) {
     const cached = await cache.match(request);
     if (cached) return cached;
 
-    return new Response(
-      "<!doctype html><html lang=\"hu\"><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Offline</title><body><main><h1>Offline vagy</h1><p>Ehhez az oldalhoz vagy aktuális külső adathoz internetkapcsolat szükséges.</p></main></body></html>",
-      {
-        status: 503,
-        headers: { "Content-Type": "text/html; charset=utf-8" },
-      }
-    );
+    return expectedType === "text/html" ? offlineResponse() : Response.error();
   }
 };
 
@@ -96,8 +122,8 @@ const cacheFirst = async (request) => {
   if (cached) return cached;
 
   const response = await fetch(request);
-  if (response.ok) {
-    cache.put(request, response.clone());
+  if (isCacheableResponse(response)) {
+    await cache.put(request, response.clone());
   }
   return response;
 };
@@ -107,12 +133,13 @@ self.addEventListener("fetch", (event) => {
   if (request.method !== "GET") return;
 
   const url = new URL(request.url);
-  if (isBypassedExternal(url)) return;
+  if (!isSameOrigin(url)) return;
+  if (!url.protocol.startsWith("http")) return;
 
   const acceptsHtml = request.headers.get("accept")?.includes("text/html");
 
   if (request.mode === "navigate" || acceptsHtml) {
-    event.respondWith(networkFirst(request));
+    event.respondWith(networkFirst(request, "text/html"));
     return;
   }
 
