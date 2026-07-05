@@ -1,0 +1,5 @@
+Contact: mailto:kalkulatorbazis@gmail.com
+Preferred-Languages: hu, en
+Canonical: https://kalkulatorbazis.hu/.well-known/security.txt
+Policy: https://github.com/Patrik2020/kalkulator-bazis-2.1/security/policy
+Expires: 2027-07-05T00:00:00.000Z
