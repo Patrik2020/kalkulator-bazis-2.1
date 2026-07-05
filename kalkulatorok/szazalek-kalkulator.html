@@ -4,25 +4,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Százalék kalkulátor hétköznapi és pénzügyi helyzetekhez: kedvezmény, növekedés, csökkenés és arány számítás példákkal." />
+  <meta name="description" content="Százalék kalkulátor kedvezmény, növekedés, csökkenés és arányszámításhoz. Gyors számítások képletekkel, példákkal és gyakori kérdésekkel." />
   <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/szazalek-kalkulator.html" />
-<title>Százalék kalkulátor | Kedvezmény, növekedés és arány számítás</title>
+  <title>Százalék kalkulátor | Kedvezmény, növekedés és arány</title>
 
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/pages/szazalek.css" />
   <script src="../js/global-head.js"></script>
-  
+
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Százalék kalkulátor | Kedvezmény, növekedés és arány számítás" />
-  <meta property="og:description" content="Százalék kalkulátor hétköznapi és pénzügyi helyzetekhez: kedvezmény, növekedés, csökkenés és arány számítás példákkal." />
+  <meta property="og:title" content="Százalék kalkulátor | Kedvezmény, növekedés és arány" />
+  <meta property="og:description" content="Számolj százalékot kedvezményhez, növekedéshez, csökkenéshez és két érték arányához." />
   <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/szazalek-kalkulator.html" />
   <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
+
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Százalék kalkulátor | Kedvezmény, növekedés és arány számítás" />
-  <meta name="twitter:description" content="Százalék kalkulátor hétköznapi és pénzügyi helyzetekhez: kedvezmény, növekedés, csökkenés és arány számítás példákkal." />
+  <meta name="twitter:title" content="Százalék kalkulátor | Kedvezmény, növekedés és arány" />
+  <meta name="twitter:description" content="Gyors százalékszámítás hétköznapi és pénzügyi példákkal." />
   <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Mit jelent az, hogy valaminek a 20%-a?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Azt jelenti, hogy az alapérték ötödét keressük. Tízezer forint húsz százaléka kétezer forint."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Miért nem ugyanaz a százalék és a százalékpont?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A százalékpont két százalékérték közötti különbséget jelöl. Öt százalékról hét százalékra emelkedés két százalékpontos változás."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hogyan számolható ki egy kedvezmény utáni ár?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Először ki kell számolni az eredeti ár kedvezménynek megfelelő százalékát, majd ezt le kell vonni az eredeti árból."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -33,112 +66,96 @@
 
   <section class="hero">
     <h1>Százalék kalkulátor</h1>
-    <p>Számolj százalékot többféle módon egyszerűen.</p>
+    <p>Számold ki egy érték adott százalékát, két szám arányát, illetve a százalékos növekedést vagy csökkenést.</p>
   </section>
 
-  <!-- 1. százalék számítás -->
   <section class="card card-calculator">
-
-    <h2>Hány százaléka?</h2>
-
+    <h2>Egy érték adott százaléka</h2>
     <div class="calc-grid">
       <label class="visually-hidden" for="a">Alapérték, amelynek a százalékát keresed</label>
       <input type="number" id="a" placeholder="pl. 200" />
       <label class="visually-hidden" for="b">Keresett százalék</label>
       <input type="number" id="b" placeholder="pl. 10 (%)" />
     </div>
-
     <div class="result-box">
       <p id="result1">–</p>
     </div>
-
   </section>
 
-  <!-- 2. százalék arány -->
   <section class="card card-calculator">
-
-    <h2>Hány százalék?</h2>
-
+    <h2>Az egyik szám hány százaléka a másiknak?</h2>
     <div class="calc-grid">
       <label class="visually-hidden" for="c">Részérték</label>
       <input type="number" id="c" placeholder="pl. 50" />
       <label class="visually-hidden" for="d">Teljes érték</label>
       <input type="number" id="d" placeholder="pl. 200" />
     </div>
-
     <div class="result-box">
       <p id="result2">–</p>
     </div>
-
   </section>
 
-  <!-- 3. növekedés -->
   <section class="card card-calculator">
-
-    <h2>Növekedés / csökkenés (%)</h2>
-
+    <h2>Százalékos növekedés vagy csökkenés</h2>
     <div class="calc-grid">
       <label class="visually-hidden" for="e">Eredeti érték</label>
       <input type="number" id="e" placeholder="eredeti érték" />
       <label class="visually-hidden" for="f">Új érték</label>
       <input type="number" id="f" placeholder="új érték" />
     </div>
-
     <div class="result-box">
       <p id="result3">–</p>
     </div>
-
   </section>
 
-  <!-- SEO -->
-    <section class="adsense-content" data-adsense-upgrade="szazalek">
-      <h2>Százalékszámítás gyorsan, érthetően</h2>
-      <p>A százalék kalkulátor az egyik legsokoldalúbb eszköz: akciós áraknál, fizetésemelésnél, ÁFA számításnál, kamatoknál, statisztikáknál és hétköznapi összehasonlításoknál is előkerül.</p>
-      <p>A százalékok fejben könnyen félrevezetők lehetnek, különösen akkor, ha növekedést és csökkenést hasonlítasz össze. A kalkulátor segít gyorsan ellenőrizni az eredményt.</p>
+  <section class="adsense-content" data-adsense-upgrade="szazalek">
+    <h2>Százalékszámítás gyorsan és érthetően</h2>
+    <p>A százalék kalkulátor az egyik legsokoldalúbb eszköz: akciós áraknál, fizetésemelésnél, költségnövekedésnél, ÁFA-számításnál, kamatoknál, statisztikáknál és hétköznapi összehasonlításoknál is használható.</p>
+    <p>A százalékos adatok könnyen félrevezetők lehetnek, különösen akkor, ha növekedést és csökkenést hasonlítasz össze. A kalkulátor segít gyorsan ellenőrizni az eredményt és az alapértéket.</p>
 
-      <h3>Hogyan működik a számítás?</h3>
-      <p>A számítás attól függ, mit keresel: egy összeg adott százalékát, százalékos növekedést vagy csökkenést, illetve két érték arányát. A kalkulátor a megadott adatokból egyértelműen kiszámolja a hiányzó értéket.</p>
+    <h3>Hogyan működik a százalékszámítás?</h3>
+    <p>A számítás attól függ, mit keresel: egy összeg adott százalékát, két érték arányát, vagy egy régi és új érték közötti százalékos változást. Mindhárom esetben más képletet kell használni, ezért fontos, hogy a megfelelő mezőket töltsd ki.</p>
 
-      <div class="example-box">
-        <h3>Konkrét példaszámítás</h3>
-        <p>Ha egy 30 000 Ft-os termékre 15% kedvezményt kapsz, a kedvezmény összege 4 500 Ft, a fizetendő ár pedig 25 500 Ft. Ha egy 120 000 Ft-os kiadás 8%-kal nő, az új összeg 129 600 Ft lesz.</p>
-      </div>
+    <div class="example-box">
+      <h3>Konkrét példák</h3>
+      <p>Ha egy 30 000 Ft-os termékre 15% kedvezményt kapsz, a kedvezmény összege 4 500 Ft, a fizetendő ár pedig 25 500 Ft. Ha egy 120 000 Ft-os kiadás 8%-kal nő, az új összeg 129 600 Ft lesz.</p>
+    </div>
 
-      <h3>Mikor hasznos ez a kalkulátor?</h3>
-      <ul>
-        <li>akciós árak ellenőrzésekor</li>
-        <li>bérnövekedés vagy költségnövekedés számításánál</li>
-        <li>ÁFA és adótartalom értelmezésekor</li>
-        <li>arányok összehasonlításakor</li>
-      </ul>
+    <h3>Mikor hasznos ez a kalkulátor?</h3>
+    <ul>
+      <li>akciós árak és kedvezmények ellenőrzésekor</li>
+      <li>bérnövekedés vagy költségnövekedés számításánál</li>
+      <li>ÁFA és adótartalom értelmezésekor</li>
+      <li>arányok és statisztikai adatok összehasonlításakor</li>
+    </ul>
 
-      <div class="notice-box">
-        <strong>Fontos tudni:</strong> Százalékos változásoknál mindig figyelj az alapértékre. Egy 20%-os csökkenést nem ugyanakkora 20%-os növekedés hoz vissza az eredeti szintre.
-      </div>
+    <div class="notice-box">
+      <strong>Fontos tudni:</strong> Százalékos változásoknál mindig figyelj az alapértékre. Egy 20%-os csökkenést nem ugyanakkora 20%-os növekedés hoz vissza az eredeti szintre.
+    </div>
 
-      <h3>Gyakori kérdések</h3>
-      <div class="faq-list">
-        <details><summary>Mit jelent az, hogy valaminek a 20%-a?</summary><p>Azt, hogy az egész érték ötödét keressük. 10 000 Ft 20%-a például 2 000 Ft.</p></details>
-        <details><summary>Miért nem ugyanaz a százalékpont és a százalék?</summary><p>A százalékpont két százalékérték különbségét jelöli, például 5%-ról 7%-ra emelkedés 2 százalékpont.</p></details>
-        <details><summary>Kedvezményhez is használható?</summary><p>Igen, gyorsan kiszámolható az akció összege és a végső ár.</p></details>
-        <details><summary>Pénzügyi számításokhoz elég?</summary><p>Egyszerű ellenőrzésre igen, összetettebb pénzügyi döntéshez több adat is kellhet.</p></details>
-        <details><summary>Mi a leggyakoribb hiba?</summary><p>Az alapérték összekeverése, például hogy a kedvezmény előtti vagy utáni összegből számolsz.</p></details>
-      </div>
+    <h3>Gyakori kérdések</h3>
+    <div class="faq-list">
+      <details><summary>Mit jelent az, hogy valaminek a 20%-a?</summary><p>Azt, hogy az egész érték ötödét keressük. 10 000 Ft 20%-a például 2 000 Ft.</p></details>
+      <details><summary>Miért nem ugyanaz a százalékpont és a százalék?</summary><p>A százalékpont két százalékérték különbségét jelöli, például 5%-ról 7%-ra emelkedés 2 százalékpont.</p></details>
+      <details><summary>Kedvezményhez is használható?</summary><p>Igen. Először kiszámolható a kedvezmény összege, majd az eredeti árból levonva megkapod a végső árat.</p></details>
+      <details><summary>Pénzügyi számításokhoz elég?</summary><p>Egyszerű ellenőrzésre igen, összetettebb pénzügyi döntéshez azonban több adat és más kalkulátor is szükséges lehet.</p></details>
+      <details><summary>Mi a leggyakoribb hiba?</summary><p>Az alapérték összekeverése, például hogy a kedvezmény előtti vagy utáni összegből számolsz.</p></details>
+    </div>
 
-      <h3>Kapcsolódó kalkulátorok</h3>
-      <div class="related-links">
-        <a href="afa-kalkulator.html">ÁFA kalkulátor</a>
-        <a href="ar-kedvezmeny-kalkulator.html">Árkedvezmény kalkulátor</a>
-        <a href="kamatos-kamat-kalkulator.html">Kamatos kamat kalkulátor</a>
-        <a href="arany-kalkulator.html">Arány kalkulátor</a>
-      </div>
-    </section>
-    </main>
+    <h3>Kapcsolódó kalkulátorok</h3>
+    <div class="related-links">
+      <a href="afa-kalkulator.html">ÁFA kalkulátor</a>
+      <a href="ar-kedvezmeny-kalkulator.html">Árkedvezmény kalkulátor</a>
+      <a href="kamatos-kamat-kalkulator.html">Kamatos kamat kalkulátor</a>
+      <a href="arany-kalkulator.html">Arány kalkulátor</a>
+    </div>
+  </section>
+</main>
 
 <div id="footer"></div>
-    <script src="../js/utils.js"></script>
+<script src="../js/utils.js"></script>
 <script src="../js/altalanos/szazalek-szamitas.js" defer></script>
-  <script src="../js/help-widget.js" defer></script>
+<script src="../js/help-widget.js" defer></script>
 </body>
 
 </html>
