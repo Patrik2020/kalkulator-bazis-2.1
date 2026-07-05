@@ -52,6 +52,70 @@ function parseNumber(value) {
 }
 
 // =========================
+// BIZTONSÁGI SEGÉDFÜGGVÉNYEK
+// =========================
+const ALLOWED_COMPONENT_PATHS = new Set([
+  "components/header.html",
+  "components/footer.html",
+]);
+
+function getSafeSameOriginUrl(path) {
+  try {
+    const url = new URL(path, window.location.href);
+    return url.origin === window.location.origin ? url : null;
+  } catch (error) {
+    return null;
+  }
+}
+
+function isAllowedComponentUrl(url) {
+  if (!url) return false;
+
+  const normalizedPath = url.pathname.replace(/^\/+/, "");
+  return [...ALLOWED_COMPONENT_PATHS].some((allowedPath) =>
+    normalizedPath.endsWith(allowedPath)
+  );
+}
+
+function sanitizeComponentHtml(html) {
+  const parser = new DOMParser();
+  const parsed = parser.parseFromString(html, "text/html");
+
+  parsed.querySelectorAll("script, iframe, object, embed, base, meta[http-equiv]").forEach((node) => {
+    node.remove();
+  });
+
+  parsed.querySelectorAll("*").forEach((element) => {
+    [...element.attributes].forEach((attribute) => {
+      const name = attribute.name.toLowerCase();
+      const value = attribute.value.trim();
+
+      if (name.startsWith("on")) {
+        element.removeAttribute(attribute.name);
+        return;
+      }
+
+      if ((name === "href" || name === "src") && /^javascript:/i.test(value)) {
+        element.removeAttribute(attribute.name);
+      }
+    });
+  });
+
+  const fragment = document.createDocumentFragment();
+  [...parsed.body.childNodes].forEach((node) => fragment.appendChild(node));
+  return fragment;
+}
+
+function hardenExternalLinks(container = document) {
+  container.querySelectorAll('a[target="_blank"]').forEach((link) => {
+    const relValues = new Set((link.getAttribute("rel") || "").split(/\s+/).filter(Boolean));
+    relValues.add("noopener");
+    relValues.add("noreferrer");
+    link.setAttribute("rel", [...relValues].join(" "));
+  });
+}
+
+// =========================
 // HEADER és FOOTER betöltése
 // =========================
 document.addEventListener("DOMContentLoaded", () => {
@@ -64,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
   loadComponent("header", base + "components/header.html");
   loadComponent("footer", base + "components/footer.html");
   ensureCookieBanner(base, () => loadSiteScripts(base));
+  hardenExternalLinks(document);
 });
 
 function ensureCookieBanner(base, onReady) {
@@ -78,7 +143,13 @@ function ensureCookieBanner(base, onReady) {
 }
 
 function loadScriptOnce(src, onLoad) {
-  const targetUrl = new URL(src, window.location.href).href;
+  const safeUrl = getSafeSameOriginUrl(src);
+  if (!safeUrl) {
+    console.error("Nem engedélyezett scriptforrás:", src);
+    return;
+  }
+
+  const targetUrl = safeUrl.href;
   const existing = [...document.querySelectorAll("script[src]")].find(
     (script) => script.src === targetUrl
   );
@@ -95,7 +166,7 @@ function loadScriptOnce(src, onLoad) {
   }
 
   const script = document.createElement("script");
-  script.src = src;
+  script.src = targetUrl;
   script.defer = true;
 
   if (onLoad) {
@@ -139,15 +210,34 @@ function loadSiteScripts(base) {
 }
 
 function loadComponent(id, path) {
-  fetch(path)
+  const componentUrl = getSafeSameOriginUrl(path);
+  if (!isAllowedComponentUrl(componentUrl)) {
+    console.error("Nem engedélyezett komponensútvonal:", path);
+    return;
+  }
+
+  fetch(componentUrl.href, {
+    credentials: "same-origin",
+    cache: "no-cache",
+    headers: { Accept: "text/html" },
+  })
     .then((res) => {
       if (!res.ok) throw new Error("Hiba: " + path);
+
+      const contentType = res.headers.get("content-type") || "";
+      if (!contentType.includes("text/html")) {
+        throw new Error("Érvénytelen komponens tartalomtípus: " + contentType);
+      }
+
       return res.text();
     })
     .then((data) => {
       const target = document.getElementById(id);
-      target.innerHTML = data;
+      if (!target) return;
+
+      target.replaceChildren(sanitizeComponentHtml(data));
       normalizeRootLinks(target, path.includes("../") ? "../" : "./");
+      hardenExternalLinks(target);
 
       if (id === "header") {
         initMobileMenu();

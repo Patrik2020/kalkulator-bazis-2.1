@@ -1,0 +1,29 @@
+# Környezeti változók és titkok
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+secrets.*
+credentials.*
+
+# Node és build maradványok
+node_modules/
+.wrangler/
+.dev.vars
+.dev.vars.*
+dist/
+build/
+.cache/
+
+# Naplók és rendszerfájlok
+*.log
+.DS_Store
+Thumbs.db
+
+# Szerkesztők
+.vscode/
+.idea/
