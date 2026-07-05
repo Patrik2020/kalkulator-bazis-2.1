@@ -1,94 +1,72 @@
 <!doctype html>
 <html lang="hu">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Üzemanyag költség kalkulátor távolság, fogyasztás és literár alapján, példaszámítással és autós tervezési tippekkel." />
+  <meta name="description" content="Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét." />
   <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/uzemanyag-koltseg-kalkulator.html" />
-<title>Üzemanyag költség kalkulátor | Útiköltség számítás</title>
+  <title>Üzemanyagköltség kalkulátor | Útiköltség számítás</title>
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
   <script src="../js/global-head.js"></script>
-  
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="Üzemanyag költség kalkulátor | Útiköltség számítás" />
-  <meta property="og:description" content="Üzemanyag költség kalkulátor távolság, fogyasztás és literár alapján, példaszámítással és autós tervezési tippekkel." />
+  <meta property="og:title" content="Üzemanyagköltség kalkulátor | Útiköltség számítás" />
+  <meta property="og:description" content="Számold ki egy út várható üzemanyagköltségét távolság, fogyasztás és literár alapján." />
   <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/uzemanyag-koltseg-kalkulator.html" />
   <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Üzemanyag költség kalkulátor | Útiköltség számítás" />
-  <meta name="twitter:description" content="Üzemanyag költség kalkulátor távolság, fogyasztás és literár alapján, példaszámítással és autós tervezési tippekkel." />
+  <meta name="twitter:title" content="Üzemanyagköltség kalkulátor | Útiköltség számítás" />
+  <meta name="twitter:description" content="Gyors benzinköltség- és útiköltség-számítás autós utazáshoz." />
   <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"Hogyan számolható ki egy út üzemanyagköltsége?","acceptedAnswer":{"@type":"Answer","text":"A távolságot oszd százzal, szorozd meg az autó liter/100 km fogyasztásával, majd az üzemanyag literárával."}},
+      {"@type":"Question","name":"Oda-vissza útra hogyan számoljak?","acceptedAnswer":{"@type":"Answer","text":"Duplázd meg a teljes távolságot, vagy az egyirányú útra kapott költséget."}},
+      {"@type":"Question","name":"Miért térhet el a valós költség?","acceptedAnswer":{"@type":"Answer","text":"A forgalom, sebesség, terhelés, időjárás, klímahasználat, guminyomás és vezetési stílus is módosíthatja a fogyasztást."}}
+    ]
+  }
+  </script>
 </head>
-
 <body>
   <div id="header"></div>
-
   <main class="container page-simple-calculator" data-simple-calc="uzemanyag-koltseg-kalkulator">
     <section class="hero">
-      <h1>Üzemanyag költség kalkulátor</h1>
-      <p>Számold ki egy út várható üzemanyagköltségét.</p>
+      <h1>Üzemanyagköltség kalkulátor</h1>
+      <p>Számold ki egy út várható benzinköltségét vagy dízelköltségét távolság, fogyasztás és literár alapján.</p>
     </section>
-
     <section class="card card-calculator">
       <div class="calc-grid" id="simpleCalcFields"></div>
-      <div class="result-box">
-        <p>Eredmény:</p>
-        <div id="simpleCalcResults">–</div>
-      </div>
+      <div class="result-box"><p>Eredmény:</p><div id="simpleCalcResults">–</div></div>
     </section>
     <section class="adsense-content" data-adsense-upgrade="uzemanyag-koltseg">
       <h2>Üzemanyagköltség számítás utazás előtt</h2>
-      <p>Az üzemanyag költség kalkulátor segít gyorsan megbecsülni, mennyibe kerülhet egy út benzinből vagy dízelből. Ez hasznos családi utazás, munkába járás, telekocsi elszámolás vagy céges út előzetes tervezésekor.</p>
-      <p>Az autózás költsége nem csak tankolásból áll, de az üzemanyag sokszor a leggyorsabban számolható tétel. Ha ezt előre látod, könnyebb eldönteni, érdemes-e autóval menni, megosztani a költséget, vagy más közlekedési módot választani.</p>
-
+      <p>Az üzemanyagköltség kalkulátor segít megbecsülni, mennyibe kerülhet egy autós út. Hasznos családi utazás, munkába járás, telekocsi, nyaralás vagy céges út előzetes tervezésekor.</p>
+      <p>A tankolás nem az autózás egyetlen költsége, de rövid távú útitervezésnél ez a leggyorsabban kiszámítható tétel. Az eredményhez külön hozzáadható az autópályadíj, parkolás vagy komp költsége.</p>
       <h3>Hogyan működik a számítás?</h3>
-      <p>A kalkulátor a távolságot, az átlagfogyasztást és az üzemanyag literárát használja. A képlet egyszerű: megtett kilométer osztva százzal, szorozva a liter/100 km fogyasztással, majd szorozva a literárral.</p>
-
-      <div class="example-box">
-        <h3>Konkrét példaszámítás</h3>
-        <p>Egy 240 km-es útnál, 6,5 liter/100 km fogyasztással és 640 Ft/liter üzemanyagárral a becsült fogyasztás 15,6 liter. Ennek költsége körülbelül 9 984 Ft, oda-vissza pedig ennek duplájával érdemes számolni.</p>
-      </div>
-
-      <h3>Mikor hasznos ez a kalkulátor?</h3>
-      <ul>
-        <li>utazás előtti költségbecslésnél</li>
-        <li>telekocsi vagy útiköltség megosztásánál</li>
-        <li>céges utak előzetes tervezésénél</li>
-        <li>különböző autók fogyasztásának összehasonlításakor</li>
-      </ul>
-
-      <div class="notice-box">
-        <strong>Fontos tudni:</strong> A valós fogyasztást befolyásolja a forgalom, sebesség, klímahasználat, terhelés, gumiabroncs és vezetési stílus. Az eredmény becslés.
-      </div>
-
+      <p>A képlet: távolság ÷ 100 × átlagfogyasztás × üzemanyagár. A szükséges üzemanyag mennyisége a távolság és a liter/100 km fogyasztás alapján adódik.</p>
+      <div class="example-box"><h3>Konkrét példaszámítás</h3><p>Egy 240 km-es útnál, 6,5 liter/100 km fogyasztással és 640 Ft/liter üzemanyagárral a becsült fogyasztás 15,6 liter, a költség pedig körülbelül 9 984 Ft. Oda-vissza 480 km-rel érdemes számolni.</p></div>
+      <h3>Mikor hasznos?</h3>
+      <ul><li>nyaralás vagy hétvégi út előtt</li><li>telekocsi-költség megosztásánál</li><li>munkába járás havi költségének becslésénél</li><li>két autó fogyasztásának összehasonlításakor</li></ul>
+      <div class="notice-box"><strong>Fontos tudni:</strong> A valós fogyasztást a forgalom, sebesség, klíma, terhelés, guminyomás és vezetési stílus is befolyásolja.</div>
       <h3>Gyakori kérdések</h3>
       <div class="faq-list">
-        <details><summary>Miért térhet el a valós költség?</summary><p>Mert az átlagfogyasztás és az üzemanyagár is változhat, az útviszonyok pedig befolyásolják a fogyasztást.</p></details>
-        <details><summary>Autópályára is használható?</summary><p>Igen, de autópályadíjat külön érdemes hozzáadni.</p></details>
-        <details><summary>Oda-vissza útra hogyan számoljak?</summary><p>Vagy duplázd a távolságot, vagy a kapott eredményt.</p></details>
-        <details><summary>Telekocsinál mire figyeljek?</summary><p>Az üzemanyag mellett autópályadíj, parkolás és egyéb költség is megosztható.</p></details>
-        <details><summary>Elektromos autóra jó?</summary><p>Közvetlenül nem, ahhoz fogyasztás kWh/100 km és áramár alapú számítás kell.</p></details>
+        <details><summary>Miért térhet el a valós költség?</summary><p>Mert az átlagfogyasztás és az üzemanyagár változhat, az útviszonyok pedig módosítják a fogyasztást.</p></details>
+        <details><summary>Autópályára is használható?</summary><p>Igen, de az autópályadíjat külön kell hozzáadni.</p></details>
+        <details><summary>Oda-vissza útra hogyan számoljak?</summary><p>Duplázd meg a távolságot, vagy az egyirányú eredményt.</p></details>
+        <details><summary>Telekocsinál mire figyeljek?</summary><p>Az üzemanyag mellett autópályadíj, parkolás és más közös költség is megosztható.</p></details>
+        <details><summary>Elektromos autóra használható?</summary><p>Nem közvetlenül; ahhoz kWh/100 km fogyasztás és áramár alapján működő számítás szükséges.</p></details>
       </div>
-
       <h3>Kapcsolódó kalkulátorok</h3>
-      <div class="related-links">
-        <a href="auto-fogyasztas-kalkulator.html">Autó fogyasztás kalkulátor</a>
-        <a href="eves-auto-koltseg-kalkulator.html">Éves autóköltség kalkulátor</a>
-        <a href="autopalyadij-kalkulator.html">Autópályadíj kalkulátor</a>
-        <a href="utazasi-ido-kalkulator.html">Utazási idő kalkulátor</a>
-      </div>
+      <div class="related-links"><a href="auto-fogyasztas-kalkulator.html">Autó fogyasztás kalkulátor</a><a href="eves-auto-koltseg-kalkulator.html">Éves autóköltség kalkulátor</a><a href="kilometerdij-kalkulator.html">Kilométerdíj kalkulátor</a><a href="autopalyadij-kalkulator.html">Autópályadíj kalkulátor</a><a href="utazasi-ido-kalkulator.html">Utazási idő kalkulátor</a></div>
     </section>
-    </main>
-
+  </main>
   <div id="footer"></div>
   <script src="../js/simple-calculators.js" defer></script>
-  
-    <script src="../js/utils.js"></script>
+  <script src="../js/utils.js"></script>
   <script src="../js/help-widget.js" defer></script>
 </body>
-
 </html>
