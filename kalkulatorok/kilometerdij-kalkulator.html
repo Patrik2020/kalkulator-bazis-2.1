@@ -1,61 +1,73 @@
 <!DOCTYPE html>
-
 <html lang="hu">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Kilométerdíj kalkulátor üzemanyag- és fenntartási költségekhez. Becsüld meg, mennyibe kerül egy kilométer a saját autóddal." name="description"/>
+<meta content="Kilométerdíj kalkulátor a teljes autóköltség kilométerenkénti becsléséhez. Számolj üzemanyaggal, biztosítással, szervizzel és értékvesztéssel." name="description"/>
 <link href="https://kalkulatorbazis.hu/kalkulatorok/kilometerdij-kalkulator.html" rel="canonical"/>
-<title>Kilométerdíj kalkulátor | Autóköltség kilométerenként</title>
+<title>Kilométerdíj kalkulátor | Autóköltség Ft/km</title>
 <link href="../css/style.css" rel="stylesheet"/>
 <link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
 <script src="../js/global-head.js"></script>
 <meta content="website" property="og:type"/>
 <meta content="Kalkulátor Bázis" property="og:site_name"/>
-<meta content="Kilométerdíj kalkulátor | Autóköltség kilométerenként" property="og:title"/>
-<meta content="Kilométerdíj kalkulátor üzemanyag- és fenntartási költségekhez. Becsüld meg, mennyibe kerül egy kilométer a saját autóddal." property="og:description"/>
+<meta content="Kilométerdíj kalkulátor | Autóköltség Ft/km" property="og:title"/>
+<meta content="Számold ki, mennyibe kerül egy kilométer a saját autóddal a teljes havi költség alapján." property="og:description"/>
 <meta content="https://kalkulatorbazis.hu/kalkulatorok/kilometerdij-kalkulator.html" property="og:url"/>
 <meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" property="og:image"/>
 <meta content="summary_large_image" name="twitter:card"/>
-<meta content="Kilométerdíj kalkulátor | Autóköltség kilométerenként" name="twitter:title"/>
-<meta content="Kilométerdíj kalkulátor üzemanyag- és fenntartási költségekhez. Becsüld meg, mennyibe kerül egy kilométer a saját autóddal." name="twitter:description"/>
+<meta content="Kilométerdíj kalkulátor | Autóköltség Ft/km" name="twitter:title"/>
+<meta content="Teljes autóköltség kiszámítása kilométerenként." name="twitter:description"/>
 <meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Hogyan számolható ki az autó kilométerenkénti költsége?","acceptedAnswer":{"@type":"Answer","text":"A teljes havi autóköltséget oszd el az adott hónapban megtett kilométerrel. Az eredmény Ft/km."}},
+    {"@type":"Question","name":"Miért magas a kilométerköltség kevés használatnál?","acceptedAnswer":{"@type":"Answer","text":"A biztosítás, adók és más fix költségek kevés megtett kilométer esetén is jelentkeznek, ezért egy kilométerre több jut belőlük."}},
+    {"@type":"Question","name":"Az értékvesztést hogyan adjam hozzá?","acceptedAnswer":{"@type":"Answer","text":"Az éves becsült értékvesztést oszd tizenkettővel, majd add hozzá a havi autóköltséghez."}}
+  ]
+}
+</script>
 </head>
 <body>
 <div id="header"></div>
 <main class="container page-simple-calculator" data-simple-calc="kilometerdij-kalkulator">
 <section class="hero">
 <h1>Kilométerdíj kalkulátor</h1>
-<p>Számold ki, mennyibe kerül egy kilométer az autóddal.</p>
+<p>Számold ki, mennyibe kerül egy kilométer a saját autóddal a teljes havi fenntartási költség alapján.</p>
 </section>
 <section class="card card-calculator">
 <div class="calc-grid" id="simpleCalcFields"></div>
-<div class="result-box">
-<p>Eredmény:</p>
-<div id="simpleCalcResults">–</div>
-</div>
-</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<div class="result-box"><p>Eredmény:</p><div id="simpleCalcResults">–</div></div>
+</section>
+<section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-05">
 <h2>Mennyibe kerül valójában egy kilométer autózás?</h2>
 <p>A kilométerdíj kalkulátor a havi összes autóköltséget elosztja a hónapban megtett kilométerrel. Így nemcsak a tankolást, hanem biztosítást, szervizt, adókat, parkolást, értékvesztést és más rendszeres tételeket is egyetlen Ft/km értékben lehet összefoglalni.</p>
 <p>Az eredmény annál pontosabb, minél teljesebb a havi költségadat. Ritkább kiadásokat érdemes éves összegből tizenkettedre bontani.</p>
-<h2>A képlet</h2><p><strong>Kilométerenkénti költség = havi autóköltség / havi megtett kilométer</strong>. Ha a havi kilométer nagyon alacsony, a fix költségek miatt az egy kilométerre jutó összeg magas lesz.</p>
-<div class="example-box"><h3>Példa</h3><p>Ha az autó teljes havi költsége 135 000 Ft, és 1 500 km-t teszel meg, akkor 135 000 / 1 500 = 90 Ft/km. Egy 240 km-es út így nagyjából 21 600 Ft teljes autóköltséget képviselhet, nem csak az üzemanyagot.</p></div>
-<h2>Milyen költségeket érdemes beleszámolni?</h2><p>Üzemanyag vagy áram, kötelező és casco biztosítás, gépjárműadó, szerviz, gumi, műszaki vizsga, parkolás, autópályadíj, finanszírozás és értékvesztés. Magánhasználatnál nem kötelező mindent szerepeltetni, de összehasonlításhoz fontos a következetesség.</p>
-<h2>Gyakori hibák</h2><ul><li>Csak az üzemanyagot számítják költségnek.</li><li>Az éves biztosítást teljes egészében egy hónaphoz adják.</li><li>A kilométeróra-adat helyett csak a hosszabb utakra emlékeznek.</li><li>Nulla vagy túl kevés kilométerrel számolnak.</li></ul>
-<h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+<h2>A képlet</h2>
+<p><strong>Kilométerenkénti költség = havi autóköltség ÷ havi megtett kilométer.</strong> Ha a havi kilométer nagyon alacsony, a fix költségek miatt az egy kilométerre jutó összeg magas lesz.</p>
+<div class="example-box"><h3>Példa</h3><p>Ha az autó teljes havi költsége 135 000 Ft, és 1 500 km-t teszel meg, akkor 135 000 ÷ 1 500 = 90 Ft/km. Egy 240 km-es út így nagyjából 21 600 Ft teljes autóköltséget képviselhet.</p></div>
+<h2>Milyen költségeket érdemes beleszámolni?</h2>
+<p>Üzemanyag vagy áram, kötelező és casco biztosítás, gépjárműadó, szerviz, gumi, műszaki vizsga, parkolás, autópályadíj, finanszírozás és értékvesztés. Összehasonlításhoz minden autónál ugyanazokat a tételeket használd.</p>
+<h2>Gyakori hibák</h2>
+<ul><li>Csak az üzemanyagot számítják költségnek.</li><li>Az éves biztosítást teljes egészében egy hónaphoz adják.</li><li>A ritka javításokat és gumicserét kihagyják.</li><li>Az értékvesztést nem veszik figyelembe.</li></ul>
+<h2>Gyakori kérdések</h2>
+<div class="faq-list" data-accordion="single">
 <details><summary>Céges elszámolásra használható?</summary><p>Tájékoztató számításhoz igen, hivatalos költségtérítéshez mindig az aktuális szabályokat kell követni.</p></details>
 <details><summary>Az értékvesztést hogyan adjam hozzá?</summary><p>Az éves becsült értékvesztést oszd tizenkettővel, és add a havi költséghez.</p></details>
 <details><summary>Miért magas kevés használatnál?</summary><p>A biztosítás és más fix költségek akkor is jelentkeznek, ha kevés kilométert mész.</p></details>
 <details><summary>Elektromos autóhoz is jó?</summary><p>Igen, ha az áramköltséget és a többi fenntartási tételt adod meg.</p></details>
 </div>
-<h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="eves-auto-koltseg-kalkulator.html">Éves autóköltség</a><a href="uzemanyag-koltseg-kalkulator.html">Üzemanyagköltség</a><a href="auto-ertekvesztes-kalkulator.html">Értékvesztés</a></div>
-<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
+<h3>Kapcsolódó kalkulátorok</h3>
+<div class="related-links"><a href="eves-auto-koltseg-kalkulator.html">Éves autóköltség kalkulátor</a><a href="uzemanyag-koltseg-kalkulator.html">Üzemanyagköltség kalkulátor</a><a href="auto-fogyasztas-kalkulator.html">Autó fogyasztás kalkulátor</a><a href="auto-ertekvesztes-kalkulator.html">Autó értékvesztés kalkulátor</a></div>
+<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-05">2026. július 5.</time></p>
 </section>
-
 </main>
 <div id="footer"></div>
-<script defer="" src="../js/simple-calculators.js"></script>
+<script defer src="../js/simple-calculators.js"></script>
 <script src="../js/utils.js"></script>
-  <script src="../js/help-widget.js" defer></script>
+<script src="../js/help-widget.js" defer></script>
 </body>
 </html>
