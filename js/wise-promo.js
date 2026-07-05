@@ -2,7 +2,11 @@
   if (window.KB_WISE_PROMO_LOADED) return;
   window.KB_WISE_PROMO_LOADED = true;
 
-  const landingPath = `${window.KB_PROJECT_ROOT || ""}/landing-pages/wise/wise.html`;
+  const projectRoot = window.KB_PROJECT_ROOT || "";
+  const landingUrl = new URL(
+    `${projectRoot}/landing-pages/wise/wise.html`,
+    window.location.origin
+  );
   const currentPath = window.location.pathname.toLowerCase();
 
   if (currentPath.endsWith("/landing-pages/wise/wise.html")) return;
@@ -61,11 +65,14 @@
     root.querySelectorAll(".wise-banner").forEach((link, index) => {
       if (link.dataset.wisePromoEnhanced === "true") return;
 
+      const targetUrl = new URL(landingUrl.href);
+      targetUrl.hash = selected.hash;
+
       link.dataset.wisePromoEnhanced = "true";
       link.className = "wise-context-card";
-      link.href = `${landingPath}${selected.hash}`;
+      link.href = targetUrl.href;
       link.removeAttribute("target");
-      link.setAttribute("rel", "sponsored");
+      link.removeAttribute("rel");
       link.setAttribute("aria-label", `${selected.title} – ${selected.action}`);
       link.innerHTML = `
         <span>
@@ -74,7 +81,7 @@
           <small>${selected.text}</small>
         </span>
         <span class="wise-context-card__action">${selected.action} →</span>
-        <span class="wise-context-card__disclosure">Partneri ajánló. A bemutató oldal előbb a használati helyzeteket és korlátokat mutatja be.</span>
+        <span class="wise-context-card__disclosure">Saját Wise-bemutató oldal. A partnerlink csak ott, külön jelölve jelenik meg.</span>
       `;
       link.addEventListener("click", () => track(index === 0 ? "primary" : "secondary"));
     });
