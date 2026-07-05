@@ -4,54 +4,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="ÁFA kalkulátor nettó–bruttó átváltáshoz és adótartalom számításához. Adj meg egy összeget és áfakulcsot, majd nézd meg mindhárom értéket." />
+  <meta name="description" content="ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal." />
   <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/afa-kalkulator.html" />
-<title>ÁFA kalkulátor | Nettó, bruttó és adótartalom</title>
+  <title>ÁFA kalkulátor | Nettó–bruttó ár és adótartalom</title>
 
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/pages/afa.css" />
   <script src="../js/global-head.js"></script>
-  
+
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="ÁFA kalkulátor | Nettó, bruttó és adótartalom" />
-  <meta property="og:description" content="ÁFA kalkulátor nettó–bruttó átváltáshoz és adótartalom számításához. Adj meg egy összeget és áfakulcsot, majd nézd meg mindhárom értéket." />
+  <meta property="og:title" content="ÁFA kalkulátor | Nettó–bruttó ár és adótartalom" />
+  <meta property="og:description" content="Számold ki nettó árból a bruttót, bruttóból a nettót és az ÁFA összegét 5%, 18%, 27% vagy egyedi kulccsal." />
   <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/afa-kalkulator.html" />
   <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
+
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="ÁFA kalkulátor | Nettó, bruttó és adótartalom" />
-  <meta name="twitter:description" content="ÁFA kalkulátor nettó–bruttó átváltáshoz és adótartalom számításához. Adj meg egy összeget és áfakulcsot, majd nézd meg mindhárom értéket." />
+  <meta name="twitter:title" content="ÁFA kalkulátor | Nettó–bruttó ár és adótartalom" />
+  <meta name="twitter:description" content="Gyors nettó–bruttó ÁFA-számítás, adótartalommal és többféle áfakulccsal." />
   <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Mi a különbség a nettó és a bruttó ár között?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A nettó ár az ÁFA nélküli érték, a bruttó ár pedig a nettó ár és az ÁFA összege együtt."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Mi az adótartalom?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Az adótartalom a bruttó összegből az a rész, amely általános forgalmi adóként jelenik meg."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Használható az ÁFA kalkulátor 5% vagy 18% kulccsal is?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Igen. Az 5%, 18% és 27% gombok mellett egyedi áfakulcs is megadható."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
-
-  <!-- HEADER -->
   <div id="header"></div>
 
   <main class="container page-afa">
-
-    <!-- HERO -->
     <section class="hero">
       <h1>ÁFA kalkulátor</h1>
-      <p>Számold ki nettóból a bruttót vagy vissza – gyorsan és egyszerűen.</p>
+      <p>Számold ki nettó árból a bruttót, bruttóból a nettót, valamint az ÁFA összegét.</p>
     </section>
 
     <section class="card card-calculator">
-
       <div class="calc-grid">
-
         <div>
           <label for="amount">Összeg (Ft)</label>
           <input type="text" id="amount" />
         </div>
-
         <div>
           <label for="vat">ÁFA (%)</label>
           <input type="number" id="vat" value="27" />
         </div>
-
       </div>
 
       <div class="button-group">
@@ -61,25 +86,16 @@
       </div>
 
       <div class="radio-group">
-        <label>
-          <input type="radio" name="mode" value="netto" checked />
-          Nettóból → Bruttó
-        </label>
-
-        <label>
-          <input type="radio" name="mode" value="brutto" />
-          Bruttóból → Nettó
-        </label>
+        <label><input type="radio" name="mode" value="netto" checked /> Nettóból → Bruttó</label>
+        <label><input type="radio" name="mode" value="brutto" /> Bruttóból → Nettó</label>
       </div>
 
       <div class="result-box">
         <p>Eredmény:</p>
         <p id="result-value">–</p>
       </div>
-
     </section>
 
-    <!-- SEO / INFO -->
     <section class="adsense-content" data-adsense-upgrade="afa">
       <h2>ÁFA számítás nettó, bruttó és adótartalom alapján</h2>
       <p>Az ÁFA kalkulátor a mindennapi árképzés, számlázás és vásárlási ellenőrzés egyik legegyszerűbb segédeszköze. Megmutatja, hogyan alakul egy nettó ár bruttóvá, illetve bruttó összegből mekkora lehet a nettó rész és az adótartalom.</p>
@@ -116,9 +132,7 @@
 
       <div class="notice-box source-note">
         <strong>Források és tájékoztatás:</strong>
-        az ÁFA-kulcsok és adózási feltételek termékenként, szolgáltatásonként és
-        időszakonként eltérhetnek. A kalkulátor tájékoztató jellegű matematikai
-        átszámítást végez, nem minősül adótanácsadásnak.
+        az ÁFA-kulcsok és adózási feltételek termékenként, szolgáltatásonként és időszakonként eltérhetnek. A kalkulátor tájékoztató jellegű matematikai átszámítást végez, nem minősül adótanácsadásnak.
         <div class="related-links">
           <a href="https://nav.gov.hu/ugyfeliranytu/adokulcsok_jarulekmertekek/afakulcs_adomen" target="_blank" rel="noopener noreferrer">NAV ÁFA-kulcsok és adómentes tevékenységek</a>
           <a href="https://nav.gov.hu/ugyfeliranytu/adokulcsok_jarulekmertekek" target="_blank" rel="noopener noreferrer">NAV adókulcsok és járulékmértékek</a>
@@ -128,17 +142,16 @@
       <h3>Kapcsolódó kalkulátorok</h3>
       <div class="related-links">
         <a href="szazalek-kalkulator.html">Százalék kalkulátor</a>
-        <a href="netto-brutto-kalkulator.html">Nettó - bruttó kalkulátor</a>
+        <a href="netto-brutto-kalkulator.html">Nettó–bruttó kalkulátor</a>
         <a href="ar-kedvezmeny-kalkulator.html">Árkedvezmény kalkulátor</a>
         <a href="egysegar-kalkulator.html">Egységár kalkulátor</a>
       </div>
     </section>
-    </main>
-  <div id="footer"></div>
+  </main>
 
-  <!-- SCRIPTS -->
+  <div id="footer"></div>
   <script src="../js/cookie.js" defer></script>
-    <script src="../js/utils.js"></script>
+  <script src="../js/utils.js"></script>
   <script src="../js/altalanos/afa.js" defer></script>
   <script src="../js/help-widget.js" defer></script>
 </body>

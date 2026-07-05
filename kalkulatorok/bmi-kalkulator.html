@@ -4,25 +4,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="BMI kalkulátor testtömegindex-számításhoz, felnőtteknek szóló értelmezési sávokkal és a módszer fontos korlátainak bemutatásával." />
+  <meta name="description" content="BMI kalkulátor felnőtteknek: testtömegindex számítás testsúly és magasság alapján, kategóriák, képlet, példaszámítás és értelmezési korlátok." />
   <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/bmi-kalkulator.html" />
-<title>BMI kalkulátor | Testtömegindex számítás és értelmezés</title>
+  <title>BMI kalkulátor 2026 | Testtömegindex számítás és értelmezés</title>
 
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/pages/bmi.css" />
   <script src="../js/global-head.js"></script>
-  
+
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kalkulátor Bázis" />
-  <meta property="og:title" content="BMI kalkulátor | Testtömegindex számítás és értelmezés" />
-  <meta property="og:description" content="BMI kalkulátor testtömegindex-számításhoz, felnőtteknek szóló értelmezési sávokkal és a módszer fontos korlátainak bemutatásával." />
+  <meta property="og:title" content="BMI kalkulátor 2026 | Testtömegindex számítás és értelmezés" />
+  <meta property="og:description" content="Számold ki a BMI értékedet, nézd meg a felnőtteknek szóló kategóriákat, a képletet és a módszer fontos korlátait." />
   <meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/bmi-kalkulator.html" />
   <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  
+
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="BMI kalkulátor | Testtömegindex számítás és értelmezés" />
-  <meta name="twitter:description" content="BMI kalkulátor testtömegindex-számításhoz, felnőtteknek szóló értelmezési sávokkal és a módszer fontos korlátainak bemutatásával." />
+  <meta name="twitter:title" content="BMI kalkulátor 2026 | Testtömegindex számítás és értelmezés" />
+  <meta name="twitter:description" content="Gyors BMI számítás képlettel, példával, kategóriákkal és értelmezési útmutatóval." />
   <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "A BMI diagnózis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nem. A BMI tájékoztató jellegű mutató, és nem helyettesít orvosi vizsgálatot vagy testösszetétel-mérést."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Miért lehet félrevezető a BMI sportolóknál?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A nagyobb izomtömeg magasabb testsúlyt okozhat, miközben a testzsír aránya nem feltétlenül magas."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Gyerekeknél használható a felnőtt BMI kalkulátor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gyermekeknél életkor- és nemspecifikus értelmezés szükséges, ezért a felnőtteknek készült BMI-kategóriák nem alkalmazhatók közvetlenül."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -31,27 +64,21 @@
 
   <main class="container page-bmi">
 
-    <!-- HERO -->
     <section class="hero">
       <h1>BMI kalkulátor</h1>
-      <p>Számold ki a testtömeg indexedet (BMI) gyorsan és egyszerűen.</p>
+      <p>Számold ki a testtömegindexedet testsúly és magasság alapján, majd olvasd el, hogyan érdemes értelmezni az eredményt.</p>
     </section>
 
-    <!-- KALKULÁTOR -->
     <section class="card card-calculator">
-
       <div class="calc-grid">
-
         <div>
           <label for="weight">Testsúly (kg)</label>
           <input type="number" id="weight" placeholder="pl. 75" />
         </div>
-
         <div>
           <label for="height">Magasság (cm)</label>
           <input type="number" id="height" placeholder="pl. 175" />
         </div>
-
       </div>
 
       <div class="result-box">
@@ -59,56 +86,41 @@
         <p id="result-bmi">–</p>
         <p id="result-category"></p>
       </div>
-
     </section>
 
-    <!-- SEO TARTALOM -->
     <section class="article">
-
       <div class="info-box">
-        <strong>Fontos:</strong> A BMI egy általános iránymutatás, nem veszi figyelembe az izomtömeget vagy
-        testösszetételt.
+        <strong>Fontos:</strong> A BMI általános iránymutatás. Nem veszi figyelembe az izomtömeget, a testzsírszázalékot vagy az egyéni egészségi állapotot.
       </div>
 
       <h2>Mi az a BMI?</h2>
-      <p>
-        A BMI (Body Mass Index, testtömeg index) egy egyszerű mutató, amely a testsúly és a magasság alapján becsüli
-        meg,
-        hogy valaki alultáplált, normál testsúlyú, túlsúlyos vagy elhízott.
-      </p>
+      <p>A BMI (Body Mass Index, testtömegindex) egy egyszerű mutató, amely a testsúly és a magasság arányából becsüli meg, hogy a testsúly milyen tartományba esik.</p>
 
       <h2>BMI képlet</h2>
-      <p><strong>BMI = testsúly (kg) / (magasság (m) × magasság (m))</strong></p>
+      <p><strong>BMI = testsúly (kg) / magasság² (m)</strong></p>
 
-      <h2>BMI kategóriák</h2>
-
+      <h2>BMI kategóriák felnőtteknél</h2>
       <ul>
-        <li>18.5 alatt – sovány</li>
-        <li>18.5 – 24.9 – normál testsúly</li>
-        <li>25 – 29.9 – túlsúly</li>
+        <li>18,5 alatt – sovány</li>
+        <li>18,5–24,9 – normál testsúly</li>
+        <li>25–29,9 – túlsúly</li>
         <li>30 felett – elhízás</li>
       </ul>
 
-      <h2>Miért fontos a BMI?</h2>
-      <p>
-        A BMI segít gyorsan felmérni az egészségi kockázatokat. A túl magas vagy túl alacsony érték
-        hosszú távon egészségügyi problémákhoz vezethet.
-      </p>
+      <h2>Miért lehet hasznos a BMI?</h2>
+      <p>A BMI gyors kiindulópontot adhat testsúlyváltozás, életmódváltás vagy általános egészségi állapot áttekintésekor. Az eredményt azonban mindig más adatokkal együtt érdemes vizsgálni.</p>
 
-      <h2>Mire nem jó a BMI?</h2>
-      <p>
-        A BMI nem veszi figyelembe az izomtömeget, ezért sportolóknál torzíthat.
-        Nem ad teljes képet a testösszetételről.
-      </p>
-
+      <h2>Mire nem alkalmas a BMI?</h2>
+      <p>Nem különbözteti meg az izmot és a zsírt, ezért sportolóknál, várandósság alatt, gyermekeknél és egyes egészségi állapotoknál félrevezető lehet.</p>
     </section>
+
     <section class="adsense-content" data-adsense-upgrade="bmi">
       <h2>BMI számítás: gyors jelzés, nem diagnózis</h2>
       <p>A BMI kalkulátor a testtömegindexet számítja ki testsúly és magasság alapján. Ez egy egyszerű, gyors mutató, amely segíthet első képet kapni arról, hogy a testsúly a magassághoz képest milyen tartományba esik.</p>
       <p>A BMI előnye az egyszerűség, de pont ez a korlátja is. Nem látja az izomtömeget, testzsírszázalékot, életkort, nemet, egészségi állapotot vagy sportmúltat, ezért önmagában nem alkalmas diagnózisra.</p>
 
       <h3>Hogyan működik a számítás?</h3>
-      <p>A képlet: testsúly kilogrammban osztva a magasság méterben vett négyzetével. A kapott érték egy tájékoztató index, amelyet érdemes más mutatókkal, például derékbőséggel, testzsírszázalékkal és életmódbeli adatokkal együtt értelmezni.</p>
+      <p>A képlet a testsúlyt kilogrammban elosztja a magasság méterben vett négyzetével. A kapott érték egy tájékoztató index, amelyet érdemes derékbőséggel, testzsírszázalékkal és életmódbeli adatokkal együtt értelmezni.</p>
 
       <div class="example-box">
         <h3>Konkrét példaszámítás</h3>
@@ -120,20 +132,20 @@
         <li>testsúlyváltozás követésének kiindulópontjaként</li>
         <li>életmódváltás előtti tájékozódáshoz</li>
         <li>általános egészségi mutatóként</li>
-        <li>más kalkulátorokkal együtt használva</li>
+        <li>más testösszetételi kalkulátorokkal együtt használva</li>
       </ul>
 
       <div class="notice-box">
-        <strong>Fontos tudni:</strong> A BMI nem veszi figyelembe a testösszetételt. Sportolóknál, várandósság alatt, gyermekeknél vagy speciális egészségügyi állapotban különösen óvatosan értelmezendő.
+        <strong>Fontos tudni:</strong> Sportolóknál, várandósság alatt, gyermekeknél vagy speciális egészségügyi állapotban különösen óvatos értelmezés szükséges.
       </div>
 
       <h3>Gyakori kérdések</h3>
       <div class="faq-list">
         <details><summary>A BMI diagnózis?</summary><p>Nem. Tájékoztató jellegű mutató, nem helyettesít orvosi vizsgálatot.</p></details>
         <details><summary>Miért lehet félrevezető sportolóknál?</summary><p>Mert a nagyobb izomtömeg magasabb testsúlyt okozhat, miközben a testzsír nem feltétlenül magas.</p></details>
-        <details><summary>Milyen gyakran érdemes számolni?</summary><p>Életmódváltásnál havi vagy néhány heti követés hasznosabb lehet, mint napi ingadozás nézése.</p></details>
-        <details><summary>Gyerekeknél használható?</summary><p>Gyermekeknél életkor- és nemspecifikus értelmezés kell, ezért orvosi vagy szakmai forrás javasolt.</p></details>
-        <details><summary>Mivel egészítsem ki?</summary><p>Derék-csípő arány, testzsírszázalék, aktivitás és egészségi állapot figyelembevételével.</p></details>
+        <details><summary>Milyen gyakran érdemes számolni?</summary><p>Életmódváltásnál havi vagy néhány heti követés hasznosabb lehet, mint a napi ingadozás figyelése.</p></details>
+        <details><summary>Gyerekeknél használható?</summary><p>Gyermekeknél életkor- és nemspecifikus értelmezés kell, ezért szakmai forrás vagy orvosi segítség javasolt.</p></details>
+        <details><summary>Mivel érdemes kiegészíteni?</summary><p>Derék-csípő aránnyal, testzsírszázalékkal, aktivitási adatokkal és az egészségi állapot figyelembevételével.</p></details>
       </div>
 
       <h3>Kapcsolódó kalkulátorok</h3>
@@ -144,10 +156,10 @@
         <a href="derek-csipo-kalkulator.html">Derék-csípő arány kalkulátor</a>
       </div>
     </section>
-    </main>
+  </main>
 
   <div id="footer"></div>
-    <script src="../js/utils.js"></script>
+  <script src="../js/utils.js"></script>
   <script src="../js/egeszseg/bmi.js" defer></script>
   <script src="../js/help-widget.js" defer></script>
 </body>
