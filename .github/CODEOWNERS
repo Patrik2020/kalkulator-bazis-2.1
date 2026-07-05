@@ -1,0 +1,11 @@
+# A teljes projekt jóváhagyója
+* @Patrik2020
+
+# Különösen érzékeny területek
+.github/ @Patrik2020
+sw.js @Patrik2020
+js/pwa.js @Patrik2020
+js/cookie.js @Patrik2020
+js/global-head.js @Patrik2020
+_headers @Patrik2020
+SECURITY.md @Patrik2020
