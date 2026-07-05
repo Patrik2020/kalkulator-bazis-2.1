@@ -2,16 +2,40 @@
   if (window.KB_PWA_LOADED) return;
   window.KB_PWA_LOADED = true;
 
-  const projectRoot = window.KB_PROJECT_ROOT || "";
-  const serviceWorkerPath = `${projectRoot}/sw.js`;
-  const reloadStorageKey = "kb-sw-controller-reload-2026-06-28-dividend-pro-v1";
+  const rawProjectRoot = window.KB_PROJECT_ROOT || "";
+  const projectRoot = /^\/(?:[a-z0-9._-]+(?:\/[a-z0-9._-]+)*)?$/i.test(rawProjectRoot)
+    ? rawProjectRoot.replace(/\/+$/, "")
+    : "";
+  const serviceWorkerUrl = new URL(`${projectRoot}/sw.js`, window.location.origin);
+  const expectedScopeUrl = new URL(`${projectRoot || ""}/`, window.location.origin);
+  const reloadStorageKey = "kb-sw-controller-reload-2026-07-05-security-v2";
   let deferredPrompt = null;
   let installed = false;
 
   const isLocalhost = ["localhost", "127.0.0.1", "::1"].includes(window.location.hostname);
   const canUseServiceWorker =
     "serviceWorker" in navigator &&
+    serviceWorkerUrl.origin === window.location.origin &&
+    expectedScopeUrl.origin === window.location.origin &&
     (window.location.protocol === "https:" || isLocalhost);
+
+  const safeSessionStorage = {
+    get(key) {
+      try {
+        return window.sessionStorage.getItem(key);
+      } catch (error) {
+        return null;
+      }
+    },
+    set(key, value) {
+      try {
+        window.sessionStorage.setItem(key, value);
+        return true;
+      } catch (error) {
+        return false;
+      }
+    },
+  };
 
   const isStandalone = () =>
     window.matchMedia?.("(display-mode: standalone)").matches ||
@@ -45,20 +69,42 @@
 
     navigator.serviceWorker.addEventListener("controllerchange", () => {
       if (!hadController) return;
-      if (sessionStorage.getItem(reloadStorageKey) === "done") return;
+      if (safeSessionStorage.get(reloadStorageKey) === "done") return;
 
-      sessionStorage.setItem(reloadStorageKey, "done");
+      safeSessionStorage.set(reloadStorageKey, "done");
       window.location.reload();
     });
 
     navigator.serviceWorker
-      .register(serviceWorkerPath, { updateViaCache: "none" })
+      .register(serviceWorkerUrl.href, {
+        scope: expectedScopeUrl.pathname,
+        updateViaCache: "none",
+      })
       .then((registration) => {
+        let registeredScope;
+
+        try {
+          registeredScope = new URL(registration.scope);
+        } catch (error) {
+          registration.unregister().catch(() => {});
+          dispatch("kb:pwa-sw-error", { reason: "invalid-scope" });
+          return;
+        }
+
+        if (
+          registeredScope.origin !== window.location.origin ||
+          registeredScope.pathname !== expectedScopeUrl.pathname
+        ) {
+          registration.unregister().catch(() => {});
+          dispatch("kb:pwa-sw-error", { reason: "unexpected-scope" });
+          return;
+        }
+
         dispatch("kb:pwa-sw-ready", { scope: registration.scope });
         registration.update().catch(() => {});
       })
       .catch(() => {
-        dispatch("kb:pwa-sw-error");
+        dispatch("kb:pwa-sw-error", { reason: "registration-failed" });
       });
   };
 
@@ -107,7 +153,7 @@
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", registerServiceWorker);
+    document.addEventListener("DOMContentLoaded", registerServiceWorker, { once: true });
   } else {
     registerServiceWorker();
   }
