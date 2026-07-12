@@ -9,6 +9,7 @@
 
   <meta name="description" content="Ingyenes magyar online kalkulátorportál pénzügyi, autós, építőipari, egészség, átváltó és mindennapi számításokhoz, magyarázatokkal és GYIK-kel." />
   <link rel="canonical" href="https://kalkulatorbazis.hu/" />
+
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kalkulátor Bázis" />
@@ -24,48 +25,107 @@
   <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
 
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/pages/index.css" />
-  <link rel="stylesheet" href="css/pages/mobile-hero.css?v=20260702-1" />
+  <link rel="stylesheet" href="css/pages/index.css?v=20260712-1" />
 
   <script src="js/global-head.js"></script>
 </head>
 
-<body>
+<body class="home-page">
   <div id="header"></div>
 
   <main>
-    <section class="home-hero">
-      <div class="home-hero-motion" aria-hidden="true">
-        <span class="hero-orb hero-orb-one"></span>
-        <span class="hero-orb hero-orb-two"></span>
-        <span class="hero-symbol hero-symbol-one">%</span>
-        <span class="hero-symbol hero-symbol-two">÷</span>
-        <span class="hero-symbol hero-symbol-three">+</span>
-        <span class="hero-chart hero-chart-one"></span>
-        <span class="hero-chart hero-chart-two"></span>
+    <section class="home-hero" aria-labelledby="homeHeroTitle">
+      <div class="home-hero-decoration" aria-hidden="true">
+        <span class="home-orb home-orb-one"></span>
+        <span class="home-orb home-orb-two"></span>
+        <span class="home-math-symbol home-math-symbol-one">%</span>
+        <span class="home-math-symbol home-math-symbol-two">+</span>
+        <span class="home-math-symbol home-math-symbol-three">÷</span>
       </div>
 
-      <div class="container home-hero-inner">
-        <span class="section-label">Gyors számítás, érthető eredmény</span>
-        <h1>Online kalkulátorok egy helyen</h1>
-        <p>Pénzügy, autózás, felújítás, egészség és hétköznapi döntések magyar magyarázatokkal.</p>
+      <div class="container home-hero-layout">
+        <div class="home-hero-copy">
+          <span class="home-eyebrow">
+            <span class="home-eyebrow-dot" aria-hidden="true"></span>
+            Gyors, ingyenes, magyar
+          </span>
 
-        <div class="search-box home-search">
-          <label for="calculatorSearch">Mire szeretnél számolni?</label>
-          <input
-            type="search"
-            id="calculatorSearch"
-            placeholder="Például: nettó bér, festék, BMI"
-            autocomplete="off"
-            role="combobox"
-            aria-autocomplete="list"
-            aria-controls="calculatorSearchResults"
-            aria-expanded="false"
-          />
-          <div class="search-results" id="calculatorSearchResults" role="listbox" aria-live="polite"></div>
+          <h1 id="homeHeroTitle"><span>70+</span> ingyenes kalkulátor<br />egy helyen</h1>
+          <p class="home-hero-lead">Pénzügyi, egészségügyi, autós, építőipari és mindennapi számítások érthető magyar magyarázatokkal.</p>
+
+          <div class="search-box home-search">
+            <label for="calculatorSearch">Mire szeretnél számolni?</label>
+            <div class="home-search-control">
+              <span class="home-search-icon" aria-hidden="true"></span>
+              <input
+                type="search"
+                id="calculatorSearch"
+                placeholder="Például: nettó bér, festék, BMI"
+                autocomplete="off"
+                role="combobox"
+                aria-autocomplete="list"
+                aria-controls="calculatorSearchResults"
+                aria-expanded="false"
+              />
+            </div>
+            <div class="search-results" id="calculatorSearchResults" role="listbox" aria-live="polite"></div>
+          </div>
+
+          <nav class="home-quick-links" aria-label="Népszerű kalkulátorok gyors elérése">
+            <span>Népszerű:</span>
+            <a href="kalkulatorok/netto-brutto-kalkulator.html">Nettó–bruttó</a>
+            <a href="kalkulatorok/afa-kalkulator.html">ÁFA</a>
+            <a href="kalkulatorok/szazalek-kalkulator.html">Százalék</a>
+            <a href="kalkulatorok/bmi-kalkulator.html">BMI</a>
+            <a href="kalkulatorok/deviza-kalkulator.html">Deviza</a>
+          </nav>
+
+          <div class="home-hero-actions">
+            <a class="home-button home-button-primary" href="kalkulatorok.html">Kalkulátorok böngészése</a>
+            <a class="home-button home-button-secondary" href="#categoriesTitle">Témák megtekintése</a>
+          </div>
         </div>
 
-        <a class="primary-link" href="kalkulatorok.html">Összes kalkulátor</a>
+        <div class="home-hero-visual" aria-hidden="true">
+          <span class="visual-glow"></span>
+
+          <div class="visual-note visual-note-top">
+            <span class="visual-note-icon">✓</span>
+            <span><small>Azonnali eredmény</small><strong>Regisztráció nélkül</strong></span>
+          </div>
+
+          <div class="visual-calculator">
+            <div class="visual-calculator-top">
+              <span class="visual-logo-mark"></span>
+              <span class="visual-calculator-dots"><i></i><i></i><i></i></span>
+            </div>
+            <div class="visual-display">
+              <small>Számítás eredménye</small>
+              <strong>12 450 Ft</strong>
+            </div>
+            <div class="visual-keypad">
+              <span>7</span><span>8</span><span>9</span><span class="visual-key-accent">÷</span>
+              <span>4</span><span>5</span><span>6</span><span class="visual-key-accent">×</span>
+              <span>1</span><span>2</span><span>3</span><span class="visual-key-accent">−</span>
+              <span>0</span><span>,</span><span class="visual-key-primary">=</span><span class="visual-key-accent">+</span>
+            </div>
+          </div>
+
+          <div class="visual-note visual-note-bottom">
+            <span class="visual-chart" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+            <span><small>Átlátható</small><strong>Érthető magyarázatok</strong></span>
+          </div>
+
+          <span class="visual-floating-symbol visual-floating-percent">%</span>
+          <span class="visual-floating-symbol visual-floating-plus">+</span>
+        </div>
+      </div>
+
+      <div class="container home-trust-strip" aria-label="A Kalkulátor Bázis legfontosabb előnyei">
+        <div class="home-trust-item"><span aria-hidden="true">✓</span><p><strong>Ingyenes használat</strong><small>Nincs előfizetés</small></p></div>
+        <div class="home-trust-item"><span aria-hidden="true">⌁</span><p><strong>Magyar fejlesztés</strong><small>Érthető szövegek</small></p></div>
+        <div class="home-trust-item"><span aria-hidden="true">◇</span><p><strong>Regisztráció nélkül</strong><small>Azonnal használható</small></p></div>
+        <div class="home-trust-item"><span aria-hidden="true">↗</span><p><strong>Folyamatosan bővül</strong><small>Új eszközökkel</small></p></div>
       </div>
     </section>
 
@@ -76,7 +136,7 @@
             <span class="section-label">Gyors választás</span>
             <h2 id="categoriesTitle">Milyen témában számolnál?</h2>
           </div>
-          <p>Válassz döntési helyzetet, és azon belül megtalálod a hozzá tartozó eszközöket.</p>
+          <p>Válassz egy élethelyzetet, és megmutatjuk az ahhoz tartozó kalkulátorokat.</p>
         </div>
 
         <div class="category-grid home-category-grid" data-render="home-categories">
@@ -164,7 +224,7 @@
         <a class="highlight-link" href="landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html">Megnézem az útmutatót</a>
       </section>
 
-      <section class="trust-band" aria-label="A Kalkulátor Bázis előnyei">
+      <section class="trust-band" aria-label="A Kalkulátor Bázis használatáról">
         <ul>
           <li><strong>Ingyenes</strong><span>Nincs regisztráció</span></li>
           <li><strong>Mobilbarát</strong><span>Telefonon is kényelmes</span></li>
