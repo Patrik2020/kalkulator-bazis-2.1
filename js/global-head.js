@@ -42,6 +42,7 @@ const cookieCssPath = `${projectRoot}/css/components/cookie.css`;
 const wiseBannerCssPath = `${projectRoot}/css/components/wise-banner-enhancer.css`;
 const themeScriptPath = `${projectRoot}/js/theme.js`;
 const pwaScriptPath = `${projectRoot}/js/pwa.js`;
+const googleAdsScriptPath = `${projectRoot}/js/google-ads-tag.js`;
 const wiseBannerScriptPath = `${projectRoot}/js/wise-banner-enhancer.js`;
 const calculatorCssPath = `${projectRoot}/css/pages/calculator-suite.css`;
 const calculatorScriptPath = `${projectRoot}/js/calculator-suite.js`;
@@ -114,6 +115,7 @@ if (isHomePage) {
 
 appendElement("script", { src: themeScriptPath, defer: "" });
 appendElement("script", { src: pwaScriptPath, defer: "" });
+appendElement("script", { src: `${googleAdsScriptPath}?v=20260714-1`, defer: "" });
 appendElement("script", { src: `${wiseBannerScriptPath}?v=20260705-1`, defer: "" });
 
 [
