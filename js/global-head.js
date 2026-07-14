@@ -42,7 +42,6 @@ const cookieCssPath = `${projectRoot}/css/components/cookie.css`;
 const wiseBannerCssPath = `${projectRoot}/css/components/wise-banner-enhancer.css`;
 const themeScriptPath = `${projectRoot}/js/theme.js`;
 const pwaScriptPath = `${projectRoot}/js/pwa.js`;
-const googleAdsScriptPath = `${projectRoot}/js/google-ads-tag.js`;
 const wiseBannerScriptPath = `${projectRoot}/js/wise-banner-enhancer.js`;
 const calculatorCssPath = `${projectRoot}/css/pages/calculator-suite.css`;
 const calculatorScriptPath = `${projectRoot}/js/calculator-suite.js`;
@@ -50,6 +49,8 @@ const normalizedPath = window.location.pathname.replace(/\/+$/, "");
 const isHomePage =
   normalizedPath === projectRoot ||
   normalizedPath === `${projectRoot}/index.html`;
+const googleAnalyticsId = "G-4JBY0GDC4C";
+const googleAdsId = "AW-18204925339";
 
 window.KB_PROJECT_ROOT = projectRoot;
 
@@ -68,6 +69,7 @@ window.gtag("consent", "default", {
   functionality_storage: "granted",
   security_storage: "granted",
 });
+window.gtag("set", "ads_data_redaction", true);
 
 const appendElement = (tagName, attributes) => {
   const element = document.createElement(tagName);
@@ -78,6 +80,15 @@ const appendElement = (tagName, attributes) => {
 
   document.head.appendChild(element);
 };
+
+appendElement("script", {
+  async: "",
+  src: `https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`,
+});
+window.gtag("js", new Date());
+window.gtag("config", googleAdsId);
+window.gtag("config", googleAnalyticsId, { anonymize_ip: true });
+window.analyticsLoaded = true;
 
 const hasMainStylesheet = () =>
   [...document.querySelectorAll('link[rel~="stylesheet"][href]')].some((link) => {
@@ -115,7 +126,6 @@ if (isHomePage) {
 
 appendElement("script", { src: themeScriptPath, defer: "" });
 appendElement("script", { src: pwaScriptPath, defer: "" });
-appendElement("script", { src: `${googleAdsScriptPath}?v=20260714-1`, defer: "" });
 appendElement("script", { src: `${wiseBannerScriptPath}?v=20260705-1`, defer: "" });
 
 [
