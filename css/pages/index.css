@@ -646,6 +646,7 @@
 
 .home-section,
 .learning-highlight,
+.method-foundation,
 .trust-band,
 .about-home,
 .home-faq {
@@ -680,6 +681,7 @@
 
 .section-intro h2,
 .learning-highlight h2,
+.method-foundation h2,
 .about-home h2,
 .home-faq h2 {
   margin: 0;
@@ -704,7 +706,8 @@
 }
 
 .home-page .home-category-grid .card,
-.home-page .popular-grid .card {
+.home-page .popular-grid .card,
+.home-page .new-grid .card {
   min-height: 180px;
   padding: 26px;
   border: 1px solid var(--home-border);
@@ -715,7 +718,8 @@
 }
 
 .home-page .home-category-grid .card::after,
-.home-page .popular-grid .card::after {
+.home-page .popular-grid .card::after,
+.home-page .new-grid .card::after {
   content: "→";
   position: absolute;
   top: 20px;
@@ -733,21 +737,24 @@
 }
 
 .home-page .home-category-grid .card:hover,
-.home-page .popular-grid .card:hover {
+.home-page .popular-grid .card:hover,
+.home-page .new-grid .card:hover {
   border-color: rgba(11, 102, 242, 0.24);
   box-shadow: var(--home-shadow-md);
   transform: translateY(-4px);
 }
 
 .home-page .home-category-grid .card:hover::after,
-.home-page .popular-grid .card:hover::after {
+.home-page .popular-grid .card:hover::after,
+.home-page .new-grid .card:hover::after {
   background: var(--home-primary);
   color: #ffffff;
   transform: translateX(2px);
 }
 
 .home-category-grid .card h3,
-.popular-grid .card h3 {
+.popular-grid .card h3,
+.new-grid .card h3 {
   max-width: 78%;
   margin: 0 0 10px;
   padding: 0;
@@ -758,7 +765,8 @@
 }
 
 .home-category-grid .card p,
-.popular-grid .card p {
+.popular-grid .card p,
+.new-grid .card p {
   position: relative;
   z-index: 1;
   max-width: 76%;
@@ -769,7 +777,8 @@
 }
 
 .home-page .home-category-grid .card-link::before,
-.home-page .popular-grid .card-link::before {
+.home-page .popular-grid .card-link::before,
+.home-page .new-grid .card-link::before {
   right: -4px;
   bottom: -7px;
   width: 118px;
@@ -777,7 +786,8 @@
   opacity: 0.25;
 }
 
-.home-page .popular-grid .card {
+.home-page .popular-grid .card,
+.home-page .new-grid .card {
   min-height: 166px;
   background:
     linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(247, 250, 255, 0.96)),
@@ -839,6 +849,29 @@
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.82) url("../../favicon/kb-logo-mark.png") center / 43px no-repeat;
   box-shadow: var(--home-shadow-sm);
+}
+
+.method-foundation {
+  display: grid;
+  gap: 24px;
+  padding: clamp(28px, 4vw, 44px);
+  border: 1px solid var(--home-border);
+  border-radius: var(--home-radius-lg);
+  background: var(--home-surface);
+  box-shadow: var(--home-shadow-sm);
+}
+
+.method-foundation-copy {
+  color: var(--home-muted);
+  line-height: 1.78;
+}
+
+.method-foundation-copy p {
+  margin: 0 0 14px;
+}
+
+.method-foundation-copy .primary-link {
+  margin-top: 4px;
 }
 
 .highlight-link {
@@ -1061,6 +1094,10 @@
   .about-home {
     grid-template-columns: minmax(250px, 0.75fr) minmax(0, 1.25fr);
   }
+
+  .method-foundation {
+    grid-template-columns: minmax(260px, 0.78fr) minmax(0, 1.22fr);
+  }
 }
 
 @media (min-width: 960px) {
@@ -1242,6 +1279,7 @@
 
   .home-section,
   .learning-highlight,
+  .method-foundation,
   .trust-band,
   .about-home,
   .home-faq {
@@ -1249,23 +1287,27 @@
   }
 
   .home-page .home-category-grid .card,
-  .home-page .popular-grid .card {
+  .home-page .popular-grid .card,
+  .home-page .new-grid .card {
     min-height: 160px;
     padding: 22px;
     border-radius: 20px;
   }
 
   .home-category-grid .card h3,
-  .popular-grid .card h3 {
+  .popular-grid .card h3,
+  .new-grid .card h3 {
     max-width: 76%;
   }
 
   .home-category-grid .card p,
-  .popular-grid .card p {
+  .popular-grid .card p,
+  .new-grid .card p {
     max-width: 72%;
   }
 
   .learning-highlight,
+  .method-foundation,
   .trust-band,
   .about-home {
     padding: 24px;
@@ -1296,7 +1338,8 @@
   }
 
   .home-category-grid .card p,
-  .popular-grid .card p {
+  .popular-grid .card p,
+  .new-grid .card p {
     max-width: 78%;
   }
 }
@@ -1349,7 +1392,9 @@ html[data-theme="dark"] body.home-page .visual-display,
 html[data-theme="dark"] body.home-page .visual-keypad span,
 html[data-theme="dark"] body.home-page .home-category-grid .card,
 html[data-theme="dark"] body.home-page .popular-grid .card,
+html[data-theme="dark"] body.home-page .new-grid .card,
 html[data-theme="dark"] body.home-page .learning-highlight,
+html[data-theme="dark"] body.home-page .method-foundation,
 html[data-theme="dark"] body.home-page .trust-band,
 html[data-theme="dark"] body.home-page .about-home,
 html[data-theme="dark"] body.home-page .home-faq .faq-list details {
@@ -1384,6 +1429,7 @@ html[data-theme="dark"] body.home-page .about-home {
 
 html[data-theme="dark"] body.home-page .home-category-grid .card::after,
 html[data-theme="dark"] body.home-page .popular-grid .card::after,
+html[data-theme="dark"] body.home-page .new-grid .card::after,
 html[data-theme="dark"] body.home-page .highlight-link {
   background: #1c2a3f;
   color: #8db9ff;
