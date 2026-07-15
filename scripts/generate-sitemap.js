@@ -16,6 +16,7 @@ const staticPages = [
   { url: "", priority: "1.0" },
   ...categories.map((category) => ({ url: category.url, priority: "0.9" })),
   { url: "kalkulatorok.html", priority: "0.9" },
+  { url: "kalkulatorok/multifunkcios-szamologep.html", priority: "0.8" },
   { url: "rolunk.html", priority: "0.7" },
   { url: "szamitasi-modszertan.html", priority: "0.7" },
   { url: "kapcsolat.html", priority: "0.5" },
@@ -24,6 +25,7 @@ const staticPages = [
   { url: "felhasznalasi-feltetelek.html", priority: "0.5" },
   { url: "jogi-nyilatkozat.html", priority: "0.5" },
   { url: "atlathatosag-es-minoseg.html", priority: "0.7" },
+  { url: "miert-bizhatsz-bennunk.html", priority: "0.8" },
   { url: "landing-pages/wise/wise.html", priority: "0.8" },
   { url: "landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html", priority: "0.8" },
 ];

@@ -19,10 +19,13 @@ const walk = (directory) =>
   });
 
 const relative = (file) => path.relative(root, file).replace(/\\/g, "/");
-const files = walk(root).filter((file) => {
-  const name = relative(file);
-  return name.endsWith(".html") && !name.startsWith("components/") && !name.startsWith("docs/");
-});
+const requestedFiles = process.argv.slice(2).filter((argument) => !argument.startsWith("--"));
+const files = requestedFiles.length
+  ? requestedFiles.map((name) => path.resolve(root, name))
+  : walk(root).filter((file) => {
+      const name = relative(file);
+      return name.endsWith(".html") && !name.startsWith("components/") && !name.startsWith("docs/");
+    });
 
 const text = (value) =>
   value

@@ -45,6 +45,17 @@ const normalize = (value) =>
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
 
+const isSharedTrustParagraph = (value) => {
+  const text = normalize(value);
+  return (
+    text.includes("keszitette kovacs patrik") &&
+    text.includes("hibabejelentes") &&
+    text.includes("adatvedelmi tajekoztato") &&
+    text.includes("felhasznalasi feltetelek") &&
+    text.includes("jogi nyilatkozat")
+  );
+};
+
 const matches = (text, regex) => [...text.matchAll(regex)];
 const first = (text, regex) => text.match(regex)?.[1]?.trim() || "";
 const getAttribute = (tag, name) => {
@@ -66,7 +77,8 @@ const records = htmlFiles.map((file) => {
   }));
   const paragraphs = matches(substantiveBody, /<p\b[^>]*>([\s\S]*?)<\/p>/gi)
     .map((match) => stripHtml(match[1]))
-    .filter((value) => value.length >= 70);
+    .filter((value) => value.length >= 70)
+    .filter((value) => !isSharedTrustParagraph(value));
   const ids = matches(html, /\bid\s*=\s*["']([^"']+)["']/gi).map((match) => match[1]);
   const imageTags = matches(html, /<img\b[^>]*>/gi).map((match) => match[0]);
   const links = matches(html, /<a\b[^>]*>/gi).map((match) => match[0]);
