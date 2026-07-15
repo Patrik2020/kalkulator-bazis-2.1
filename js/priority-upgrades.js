@@ -65,8 +65,8 @@
     <div class="priority-source">
       <h3>Források és módszertani ellenőrzés</h3>
       <ul>${items.map((item) => `<li><a href="${item.href}" target="_blank" rel="noopener noreferrer">${item.label}</a></li>`).join("")}</ul>
-      <p><strong>Készítette:</strong> Kovács Patrik. <strong>Szakmai lektorálás:</strong> nem történt. Az oldal tájékoztató kalkulátor; egyedi döntéshez szakember vagy hivatalos szerv adata szükséges.</p>
-      <p><strong>Utolsó módszertani ellenőrzés:</strong> ${reviewed}</p>
+      <p>Az oldal tájékoztató kalkulátor; egyedi döntéshez szakember vagy hivatalos szerv adata szükséges.</p>
+      <p><strong>Módszertani frissítés:</strong> ${reviewed}</p>
     </div>`;
   const resultCards = (items) => items.map(([label, value]) => `<div class="priority-result"><span>${label}</span><strong>${value}</strong></div>`).join("");
   const error = (container, message) => {
@@ -97,7 +97,7 @@
       <div class="priority-table-wrap"><table class="priority-table"><thead><tr><th>Nettó jövedelem</th><th>Jogszabályi plafon</th><th>Óvatos limit</th><th>Becsült hitelösszeg</th><th>Stressztesztelt hitelösszeg</th></tr></thead><tbody data-examples></tbody></table></div>
       <div class="priority-warning"><strong>Fontos:</strong> a JTM jogszabályi maximum, nem hitelígéret. A bank a jövedelem elfogadhatóságát, a keretek beszámítását, a munkaviszonyt és saját belső szabályait is vizsgálja.</div>
       ${sourceBlock([
-        { label: "MNB – adósságfék-szabályok és JTM", href: "https://www.mnb.hu/fogyasztovedelem/hitel-lizing/hitel-lizing/adossagfek-szabalyok" },
+        { label: "MNB – adósságfék-szabályok és JTM", href: "https://www.mnb.hu/penzugyi-stabilitas/makroprudencialis-politika/makroprudencialis-eszkoztar/adossagfek-szabalyok-hfm-jtm" },
         { label: "Nemzeti Jogszabálytár – 32/2014. (IX. 10.) MNB rendelet", href: "https://njt.hu/jogszabaly/2014-32-20-2C" },
         { label: "MNB – hitelfelvétel előtti tájékozódás", href: "https://www.mnb.hu/fogyasztovedelem/hitel-lizing" }
       ])}`);
@@ -176,7 +176,7 @@
       <h3>Mikor nem elég a 20%?</h3>
       <ul class="priority-checklist"><li>Ha a bank alacsonyabb forgalmi értéket állapít meg a vételárnál.</li><li>Ha az ingatlan, a jövedelem vagy a bank belső szabálya szigorúbb finanszírozást kíván.</li><li>Ha az illeték, ügyvéd, felújítás és költözés nincs külön félretéve.</li><li>Ha a vásárlás után nem marad vésztartalék.</li></ul>
       ${sourceBlock([
-        { label: "MNB – lakáshitelek és hitelfedezeti szabályok", href: "https://www.mnb.hu/fogyasztovedelem/hitel-lizing/lakashitel" },
+        { label: "MNB – ingatlancélú hitelek", href: "https://www.mnb.hu/fogyasztovedelem/hitel-lizing/jelzalog-hitelek/ingatlan-celu-hitelek" },
         { label: "Nemzeti Jogszabálytár – 32/2014. (IX. 10.) MNB rendelet", href: "https://njt.hu/jogszabaly/2014-32-20-2C" },
         { label: "NAV – ingatlan-adásvétel és illeték", href: "https://nav.gov.hu/ado/illetek/ingatlanadasvetel" }
       ])}`);
@@ -309,7 +309,7 @@
         <div class="priority-field"><label for="mi-inflation">Infláció (%)</label><input id="mi-inflation" value="3" inputmode="decimal"></div>
       </div>
       <div class="priority-table-wrap"><table class="priority-table"><thead><tr><th>Forgatókönyv</th><th>Éves hozam</th><th>Cél elérésének éve</th><th>Nominális vagyon</th><th>Mai vásárlóérték</th></tr></thead><tbody data-scenarios></tbody></table></div>
-      ${sourceBlock([{ label: "MNB – megtakarítások és befektetések", href: "https://www.mnb.hu/fogyasztovedelem/megtakaritasok-befektetesek" }])}`);
+      ${sourceBlock([{ label: "MNB – befektetés és megtakarítás", href: "https://www.mnb.hu/fogyasztovedelem/befektetes-megtakaritas" }])}`);
     if (!section) return;
     const calculate = () => {
       const targetReal = numberValue(section, "mi-target");
@@ -350,7 +350,7 @@
       <div class="priority-results" data-results></div>
       <div class="priority-table-wrap" data-breakdown-wrap><table class="priority-table"><thead><tr><th>Év</th><th>Azonos vásárlóerőhöz szükséges összeg</th><th>Kiinduló összeg reálértéke</th></tr></thead><tbody data-breakdown></tbody></table></div>
       ${sourceBlock([
-        { label: "KSH – fogyasztói árak és infláció", href: "https://www.ksh.hu/fogyasztoi_arak" },
+        { label: "KSH – fogyasztói árak módszertana", href: "https://www.ksh.hu/gyorstajekoztatok/modszertan/farmodsz25.html" },
         { label: "MNB – inflációs jelentések", href: "https://www.mnb.hu/kiadvanyok/jelentesek/inflacios-jelentes" }
       ])}`);
     if (!section) return;
@@ -405,7 +405,7 @@
         <div class="priority-field"><label for="cc-years">Időtáv (év)</label><input id="cc-years" value="20" inputmode="numeric"></div>
       </div>
       <div class="priority-results" data-results></div><div class="priority-chart" data-chart aria-label="Éves portfólióérték"></div>
-      ${sourceBlock([{ label: "MNB – megtakarítások és befektetések", href: "https://www.mnb.hu/fogyasztovedelem/megtakaritasok-befektetesek" }])}`);
+      ${sourceBlock([{ label: "MNB – befektetés és megtakarítás", href: "https://www.mnb.hu/fogyasztovedelem/befektetes-megtakaritas" }])}`);
     if (!section) return;
     const calculate = () => {
       const initial = numberValue(section, "cc-initial");
@@ -438,7 +438,7 @@
       <div class="priority-grid"><div class="priority-field"><label for="bu-income">Háztartás nettó bevétele</label><input id="bu-income" value="850 000" inputmode="decimal"></div>${categories.map(([label, id, value]) => `<div class="priority-field"><label for="${id}">${label}</label><input id="${id}" value="${new Intl.NumberFormat("hu-HU").format(value)}" inputmode="decimal"></div>`).join("")}<div class="priority-field"><label for="bu-current-reserve">Jelenlegi vésztartalék</label><input id="bu-current-reserve" value="1 000 000" inputmode="decimal"></div><div class="priority-field"><label for="bu-target-months">Célzott tartalék (hónap)</label><input id="bu-target-months" value="6" inputmode="numeric"></div></div>
       <div class="priority-results" data-results></div>
       <div class="priority-actions"><button class="priority-button priority-button--secondary" type="button" data-download>Összesítő letöltése CSV-ben</button></div>
-      ${sourceBlock([{ label: "MNB – háztartási költségvetés és pénzügyi tervezés", href: "https://www.mnb.hu/fogyasztovedelem/csaladi-penzugyek" }])}`);
+      ${sourceBlock([{ label: "MNB – háztartási költségvetés és pénzügyi tervezés", href: "https://www.mnb.hu/fogyasztovedelem/csaladi-zold-penzugyek/zold-gazdalkodas-otthon/penzugyi-tervezes/haztartasi-koltsegvetes" }])}`);
     if (!section) return;
     let latest = {};
     const calculate = () => {
@@ -549,7 +549,7 @@
       <div class="priority-grid"><div class="priority-field"><label for="vat-amount">Összeg</label><input id="vat-amount" value="100 000" inputmode="decimal"></div><div class="priority-field"><label for="vat-direction">Kiinduló összeg</label><select id="vat-direction"><option value="net">Nettó</option><option value="gross">Bruttó</option></select></div><div class="priority-field"><label for="vat-rate">ÁFA-kulcs</label><select id="vat-rate"><option value="27">27%</option><option value="18">18%</option><option value="5">5%</option><option value="0">0%</option></select></div></div>
       <div class="priority-results" data-results></div>
       <div class="priority-note"><strong>0% nem ugyanaz, mint az alanyi adómentesség.</strong> A 0%-os adómérték, a tárgyi mentesség, az alanyi mentesség és a területi hatályon kívüli ügylet eltérő jogcím és számlajelölés lehet. A kalkulátor csak matematikai bontást végez.</div>
-      ${sourceBlock([{ label: "NAV – általános forgalmi adó", href: "https://nav.gov.hu/ado/afa" }, { label: "NAV – áfakulcsok és tárgyi adómentes tevékenységek", href: "https://nav.gov.hu/ugyfeliranytu/adokulcsok_jarulekmertekek/afakulcsok" }, { label: "Nemzeti Jogszabálytár – Áfa tv.", href: "https://njt.hu/jogszabaly/2007-127-00-00" }])}`);
+      ${sourceBlock([{ label: "NAV – általános forgalmi adó", href: "https://nav.gov.hu/ado/afa" }, { label: "NAV – áfakulcsok és tárgyi adómentes tevékenységek", href: "https://nav.gov.hu/ugyfeliranytu/adokulcsok_jarulekmertekek/afakulcs_adomen" }, { label: "Nemzeti Jogszabálytár – Áfa tv.", href: "https://njt.hu/jogszabaly/2007-127-00-00" }])}`);
     if (!section) return;
     const calculate = () => {
       const amount = numberValue(section, "vat-amount");

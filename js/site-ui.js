@@ -667,12 +667,12 @@
     section.className = "reliability-note";
     section.innerHTML = `
       <div>
-        <h2>A számítás megbízhatósága</h2>
+        <h2>Hitelesség és számítási korlátok</h2>
         <p>${escapeHtml(messages[current.category] || messages.mindennapi)}</p>
       </div>
       <div class="reliability-actions">
-        <a href="${escapeAttribute(`${basePath}atlathatosag-es-minoseg.html`)}">További információ a számításokról és az ellenőrzésről</a>
-        <a href="${escapeAttribute(reportHref)}">Hibát vagy pontatlanságot találtál? Írj nekünk.</a>
+        <a href="${escapeAttribute(`${basePath}atlathatosag-es-minoseg.html`)}">A számítások módszertana és minőségbiztosítása</a>
+        <a href="${escapeAttribute(reportHref)}">Hibát találtál? Jelezd nekünk.</a>
       </div>
     `;
     main.appendChild(section);
@@ -879,13 +879,26 @@
             },
           },
           {
-            "@type": "WebPage",
+            "@type": "CollectionPage",
             "@id": `${siteOrigin}/#webpage`,
             url: `${siteOrigin}/`,
             name: document.title,
             description: document.querySelector('meta[name="description"]')?.content || "",
             isPartOf: { "@id": `${siteOrigin}/#website` },
             inLanguage: "hu-HU",
+          },
+          {
+            "@type": "ItemList",
+            "@id": `${siteOrigin}/#featured-calculators`,
+            name: "Kiemelt kalkulátorok",
+            itemListElement: data.calculators
+              .filter((calculator) => calculator.popular)
+              .map((calculator, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                url: `${siteOrigin}/${calculator.url}`,
+                name: calculator.title,
+              })),
           },
           ...(faqSchema ? [faqSchema] : []),
         ],

@@ -287,6 +287,7 @@ function getActiveNavTarget() {
     "rolunk.html",
     "szamitasi-modszertan.html",
     "atlathatosag-es-minoseg.html",
+    "miert-bizhatsz-bennunk.html",
     "kapcsolat.html",
   ]);
 
