@@ -1,0 +1,34 @@
+name: Validate priority calculator upgrades
+
+on:
+  pull_request:
+    paths:
+      - "js/priority-upgrades.js"
+      - "js/global-head.js"
+      - "css/pages/priority-upgrades.css"
+      - "kalkulatorok/**"
+  push:
+    branches:
+      - "codex/priority-finance-health-upgrades"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check JavaScript syntax
+        run: |
+          node --check js/priority-upgrades.js
+          node --check js/global-head.js
+      - name: Check required files and calculator handlers
+        run: |
+          test -s css/pages/priority-upgrades.css
+          grep -q 'hitelkepesseg-kalkulator.html' js/priority-upgrades.js
+          grep -q 'terhessegi-kalkulator.html' js/priority-upgrades.js
+          grep -q 'feherje-szukseglet-kalkulator.html' js/priority-upgrades.js
