@@ -505,9 +505,12 @@
 }
 
 .reliability-actions a {
+  align-items: center;
   color: var(--primary);
+  display: inline-flex;
   font-size: 0.9rem;
   font-weight: 700;
+  min-height: 44px;
   overflow-wrap: anywhere;
   text-underline-offset: 3px;
 }
@@ -544,7 +547,11 @@
 }
 
 .breadcrumb a {
+  align-items: center;
   color: var(--primary);
+  display: inline-flex;
+  min-height: 44px;
+  padding: 0 4px;
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
@@ -571,6 +578,7 @@
   .reliability-note {
     grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
   }
+
 
   .category-columns,
   .unit-groups > div {
