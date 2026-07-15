@@ -41,10 +41,12 @@ const footerCssPath = `${projectRoot}/css/layout/footer.css`;
 const cookieCssPath = `${projectRoot}/css/components/cookie.css`;
 const wiseBannerCssPath = `${projectRoot}/css/components/wise-banner-enhancer.css`;
 const priorityUpgradeCssPath = `${projectRoot}/css/pages/priority-upgrades.css`;
+const constructionUpgradeCssPath = `${projectRoot}/css/pages/construction-upgrades.css`;
 const themeScriptPath = `${projectRoot}/js/theme.js`;
 const pwaScriptPath = `${projectRoot}/js/pwa.js`;
 const wiseBannerScriptPath = `${projectRoot}/js/wise-banner-enhancer.js`;
 const priorityUpgradeScriptPath = `${projectRoot}/js/priority-upgrades.js`;
+const constructionUpgradeScriptPath = `${projectRoot}/js/construction-upgrades.js`;
 const calculatorCssPath = `${projectRoot}/css/pages/calculator-suite.css`;
 const calculatorScriptPath = `${projectRoot}/js/calculator-suite.js`;
 const normalizedPath = window.location.pathname.replace(/\/+$/, "");
@@ -121,6 +123,7 @@ const hasMainStylesheet = () =>
 appendElement("link", { rel: "stylesheet", href: themeCssPath });
 appendElement("link", { rel: "stylesheet", href: `${wiseBannerCssPath}?v=20260705-1` });
 appendElement("link", { rel: "stylesheet", href: `${priorityUpgradeCssPath}?v=20260715-1` });
+appendElement("link", { rel: "stylesheet", href: `${constructionUpgradeCssPath}?v=20260715-1` });
 
 if (!hasMainStylesheet()) {
   appendElement("link", { rel: "stylesheet", href: footerCssPath });
@@ -136,6 +139,7 @@ appendElement("script", { src: themeScriptPath, defer: "" });
 appendElement("script", { src: pwaScriptPath, defer: "" });
 appendElement("script", { src: `${wiseBannerScriptPath}?v=20260705-1`, defer: "" });
 appendElement("script", { src: `${priorityUpgradeScriptPath}?v=20260715-1`, defer: "" });
+appendElement("script", { src: `${constructionUpgradeScriptPath}?v=20260715-1`, defer: "" });
 
 [
   { name: "application-name", content: "KalkulátorBázis" },

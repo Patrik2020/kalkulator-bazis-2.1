@@ -1,0 +1,31 @@
+name: Validate construction calculator upgrades
+
+on:
+  pull_request:
+    paths:
+      - "js/construction-upgrades.js"
+      - "css/pages/construction-upgrades.css"
+      - "js/global-head.js"
+      - ".github/workflows/validate-construction-upgrades.yml"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: JavaScript syntax
+        run: |
+          node --check js/construction-upgrades.js
+          node --check js/global-head.js
+      - name: Required planners and assets
+        run: |
+          for slug in gipszkarton-kalkulator tapeta-kalkulator vakolat-kalkulator hoszigeteles-kalkulator terkovezes-kalkulator tetocserep-kalkulator fuga-kalkulator padlo-burkolat-kalkulator; do
+            grep -q "\"$slug\"" js/construction-upgrades.js
+            test -f "kalkulatorok/$slug.html"
+          done
+          grep -q "construction-upgrades.css" js/global-head.js
+          grep -q "construction-upgrades.js" js/global-head.js
