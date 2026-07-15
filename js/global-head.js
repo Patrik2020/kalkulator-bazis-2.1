@@ -23,15 +23,12 @@ const sectionIndex = ["kalkulatorok", "landing-pages"].reduce((found, section) =
   return found === -1 || (index !== -1 && index < found) ? index : found;
 }, -1);
 const isFilePath = (value) =>
-  /\.(?:html?|css|js|json|xml|txt|png|jpe?g|webp|svg|ico|webmanifest)$/i.test(
-    value
-  );
-const rootParts =
-  sectionIndex > -1
-    ? pathParts.slice(0, sectionIndex)
-    : pathParts.length === 1 && !isFilePath(pathParts[0])
-      ? pathParts
-      : pathParts.length > 1
+  /\.(?:html?|css|js|json|xml|txt|png|jpe?g|webp|svg|ico|webmanifest)$/i.test(value);
+const rootParts = sectionIndex > -1
+  ? pathParts.slice(0, sectionIndex)
+  : pathParts.length === 1 && !isFilePath(pathParts[0])
+    ? pathParts
+    : pathParts.length > 1
       ? pathParts.slice(0, 1)
       : [];
 const projectRoot = rootParts.length ? `/${rootParts.join("/")}` : "";
@@ -42,28 +39,23 @@ const cookieCssPath = `${projectRoot}/css/components/cookie.css`;
 const wiseBannerCssPath = `${projectRoot}/css/components/wise-banner-enhancer.css`;
 const priorityUpgradeCssPath = `${projectRoot}/css/pages/priority-upgrades.css`;
 const constructionUpgradeCssPath = `${projectRoot}/css/pages/construction-upgrades.css`;
+const everydayUpgradeCssPath = `${projectRoot}/css/pages/everyday-upgrades.css`;
 const themeScriptPath = `${projectRoot}/js/theme.js`;
 const pwaScriptPath = `${projectRoot}/js/pwa.js`;
 const wiseBannerScriptPath = `${projectRoot}/js/wise-banner-enhancer.js`;
 const priorityUpgradeScriptPath = `${projectRoot}/js/priority-upgrades.js`;
 const constructionUpgradeScriptPath = `${projectRoot}/js/construction-upgrades.js`;
+const everydayUpgradeScriptPath = `${projectRoot}/js/everyday-upgrades.js`;
 const calculatorCssPath = `${projectRoot}/css/pages/calculator-suite.css`;
 const calculatorScriptPath = `${projectRoot}/js/calculator-suite.js`;
 const normalizedPath = window.location.pathname.replace(/\/+$/, "");
-const isHomePage =
-  normalizedPath === projectRoot ||
-  normalizedPath === `${projectRoot}/index.html`;
+const isHomePage = normalizedPath === projectRoot || normalizedPath === `${projectRoot}/index.html`;
 const googleAnalyticsId = "G-4JBY0GDC4C";
 const googleAdsId = "AW-18204925339";
 
 window.KB_PROJECT_ROOT = projectRoot;
-
 window.dataLayer = window.dataLayer || [];
-window.gtag =
-  window.gtag ||
-  function () {
-    window.dataLayer.push(arguments);
-  };
+window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
 
 if (!window.KB_GOOGLE_TAG_INITIALIZED) {
   window.gtag("consent", "default", {
@@ -79,19 +71,12 @@ if (!window.KB_GOOGLE_TAG_INITIALIZED) {
 
 const appendElement = (tagName, attributes) => {
   const element = document.createElement(tagName);
-
-  Object.entries(attributes).forEach(([key, value]) => {
-    element.setAttribute(key, value);
-  });
-
+  Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
   document.head.appendChild(element);
 };
 
 if (!window.KB_GOOGLE_TAG_INITIALIZED) {
-  appendElement("script", {
-    async: "",
-    src: `https://www.googletagmanager.com/gtag/js?id=${googleAdsId}`,
-  });
+  appendElement("script", { async: "", src: `https://www.googletagmanager.com/gtag/js?id=${googleAdsId}` });
   window.gtag("js", new Date());
   window.gtag("config", googleAdsId);
   window.gtag("config", googleAnalyticsId, { anonymize_ip: true });
@@ -99,16 +84,11 @@ if (!window.KB_GOOGLE_TAG_INITIALIZED) {
 }
 window.analyticsLoaded = true;
 
-const hasMainStylesheet = () =>
-  [...document.querySelectorAll('link[rel~="stylesheet"][href]')].some((link) => {
-    const rawHref = link.getAttribute("href") || "";
-    const resolvedHref = link.href || "";
-
-    return (
-      /(^|\/)css\/style\.css(?:[?#].*)?$/i.test(rawHref) ||
-      /\/css\/style\.css(?:[?#].*)?$/i.test(resolvedHref)
-    );
-  });
+const hasMainStylesheet = () => [...document.querySelectorAll('link[rel~="stylesheet"][href]')].some((link) => {
+  const rawHref = link.getAttribute("href") || "";
+  const resolvedHref = link.href || "";
+  return /(^|\/)css\/style\.css(?:[?#].*)?$/i.test(rawHref) || /\/css\/style\.css(?:[?#].*)?$/i.test(resolvedHref);
+});
 
 [
   { rel: "icon", type: "image/png", href: `${basePath}/favicon-16x16.png`, sizes: "16x16" },
@@ -124,6 +104,7 @@ appendElement("link", { rel: "stylesheet", href: themeCssPath });
 appendElement("link", { rel: "stylesheet", href: `${wiseBannerCssPath}?v=20260705-1` });
 appendElement("link", { rel: "stylesheet", href: `${priorityUpgradeCssPath}?v=20260715-1` });
 appendElement("link", { rel: "stylesheet", href: `${constructionUpgradeCssPath}?v=20260715-1` });
+appendElement("link", { rel: "stylesheet", href: `${everydayUpgradeCssPath}?v=20260715-1` });
 
 if (!hasMainStylesheet()) {
   appendElement("link", { rel: "stylesheet", href: footerCssPath });
@@ -140,14 +121,12 @@ appendElement("script", { src: pwaScriptPath, defer: "" });
 appendElement("script", { src: `${wiseBannerScriptPath}?v=20260705-1`, defer: "" });
 appendElement("script", { src: `${priorityUpgradeScriptPath}?v=20260715-1`, defer: "" });
 appendElement("script", { src: `${constructionUpgradeScriptPath}?v=20260715-1`, defer: "" });
+appendElement("script", { src: `${everydayUpgradeScriptPath}?v=20260715-1`, defer: "" });
 
 [
   { name: "application-name", content: "KalkulátorBázis" },
   { name: "apple-mobile-web-app-title", content: "KalkulátorBázis" },
   { name: "referrer", content: "strict-origin-when-cross-origin" },
   { name: "theme-color", content: initialTheme === "dark" ? "#111827" : "#ffffff" },
-  {
-    "http-equiv": "Content-Security-Policy",
-    content: "object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests",
-  },
+  { "http-equiv": "Content-Security-Policy", content: "object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests" },
 ].forEach((attributes) => appendElement("meta", attributes));
