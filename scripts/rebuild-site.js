@@ -9,11 +9,13 @@ const scripts = [
   "normalize-form-labels.js",
   "generate-sitemap.js",
   "seo-inventory.js",
-  "audit-site.js"
+  "audit-site.js",
+  "adsense-quality-audit.js"
 ];
 
 scripts.forEach((script) => {
-  const result = spawnSync(process.execPath, [path.join(__dirname, script), ...(script === "audit-site.js" ? ["--write"] : [])], {
+  const shouldWrite = script === "audit-site.js" || script === "adsense-quality-audit.js";
+  const result = spawnSync(process.execPath, [path.join(__dirname, script), ...(shouldWrite ? ["--write"] : [])], {
     cwd: path.resolve(__dirname, ".."),
     encoding: "utf8",
     stdio: "inherit"
