@@ -1,0 +1,29 @@
+name: Validate auto and converter upgrades
+
+on:
+  pull_request:
+    paths:
+      - "js/auto-converter-upgrades.js"
+      - "js/global-head.js"
+      - "css/pages/auto-converter-upgrades.css"
+      - ".github/workflows/validate-auto-converter-upgrades.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: JavaScript syntax
+        run: |
+          node --check js/auto-converter-upgrades.js
+          node --check js/global-head.js
+      - name: Required handlers and files
+        run: |
+          for slug in eves-auto-koltseg-kalkulator auto-ertekvesztes-kalkulator kilometerdij-kalkulator co2-kibocsatas-kalkulator gumi-meret-kalkulator uzemanyag-koltseg-kalkulator adatmeret-atvalto-kalkulator deviza-atvalto-kalkulator energia-atvalto-kalkulator teljesitmeny-atvalto-kalkulator hosszusag-atvalto-kalkulator tomeg-atvalto-kalkulator terulet-atvalto-kalkulator terfogat-atvalto-kalkulator ido-atvalto-kalkulator sebesseg-atvalto-kalkulator; do
+            grep -q "$slug" js/auto-converter-upgrades.js
+          done
+          grep -q "auto-converter-upgrades.js" js/global-head.js
+          test -f css/pages/auto-converter-upgrades.css

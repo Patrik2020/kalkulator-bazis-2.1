@@ -9,9 +9,7 @@ try {
     initialTheme = "dark";
   }
 } catch (error) {
-  initialTheme = window.matchMedia?.("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
+  initialTheme = window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
 document.documentElement.dataset.theme = initialTheme;
@@ -22,15 +20,8 @@ const sectionIndex = ["kalkulatorok", "landing-pages"].reduce((found, section) =
   const index = pathParts.indexOf(section);
   return found === -1 || (index !== -1 && index < found) ? index : found;
 }, -1);
-const isFilePath = (value) =>
-  /\.(?:html?|css|js|json|xml|txt|png|jpe?g|webp|svg|ico|webmanifest)$/i.test(value);
-const rootParts = sectionIndex > -1
-  ? pathParts.slice(0, sectionIndex)
-  : pathParts.length === 1 && !isFilePath(pathParts[0])
-    ? pathParts
-    : pathParts.length > 1
-      ? pathParts.slice(0, 1)
-      : [];
+const isFilePath = (value) => /\.(?:html?|css|js|json|xml|txt|png|jpe?g|webp|svg|ico|webmanifest)$/i.test(value);
+const rootParts = sectionIndex > -1 ? pathParts.slice(0, sectionIndex) : pathParts.length === 1 && !isFilePath(pathParts[0]) ? pathParts : pathParts.length > 1 ? pathParts.slice(0, 1) : [];
 const projectRoot = rootParts.length ? `/${rootParts.join("/")}` : "";
 const basePath = `${projectRoot}/favicon`;
 const themeCssPath = `${projectRoot}/css/theme.css`;
@@ -40,12 +31,14 @@ const wiseBannerCssPath = `${projectRoot}/css/components/wise-banner-enhancer.cs
 const priorityUpgradeCssPath = `${projectRoot}/css/pages/priority-upgrades.css`;
 const constructionUpgradeCssPath = `${projectRoot}/css/pages/construction-upgrades.css`;
 const everydayUpgradeCssPath = `${projectRoot}/css/pages/everyday-upgrades.css`;
+const autoConverterUpgradeCssPath = `${projectRoot}/css/pages/auto-converter-upgrades.css`;
 const themeScriptPath = `${projectRoot}/js/theme.js`;
 const pwaScriptPath = `${projectRoot}/js/pwa.js`;
 const wiseBannerScriptPath = `${projectRoot}/js/wise-banner-enhancer.js`;
 const priorityUpgradeScriptPath = `${projectRoot}/js/priority-upgrades.js`;
 const constructionUpgradeScriptPath = `${projectRoot}/js/construction-upgrades.js`;
 const everydayUpgradeScriptPath = `${projectRoot}/js/everyday-upgrades.js`;
+const autoConverterUpgradeScriptPath = `${projectRoot}/js/auto-converter-upgrades.js`;
 const calculatorCssPath = `${projectRoot}/css/pages/calculator-suite.css`;
 const calculatorScriptPath = `${projectRoot}/js/calculator-suite.js`;
 const normalizedPath = window.location.pathname.replace(/\/+$/, "");
@@ -58,14 +51,7 @@ window.dataLayer = window.dataLayer || [];
 window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
 
 if (!window.KB_GOOGLE_TAG_INITIALIZED) {
-  window.gtag("consent", "default", {
-    analytics_storage: "denied",
-    ad_storage: "denied",
-    ad_user_data: "denied",
-    ad_personalization: "denied",
-    functionality_storage: "granted",
-    security_storage: "granted",
-  });
+  window.gtag("consent", "default", { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", functionality_storage: "granted", security_storage: "granted" });
   window.gtag("set", "ads_data_redaction", true);
 }
 
@@ -105,6 +91,7 @@ appendElement("link", { rel: "stylesheet", href: `${wiseBannerCssPath}?v=2026070
 appendElement("link", { rel: "stylesheet", href: `${priorityUpgradeCssPath}?v=20260715-1` });
 appendElement("link", { rel: "stylesheet", href: `${constructionUpgradeCssPath}?v=20260715-1` });
 appendElement("link", { rel: "stylesheet", href: `${everydayUpgradeCssPath}?v=20260715-1` });
+appendElement("link", { rel: "stylesheet", href: `${autoConverterUpgradeCssPath}?v=20260715-1` });
 
 if (!hasMainStylesheet()) {
   appendElement("link", { rel: "stylesheet", href: footerCssPath });
@@ -122,6 +109,7 @@ appendElement("script", { src: `${wiseBannerScriptPath}?v=20260705-1`, defer: ""
 appendElement("script", { src: `${priorityUpgradeScriptPath}?v=20260715-1`, defer: "" });
 appendElement("script", { src: `${constructionUpgradeScriptPath}?v=20260715-1`, defer: "" });
 appendElement("script", { src: `${everydayUpgradeScriptPath}?v=20260715-1`, defer: "" });
+appendElement("script", { src: `${autoConverterUpgradeScriptPath}?v=20260715-1`, defer: "" });
 
 [
   { name: "application-name", content: "KalkulátorBázis" },
