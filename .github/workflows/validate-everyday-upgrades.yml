@@ -1,0 +1,29 @@
+name: Validate everyday calculator upgrades
+
+on:
+  pull_request:
+    paths:
+      - "js/everyday-upgrades.js"
+      - "js/global-head.js"
+      - "css/pages/everyday-upgrades.css"
+      - ".github/workflows/validate-everyday-upgrades.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: JavaScript syntax
+        run: |
+          node --check js/everyday-upgrades.js
+          node --check js/global-head.js
+      - name: Required calculator handlers
+        run: |
+          for slug in atlag-kalkulator munkaido-kalkulator oraber-kalkulator egysegar-kalkulator rezsi-megosztas-kalkulator ar-kedvezmeny-kalkulator borravalo-kalkulator eletkor-kalkulator datum-kulonbseg-kalkulator; do
+            grep -q "$slug" js/everyday-upgrades.js
+          done
+          grep -q "everyday-upgrades.js" js/global-head.js
+          test -f css/pages/everyday-upgrades.css
