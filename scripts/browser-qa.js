@@ -125,7 +125,7 @@ const createClient = async (webSocketUrl) => {
 
 const run = async () => {
   await waitForDebugger();
-  const targetResponse = await fetch(`http://127.0.0.1:${port}/json/new?${encodeURIComponent(`${origin}/index.html`)}`, {
+  const targetResponse = await fetch(`http://127.0.0.1:${port}/json/new?${encodeURIComponent(`${origin}/`)}`, {
     method: "PUT"
   });
   const target = await targetResponse.json();
@@ -211,7 +211,7 @@ const run = async () => {
   })()`;
 
   const pages = [
-    "/index.html",
+    "/",
     "/penzugyi.html",
     "/epitoipari.html",
     "/egeszseg.html",
@@ -359,9 +359,9 @@ const run = async () => {
   const consentMatrix = [];
   for (const testCase of consentCases) {
     await setViewport(390, 844);
-    await navigate("/index.html");
+    await navigate("/");
     await evaluate(`localStorage.removeItem('kbCookieConsent'); localStorage.removeItem('cookieConsent'); ${testCase.setup}`);
-    await navigate("/index.html");
+    await navigate("/");
     await sleep(250);
     const state = await collectConsentState();
     consentMatrix.push({ name: testCase.name, expected: testCase.expected, ...state });
@@ -429,7 +429,7 @@ const run = async () => {
 
   for (const pagePath of categoryAdsConsentPages) {
     await setViewport(390, 844);
-    await navigate("/index.html");
+    await navigate("/");
     await evaluate(
       `localStorage.removeItem('cookieConsent'); localStorage.setItem('kbCookieConsent', ${JSON.stringify(
         consentRecord({ analytics: false, ads: true })
@@ -471,7 +471,7 @@ const run = async () => {
 
   await setViewport(390, 844);
   await evaluate(`localStorage.removeItem('kbCookieConsent'); localStorage.removeItem('cookieConsent');`);
-  await navigate("/index.html");
+  await navigate("/");
   const cookieScenarios = await evaluate(`(async () => {
     const visible = () => {
       const modal = document.getElementById('cookie-banner');
@@ -550,7 +550,7 @@ const run = async () => {
       const layout = await evaluate(layoutExpression);
       layouts.push({ page: pagePath, width, ...layout });
 
-      if (pagePath === "/index.html") {
+      if (pagePath === "/") {
         const screenshot = await client.send("Page.captureScreenshot", { format: "png", fromSurface: true });
         fs.writeFileSync(path.join(screenshotDirectory, `index-${width}.png`), Buffer.from(screenshot.data, "base64"));
       }
@@ -575,7 +575,7 @@ const run = async () => {
   }
 
   await setViewport(390, 844);
-  await navigate("/index.html");
+  await navigate("/");
   const search = await evaluate(`(async () => {
     const input = document.getElementById('calculatorSearch');
     const run = async (query) => {
@@ -629,9 +629,9 @@ const run = async () => {
     return { menuOpened, menuClosed, openFaqCount, cookieHiddenInitially, cookieVisibleAfterOpen, settingsVisible, cookieHiddenAfterEscape, cookieStored };
   })()`);
 
-  await navigate("/index.html");
+  await navigate("/");
   await evaluate(`localStorage.setItem('kalkulatorbazis-theme', 'light')`);
-  await navigate("/index.html");
+  await navigate("/");
   const theme = await evaluate(`(async () => {
     const button = document.querySelector('.theme-toggle');
     const initial = document.documentElement.dataset.theme;
@@ -645,7 +645,7 @@ const run = async () => {
     const label = button?.getAttribute('aria-label') || '';
     return { initial, focusVisible, selected, stored, themeColor, label };
   })()`);
-  await navigate("/index.html");
+  await navigate("/");
   theme.persistedAfterNavigation = await evaluate(`document.documentElement.dataset.theme`);
   theme.toggleCount = await evaluate(`document.querySelectorAll('.theme-toggle').length`);
   theme.trustedSite = await evaluate(`(() => {
@@ -699,7 +699,7 @@ const run = async () => {
     media: "screen",
     features: [{ name: "prefers-color-scheme", value: "dark" }]
   });
-  await navigate("/index.html");
+  await navigate("/");
   theme.systemDark = await evaluate(`document.documentElement.dataset.theme`);
   await client.send("Emulation.setEmulatedMedia", { media: "screen", features: [] });
   await evaluate(`localStorage.setItem('kalkulatorbazis-theme', 'light')`);

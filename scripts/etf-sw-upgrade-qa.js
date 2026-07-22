@@ -134,7 +134,7 @@ const send = (response, body, type = "text/plain; charset=utf-8") => {
 const server = http.createServer((request, response) => {
   const url = new URL(request.url, origin);
   let pathname = decodeURIComponent(url.pathname);
-  if (pathname === "/") pathname = "/index.html";
+  if (pathname === "/") pathname = "/";
 
   if (phase === "old") {
     if (pathname === "/kalkulatorok/etf-kalkulator.html") return send(response, oldHtml, contentTypes[".html"]);

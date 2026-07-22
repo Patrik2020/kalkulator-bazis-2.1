@@ -42,7 +42,10 @@ const autoConverterUpgradeScriptPath = `${projectRoot}/js/auto-converter-upgrade
 const calculatorCssPath = `${projectRoot}/css/pages/calculator-suite.css`;
 const calculatorScriptPath = `${projectRoot}/js/calculator-suite.js`;
 const normalizedPath = window.location.pathname.replace(/\/+$/, "");
-const isHomePage = normalizedPath === projectRoot || normalizedPath === `${projectRoot}/index.html`;
+const isHomePage =
+  normalizedPath === projectRoot ||
+  normalizedPath === `${projectRoot}/` ||
+  normalizedPath === `${projectRoot}/index.html`;
 const googleAnalyticsId = "G-4JBY0GDC4C";
 const googleAdsId = "AW-18204925339";
 

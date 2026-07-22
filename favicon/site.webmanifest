@@ -3,7 +3,7 @@
   "short_name": "KBázis",
   "description": "Ingyenes online kalkulátorok pénzügyekhez, építkezéshez, egészséghez, autózáshoz és mindennapi számításokhoz.",
   "id": "../",
-  "start_url": "../index.html",
+  "start_url": "../",
   "scope": "../",
   "icons": [
     {

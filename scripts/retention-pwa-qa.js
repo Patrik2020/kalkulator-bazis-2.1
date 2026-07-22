@@ -207,7 +207,7 @@ const calculatorSamples = [
 const run = async () => {
   await waitForDebugger();
   const targetResponse = await fetch(
-    `http://127.0.0.1:${port}/json/new?${encodeURIComponent(`${origin}/index.html`)}`,
+    `http://127.0.0.1:${port}/json/new?${encodeURIComponent(`${origin}/`)}`,
     { method: "PUT" }
   );
   const target = await targetResponse.json();
@@ -306,7 +306,7 @@ const run = async () => {
   );
 
   await setViewport(390, 844);
-  await navigate("/index.html");
+  await navigate("/");
   await evaluate(`localStorage.clear(); caches.keys().then((keys)=>Promise.all(keys.map((key)=>caches.delete(key))))`);
   await sleep(300);
 
@@ -523,7 +523,7 @@ const run = async () => {
     return { visible: !input.closest('[hidden]'), value: input.value };
   })()`);
 
-  await navigate("/index.html");
+  await navigate("/");
   await sleep(1200);
   const pwaRuntime = await evaluate(`(async () => {
     const registration = await navigator.serviceWorker?.ready?.catch(() => null);
