@@ -583,7 +583,7 @@
       { label: "CDC – Healthy Weight and Growth", href: "https://www.cdc.gov/healthy-weight-growth/" }
     ],
     whr: [{ label: "WHO – Waist circumference and waist–hip ratio report", href: "https://www.who.int/publications/i/item/9789241501491" }],
-    sleep: [{ label: "CDC – How Much Sleep Do I Need?", href: "https://www.cdc.gov/sleep/about/index.html" }, { label: "American Academy of Sleep Medicine – sleep duration recommendations", href: "https://aasm.org/resources/pdf/sleepdurationrecommendations.pdf" }],
+    sleep: [{ label: "CDC – How Much Sleep Do I Need?", href: "https://www.cdc.gov/sleep/about/" }, { label: "American Academy of Sleep Medicine – sleep duration recommendations", href: "https://aasm.org/resources/pdf/sleepdurationrecommendations.pdf" }],
     bmi: [{ label: "WHO – BMI classification", href: "https://www.who.int/data/gho/data/themes/topics/topic-details/GHO/body-mass-index" }, { label: "CDC – About Adult BMI", href: "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html" }],
     nutrition: [{ label: "Mifflin–St Jeor equation – original publication", href: "https://pubmed.ncbi.nlm.nih.gov/2305711/" }, { label: "EFSA – Dietary Reference Values", href: "https://www.efsa.europa.eu/en/topics/topic/dietary-reference-values" }, { label: "WHO – Healthy diet", href: "https://www.who.int/news-room/fact-sheets/detail/healthy-diet" }]
   };

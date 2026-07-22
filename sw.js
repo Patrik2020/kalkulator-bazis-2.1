@@ -3,7 +3,7 @@ const KB_CACHE_PREFIX = "kalkulatorbazis-static";
 const KB_STATIC_CACHE = `${KB_CACHE_PREFIX}-${KB_SW_VERSION}`;
 const KB_CORE_ASSETS = [
   "./",
-  "./index.html",
+  "./",
   "./manifest.webmanifest",
   "./css/style.css",
   "./css/theme.css",

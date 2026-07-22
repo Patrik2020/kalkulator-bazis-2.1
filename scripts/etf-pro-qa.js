@@ -105,7 +105,7 @@ const consentRecord = (analytics, ads = false) =>
 
 const run = async () => {
   await waitForDebugger();
-  const targetResponse = await fetch(`http://127.0.0.1:${port}/json/new?${encodeURIComponent(`${origin}/index.html`)}`, {
+  const targetResponse = await fetch(`http://127.0.0.1:${port}/json/new?${encodeURIComponent(`${origin}/`)}`, {
     method: "PUT",
   });
   const target = await targetResponse.json();
@@ -174,7 +174,7 @@ const run = async () => {
   };
 
   const resetConsent = async (analytics) => {
-    await navigate("/index.html");
+    await navigate("/");
     await evaluate(`localStorage.removeItem('cookieConsent'); localStorage.setItem('kbCookieConsent', ${JSON.stringify(consentRecord(analytics))});`);
   };
 
