@@ -101,17 +101,24 @@
           <p id="result">Árfolyam betöltése...</p>
         </div>
 
+        <div class="exchange-retry">
+          <button class="button button-secondary" id="retryRates" type="button" hidden>
+            Árfolyamok újratöltése
+          </button>
+        </div>
+
         <div class="info-box">
           <strong>Figyelem:</strong>
-          Az árfolyamok tájékoztató jellegűek és külső árfolyam-szolgáltatótól
-          származnak. A kalkulátor nem minősül pénzügyi vagy befektetési
-          tanácsadásnak.
+          A naponta frissülő referenciaárfolyamok tájékoztató jellegűek és külső
+          árfolyam-szolgáltatótól származnak. A kalkulátor nem minősül pénzügyi
+          vagy befektetési tanácsadásnak.
         </div>
 
         <div class="exchange-update">
           <small>
-            Árfolyamok utolsó frissítése:
-            <span id="lastUpdate">Betöltés...</span>
+            Árfolyam dátuma: <span id="lastUpdate">Betöltés...</span>
+            <span aria-hidden="true"> · </span>
+            Forrás: <span id="rateSource">Betöltés...</span>
           </small>
         </div>
       </section>

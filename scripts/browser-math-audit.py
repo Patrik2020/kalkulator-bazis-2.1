@@ -12,6 +12,15 @@ async def route_handler(route: Route, request: Request):
     url=request.url
     if url.startswith('http://127.0.0.1:8765/'):
         await route.continue_(); return
+    if url.startswith('https://api.frankfurter.dev/v2/rates'):
+        rates={
+            'HUF':400.0,'USD':1.1,'GBP':0.85,'CHF':0.95,'PLN':4.3,'CZK':25.0,'RON':5.0,
+            'SEK':11.0,'NOK':11.5,'DKK':7.46,'JPY':170.0,'CAD':1.5,'AUD':1.65,'CNY':8.0
+        }
+        await route.fulfill(status=200, content_type='application/json', body=json.dumps([
+            {'date':'2026-07-01','base':'EUR','quote':code,'rate':rate}
+            for code,rate in rates.items()
+        ])); return
     if url.startswith('https://api.frankfurter.dev/v1/latest'):
         await route.fulfill(status=200, content_type='application/json', body=json.dumps({
             'amount':1.0,'base':'EUR','date':'2026-07-01','rates':{
