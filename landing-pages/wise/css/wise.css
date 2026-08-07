@@ -883,6 +883,12 @@ footer {
     font-size: 2rem;
   }
 
+  h1,
+  h2,
+  h3 {
+    overflow-wrap: anywhere;
+  }
+
   .btn {
     padding-left: 14px;
     padding-right: 14px;

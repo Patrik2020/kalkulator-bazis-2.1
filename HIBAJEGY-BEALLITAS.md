@@ -1,42 +1,43 @@
-# Kalkulátor Bázis – 1. lépcső beállítása
+# Segítség- és hibabejelentő beállítása
 
-A csomag tartalmazza a lebegő segítség/hibabejelentő widgetet és a Cloudflare Worker hátteret.
+A webhely alapértelmezés szerint a meglévő Formspree-végpontot használja. A repóban található Cloudflare Worker választható alternatíva: a bejelentést Resenden keresztül e-mailben továbbítja, és nem készít GitHub-hibajegyet.
 
-## 1. GitHub token
+## Jelenlegi Formspree-beállítás
 
-A GitHubon készíts Fine-grained personal access tokent kizárólag a `Patrik2020/kalkulator-bazis-2.1` repóhoz. A szükséges jogosultság: **Issues: Read and write**.
+Kódmódosítás nélkül működik. Az üzemeltető feladata:
 
-## 2. Resend e-mail
+1. Ellenőrizni, hogy a `https://formspree.io/f/xgojpond` végpont a saját Formspree-fiókhoz tartozik.
+2. Bekapcsolni a fiókhoz elérhető spamvédelmet és hozzáférés-védelmet.
+3. A bejelentéseket és az e-mailes másolatokat az adatvédelmi tájékoztató szerinti időn belül törölni.
 
-Hozz létre Resend-fiókot, add hozzá és hitelesítsd a `kalkulatorbazis.hu` domaint. A feladó lehet például: `Kalkulátor Bázis <hibajegy@kalkulatorbazis.hu>`. A címzett: `kalkulatorbazis@gmail.com`.
+## Átállás Cloudflare Workerre
 
-## 3. Cloudflare Worker
+1. Hozz létre Resend-fiókot, és hitelesítsd a `kalkulatorbazis.hu` feladói domaint.
+2. A `worker/` könyvtárban állítsd be a Worker secretet:
 
-1. Cloudflare Dashboard → Workers & Pages → Create Worker.
-2. Másold be a `worker/worker.js` tartalmát.
-3. A Worker Settings → Variables and Secrets alatt add meg:
-   - `GITHUB_TOKEN` – titkos változó
-   - `RESEND_API_KEY` – titkos változó
-   - `GITHUB_REPO` = `Patrik2020/kalkulator-bazis-2.1`
-   - `GITHUB_LABEL` = `felhasználói-hibajegy`
-   - `EMAIL_TO` = `kalkulatorbazis@gmail.com`
-   - `EMAIL_FROM` = `Kalkulátor Bázis <hibajegy@kalkulatorbazis.hu>`
-4. Deploy.
+   ```bash
+   npx wrangler secret put RESEND_API_KEY
+   ```
 
-## 4. Worker URL beírása
+3. Szükség esetén módosítsd a `worker/wrangler.toml` `TO_EMAIL` és `FROM_EMAIL` értékeit.
+4. Telepítsd a Workert:
 
-A `js/help-widget.js` elején cseréld le ezt:
+   ```bash
+   cd worker
+   npx wrangler deploy
+   ```
 
-```js
-const API_URL = "https://YOUR-WORKER-SUBDOMAIN.workers.dev/report";
-```
+5. A `js/global-head.js` fájl elején add meg a végpontot, így minden oldalon elérhető lesz:
 
-a tényleges Worker URL-re.
+   ```js
+   window.KB_HELP_API_URL = "https://SAJAT-WORKER.workers.dev/report";
+   ```
 
-## 5. Feltöltés
-
-Commitold a teljes módosított projektet. A widget minden HTML-oldalon be van kötve.
+6. Küldj tesztbejelentést, ellenőrizd az e-mailt, majd töröld a tesztadatokat.
+7. Frissítsd az adatvédelmi tájékoztatót: Formspree helyett Cloudflare-t és Resendet kell megnevezni.
 
 ## Biztonság
 
-A GitHub- és Resend-kulcs soha ne kerüljön a GitHub repóba vagy a böngészőben futó JavaScriptbe. Csak Cloudflare secretként tárold.
+- API-kulcs soha ne kerüljön a repóba vagy böngészőben futó JavaScriptbe.
+- A Worker csak a két éles eredetről fogad kérést, korlátozza a kérésméretet, ellenőrzi a hozzájárulást, és HTML-kódolást alkalmaz az e-mail törzsén.
+- A részletes külső élesítési feladatokat a [`docs/elesitesi-ellenorzolista.md`](docs/elesitesi-ellenorzolista.md) tartalmazza.

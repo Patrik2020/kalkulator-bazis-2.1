@@ -31,10 +31,11 @@ const pages = files.map((file) => {
   const calculatorCards = (html.match(/class=["'][^"']*\bcard-calculator\b/g) || []).length;
   const resultBlocks = (html.match(/class=["'][^"']*\bresult-box\b/g) || []).length;
   const hasResultId = /id=["'](?:simpleCalcResults|result[^"']*)["']/i.test(html);
+  const hasScientificCalculator = /\bdata-calculator\b/i.test(html) && /\bdata-calc-display\b/i.test(html);
 
   if (!hasUtils) issues.push(`${file}: hiányzik a közös utils.js betöltés.`);
-  if (!calculatorCards) issues.push(`${file}: nincs .card-calculator konténer.`);
-  if (!resultBlocks && !hasResultId) issues.push(`${file}: nincs felismerhető eredménykonténer.`);
+  if (!calculatorCards && !hasScientificCalculator) issues.push(`${file}: nincs .card-calculator konténer.`);
+  if (!resultBlocks && !hasResultId && !hasScientificCalculator) issues.push(`${file}: nincs felismerhető eredménykonténer.`);
   if (ctaCount > 0) issues.push(`${file}: statikus retention CTA duplikáció kockázat (${ctaCount}).`);
 
   return {
@@ -43,6 +44,7 @@ const pages = files.map((file) => {
     calculatorCards,
     resultBlocks,
     hasResultId,
+    hasScientificCalculator,
     staticRetentionCta: ctaCount,
   };
 });
@@ -53,5 +55,9 @@ const result = {
   pages,
 };
 
-console.log(JSON.stringify(result, null, 2));
+const output = process.argv.includes("--summary")
+  ? { calculators: result.calculators, issues: result.issues }
+  : result;
+
+console.log(JSON.stringify(output, null, 2));
 if (issues.length) process.exitCode = 1;

@@ -14,8 +14,9 @@ const walk = (directory) =>
   });
 
 const relative = (file) => path.relative(root, file).replace(/\\/g, "/");
+const ignoredPrefixes = [".git/", ".cache/", "docs/", "node_modules/"];
 const allFiles = walk(root).filter(
-  (file) => !relative(file).startsWith(".git/") && !relative(file).startsWith("docs/")
+  (file) => !ignoredPrefixes.some((prefix) => relative(file).startsWith(prefix))
 );
 const htmlFiles = allFiles.filter((file) => {
   const name = relative(file);
@@ -23,6 +24,10 @@ const htmlFiles = allFiles.filter((file) => {
     name.endsWith(".html") &&
     !name.startsWith("components/")
   );
+});
+const componentFiles = allFiles.filter((file) => {
+  const name = relative(file);
+  return name.endsWith(".html") && name.startsWith("components/");
 });
 
 const stripHtml = (value) =>
@@ -365,6 +370,18 @@ for (const record of records) {
   }
 }
 
+const componentBrokenLinks = componentFiles.flatMap((file) => {
+  const html = fs.readFileSync(file, "utf8");
+  const refs = [
+    ...matches(html, /<a\b[^>]*\bhref\s*=\s*["']([^"']+)["'][^>]*>/gi).map((match) => match[1]),
+    ...matches(html, /<(?:img|link|script)\b[^>]*(?:href|src)\s*=\s*["']([^"']+)["'][^>]*>/gi).map((match) => match[1]),
+  ];
+  const broken = [...new Set(refs
+    .map((href) => resolveLocalReference({ file }, href))
+    .filter(Boolean))];
+  return broken.length ? [{ name: relative(file), broken }] : [];
+});
+
 const cssFiles = allFiles.filter((file) => file.endsWith(".css"));
 const duplicateCssBlocks = [];
 const declarationGroups = new Map();
@@ -393,7 +410,7 @@ const largeResources = allFiles
   .filter((item) => item.bytes > 500 * 1024)
   .sort((a, b) => b.bytes - a.bytes);
 
-const totalIssues = [...issues.values()].reduce((sum, list) => sum + list.length, 0);
+const totalIssues = [...issues.values()].reduce((sum, list) => sum + list.length, 0) + componentBrokenLinks.length;
 const genericPages = records.filter((record) => record.html.includes("data-generated-seo"));
 const staticAdsensePages = records.filter((record) =>
   record.scripts.some((script) => script.src === adsenseSrc)
@@ -401,6 +418,7 @@ const staticAdsensePages = records.filter((record) =>
 const brokenLinkPages = [...issues].filter(([, list]) =>
   list.some((issue) => issue.section === "Relatív útvonalak")
 );
+const brokenLinkFileCount = brokenLinkPages.length + componentBrokenLinks.length;
 
 const lines = [
   "# Kalkulátor Bázis – projekt-audit",
@@ -409,7 +427,7 @@ const lines = [
   "",
   "## Hatókör és módszer",
   "",
-  `- ${records.length} nyilvános HTML-oldal, ${cssFiles.length} CSS-fájl és ${allFiles.filter((file) => file.endsWith(".js")).length} JavaScript-fájl statikus vizsgálata.`,
+  `- ${records.length} nyilvános HTML-oldal, ${componentFiles.length} megosztott HTML-komponens, ${cssFiles.length} CSS-fájl és ${allFiles.filter((file) => file.endsWith(".js")).length} JavaScript-fájl statikus vizsgálata.`,
   "- Ellenőrzés: metaadatok, címsorok, linkek, képek, ID-k, scriptbetöltések, hozzájáruláshoz kötött AdSense, szó szerinti tartalmi ismétlések, sablonos SEO/GYIK és nagy erőforrások.",
   "- A statikus audit a böngészős működési és vizuális tesztet nem helyettesíti; az a módosítások után külön következik.",
   "",
@@ -418,16 +436,26 @@ const lines = [
   `- Összes feltárt fájlszintű tétel: **${totalIssues}**.`,
   `- Generált/sablonos SEO-blokkot tartalmazó oldalak: **${genericPages.length}**.`,
   `- Közvetlen, hozzájárulás előtti AdSense betöltőkódot tartalmazó oldalak: **${staticAdsensePages.length}**.`,
-  `- Hibás helyi hivatkozással érintett oldalak: **${brokenLinkPages.length}**.`,
+  `- Hibás helyi hivatkozással érintett oldalak vagy komponensek: **${brokenLinkFileCount}**.`,
   `- Egymással megegyező CSS-deklarációs csoportok: **${duplicateCssBlocks.length}**; ezek közül csak komponensazonosság esetén javasolt összevonás.`,
   `- 500 KB-nál nagyobb helyi erőforrások: **${largeResources.length}**.`,
   genericPages.length || staticAdsensePages.length
     ? "- Nyitott prioritás: a fennmaradó generikus tartalom és hozzájárulás előtti AdSense-betöltések rendezése."
     : "- A korábbi generikus SEO/GYIK és hozzájárulás előtti AdSense-betöltési eltérések a jelenlegi állapotban nem mutathatók ki.",
   "",
-  "## Fájlonkénti audit",
-  "",
 ];
+
+lines.push("## Megosztott komponensek", "");
+if (!componentBrokenLinks.length) {
+  lines.push("- A fejléc, lábléc és megtartási CTA helyi hivatkozásai érvényesek.", "");
+} else {
+  componentBrokenLinks.forEach(({ name, broken }) => {
+    lines.push(`- \`${name}\`: nem található helyi hivatkozás: ${broken.join(", ")}.`);
+  });
+  lines.push("");
+}
+
+lines.push("## Fájlonkénti audit", "");
 
 for (const record of records.sort((a, b) => a.name.localeCompare(b.name, "hu"))) {
   const list = issues.get(record.name);
@@ -465,16 +493,14 @@ if (!largeResources.length) {
 }
 
 lines.push(
-  "## Változtatási terv",
+  "## Fenntartási javaslatok",
   "",
-  "1. A generált SEO-blokkokat tartalmi klaszterenként, kalkulátorspecifikus szövegre és eltérő szerkezetre cseréljük; a működő kalkulátorformokat és számítási JavaScriptet érintetlenül hagyjuk.",
-  "2. A kiemelt pénzügyi és építőipari oldalakon az egymást átfedő szakmai blokkokat összevonjuk, az ismétlődő GYIK-et eltávolítjuk.",
-  "3. A hat kategóriaoldal saját döntési helyzetet, kezdőpontot és válogatási logikát kap.",
-  "4. A főoldalt a hero + kereső, gyors kategóriaválasztó, népszerű kalkulátorok, pénzügyi alapozó, bizalmi blokk, rövid bemutatkozás és akadálymentes GYIK sorrendre rendezzük.",
-  "5. A pénzügyi tudatosság landing fejlécében a meglévő `favicon/kb-logo-mark.png` logót használjuk.",
-  "6. Az AdSense globális betöltését nem statikus head-kóddal, hanem hirdetési hozzájárulás után, a közös `site-ui.js` logikával kezeljük; a publisher ID változatlan marad.",
-  "7. Javítjuk a bizonyítható HTML-, meta-, link-, focus-, label- és accordion-problémákat; a számítási logikát csak dokumentált hiba esetén érintjük.",
-  "8. A módosítások után újrafuttatjuk ezt az auditot, a link- és szintaxisellenőrzést, majd több szélességen böngészős ellenőrzést végzünk.",
+  "1. Minden kiadás előtt futtasd az `npm run quality` és `npm run sitemap` parancsokat, majd ellenőrizd, hogy a sitemap nem változik-e váratlanul.",
+  "2. A jogszabályhoz, adókulcshoz, árfolyamhoz vagy szakmai ajánláshoz kötött kalkulátorokat dokumentált forrás és dátum alapján vizsgáld felül.",
+  "3. Az AdSense éles használatához tarts fenn Google által tanúsított, IAB TCF-kompatibilis CMP-t; a saját sütipanel csak a kiegészítő webhelybeállításokat kezelje.",
+  "4. A Cloudflare-en alkalmazott válaszfejléceket és a segítségkérések megőrzési folyamatát minden nagyobb infrastruktúra-változás után ellenőrizd.",
+  "5. Jelentősebb UI-módosítás után ismételd meg a böngészős QA-t legalább 320, 390, 768, 1050 és 1440 képpontos szélességen.",
+  "6. Az azonos CSS-deklarációkat csak akkor vond össze, ha valóban ugyanazt a komponenst és állapotot írják le; a puszta szöveges egyezés önmagában nem indok.",
   ""
 );
 

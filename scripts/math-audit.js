@@ -115,17 +115,19 @@ pass("regression-devine-min-height", () => assert.throws(() => run("idealis-test
 pass("regression-travel-minute-normalization", () => assert.equal(run("utazasi-ido-kalkulator", { distance: 119.9, speed: 120, breaks: 0 })["Várható menetidő"], "1 óra 0 perc"));
 
 const failed = results.filter((item) => item.status === "FAIL");
-fs.writeFileSync(
-  path.join(__dirname, "math-audit-results.json"),
-  JSON.stringify({
-    generatedAt: new Date().toISOString(),
-    passed: results.length - failed.length,
-    failed: failed.length,
-    total: results.length,
-    results,
-  }, null, 2),
-  "utf8"
-);
+if (process.argv.includes("--write")) {
+  fs.writeFileSync(
+    path.join(__dirname, "math-audit-results.json"),
+    JSON.stringify({
+      generatedAt: new Date().toISOString(),
+      passed: results.length - failed.length,
+      failed: failed.length,
+      total: results.length,
+      results,
+    }, null, 2),
+    "utf8"
+  );
+}
 console.log(`Simple calculator tests: ${results.length - failed.length}/${results.length} passed`);
 for (const item of failed) console.error(`FAIL ${item.id}: ${item.error}`);
 if (failed.length) process.exit(1);

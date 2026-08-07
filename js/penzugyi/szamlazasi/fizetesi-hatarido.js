@@ -9,13 +9,23 @@ function parseLocalDate(value) {
   return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day ? date : null;
 }
 function formatDate(date) { return date.toLocaleDateString("hu-HU"); }
-function isWeekend(date) { return date.getDay() === 0 || date.getDay() === 6; }
+const nonWorkingDays2026 = new Set(["2026-01-01", "2026-01-02", "2026-04-03", "2026-04-06", "2026-05-01", "2026-05-25", "2026-08-20", "2026-08-21", "2026-10-23", "2026-11-01", "2026-12-24", "2026-12-25", "2026-12-26"]);
+const workingSaturdays2026 = new Set(["2026-01-10", "2026-08-08", "2026-12-12"]);
+function localIso(date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+}
+function isWorkday(date) {
+  const dateKey = localIso(date);
+  if (workingSaturdays2026.has(dateKey)) return true;
+  if (nonWorkingDays2026.has(dateKey)) return false;
+  return date.getDay() !== 0 && date.getDay() !== 6;
+}
 function addWorkdays(date, count) {
   const output = new Date(date);
   let added = 0;
   while (added < count) {
     output.setDate(output.getDate() + 1);
-    if (!isWeekend(output)) added += 1;
+    if (isWorkday(output)) added += 1;
   }
   return output;
 }

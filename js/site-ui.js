@@ -479,13 +479,13 @@
     const popularGrid = document.querySelector("[data-render='popular-calculators']");
     const basePath = getBasePath();
 
-    if (categoryGrid) {
+    if (categoryGrid && !categoryGrid.querySelector(":scope > a")) {
       categoryGrid.innerHTML = data.categories
         .map((category) => categoryCard(category, basePath))
         .join("");
     }
 
-    if (popularGrid) {
+    if (popularGrid && !popularGrid.querySelector(":scope > a")) {
       popularGrid.innerHTML = data.calculators
         .filter((calculator) => calculator.popular)
         .map((calculator) => calculatorCard(calculator, basePath))
@@ -507,14 +507,14 @@
 
     if (!category) return;
 
-    if (intro) {
+    if (intro && !intro.querySelector("h1")) {
       intro.innerHTML = `
         <h1>${escapeHtml(category.title)}</h1>
         <p>${escapeHtml(category.description)}</p>
       `;
     }
 
-    if (grid) {
+    if (grid && !grid.querySelector(":scope > .calculator-card")) {
       grid.innerHTML = data.calculators
         .filter((calculator) => calculator.category === categoryId)
         .map((calculator) => calculatorCard(calculator, basePath, 2))
@@ -533,6 +533,7 @@
   const renderBreadcrumb = () => {
     const main = document.querySelector("main");
     if (!main || main.querySelector(".breadcrumb")) return;
+    const fallbackBreadcrumb = main.querySelector(":scope > .kb-breadcrumb");
 
     const currentPath = window.location.pathname.replace(/\\/g, "/");
     const calculator = data.calculators.find((item) => currentPath.endsWith(item.url));
@@ -558,10 +559,11 @@
     }
 
     const nav = document.createElement("nav");
-    nav.className = "breadcrumb";
+    nav.className = calculator ? "breadcrumb kb-breadcrumb" : "breadcrumb";
     nav.setAttribute("aria-label", "Morzsamenü");
     nav.innerHTML = `<ol>${items.map((item) => `<li>${item}</li>`).join("")}</ol>`;
-    main.prepend(nav);
+    if (fallbackBreadcrumb) fallbackBreadcrumb.replaceWith(nav);
+    else main.prepend(nav);
   };
 
   const renderRelatedCalculators = () => {
@@ -863,7 +865,7 @@
             "@id": `${siteOrigin}/#organization`,
             name: "Kalkulátor Bázis",
             url: `${siteOrigin}/`,
-            logo: `${siteOrigin}/favicon/kb-logo-mark.png`,
+            logo: `${siteOrigin}/favicon/web-app-manifest-512x512.png`,
           },
           {
             "@type": "WebSite",
@@ -928,6 +930,14 @@
     renderStructuredData();
     bindTrackingEvents();
     bindSingleAccordions();
+
+    window.KB_SITE_ENHANCEMENTS_READY = true;
+    if (
+      document.documentElement.classList.contains("kb-calculator-document") &&
+      window.KB_CALCULATOR_ENHANCEMENTS_READY
+    ) {
+      document.documentElement.classList.add("kb-calculator-ready");
+    }
 
     document.addEventListener("kb:consent-ready", refreshConsentControlledUi);
     document.addEventListener("kb:consent-updated", refreshConsentControlledUi);

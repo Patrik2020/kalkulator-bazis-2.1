@@ -53,13 +53,18 @@
   background: rgba(15, 23, 42, .46);
   backdrop-filter: blur(2px);
   pointer-events: none;
-  transition: opacity .22s ease, visibility .22s ease;
+  transition: opacity .22s ease, visibility 0s linear .22s;
 }
 
 .kb-help-backdrop[data-open="true"] {
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
+  transition-delay: 0s;
+}
+
+html.kb-help-is-open {
+  overflow: hidden;
 }
 
 .kb-help-panel {
@@ -82,7 +87,7 @@
   box-shadow: 0 24px 70px rgba(15, 23, 42, .3);
   transform: translateY(14px) scale(.985);
   pointer-events: none;
-  transition: opacity .22s ease, transform .22s ease, visibility .22s ease;
+  transition: opacity .22s ease, transform .22s ease, visibility 0s linear .22s;
 }
 
 .kb-help-panel[data-open="true"] {
@@ -90,6 +95,7 @@
   opacity: 1;
   transform: translateY(0) scale(1);
   pointer-events: auto;
+  transition-delay: 0s;
 }
 
 .kb-help-panel__header {
@@ -330,5 +336,16 @@
     min-height: 52px;
     padding: 12px 14px;
     font-size: .94rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .kb-help-launcher {
+    width: 48px !important;
+    padding: 0 !important;
+  }
+
+  .kb-help-launcher__label {
+    display: none;
   }
 }

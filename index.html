@@ -27,26 +27,6 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/pages/index.css?v=20260712-1" />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18204925339"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      analytics_storage: 'denied',
-      ad_storage: 'denied',
-      ad_user_data: 'denied',
-      ad_personalization: 'denied',
-      functionality_storage: 'granted',
-      security_storage: 'granted'
-    });
-    gtag('set', 'ads_data_redaction', true);
-    gtag('js', new Date());
-    gtag('config', 'AW-18204925339');
-    gtag('config', 'G-4JBY0GDC4C', { anonymize_ip: true });
-    window.KB_GOOGLE_TAG_INITIALIZED = true;
-    window.analyticsLoaded = true;
-  </script>
   <script src="js/global-head.js"></script>
 </head>
 
@@ -88,6 +68,8 @@
                 aria-expanded="false"
               />
             </div>
+            <!-- A találatok dinamikus ARIA-combobox listája. -->
+            <!-- [html-validate-disable-next prefer-native-element] -->
             <div class="search-results" id="calculatorSearchResults" role="listbox" aria-live="polite"></div>
           </div>
 
@@ -141,12 +123,12 @@
         </div>
       </div>
 
-      <div class="container home-trust-strip" aria-label="A Kalkulátor Bázis legfontosabb előnyei">
-        <div class="home-trust-item"><span aria-hidden="true">✓</span><p><strong>Ingyenes használat</strong><small>Nincs előfizetés</small></p></div>
-        <div class="home-trust-item"><span aria-hidden="true">⌁</span><p><strong>Magyar fejlesztés</strong><small>Hazai felhasználóknak</small></p></div>
-        <div class="home-trust-item"><span aria-hidden="true">◇</span><p><strong>Regisztráció nélkül</strong><small>Azonnal használható</small></p></div>
-        <div class="home-trust-item"><span aria-hidden="true">↗</span><p><strong>Folyamatos ellenőrzés</strong><small>Forrásokkal és hibajavítással</small></p></div>
-      </div>
+      <ul class="container home-trust-strip" aria-label="A Kalkulátor Bázis legfontosabb előnyei">
+        <li class="home-trust-item"><span aria-hidden="true">✓</span><p><strong>Ingyenes használat</strong><small>Nincs előfizetés</small></p></li>
+        <li class="home-trust-item"><span aria-hidden="true">⌁</span><p><strong>Magyar fejlesztés</strong><small>Hazai felhasználóknak</small></p></li>
+        <li class="home-trust-item"><span aria-hidden="true">◇</span><p><strong>Regisztráció nélkül</strong><small>Azonnal használható</small></p></li>
+        <li class="home-trust-item"><span aria-hidden="true">↗</span><p><strong>Folyamatos ellenőrzés</strong><small>Forrásokkal és hibajavítással</small></p></li>
+      </ul>
     </section>
 
     <div class="container home-sections">

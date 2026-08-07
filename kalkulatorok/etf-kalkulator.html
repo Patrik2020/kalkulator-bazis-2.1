@@ -43,7 +43,7 @@
             portfólióba, és a következő hónaptól vesz részt a hozamtermelésben.
           </p>
 </div>
-<fieldset aria-label="Számítási mód" class="etf-mode-switch">
+<fieldset class="etf-mode-switch">
 <legend>Mit szeretnél kiszámolni?</legend>
 <label>
 <input checked="" name="etfMode" type="radio" value="future"/>
@@ -56,7 +56,7 @@
 </fieldset>
 <form class="etf-form" id="etfForm" novalidate="">
 <div class="calc-grid etf-input-grid">
-<div class="input-group etf-field" data-field="target" data-mode-panel="goal" hidden="">
+<div class="input-group etf-field" data-field="target" data-mode-panel="goal" hidden>
 <label for="target">Célösszeg (Ft)</label>
 <input aria-describedby="target-help target-error" autocomplete="off" id="target" inputmode="decimal" placeholder="pl. 30 000 000" type="text"/>
 <small id="target-help">Az az összeg, amit a megadott időtáv végére szeretnél elérni.</small>
@@ -87,7 +87,7 @@
 <p class="field-error" id="years-error" role="alert"></p>
 </div>
 </div>
-<fieldset class="etf-goal-type" data-mode-panel="goal" hidden="">
+<fieldset class="etf-goal-type" data-mode-panel="goal" hidden>
 <legend>A célösszeg értelmezése</legend>
 <label>
 <input checked="" name="targetType" type="radio" value="nominal"/>
@@ -121,6 +121,7 @@
 </div>
 </div>
 </details>
+<button class="kb-calculate-button" type="submit">Számítás frissítése</button>
 </form>
 <div class="notice-box etf-legal-note">
 <strong>Fontos:</strong> A kalkulátor eredménye becslés, nem minősül
@@ -172,7 +173,7 @@
 </div>
 <div class="etf-chart-wrap" id="etfChartWrap">
 <svg aria-labelledby="etfChartTitle etfChartSummary" class="etf-chart" id="etfChart" preserveaspectratio="xMidYMid meet" role="img" viewbox="0 0 760 340"></svg>
-<div class="etf-chart-tooltip" hidden="" id="etfChartTooltip"></div>
+<div class="etf-chart-tooltip" hidden id="etfChartTooltip"></div>
 </div>
 <p class="sr-only" id="etfChartSummary">
             A grafikon a saját befizetés, a becsült portfólióérték és az inflációval korrigált érték alakulását mutatja.
@@ -192,12 +193,12 @@
               </caption>
 <thead>
 <tr>
-<th>Év</th>
-<th>Adott évben befizetett összeg</th>
-<th>Addigi teljes saját befizetés</th>
-<th>Adott év becsült hozama</th>
-<th>Portfólió év végi értéke</th>
-<th>Inflációval korrigált érték</th>
+<th scope="col">Év</th>
+<th scope="col">Adott évben befizetett összeg</th>
+<th scope="col">Addigi teljes saját befizetés</th>
+<th scope="col">Adott év becsült hozama</th>
+<th scope="col">Portfólió év végi értéke</th>
+<th scope="col">Inflációval korrigált érték</th>
 </tr>
 </thead>
 <tbody id="yearlyTableBody">

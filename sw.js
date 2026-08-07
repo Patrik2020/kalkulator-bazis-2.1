@@ -1,8 +1,7 @@
-const KB_SW_VERSION = "2026-07-05-security-v8";
+const KB_SW_VERSION = "2026-08-07-ui-v9";
 const KB_CACHE_PREFIX = "kalkulatorbazis-static";
 const KB_STATIC_CACHE = `${KB_CACHE_PREFIX}-${KB_SW_VERSION}`;
 const KB_CORE_ASSETS = [
-  "./",
   "./",
   "./manifest.webmanifest",
   "./css/style.css",

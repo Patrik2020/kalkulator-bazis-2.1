@@ -18,12 +18,15 @@
 .transparency-layout {
   display: grid;
   gap: var(--space-xl);
+  grid-template-columns: minmax(0, 1fr);
   margin-top: var(--space-xl);
 }
 
 .transparency-content {
   display: grid;
   gap: var(--space-lg);
+  grid-template-columns: minmax(0, 1fr);
+  min-width: 0;
 }
 
 .transparency-content > section,
@@ -109,6 +112,7 @@
 .report-panel {
   align-self: start;
   border-top: 4px solid var(--primary);
+  min-width: 0;
 }
 
 .report-panel ul {
@@ -163,7 +167,7 @@
 
 @media (min-width: 980px) {
   .transparency-layout {
-    grid-template-columns: minmax(0, 1fr) 330px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 330px);
   }
 
   .report-panel {

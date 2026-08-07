@@ -15,7 +15,7 @@
     <script src="../js/global-head.js"></script>
 
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="KalkulátorBázis" />
+    <meta property="og:site_name" content="Kalkulátor Bázis" />
     <meta property="og:title" content="Osztalék kalkulátor - havi és éves nettó bevétel" />
     <meta
       property="og:description"
@@ -60,7 +60,7 @@
           </p>
         </div>
 
-        <fieldset class="dividend-mode-switch" aria-label="Számítási mód">
+        <fieldset class="dividend-mode-switch">
           <legend>Mit szeretnél kiszámolni?</legend>
           <label>
             <input type="radio" name="dividendMode" value="income" checked />
@@ -330,6 +330,7 @@
               </fieldset>
             </div>
           </details>
+          <button class="kb-calculate-button" type="submit">Számítás frissítése</button>
         </form>
 
         <div class="notice-box dividend-legal-note">
@@ -369,7 +370,8 @@
           <p class="eyebrow">Grafikon</p>
           <h2 id="dividendChartTitle">Osztalék és portfólió vizuális becslése</h2>
         </div>
-        <fieldset class="dividend-chart-mode" data-modes="projection" aria-label="Grafikon típusa">
+        <fieldset class="dividend-chart-mode" data-modes="projection">
+          <legend class="visually-hidden">Grafikon típusa</legend>
           <label>
             <input type="radio" name="chartMode" value="portfolio" checked />
             <span>Portfólió alakulása</span>
@@ -403,18 +405,18 @@
             <caption>Éves becsült befizetés, portfólióérték, osztalék és reálérték</caption>
             <thead>
               <tr>
-                <th>Év</th>
-                <th>Adott évi saját befizetés</th>
-                <th>Addigi teljes saját befizetés</th>
-                <th>Év végi portfólióérték</th>
-                <th>Éves bruttó osztalék</th>
-                <th>Éves levonás és költség</th>
-                <th>Éves nettó osztalék</th>
-                <th>Újrabefektetett osztalék</th>
-                <th>Kivett osztalék</th>
-                <th>Összes addigi nettó osztalék</th>
-                <th>Következő évi nettó osztalék</th>
-                <th>Mai vásárlóértékű portfólió</th>
+                <th scope="col">Év</th>
+                <th scope="col">Adott évi saját befizetés</th>
+                <th scope="col">Addigi teljes saját befizetés</th>
+                <th scope="col">Év végi portfólióérték</th>
+                <th scope="col">Éves bruttó osztalék</th>
+                <th scope="col">Éves levonás és költség</th>
+                <th scope="col">Éves nettó osztalék</th>
+                <th scope="col">Újrabefektetett osztalék</th>
+                <th scope="col">Kivett osztalék</th>
+                <th scope="col">Összes addigi nettó osztalék</th>
+                <th scope="col">Következő évi nettó osztalék</th>
+                <th scope="col">Mai vásárlóértékű portfólió</th>
               </tr>
             </thead>
             <tbody id="yearlyTableBody">

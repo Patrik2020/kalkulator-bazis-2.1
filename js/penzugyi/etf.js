@@ -668,6 +668,14 @@
     input.value = new Intl.NumberFormat("hu-HU", { maximumFractionDigits: 0 }).format(number);
   };
 
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    hasUserInteracted = true;
+    calculate();
+    const invalidField = form.querySelector('[aria-invalid="true"]:not([disabled])');
+    invalidField?.focus();
+  });
+
   Object.values(fields).forEach((input) => {
     input?.addEventListener("input", () => {
       hasUserInteracted = true;

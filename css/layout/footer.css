@@ -110,7 +110,7 @@ footer.kb-footer-host {
 }
 
 .footer-logo-mark {
-  background: url("../../favicon/kb-logo-mark.png") center / contain no-repeat;
+  background: url("../../favicon/favicon-96x96.png") center / contain no-repeat;
   display: inline-block;
   flex: 0 0 36px;
   height: 36px;

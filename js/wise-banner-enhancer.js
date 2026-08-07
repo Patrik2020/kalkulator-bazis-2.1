@@ -45,7 +45,7 @@
 
       link.dataset.enhanced = "true";
       link.classList.add("wise-banner--enhanced");
-      link.setAttribute("aria-label", `${selected.title} – ${selected.action}`);
+      link.removeAttribute("aria-label");
       link.innerHTML = `
         <span class="wise-banner-copy">
           <span class="wise-banner-eyebrow">${selected.eyebrow}</span>

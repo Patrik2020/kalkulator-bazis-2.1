@@ -1,39 +1,55 @@
 <header class="header-shell">
   <div class="header-inner">
-    <a href="/" class="logo" aria-label="KalkulátorBázis főoldal">
+    <a href="/" class="logo" aria-label="Kalkulátor Bázis főoldal">
       <span class="logo-mark" aria-hidden="true"></span>
-      <span class="logo-text">KalkulátorBázis</span>
+      <span class="logo-text">Kalkulátor Bázis</span>
     </a>
 
     <nav id="menu" aria-label="Fő navigáció">
       <a class="nav-home" href="/">Főoldal</a>
-      <a href="/penzugyi.html">Pénzügyi</a>
-      <a href="/mindennapi.html">Mindennapi</a>
-      <a href="/egeszseg.html">Egészség</a>
-      <a href="/auto.html">Autó</a>
-      <a href="/epitoipari.html">Építőipari</a>
-      <a href="/atvaltok.html">Átváltók</a>
-      <a href="/#popularTitle">Népszerű</a>
-      <a href="/#newTitle">Újdonságok</a>
-      <a href="/kalkulatorok/multifunkcios-szamologep.html">Számológép</a>
-      <a href="/kalkulatorok.html">Kalkulátorok</a>
 
-      <details class="nav-more">
+      <details class="nav-dropdown nav-catalog">
         <summary>
-          <span>Infó</span>
-          <span class="nav-more-chevron" aria-hidden="true">⌄</span>
+          <span>Kalkulátorok</span>
+          <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
         </summary>
         <div class="nav-submenu">
-          <a href="/rolunk.html">Rólunk</a>
+          <a href="/kalkulatorok.html">Összes kalkulátor</a>
+          <a href="/egeszseg.html">Egészség</a>
+          <a href="/auto.html">Autó</a>
+          <a href="/epitoipari.html">Építőipari</a>
+          <a href="/atvaltok.html">Átváltók</a>
+          <a href="/kalkulatorok/multifunkcios-szamologep.html">Tudományos számológép</a>
+        </div>
+      </details>
+
+      <a href="/penzugyi.html">Pénzügyi</a>
+      <a href="/mindennapi.html">Mindennapi</a>
+
+      <details class="nav-dropdown nav-knowledge">
+        <summary>
+          <span>Tudástár</span>
+          <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="nav-submenu">
+          <a href="/landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html">Pénzügyi tudatosság</a>
           <a href="/szamitasi-modszertan.html">Számítási módszertan</a>
-          <a href="/atlathatosag-es-minoseg.html">Átláthatóság és minőség</a>
           <a href="/miert-bizhatsz-bennunk.html">Miért bízhatsz bennünk?</a>
+          <a href="/atlathatosag-es-minoseg.html">Átláthatóság és minőség</a>
           <a href="/kapcsolat.html">Kapcsolat</a>
         </div>
       </details>
+
+      <a href="/rolunk.html">Rólunk</a>
     </nav>
 
     <div class="header-actions">
+      <a class="header-search" href="/kalkulatorok.html#calculatorSearch" aria-label="Kalkulátor keresése">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-4-4"></path>
+        </svg>
+      </a>
       <button class="theme-toggle" type="button" data-theme-toggle aria-label="Váltás sötét módra" aria-pressed="false">
         <span class="theme-toggle-icon" aria-hidden="true">☾</span>
         <span class="theme-toggle-text">Sötét</span>
