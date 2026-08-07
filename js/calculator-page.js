@@ -41,7 +41,7 @@
       meta.setAttribute("aria-label", "Az oldal megbízhatósági információi");
       meta.innerHTML = `
         <span><strong>Helyben számol</strong><small>A bevitt kalkulátoradatok a böngészőben maradnak</small></span>
-        <span><strong>Független magyar fejlesztés</strong><small>Készítette: Kovács Patrik</small></span>
+        <span><strong>Független magyar oldal</strong><small>Közérthető, praktikus online kalkulátorok</small></span>
         <span><strong>Technikailag frissítve</strong><small><time datetime="2026-08-07">2026. augusztus 7.</time></small></span>
         <span class="kb-page-meta__links">
           <a href="${href("/szamitasi-modszertan.html")}">Módszertan</a>

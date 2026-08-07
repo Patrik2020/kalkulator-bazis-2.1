@@ -35,4 +35,6 @@ jobs:
           grep -q 'id="fromCurrency"' kalkulatorok/deviza-atvalto-kalkulator.html
           grep -q 'id="toCurrency"' kalkulatorok/deviza-atvalto-kalkulator.html
           grep -q 'js/atvaltok/deviza.js' kalkulatorok/deviza-atvalto-kalkulator.html
-          grep -q 'api.frankfurter.dev' js/atvaltok/deviza.js
+          grep -q 'api.frankfurter.dev/v2' js/atvaltok/deviza.js
+          grep -q 'data-api.ecb.europa.eu' js/atvaltok/deviza.js
+          grep -q 'kb-currency-rates-v2' js/atvaltok/deviza.js

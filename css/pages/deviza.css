@@ -60,6 +60,20 @@
   opacity: 0.8;
 }
 
+.exchange-retry {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.8rem;
+}
+
+.exchange-retry [hidden] {
+  display: none;
+}
+
+.exchange-retry .button {
+  min-height: 44px;
+}
+
 /* SEO tartalom */
 
 .article {

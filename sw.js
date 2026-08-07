@@ -1,4 +1,4 @@
-const KB_SW_VERSION = "2026-08-07-ui-v9";
+const KB_SW_VERSION = "2026-08-07-ui-v10";
 const KB_CACHE_PREFIX = "kalkulatorbazis-static";
 const KB_STATIC_CACHE = `${KB_CACHE_PREFIX}-${KB_SW_VERSION}`;
 const KB_CORE_ASSETS = [

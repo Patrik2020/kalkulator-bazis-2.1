@@ -11,10 +11,11 @@
     "lint:html": "html-validate '**/*.html'",
     "lint:js": "node scripts/check-js-syntax.js",
     "test:math": "node scripts/math-audit.js",
+    "test:currency": "node scripts/currency-converter-audit.js",
     "test:math:update": "node scripts/math-audit.js --write",
     "test:retention": "node scripts/retention-audit.js --summary",
     "sitemap": "node scripts/generate-sitemap.js",
-    "quality": "npm run lint:html && npm run lint:js && npm run test:math && npm run test:retention"
+    "quality": "npm run lint:html && npm run lint:js && npm run test:math && npm run test:currency && npm run test:retention"
   },
   "devDependencies": {
     "html-validate": "11.6.2"
