@@ -1063,13 +1063,18 @@ function initSimpleCalculator() {
     }
 
     const inputType = field.type === "date" || field.type === "time" ? field.type : "text";
+    const inputAttributes = inputType === "text" ? ' inputmode="decimal" autocomplete="off"' : "";
     return `
       <div>
         <label for="${fieldId}">${escapeHtml(field.label)}</label>
-        <input type="${inputType}" id="${fieldId}" value="${fieldValue}" />
+        <input type="${inputType}" id="${fieldId}" value="${fieldValue}"${inputAttributes} />
       </div>
     `;
   }).join("");
+
+  resultsTarget.setAttribute("role", "status");
+  resultsTarget.setAttribute("aria-live", "polite");
+  resultsTarget.setAttribute("aria-atomic", "true");
 
   const inputs = calc.fields.map((field) => document.getElementById(field.id));
   let hasTrackedStart = false;
@@ -1088,7 +1093,9 @@ function initSimpleCalculator() {
         <p><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}</p>
       `).join("");
     } catch (error) {
-      resultsTarget.textContent = "Adj meg érvényes adatokat a számításhoz.";
+      resultsTarget.textContent = error instanceof Error
+        ? error.message
+        : "Adj meg érvényes adatokat a számításhoz.";
     }
   };
 

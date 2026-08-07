@@ -467,15 +467,21 @@
     calculate();
   }
 
-  const hungarianHolidays2026 = new Set(["2026-01-01", "2026-04-03", "2026-04-06", "2026-05-01", "2026-05-25", "2026-08-20", "2026-10-23", "2026-11-01", "2026-12-25", "2026-12-26"]);
+  const hungarianNonWorkingDays2026 = new Set(["2026-01-01", "2026-01-02", "2026-04-03", "2026-04-06", "2026-05-01", "2026-05-25", "2026-08-20", "2026-08-21", "2026-10-23", "2026-11-01", "2026-12-24", "2026-12-25", "2026-12-26"]);
+  const hungarianWorkingSaturdays2026 = new Set(["2026-01-10", "2026-08-08", "2026-12-12"]);
   const iso = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+  const isBusinessDay = (date) => {
+    const dateKey = iso(date);
+    if (hungarianWorkingSaturdays2026.has(dateKey)) return true;
+    if (hungarianNonWorkingDays2026.has(dateKey)) return false;
+    return date.getDay() !== 0 && date.getDay() !== 6;
+  };
   const addBusinessDays = (start, days) => {
     const date = new Date(start);
     let remaining = days;
     while (remaining > 0) {
       date.setDate(date.getDate() + 1);
-      const weekend = date.getDay() === 0 || date.getDay() === 6;
-      if (!weekend && !hungarianHolidays2026.has(iso(date))) remaining -= 1;
+      if (isBusinessDay(date)) remaining -= 1;
     }
     return date;
   };
@@ -484,8 +490,8 @@
       <h2>Naptári vagy munkanapos fizetési határidő</h2>
       <div class="priority-grid"><div class="priority-field"><label for="pd-start">Kiinduló dátum</label><input id="pd-start" type="date"></div><div class="priority-field"><label for="pd-days">Határidő hossza</label><input id="pd-days" value="8" inputmode="numeric"></div><div class="priority-field"><label for="pd-mode">Számítás módja</label><select id="pd-mode"><option value="calendar">Naptári nap</option><option value="business">Munkanap</option></select></div><div class="priority-field"><label for="pd-contract">Szerződéses korrekció (nap)</label><input id="pd-contract" value="0" inputmode="numeric"></div></div>
       <div class="priority-results" data-results></div>
-      <div class="priority-warning">A szerződés, ágazati szabály, ünnepnapi munkarend és jogszabály módosíthatja a határidőt. A beépített munkaszüneti naplista 2026-ra készült, az áthelyezett munkanapokat külön ellenőrizd.</div>
-      ${sourceBlock([{ label: "Nemzeti Jogszabálytár – Polgári Törvénykönyv", href: "https://njt.hu/jogszabaly/2013-5-00-00" }, { label: "NAV – számlázási tájékoztatók", href: "https://nav.gov.hu/ado/afa" }])}`);
+      <div class="priority-warning">A szerződés, ágazati szabály és jogszabály módosíthatja a határidőt. A munkanapos mód a 2026-os magyar munkaszüneti napokat, áthelyezett pihenőnapokat és munkaszombatokat kezeli; más évben csak a hétvégéket zárja ki.</div>
+      ${sourceBlock([{ label: "NJT – 2026. évi áthelyezett munkarend", href: "https://njt.hu/jogszabaly/2025-10-20-2X" }, { label: "Nemzeti Jogszabálytár – Polgári Törvénykönyv", href: "https://njt.hu/jogszabaly/2013-5-00-00" }, { label: "NAV – számlázási tájékoztatók", href: "https://nav.gov.hu/ado/afa" }])}`);
     if (!section) return;
     section.querySelector("#pd-start").value = new Date().toISOString().slice(0, 10);
     const calculate = () => {

@@ -284,6 +284,7 @@ function getActiveNavTarget() {
     "auto.html",
     "atvaltok.html",
     "kalkulatorok.html",
+    "penzugyi-tudatossag.html",
     "rolunk.html",
     "szamitasi-modszertan.html",
     "atlathatosag-es-minoseg.html",
@@ -302,7 +303,7 @@ function linkMatchesTarget(link, target) {
     const path = decodeURIComponent(href.pathname).replace(/\\/g, "/");
 
     if (target === "index.html") {
-      return /\/(?:index\.html)?$/.test(path);
+      return !href.hash && /\/(?:index\.html)?$/.test(path);
     }
 
     return path.endsWith(`/${target}`) || path.endsWith(target);
@@ -315,7 +316,7 @@ function markActiveNavigation(container) {
   if (!container) return;
 
   const target = getActiveNavTarget();
-  let activeInfoLink = false;
+  const activeGroups = new Set();
 
   container.querySelectorAll("#menu a").forEach((link) => {
     const isActive = linkMatchesTarget(link, target);
@@ -323,19 +324,18 @@ function markActiveNavigation(container) {
     link.classList.toggle("is-active", isActive);
     if (isActive) {
       link.setAttribute("aria-current", "page");
-      if (link.closest(".nav-more")) activeInfoLink = true;
+      const group = link.closest(".nav-dropdown");
+      if (group) activeGroups.add(group);
     } else {
       link.removeAttribute("aria-current");
     }
   });
 
-  const infoMenu = container.querySelector(".nav-more");
-  if (infoMenu) {
-    infoMenu.classList.toggle("has-active", activeInfoLink);
-    if (activeInfoLink && window.matchMedia("(max-width: 1199px)").matches) {
-      infoMenu.open = true;
-    }
-  }
+  container.querySelectorAll(".nav-dropdown").forEach((group) => {
+    const isActive = activeGroups.has(group);
+    group.classList.toggle("has-active", isActive);
+    if (isActive && window.matchMedia("(max-width: 1049px)").matches) group.open = true;
+  });
 }
 
 // =========================
@@ -344,13 +344,15 @@ function markActiveNavigation(container) {
 function initMobileMenu() {
   const toggle = document.getElementById("menuToggle");
   const menu = document.getElementById("menu");
-  const infoMenu = menu?.querySelector(".nav-more");
-  const desktopQuery = window.matchMedia("(min-width: 1200px)");
+  const dropdowns = [...(menu?.querySelectorAll(".nav-dropdown") || [])];
+  const desktopQuery = window.matchMedia("(min-width: 1050px)");
 
   if (!toggle || !menu) return;
 
-  const closeInfoMenu = () => {
-    if (infoMenu) infoMenu.open = false;
+  const closeDropdowns = (except = null) => {
+    dropdowns.forEach((dropdown) => {
+      if (dropdown !== except) dropdown.open = false;
+    });
   };
 
   const setMenuState = (isOpen) => {
@@ -358,8 +360,14 @@ function initMobileMenu() {
     toggle.setAttribute("aria-expanded", String(isOpen));
     toggle.setAttribute("aria-label", isOpen ? "Menü bezárása" : "Menü megnyitása");
 
-    if (!isOpen && !desktopQuery.matches) closeInfoMenu();
+    if (!isOpen && !desktopQuery.matches) closeDropdowns();
   };
+
+  dropdowns.forEach((dropdown) => {
+    dropdown.addEventListener("toggle", () => {
+      if (dropdown.open) closeDropdowns(dropdown);
+    });
+  });
 
   toggle.addEventListener("click", () => {
     setMenuState(!menu.classList.contains("active"));
@@ -371,16 +379,17 @@ function initMobileMenu() {
 
     if (!clickedInsideMenu && !clickedToggle) {
       setMenuState(false);
-      closeInfoMenu();
+      closeDropdowns();
     }
   });
 
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") return;
 
-    if (infoMenu?.open) {
-      closeInfoMenu();
-      infoMenu.querySelector("summary")?.focus();
+    const openDropdown = dropdowns.find((dropdown) => dropdown.open);
+    if (openDropdown) {
+      openDropdown.open = false;
+      openDropdown.querySelector("summary")?.focus();
       return;
     }
 
@@ -393,14 +402,14 @@ function initMobileMenu() {
   menu.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       setMenuState(false);
-      closeInfoMenu();
+      closeDropdowns();
     });
   });
 
   const handleBreakpoint = () => {
     if (desktopQuery.matches) {
       setMenuState(false);
-      closeInfoMenu();
+      closeDropdowns();
     }
   };
 

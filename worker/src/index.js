@@ -11,6 +11,18 @@ const json = (data, status = 200, origin = "") => new Response(JSON.stringify(da
     "Access-Control-Allow-Methods": "POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
     "Vary": "Origin",
+    "Cache-Control": "no-store",
+    "X-Content-Type-Options": "nosniff"
+  }
+});
+
+const empty = (status, origin = "") => new Response(null, {
+  status,
+  headers: {
+    "Access-Control-Allow-Origin": ALLOWED_ORIGINS.has(origin) ? origin : "https://kalkulatorbazis.hu",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Vary": "Origin",
     "Cache-Control": "no-store"
   }
 });
@@ -35,7 +47,7 @@ export default {
 
     if (request.method === "OPTIONS") {
       if (!ALLOWED_ORIGINS.has(origin)) return json({ error: "Tiltott eredet." }, 403, origin);
-      return json({ ok: true }, 204, origin);
+      return empty(204, origin);
     }
 
     const url = new URL(request.url);
@@ -51,10 +63,30 @@ export default {
       return json({ error: "A levelezési szolgáltatás nincs beállítva." }, 503, origin);
     }
 
+    const contentLength = Number(request.headers.get("Content-Length") || 0);
+    if (contentLength > 20_000) {
+      return json({ error: "A kérés túl nagy." }, 413, origin);
+    }
+
+    let rawBody;
+    try {
+      rawBody = await request.text();
+    } catch {
+      return json({ error: "Érvénytelen kérés." }, 400, origin);
+    }
+
+    if (new TextEncoder().encode(rawBody).byteLength > 20_000) {
+      return json({ error: "A kérés túl nagy." }, 413, origin);
+    }
+
     let body;
     try {
-      body = await request.json();
+      body = JSON.parse(rawBody);
     } catch {
+      return json({ error: "Érvénytelen kérés." }, 400, origin);
+    }
+
+    if (!body || typeof body !== "object" || Array.isArray(body)) {
       return json({ error: "Érvénytelen kérés." }, 400, origin);
     }
 
@@ -80,6 +112,15 @@ export default {
     if (!description) return json({ error: "A leírás megadása kötelező." }, 400, origin);
     if (!consent) return json({ error: "Az adatkezelési hozzájárulás kötelező." }, 400, origin);
     if (!validEmail(email)) return json({ error: "Az e-mail-cím formátuma hibás." }, 400, origin);
+    if (elapsedMs < 1000) return json({ error: "A beküldés túl gyors volt." }, 429, origin);
+
+    let safePageUrl = "";
+    try {
+      const parsedPageUrl = new URL(pageUrl);
+      if (ALLOWED_ORIGINS.has(parsedPageUrl.origin)) safePageUrl = parsedPageUrl.href;
+    } catch {
+      safePageUrl = "";
+    }
 
     const subject = `[Kalkulátor Bázis] ${type}`;
     const html = `
@@ -89,7 +130,7 @@ export default {
       ${inputData ? `<p><strong>Megadott adatok:</strong><br>${escapeHtml(inputData).replaceAll("\n", "<br>")}</p>` : ""}
       <hr>
       <p><strong>Válasz e-mail:</strong> ${email ? escapeHtml(email) : "nincs megadva"}</p>
-      <p><strong>Oldal:</strong> ${pageUrl ? `<a href="${escapeHtml(pageUrl)}">${escapeHtml(pageTitle || pageUrl)}</a>` : "nincs"}</p>
+      <p><strong>Oldal:</strong> ${safePageUrl ? `<a href="${escapeHtml(safePageUrl)}">${escapeHtml(pageTitle || safePageUrl)}</a>` : "nincs"}</p>
       <p><strong>Hivatkozó oldal:</strong> ${escapeHtml(referrer || "nincs")}</p>
       <p><strong>Nyelv:</strong> ${escapeHtml(language)}</p>
       <p><strong>Képernyő:</strong> ${escapeHtml(screen)}; viewport: ${escapeHtml(viewport)}</p>

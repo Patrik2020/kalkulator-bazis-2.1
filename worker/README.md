@@ -10,4 +10,12 @@ Szükséges környezeti változók:
 
 A Worker végpontja: `/report`.
 
-Telepítés után a `js/help-widget.js` fájlban az `API_URL` értékét a Worker nyilvános címére kell állítani.
+Telepítés után a `js/global-head.js` fájl elején állítsd be a Worker nyilvános végpontját:
+
+```js
+window.KB_HELP_API_URL = "https://pelda.workers.dev/report";
+```
+
+Ha ez nincs beállítva, a widget a jelenlegi Formspree-végpontot használja. A Worker csak e-mailben továbbítja a bejelentést; nem hoz létre nyilvános vagy privát GitHub-hibajegyet.
+
+Élesítéskor állíts be Cloudflare oldali sebességkorlátot a `/report` végpontra. Az eredetellenőrzés és a CORS önmagában nem helyettesíti a visszaélés elleni forgalmi korlátozást.

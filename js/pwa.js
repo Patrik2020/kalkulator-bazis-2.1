@@ -8,7 +8,7 @@
     : "";
   const serviceWorkerUrl = new URL(`${projectRoot}/sw.js`, window.location.origin);
   const expectedScopeUrl = new URL(`${projectRoot || ""}/`, window.location.origin);
-  const reloadStorageKey = "kb-sw-controller-reload-2026-07-05-security-v2";
+  const reloadStorageKey = "kb-sw-controller-reload-2026-08-07-ui-v3";
   let deferredPrompt = null;
   let installed = false;
 

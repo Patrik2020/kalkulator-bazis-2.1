@@ -390,7 +390,7 @@
 .visual-logo-mark {
   width: 34px;
   height: 34px;
-  background: url("../../favicon/kb-logo-mark.png") center / contain no-repeat;
+  background: url("../../favicon/favicon-96x96.png") center / contain no-repeat;
   filter: drop-shadow(0 4px 8px rgba(11, 102, 242, 0.14));
 }
 
@@ -587,7 +587,10 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
+  margin-top: 0;
   margin-bottom: 42px;
+  padding: 0;
+  list-style: none;
   overflow: hidden;
   border: 1px solid rgba(74, 105, 145, 0.14);
   border-radius: 24px;
@@ -847,7 +850,7 @@
   padding: 10px;
   border: 1px solid rgba(11, 102, 242, 0.12);
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.82) url("../../favicon/kb-logo-mark.png") center / 43px no-repeat;
+  background: rgba(255, 255, 255, 0.82) url("../../favicon/favicon-96x96.png") center / 43px no-repeat;
   box-shadow: var(--home-shadow-sm);
 }
 

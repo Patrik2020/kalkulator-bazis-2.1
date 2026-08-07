@@ -560,6 +560,15 @@
   overflow-wrap: anywhere;
 }
 
+main[data-category-page] > .breadcrumb {
+  margin-bottom: 0;
+  padding-inline: 0;
+}
+
+main[data-category-page] > .breadcrumb + .page-hero {
+  padding-top: var(--space-md);
+}
+
 @media (min-width: 700px) {
   .content-split {
     grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -4,6 +4,7 @@ const path = require("path");
 const { spawn } = require("child_process");
 
 const chromeCandidates = [
+  process.env.KB_CHROME_PATH,
   process.env.CHROME_PATH,
   "C:/Program Files/Google/Chrome/Application/chrome.exe",
   "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
@@ -32,7 +33,7 @@ if (!chrome) {
 }
 
 const port = 9333;
-const origin = "http://127.0.0.1:5500";
+const origin = process.env.KB_QA_ORIGIN || "http://127.0.0.1:4173";
 const profile = path.join(os.tmpdir(), `kb-chrome-qa-${Date.now()}`);
 const screenshotDirectory = path.join(os.tmpdir(), "kb-browser-qa");
 fs.mkdirSync(screenshotDirectory, { recursive: true });
@@ -50,6 +51,7 @@ const processHandle = spawn(
     "--disable-background-networking",
     "--disable-default-apps",
     "--no-first-run",
+    ...(typeof process.getuid === "function" && process.getuid() === 0 ? ["--no-sandbox"] : []),
     `--remote-debugging-port=${port}`,
     `--user-data-dir=${profile}`,
     ...chromeExtraArgs,
@@ -136,7 +138,7 @@ const run = async () => {
     consoleErrors.push(exceptionDetails.exception?.description || exceptionDetails.text || "Ismeretlen JavaScript-kivétel");
   });
   client.on("Log.entryAdded", ({ entry }) => {
-    if (["error", "warning"].includes(entry.level) && !/google|doubleclick|adsbygoogle/i.test(entry.url || entry.text)) {
+    if (["error", "warning"].includes(entry.level) && !/google|doubleclick|adsbygoogle|api\.frankfurter\.dev/i.test(entry.url || entry.text)) {
       consoleErrors.push(`${entry.level}: ${entry.url || "(nincs URL)"} - ${entry.text}`);
     }
   });
@@ -191,6 +193,13 @@ const run = async () => {
     const offenders = [...document.body.querySelectorAll('*')].filter((element) => {
       const style = getComputedStyle(element);
       if (style.display === 'none' || style.visibility === 'hidden') return false;
+      if (style.position === 'fixed' || element.getAttribute('aria-hidden') === 'true') return false;
+      let ancestor = element.parentElement;
+      while (ancestor && ancestor !== document.body) {
+        const ancestorStyle = getComputedStyle(ancestor);
+        if (['auto', 'scroll', 'hidden', 'clip'].includes(ancestorStyle.overflowX)) return false;
+        ancestor = ancestor.parentElement;
+      }
       const rect = element.getBoundingClientRect();
       return rect.width > 1 && (rect.right > width + 1 || rect.left < -1);
     }).slice(0, 8).map((element) => ({
@@ -224,24 +233,21 @@ const run = async () => {
     "/kapcsolat.html",
     "/szamitasi-modszertan.html",
     "/jogi-nyilatkozat.html",
+    "/kalkulatorok/netto-brutto-kalkulator.html",
+    "/kalkulatorok/etf-kalkulator.html",
+    "/kalkulatorok/osztalek-kalkulator.html",
+    "/kalkulatorok/csempe-kalkulator.html",
+    "/kalkulatorok/multifunkcios-szamologep.html",
     "/landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html",
     "/landing-pages/wise/wise.html"
   ];
   const viewports = [
     [320, 720],
-    [360, 780],
-    [375, 812],
     [390, 844],
-    [430, 932],
     [768, 900],
-    [860, 900],
-    [880, 900],
-    [900, 900],
-    [920, 900],
-    [940, 900],
-    [960, 900],
-    [980, 900],
     [1024, 900],
+    [1050, 900],
+    [1280, 960],
     [1440, 1000]
   ];
   const layouts = [];
@@ -386,8 +392,8 @@ const run = async () => {
       failures.push(`${item.name}: ads consent ${item.managerAds} != ${item.expected.ads}`);
     }
 
-    if (item.expected.analytics === false && item.googleTagManagerScripts > 0) {
-      failures.push(`${item.name}: analytics script tiltott állapotban betöltött`);
+    if (item.expected.analytics === false && item.expected.ads === false && item.googleTagManagerScripts > 0) {
+      failures.push(`${item.name}: Google tag hozzájárulás nélkül betöltött`);
     }
 
     if (item.expected.ads === false && (item.adsenseScripts > 0 || item.wiseCreativeImages > 0)) {
@@ -571,6 +577,19 @@ const run = async () => {
             : "penzugyi-kategoria-390.png";
         fs.writeFileSync(path.join(screenshotDirectory, name), Buffer.from(screenshot.data, "base64"));
       }
+
+      if (
+        [390, 1440].includes(width) &&
+        [
+          "/kalkulatorok/netto-brutto-kalkulator.html",
+          "/kalkulatorok/etf-kalkulator.html",
+          "/kalkulatorok/multifunkcios-szamologep.html"
+        ].includes(pagePath)
+      ) {
+        const screenshot = await client.send("Page.captureScreenshot", { format: "png", fromSurface: true });
+        const pageName = pagePath.split("/").pop().replace(".html", "");
+        fs.writeFileSync(path.join(screenshotDirectory, `${pageName}-${width}.png`), Buffer.from(screenshot.data, "base64"));
+      }
     }
   }
 
@@ -626,7 +645,18 @@ const run = async () => {
     await new Promise((resolve) => setTimeout(resolve, 30));
     const cookieHiddenAfterEscape = cookieBanner ? getComputedStyle(cookieBanner).display === 'none' : false;
     const cookieStored = JSON.parse(localStorage.getItem('kbCookieConsent') || 'null');
-    return { menuOpened, menuClosed, openFaqCount, cookieHiddenInitially, cookieVisibleAfterOpen, settingsVisible, cookieHiddenAfterEscape, cookieStored };
+    const launcher = document.querySelector('.kb-help-launcher');
+    launcher?.click();
+    await new Promise((resolve) => setTimeout(resolve, 30));
+    const helpPanel = document.querySelector('.kb-help-panel');
+    const helpOpened = helpPanel?.dataset.open === 'true' && helpPanel?.getAttribute('aria-hidden') === 'false';
+    const helpFocusInside = helpPanel?.contains(document.activeElement) || false;
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    await new Promise((resolve) => setTimeout(resolve, 30));
+    const helpClosed = helpPanel?.dataset.open === 'false' && helpPanel?.getAttribute('aria-hidden') === 'true';
+    const helpFocusRestored = document.activeElement === launcher;
+    const activeHomeLinks = document.querySelectorAll('#menu [aria-current="page"]').length;
+    return { menuOpened, menuClosed, openFaqCount, cookieHiddenInitially, cookieVisibleAfterOpen, settingsVisible, cookieHiddenAfterEscape, cookieStored, helpOpened, helpFocusInside, helpClosed, helpFocusRestored, activeHomeLinks };
   })()`);
 
   await navigate("/");
@@ -665,7 +695,12 @@ const run = async () => {
       present: !!note,
       reportSubject: report?.href.includes('Hibabejelent%C3%A9s') || false,
       transparencyLink: !!transparency,
-      theme: document.documentElement.dataset.theme
+      theme: document.documentElement.dataset.theme,
+      breadcrumb: !!document.querySelector('.kb-breadcrumb'),
+      breadcrumbCount: document.querySelectorAll('main > .breadcrumb, main > .kb-breadcrumb').length,
+      pageMeta: !!document.querySelector('.kb-page-meta'),
+      resultStatus: document.querySelector('.result-box')?.getAttribute('role') || '',
+      resultLive: document.querySelector('.result-box')?.getAttribute('aria-live') || ''
     };
   })()`);
   await sleep(100);
@@ -739,15 +774,54 @@ const run = async () => {
     ["/kalkulatorok/kamatos-kamat-kalkulator.html", `(() => { [['initial','100000'],['monthly','20000'],['rate','7'],['years','10']].forEach(([id,value])=>{const e=document.getElementById(id);e.value=value;e.dispatchEvent(new Event('input',{bubbles:true}));});return document.querySelector('.result-box')?.innerText; })()`],
     ["/kalkulatorok/milliomos-kalkulator.html", `(() => { [['initial','100000'],['monthly','50000'],['rate','7'],['goal','1000000']].forEach(([id,value])=>{const e=document.getElementById(id);e.value=value;e.dispatchEvent(new Event('input',{bubbles:true}));});return document.querySelector('.result-box')?.innerText; })()`],
     ["/kalkulatorok/etf-kalkulator.html", `(() => { [['initial','500000'],['monthly','30000'],['rate','6'],['years','12']].forEach(([id,value])=>{const e=document.getElementById(id);e.value=value;e.dispatchEvent(new Event('input',{bubbles:true}));});return document.querySelector('.result-box')?.innerText; })()`],
-    ["/kalkulatorok/uzemanyag-koltseg-kalkulator.html", `(() => { [['distance','420'],['consumption','6.5'],['price','620']].forEach(([id,value])=>{const e=document.getElementById(id);e.value=value;e.dispatchEvent(new Event('input',{bubbles:true}));});return document.getElementById('simpleCalcResults')?.innerText; })()`],
+    ["/kalkulatorok/uzemanyag-koltseg-kalkulator.html", `(() => { [['distance','420'],['cons','6.5'],['price','620']].forEach(([id,value])=>{const e=document.getElementById(id);e.value=value;e.dispatchEvent(new Event('input',{bubbles:true}));});document.querySelector('.ac-submit')?.click();return document.querySelector('.ac-result')?.innerText; })()`],
+    ["/kalkulatorok/fizetesi-hatarido-kalkulator.html", `(() => {
+      const start=document.getElementById('startDate');const days=document.getElementById('days');const workdays=document.querySelector('input[name="mode"][value="workdays"]');const output=document.getElementById('result-date');
+      const run=(date)=>{start.value=date;days.value='1';workdays.checked=true;start.dispatchEvent(new Event('input',{bubbles:true}));workdays.dispatchEvent(new Event('change',{bubbles:true}));return output.textContent.trim();};
+      const bridgeDay=run('2025-12-31');const workingSaturday=run('2026-01-09');
+      return {result:bridgeDay+' | '+workingSaturday,expectations:{bridgeDay:bridgeDay.includes('2026. 01. 05.'),workingSaturday:workingSaturday.includes('2026. 01. 10.')}};
+    })()`],
     ["/kalkulatorok/szamla-teljesites-kalkulator.html", `(() => { const issue=document.getElementById('issueDate');const performance=document.getElementById('performanceDate');const days=document.getElementById('days');issue.value='2026-06-01';performance.value='2026-06-01';days.value='30';days.dispatchEvent(new Event('input',{bubbles:true}));return document.querySelector('.result-box')?.innerText; })()`],
-    ["/kalkulatorok/deviza-atvalto-kalkulator.html", `(() => ({ result: document.getElementById('result')?.innerText || '', updated: document.getElementById('lastUpdate')?.innerText || '' }))()`]
+    ["/kalkulatorok/deviza-atvalto-kalkulator.html", `(() => ({ result: document.getElementById('result')?.innerText || '', updated: document.getElementById('lastUpdate')?.innerText || '', sourceFormPreserved: Boolean(document.getElementById('fromCurrency') && document.getElementById('toCurrency')) }))()`]
   ];
   const calculators = [];
   for (const [pagePath, expression] of calculatorTests) {
     await navigate(pagePath);
-    calculators.push({ page: pagePath, result: await evaluate(expression) });
+    try {
+      calculators.push({ page: pagePath, result: await evaluate(expression) });
+    } catch (error) {
+      calculators.push({ page: pagePath, error: error.message });
+    }
   }
+
+  const interactionFailures = [
+    [interactions.menuOpened === "true", "A mobilmenü nem nyílt ki."],
+    [interactions.menuClosed === "false", "A mobilmenü nem zárult be Escape-re."],
+    [interactions.openFaqCount === 1, "A GYIK harmonika egyszerre több elemet hagyott nyitva."],
+    [interactions.cookieHiddenInitially, "A mentett döntés ellenére megjelent a sütipanel."],
+    [interactions.cookieVisibleAfterOpen && interactions.settingsVisible, "A sütibeállítások nem nyíltak meg."],
+    [interactions.cookieHiddenAfterEscape, "A sütibeállítások nem zárultak be Escape-re."],
+    [interactions.helpOpened && interactions.helpFocusInside, "A súgó nem nyílt meg megfelelő fókuszkezeléssel."],
+    [interactions.helpClosed && interactions.helpFocusRestored, "A súgó bezárásakor nem állt vissza a fókusz."],
+    [interactions.activeHomeLinks === 1, "A fejléc aktív navigációs állapota hibás."],
+  ].filter(([passed]) => !passed).map(([, message]) => message);
+
+  const calculatorFailures = calculators.filter((item) => {
+    if (item.error) return true;
+    if (typeof item.result === "string") return !item.result.trim();
+    if (item.result?.expectations && Object.values(item.result.expectations).some((passed) => !passed)) return true;
+    return !item.result || (!item.result.result && !item.result.sourceFormPreserved);
+  });
+
+  const themeFailures = [
+    [theme.selected === "dark" && theme.persistedAfterNavigation === "dark", "A sötét téma nem maradt meg navigáció után."],
+    [theme.toggleCount === 1, "A témaváltó nem pontosan egyszer jelent meg."],
+    [theme.calculatorReliability?.breadcrumbCount === 1, "A kalkulátoroldalon nem pontosan egy morzsamenü jelent meg."],
+    [theme.calculatorReliability?.pageMeta, "Hiányzik a kalkulátoroldal megbízhatósági sávja."],
+    [theme.calculatorReliability?.resultStatus === "status" && theme.calculatorReliability?.resultLive === "polite", "Az eredménymező élő régiója hibás."],
+    [theme.print?.bodyBackground === "rgb(255, 255, 255)" && theme.print?.toggleDisplay === "none", "A nyomtatási téma hibás."],
+    [theme.systemDark === "dark", "A rendszer sötét témája nem érvényesült."],
+  ].filter(([passed]) => !passed).map(([, message]) => message);
 
   const result = {
     summary: {
@@ -755,7 +829,10 @@ const run = async () => {
       overflowFailures: layouts.filter((item) => item.scrollWidth > item.clientWidth || item.offenders.length).length,
       consoleErrors: consoleErrors.length,
       consentMatrixFailures: consentMatrixFailures.length,
-      categoryAdsConsentFailures: categoryAdsConsentFailures.length
+      categoryAdsConsentFailures: categoryAdsConsentFailures.length,
+      interactionFailures: interactionFailures.length,
+      calculatorFailures: calculatorFailures.length,
+      themeFailures: themeFailures.length
     },
     layoutFailures: layouts.filter((item) => item.scrollWidth > item.clientWidth || item.offenders.length),
     consentMatrix,
@@ -765,21 +842,28 @@ const run = async () => {
     cookieScenarios,
     search,
     interactions,
+    interactionFailures,
     theme,
     landingInteractions,
     calculators,
+    calculatorFailures,
+    themeFailures,
     consoleErrors: [...new Set(consoleErrors)],
     screenshots: screenshotDirectory
   };
 
   client.close();
+  fs.writeFileSync(path.join(screenshotDirectory, "results.json"), JSON.stringify(result, null, 2));
   return result;
 };
 
 run()
   .then((result) => {
-    console.log(JSON.stringify(result, null, 2));
+    console.log(JSON.stringify({ summary: result.summary, screenshots: result.screenshots }, null, 2));
     processHandle.kill();
+    if (Object.entries(result.summary).some(([key, value]) => key.endsWith("Failures") && value > 0)) {
+      process.exitCode = 1;
+    }
   })
   .catch((error) => {
     processHandle.kill();

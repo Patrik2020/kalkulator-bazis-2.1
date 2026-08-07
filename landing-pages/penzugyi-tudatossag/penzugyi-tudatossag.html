@@ -79,12 +79,12 @@
   <body class="financial-awareness">
     <header class="site-header">
       <div class="navbar">
-        <a class="logo" href="../../" aria-label="KalkulátorBázis főoldal">
+        <a class="logo" href="../../" aria-label="Kalkulátor Bázis főoldal">
           <span class="logo-mark" aria-hidden="true"></span>
-          <span>KalkulátorBázis</span>
+          <span>Kalkulátor Bázis</span>
         </a>
 
-        <nav class="main-nav" aria-label="Pénzügyi tudatosság navigáció">
+        <nav class="main-nav" aria-label="Pénzügyi tudatosság oldalon belüli navigáció">
           <a href="#alapok">Alapok</a>
           <a href="#checklist">Önellenőrzés</a>
           <a href="#lepesek">Lépések</a>
@@ -379,7 +379,8 @@
             </div>
           </div>
 
-          <form class="checklist-card reveal" id="readinessChecklist">
+          <fieldset class="checklist-card reveal" id="readinessChecklist">
+            <legend class="visually-hidden">Befektetés előtti önellenőrző lista</legend>
             <label>
               <input type="checkbox" />
               <span>Tudom, mennyi a havi nettó bevételem és átlagos kiadásom.</span>
@@ -424,7 +425,7 @@
             <div class="progress-wrap" aria-hidden="true">
               <span id="progressBar"></span>
             </div>
-          </form>
+          </fieldset>
         </div>
       </section>
 
@@ -485,7 +486,7 @@
             </p>
           </div>
 
-          <div class="risk-triangle reveal" aria-label="Hozam, biztonság és likviditás kapcsolata">
+          <div class="risk-triangle reveal" role="img" aria-label="Hozam, biztonság és likviditás kapcsolata">
             <div class="triangle-point point-return">
               <strong>Hozam</strong>
               <span>Mit remélsz nyerni?</span>
@@ -739,7 +740,7 @@
           <section class="footer-brand" aria-labelledby="awarenessFooterBrand">
             <a href="../../" class="footer-logo" id="awarenessFooterBrand">
               <span class="footer-logo-mark" aria-hidden="true"></span>
-              <span>KalkulátorBázis</span>
+              <span>Kalkulátor Bázis</span>
             </a>
             <p>
               Egyszerű számítások tudatosabb döntésekhez, közérthető
@@ -758,7 +759,7 @@
             <button class="footer-link-button" type="button" data-cookie-settings>Sütibeállítások</button>
           </nav>
 
-          <nav class="footer-col" aria-label="Pénzügyi tudatosság navigáció">
+          <nav class="footer-col" aria-label="Pénzügyi tudatosság lábléc-navigáció">
             <h2>Navigáció</h2>
             <a href="../../">Főoldal</a>
             <a href="../../penzugyi.html">Pénzügyi kalkulátorok</a>

@@ -272,6 +272,13 @@ html[data-theme="dark"] .learning-highlight {
 }
 
 @media print {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
   :root,
   html[data-theme="dark"] {
     color-scheme: light !important;

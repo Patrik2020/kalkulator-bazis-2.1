@@ -7,6 +7,7 @@
   const consentVersion = "2026-06-26.v2";
   const maxAgeDays = 180;
   const analyticsId = "G-4JBY0GDC4C";
+  const adsId = "AW-18204925339";
   const maxClockSkewMs = 5 * 60 * 1000;
   const maxRecordAgeMs = (maxAgeDays + 2) * 24 * 60 * 60 * 1000;
   const allowedCategoryKeys = ["necessary", "analytics", "ads"];
@@ -224,18 +225,27 @@
     });
   };
 
-  const loadAnalytics = () => {
-    if (!hasConsent("analytics") || window.analyticsLoaded) return;
+  const loadGoogleTag = () => {
+    const analyticsAllowed = hasConsent("analytics");
+    const adsAllowed = hasConsent("ads");
+    if (!analyticsAllowed && !adsAllowed) return;
 
-    window.analyticsLoaded = true;
-
-    const existing = document.querySelector(
-      `script[src="https://www.googletagmanager.com/gtag/js?id=${analyticsId}"]`
-    );
+    const existing = document.querySelector('script[src^="https://www.googletagmanager.com/gtag/js?id="]');
 
     const configure = () => {
-      window.gtag("js", new Date());
-      window.gtag("config", analyticsId, { anonymize_ip: true });
+      if (!window.KB_GOOGLE_TAG_BOOTSTRAPPED) {
+        window.gtag("js", new Date());
+        window.KB_GOOGLE_TAG_BOOTSTRAPPED = true;
+      }
+      if (analyticsAllowed && !window.KB_ANALYTICS_CONFIGURED) {
+        window.gtag("config", analyticsId, { anonymize_ip: true });
+        window.KB_ANALYTICS_CONFIGURED = true;
+        window.analyticsLoaded = true;
+      }
+      if (adsAllowed && !window.KB_ADS_CONFIGURED) {
+        window.gtag("config", adsId);
+        window.KB_ADS_CONFIGURED = true;
+      }
     };
 
     if (existing) {
@@ -244,10 +254,10 @@
     }
 
     const script = document.createElement("script");
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${analyticsId}`;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${adsAllowed ? adsId : analyticsId}`;
     script.async = true;
-    script.addEventListener("load", configure, { once: true });
     document.head.appendChild(script);
+    configure();
   };
 
   const persistConsent = (categories) => {
@@ -258,7 +268,7 @@
     safeStorage.remove(legacyStorageKey);
     updateGoogleConsent(currentConsent.categories);
     updateConsentControlledAssets(currentConsent.categories);
-    loadAnalytics();
+    loadGoogleTag();
     dispatchConsentEvent();
     return saved;
   };
@@ -637,7 +647,7 @@
     if (getConsentSnapshot()) {
       updateGoogleConsent(currentConsent.categories);
       updateConsentControlledAssets(currentConsent.categories);
-      loadAnalytics();
+      loadGoogleTag();
       closeModal(false);
     } else {
       updateGoogleConsent(defaultCategories);
