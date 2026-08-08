@@ -96,16 +96,6 @@ const appendElement = (tagName, attributes) => {
   document.head.appendChild(element);
 };
 
-// Google AdSense / Auto Ads: site-wide publisher identification and ad loader.
-appendElement("meta", {
-  name: "google-adsense-account",
-  content: "ca-pub-2639795157074812",
-});
-appendElement("script", {
-  async: "",
-  src: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812",
-  crossorigin: "anonymous",
-});
 
 const hasMainStylesheet = () => [...document.querySelectorAll('link[rel~="stylesheet"][href]')].some((link) => {
   const rawHref = link.getAttribute("href") || "";
