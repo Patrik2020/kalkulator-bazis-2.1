@@ -33,10 +33,12 @@ const staticPages = [
 
 const calculatorPages = calculators.map((calculator) => calculator.url);
 
+// Only shared files whose changes materially alter visible page content belong here.
+// Technical loaders (for example global-head.js / analytics / AdSense) must not
+// make every URL look freshly updated in the sitemap.
 const sharedPageFiles = [
   "components/header.html",
   "components/footer.html",
-  "js/global-head.js",
   "js/utils.js",
   "js/site-ui.js",
   "css/style.css",
@@ -73,19 +75,10 @@ const getLastModified = (url) => {
 const urls = [...new Set([...staticPages, ...calculatorPages])];
 
 const body = urls
-  .map((url) => `    <url>
-        <loc>${siteUrl}/${url}</loc>
-        <lastmod>${getLastModified(url)}</lastmod>
-    </url>`)
+  .map((url) => `    <url>\n        <loc>${siteUrl}/${url}</loc>\n        <lastmod>${getLastModified(url)}</lastmod>\n    </url>`)
   .join("\n\n");
 
-const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-${body}
-
-</urlset>
-`;
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n\n${body}\n\n</urlset>\n`;
 
 fs.writeFileSync(path.join(root, "sitemap.xml"), sitemap, "utf8");
 console.log(`Generated sitemap with ${urls.length} URLs.`);
