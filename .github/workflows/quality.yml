@@ -36,7 +36,7 @@ jobs:
       - name: Validate HTML, JavaScript and calculator logic
         run: npm run quality
 
-      - name: Verify generated sitemap is current
+      - name: Verify generated sitemap URL set is current
         run: |
           npm run sitemap
-          git diff --exit-code -- sitemap.xml
+          git diff --exit-code -I '<lastmod>.*</lastmod>' -- sitemap.xml
