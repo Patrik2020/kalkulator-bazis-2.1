@@ -1,0 +1,94 @@
+name: One-time AdSense static head migration
+
+on:
+  push:
+    branches:
+      - adsense-static-head
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    if: ${{ !contains(github.event.head_commit.message, '[adsense-static-head-done]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          ref: adsense-static-head
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Move AdSense code into static HTML heads
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          root = Path('.')
+          client = 'ca-pub-2639795157074812'
+          snippet = f'''<meta name="google-adsense-account" content="{client}">
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={client}" crossorigin="anonymous"></script>'''
+
+          updated = []
+          for path in root.rglob('*.html'):
+              if path.name == '404.html' or 'components' in path.parts or '.git' in path.parts:
+                  continue
+              text = path.read_text(encoding='utf-8')
+              if not re.search(r'<html\b', text, re.I) or not re.search(r'<head\b[^>]*>', text, re.I):
+                  continue
+              if 'google-adsense-account' in text or 'pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' in text:
+                  continue
+              new_text = re.sub(r'(<head\b[^>]*>)', r'\1\n' + snippet, text, count=1, flags=re.I)
+              if new_text != text:
+                  path.write_text(new_text, encoding='utf-8')
+                  updated.append(path.as_posix())
+
+          global_head = Path('js/global-head.js')
+          text = global_head.read_text(encoding='utf-8')
+          dynamic_block = re.compile(
+              r'\n// Google AdSense / Auto Ads: site-wide publisher identification and ad loader\.\n'
+              r'appendElement\("meta", \{\n'
+              r'  name: "google-adsense-account",\n'
+              r'  content: "ca-pub-2639795157074812",\n'
+              r'\}\);\n'
+              r'appendElement\("script", \{\n'
+              r'  async: "",\n'
+              r'  src: "https://pagead2\.googlesyndication\.com/pagead/js/adsbygoogle\.js\?client=ca-pub-2639795157074812",\n'
+              r'  crossorigin: "anonymous",\n'
+              r'\}\);\n'
+          )
+          new_text, removed = dynamic_block.subn('\n', text, count=1)
+          if removed != 1:
+              raise SystemExit('Expected dynamic AdSense block was not found exactly once in js/global-head.js')
+          global_head.write_text(new_text, encoding='utf-8')
+
+          workflow = Path('.github/workflows/adsense-static-head-migration.yml')
+          workflow.unlink()
+
+          print(f'Updated {len(updated)} HTML documents with static AdSense code.')
+          for item in updated:
+              print(item)
+
+      - name: Validate site
+        run: npm run quality
+
+      - name: Regenerate sitemap
+        run: npm run sitemap
+
+      - name: Commit migration result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Add static AdSense code to HTML heads [adsense-static-head-done]"
+          git push origin HEAD:adsense-static-head
