@@ -384,7 +384,7 @@ html.kb-calculator-document .calculator-guide h2 {
     position: sticky;
     top: 88px;
     grid-column: 2;
-    grid-row: 1 / span 30;
+    grid-row: 1;
     align-self: start;
   }
 
