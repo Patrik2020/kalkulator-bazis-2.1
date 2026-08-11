@@ -10,6 +10,12 @@
   let sequence = 0;
   let activeController = null;
 
+  function parseDisplayedNumber(value) {
+    const digits = String(value || "").replace(/[^0-9]/g, "");
+    const parsed = Number.parseInt(digits, 10);
+    return Number.isFinite(parsed) ? parsed : 0;
+  }
+
   function familyPayload(children) {
     const count = Math.max(0, Math.floor(Number(children) || 0));
     if (count === 0) return undefined;
@@ -79,14 +85,13 @@
 
       const payload = await response.json();
       const apiValue = job.direction === "gross-to-net" ? payload?.data?.net : payload?.data?.gross;
-      const localValue = job.direction === "gross-to-net" ? job.localResult?.net : job.localResult?.gross;
 
-      if (!Number.isFinite(apiValue) || !Number.isFinite(localValue)) {
+      if (!Number.isFinite(apiValue) || !Number.isFinite(job.localValue)) {
         emit({ status: "invalid_response", direction: job.direction, elapsedMs });
         return;
       }
 
-      const differenceFt = Math.round(apiValue) - Math.round(localValue);
+      const differenceFt = Math.round(apiValue) - Math.round(job.localValue);
       emit({
         status: Math.abs(differenceFt) <= MATCH_TOLERANCE_FT ? "match" : "mismatch",
         direction: job.direction,
@@ -120,5 +125,43 @@
     activeController = null;
   }
 
-  window.KBSalaryShadow = Object.freeze({ schedule, cancel });
+  function currentJob() {
+    const direction = document.querySelector("input[name='calc-type']:checked")?.value || "gross-to-net";
+    const amountElement = direction === "gross-to-net"
+      ? document.getElementById("gross")
+      : document.getElementById("net-input");
+    const amount = parseDisplayedNumber(amountElement?.value);
+    const localValue = parseDisplayedNumber(document.getElementById("result-net")?.textContent);
+
+    if (amount <= 0 || localValue <= 0) return null;
+
+    return {
+      direction,
+      amount,
+      localValue,
+      options: {
+        under25: Boolean(document.getElementById("under25")?.checked),
+        firstMarried: Boolean(document.getElementById("first-married")?.checked),
+        children: Number.parseInt(document.getElementById("family")?.value, 10) || 0,
+      },
+    };
+  }
+
+  function scheduleFromUi() {
+    const job = currentJob();
+    if (!job) return cancel();
+    schedule(job);
+  }
+
+  ["gross", "net-input", "under25", "first-married", "family"].forEach((id) => {
+    const element = document.getElementById(id);
+    element?.addEventListener("input", scheduleFromUi);
+    element?.addEventListener("change", scheduleFromUi);
+  });
+
+  document.querySelectorAll("input[name='calc-type']").forEach((radio) => {
+    radio.addEventListener("change", scheduleFromUi);
+  });
+
+  window.KBSalaryShadow = Object.freeze({ schedule, cancel, scheduleFromUi });
 })();
