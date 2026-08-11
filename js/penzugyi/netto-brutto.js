@@ -178,3 +178,10 @@ document.querySelectorAll("input[name='calc-type']").forEach((radio) => {
 });
 
 calc();
+
+// Shadow integration: the live result above remains authoritative. The API client
+// runs independently and only compares the already-rendered local result.
+const shadowClientScript = document.createElement("script");
+shadowClientScript.src = "../js/penzugyi/netto-brutto-shadow.js";
+shadowClientScript.async = true;
+document.head.appendChild(shadowClientScript);
