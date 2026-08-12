@@ -3,8 +3,7 @@
 
 <head>
 <meta name="google-adsense-account" content="ca-pub-2639795157074812">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812" crossorigin="anonymous"></script>
-  <meta charset="UTF-8" />
+<meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="A Kalkulátor Bázis adatkezelési tájékoztatója a kezelt adatokról, sütikről, külső szolgáltatókról és látogatói jogokról." />
   <link rel="canonical" href="https://kalkulatorbazis.hu/adatvedelem.html" />
@@ -50,23 +49,48 @@
     <h2>Milyen adatokat kezelünk?</h2>
 
     <p>
-      A weboldalon található kalkulátorok használata során megadott értékek
-      (például kezdő tőke, havi befizetés vagy hozam) kizárólag a látogató
-      böngészőjében kerülnek feldolgozásra. Ezeket az értékeket nem küldjük el
-      szerverre, kivéve, ha a látogató a hibabejelentő szövegmezőjében maga írja
-      le és küldi be őket.
+      A kalkulátorok többsége a megadott értékeket kizárólag a látogató
+      böngészőjében dolgozza fel. Egyes, kifejezetten API-t használó vagy
+      technikai tesztmódban működő funkcióknál a számításhoz szükséges értékek
+      HTTPS-kapcsolaton keresztül a Kalkulátor Bázis API-jához is továbbításra
+      kerülhetnek.
     </p>
 
     <ul>
-      <li>nem kerülnek elküldésre szerverre</li>
-      <li>nem kerülnek tárolásra</li>
-      <li>nem kapcsolhatók személyhez</li>
+      <li>a helyben működő kalkulátorok mezőértékei nem hagyják el a böngészőt</li>
+      <li>API-hívásnál csak a számításhoz szükséges adatokat továbbítjuk</li>
+      <li>a Kalkulátor Bázis API alkalmazásnaplói szándékosan nem rögzítik a kalkulátor request body-k tartalmát</li>
+      <li>a kalkulátoradatokat nem használjuk profilalkotásra vagy hirdetési célra</li>
     </ul>
+
+    <p>
+      A nettó–bruttó kalkulátor jelenlegi háttér-összehasonlító (shadow) API-tesztje
+      normál látogatóknál nincs bekapcsolva; kizárólag manuálisan aktivált technikai
+      tesztmódban fut. Ilyenkor a megadott bér- és kedvezményadatok az API-hoz kerülnek
+      a helyi és a szerveroldali számítás összevetéséhez.
+    </p>
 
     <p>
       A tárhely kiszolgálásakor a szolgáltató technikailag szükséges kapcsolati
       adatokat (például IP-címet, időpontot és böngészőazonosítót) kezelhet a
       biztonságos működés és a visszaélések megelőzése érdekében.
+    </p>
+
+    <h2>Kalkulátor API és technikai naplók</h2>
+
+    <p>
+      Az API-infrastruktúrát a Render Services, Inc. biztosítja. Az API használatakor
+      a szolgáltató a kapcsolat kiszolgálásához szükséges technikai adatokat, például
+      IP-címet, időpontot, kért útvonalat, HTTP-metódust és válaszkódot kezelhet. A
+      Kalkulátor Bázis API nem hoz létre felhasználói profilt, és a kalkulátorok
+      request body-ját nem naplózzuk alkalmazásszinten.
+    </p>
+
+    <p>
+      A Render technikai logjainak megőrzése a használt csomagtól függ; a jelenlegi
+      Hobby munkaterületen a szolgáltató dokumentációja szerint a naplók legfeljebb
+      7 napig érhetők el. A szolgáltató adatfeldolgozási feltételei és nemzetközi
+      adattovábbítási garanciái a Render saját adatvédelmi dokumentumaiban találhatók.
     </p>
 
     <p>
@@ -96,6 +120,22 @@
       <li>kérdések és hibabejelentések megválaszolása, kivizsgálása</li>
     </ul>
 
+    <h2>Adatkezelés jogalapja</h2>
+
+    <ul>
+      <li><strong>Szükséges technikai működés és biztonság:</strong> az adatkezelő jogos érdeke a szolgáltatás biztonságos és megbízható működtetése (GDPR 6. cikk (1) f)).</li>
+      <li><strong>API-s minőségellenőrzés:</strong> az adatkezelő jogos érdeke a kalkulációk pontosságának és megbízhatóságának ellenőrzése; ezt adatminimalizálással, profilalkotás nélkül és a jelenlegi shadow tesztnél kizárólag manuális technikai tesztmódban végezzük (GDPR 6. cikk (1) f)).</li>
+      <li><strong>Analitika, hirdetés és marketing:</strong> a látogató hozzájárulása (GDPR 6. cikk (1) a)); az opcionális tárolás és külső hirdetési technológiák csak a megfelelő választás után aktiválódnak.</li>
+      <li><strong>Segítség- és hibabejelentés:</strong> a beküldés előtt adott hozzájárulás (GDPR 6. cikk (1) a)).</li>
+    </ul>
+
+    <p>
+      A jogos érdeken alapuló adatkezelés ellen a látogató a lent megadott
+      elérhetőségen tiltakozhat. Az adatkezelő az ilyen adatkezeléseknél a cél
+      szükségességét, az érintetti hatást és az alkalmazott garanciákat rendszeresen
+      felülvizsgálja.
+    </p>
+
     <h2>Cookie-k (sütik)</h2>
 
     <p>
@@ -122,6 +162,7 @@
 
     <ul>
       <li>GitHub Pages (a weboldal tárhelyszolgáltatása)</li>
+      <li>Render Services, Inc. (a Kalkulátor Bázis API infrastruktúrája)</li>
       <li>Google Analytics (látogatottság mérés)</li>
       <li>Google AdSense (hirdetésmegjelenítés)</li>
       <li>Google Ads (konverziómérés)</li>
@@ -209,7 +250,7 @@
 
     <p><a href="mailto:kalkulatorbazis@gmail.com">kalkulatorbazis@gmail.com</a></p>
 
-    <p>Utolsó frissítés: 2026.08.07.</p>
+    <p>Utolsó frissítés: 2026.08.12.</p>
   </main>
   <div id="footer"></div>
   

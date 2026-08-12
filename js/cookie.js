@@ -4,10 +4,16 @@
 
   const storageKey = "kbCookieConsent";
   const legacyStorageKey = "cookieConsent";
-  const consentVersion = "2026-06-26.v2";
+  const consentVersion = "2026-08-12.v3";
   const maxAgeDays = 180;
   const analyticsId = "G-4JBY0GDC4C";
   const adsId = "AW-18204925339";
+  const adsenseClient = "ca-pub-2639795157074812";
+
+  // AdSense requests remain paused until explicit advertising consent.
+  window.adsbygoogle = window.adsbygoogle || [];
+  window.adsbygoogle.pauseAdRequests = 1;
+  window.adsbygoogle.requestNonPersonalizedAds = 1;
   const maxClockSkewMs = 5 * 60 * 1000;
   const maxRecordAgeMs = (maxAgeDays + 2) * 24 * 60 * 60 * 1000;
   const allowedCategoryKeys = ["necessary", "analytics", "ads"];
@@ -260,6 +266,39 @@
     configure();
   };
 
+  const syncAdSense = () => {
+    const queue = (window.adsbygoogle = window.adsbygoogle || []);
+    queue.requestNonPersonalizedAds = 1;
+
+    if (!hasConsent("ads")) {
+      queue.pauseAdRequests = 1;
+      return;
+    }
+
+    queue.pauseAdRequests = 1;
+    const existing = document.querySelector(
+      'script[src^="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]'
+    );
+
+    const resumeRequests = () => {
+      queue.requestNonPersonalizedAds = 1;
+      queue.pauseAdRequests = 0;
+    };
+
+    if (existing) {
+      resumeRequests();
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.crossOrigin = "anonymous";
+    script.dataset.kbConsentManaged = "adsense";
+    script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`;
+    script.addEventListener("load", resumeRequests, { once: true });
+    document.head.appendChild(script);
+  };
+
   const persistConsent = (categories) => {
     const nextConsent = makeRecord(categories);
     const saved = safeStorage.set(storageKey, JSON.stringify(nextConsent));
@@ -269,6 +308,7 @@
     updateGoogleConsent(currentConsent.categories);
     updateConsentControlledAssets(currentConsent.categories);
     loadGoogleTag();
+    syncAdSense();
     dispatchConsentEvent();
     return saved;
   };
@@ -648,10 +688,12 @@
       updateGoogleConsent(currentConsent.categories);
       updateConsentControlledAssets(currentConsent.categories);
       loadGoogleTag();
+      syncAdSense();
       closeModal(false);
     } else {
       updateGoogleConsent(defaultCategories);
       updateConsentControlledAssets(defaultCategories);
+      syncAdSense();
       openModal();
     }
 

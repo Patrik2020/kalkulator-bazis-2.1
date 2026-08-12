@@ -111,7 +111,20 @@
     }
   }
 
+  function isDebugEnabled() {
+    try {
+      return window.localStorage?.getItem("kbSalaryShadowDebug") === "1";
+    } catch {
+      return false;
+    }
+  }
+
   function schedule(job) {
+    if (!isDebugEnabled()) {
+      cancel();
+      return;
+    }
+
     sequence += 1;
     const jobSequence = sequence;
     window.clearTimeout(timer);
