@@ -293,7 +293,6 @@
     const script = document.createElement("script");
     script.async = true;
     script.crossOrigin = "anonymous";
-    script.dataset.kbConsentManaged = "adsense";
     script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`;
     script.addEventListener("load", resumeRequests, { once: true });
     document.head.appendChild(script);
