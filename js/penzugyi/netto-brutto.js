@@ -5,6 +5,30 @@ function formatInput(input) {
   });
 }
 
+function upgradeFamilyFields() {
+  const familyBox = document.querySelector(".family-box");
+  const legacyInput = document.getElementById("family");
+  if (!familyBox || !legacyInput) return;
+
+  familyBox.innerHTML = `
+    <div class="family-heading">Családi kedvezmény</div>
+    <div class="family-fields">
+      <div>
+        <label for="family-dependants">Eltartottak száma</label>
+        <input type="number" id="family-dependants" min="0" max="20" value="0" inputmode="numeric" />
+        <small>Az eltartottak teljes száma, ez határozza meg az egy főre jutó kedvezmény mértékét.</small>
+      </div>
+      <div>
+        <label for="family-eligible">Kedvezményezett eltartottak száma</label>
+        <input type="number" id="family-eligible" min="0" max="20" value="0" inputmode="numeric" />
+        <small>Azok száma, akik után a családi kedvezmény ténylegesen érvényesíthető.</small>
+      </div>
+    </div>
+  `;
+}
+
+upgradeFamilyFields();
+
 const grossInput = document.getElementById("gross");
 const netInput = document.getElementById("net-input");
 const grossWrapper = document.getElementById("gross-wrapper");

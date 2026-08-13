@@ -29,6 +29,11 @@
     return Number.isFinite(parsed) ? parsed : 0;
   }
 
+  function parseCount(id) {
+    const value = Number.parseInt(document.getElementById(id)?.value, 10);
+    return Number.isFinite(value) ? Math.max(0, Math.min(20, value)) : 0;
+  }
+
   function clearDetails() {
     [resultGross, resultSzja, resultTb, resultFamily, resultMarried, resultUnder25, resultEmployer]
       .forEach((element) => { element.textContent = ""; });
@@ -46,17 +51,6 @@
     resultDiff.textContent = message;
   }
 
-  function familyPayload(children) {
-    const count = Math.max(0, Math.floor(Number(children) || 0));
-    if (count === 0) return undefined;
-    return {
-      dependants: count,
-      eligibleDependants: count,
-      disabledEligibleDependants: 0,
-      claimPercent: 100,
-    };
-  }
-
   function currentJob() {
     const direction = document.querySelector("input[name='calc-type']:checked")?.value || "gross-to-net";
     const amountElement = direction === "gross-to-net"
@@ -65,20 +59,36 @@
     const amount = parseAmount(amountElement?.value);
     if (amount <= 0) return null;
 
-    const children = Number.parseInt(document.getElementById("family")?.value, 10) || 0;
+    const dependants = parseCount("family-dependants");
+    const eligibleDependants = parseCount("family-eligible");
+
+    if (eligibleDependants > dependants) {
+      return {
+        validationError: "A kedvezményezett eltartottak száma nem lehet nagyobb az eltartottak teljes számánál."
+      };
+    }
+
     const common = {
       under25: Boolean(document.getElementById("under25")?.checked),
       firstMarried: Boolean(document.getElementById("first-married")?.checked),
       motherBenefit: "none",
       personalAllowance: false,
     };
-    const family = familyPayload(children);
-    if (family) common.family = family;
+
+    if (dependants > 0 || eligibleDependants > 0) {
+      common.family = {
+        dependants,
+        eligibleDependants,
+        disabledEligibleDependants: 0,
+        claimPercent: 100,
+      };
+    }
 
     return {
       direction,
       amount,
-      children,
+      dependants,
+      eligibleDependants,
       payload: direction === "gross-to-net"
         ? { gross: amount, ...common }
         : { desiredNet: amount, ...common },
@@ -96,7 +106,7 @@
     resultTb.textContent = `Fizetendő TB-járulék: ${format(data.taxes.tb)} Ft`;
 
     const family = data.benefits.family;
-    resultFamily.textContent = job.children > 0
+    resultFamily.textContent = job.eligibleDependants > 0
       ? `Ezen a kereseten érvényesített családi kedvezmény: ${format(family.used)} Ft`
       : "";
     resultMarried.textContent = document.getElementById("first-married")?.checked
@@ -206,13 +216,19 @@
       return;
     }
 
+    if (job.validationError) {
+      cancel();
+      showError(job.validationError);
+      return;
+    }
+
     sequence += 1;
     const jobSequence = sequence;
     window.clearTimeout(timer);
     timer = window.setTimeout(() => run(job, jobSequence), DEBOUNCE_MS);
   }
 
-  ["gross", "net-input", "under25", "first-married", "family"].forEach((id) => {
+  ["gross", "net-input", "under25", "first-married", "family-dependants", "family-eligible"].forEach((id) => {
     const element = document.getElementById(id);
     element?.addEventListener("input", scheduleFromUi);
     element?.addEventListener("change", scheduleFromUi);
