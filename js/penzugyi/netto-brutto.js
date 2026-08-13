@@ -4,6 +4,11 @@ const TAX_RULES_2026 = Object.freeze({
   employerSzochoRate: 0.13,
   under25MonthlyBaseCap: 715_765,
   firstMarriedMonthlyTaxSaving: 5_000,
+  familyTaxBase: Object.freeze({
+    oneDependant: 133_340,
+    twoDependants: 266_660,
+    threeOrMoreDependants: 440_000,
+  }),
 });
 
 function format(num) {
@@ -46,10 +51,15 @@ formatInput(netInput);
 
 function getFamilyMaxTaxSaving(children) {
   const count = Math.max(0, Math.floor(Number(children) || 0));
-  if (count === 1) return 20_000;
-  if (count === 2) return 80_000;
-  if (count >= 3) return count * 66_000;
-  return 0;
+  if (count <= 0) return 0;
+
+  const taxBasePerEligible = count === 1
+    ? TAX_RULES_2026.familyTaxBase.oneDependant
+    : count === 2
+      ? TAX_RULES_2026.familyTaxBase.twoDependants
+      : TAX_RULES_2026.familyTaxBase.threeOrMoreDependants;
+
+  return taxBasePerEligible * count * TAX_RULES_2026.szjaRate;
 }
 
 function calculateFromGross(gross, options = {}) {
@@ -179,9 +189,9 @@ document.querySelectorAll("input[name='calc-type']").forEach((radio) => {
 
 calc();
 
-// Shadow integration: the live result above remains authoritative. The API client
-// runs independently and only compares the already-rendered local result.
-const shadowClientScript = document.createElement("script");
-shadowClientScript.src = "../js/penzugyi/netto-brutto-shadow.js";
-shadowClientScript.async = true;
-document.head.appendChild(shadowClientScript);
+// A helyi számítás azonnali tartalék eredményt ad. A külön API-kliens sikeres
+// válasz esetén ugyanazt az eredményblokkot a szerveroldali modellel frissíti.
+const salaryApiClientScript = document.createElement("script");
+salaryApiClientScript.src = "../js/penzugyi/netto-brutto-shadow.js";
+salaryApiClientScript.async = true;
+document.head.appendChild(salaryApiClientScript);

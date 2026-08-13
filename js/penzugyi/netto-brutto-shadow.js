@@ -2,15 +2,28 @@
   "use strict";
 
   const API_BASE = "https://kalkulator-bazis-api-dev.onrender.com";
-  const TIMEOUT_MS = 3500;
-  const DEBOUNCE_MS = 650;
-  const MATCH_TOLERANCE_FT = 1;
+  const TIMEOUT_MS = 6000;
+  const DEBOUNCE_MS = 300;
 
   let timer = null;
   let sequence = 0;
   let activeController = null;
 
-  function parseDisplayedNumber(value) {
+  const resultNet = document.getElementById("result-net");
+  const resultGross = document.getElementById("result-gross");
+  const resultSzja = document.getElementById("result-szja");
+  const resultTb = document.getElementById("result-tb");
+  const resultFamily = document.getElementById("result-family");
+  const resultMarried = document.getElementById("result-married");
+  const resultUnder25 = document.getElementById("result-under25");
+  const resultEmployer = document.getElementById("result-employer");
+  const resultDiff = document.getElementById("result-diff");
+
+  function format(value) {
+    return new Intl.NumberFormat("hu-HU").format(Math.round(Number(value) || 0));
+  }
+
+  function parseAmount(value) {
     const digits = String(value || "").replace(/[^0-9]/g, "");
     const parsed = Number.parseInt(digits, 10);
     return Number.isFinite(parsed) ? parsed : 0;
@@ -27,108 +40,103 @@
     };
   }
 
-  function buildPayload(direction, amount, options) {
-    const base = {
-      under25: Boolean(options?.under25),
-      firstMarried: Boolean(options?.firstMarried),
+  function currentJob() {
+    const direction = document.querySelector("input[name='calc-type']:checked")?.value || "gross-to-net";
+    const amountElement = direction === "gross-to-net"
+      ? document.getElementById("gross")
+      : document.getElementById("net-input");
+    const amount = parseAmount(amountElement?.value);
+    if (amount <= 0) return null;
+
+    const children = Number.parseInt(document.getElementById("family")?.value, 10) || 0;
+    const common = {
+      under25: Boolean(document.getElementById("under25")?.checked),
+      firstMarried: Boolean(document.getElementById("first-married")?.checked),
       motherBenefit: "none",
       personalAllowance: false,
     };
+    const family = familyPayload(children);
+    if (family) common.family = family;
 
-    const family = familyPayload(options?.children);
-    if (family) base.family = family;
+    return {
+      direction,
+      amount,
+      children,
+      payload: direction === "gross-to-net"
+        ? { gross: amount, ...common }
+        : { desiredNet: amount, ...common },
+    };
+  }
 
-    if (direction === "gross-to-net") return { gross: Math.round(amount), ...base };
-    return { desiredNet: Math.round(amount), ...base };
+  function renderApiResult(job, data) {
+    if (!data || !data.taxes || !data.benefits || !data.employer) return false;
+
+    resultNet.textContent = `${format(job.direction === "gross-to-net" ? data.net : data.gross)} Ft`;
+    resultGross.textContent = job.direction === "gross-to-net"
+      ? `Bruttó fizetés: ${format(data.gross)} Ft`
+      : `Becsült nettó: ${format(data.net)} Ft (cél: ${format(job.amount)} Ft)`;
+    resultSzja.textContent = `Fizetendő SZJA: ${format(data.taxes.szja)} Ft`;
+    resultTb.textContent = `Fizetendő TB-járulék: ${format(data.taxes.tb)} Ft`;
+
+    const family = data.benefits.family;
+    resultFamily.textContent = job.children > 0
+      ? `Felhasznált családi kedvezmény: ${format(family.used)} Ft`
+      : "";
+    resultMarried.textContent = document.getElementById("first-married")?.checked
+      ? `Felhasznált első házas kedvezmény: ${format(data.benefits.firstMarriedSaving)} Ft`
+      : "";
+    resultUnder25.textContent = document.getElementById("under25")?.checked
+      ? `25 év alatti kedvezményből felhasználva: ${format(data.benefits.under25Saving)} Ft`
+      : "";
+    resultEmployer.textContent = `Becsült teljes munkáltatói költség: ${format(data.employer.totalCost)} Ft`;
+
+    const notes = Array.isArray(data.warnings) ? [...data.warnings] : [];
+    if (family?.unusedTaxEffect > 0) {
+      notes.push(`A megadott bérből a családi kedvezmény ${format(family.unusedTaxEffect)} Ft-os része nem használható ki ebben a modellben.`);
+    }
+    if (document.getElementById("under25")?.checked && document.getElementById("first-married")?.checked) {
+      notes.push("A 25 év alatti és az első házas kedvezmény együttes jogosultsága az egyéni körülményektől is függ.");
+    }
+    resultDiff.textContent = [...new Set(notes)].join(" ");
+    return true;
   }
 
   function endpoint(direction) {
     return `${API_BASE}/api/v1/calculators/salary/${direction}`;
   }
 
-  function emit(detail) {
-    window.dispatchEvent(new CustomEvent("kb:salary-shadow", { detail }));
-
-    try {
-      if (window.localStorage?.getItem("kbSalaryShadowDebug") === "1") {
-        console.debug("[salary-shadow]", detail);
-      }
-    } catch {
-      // Storage can be unavailable in restricted browser contexts.
-    }
-  }
-
-  async function compare(job, jobSequence) {
+  async function run(job, jobSequence) {
     activeController?.abort();
     const controller = new AbortController();
     activeController = controller;
     const timeout = window.setTimeout(() => controller.abort(), TIMEOUT_MS);
-    const started = performance.now();
 
     try {
       const response = await fetch(endpoint(job.direction), {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify(buildPayload(job.direction, job.amount, job.options)),
+        body: JSON.stringify(job.payload),
         signal: controller.signal,
         credentials: "omit",
         cache: "no-store",
       });
 
-      if (jobSequence !== sequence) return;
-
-      const elapsedMs = Math.round(performance.now() - started);
-      if (!response.ok) {
-        emit({ status: "http_error", direction: job.direction, httpStatus: response.status, elapsedMs });
-        return;
-      }
-
+      if (jobSequence !== sequence || !response.ok) return;
       const payload = await response.json();
-      const apiValue = job.direction === "gross-to-net" ? payload?.data?.net : payload?.data?.gross;
-
-      if (!Number.isFinite(apiValue) || !Number.isFinite(job.localValue)) {
-        emit({ status: "invalid_response", direction: job.direction, elapsedMs });
-        return;
-      }
-
-      const differenceFt = Math.round(apiValue) - Math.round(job.localValue);
-      emit({
-        status: Math.abs(differenceFt) <= MATCH_TOLERANCE_FT ? "match" : "mismatch",
-        direction: job.direction,
-        differenceFt,
-        elapsedMs,
-      });
-    } catch (error) {
       if (jobSequence !== sequence) return;
-      emit({
-        status: error?.name === "AbortError" ? "timeout" : "network_error",
-        direction: job.direction,
-        elapsedMs: Math.round(performance.now() - started),
-      });
+
+      if (renderApiResult(job, payload?.data)) {
+        window.dispatchEvent(new CustomEvent("kb:salary-api", {
+          detail: { status: "success", direction: job.direction, ruleset: payload?.data?.ruleset || null },
+        }));
+      }
+    } catch {
+      // A helyi kalkuláció már megjelent, ezért API-hiba vagy timeout esetén
+      // nincs felhasználói hibaállapot: a böngészőben futó számítás marad látható.
     } finally {
       window.clearTimeout(timeout);
       if (activeController === controller) activeController = null;
     }
-  }
-
-  function isDebugEnabled() {
-    try {
-      return window.localStorage?.getItem("kbSalaryShadowDebug") === "1";
-    } catch {
-      return false;
-    }
-  }
-
-  function schedule(job) {
-    if (!isDebugEnabled()) {
-      cancel();
-      return;
-    }
-
-    sequence += 1;
-    const jobSequence = sequence;
-    window.clearTimeout(timer);
-    timer = window.setTimeout(() => compare(job, jobSequence), DEBOUNCE_MS);
   }
 
   function cancel() {
@@ -138,32 +146,14 @@
     activeController = null;
   }
 
-  function currentJob() {
-    const direction = document.querySelector("input[name='calc-type']:checked")?.value || "gross-to-net";
-    const amountElement = direction === "gross-to-net"
-      ? document.getElementById("gross")
-      : document.getElementById("net-input");
-    const amount = parseDisplayedNumber(amountElement?.value);
-    const localValue = parseDisplayedNumber(document.getElementById("result-net")?.textContent);
-
-    if (amount <= 0 || localValue <= 0) return null;
-
-    return {
-      direction,
-      amount,
-      localValue,
-      options: {
-        under25: Boolean(document.getElementById("under25")?.checked),
-        firstMarried: Boolean(document.getElementById("first-married")?.checked),
-        children: Number.parseInt(document.getElementById("family")?.value, 10) || 0,
-      },
-    };
-  }
-
   function scheduleFromUi() {
     const job = currentJob();
     if (!job) return cancel();
-    schedule(job);
+
+    sequence += 1;
+    const jobSequence = sequence;
+    window.clearTimeout(timer);
+    timer = window.setTimeout(() => run(job, jobSequence), DEBOUNCE_MS);
   }
 
   ["gross", "net-input", "under25", "first-married", "family"].forEach((id) => {
@@ -176,5 +166,6 @@
     radio.addEventListener("change", scheduleFromUi);
   });
 
-  window.KBSalaryShadow = Object.freeze({ schedule, cancel, scheduleFromUi });
+  window.KBSalaryApi = Object.freeze({ scheduleFromUi, cancel });
+  scheduleFromUi();
 })();
