@@ -29,6 +29,23 @@
     return Number.isFinite(parsed) ? parsed : 0;
   }
 
+  function clearDetails() {
+    [resultGross, resultSzja, resultTb, resultFamily, resultMarried, resultUnder25, resultEmployer]
+      .forEach((element) => { element.textContent = ""; });
+  }
+
+  function showPending() {
+    resultNet.textContent = "Számítás…";
+    clearDetails();
+    resultDiff.textContent = "";
+  }
+
+  function showError(message) {
+    resultNet.textContent = "API-hiba";
+    clearDetails();
+    resultDiff.textContent = message;
+  }
+
   function familyPayload(children) {
     const count = Math.max(0, Math.floor(Number(children) || 0));
     if (count === 0) return undefined;
@@ -110,6 +127,8 @@
     const controller = new AbortController();
     activeController = controller;
     const timeout = window.setTimeout(() => controller.abort(), TIMEOUT_MS);
+    const started = performance.now();
+    showPending();
 
     try {
       const response = await fetch(endpoint(job.direction), {
@@ -121,18 +140,46 @@
         cache: "no-store",
       });
 
-      if (jobSequence !== sequence || !response.ok) return;
+      if (jobSequence !== sequence) return;
+
+      const elapsedMs = Math.round(performance.now() - started);
+      if (!response.ok) {
+        showError(`A számítási API ${response.status} hibát adott. Próbáld újra.`);
+        window.dispatchEvent(new CustomEvent("kb:salary-api", {
+          detail: { status: "http_error", direction: job.direction, httpStatus: response.status, elapsedMs },
+        }));
+        return;
+      }
+
       const payload = await response.json();
       if (jobSequence !== sequence) return;
 
-      if (renderApiResult(job, payload?.data)) {
+      if (!renderApiResult(job, payload?.data)) {
+        showError("A számítási API érvénytelen választ adott.");
         window.dispatchEvent(new CustomEvent("kb:salary-api", {
-          detail: { status: "success", direction: job.direction, ruleset: payload?.data?.ruleset || null },
+          detail: { status: "invalid_response", direction: job.direction, elapsedMs },
         }));
+        return;
       }
-    } catch {
-      // A helyi kalkuláció már megjelent, ezért API-hiba vagy timeout esetén
-      // nincs felhasználói hibaállapot: a böngészőben futó számítás marad látható.
+
+      window.dispatchEvent(new CustomEvent("kb:salary-api", {
+        detail: {
+          status: "success",
+          direction: job.direction,
+          ruleset: payload?.data?.ruleset || null,
+          elapsedMs,
+        },
+      }));
+    } catch (error) {
+      if (jobSequence !== sequence) return;
+      const elapsedMs = Math.round(performance.now() - started);
+      const timeoutError = error?.name === "AbortError";
+      showError(timeoutError
+        ? "A számítási API nem válaszolt 6 másodpercen belül. Próbáld újra."
+        : "A számítási API jelenleg nem érhető el. Próbáld újra.");
+      window.dispatchEvent(new CustomEvent("kb:salary-api", {
+        detail: { status: timeoutError ? "timeout" : "network_error", direction: job.direction, elapsedMs },
+      }));
     } finally {
       window.clearTimeout(timeout);
       if (activeController === controller) activeController = null;
@@ -148,7 +195,13 @@
 
   function scheduleFromUi() {
     const job = currentJob();
-    if (!job) return cancel();
+    if (!job) {
+      cancel();
+      resultNet.textContent = "–";
+      clearDetails();
+      resultDiff.textContent = "";
+      return;
+    }
 
     sequence += 1;
     const jobSequence = sequence;
