@@ -97,7 +97,7 @@
 
     const family = data.benefits.family;
     resultFamily.textContent = job.children > 0
-      ? `Felhasznált családi kedvezmény: ${format(family.used)} Ft`
+      ? `Ezen a kereseten érvényesített családi kedvezmény: ${format(family.used)} Ft`
       : "";
     resultMarried.textContent = document.getElementById("first-married")?.checked
       ? `Felhasznált első házas kedvezmény: ${format(data.benefits.firstMarriedSaving)} Ft`
@@ -109,7 +109,10 @@
 
     const notes = Array.isArray(data.warnings) ? [...data.warnings] : [];
     if (family?.unusedTaxEffect > 0) {
-      notes.push(`A megadott bérből a családi kedvezmény ${format(family.unusedTaxEffect)} Ft-os része nem használható ki ebben a modellben.`);
+      notes.push(
+        `A családi kedvezményből ezen a kereseten még ${format(family.unusedTaxEffect)} Ft nem érvényesíthető, mert az SZJA és a fizetendő TB-járulék már 0 Ft-ra csökkent. ` +
+        "A fennmaradó rész jogosultságtól függően más jogosulttal közösen vagy az éves bevallásban is érvényesíthető lehet."
+      );
     }
     if (document.getElementById("under25")?.checked && document.getElementById("first-married")?.checked) {
       notes.push("A 25 év alatti és az első házas kedvezmény együttes jogosultsága az egyéni körülményektől is függ.");
