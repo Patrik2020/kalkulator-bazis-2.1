@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const API_BASE = "https://kalkulator-bazis-api-dev.onrender.com";
+  const API_BASE = "https://api.kalkulatorbazis.hu";
   const TIMEOUT_MS = 6000;
   const DEBOUNCE_MS = 300;
 
