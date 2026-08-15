@@ -1,6 +1,58 @@
 (() => {
   "use strict";
 
+  const loadFinalQualityModule = () => {
+    const projectRoot = window.KB_PROJECT_ROOT || "";
+    let relativePath = window.location.pathname;
+    if (projectRoot && relativePath.startsWith(projectRoot)) relativePath = relativePath.slice(projectRoot.length);
+    relativePath = relativePath.replace(/^\/+|\/+$/g, "") || "index.html";
+    if (!/\.html$/i.test(relativePath) && relativePath !== "index.html") relativePath += ".html";
+
+    const supported = new Set([
+      "index.html",
+      "kalkulatorok.html",
+      "elethelyzetek.html",
+      "rolunk.html",
+      "kapcsolat.html",
+      "miert-bizhatsz-bennunk.html",
+      "atlathatosag-es-minoseg.html",
+      "szamitasi-modszertan.html",
+      "adatvedelem.html",
+      "cookie.html",
+      "felhasznalasi-feltetelek.html",
+      "jogi-nyilatkozat.html",
+      "impresszum.html",
+      "kalkulatorok/multifunkcios-szamologep.html",
+      "landing-pages/elethelyzetek/lakasvasarlas.html",
+      "landing-pages/elethelyzetek/autofenntartas.html",
+      "landing-pages/elethelyzetek/fizetes-munkaber.html",
+      "landing-pages/elethelyzetek/befektetes-kezdoknek.html",
+      "landing-pages/elethelyzetek/felujitas-tervezese.html",
+      "landing-pages/elethelyzetek/csaladi-koltsegvetes.html",
+      "landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html",
+      "landing-pages/wise/wise.html",
+    ]);
+    if (!supported.has(relativePath)) return;
+
+    if (!document.querySelector('link[data-site-quality-final]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = `${projectRoot}/css/pages/site-quality-final.css?v=20260815-1`;
+      link.dataset.siteQualityFinal = "style";
+      document.head.appendChild(link);
+    }
+
+    if (!document.querySelector('script[data-site-quality-final]')) {
+      const script = document.createElement("script");
+      script.src = `${projectRoot}/js/site-quality-final.js?v=20260815-1`;
+      script.defer = true;
+      script.dataset.siteQualityFinal = "script";
+      document.head.appendChild(script);
+    }
+  };
+
+  loadFinalQualityModule();
+
   const resultSelectors = [
     ".result-box",
     ".everyday-result",
