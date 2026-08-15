@@ -37,6 +37,7 @@ const autoConverterUpgradeCssPath = `${projectRoot}/css/pages/auto-converter-upg
 const financeQualityCssPath = `${projectRoot}/css/pages/finance-quality-upgrades.css`;
 const constructionQualityCssPath = `${projectRoot}/css/pages/construction-quality-upgrades.css`;
 const healthEverydayQualityCssPath = `${projectRoot}/css/pages/health-everyday-quality-upgrades.css`;
+const autoConverterQualityCssPath = `${projectRoot}/css/pages/auto-converter-quality-upgrades.css`;
 const themeScriptPath = `${projectRoot}/js/theme.js`;
 const pwaScriptPath = `${projectRoot}/js/pwa.js`;
 const wiseBannerScriptPath = `${projectRoot}/js/wise-banner-enhancer.js`;
@@ -49,6 +50,7 @@ const autoConverterUpgradeScriptPath = `${projectRoot}/js/auto-converter-upgrade
 const financeQualityScriptPath = `${projectRoot}/js/finance-quality-upgrades.js`;
 const constructionQualityScriptPath = `${projectRoot}/js/construction-quality-upgrades.js`;
 const healthEverydayQualityScriptPath = `${projectRoot}/js/health-everyday-quality-upgrades.js`;
+const autoConverterQualityScriptPath = `${projectRoot}/js/auto-converter-quality-upgrades.js`;
 const calculatorCssPath = `${projectRoot}/css/pages/calculator-suite.css`;
 const calculatorScriptPath = `${projectRoot}/js/calculator-suite.js`;
 const normalizedPath = window.location.pathname.replace(/\/+$/, "");
@@ -110,6 +112,15 @@ const healthEverydayQualityPages = new Set([
   "datum-kulonbseg-kalkulator", "atlag-kalkulator", "egysegar-kalkulator",
   "rezsi-megosztas-kalkulator", "oraber-kalkulator", "arany-kalkulator",
 ]);
+const autoConverterQualityPages = new Set([
+  "auto", "atvaltok",
+  "auto-kalkulator", "uzemanyag-koltseg-kalkulator", "auto-fogyasztas-kalkulator", "hatotav-kalkulator",
+  "eves-auto-koltseg-kalkulator", "auto-ertekvesztes-kalkulator", "kilometerdij-kalkulator", "co2-kibocsatas-kalkulator",
+  "tankolas-kalkulator", "gumi-meret-kalkulator", "autopalyadij-kalkulator", "utazasi-ido-kalkulator",
+  "homerseklet-atvalto-kalkulator", "hosszusag-atvalto-kalkulator", "tomeg-atvalto-kalkulator", "terulet-atvalto-kalkulator",
+  "terfogat-atvalto-kalkulator", "ido-atvalto-kalkulator", "sebesseg-atvalto-kalkulator", "adatmeret-atvalto-kalkulator",
+  "deviza-atvalto-kalkulator", "energia-atvalto-kalkulator", "nyomas-atvalto-kalkulator", "teljesitmeny-atvalto-kalkulator",
+]);
 const wiseBannerPages = new Set(["index.html", "penzugyi.html", "atvaltok.html", "wise.html"]);
 
 window.KB_PROJECT_ROOT = projectRoot;
@@ -124,7 +135,6 @@ const appendElement = (tagName, attributes) => {
   Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
   document.head.appendChild(element);
 };
-
 
 const hasMainStylesheet = () => [...document.querySelectorAll('link[rel~="stylesheet"][href]')].some((link) => {
   const rawHref = link.getAttribute("href") || "";
@@ -170,6 +180,9 @@ if (constructionQualityPages.has(currentSlug)) {
 if (healthEverydayQualityPages.has(currentSlug)) {
   appendElement("link", { rel: "stylesheet", href: `${healthEverydayQualityCssPath}?v=20260815-1` });
 }
+if (autoConverterQualityPages.has(currentSlug)) {
+  appendElement("link", { rel: "stylesheet", href: `${autoConverterQualityCssPath}?v=20260815-1` });
+}
 
 if (!hasMainStylesheet()) {
   appendElement("link", { rel: "stylesheet", href: footerCssPath });
@@ -214,6 +227,9 @@ if (constructionQualityPages.has(currentSlug)) {
 }
 if (healthEverydayQualityPages.has(currentSlug)) {
   appendElement("script", { src: `${healthEverydayQualityScriptPath}?v=20260815-1`, defer: "" });
+}
+if (autoConverterQualityPages.has(currentSlug)) {
+  appendElement("script", { src: `${autoConverterQualityScriptPath}?v=20260815-1`, defer: "" });
 }
 
 [
