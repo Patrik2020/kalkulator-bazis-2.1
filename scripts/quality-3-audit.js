@@ -134,7 +134,7 @@ for (let i = 0; i < duplicateCandidates.length; i += 1) {
 const calculatorRecords = indexable.filter((record) => record.name.startsWith("kalkulatorok/") && record.name.endsWith(".html"));
 for (const record of calculatorRecords) {
   const slug = path.basename(record.name, ".html");
-  if (!qualitySources.includes(`"${slug}"`) && !qualitySources.includes(`\`${record.name}\``) && !qualitySources.includes(`"${record.name}"`)) {
+  if (!qualitySources.includes(slug)) {
     hardErrors.push(`${record.name}: nincs megtalálható oldal-specifikus Quality 3.0 modulban.`);
   }
 }
@@ -142,7 +142,7 @@ for (const record of calculatorRecords) {
 const categoryRoutes = ["penzugyi.html", "epitoipari.html", "egeszseg.html", "mindennapi.html", "auto.html", "atvaltok.html"];
 for (const route of categoryRoutes) {
   const slug = path.basename(route, ".html");
-  if (!qualitySources.includes(`"${slug}"`)) hardErrors.push(`${route}: nincs dedikált kategóriaszintű Quality 3.0 lefedettség.`);
+  if (!qualitySources.includes(slug)) hardErrors.push(`${route}: nincs dedikált kategóriaszintű Quality 3.0 lefedettség.`);
 }
 
 const finalRoutes = [
