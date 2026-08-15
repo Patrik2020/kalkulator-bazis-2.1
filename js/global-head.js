@@ -36,6 +36,7 @@ const everydayUpgradeCssPath = `${projectRoot}/css/pages/everyday-upgrades.css`;
 const autoConverterUpgradeCssPath = `${projectRoot}/css/pages/auto-converter-upgrades.css`;
 const financeQualityCssPath = `${projectRoot}/css/pages/finance-quality-upgrades.css`;
 const constructionQualityCssPath = `${projectRoot}/css/pages/construction-quality-upgrades.css`;
+const healthEverydayQualityCssPath = `${projectRoot}/css/pages/health-everyday-quality-upgrades.css`;
 const themeScriptPath = `${projectRoot}/js/theme.js`;
 const pwaScriptPath = `${projectRoot}/js/pwa.js`;
 const wiseBannerScriptPath = `${projectRoot}/js/wise-banner-enhancer.js`;
@@ -47,6 +48,7 @@ const everydayUpgradeScriptPath = `${projectRoot}/js/everyday-upgrades.js`;
 const autoConverterUpgradeScriptPath = `${projectRoot}/js/auto-converter-upgrades.js`;
 const financeQualityScriptPath = `${projectRoot}/js/finance-quality-upgrades.js`;
 const constructionQualityScriptPath = `${projectRoot}/js/construction-quality-upgrades.js`;
+const healthEverydayQualityScriptPath = `${projectRoot}/js/health-everyday-quality-upgrades.js`;
 const calculatorCssPath = `${projectRoot}/css/pages/calculator-suite.css`;
 const calculatorScriptPath = `${projectRoot}/js/calculator-suite.js`;
 const normalizedPath = window.location.pathname.replace(/\/+$/, "");
@@ -96,6 +98,17 @@ const constructionQualityPages = new Set([
   "epitoipari", "beton-kalkulator", "csempe-kalkulator", "festek-kalkulator", "tegla-kalkulator",
   "gipszkarton-kalkulator", "tapeta-kalkulator", "vakolat-kalkulator", "hoszigeteles-kalkulator",
   "terkovezes-kalkulator", "tetocserep-kalkulator", "fuga-kalkulator", "padlo-burkolat-kalkulator",
+]);
+const healthEverydayQualityPages = new Set([
+  "egeszseg", "mindennapi",
+  "bmi-kalkulator", "kaloria-kalkulator", "vizfogyasztas-kalkulator",
+  "pulzus-zona-kalkulator", "terhessegi-kalkulator", "idealis-testsuly-kalkulator",
+  "testzsir-kalkulator", "makro-kalkulator", "alvasciklus-kalkulator",
+  "bmr-kalkulator", "derek-csipo-kalkulator", "feherje-szukseglet-kalkulator",
+  "szazalek-kalkulator", "afa-kalkulator", "ar-kedvezmeny-kalkulator",
+  "borravalo-kalkulator", "munkaido-kalkulator", "eletkor-kalkulator",
+  "datum-kulonbseg-kalkulator", "atlag-kalkulator", "egysegar-kalkulator",
+  "rezsi-megosztas-kalkulator", "oraber-kalkulator", "arany-kalkulator",
 ]);
 const wiseBannerPages = new Set(["index.html", "penzugyi.html", "atvaltok.html", "wise.html"]);
 
@@ -154,6 +167,9 @@ if (financeQualityPages.has(currentSlug)) {
 if (constructionQualityPages.has(currentSlug)) {
   appendElement("link", { rel: "stylesheet", href: `${constructionQualityCssPath}?v=20260815-1` });
 }
+if (healthEverydayQualityPages.has(currentSlug)) {
+  appendElement("link", { rel: "stylesheet", href: `${healthEverydayQualityCssPath}?v=20260815-1` });
+}
 
 if (!hasMainStylesheet()) {
   appendElement("link", { rel: "stylesheet", href: footerCssPath });
@@ -195,6 +211,9 @@ if (financeQualityPages.has(currentSlug)) {
 }
 if (constructionQualityPages.has(currentSlug)) {
   appendElement("script", { src: `${constructionQualityScriptPath}?v=20260815-1`, defer: "" });
+}
+if (healthEverydayQualityPages.has(currentSlug)) {
+  appendElement("script", { src: `${healthEverydayQualityScriptPath}?v=20260815-1`, defer: "" });
 }
 
 [
