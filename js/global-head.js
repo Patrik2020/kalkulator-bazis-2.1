@@ -35,6 +35,7 @@ const constructionUpgradeCssPath = `${projectRoot}/css/pages/construction-upgrad
 const everydayUpgradeCssPath = `${projectRoot}/css/pages/everyday-upgrades.css`;
 const autoConverterUpgradeCssPath = `${projectRoot}/css/pages/auto-converter-upgrades.css`;
 const financeQualityCssPath = `${projectRoot}/css/pages/finance-quality-upgrades.css`;
+const constructionQualityCssPath = `${projectRoot}/css/pages/construction-quality-upgrades.css`;
 const themeScriptPath = `${projectRoot}/js/theme.js`;
 const pwaScriptPath = `${projectRoot}/js/pwa.js`;
 const wiseBannerScriptPath = `${projectRoot}/js/wise-banner-enhancer.js`;
@@ -45,6 +46,7 @@ const constructionUpgradeScriptPath = `${projectRoot}/js/construction-upgrades.j
 const everydayUpgradeScriptPath = `${projectRoot}/js/everyday-upgrades.js`;
 const autoConverterUpgradeScriptPath = `${projectRoot}/js/auto-converter-upgrades.js`;
 const financeQualityScriptPath = `${projectRoot}/js/finance-quality-upgrades.js`;
+const constructionQualityScriptPath = `${projectRoot}/js/construction-quality-upgrades.js`;
 const calculatorCssPath = `${projectRoot}/css/pages/calculator-suite.css`;
 const calculatorScriptPath = `${projectRoot}/js/calculator-suite.js`;
 const normalizedPath = window.location.pathname.replace(/\/+$/, "");
@@ -89,6 +91,11 @@ const financeQualityPages = new Set([
   "lakas-hitel-onero-kalkulator", "osztalek-kalkulator", "etf-kalkulator",
   "milliomos-kalkulator", "inflacio-kalkulator", "kamatos-kamat-kalkulator",
   "havi-koltsegvetes-kalkulator", "fizetesi-hatarido-kalkulator", "szamla-teljesites-kalkulator",
+]);
+const constructionQualityPages = new Set([
+  "epitoipari", "beton-kalkulator", "csempe-kalkulator", "festek-kalkulator", "tegla-kalkulator",
+  "gipszkarton-kalkulator", "tapeta-kalkulator", "vakolat-kalkulator", "hoszigeteles-kalkulator",
+  "terkovezes-kalkulator", "tetocserep-kalkulator", "fuga-kalkulator", "padlo-burkolat-kalkulator",
 ]);
 const wiseBannerPages = new Set(["index.html", "penzugyi.html", "atvaltok.html", "wise.html"]);
 
@@ -144,6 +151,9 @@ if (autoConverterUpgradePages.has(currentSlug)) {
 if (financeQualityPages.has(currentSlug)) {
   appendElement("link", { rel: "stylesheet", href: `${financeQualityCssPath}?v=20260814-1` });
 }
+if (constructionQualityPages.has(currentSlug)) {
+  appendElement("link", { rel: "stylesheet", href: `${constructionQualityCssPath}?v=20260815-1` });
+}
 
 if (!hasMainStylesheet()) {
   appendElement("link", { rel: "stylesheet", href: footerCssPath });
@@ -182,6 +192,9 @@ if (autoConverterUpgradePages.has(currentSlug)) {
 }
 if (financeQualityPages.has(currentSlug)) {
   appendElement("script", { src: `${financeQualityScriptPath}?v=20260814-1`, defer: "" });
+}
+if (constructionQualityPages.has(currentSlug)) {
+  appendElement("script", { src: `${constructionQualityScriptPath}?v=20260815-1`, defer: "" });
 }
 
 [
