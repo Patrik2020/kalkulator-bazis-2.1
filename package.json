@@ -15,7 +15,8 @@
     "test:math:update": "node scripts/math-audit.js --write",
     "test:retention": "node scripts/retention-audit.js --summary",
     "sitemap": "node scripts/generate-sitemap.js",
-    "quality": "npm run lint:html && npm run lint:js && npm run test:math && npm run test:currency && npm run test:retention"
+    "quality:3": "node scripts/quality-3-audit.js",
+    "quality": "npm run lint:html && npm run lint:js && npm run test:math && npm run test:currency && npm run test:retention && npm run quality:3"
   },
   "devDependencies": {
     "html-validate": "11.6.2"
