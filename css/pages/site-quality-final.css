@@ -1,0 +1,26 @@
+.site-quality-final{margin:2rem auto;padding:1.5rem;border:1px solid var(--border-color,#dbe3ee);border-radius:18px;background:var(--surface-color,#fff);box-shadow:0 12px 34px rgba(15,23,42,.06)}
+.site-quality-final .sqf-kicker{margin:0 0 .35rem;font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.site-quality-final h2{margin:.2rem 0 .7rem;font-size:clamp(1.35rem,2vw,1.8rem)}
+.site-quality-final h3{margin:.2rem 0 .45rem;font-size:1.05rem}
+.site-quality-final p{line-height:1.7}
+.site-quality-final a{font-weight:650}
+.sqf-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.85rem;margin:1rem 0}
+.sqf-card{padding:1rem;border:1px solid var(--border-color,#dbe3ee);border-radius:14px;background:rgba(148,163,184,.06)}
+.sqf-card p,.sqf-card ul{margin:.35rem 0 0}
+.sqf-card ul{padding-left:1.15rem}
+.sqf-flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.75rem;counter-reset:sqf-step;margin:1rem 0}
+.sqf-step{position:relative;padding:1rem 1rem 1rem 3rem;border-radius:14px;background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.16)}
+.sqf-step:before{counter-increment:sqf-step;content:counter(sqf-step);position:absolute;left:1rem;top:1rem;width:1.35rem;height:1.35rem;border-radius:50%;display:grid;place-items:center;font-size:.75rem;font-weight:800;background:currentColor;color:transparent;box-shadow:inset 0 0 0 999px rgba(255,255,255,.92)}
+.sqf-note{margin:1rem 0 0;padding:1rem;border-left:4px solid currentColor;background:rgba(148,163,184,.08);border-radius:0 12px 12px 0}
+.sqf-checklist{display:grid;gap:.55rem;margin:1rem 0;padding:0;list-style:none}
+.sqf-checklist li{padding:.7rem .8rem;border-radius:10px;background:rgba(148,163,184,.08)}
+.sqf-matrix{display:grid;grid-template-columns:minmax(120px,.75fr) minmax(180px,1.5fr);gap:1px;margin:1rem 0;background:var(--border-color,#dbe3ee);border:1px solid var(--border-color,#dbe3ee);border-radius:12px;overflow:hidden}
+.sqf-matrix>div{padding:.75rem;background:var(--surface-color,#fff)}
+.sqf-matrix>div:nth-child(odd){font-weight:750}
+.sqf-mini-tool{display:grid;gap:.7rem;margin:1rem 0;padding:1rem;border:1px dashed var(--border-color,#cbd5e1);border-radius:14px}
+.sqf-mini-tool label{display:grid;gap:.35rem;font-weight:650}
+.sqf-mini-tool input,.sqf-mini-tool select{min-height:42px;padding:.6rem .7rem;border:1px solid var(--border-color,#cbd5e1);border-radius:10px;background:var(--surface-color,#fff);color:inherit}
+.sqf-result{font-weight:800;font-size:1.05rem}
+.site-quality-final[data-quality-key="landing-pages/wise/wise.html"]{border-style:dashed}
+.site-quality-final[data-quality-key="adatvedelem.html"],.site-quality-final[data-quality-key="cookie.html"],.site-quality-final[data-quality-key="felhasznalasi-feltetelek.html"],.site-quality-final[data-quality-key="jogi-nyilatkozat.html"],.site-quality-final[data-quality-key="impresszum.html"]{box-shadow:none}
+@media(max-width:640px){.site-quality-final{padding:1rem;border-radius:14px}.sqf-matrix{grid-template-columns:1fr}.sqf-matrix>div:nth-child(odd){padding-bottom:.25rem}.sqf-matrix>div:nth-child(even){padding-top:.25rem}}
