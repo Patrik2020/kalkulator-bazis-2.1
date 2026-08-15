@@ -1,0 +1,236 @@
+.lifestyle-quality {
+  margin: 2rem 0;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  border: 1px solid var(--border-color, rgba(148, 163, 184, .32));
+  border-radius: 1.25rem;
+  background: var(--card-bg, rgba(255, 255, 255, .96));
+  box-shadow: 0 18px 45px rgba(15, 23, 42, .07);
+}
+
+.lifestyle-quality h2 {
+  margin: .25rem 0 .75rem;
+  line-height: 1.2;
+}
+
+.lifestyle-quality h3 {
+  margin: 0 0 .45rem;
+  font-size: 1rem;
+}
+
+.lifestyle-quality p {
+  line-height: 1.7;
+}
+
+.lq-kicker {
+  margin: 0;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .72;
+}
+
+.lq-card-grid,
+.lq-metrics,
+.lq-paths,
+.lq-form-row,
+.lq-checks {
+  display: grid;
+  gap: .9rem;
+}
+
+.lq-card-grid {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  margin: 1rem 0;
+}
+
+.lq-card-grid article,
+.lq-metrics > div,
+.lq-timeline > div,
+.lq-steps > div {
+  padding: 1rem;
+  border: 1px solid var(--border-color, rgba(148, 163, 184, .28));
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--card-bg, #fff) 94%, var(--accent-color, #2563eb) 6%);
+}
+
+.lq-card-grid article p,
+.lq-timeline p {
+  margin: 0;
+  font-size: .95rem;
+}
+
+.lq-paths {
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  margin-top: 1rem;
+}
+
+.lq-paths a {
+  display: block;
+  padding: .85rem 1rem;
+  border-radius: .9rem;
+  border: 1px solid var(--border-color, rgba(148, 163, 184, .28));
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.lq-note,
+.lq-safety,
+.lq-source,
+.lq-live {
+  margin-top: 1rem;
+  padding: .9rem 1rem;
+  border-radius: .9rem;
+  line-height: 1.65;
+}
+
+.lq-note,
+.lq-live {
+  background: color-mix(in srgb, var(--card-bg, #fff) 88%, #0ea5e9 12%);
+  border: 1px solid color-mix(in srgb, var(--border-color, #cbd5e1) 70%, #0ea5e9 30%);
+}
+
+.lq-safety {
+  background: color-mix(in srgb, var(--card-bg, #fff) 88%, #f59e0b 12%);
+  border: 1px solid color-mix(in srgb, var(--border-color, #cbd5e1) 70%, #f59e0b 30%);
+}
+
+.lq-source {
+  background: color-mix(in srgb, var(--card-bg, #fff) 94%, #64748b 6%);
+  border: 1px dashed var(--border-color, #cbd5e1);
+  font-size: .93rem;
+}
+
+.lq-source strong {
+  display: block;
+  margin-bottom: .35rem;
+}
+
+.lq-source p {
+  margin: .45rem 0 0;
+  opacity: .8;
+  font-size: .88rem;
+}
+
+.lq-form-row {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin: 1rem 0;
+}
+
+.lq-form-row label,
+.lq-wide-label {
+  display: grid;
+  gap: .4rem;
+  font-weight: 700;
+  font-size: .92rem;
+}
+
+.lifestyle-quality input,
+.lifestyle-quality select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: .7rem .75rem;
+  border: 1px solid var(--border-color, #cbd5e1);
+  border-radius: .7rem;
+  background: var(--input-bg, var(--card-bg, #fff));
+  color: inherit;
+  font: inherit;
+}
+
+.lq-inline-check {
+  align-content: end;
+  grid-template-columns: auto 1fr !important;
+  align-items: center;
+  gap: .55rem !important;
+}
+
+.lq-inline-check input,
+.lq-checks input {
+  width: auto;
+}
+
+.lq-checks {
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  margin: 1rem 0;
+}
+
+.lq-checks label {
+  display: flex;
+  align-items: flex-start;
+  gap: .55rem;
+  padding: .8rem;
+  border-radius: .8rem;
+  border: 1px solid var(--border-color, #cbd5e1);
+}
+
+.lq-metrics {
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  margin: 1rem 0;
+}
+
+.lq-metrics span {
+  display: block;
+  margin-bottom: .35rem;
+  font-size: .82rem;
+  opacity: .72;
+}
+
+.lq-metrics strong {
+  font-size: 1.05rem;
+}
+
+.lq-caption {
+  margin: .6rem 0 0;
+  font-size: .88rem;
+  opacity: .76;
+}
+
+.lq-timeline {
+  display: grid;
+  gap: .85rem;
+  margin: 1rem 0;
+}
+
+.lq-timeline > div {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  column-gap: .75rem;
+}
+
+.lq-timeline > div > span {
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  border-radius: 999px;
+  font-weight: 800;
+  background: color-mix(in srgb, var(--card-bg, #fff) 70%, var(--accent-color, #2563eb) 30%);
+}
+
+.lq-steps {
+  display: grid;
+  gap: .7rem;
+  margin: 1rem 0;
+}
+
+.lq-steps > div {
+  display: grid;
+  grid-template-columns: minmax(130px, .7fr) 2fr;
+  gap: .8rem;
+  align-items: center;
+}
+
+.lq-wide-label {
+  margin: 1rem 0;
+}
+
+@media (max-width: 640px) {
+  .lifestyle-quality {
+    border-radius: 1rem;
+  }
+
+  .lq-steps > div {
+    grid-template-columns: 1fr;
+  }
+}
