@@ -30,6 +30,7 @@ const cookieCssPath = `${projectRoot}/css/components/cookie.css`;
 const accessibilityCssPath = `${projectRoot}/css/components/accessibility.css`;
 const wiseBannerCssPath = `${projectRoot}/css/components/wise-banner-enhancer.css`;
 const calculatorPageCssPath = `${projectRoot}/css/pages/calculator-page-v2.css`;
+const calculatorPolishCssPath = `${projectRoot}/css/pages/calculator-polish.css`;
 const priorityUpgradeCssPath = `${projectRoot}/css/pages/priority-upgrades.css`;
 const constructionUpgradeCssPath = `${projectRoot}/css/pages/construction-upgrades.css`;
 const everydayUpgradeCssPath = `${projectRoot}/css/pages/everyday-upgrades.css`;
@@ -43,6 +44,7 @@ const pwaScriptPath = `${projectRoot}/js/pwa.js`;
 const wiseBannerScriptPath = `${projectRoot}/js/wise-banner-enhancer.js`;
 const accessibilityScriptPath = `${projectRoot}/js/site-accessibility.js`;
 const calculatorPageScriptPath = `${projectRoot}/js/calculator-page.js`;
+const calculatorPolishScriptPath = `${projectRoot}/js/calculator-polish.js`;
 const priorityUpgradeScriptPath = `${projectRoot}/js/priority-upgrades.js`;
 const constructionUpgradeScriptPath = `${projectRoot}/js/construction-upgrades.js`;
 const everydayUpgradeScriptPath = `${projectRoot}/js/everyday-upgrades.js`;
@@ -158,6 +160,7 @@ if (wiseBannerPages.has(currentFile)) {
 }
 if (isCalculatorPage) {
   appendElement("link", { rel: "stylesheet", href: `${calculatorPageCssPath}?v=20260807-1` });
+  appendElement("link", { rel: "stylesheet", href: `${calculatorPolishCssPath}?v=20260817-1` });
 }
 if (priorityUpgradePages.has(currentSlug)) {
   appendElement("link", { rel: "stylesheet", href: `${priorityUpgradeCssPath}?v=20260807-1` });
@@ -203,6 +206,7 @@ if (isCalculatorPage) {
     document.documentElement.classList.add("kb-calculator-ready");
   }, 3000);
   appendElement("script", { src: `${calculatorPageScriptPath}?v=20260807-1`, defer: "" });
+  appendElement("script", { src: `${calculatorPolishScriptPath}?v=20260817-1`, defer: "" });
 }
 if (wiseBannerPages.has(currentFile)) {
   appendElement("script", { src: `${wiseBannerScriptPath}?v=20260807-1`, defer: "" });
