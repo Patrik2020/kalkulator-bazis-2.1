@@ -20,6 +20,7 @@
 
 /* GLOBAL VISUAL SYSTEM */
 @import url('./pages/visual-refresh-2026.css?v=20260817-1');
+@import url('./pages/dark-mode-hardening.css?v=20260817-1');
 
 :where(a, button, summary, input, select, textarea):focus-visible {
     outline: 3px solid rgba(11, 102, 242, 0.32);

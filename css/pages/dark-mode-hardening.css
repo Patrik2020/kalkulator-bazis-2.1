@@ -1,0 +1,107 @@
+/* Kalkulátor Bázis – dark mode hardening
+   A modern vizuális réteg és a régebbi komponensváltozók közötti kompatibilitást biztosítja. */
+
+body {
+  --card-bg: var(--surface);
+  --input-bg: #ffffff;
+  --surface-color: var(--surface);
+  --border-color: var(--border);
+  --text-secondary: var(--text-light);
+}
+
+html[data-theme="dark"] body {
+  /* Ezeket a visual refresh világos body-szintű változói korábban elfedték. */
+  --surface-warning: #342816;
+  --surface-pink: #352033;
+  --warning-border: #76531f;
+
+  /* Kompatibilitási aliasok a Quality 3.0 és régebbi modulokhoz. */
+  --card-bg: var(--surface);
+  --input-bg: #101a2b;
+  --surface-color: var(--surface);
+  --border-color: var(--border);
+  --text-secondary: var(--text-light);
+}
+
+/* Figyelmeztető és kategória-megjegyzés blokkok: mindig valódi dark felület + világos szöveg. */
+html[data-theme="dark"] body .notice-box {
+  background: var(--surface-warning);
+  border-color: var(--warning-border);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body .notice-box strong,
+html[data-theme="dark"] body .notice-box p,
+html[data-theme="dark"] body .notice-box li {
+  color: inherit;
+}
+
+html[data-theme="dark"] body .category-note {
+  background: var(--surface-pink);
+  border-left-color: #f472b6;
+  color: var(--text);
+}
+
+html[data-theme="dark"] body .category-note p,
+html[data-theme="dark"] body .category-note strong {
+  color: inherit;
+}
+
+/* A 2026-os glass navigáció világos chipjeit is sötét felületre húzzuk. */
+html[data-theme="dark"] body .kb-page-nav a {
+  background: rgba(24, 38, 58, 0.86);
+  border-color: rgba(76, 96, 125, 0.78);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body .kb-page-nav .kb-page-nav__primary {
+  background: color-mix(in srgb, var(--primary) 14%, var(--surface));
+  border-color: color-mix(in srgb, var(--primary) 36%, var(--border));
+  color: var(--primary);
+}
+
+/* Quality 3.0 belső kártyák: ne essenek vissza #fff fallbackre dark módban. */
+html[data-theme="dark"] body .site-quality-final .sqf-card,
+html[data-theme="dark"] body .site-quality-final .sqf-step,
+html[data-theme="dark"] body .site-quality-final .sqf-matrix > div,
+html[data-theme="dark"] body .finance-quality [class*="card"],
+html[data-theme="dark"] body .construction-quality [class*="card"],
+html[data-theme="dark"] body .health-everyday-quality [class*="card"],
+html[data-theme="dark"] body .auto-converter-quality [class*="card"] {
+  background-color: var(--card-bg);
+  border-color: var(--border-color);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body .site-quality-final input,
+html[data-theme="dark"] body .site-quality-final select,
+html[data-theme="dark"] body .finance-quality input,
+html[data-theme="dark"] body .finance-quality select,
+html[data-theme="dark"] body .construction-quality input,
+html[data-theme="dark"] body .construction-quality select,
+html[data-theme="dark"] body .health-everyday-quality input,
+html[data-theme="dark"] body .health-everyday-quality select,
+html[data-theme="dark"] body .auto-converter-quality input,
+html[data-theme="dark"] body .auto-converter-quality select {
+  background: var(--input-bg);
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+
+/* Biztonsági háló a gyakori világos segédfelületekre. */
+html[data-theme="dark"] body .example-box,
+html[data-theme="dark"] body .portal-card,
+html[data-theme="dark"] body .related-links a,
+html[data-theme="dark"] body .reliability-note,
+html[data-theme="dark"] body .faq-list details {
+  background-color: var(--surface-secondary);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body .example-box p,
+html[data-theme="dark"] body .portal-card p,
+html[data-theme="dark"] body .reliability-note p,
+html[data-theme="dark"] body .faq-list p {
+  color: var(--text-light);
+}
