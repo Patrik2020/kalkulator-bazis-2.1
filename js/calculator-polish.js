@@ -1,8 +1,9 @@
 (() => {
   "use strict";
 
-  const main = document.querySelector("main");
-  if (!main || !document.documentElement.classList.contains("kb-calculator-document")) return;
+  if (!document.documentElement.classList.contains("kb-calculator-document")) return;
+
+  let main = null;
 
   const normalizeText = (value) => String(value || "").replace(/\s+/g, " ").trim();
   const slugify = (value) => normalizeText(value)
@@ -23,10 +24,10 @@
     return id;
   };
 
-  const calculatorCard = () => main.querySelector(".card-calculator");
+  const calculatorCard = () => main?.querySelector(".card-calculator") || null;
 
   const enhanceTrustMeta = () => {
-    const meta = main.querySelector(":scope > .kb-page-meta");
+    const meta = main?.querySelector(":scope > .kb-page-meta");
     if (!meta || meta.dataset.polished === "true") return;
 
     const items = meta.querySelectorAll(":scope > span:not(.kb-page-meta__links)");
@@ -41,7 +42,7 @@
 
   const candidateHeadings = () => {
     const seen = new Set();
-    return [...main.querySelectorAll("h2")].filter((heading) => {
+    return [...(main?.querySelectorAll("h2") || [])].filter((heading) => {
       if (heading.closest(".card-calculator, .kb-next-step, .kb-page-nav")) return false;
       if (heading.closest(".site-quality-final, [data-finance-quality], [data-construction-quality], [data-health-everyday-quality], [data-auto-converter-quality]")) return false;
       const text = normalizeText(heading.textContent);
@@ -52,7 +53,7 @@
   };
 
   const buildPageNav = () => {
-    if (main.querySelector(":scope > .kb-page-nav")) return;
+    if (!main || main.querySelector(":scope > .kb-page-nav")) return;
 
     const card = calculatorCard();
     if (!card) return;
@@ -144,24 +145,21 @@
   };
 
   const init = () => {
+    main = document.querySelector("main");
+    if (!main) return;
     enhanceTrustMeta();
     buildPageNav();
     buildReturnButton();
-  };
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => {
-      init();
-      window.setTimeout(() => {
-        enhanceTrustMeta();
-        buildPageNav();
-      }, 250);
-    }, { once: true });
-  } else {
-    init();
     window.setTimeout(() => {
       enhanceTrustMeta();
       buildPageNav();
     }, 250);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  } else {
+    init();
   }
 })();
