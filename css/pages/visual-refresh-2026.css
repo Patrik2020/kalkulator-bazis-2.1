@@ -1,0 +1,501 @@
+/* Kalkulátor Bázis – 2026 visual refresh
+   Cél: egységesebb, modernebb felületek több szín helyett jobb hierarchiával. */
+
+body {
+  --primary: #1e5eff;
+  --primary-hover: #1748cc;
+  --primary-dark: #123ca8;
+  --background: #f6f8fc;
+  --surface: #ffffff;
+  --surface-secondary: #f8faff;
+  --surface-muted: #eef3fb;
+  --surface-info: #eef4ff;
+  --surface-warning: #fff7e8;
+  --surface-accent: #f0f1ff;
+  --surface-pink: #fff3f7;
+  --text: #111d33;
+  --text-light: #55657c;
+  --text-muted: #6b7a90;
+  --border: #dfe6f0;
+  --border-soft: #e8edf5;
+  --border-strong: #cbd6e5;
+  --success: #0f8a72;
+  --warning: #c07a16;
+  --danger: #c84b4b;
+  --kb-indigo: #5d63f5;
+  --kb-teal: #0f8a72;
+  --kb-amber: #c07a16;
+  --kb-ink: #0b1730;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --shadow-sm: 0 5px 18px rgba(25, 45, 78, 0.055);
+  --shadow-md: 0 14px 38px rgba(25, 45, 78, 0.09);
+  background:
+    radial-gradient(circle at 9% -10%, rgba(30, 94, 255, 0.06), transparent 28rem),
+    radial-gradient(circle at 95% 12%, rgba(93, 99, 245, 0.045), transparent 24rem),
+    var(--background);
+}
+
+body:not(.home-page) main {
+  position: relative;
+}
+
+/* Glass-like navigáció: modern, de nem látványcentrikus. */
+.header-shell {
+  border-bottom-color: rgba(195, 207, 224, 0.72);
+  background: rgba(249, 251, 255, 0.82);
+  box-shadow: 0 8px 28px rgba(20, 39, 70, 0.045);
+  backdrop-filter: blur(18px) saturate(145%);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+}
+
+.logo {
+  color: var(--kb-ink);
+  letter-spacing: -0.015em;
+}
+
+.logo-mark {
+  filter: drop-shadow(0 7px 14px rgba(30, 94, 255, 0.16));
+}
+
+#menu,
+.nav-submenu {
+  border-color: color-mix(in srgb, var(--border) 82%, transparent);
+  border-radius: 16px;
+  box-shadow: 0 20px 52px rgba(18, 36, 67, 0.14);
+}
+
+#menu > a,
+.nav-dropdown > summary,
+.nav-submenu a {
+  border-radius: 10px;
+}
+
+#menu a.is-active,
+#menu a[aria-current="page"],
+.nav-dropdown.has-active > summary {
+  background: color-mix(in srgb, var(--primary) 9%, var(--surface));
+  color: var(--primary);
+}
+
+.header-search,
+.menu-toggle,
+.theme-toggle {
+  border-color: color-mix(in srgb, var(--border) 86%, transparent);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 4px 14px rgba(20, 39, 70, 0.045);
+}
+
+.header-search:hover,
+.header-search:focus-visible,
+.menu-toggle:hover,
+.menu-toggle:focus-visible,
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  border-color: color-mix(in srgb, var(--primary) 42%, var(--border));
+  background: #ffffff;
+  color: var(--primary);
+}
+
+/* Általános felületek */
+.card,
+.article,
+.category-seo,
+.adsense-content,
+.portal-content,
+.calculator,
+.card-calculator,
+.faq-list details,
+.site-quality-final,
+.priority-upgrade,
+.construction-quality,
+.everyday-upgrade,
+.auto-converter-upgrade,
+.finance-quality,
+.health-everyday-quality,
+.auto-converter-quality {
+  border-color: color-mix(in srgb, var(--border) 92%, transparent);
+  border-radius: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+.card,
+.card-calculator,
+.article,
+.category-seo,
+.adsense-content,
+.portal-content {
+  background: color-mix(in srgb, var(--surface) 98%, #eef4ff 2%);
+}
+
+.card-link {
+  border-color: rgba(203, 214, 229, 0.78);
+  box-shadow: 0 8px 24px rgba(25, 45, 78, 0.06);
+}
+
+.card-link::before {
+  opacity: 0.14;
+}
+
+.card-link:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--primary) 24%, var(--border));
+  box-shadow: 0 18px 42px rgba(25, 45, 78, 0.11);
+}
+
+.card-link:hover::before {
+  opacity: 0.2;
+  transform: scale(1.035);
+}
+
+/* Kategóriaszínek: csak finom azonosítóak, nem külön arculatok. */
+.card-finance { --card-tint: rgba(30, 94, 255, 0.075); }
+.card-building { --card-tint: rgba(15, 138, 114, 0.065); }
+.card-health { --card-tint: rgba(199, 80, 123, 0.06); }
+.card-general { --card-tint: rgba(93, 99, 245, 0.06); }
+.card-auto { --card-tint: rgba(192, 122, 22, 0.06); }
+
+/* Űrlapok – nagyobb fókusz, kevesebb „dobozosság”. */
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  border-color: var(--border-strong);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.75);
+}
+
+input:not([type="checkbox"]):not([type="radio"]):focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(30, 94, 255, 0.105);
+  outline: none;
+}
+
+/* CTA-k */
+.btn,
+.button,
+.kb-calculate-button,
+button[type="submit"] {
+  border-radius: 12px;
+}
+
+.btn-primary,
+.button-primary,
+.kb-calculate-button {
+  background: linear-gradient(135deg, #1e5eff 0%, #3159ea 100%);
+  box-shadow: 0 10px 24px rgba(30, 94, 255, 0.18);
+}
+
+.btn-primary:hover,
+.button-primary:hover,
+.kb-calculate-button:hover {
+  box-shadow: 0 14px 30px rgba(30, 94, 255, 0.24);
+}
+
+/* Főoldal – ugyanaz a márka, modernebb tónus. */
+body.home-page {
+  --home-primary: #1e5eff;
+  --home-primary-dark: #1748cc;
+  --home-primary-soft: #eaf0ff;
+  --home-primary-faint: #f4f7ff;
+  --home-ink: #0b1730;
+  --home-muted: #5f6f86;
+  --home-border: #dce5f1;
+  --home-surface: #ffffff;
+  --home-background: #f6f8fc;
+  --home-shadow-sm: 0 9px 28px rgba(25, 45, 78, 0.065);
+  --home-shadow-md: 0 20px 52px rgba(25, 45, 78, 0.11);
+  --home-shadow-lg: 0 36px 90px rgba(25, 45, 78, 0.16);
+}
+
+body.home-page .home-hero {
+  border-bottom-color: rgba(30, 94, 255, 0.08);
+  background:
+    radial-gradient(circle at 12% 18%, rgba(30, 94, 255, 0.12), transparent 29%),
+    radial-gradient(circle at 90% 14%, rgba(93, 99, 245, 0.10), transparent 27%),
+    radial-gradient(circle at 72% 78%, rgba(15, 138, 114, 0.045), transparent 22%),
+    linear-gradient(138deg, #fbfcff 0%, #eef3ff 50%, #f8faff 100%);
+}
+
+body.home-page .home-eyebrow {
+  border-color: rgba(30, 94, 255, 0.13);
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow: 0 8px 24px rgba(30, 94, 255, 0.055);
+  backdrop-filter: blur(16px) saturate(145%);
+  -webkit-backdrop-filter: blur(16px) saturate(145%);
+}
+
+body.home-page .home-page .home-search input,
+body.home-page .home-search input {
+  border-color: rgba(177, 192, 213, 0.62);
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 18px 44px rgba(25, 45, 78, 0.10);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+body.home-page .visual-calculator,
+body.home-page .visual-note,
+body.home-page .learning-highlight,
+body.home-page .trust-band,
+body.home-page .about-home,
+body.home-page .home-faq {
+  border-color: rgba(203, 214, 229, 0.78);
+  box-shadow: 0 18px 52px rgba(25, 45, 78, 0.09);
+}
+
+/* Kalkulátoroldalak */
+html.kb-calculator-document body {
+  --kb-navy: #0b1730;
+  --kb-blue: #1e5eff;
+  --kb-soft-blue: #edf3ff;
+  --kb-line: #d8e2ef;
+  --kb-success: #0f8a72;
+}
+
+html.kb-calculator-document main > .hero h1 {
+  color: var(--kb-ink);
+}
+
+.kb-page-meta {
+  border-color: rgba(202, 214, 230, 0.82);
+  border-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.78), rgba(244,247,255,0.78));
+  box-shadow: 0 12px 34px rgba(25,45,78,0.06);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+.kb-page-nav {
+  border-color: rgba(202, 214, 230, 0.78);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.72);
+  box-shadow: 0 10px 28px rgba(25,45,78,0.055);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+.kb-page-nav a {
+  border-color: rgba(202, 214, 230, 0.84);
+  background: rgba(255,255,255,0.78);
+}
+
+html.kb-calculator-document .card-calculator {
+  border-color: rgba(203, 214, 229, 0.86);
+  border-radius: 22px;
+  box-shadow: 0 20px 58px rgba(25, 45, 78, 0.085);
+}
+
+html.kb-calculator-document .result-box {
+  border-color: rgba(143, 171, 224, 0.58);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(93, 99, 245, 0.08), transparent 15rem),
+    linear-gradient(145deg, rgba(30, 94, 255, 0.085), rgba(255, 255, 255, 0.98)),
+    var(--surface-secondary);
+}
+
+.kb-next-step {
+  border-color: rgba(164, 184, 217, 0.68);
+  border-radius: 20px;
+  box-shadow: 0 18px 50px rgba(25,45,78,0.075);
+}
+
+/* Új kompakt visszaugró: 2026-os glass treatment, nem „nagy kék gomb”. */
+.kb-return-calculator {
+  width: auto !important;
+  max-width: max-content;
+  min-width: 0;
+  min-height: 42px;
+  gap: 7px;
+  padding: 7px 12px 7px 7px;
+  border: 1px solid rgba(180, 195, 217, 0.74);
+  border-radius: 999px;
+  background: rgba(252, 253, 255, 0.76);
+  color: var(--kb-ink);
+  box-shadow: 0 12px 32px rgba(17, 35, 65, 0.14), inset 0 1px 0 rgba(255,255,255,0.8);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+}
+
+.kb-return-calculator > span {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(145deg, #1e5eff, #4a58dc);
+  box-shadow: 0 6px 14px rgba(30, 94, 255, 0.22);
+  font-size: 0.82rem;
+}
+
+.kb-return-calculator strong {
+  font-size: 0.78rem;
+  font-weight: 780;
+  letter-spacing: -0.01em;
+}
+
+.kb-return-calculator:hover,
+.kb-return-calculator:focus-visible {
+  border-color: rgba(30, 94, 255, 0.38);
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 16px 38px rgba(17, 35, 65, 0.18);
+}
+
+/* Trust/quality blokkok: kevesebb SEO-box érzet. */
+.site-quality-final,
+.finance-quality,
+.construction-quality,
+.health-everyday-quality,
+.auto-converter-quality {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.98), rgba(247,249,255,0.98));
+}
+
+.site-quality-final .sqf-card,
+.site-quality-final .sqf-step {
+  border-radius: 16px;
+}
+
+/* Dark mode – kékes grafit, nem fekete. */
+html[data-theme="dark"] body {
+  --background: #0c1424;
+  --surface: #131f32;
+  --surface-secondary: #18263a;
+  --surface-muted: #1d2b40;
+  --surface-info: #152946;
+  --surface-accent: #24294d;
+  --text: #f3f6fb;
+  --text-light: #c4cfdd;
+  --text-muted: #aebed1;
+  --border: #314158;
+  --border-soft: #2b3a50;
+  --border-strong: #465975;
+  --primary: #7daeff;
+  --primary-hover: #9fc2ff;
+  --success: #59d7ba;
+  --warning: #f2ba5c;
+  --danger: #f29b9b;
+  --kb-ink: #f4f7fb;
+  background:
+    radial-gradient(circle at 10% -8%, rgba(64, 116, 255, 0.11), transparent 28rem),
+    radial-gradient(circle at 95% 8%, rgba(93, 99, 245, 0.08), transparent 24rem),
+    var(--background);
+}
+
+html[data-theme="dark"] .header-shell {
+  border-bottom-color: rgba(70, 89, 117, 0.72);
+  background: rgba(12, 20, 36, 0.79);
+}
+
+html[data-theme="dark"] .header-search,
+html[data-theme="dark"] .menu-toggle,
+html[data-theme="dark"] .theme-toggle,
+html[data-theme="dark"] .kb-page-nav,
+html[data-theme="dark"] .kb-page-meta,
+html[data-theme="dark"] .kb-return-calculator {
+  background: rgba(19, 31, 50, 0.78);
+  border-color: rgba(76, 96, 125, 0.74);
+  color: var(--text);
+}
+
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .card-calculator,
+html[data-theme="dark"] .article,
+html[data-theme="dark"] .category-seo,
+html[data-theme="dark"] .adsense-content,
+html[data-theme="dark"] .portal-content,
+html[data-theme="dark"] .site-quality-final,
+html[data-theme="dark"] .finance-quality,
+html[data-theme="dark"] .construction-quality,
+html[data-theme="dark"] .health-everyday-quality,
+html[data-theme="dark"] .auto-converter-quality {
+  background: linear-gradient(145deg, rgba(19,31,50,0.98), rgba(17,27,45,0.98));
+  border-color: rgba(62, 81, 108, 0.88);
+}
+
+html[data-theme="dark"] input:not([type="checkbox"]):not([type="radio"]),
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea {
+  background: #101a2b;
+  border-color: #40516b;
+}
+
+html[data-theme="dark"].kb-calculator-document .result-box {
+  border-color: rgba(103, 141, 203, 0.62);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(93,99,245,0.16), transparent 15rem),
+    linear-gradient(145deg, rgba(55, 104, 200, 0.18), rgba(18, 29, 48, 0.97));
+}
+
+html[data-theme="dark"] body.home-page {
+  --home-primary: #7daeff;
+  --home-primary-dark: #a7c7ff;
+  --home-primary-soft: #172b4a;
+  --home-primary-faint: #13233b;
+  --home-ink: #f4f7fb;
+  --home-muted: #bdc9d9;
+  --home-border: #32435b;
+  --home-surface: #131f32;
+  --home-background: #0c1424;
+}
+
+html[data-theme="dark"] body.home-page .home-hero {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(74, 123, 255, 0.16), transparent 29%),
+    radial-gradient(circle at 90% 14%, rgba(93, 99, 245, 0.12), transparent 27%),
+    linear-gradient(138deg, #0e182a 0%, #132443 50%, #0f1b30 100%);
+}
+
+html[data-theme="dark"] body.home-page .home-eyebrow,
+html[data-theme="dark"] body.home-page .home-search input {
+  background: rgba(18, 31, 51, 0.78);
+  border-color: rgba(76, 96, 125, 0.72);
+  color: var(--text);
+}
+
+@media (max-width: 720px) {
+  .header-shell {
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+  }
+
+  .card,
+  .article,
+  .category-seo,
+  .adsense-content,
+  .portal-content,
+  .card-calculator {
+    border-radius: 16px;
+  }
+
+  .kb-return-calculator {
+    left: max(12px, env(safe-area-inset-left));
+    right: auto;
+    bottom: max(76px, calc(env(safe-area-inset-bottom) + 14px));
+    min-height: 40px;
+    padding: 6px 10px 6px 6px;
+  }
+
+  .kb-return-calculator > span {
+    width: 27px;
+    height: 27px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-link,
+  .kb-return-calculator,
+  .btn,
+  .button {
+    transition: none !important;
+  }
+}
+
+@media print {
+  body {
+    background: #fff !important;
+  }
+}
