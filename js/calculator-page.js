@@ -134,6 +134,41 @@
     return file.replace(/\.html?$/i, "").toLowerCase();
   };
 
+  const ensureBreadcrumbStructuredData = (heading) => {
+    const hasBreadcrumbSchema = [...document.querySelectorAll('script[type="application/ld+json"]')]
+      .some((script) => /"@type"\s*:\s*"BreadcrumbList"/.test(script.textContent || ""));
+    const pageName = (heading?.textContent || "").replace(/\s+/g, " ").trim();
+    if (hasBreadcrumbSchema || !pageName) return;
+
+    const schema = document.createElement("script");
+    schema.type = "application/ld+json";
+    schema.dataset.kbBreadcrumbSchema = "true";
+    schema.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Főoldal",
+          item: new URL(href("/"), window.location.origin).href,
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Kalkulátorok",
+          item: new URL(href("/kalkulatorok.html"), window.location.origin).href,
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: pageName,
+        },
+      ],
+    });
+    document.head.appendChild(schema);
+  };
+
   const resultCandidates = (card) => [
     ...card.querySelectorAll(".result-box, .result, output, [id*='result'], [class*='result']"),
   ];
@@ -223,6 +258,7 @@
     }
 
     main.classList.add("kb-calculator-main");
+    ensureBreadcrumbStructuredData(heading);
 
     if (hero && !main.querySelector(":scope > .breadcrumb, :scope > .kb-breadcrumb")) {
       const breadcrumb = document.createElement("nav");
