@@ -49,8 +49,8 @@ jobs:
             exit 1
           fi
 
-      - name: Materialize browser-rendered content into source HTML
-        run: npm run static:materialize
+      - name: Materialize and normalize browser-rendered content
+        run: npm run static:build
 
       - name: Audit crawler-visible source HTML
         run: npm run static:check
