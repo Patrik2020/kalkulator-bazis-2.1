@@ -31,6 +31,23 @@ const booleanAttributes = [
   "selected",
 ];
 
+const ariaLabelSafeTags = new Set([
+  "a",
+  "aside",
+  "button",
+  "dialog",
+  "footer",
+  "form",
+  "header",
+  "iframe",
+  "input",
+  "main",
+  "nav",
+  "section",
+  "select",
+  "textarea",
+]);
+
 function sourcePages() {
   const xml = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
   const pages = [];
@@ -58,6 +75,7 @@ function removeAttribute(attributes, name) {
 function normalizeOpeningTag(full, tag, attributes) {
   if (tag.startsWith("!")) return full;
 
+  const lowerTag = tag.toLowerCase();
   let attrs = attributes;
 
   for (const attribute of booleanAttributes) {
@@ -70,11 +88,12 @@ function normalizeOpeningTag(full, tag, attributes) {
   // deliberately forbids inline CSS, and these values are not required for content.
   attrs = removeAttribute(attrs, "style");
 
-  // Generic spans cannot use aria-label without suitable semantics. The visible text
-  // remains available to both users and crawlers.
-  if (tag.toLowerCase() === "span") attrs = removeAttribute(attrs, "aria-label");
+  // Keep aria-label on interactive controls and landmark-capable elements. On generic
+  // visual/text elements the browser-rendered runtime label is dropped so the source
+  // remains valid; visible text is still present for users and crawlers.
+  if (!ariaLabelSafeTags.has(lowerTag)) attrs = removeAttribute(attrs, "aria-label");
 
-  if (tag.toLowerCase() === "input" && !/\btype\s*=/i.test(attrs)) {
+  if (lowerTag === "input" && !/\btype\s*=/i.test(attrs)) {
     attrs = ` type="text"${attrs}`;
   }
 
