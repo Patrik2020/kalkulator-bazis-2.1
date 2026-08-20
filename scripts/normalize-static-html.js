@@ -31,22 +31,33 @@ const booleanAttributes = [
   "selected",
 ];
 
-const ariaLabelSafeTags = new Set([
-  "a",
-  "aside",
-  "button",
-  "dialog",
-  "footer",
-  "form",
-  "header",
-  "iframe",
-  "input",
-  "main",
-  "nav",
-  "section",
-  "select",
-  "textarea",
-]);
+const ariaLabelInvalidTags = [
+  "span",
+  "div",
+  "p",
+  "strong",
+  "small",
+  "li",
+  "ul",
+  "ol",
+  "table",
+  "thead",
+  "tbody",
+  "tfoot",
+  "tr",
+  "td",
+  "th",
+  "article",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "canvas",
+  "svg",
+  "path",
+];
 
 function sourcePages() {
   const xml = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
@@ -67,43 +78,57 @@ function sourcePages() {
   return pages;
 }
 
-function removeAttribute(attributes, name) {
-  const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  return attributes.replace(new RegExp(`\\s+${escaped}(?:\\s*=\\s*(?:"[^"]*"|'[^']*'|[^\\s>]+))?`, "gi"), "");
-}
-
-function normalizeOpeningTag(full, tag, attributes) {
-  if (tag.startsWith("!")) return full;
-
-  const lowerTag = tag.toLowerCase();
-  let attrs = attributes;
+function normalizeBooleanAttributes(html) {
+  let output = html;
 
   for (const attribute of booleanAttributes) {
     const escaped = attribute.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    attrs = attrs.replace(new RegExp(`\\s+${escaped}\\s*=\\s*(["'])\\s*\\1`, "gi"), ` ${attribute}`);
-    attrs = attrs.replace(new RegExp(`\\s+${escaped}\\s*=\\s*(["'])${escaped}\\1`, "gi"), ` ${attribute}`);
+    output = output.replace(
+      new RegExp(`\\s${escaped}\\s*=\\s*(["'])\\s*\\1`, "gi"),
+      ` ${attribute}`
+    );
+    output = output.replace(
+      new RegExp(`\\s${escaped}\\s*=\\s*(["'])${escaped}\\1`, "gi"),
+      ` ${attribute}`
+    );
   }
 
-  // Browser serialization can persist runtime-only visual styles. The source site
-  // deliberately forbids inline CSS, and these values are not required for content.
-  attrs = removeAttribute(attrs, "style");
+  return output;
+}
 
-  // Keep aria-label on interactive controls and landmark-capable elements. On generic
-  // visual/text elements the browser-rendered runtime label is dropped so the source
-  // remains valid; visible text is still present for users and crawlers.
-  if (!ariaLabelSafeTags.has(lowerTag)) attrs = removeAttribute(attrs, "aria-label");
+function stripInlineStyles(html) {
+  return html
+    .replace(/\sstyle\s*=\s*"[^"]*"/gi, "")
+    .replace(/\sstyle\s*=\s*'[^']*'/gi, "");
+}
 
-  if (lowerTag === "input" && !/\btype\s*=/i.test(attrs)) {
-    attrs = ` type="text"${attrs}`;
+function addExplicitInputTypes(html) {
+  return html.replace(/<input\b(?![^>]*\btype\s*=)([^>]*)>/gi, '<input type="text"$1>');
+}
+
+function stripInvalidAriaLabels(html) {
+  let output = html;
+
+  for (const tag of ariaLabelInvalidTags) {
+    const openingTag = new RegExp(`<${tag}\\b([^>]*)>`, "gi");
+    output = output.replace(openingTag, (full, attributes) => {
+      const cleaned = attributes
+        .replace(/\saria-label\s*=\s*"[^"]*"/gi, "")
+        .replace(/\saria-label\s*=\s*'[^']*'/gi, "");
+      return `<${tag}${cleaned}>`;
+    });
   }
 
-  return `<${tag}${attrs}>`;
+  return output;
 }
 
 function normalize(html) {
-  return html.replace(/<([a-z][a-z0-9:-]*)(\s[^<>]*?)?>/gi, (full, tag, attributes = "") =>
-    normalizeOpeningTag(full, tag, attributes)
-  );
+  let output = html;
+  output = normalizeBooleanAttributes(output);
+  output = stripInlineStyles(output);
+  output = stripInvalidAriaLabels(output);
+  output = addExplicitInputTypes(output);
+  return output;
 }
 
 let changed = 0;
