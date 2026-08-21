@@ -112,6 +112,10 @@ function stripInvalidAriaLabels(html) {
   for (const tag of ariaLabelInvalidTags) {
     const openingTag = new RegExp(`<${tag}\\b([^>]*)>`, "gi");
     output = output.replace(openingTag, (full, attributes) => {
+      // Generic elements with an explicit ARIA role may be named. In
+      // particular, the retention action group needs its accessible label.
+      if (/\srole\s*=\s*(["'])[^"']+\1/i.test(attributes)) return full;
+
       const cleaned = attributes
         .replace(/\saria-label\s*=\s*"[^"]*"/gi, "")
         .replace(/\saria-label\s*=\s*'[^']*'/gi, "");

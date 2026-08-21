@@ -48,6 +48,16 @@ jobs:
       - name: Materialize and normalize browser-rendered content
         run: npm run static:build
 
+      - name: Verify static build is idempotent
+        shell: bash
+        run: |
+          git diff --binary > "${RUNNER_TEMP}/static-first-pass.diff"
+          npm run static:build
+          git diff --binary > "${RUNNER_TEMP}/static-second-pass.diff"
+          diff -u \
+            "${RUNNER_TEMP}/static-first-pass.diff" \
+            "${RUNNER_TEMP}/static-second-pass.diff"
+
       - name: Audit crawler-visible source HTML
         run: npm run static:check
 

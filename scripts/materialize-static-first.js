@@ -3,6 +3,9 @@ const path = require("path");
 const { spawn, execFileSync } = require("child_process");
 
 const root = path.resolve(__dirname, "..");
+const retentionTemplate = fs
+  .readFileSync(path.join(root, "components", "retention-cta.html"), "utf8")
+  .trim();
 const port = Number(process.env.KB_STATIC_PORT || 4173);
 const origin = `http://127.0.0.1:${port}`;
 const dryRun = process.argv.includes("--check");
@@ -181,7 +184,32 @@ function qualityFallback(fragment, type, originalAttribute) {
 function runtimeFallback(fragment, type) {
   if (!fragment) return null;
   let result = addAttributeToOpeningTag(fragment, "data-static-runtime-fallback", type);
+  // A heading enhancer can add generated ids before Chrome dumps the DOM. The
+  // timing of that enhancer is not deterministic in headless mode, so those
+  // runtime-only ids must not become part of the materialized source.
+  result = result.replace(/<h([1-6])\b([^>]*)>/gi, (full, level, attributes) => {
+    const stableAttributes = attributes.replace(
+      /\s+id\s*=\s*(["'])[^"']*\1/gi,
+      ""
+    );
+    return `<h${level}${stableAttributes}>`;
+  });
   return result;
+}
+
+function canonicalizeRetentionCta(fragment) {
+  if (!fragment) return fragment;
+  const retention = findElement(fragment, { attr: "data-retention-cta" });
+  if (!retention) return fragment;
+
+  // retention-cta.js adapts the install action to transient browser/PWA state.
+  // Keep that behavior dynamic, but always materialize the canonical hidden
+  // component so repeated static builds produce the same source HTML.
+  return (
+    fragment.slice(0, retention.start) +
+    retentionTemplate +
+    fragment.slice(retention.end)
+  );
 }
 
 function ensureMainId(source) {
@@ -227,7 +255,11 @@ function mergeRenderedPage(pagePath, originalSource, rendered) {
 
   const card = findElement(rendered, { className: "card-calculator" });
   if (card && findElement(source, { className: "card-calculator" })) {
-    source = replaceElement(source, { className: "card-calculator" }, card.html);
+    source = replaceElement(
+      source,
+      { className: "card-calculator" },
+      canonicalizeRetentionCta(card.html)
+    );
   }
 
   const skipLink = findElement(rendered, { className: "kb-skip-link" });
