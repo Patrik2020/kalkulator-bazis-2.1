@@ -6,6 +6,7 @@ const expansionCalculators = [
   ...require("../js/expansion-batch-01-data.js"),
   ...require("../js/expansion-batch-02-data.js"),
   ...require("../js/expansion-batch-03-data.js"),
+  ...require("../js/expansion-batch-04-data.js"),
 ];
 
 const root = path.resolve(__dirname, "..");

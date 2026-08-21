@@ -204,7 +204,9 @@ function loadSiteScripts(base) {
   const loadExpansionData = () => {
     loadScriptOnce(base + "js/expansion-batch-01-data.js", () => {
       loadScriptOnce(base + "js/expansion-batch-02-data.js", () => {
-        loadScriptOnce(base + "js/expansion-batch-03-data.js", loadUi);
+        loadScriptOnce(base + "js/expansion-batch-03-data.js", () => {
+          loadScriptOnce(base + "js/expansion-batch-04-data.js", loadUi);
+        });
       });
     });
   };
