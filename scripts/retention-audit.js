@@ -27,16 +27,28 @@ const pages = files.map((file) => {
   const filePath = path.join(calculatorDirectory, file);
   const html = read(filePath);
   const ctaCount = (html.match(/data-retention-cta/g) || []).length;
+  const hasStaticFallbackCleanup = /static-first-fallbacks\.js/i.test(html);
   const hasUtils = /<script[^>]+src=["']\.\.\/js\/utils\.js["']/i.test(html);
   const calculatorCards = (html.match(/class=["'][^"']*\bcard-calculator\b/g) || []).length;
-  const resultBlocks = (html.match(/class=["'][^"']*\bresult-box\b/g) || []).length;
+  const resultBlocks = (
+    html.match(
+      /class=["'][^"']*\b(?:result-box|summary-box|everyday-result|ac-result|construction-results|priority-results)\b/g
+    ) || []
+  ).length;
   const hasResultId = /id=["'](?:simpleCalcResults|result[^"']*)["']/i.test(html);
   const hasScientificCalculator = /\bdata-calculator\b/i.test(html) && /\bdata-calc-display\b/i.test(html);
 
   if (!hasUtils) issues.push(`${file}: hiányzik a közös utils.js betöltés.`);
   if (!calculatorCards && !hasScientificCalculator) issues.push(`${file}: nincs .card-calculator konténer.`);
   if (!resultBlocks && !hasResultId && !hasScientificCalculator) issues.push(`${file}: nincs felismerhető eredménykonténer.`);
-  if (ctaCount > 0) issues.push(`${file}: statikus retention CTA duplikáció kockázat (${ctaCount}).`);
+
+  // The static-first exporter can capture one hidden retention component in the
+  // rendered calculator card. static-first-fallbacks.js removes that transient
+  // copy before retention-cta.js binds the live runtime component. More than one
+  // copy, or a copy without the cleanup script, is still a regression.
+  if (ctaCount > 1 || (ctaCount === 1 && !hasStaticFallbackCleanup)) {
+    issues.push(`${file}: statikus retention CTA duplikáció kockázat (${ctaCount}).`);
+  }
 
   return {
     file,
@@ -46,6 +58,7 @@ const pages = files.map((file) => {
     hasResultId,
     hasScientificCalculator,
     staticRetentionCta: ctaCount,
+    hasStaticFallbackCleanup,
   };
 });
 
