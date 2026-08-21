@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta name="google-adsense-account" content="ca-pub-2639795157074812">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Futótempó kalkulátor távolság és idő alapján. Számold ki a perc/km tempót, az átlagsebességet, valamint azonos tempóval az 5 és 10 km-es részidőt.">
+  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/futotempo-kalkulator.html">
+  <title>Futótempó kalkulátor | Perc/km, km/h és részidők</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/pages/simple-calculator.css">
+  <script src="../js/static-first-fallbacks.js"></script>
+  <script src="../js/global-head.js"></script>
+  <meta property="og:type" content="website"><meta property="og:site_name" content="Kalkulátor Bázis"><meta property="og:title" content="Futótempó kalkulátor | Perc/km és km/h"><meta property="og:description" content="Számold ki a futótempót távolság és teljes idő alapján."><meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/futotempo-kalkulator.html"><meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg"><meta name="twitter:card" content="summary_large_image">
+  <!-- KB_STATIC:structured-data:START --><script id="kb-structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","url":"https://kalkulatorbazis.hu/kalkulatorok/futotempo-kalkulator.html","name":"Futótempó kalkulátor | Perc/km, km/h és részidők","description":"Futótempó és azonos tempójú részidők számítása."},{"@type":"SoftwareApplication","name":"Futótempó kalkulátor","applicationCategory":"CalculatorApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"HUF"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://kalkulatorbazis.hu/"},{"@type":"ListItem","position":2,"name":"Egészség és sport","item":"https://kalkulatorbazis.hu/egeszseg.html"},{"@type":"ListItem","position":3,"name":"Futótempó kalkulátor"}]}]}</script><!-- KB_STATIC:structured-data:END -->
+</head>
+<body>
+  <!-- KB_STATIC:skip-link:START --><a class="kb-skip-link" href="#main-content">Ugrás a tartalomhoz</a><!-- KB_STATIC:skip-link:END -->
+  <div id="header"><header class="header-shell"><div class="header-inner"><a href="../" class="logo" aria-label="Kalkulátor Bázis főoldal"><span class="logo-mark" aria-hidden="true"></span><span class="logo-text">Kalkulátor Bázis</span></a><nav id="menu" aria-label="Fő navigáció"><a class="nav-home" href="../">Főoldal</a><details class="nav-dropdown nav-catalog has-active"><summary><span>Kalkulátorok</span><span class="nav-dropdown-chevron" aria-hidden="true">⌄</span></summary><div class="nav-submenu"><a href="../kalkulatorok.html">Összes kalkulátor</a><a href="../mindennapi.html">Mindennapok</a><a href="../penzugyi.html">Pénzügy</a><a href="../epitoipari.html">Otthon &amp; felújítás</a><a href="../auto.html">Autó &amp; közlekedés</a><a class="is-active" aria-current="page" href="../egeszseg.html">Egészség &amp; sport</a><a href="../atvaltok.html">Átváltók</a></div></details><details class="nav-dropdown nav-knowledge"><summary><span>Tudástár</span><span class="nav-dropdown-chevron" aria-hidden="true">⌄</span></summary><div class="nav-submenu"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="../miert-bizhatsz-bennunk.html">Miért bízhatsz bennünk?</a><a href="../kapcsolat.html">Kapcsolat</a></div></details><a href="../rolunk.html">Rólunk</a></nav><div class="header-actions"><a class="header-search" href="../kalkulatorok.html#calculatorSearch" aria-label="Kalkulátor keresése">⌕</a><button class="theme-toggle" type="button" data-theme-toggle aria-label="Váltás sötét módra" aria-pressed="false"><span class="theme-toggle-icon" aria-hidden="true">☾</span><span class="theme-toggle-text">Sötét</span></button><button class="menu-toggle" id="menuToggle" type="button" aria-label="Menü megnyitása" aria-controls="menu" aria-expanded="false">☰</button></div></div></header></div>
+
+  <main id="main-content" class="container page-simple-calculator" data-batch01-calc="futotempo-kalkulator">
+    <nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../egeszseg.html">Egészség &amp; sport</a></li><li><span aria-current="page">Futótempó</span></li></ol></nav>
+    <section class="hero"><h1>Futótempó kalkulátor</h1><p>Távolságból és teljes időből számold ki a perc/km tempót, az átlagsebességet és azonos tempójú részidőket.</p></section>
+
+    <section class="card card-calculator kb-calculator-shell" id="kalkulator">
+      <div class="calc-grid">
+        <div><label for="runDistance">Távolság (km)</label><input type="text" id="runDistance" value="10" inputmode="decimal" autocomplete="off"></div>
+        <div><label for="runHours">Óra</label><input type="text" id="runHours" value="0" inputmode="numeric" autocomplete="off"></div>
+        <div><label for="runMinutes">Perc (0–59)</label><input type="text" id="runMinutes" value="50" inputmode="numeric" autocomplete="off"></div>
+        <div><label for="runSeconds">Másodperc (0–59)</label><input type="text" id="runSeconds" value="0" inputmode="numeric" autocomplete="off"></div>
+      </div>
+      <div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="runResult"><p><strong>Átlagtempó:</strong> 5:00/km</p><p><strong>Átlagsebesség:</strong> 12 km/h</p><p><strong>5 km azonos tempóval:</strong> 25:00</p><p><strong>10 km azonos tempóval:</strong> 50:00</p></div></div>
+    </section>
+
+    <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21">
+      <h2>Mi a futótempó?</h2>
+      <p>A futótempó azt mutatja meg, hogy átlagosan mennyi idő alatt teszel meg egy kilométert. Magyarországon és Európa nagy részén jellemzően <strong>perc/km</strong> formában használjuk. Például az 5:00/km azt jelenti, hogy egy kilométer megtételéhez átlagosan öt percre van szükség.</p>
+      <p>A kalkulátor ugyanabból a távolság–idő párosból az átlagsebességet is meghatározza km/h-ban. A két adat ugyanazt a teljesítményt más szemszögből fejezi ki: futásnál a tempó általában kényelmesebb, közlekedésnél a sebesség megszokottabb.</p>
+
+      <h2>A számítás</h2>
+      <p><strong>Tempó = teljes idő / távolság.</strong> A kalkulátor a megadott órát, percet és másodpercet először másodpercre váltja, majd elosztja a kilométerek számával. Az átlagsebesség képlete <strong>távolság / idő órában</strong>.</p>
+      <div class="example-box"><h3>Példa</h3><p>Ha 10 km-t 50 perc alatt futsz le, az átlagtempód 5:00/km, az átlagsebességed pedig 12 km/h. Ugyanezt a tempót tartva 5 km 25 perc lenne.</p></div>
+
+      <h2>Mit jelentenek az 5 és 10 km-es részidők?</h2>
+      <p>Ezek nem versenyjóslatok. Egyszerűen azt mutatják meg, mennyi idő lenne szükséges 5 vagy 10 kilométerhez, <strong>ha pontosan ugyanazt az átlagtempót tartanád</strong>. A valós versenyteljesítmény nem lineáris: hosszabb távon a fáradás, rövidebb távon a nagyobb intenzitás miatt más tempó lehet fenntartható.</p>
+
+      <h2>Átlagtempó és pillanatnyi tempó</h2>
+      <p>A kalkulátor a teljes szakasz átlagát számolja. Egy GPS-óra pillanatnyi tempója futás közben folyamatosan ingadozhat, és a GPS pontatlansága is módosíthatja. Edzéstervezésnél ezért gyakran hasznosabb hosszabb körök vagy teljes szakaszok átlagát figyelni.</p>
+
+      <h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single">
+        <details><summary>Beírhatok 5 km-nél rövidebb távot?</summary><p>Igen, tizedes kilométer is megadható, például 0,4 km egy 400 méteres pályakörhöz.</p></details>
+        <details><summary>A 4:30/km gyorsabb, mint az 5:00/km?</summary><p>Igen. Tempónál a kisebb perc/km érték jelent nagyobb sebességet.</p></details>
+        <details><summary>Versenyidőt jósol a kalkulátor?</summary><p>Nem. Az 5 és 10 km-es érték kizárólag azonos tempóval történő matematikai átszámítás.</p></details>
+      </div>
+
+      <h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="pulzus-zona-kalkulator.html">Pulzus zóna</a><a href="kaloria-kalkulator.html">Kalória kalkulátor</a><a href="alvasciklus-kalkulator.html">Alvásciklus kalkulátor</a></div>
+      <p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p>
+    </section>
+
+    <!-- KB_STATIC:reliability:START --><section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>Az eszköz matematikai tempó- és sebességátváltást végez. Nem egészségügyi vizsgálat, edzésterv vagy versenyteljesítmény-előrejelzés.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20Futótempó">Hibát találtál? Jelezd.</a></div></section><!-- KB_STATIC:reliability:END -->
+  </main>
+
+  <div id="footer"><div class="footer-container kb-footer"><div class="footer-main"><section class="footer-brand"><a href="../" class="footer-logo"><span class="footer-logo-mark" aria-hidden="true"></span><span>Kalkulátor Bázis</span></a><p>Ingyenes magyar online kalkulátorok közérthető magyarázatokkal.</p></section><nav class="footer-col" aria-label="Kalkulátorkategóriák"><h2>Kalkulátorok</h2><a href="../mindennapi.html">Mindennapok</a><a href="../penzugyi.html">Pénzügy</a><a href="../epitoipari.html">Otthon &amp; felújítás</a><a href="../auto.html">Autó &amp; közlekedés</a><a href="../egeszseg.html">Egészség &amp; sport</a><a href="../atvaltok.html">Átváltók</a></nav><nav class="footer-col" aria-label="Információ"><h2>Információ</h2><a href="../rolunk.html">Rólunk</a><a href="../szamitasi-modszertan.html">Módszertan</a><a href="../kapcsolat.html">Kapcsolat</a></nav></div><div class="footer-bottom"><p>© 2026 Kalkulátor Bázis</p><p>Az eredmények tájékoztató jellegűek.</p></div></div></div>
+  <script defer src="../js/expansion-batch-01-calculators.js"></script><script src="../js/utils.js"></script><script defer src="../js/help-widget.js"></script>
+</body>
+</html>
