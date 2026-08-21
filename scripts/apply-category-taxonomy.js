@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 const { categories, groupByCalculator } = require("./category-taxonomy-config");
+const expansionCalculators = require("../js/expansion-batch-01-data.js");
 
 const root = path.resolve(__dirname, "..");
 const dataPath = path.join(root, "js", "site-data.js");
@@ -129,6 +130,17 @@ function loadData(source) {
   return sandbox.window.KB_DATA;
 }
 
+function mergeExpansionData(data) {
+  const known = new Set(data.calculators.map((calculator) => calculator.url));
+  for (const calculator of expansionCalculators) {
+    if (!known.has(calculator.url)) {
+      data.calculators.push({ ...calculator });
+      known.add(calculator.url);
+    }
+  }
+  return data;
+}
+
 function updateMeta(html, category) {
   const replacements = [
     [/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(category.metaTitle)}</title>`],
@@ -209,9 +221,9 @@ function updateHomePage() {
 }
 
 const updatedSource = updateSiteData();
-const data = loadData(updatedSource);
+const data = mergeExpansionData(loadData(updatedSource));
 
 for (const category of categories) updateCategoryPage(category, data);
 updateHomePage();
 
-console.log(`Kategória-taxonomia alkalmazva: ${categories.length} fő kategória, ${data.calculators.length} kalkulátor.`);
+console.log(`Kategória-taxonomia alkalmazva: ${categories.length} fő kategória, ${data.calculators.length} katalogizált kalkulátor.`);
