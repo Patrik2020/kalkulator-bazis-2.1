@@ -38,6 +38,7 @@ jobs:
         run: |
           node scripts/add-calculator-expansion-batch1.js
           node scripts/fix-expansion-html-entities.js
+          npm run sitemap
 
       - name: Verify Chrome is available
         shell: bash
