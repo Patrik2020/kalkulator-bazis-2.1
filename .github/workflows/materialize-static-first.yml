@@ -3,10 +3,6 @@ name: Materialize static-first HTML
 on:
   workflow_dispatch:
   pull_request:
-  push:
-    branches:
-      - main
-      - adsense-static-quality-2026-08
 
 permissions:
   contents: write
@@ -77,5 +73,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add --all
-          git commit -m "build: materialize static-first HTML [skip ci]"
+          git commit -m "build: materialize static-first HTML"
           git push origin HEAD:${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
