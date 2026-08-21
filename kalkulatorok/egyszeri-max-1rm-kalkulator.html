@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta name="google-adsense-account" content="ca-pub-2639795157074812">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Becsült egyismétléses maximum számítása Epley- és Brzycki-képlettel a használt súly és az ismétlésszám alapján.">
+<link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/egyszeri-max-1rm-kalkulator.html">
+<title>1RM kalkulátor | Kalkulátor Bázis</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/pages/simple-calculator.css">
+<script src="../js/static-first-fallbacks.js"></script>
+<script src="../js/global-head.js"></script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalkulátor Bázis">
+<meta property="og:title" content="1RM kalkulátor | Kalkulátor Bázis">
+<meta property="og:description" content="Becsült egyismétléses maximum számítása Epley- és Brzycki-képlettel a használt súly és az ismétlésszám alapján.">
+<meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/egyszeri-max-1rm-kalkulator.html">
+<meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script id="kb-structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/egyszeri-max-1rm-kalkulator.html#webpage","url":"https://kalkulatorbazis.hu/kalkulatorok/egyszeri-max-1rm-kalkulator.html","name":"1RM kalkulátor | Kalkulátor Bázis","description":"Becsült egyismétléses maximum számítása Epley- és Brzycki-képlettel a használt súly és az ismétlésszám alapján.","inLanguage":"hu-HU","isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"}},{"@type":"SoftwareApplication","@id":"https://kalkulatorbazis.hu/kalkulatorok/egyszeri-max-1rm-kalkulator.html#calculator","name":"1RM kalkulátor","applicationCategory":"CalculatorApplication","operatingSystem":"Web","url":"https://kalkulatorbazis.hu/kalkulatorok/egyszeri-max-1rm-kalkulator.html","description":"Becsült egyismétléses maximum számítása Epley- és Brzycki-képlettel a használt súly és az ismétlésszám alapján.","offers":{"@type":"Offer","price":"0","priceCurrency":"HUF"},"isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"},"about":"Egészség és sport kalkulátorok"},{"@type":"BreadcrumbList","@id":"https://kalkulatorbazis.hu/kalkulatorok/egyszeri-max-1rm-kalkulator.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://kalkulatorbazis.hu/"},{"@type":"ListItem","position":2,"name":"Egészség & sport","item":"https://kalkulatorbazis.hu/egeszseg.html"},{"@type":"ListItem","position":3,"name":"1RM kalkulátor","item":"https://kalkulatorbazis.hu/kalkulatorok/egyszeri-max-1rm-kalkulator.html"}]},{"@type":"FAQPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/egyszeri-max-1rm-kalkulator.html#gyik","mainEntity":[{"@type":"Question","name":"Pontos az 1RM becslés?","acceptedAnswer":{"@type":"Answer","text":"Nem teljesen. Képletalapú közelítés, amely egyénenként, gyakorlatonként és edzettségi szintenként eltérhet a tényleges maximumtól."}},{"@type":"Question","name":"Miért két képletet mutat?","acceptedAnswer":{"@type":"Answer","text":"Az Epley és Brzycki eltérően közelít, ezért a különbség jól jelzi, hogy a szám nem laborpontosságú."}},{"@type":"Question","name":"Muszáj kipróbálnom a kiszámolt maximumot?","acceptedAnswer":{"@type":"Answer","text":"Nem. A becslés főleg edzéstervezési viszonyítási pont; maximális próbát nem szükséges végezni."}}]}]}</script>
+</head>
+<body>
+<!-- KB_STATIC:skip-link:START -->
+<a class="kb-skip-link" href="#main-content">Ugrás a tartalomhoz</a>
+<!-- KB_STATIC:skip-link:END -->
+
+
+<a class="kb-skip-link" href="#main-content">Ugrás a tartalomhoz</a>
+<div id="header"><header class="header-shell">
+  <div class="header-inner">
+    <a href="../" class="logo" aria-label="Kalkulátor Bázis főoldal">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="logo-text">Kalkulátor Bázis</span>
+    </a>
+
+    <nav id="menu" aria-label="Fő navigáció">
+      <a class="nav-home" href="../">Főoldal</a>
+
+      <details class="nav-dropdown nav-catalog has-active" open>
+        <summary>
+          <span>Kalkulátorok</span>
+          <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="nav-submenu">
+          <a href="../kalkulatorok.html" class="">Összes kalkulátor</a>
+          <a href="../mindennapi.html">Mindennapok</a>
+          <a href="../penzugyi.html">Pénzügy</a>
+          <a href="../epitoipari.html">Otthon &amp; felújítás</a>
+          <a href="../auto.html">Autó &amp; közlekedés</a>
+          <a href="../egeszseg.html" class="is-active" aria-current="page">Egészség &amp; sport</a>
+          <a href="../atvaltok.html">Átváltók</a>
+          <a href="../kalkulatorok/multifunkcios-szamologep.html">Tudományos számológép</a>
+        </div>
+      </details>
+
+      <details class="nav-dropdown nav-knowledge">
+        <summary>
+          <span>Tudástár</span>
+          <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="nav-submenu">
+          <a href="../elethelyzetek.html">Élethelyzetek</a>
+          <a href="../landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html">Pénzügyi tudatosság</a>
+          <a href="../szamitasi-modszertan.html">Számítási módszertan</a>
+          <a href="../miert-bizhatsz-bennunk.html">Miért bízhatsz bennünk?</a>
+          <a href="../atlathatosag-es-minoseg.html">Átláthatóság és minőség</a>
+          <a href="../kapcsolat.html">Kapcsolat</a>
+        </div>
+      </details>
+
+      <a href="../rolunk.html">Rólunk</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-search" href="../kalkulatorok.html#calculatorSearch" aria-label="Kalkulátor keresése">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-4-4"></path>
+        </svg>
+      </a>
+      <button class="theme-toggle" type="button" data-theme-toggle="" aria-label="Váltás sötét módra" aria-pressed="false" title="Váltás sötét módra">
+        <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+        <span class="theme-toggle-text">Sötét</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menü megnyitása" aria-controls="menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+</div>
+<main id="main-content" class="container page-simple-calculator" data-batch02-calc="egyszeri-max-1rm-kalkulator">
+<nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../egeszseg.html">Egészség &amp; sport</a></li><li><span aria-current="page">1RM</span></li></ol></nav>
+<section class="hero"><h1>1RM kalkulátor</h1><p>Becsült egyismétléses maximum számítása Epley- és Brzycki-képlettel a használt súly és az ismétlésszám alapján.</p></section>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="rmWeight">Használt súly (kg)</label><input id="rmWeight" type="number" value="80" min="0" step="0.5" inputmode="decimal"></div><div><label for="rmReps">Szabályos ismétlések</label><input id="rmReps" type="number" value="5" min="1" max="12" step="1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="rmResult"><p><strong>Epley becslés:</strong> 93,3 kg</p><p><strong>Brzycki becslés:</strong> 90 kg</p><p><strong>Átlagos becslés:</strong> 91,7 kg</p><p><strong>80% terhelés:</strong> 73,3 kg</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+  <div class="retention-cta-copy">
+    <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
+    <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
+    <p>
+      Tedd el a Kalkulátor Bázist, hogy legközelebb egy mozdulattal visszatalálj
+      ehhez a számításhoz – vagy oszd meg azzal, akinek szintén jól jöhet.
+    </p>
+  </div>
+
+  <div class="retention-cta-actions" role="group">
+    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+      <span aria-hidden="true">☆</span>
+      <span>Könyvjelzőzöm</span>
+    </button>
+
+    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" hidden>
+      <span aria-hidden="true">▣</span>
+      <span data-retention-install-label="">Telepítem</span>
+    </button>
+
+    <button class="retention-cta-button" type="button" data-retention-action="share">
+      <span aria-hidden="true">↗</span>
+      <span data-retention-share-label="">Megosztom</span>
+    </button>
+  </div>
+
+  <div class="retention-cta-panels">
+    <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
+      <p data-retention-bookmark-text="">
+        Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
+      </p>
+    </div>
+
+    <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
+      <p data-retention-install-text=""></p>
+    </div>
+
+    <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
+      <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+    </div>
+  </div>
+
+  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+</section></section>
+<section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Mi az 1RM?</h2><p>Az 1RM, vagyis egyismétléses maximum annak a terhelésnek a becslése, amelyből ideális körülmények között egy szabályos ismétlés végezhető. A kalkulátor nem kér valódi maximális próbát: egy többismétléses sorozatból készít matematikai közelítést.</p><p>Két gyakori képletet használ: az <strong>Epley</strong> képletet (súly × (1 + ismétlés/30)) és a <strong>Brzycki</strong> képletet (súly × 36 / (37 − ismétlés)). A két eredmény átlagát is megmutatja, mert egyik képlet sem pontos minden embernél és minden gyakorlatnál.</p><h2>Milyen ismétléstartományban érdemes használni?</h2><p>A becslés általában alacsony-közepes ismétlésszámnál használható a legértelmesebben. Ezért a kalkulátor 1–12 szabályos ismétlést enged. Nagyon magas ismétlésszámnál az állóképesség, a technika és a fáradás egyre jobban torzíthatja az 1RM-közelítést.</p><div class="example-box"><h3>Példa</h3><p>80 kg-ból 5 szabályos ismétlés esetén az Epley képlet kb. 93,3 kg, a Brzycki képlet pontosan 90 kg 1RM-et becsül. A kettő átlaga kb. 91,7 kg, ennek 80%-a körülbelül 73,3 kg.</p></div><h2>Biztonságos használat</h2><p>A becsült 1RM nem kötelező célterhelés, és nem jelenti azt, hogy tényleges maximális próbát kell végezni. Technikailag összetett gyakorlatnál, fájdalom, sérülés vagy bizonytalanság esetén a terhelés megválasztását érdemes képzett szakemberrel egyeztetni.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Pontos az 1RM becslés?</summary><p>Nem teljesen. Képletalapú közelítés, amely egyénenként, gyakorlatonként és edzettségi szintenként eltérhet a tényleges maximumtól.</p></details><details><summary>Miért két képletet mutat?</summary><p>Az Epley és Brzycki eltérően közelít, ezért a különbség jól jelzi, hogy a szám nem laborpontosságú.</p></details><details><summary>Muszáj kipróbálnom a kiszámolt maximumot?</summary><p>Nem. A becslés főleg edzéstervezési viszonyítási pont; maximális próbát nem szükséges végezni.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="feherje-szukseglet-kalkulator.html">feherje szukseglet</a><a href="pulzus-zona-kalkulator.html">pulzus zona</a><a href="kaloria-kalkulator.html">kaloria</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
+<section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>Edzéstervezési becslés, nem teljesítménygarancia. A tényleges 1RM függ a technikától, fáradtságtól, gyakorlattól és egyéni adottságoktól.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%201RM%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
+
+
+<!-- KB_STATIC:reliability:START -->
+<section class="reliability-note"><div><h2 id="hitelesseg-es-szamitasi-korlatok-2">Hitelesség és számítási korlátok</h2><p>Edzéstervezési becslés, nem teljesítménygarancia. A tényleges 1RM függ a technikától, fáradtságtól, gyakorlattól és egyéni adottságoktól.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%201RM%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
+<!-- KB_STATIC:reliability:END -->
+</main>
+<div id="footer"><div class="footer-container kb-footer">
+  <section class="footer-cta" aria-labelledby="footerCtaTitle">
+    <div class="footer-cta-copy">
+      <span class="footer-eyebrow">Segíts fejleszteni a Kalkulátor Bázist</span>
+      <h2 id="footerCtaTitle">Nem találtad meg a keresett kalkulátort?</h2>
+      <p>Írd meg, milyen számítás lenne hasznos. A jó ötleteket felvesszük a fejlesztési listára.</p>
+    </div>
+    <a class="footer-cta-button" href="../kapcsolat.html?tema=uj-kalkulator">Kalkulátort javaslok</a>
+  </section>
+
+  <div class="footer-main">
+    <section class="footer-brand" aria-labelledby="footerBrandTitle">
+      <a href="../" class="footer-logo" id="footerBrandTitle">
+        <span class="footer-logo-mark" aria-hidden="true"></span>
+        <span>Kalkulátor Bázis</span>
+      </a>
+      <p class="footer-brand-copy">
+        Ingyenes, magyar nyelvű online kalkulátorok pénzügyi, egészségügyi,
+        építőipari, autós és mindennapi döntésekhez.
+      </p>
+      <ul class="footer-trust-list">
+        <li>Regisztráció nélkül használható</li>
+        <li>Közérthető módszertan és források</li>
+        <li>Mobilon is kényelmesen működik</li>
+      </ul>
+      <a class="footer-mail" href="mailto:kalkulatorbazis@gmail.com">kalkulatorbazis@gmail.com</a>
+    </section>
+
+    <nav class="footer-col" aria-label="Kalkulátorkategóriák">
+      <h2>Kalkulátorok</h2>
+      <a href="../penzugyi.html">Pénzügyi</a>
+      <a href="../egeszseg.html">Egészség</a>
+      <a href="../epitoipari.html">Építőipari</a>
+      <a href="../auto.html">Autós</a>
+      <a href="../mindennapi.html">Mindennapi</a>
+      <a href="../atvaltok.html">Átváltók</a>
+      <a class="footer-link-emphasis" href="../kalkulatorok.html">Összes kalkulátor</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Kiemelt kalkulátorok">
+      <h2>Népszerű oldalak</h2>
+      <a href="../kalkulatorok/netto-brutto-kalkulator.html">Nettó–bruttó kalkulátor</a>
+      <a href="../kalkulatorok/etf-kalkulator.html">ETF kalkulátor</a>
+      <a href="../kalkulatorok/afa-kalkulator.html">ÁFA-kalkulátor</a>
+      <a href="../kalkulatorok/hitel-torleszto-kalkulator.html">Hiteltörlesztő kalkulátor</a>
+      <a href="../kalkulatorok/szazalek-kalkulator.html">Százalékkalkulátor</a>
+      <a href="../#newTitle">Újdonságok</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Információ és bizalom">
+      <h2>Információ</h2>
+      <a href="../rolunk.html">Rólunk</a>
+      <a href="../szamitasi-modszertan.html">Számítási módszertan</a>
+      <a href="../miert-bizhatsz-bennunk.html">Miért bízhatsz bennünk?</a>
+      <a href="../atlathatosag-es-minoseg.html">Átláthatóság és minőség</a>
+      <a href="../kapcsolat.html">Kapcsolat és hibabejelentés</a>
+      <button class="footer-link-button" type="button" data-cookie-settings="">Sütibeállítások</button>
+    </nav>
+  </div>
+
+  <nav class="footer-legal" aria-label="Jogi hivatkozások">
+    <a href="../impresszum.html">Impresszum</a>
+    <a href="../adatvedelem.html">Adatkezelés</a>
+    <a href="../felhasznalasi-feltetelek.html">Felhasználási feltételek</a>
+    <a href="../cookie.html">Sütik</a>
+    <a href="../jogi-nyilatkozat.html">Jogi nyilatkozat</a>
+    <a href="../landing-pages/wise/wise.html">Partnerinformáció</a>
+  </nav>
+
+  <div class="footer-bottom">
+    <p>© 2026 Kalkulátor Bázis</p>
+    <p>Az eredmények tájékoztató becslések; fontos döntés előtt ellenőrizd az aktuális hivatalos vagy szakmai forrást.</p>
+  </div>
+</div>
+</div>
+<script defer src="../js/expansion-batch-02-calculators.js"></script>
+<script src="../js/utils.js"></script>
+<script defer src="../js/help-widget.js"></script>
+</body>
+</html>

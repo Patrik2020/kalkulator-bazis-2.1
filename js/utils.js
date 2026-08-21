@@ -201,12 +201,18 @@ function loadSiteScripts(base) {
     }
   };
 
+  const loadExpansionData = () => {
+    loadScriptOnce(base + "js/expansion-batch-01-data.js", () => {
+      loadScriptOnce(base + "js/expansion-batch-02-data.js", loadUi);
+    });
+  };
+
   if (window.KB_DATA) {
-    loadUi();
+    loadExpansionData();
     return;
   }
 
-  loadScriptOnce(base + "js/site-data.js", loadUi);
+  loadScriptOnce(base + "js/site-data.js", loadExpansionData);
 }
 
 function loadComponent(id, path) {

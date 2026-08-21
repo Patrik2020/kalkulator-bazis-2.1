@@ -2,7 +2,10 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 const { categories, groupByCalculator } = require("./category-taxonomy-config");
-const expansionCalculators = require("../js/expansion-batch-01-data.js");
+const expansionCalculators = [
+  ...require("../js/expansion-batch-01-data.js"),
+  ...require("../js/expansion-batch-02-data.js"),
+];
 
 const root = path.resolve(__dirname, "..");
 const dataPath = path.join(root, "js", "site-data.js");

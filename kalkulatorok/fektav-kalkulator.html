@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta name="google-adsense-account" content="ca-pub-2639795157074812">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Elméleti reakcióút, fékút és teljes megállási távolság becslése sebesség, reakcióidő és tapadási tényező alapján.">
+<link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/fektav-kalkulator.html">
+<title>Féktáv kalkulátor | Kalkulátor Bázis</title>
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/pages/simple-calculator.css">
+<script src="../js/static-first-fallbacks.js"></script>
+<script src="../js/global-head.js"></script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kalkulátor Bázis">
+<meta property="og:title" content="Féktáv kalkulátor | Kalkulátor Bázis">
+<meta property="og:description" content="Elméleti reakcióút, fékút és teljes megállási távolság becslése sebesség, reakcióidő és tapadási tényező alapján.">
+<meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/fektav-kalkulator.html">
+<meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script id="kb-structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/fektav-kalkulator.html#webpage","url":"https://kalkulatorbazis.hu/kalkulatorok/fektav-kalkulator.html","name":"Féktáv kalkulátor | Kalkulátor Bázis","description":"Elméleti reakcióút, fékút és teljes megállási távolság becslése sebesség, reakcióidő és tapadási tényező alapján.","inLanguage":"hu-HU","isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"}},{"@type":"SoftwareApplication","@id":"https://kalkulatorbazis.hu/kalkulatorok/fektav-kalkulator.html#calculator","name":"Féktáv kalkulátor","applicationCategory":"CalculatorApplication","operatingSystem":"Web","url":"https://kalkulatorbazis.hu/kalkulatorok/fektav-kalkulator.html","description":"Elméleti reakcióút, fékút és teljes megállási távolság becslése sebesség, reakcióidő és tapadási tényező alapján.","offers":{"@type":"Offer","price":"0","priceCurrency":"HUF"},"isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"},"about":"Autó és közlekedés kalkulátorok"},{"@type":"BreadcrumbList","@id":"https://kalkulatorbazis.hu/kalkulatorok/fektav-kalkulator.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://kalkulatorbazis.hu/"},{"@type":"ListItem","position":2,"name":"Autó & közlekedés","item":"https://kalkulatorbazis.hu/auto.html"},{"@type":"ListItem","position":3,"name":"Féktáv kalkulátor","item":"https://kalkulatorbazis.hu/kalkulatorok/fektav-kalkulator.html"}]},{"@type":"FAQPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/fektav-kalkulator.html#gyik","mainEntity":[{"@type":"Question","name":"Mit jelent a μ érték?","acceptedAnswer":{"@type":"Answer","text":"Egy egyszerű tapadási közelítés a gumi és az út kapcsolatára. A valós érték sok tényezőtől függ és menet közben is változhat."}},{"@type":"Question","name":"Miért nő ennyire gyorsan a fékút?","acceptedAnswer":{"@type":"Answer","text":"Az elméleti fékút a sebesség négyzetével arányos, ezért kétszeres sebesség ideális esetben is körülbelül négyszeres fékutat jelent."}},{"@type":"Question","name":"Ez megadja a biztonságos követési távolságot?","acceptedAnswer":{"@type":"Answer","text":"Nem. A követési távolságnál további bizonytalanságokkal és a forgalmi környezettel is számolni kell."}}]}]}</script>
+</head>
+<body>
+<!-- KB_STATIC:skip-link:START -->
+<a class="kb-skip-link" href="#main-content">Ugrás a tartalomhoz</a>
+<!-- KB_STATIC:skip-link:END -->
+
+
+<a class="kb-skip-link" href="#main-content">Ugrás a tartalomhoz</a>
+<div id="header"><header class="header-shell">
+  <div class="header-inner">
+    <a href="../" class="logo" aria-label="Kalkulátor Bázis főoldal">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="logo-text">Kalkulátor Bázis</span>
+    </a>
+
+    <nav id="menu" aria-label="Fő navigáció">
+      <a class="nav-home" href="../">Főoldal</a>
+
+      <details class="nav-dropdown nav-catalog has-active" open>
+        <summary>
+          <span>Kalkulátorok</span>
+          <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="nav-submenu">
+          <a href="../kalkulatorok.html" class="">Összes kalkulátor</a>
+          <a href="../mindennapi.html">Mindennapok</a>
+          <a href="../penzugyi.html">Pénzügy</a>
+          <a href="../epitoipari.html">Otthon &amp; felújítás</a>
+          <a href="../auto.html" class="is-active" aria-current="page">Autó &amp; közlekedés</a>
+          <a href="../egeszseg.html">Egészség &amp; sport</a>
+          <a href="../atvaltok.html">Átváltók</a>
+          <a href="../kalkulatorok/multifunkcios-szamologep.html">Tudományos számológép</a>
+        </div>
+      </details>
+
+      <details class="nav-dropdown nav-knowledge">
+        <summary>
+          <span>Tudástár</span>
+          <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="nav-submenu">
+          <a href="../elethelyzetek.html">Élethelyzetek</a>
+          <a href="../landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html">Pénzügyi tudatosság</a>
+          <a href="../szamitasi-modszertan.html">Számítási módszertan</a>
+          <a href="../miert-bizhatsz-bennunk.html">Miért bízhatsz bennünk?</a>
+          <a href="../atlathatosag-es-minoseg.html">Átláthatóság és minőség</a>
+          <a href="../kapcsolat.html">Kapcsolat</a>
+        </div>
+      </details>
+
+      <a href="../rolunk.html">Rólunk</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-search" href="../kalkulatorok.html#calculatorSearch" aria-label="Kalkulátor keresése">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-4-4"></path>
+        </svg>
+      </a>
+      <button class="theme-toggle" type="button" data-theme-toggle="" aria-label="Váltás sötét módra" aria-pressed="false" title="Váltás sötét módra">
+        <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+        <span class="theme-toggle-text">Sötét</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menü megnyitása" aria-controls="menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+</div>
+<main id="main-content" class="container page-simple-calculator" data-batch02-calc="fektav-kalkulator">
+<nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../auto.html">Autó &amp; közlekedés</a></li><li><span aria-current="page">Féktáv</span></li></ol></nav>
+<section class="hero"><h1>Féktáv kalkulátor</h1><p>Elméleti reakcióút, fékút és teljes megállási távolság becslése sebesség, reakcióidő és tapadási tényező alapján.</p></section>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="brakeSpeed">Sebesség (km/h)</label><input id="brakeSpeed" type="number" value="50" min="0" step="1" inputmode="decimal"></div><div><label for="brakeReaction">Reakcióidő (s)</label><input id="brakeReaction" type="number" value="1" min="0" step="0.1" inputmode="decimal"></div><div><label for="brakeMu">Tapadási tényező (μ)</label><input id="brakeMu" type="number" value="0.7" min="0.05" max="1.5" step="0.05" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="brakeResult"><p><strong>Reakcióút:</strong> 13,9 m</p><p><strong>Elméleti fékút:</strong> 14,1 m</p><p><strong>Teljes megállási távolság:</strong> 27,9 m</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+  <div class="retention-cta-copy">
+    <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
+    <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
+    <p>
+      Tedd el a Kalkulátor Bázist, hogy legközelebb egy mozdulattal visszatalálj
+      ehhez a számításhoz – vagy oszd meg azzal, akinek szintén jól jöhet.
+    </p>
+  </div>
+
+  <div class="retention-cta-actions" role="group">
+    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+      <span aria-hidden="true">☆</span>
+      <span>Könyvjelzőzöm</span>
+    </button>
+
+    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+      <span aria-hidden="true">▣</span>
+      <span data-retention-install-label="">Telepítem</span>
+    </button>
+
+    <button class="retention-cta-button" type="button" data-retention-action="share">
+      <span aria-hidden="true">↗</span>
+      <span data-retention-share-label="">Megosztom</span>
+    </button>
+  </div>
+
+  <div class="retention-cta-panels">
+    <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
+      <p data-retention-bookmark-text="">
+        Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
+      </p>
+    </div>
+
+    <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
+      <p data-retention-install-text=""></p>
+    </div>
+
+    <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
+      <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+    </div>
+  </div>
+
+  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+</section></section>
+<section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Mit becsül a féktáv kalkulátor?</h2><p>A teljes megállási távolság két részből áll: a vezető reakcióideje alatt megtett <strong>reakcióútból</strong> és a tényleges lassítás alatt megtett <strong>fékútból</strong>. A kalkulátor ezeket külön is megmutatja, hogy látható legyen, miért nő gyorsan a szükséges távolság a sebesség emelkedésével.</p><p>A reakcióút a sebesség és a reakcióidő szorzata. Az elméleti fékút sík úton a v²/(2·μ·g) képlettel készül, ahol μ a megadott tapadási tényező, g pedig 9,80665 m/s².</p><h2>Miért csak becslés?</h2><p>A valós fékút függ a gumiabroncs állapotától és hőmérsékletétől, az útfelülettől, a lejtéstől, a jármű fékrendszerétől, terhelésétől, az ABS működésétől és számos más körülménytől. A tapadási tényező nem egy fix „útminőség” szám, hanem erősen helyzetfüggő közelítés.</p><div class="example-box"><h3>Példa</h3><p>50 km/h, 1 másodperces reakcióidő és μ=0,7 mellett a reakcióút kb. 13,9 m, az elméleti fékút kb. 14,0 m, így a teljes becsült megállási távolság közel 27,9 m.</p></div><h2>Biztonsági értelmezés</h2><p>A kalkulátor eredménye nem használható arra, hogy minimális követési távolságot vagy „biztonságos” sebességet igazoljon. Közúton mindig az aktuális látási, időjárási és forgalmi viszonyokhoz kell igazítani a sebességet és a követési távolságot.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Mit jelent a μ érték?</summary><p>Egy egyszerű tapadási közelítés a gumi és az út kapcsolatára. A valós érték sok tényezőtől függ és menet közben is változhat.</p></details><details><summary>Miért nő ennyire gyorsan a fékút?</summary><p>Az elméleti fékút a sebesség négyzetével arányos, ezért kétszeres sebesség ideális esetben is körülbelül négyszeres fékutat jelent.</p></details><details><summary>Ez megadja a biztonságos követési távolságot?</summary><p>Nem. A követési távolságnál további bizonytalanságokkal és a forgalmi környezettel is számolni kell.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="utazasi-ido-kalkulator.html">utazasi ido</a><a href="gumi-meret-kalkulator.html">gumi meret</a><a href="auto-kalkulator.html">auto</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
+<section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>Elméleti fizikai becslés sík útra. Valós közúti fékút és biztonságos követési távolság meghatározására önmagában nem alkalmas.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20F%C3%A9kt%C3%A1v%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
+
+
+<!-- KB_STATIC:reliability:START -->
+<section class="reliability-note"><div><h2 id="hitelesseg-es-szamitasi-korlatok-2">Hitelesség és számítási korlátok</h2><p>Elméleti fizikai becslés sík útra. Valós közúti fékút és biztonságos követési távolság meghatározására önmagában nem alkalmas.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20F%C3%A9kt%C3%A1v%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
+<!-- KB_STATIC:reliability:END -->
+</main>
+<div id="footer"><div class="footer-container kb-footer">
+  <section class="footer-cta" aria-labelledby="footerCtaTitle">
+    <div class="footer-cta-copy">
+      <span class="footer-eyebrow">Segíts fejleszteni a Kalkulátor Bázist</span>
+      <h2 id="footerCtaTitle">Nem találtad meg a keresett kalkulátort?</h2>
+      <p>Írd meg, milyen számítás lenne hasznos. A jó ötleteket felvesszük a fejlesztési listára.</p>
+    </div>
+    <a class="footer-cta-button" href="../kapcsolat.html?tema=uj-kalkulator">Kalkulátort javaslok</a>
+  </section>
+
+  <div class="footer-main">
+    <section class="footer-brand" aria-labelledby="footerBrandTitle">
+      <a href="../" class="footer-logo" id="footerBrandTitle">
+        <span class="footer-logo-mark" aria-hidden="true"></span>
+        <span>Kalkulátor Bázis</span>
+      </a>
+      <p class="footer-brand-copy">
+        Ingyenes, magyar nyelvű online kalkulátorok pénzügyi, egészségügyi,
+        építőipari, autós és mindennapi döntésekhez.
+      </p>
+      <ul class="footer-trust-list">
+        <li>Regisztráció nélkül használható</li>
+        <li>Közérthető módszertan és források</li>
+        <li>Mobilon is kényelmesen működik</li>
+      </ul>
+      <a class="footer-mail" href="mailto:kalkulatorbazis@gmail.com">kalkulatorbazis@gmail.com</a>
+    </section>
+
+    <nav class="footer-col" aria-label="Kalkulátorkategóriák">
+      <h2>Kalkulátorok</h2>
+      <a href="../penzugyi.html">Pénzügyi</a>
+      <a href="../egeszseg.html">Egészség</a>
+      <a href="../epitoipari.html">Építőipari</a>
+      <a href="../auto.html">Autós</a>
+      <a href="../mindennapi.html">Mindennapi</a>
+      <a href="../atvaltok.html">Átváltók</a>
+      <a class="footer-link-emphasis" href="../kalkulatorok.html">Összes kalkulátor</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Kiemelt kalkulátorok">
+      <h2>Népszerű oldalak</h2>
+      <a href="../kalkulatorok/netto-brutto-kalkulator.html">Nettó–bruttó kalkulátor</a>
+      <a href="../kalkulatorok/etf-kalkulator.html">ETF kalkulátor</a>
+      <a href="../kalkulatorok/afa-kalkulator.html">ÁFA-kalkulátor</a>
+      <a href="../kalkulatorok/hitel-torleszto-kalkulator.html">Hiteltörlesztő kalkulátor</a>
+      <a href="../kalkulatorok/szazalek-kalkulator.html">Százalékkalkulátor</a>
+      <a href="../#newTitle">Újdonságok</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Információ és bizalom">
+      <h2>Információ</h2>
+      <a href="../rolunk.html">Rólunk</a>
+      <a href="../szamitasi-modszertan.html">Számítási módszertan</a>
+      <a href="../miert-bizhatsz-bennunk.html">Miért bízhatsz bennünk?</a>
+      <a href="../atlathatosag-es-minoseg.html">Átláthatóság és minőség</a>
+      <a href="../kapcsolat.html">Kapcsolat és hibabejelentés</a>
+      <button class="footer-link-button" type="button" data-cookie-settings="">Sütibeállítások</button>
+    </nav>
+  </div>
+
+  <nav class="footer-legal" aria-label="Jogi hivatkozások">
+    <a href="../impresszum.html">Impresszum</a>
+    <a href="../adatvedelem.html">Adatkezelés</a>
+    <a href="../felhasznalasi-feltetelek.html">Felhasználási feltételek</a>
+    <a href="../cookie.html">Sütik</a>
+    <a href="../jogi-nyilatkozat.html">Jogi nyilatkozat</a>
+    <a href="../landing-pages/wise/wise.html">Partnerinformáció</a>
+  </nav>
+
+  <div class="footer-bottom">
+    <p>© 2026 Kalkulátor Bázis</p>
+    <p>Az eredmények tájékoztató becslések; fontos döntés előtt ellenőrizd az aktuális hivatalos vagy szakmai forrást.</p>
+  </div>
+</div>
+</div>
+<script defer src="../js/expansion-batch-02-calculators.js"></script>
+<script src="../js/utils.js"></script>
+<script defer src="../js/help-widget.js"></script>
+</body>
+</html>
