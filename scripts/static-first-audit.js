@@ -167,6 +167,13 @@ for (const page of pages) {
     }
   }
 
+  if (page.startsWith("kalkulatorok/")) {
+    const reliabilityNotes = html.match(/class=["'][^"']*\breliability-note\b/gi) || [];
+    if (reliabilityNotes.length !== 1) {
+      errors.push(`${page}: pontosan 1 megbízhatósági megjegyzés kell, jelenleg ${reliabilityNotes.length}`);
+    }
+  }
+
   if (financePages.has(page)) requireMarker(html, "KB_STATIC:quality-finance:START", page, errors);
   if (constructionPages.has(page)) requireMarker(html, "KB_STATIC:quality-construction:START", page, errors);
   if (lifestylePages.has(page)) requireMarker(html, "KB_STATIC:quality-lifestyle:START", page, errors);

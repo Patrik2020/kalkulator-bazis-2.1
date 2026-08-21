@@ -17,6 +17,45 @@ vm.runInNewContext(source, sandbox, { filename: "site-data.js" });
 const data = sandbox.window.KB_DATA;
 const errors = [];
 
+function readAttribute(openTag, name) {
+  const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return openTag.match(new RegExp(`\\b${escaped}\\s*=\\s*(["'])(.*?)\\1`, "i"))?.[2] || null;
+}
+
+function calculatorCardUrls(file) {
+  const html = fs.readFileSync(path.join(root, file), "utf8");
+  const urls = [];
+
+  for (const match of html.matchAll(/<a\b[^>]*>/gi)) {
+    const className = readAttribute(match[0], "class") || "";
+    if (!className.split(/\s+/).includes("calculator-card")) continue;
+    const href = readAttribute(match[0], "href");
+    if (!href) continue;
+    const normalized = decodeURIComponent(new URL(href, "https://kalkulatorbazis.hu/").pathname).replace(/^\/+/, "");
+    if (normalized.startsWith("kalkulatorok/") && normalized.endsWith(".html")) urls.push(normalized);
+  }
+
+  return urls;
+}
+
+function checkExactListing(file, expectedUrls, label) {
+  const listed = calculatorCardUrls(file);
+  const counts = new Map();
+  listed.forEach((url) => counts.set(url, (counts.get(url) || 0) + 1));
+  const actual = new Set(listed);
+
+  const missing = [...expectedUrls].filter((url) => !actual.has(url));
+  const extra = [...actual].filter((url) => !expectedUrls.has(url));
+  const duplicates = [...counts].filter(([, count]) => count !== 1).map(([url, count]) => `${url} (${count}×)`);
+
+  if (missing.length) errors.push(`${label}: hiányzó kalkulátorkártyák: ${missing.join(", ")}`);
+  if (extra.length) errors.push(`${label}: nem katalogizált kalkulátorkártyák: ${extra.join(", ")}`);
+  if (duplicates.length) errors.push(`${label}: duplikált kalkulátorkártyák: ${duplicates.join(", ")}`);
+  if (listed.length !== expectedUrls.size) {
+    errors.push(`${label}: ${listed.length} kártya található, az elvárt darabszám ${expectedUrls.size}.`);
+  }
+}
+
 if (!data || !Array.isArray(data.calculators)) {
   errors.push("A site-data.js nem adott vissza kalkulátorlistát.");
 }
@@ -71,6 +110,14 @@ for (const calculator of calculators) {
 
 for (const url of Object.keys(groupByCalculator)) {
   if (!urls.has(url)) errors.push(`A taxonómia nem létező kalkulátorra hivatkozik: ${url}`);
+}
+
+checkExactListing("kalkulatorok.html", urls, "Összes kalkulátor oldal");
+for (const category of categories) {
+  const expected = new Set(calculators
+    .filter((calculator) => calculator.category === category.id)
+    .map((calculator) => calculator.url));
+  checkExactListing(category.url, expected, `${category.shortTitle} kategóriaoldal`);
 }
 
 if (errors.length) {

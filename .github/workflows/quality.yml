@@ -43,3 +43,49 @@ jobs:
         run: |
           npm run sitemap
           git diff --exit-code -I '<lastmod>.*</lastmod>' -- sitemap.xml
+
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install validation dependencies
+        run: npm ci
+
+      - name: Verify Chrome is available
+        run: google-chrome --version
+
+      - name: Run 29 missing calculator reference cases
+        run: npm run test:reference:browser
+
+      - name: Start local static server
+        run: |
+          node scripts/local-static-server.js > /tmp/kb-static-server.log 2>&1 &
+          echo "KB_STATIC_SERVER_PID=$!" >> "$GITHUB_ENV"
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/kb-static-server.log
+          exit 1
+
+      - name: Run mobile and desktop browser QA
+        run: npm run test:browser:ui
+
+      - name: Stop local static server
+        if: always()
+        run: |
+          if [ -n "${KB_STATIC_SERVER_PID:-}" ]; then
+            kill "$KB_STATIC_SERVER_PID" || true
+          fi

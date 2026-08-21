@@ -234,7 +234,13 @@ function mergeRenderedPage(pagePath, originalSource, rendered) {
   source = upsertStaticBlock(source, "skip-link", skipLink?.html || null, "body-start");
 
   const reliability = findElement(rendered, { className: "reliability-note" });
-  source = upsertStaticBlock(source, "reliability", reliability?.html || null);
+  const sourceWithoutStaticReliability = removeStaticBlock(source, "reliability");
+  const authoredReliability = findElement(sourceWithoutStaticReliability, {
+    className: "reliability-note",
+  });
+  source = authoredReliability
+    ? sourceWithoutStaticReliability
+    : upsertStaticBlock(sourceWithoutStaticReliability, "reliability", reliability?.html || null);
 
   const related = findElement(rendered, { attr: "data-render", value: "related-calculators" });
   const relatedHtml = related && /related-section/.test(related.html) ? related.html : null;

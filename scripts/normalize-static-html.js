@@ -122,8 +122,37 @@ function stripInvalidAriaLabels(html) {
   return output;
 }
 
+function removeDuplicateReliabilityFallback(html) {
+  const start = "<!-- KB_STATIC:reliability:START -->";
+  const end = "<!-- KB_STATIC:reliability:END -->";
+  const startIndex = html.indexOf(start);
+  if (startIndex === -1) return html;
+
+  const endIndex = html.indexOf(end, startIndex);
+  if (endIndex === -1) return html;
+
+  const afterEnd = endIndex + end.length;
+  const withoutFallback = html.slice(0, startIndex) + html.slice(afterEnd);
+  const remainingNotes = withoutFallback.match(/class=["'][^"']*\breliability-note\b/gi) || [];
+
+  return remainingNotes.length ? withoutFallback : html;
+}
+
+function removeLegacyFaqStructuredData(html) {
+  if (!/<script\b[^>]*\bid=["']kb-structured-data["'][^>]*>/i.test(html)) return html;
+
+  return html.replace(/\s*<script\b([^>]*)>([\s\S]*?)<\/script>/gi, (full, attributes, body) => {
+    const isJsonLd = /\btype\s*=\s*(["'])application\/ld\+json\1/i.test(attributes);
+    const isCanonical = /\bid\s*=\s*(["'])kb-structured-data\1/i.test(attributes);
+    const containsFaq = /["']@type["']\s*:\s*["']FAQPage["']/i.test(body);
+    return isJsonLd && !isCanonical && containsFaq ? "\n" : full;
+  });
+}
+
 function normalize(html) {
   let output = html;
+  output = removeDuplicateReliabilityFallback(output);
+  output = removeLegacyFaqStructuredData(output);
   output = normalizeBooleanAttributes(output);
   output = stripInlineStyles(output);
   output = stripInvalidAriaLabels(output);
