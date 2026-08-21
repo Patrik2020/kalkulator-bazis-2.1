@@ -33,6 +33,10 @@ jobs:
       - name: Install validation dependencies
         run: npm ci
 
+      - name: Prepare calculator expansion batch when present
+        if: ${{ hashFiles('scripts/add-calculator-expansion-batch1.js') != '' }}
+        run: node scripts/add-calculator-expansion-batch1.js
+
       - name: Verify Chrome is available
         shell: bash
         run: |
