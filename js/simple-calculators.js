@@ -1,1 +1,1 @@
-TEST
+const SIMPLE_CALCULATORS = {
