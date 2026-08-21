@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 const { categories, groupByCalculator } = require("./category-taxonomy-config");
+const expansionCalculators = require("../js/expansion-batch-01-data.js");
 
 const root = path.resolve(__dirname, "..");
 const source = fs.readFileSync(path.join(root, "js", "site-data.js"), "utf8");
@@ -14,6 +15,7 @@ if (!data || !Array.isArray(data.calculators)) {
   errors.push("A site-data.js nem adott vissza kalkulátorlistát.");
 }
 
+const calculators = [...(data?.calculators || []), ...expansionCalculators];
 const categoryIds = new Set();
 const validGroups = new Map();
 for (const category of categories) {
@@ -33,7 +35,7 @@ for (const category of categories) {
 }
 
 const urls = new Set();
-for (const calculator of data.calculators || []) {
+for (const calculator of calculators) {
   if (urls.has(calculator.url)) errors.push(`Duplikált kalkulátor URL: ${calculator.url}`);
   urls.add(calculator.url);
 
@@ -41,7 +43,7 @@ for (const calculator of data.calculators || []) {
     errors.push(`Hiányzó kalkulátor HTML: ${calculator.url}`);
   }
 
-  const group = groupByCalculator[calculator.url];
+  const group = groupByCalculator[calculator.url] || calculator.group;
   if (!group) {
     errors.push(`Nincs taxonómiai csoport: ${calculator.url}`);
     continue;
@@ -72,4 +74,4 @@ if (errors.length) {
 }
 
 const groupCount = categories.reduce((sum, category) => sum + category.groups.length, 0);
-console.log(`Kategória-taxonomia audit OK: ${categories.length} fő kategória, ${groupCount} témacsoport, ${data.calculators.length} kalkulátor, minden URL ellenőrizve.`);
+console.log(`Kategória-taxonomia audit OK: ${categories.length} fő kategória, ${groupCount} témacsoport, ${calculators.length} katalogizált kalkulátor, minden URL ellenőrizve.`);
