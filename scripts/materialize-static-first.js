@@ -10,6 +10,9 @@ const port = Number(process.env.KB_STATIC_PORT || 4173);
 const origin = `http://127.0.0.1:${port}`;
 const dryRun = process.argv.includes("--check");
 const verbose = process.argv.includes("--verbose");
+const liveApiCalculatorPages = new Set([
+  "kalkulatorok/deviza-atvalto-kalkulator.html",
+]);
 
 const BLOCK_START = (key) => `<!-- KB_STATIC:${key}:START -->`;
 const BLOCK_END = (key) => `<!-- KB_STATIC:${key}:END -->`;
@@ -254,11 +257,18 @@ function mergeRenderedPage(pagePath, originalSource, rendered) {
   if (footer) source = replaceElement(source, { id: "footer" }, footer.html);
 
   const card = findElement(rendered, { className: "card-calculator" });
-  if (card && findElement(source, { className: "card-calculator" })) {
+  const authoredCard = findElement(source, { className: "card-calculator" });
+  if (card && authoredCard) {
+    // Live API values belong to browser state. The authored form and example
+    // remain the crawler fallback; JavaScript replaces them after a successful
+    // request without making a remote date, provider or result part of Git.
+    const stableCard = liveApiCalculatorPages.has(pagePath)
+      ? authoredCard.html
+      : card.html;
     source = replaceElement(
       source,
       { className: "card-calculator" },
-      canonicalizeRetentionCta(card.html)
+      canonicalizeRetentionCta(stableCard)
     );
   }
 
