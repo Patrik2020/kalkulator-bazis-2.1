@@ -218,7 +218,7 @@ function updateHomePage(data) {
 
   html = html.replace(
     /<p class="home-hero-lead">[\s\S]*?<\/p>/i,
-    '<p class="home-hero-lead">Több mint ${Math.floor(data.calculators.length / 10) * 10} magyar nyelvű kalkulátor mindennapi, pénzügyi, otthoni, autós, egészség- és mértékegység-számításokhoz, érthető magyarázatokkal.</p>'
+    `<p class="home-hero-lead">Több mint ${Math.floor(data.calculators.length / 10) * 10} magyar nyelvű kalkulátor mindennapi, pénzügyi, otthoni, autós, egészség- és mértékegység-számításokhoz, érthető magyarázatokkal.</p>`
   );
 
   fs.writeFileSync(filePath, html, "utf8");
