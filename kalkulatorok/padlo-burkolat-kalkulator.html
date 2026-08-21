@@ -10,6 +10,7 @@
 <title>Padlóburkolat kalkulátor | Csomagszám és ráhagyás</title>
 <link href="../css/style.css" rel="stylesheet"/>
 <link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/static-first-fallbacks.js"></script>
 <script src="../js/global-head.js"></script>
 <meta content="website" property="og:type"/>
 <meta content="Kalkulátor Bázis" property="og:site_name"/>
@@ -21,21 +22,129 @@
 <meta content="Padlóburkolat kalkulátor | Csomagszám és ráhagyás" name="twitter:title"/>
 <meta content="Padlóburkolat kalkulátor helyiségméret, csomagonkénti fedés és ráhagyás alapján. Becsüld meg a megvásárolandó csomagok számát." name="twitter:description"/>
 <meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
+
+<!-- KB_STATIC:structured-data:START -->
+<script id="kb-structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/padlo-burkolat-kalkulator.html#webpage","url":"https://kalkulatorbazis.hu/kalkulatorok/padlo-burkolat-kalkulator.html","name":"Padlóburkolat kalkulátor | Csomagszám és ráhagyás","description":"Padlóburkolat kalkulátor helyiségméret, csomagonkénti fedés és ráhagyás alapján. Becsüld meg a megvásárolandó csomagok számát.","inLanguage":"hu-HU","isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"}},{"@type":"SoftwareApplication","@id":"https://kalkulatorbazis.hu/kalkulatorok/padlo-burkolat-kalkulator.html#calculator","name":"Padlóburkolat kalkulátor","applicationCategory":"CalculatorApplication","operatingSystem":"Web","url":"https://kalkulatorbazis.hu/kalkulatorok/padlo-burkolat-kalkulator.html","description":"Számold ki a szükséges laminált padló, parketta vagy burkolat mennyiségét.","offers":{"@type":"Offer","price":"0","priceCurrency":"HUF"},"isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"},"about":"Otthon és felújítás kalkulátorok"},{"@type":"BreadcrumbList","@id":"https://kalkulatorbazis.hu/kalkulatorok/padlo-burkolat-kalkulator.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://kalkulatorbazis.hu/"},{"@type":"ListItem","position":2,"name":"Otthon & felújítás","item":"https://kalkulatorbazis.hu/epitoipari.html"},{"@type":"ListItem","position":3,"name":"Padlóburkolat kalkulátor","item":"https://kalkulatorbazis.hu/kalkulatorok/padlo-burkolat-kalkulator.html"}]},{"@type":"FAQPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/padlo-burkolat-kalkulator.html#gyik","mainEntity":[{"@type":"Question","name":"A gardrób alatti részt is számoljam?","acceptedAnswer":{"@type":"Answer","text":"Attól függ, a burkolat a bútor alatt is folytatódik-e. Beépített konyhabútornál a gyártói és kivitelezői előírás számít."}},{"@type":"Question","name":"Mi van, ha több helyiséget burkolok?","acceptedAnswer":{"@type":"Answer","text":"Számold ki külön a helyiségeket, majd a ráhagyással együtt add össze. Azonos burkolatnál a bontott csomagok maradéka felhasználható lehet."}},{"@type":"Question","name":"Miért nem a pontos négyzetmétert kell megvenni?","acceptedAnswer":{"@type":"Answer","text":"A vágások, illesztések és a teljes csomagra kerekítés miatt a rendelési mennyiség nagyobb az alapterületnél."}},{"@type":"Question","name":"Hol találom a csomag fedését?","acceptedAnswer":{"@type":"Answer","text":"A termék dobozán vagy műszaki adatlapján általában m²/csomag formában szerepel."}}]}]}</script>
+<!-- KB_STATIC:structured-data:END -->
 </head>
 <body>
-<div id="header"></div>
-<main class="container page-simple-calculator" data-simple-calc="padlo-burkolat-kalkulator">
+<!-- KB_STATIC:skip-link:START -->
+<a class="kb-skip-link" href="#main-content">Ugrás a tartalomhoz</a>
+<!-- KB_STATIC:skip-link:END -->
+
+<div id="header"><header class="header-shell">
+  <div class="header-inner">
+    <a href="../" class="logo" aria-label="Kalkulátor Bázis főoldal">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="logo-text">Kalkulátor Bázis</span>
+    </a>
+
+    <nav id="menu" aria-label="Fő navigáció">
+      <a class="nav-home" href="../">Főoldal</a>
+
+      <details class="nav-dropdown nav-catalog has-active" open>
+        <summary>
+          <span>Kalkulátorok</span>
+          <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="nav-submenu">
+          <a href="../kalkulatorok.html" class="">Összes kalkulátor</a>
+          <a href="../egeszseg.html">Egészség</a>
+          <a href="../auto.html">Autó</a>
+          <a href="../epitoipari.html" class="is-active" aria-current="page">Építőipari</a>
+          <a href="../atvaltok.html">Átváltók</a>
+          <a href="../kalkulatorok/multifunkcios-szamologep.html">Tudományos számológép</a>
+        </div>
+      </details>
+
+      <a href="../penzugyi.html">Pénzügyi</a>
+      <a href="../mindennapi.html">Mindennapi</a>
+
+      <details class="nav-dropdown nav-knowledge">
+        <summary>
+          <span>Tudástár</span>
+          <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="nav-submenu">
+          <a href="../elethelyzetek.html">Élethelyzetek</a>
+          <a href="../landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html">Pénzügyi tudatosság</a>
+          <a href="../szamitasi-modszertan.html">Számítási módszertan</a>
+          <a href="../miert-bizhatsz-bennunk.html">Miért bízhatsz bennünk?</a>
+          <a href="../atlathatosag-es-minoseg.html">Átláthatóság és minőség</a>
+          <a href="../kapcsolat.html">Kapcsolat</a>
+        </div>
+      </details>
+
+      <a href="../rolunk.html">Rólunk</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-search" href="../kalkulatorok.html#calculatorSearch" aria-label="Kalkulátor keresése">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-4-4"></path>
+        </svg>
+      </a>
+      <button class="theme-toggle" type="button" data-theme-toggle="" aria-label="Váltás sötét módra" aria-pressed="false" title="Váltás sötét módra">
+        <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+        <span class="theme-toggle-text">Sötét</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menü megnyitása" aria-controls="menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+</div>
+<main id="main-content" class="container page-simple-calculator" data-simple-calc="padlo-burkolat-kalkulator">
 <section class="hero">
 <h1>Padlóburkolat kalkulátor</h1>
 <p>Számold ki a szükséges laminált padló, parketta vagy burkolat mennyiségét.</p>
 </section>
-<section class="card card-calculator">
-<div class="calc-grid" id="simpleCalcFields"></div>
-<div class="result-box">
-<p>Eredmény:</p>
-<div id="simpleCalcResults">–</div>
-</div>
-</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><form class="construction-planner" novalidate><div class="construction-heading"><p class="eyebrow">Részletes anyagtervező</p><h2>Padlóburkolat- és csomagtervező</h2><p>A nettó alapterületből több ráhagyási forgatókönyvet és vásárolandó csomagszámot készít.</p></div><div class="construction-fields"><label class="construction-field"><span>Helyiség hossza (m)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="length" id="construction-length"></label><label class="construction-field"><span>Helyiség szélessége (m)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="width" id="construction-width"></label><label class="construction-field"><span>Nem burkolandó fix felület (m²)</span><input type="number" step="any" min="0" inputmode="decimal" name="excludeArea" id="construction-excludeArea"></label><label class="construction-field"><span>Egy csomag fedése (m²)</span><input type="number" step="any" min="0.01" inputmode="decimal" name="packCoverage" id="construction-packCoverage"></label><label class="construction-field"><span>Vágási ráhagyás</span><select name="waste" id="construction-waste"><option value="5">5% – egyszerű, kevés vágás</option><option value="8">8% – általános</option><option value="12">12% – sok vágás / mintázat</option><option value="15">15% – bonyolult felület</option></select></label><label class="construction-field"><span>Alátét csomagfedése (m², 0 = nincs)</span><input type="number" step="any" min="0" inputmode="decimal" name="underlayPack" id="construction-underlayPack"></label><label class="construction-field"><span>Nem szegélyezett falszakasz (m)</span><input type="number" step="any" min="0" inputmode="decimal" name="skirtingExclude" id="construction-skirtingExclude"></label><label class="construction-field"><span>Egy szegélyléc hossza (m)</span><input type="number" step="any" min="0.01" inputmode="decimal" name="skirtingPiece" id="construction-skirtingPiece"></label></div><div class="construction-actions"><button type="submit">Anyagigény kiszámítása</button><button type="reset" class="secondary-btn">Alapértékek visszaállítása</button></div><p class="construction-error" role="alert"></p><div class="result-box construction-results" role="status" aria-live="polite" aria-atomic="true"><dl class="construction-results-grid"><div><dt>Bruttó alapterület</dt><dd>20 m²</dd></div><div><dt>Nettó burkolandó felület</dt><dd>20 m²</dd></div><div><dt>5 / 8 / 12%-os forgatókönyv</dt><dd>21 / 21,6 / 22,4 m²</dd></div><div><dt>Vásárolandó burkolat</dt><dd>21,6 m²</dd></div><div><dt>Burkolatcsomag</dt><dd>10 db</dd></div><div><dt>Alátétcsomag</dt><dd>3 db</dd></div><div><dt>Szegélyléc</dt><dd>17 m / 8 db</dd></div></dl></div></form><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+  <div class="retention-cta-copy">
+    <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
+    <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
+    <p>
+      Tedd el a Kalkulátor Bázist, hogy legközelebb egy mozdulattal visszatalálj
+      ehhez a számításhoz – vagy oszd meg azzal, akinek szintén jól jöhet.
+    </p>
+  </div>
+
+  <div class="retention-cta-actions" role="group">
+    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+      <span aria-hidden="true">☆</span>
+      <span>Könyvjelzőzöm</span>
+    </button>
+
+    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+      <span aria-hidden="true">▣</span>
+      <span data-retention-install-label="">Telepítem</span>
+    </button>
+
+    <button class="retention-cta-button" type="button" data-retention-action="share">
+      <span aria-hidden="true">↗</span>
+      <span data-retention-share-label="">Megosztom</span>
+    </button>
+  </div>
+
+  <div class="retention-cta-panels">
+    <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
+      <p data-retention-bookmark-text="">
+        Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
+      </p>
+    </div>
+
+    <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
+      <p data-retention-install-text=""></p>
+    </div>
+
+    <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
+      <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+    </div>
+  </div>
+
+  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+</section></section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
 <h2>Padlóburkolat mennyiségének kiszámítása</h2>
 <p>A kalkulátor laminált padló, parketta, vinyl vagy más csomagolt padlóburkolat előzetes mennyiségbecsléséhez készült. A helyiség hosszából és szélességéből kiszámolja az alapterületet, hozzáadja a megadott vágási ráhagyást, majd a csomag fedése alapján megadja a szükséges egész csomagok számát.</p>
 <p>Szabálytalan alakú helyiségnél oszd fel a területet téglalapokra, számold ki őket külön, majd add össze az eredményeket. A beugrókat, küszöböket és fixen beépített elemeket a tényleges burkolási terv szerint kezeld.</p>
@@ -56,9 +165,111 @@
 <p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
 </section>
 
+
+<!-- KB_STATIC:reliability:START -->
+<section class="reliability-note">
+      <div>
+        <h2>Hitelesség és számítási korlátok</h2>
+        <p>Az eredmény a megadott méretek és anyagjellemzők alapján készült becslés. Beszerzés előtt ellenőrizd a gyártói kiadósságot, a helyszíni adottságokat és a szükséges ráhagyást.</p>
+      </div>
+      <div class="reliability-actions">
+        <a href="../atlathatosag-es-minoseg.html">A számítások módszertana és minőségbiztosítása</a>
+        <a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelent%C3%A9s%20%E2%80%93%20Padl%C3%B3burkolat%20kalkul%C3%A1tor&amp;body=Kalkul%C3%A1tor%3A%20Padl%C3%B3burkolat%20kalkul%C3%A1tor%0AOldal%3A%20https%3A%2F%2Fkalkulatorbazis.hu%2Fkalkulatorok%2Fpadlo-burkolat-kalkulator.html%0A%0AA%20hiba%20r%C3%B6vid%20le%C3%ADr%C3%A1sa%3A%0A">Hibát találtál? Jelezd nekünk.</a>
+      </div>
+    </section>
+<!-- KB_STATIC:reliability:END -->
+
+<!-- KB_STATIC:quality-construction:START -->
+<section data-static-quality-version="2026-08" data-static-quality-fallback="construction" class="construction-quality flooring-package">
+      <p class="cq-kicker">Csomagolási és javítótartalék-tervező</p>
+      <h2>A kivitelezés végén ne csak fél négyzetméter maradjon véletlenül</h2>
+      <p>Laminált padló, vinyl vagy parketta vásárlásánál egész csomagra kell kerekíteni. A maradék egy része későbbi javításnál hasznosabb lehet, mint visszaváltva.</p>
+      <div class="cq-form"><label>Burkolandó nettó felület (m²)<input data-cq="area" type="number" min="0.1" step="0.01" value="20" inputmode="decimal"></label><label>Egy csomag fedése (m²)<input data-cq="pack" type="number" min="0.01" step="0.01" value="2.2" inputmode="decimal"></label><label>Vágási ráhagyás (%)<input data-cq="waste" type="number" min="0" step="1" value="8" inputmode="decimal"></label></div>
+      <div class="cq-metrics"><div><span>Elméleti vásárlási felület</span><strong data-cq="purchase">21,6 m²</strong></div><div><span>Szükséges csomag</span><strong data-cq="packs">10 csomag</strong></div><div><span>Csomagkerekítés után marad</span><strong data-cq="leftover">0,4 m²</strong></div></div>
+      <div class="cq-note"><strong>Kiosztás:</strong> keskeny utolsó sor, ferde falak, ajtótokok és mintairány növelhetik a veszteséget. A csomagolási kerekítés ezért nem ugyanaz, mint a vágási ráhagyás.</div>
+    </section>
+<!-- KB_STATIC:quality-construction:END -->
+
+<!-- KB_STATIC:construction-methodology:START -->
+<section data-static-runtime-fallback="construction-methodology" class="article construction-methodology"><h2>Mitől pontosabb ez a tervező?</h2><p>A nettó felületet, a kivonható részeket, a választott termék csomagméretét vagy kiadósságát és a kivitelezési ráhagyást külön kezeli. Az eredmény szétválasztja a matematikai nettó anyagigényt és a ténylegesen megvásárolandó, egész csomagokra kerekített mennyiséget.</p><div class="construction-scenarios"><div><strong>5%</strong><span>egyszerű, kevés vágás</span></div><div><strong>8%</strong><span>általános kiindulás</span></div><div><strong>12%</strong><span>sok vágás vagy minta</span></div><div><strong>15%</strong><span>összetett felület</span></div></div><div class="notice-box"><strong>Gyártói adatlap az elsődleges:</strong> a csomagfedés, kiadósság, sűrűség, rögzítési kiosztás és rétegvastagság termékenként eltér. Vásárlás előtt írd át az alapértékeket a kiválasztott termék műszaki adatlapja és a kivitelezési rendszerterv szerint.</div><h2>Két példaszámítás</h2><div class="construction-example-grid"><article><h3>1. példa</h3><p>5 × 4 m-es szobánál 20 m² az alapterület; egy 1,5 m²-es beépített dobogó levonható, ha tényleg nem kerül alá burkolat.</p></article><article><h3>2. példa</h3><p>Átlós fektetésnél vagy sok ajtónyílásnál a 12%-os forgatókönyv reálisabb lehet, mint az alap 5–8%.</p></article></div><h2>A kalkulátor korlátai</h2><ul><li>Nem készít statikai, páratechnikai, rétegrendi vagy kivitelezési tervet.</li><li>Nem ismeri a felület síkpontosságát, a helyszíni vágásokat, töréseket és selejtet.</li><li>A kiegészítő anyagok mennyisége rendszer- és gyártófüggő lehet.</li><li>Rendelés előtt a kivitelezővel és a kereskedővel is érdemes ellenőrizni a mennyiséget.</li></ul><p class="last-reviewed">Módszertani frissítés: <time datetime="2026-07-15">2026. július 15.</time>. A kalkulátor tájékoztató becslést készít; rendelés előtt ellenőrizd a gyártói adatlapot, és szükség esetén egyeztess szakemberrel.</p></section>
+<!-- KB_STATIC:construction-methodology:END -->
 </main>
-<div id="footer"></div>
-<script defer="" src="../js/simple-calculators.js"></script>
+<div id="footer"><div class="footer-container kb-footer">
+  <section class="footer-cta" aria-labelledby="footerCtaTitle">
+    <div class="footer-cta-copy">
+      <span class="footer-eyebrow">Segíts fejleszteni a Kalkulátor Bázist</span>
+      <h2 id="footerCtaTitle">Nem találtad meg a keresett kalkulátort?</h2>
+      <p>Írd meg, milyen számítás lenne hasznos. A jó ötleteket felvesszük a fejlesztési listára.</p>
+    </div>
+    <a class="footer-cta-button" href="../kapcsolat.html?tema=uj-kalkulator">Kalkulátort javaslok</a>
+  </section>
+
+  <div class="footer-main">
+    <section class="footer-brand" aria-labelledby="footerBrandTitle">
+      <a href="../" class="footer-logo" id="footerBrandTitle">
+        <span class="footer-logo-mark" aria-hidden="true"></span>
+        <span>Kalkulátor Bázis</span>
+      </a>
+      <p class="footer-brand-copy">
+        Ingyenes, magyar nyelvű online kalkulátorok pénzügyi, egészségügyi,
+        építőipari, autós és mindennapi döntésekhez.
+      </p>
+      <ul class="footer-trust-list">
+        <li>Regisztráció nélkül használható</li>
+        <li>Közérthető módszertan és források</li>
+        <li>Mobilon is kényelmesen működik</li>
+      </ul>
+      <a class="footer-mail" href="mailto:kalkulatorbazis@gmail.com">kalkulatorbazis@gmail.com</a>
+    </section>
+
+    <nav class="footer-col" aria-label="Kalkulátorkategóriák">
+      <h2>Kalkulátorok</h2>
+      <a href="../penzugyi.html">Pénzügyi</a>
+      <a href="../egeszseg.html">Egészség</a>
+      <a href="../epitoipari.html">Építőipari</a>
+      <a href="../auto.html">Autós</a>
+      <a href="../mindennapi.html">Mindennapi</a>
+      <a href="../atvaltok.html">Átváltók</a>
+      <a class="footer-link-emphasis" href="../kalkulatorok.html">Összes kalkulátor</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Kiemelt kalkulátorok">
+      <h2>Népszerű oldalak</h2>
+      <a href="../kalkulatorok/netto-brutto-kalkulator.html">Nettó–bruttó kalkulátor</a>
+      <a href="../kalkulatorok/etf-kalkulator.html">ETF kalkulátor</a>
+      <a href="../kalkulatorok/afa-kalkulator.html">ÁFA-kalkulátor</a>
+      <a href="../kalkulatorok/hitel-torleszto-kalkulator.html">Hiteltörlesztő kalkulátor</a>
+      <a href="../kalkulatorok/szazalek-kalkulator.html">Százalékkalkulátor</a>
+      <a href="../#newTitle">Újdonságok</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Információ és bizalom">
+      <h2>Információ</h2>
+      <a href="../rolunk.html">Rólunk</a>
+      <a href="../szamitasi-modszertan.html">Számítási módszertan</a>
+      <a href="../miert-bizhatsz-bennunk.html">Miért bízhatsz bennünk?</a>
+      <a href="../atlathatosag-es-minoseg.html">Átláthatóság és minőség</a>
+      <a href="../kapcsolat.html">Kapcsolat és hibabejelentés</a>
+      <button class="footer-link-button" type="button" data-cookie-settings="">Sütibeállítások</button>
+    </nav>
+  </div>
+
+  <nav class="footer-legal" aria-label="Jogi hivatkozások">
+    <a href="../impresszum.html">Impresszum</a>
+    <a href="../adatvedelem.html">Adatkezelés</a>
+    <a href="../felhasznalasi-feltetelek.html">Felhasználási feltételek</a>
+    <a href="../cookie.html">Sütik</a>
+    <a href="../jogi-nyilatkozat.html">Jogi nyilatkozat</a>
+    <a href="../landing-pages/wise/wise.html">Partnerinformáció</a>
+  </nav>
+
+  <div class="footer-bottom">
+    <p>© 2026 Kalkulátor Bázis</p>
+    <p>Az eredmények tájékoztató becslések; fontos döntés előtt ellenőrizd az aktuális hivatalos vagy szakmai forrást.</p>
+  </div>
+</div>
+</div>
+<script defer src="../js/simple-calculators.js"></script>
 <script src="../js/utils.js"></script>
   <script src="../js/help-widget.js" defer></script>
 </body>
