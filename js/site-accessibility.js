@@ -51,7 +51,28 @@
     }
   };
 
+  const loadCompatibilityModule = () => {
+    const projectRoot = window.KB_PROJECT_ROOT || "";
+
+    if (!document.querySelector('link[data-site-compatibility]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = `${projectRoot}/css/components/site-compatibility.css?v=20260820-1`;
+      link.dataset.siteCompatibility = "style";
+      document.head.appendChild(link);
+    }
+
+    if (!document.querySelector('script[data-site-compatibility]')) {
+      const script = document.createElement("script");
+      script.src = `${projectRoot}/js/site-compatibility.js?v=20260820-1`;
+      script.defer = true;
+      script.dataset.siteCompatibility = "script";
+      document.head.appendChild(script);
+    }
+  };
+
   loadFinalQualityModule();
+  loadCompatibilityModule();
 
   const resultSelectors = [
     ".result-box",

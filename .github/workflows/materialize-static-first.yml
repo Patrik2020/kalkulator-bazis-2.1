@@ -1,0 +1,81 @@
+name: Materialize static-first HTML
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - main
+      - adsense-static-quality-2026-08
+
+permissions:
+  contents: write
+
+concurrency:
+  group: static-first-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout source branch
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install validation dependencies
+        run: npm ci
+
+      - name: Verify Chrome is available
+        shell: bash
+        run: |
+          if command -v google-chrome >/dev/null 2>&1; then
+            google-chrome --version
+          elif command -v chromium >/dev/null 2>&1; then
+            chromium --version
+          else
+            echo "Chrome/Chromium is required for DOM materialization." >&2
+            exit 1
+          fi
+
+      - name: Materialize and normalize browser-rendered content
+        run: npm run static:build
+
+      - name: Audit crawler-visible source HTML
+        run: npm run static:check
+
+      - name: Validate HTML, JavaScript and calculator logic
+        run: npm run quality
+
+      - name: Verify generated sitemap URL set is current
+        run: |
+          npm run sitemap
+          git diff --exit-code -I '<lastmod>.*</lastmod>' -- sitemap.xml
+
+      - name: Check whitespace errors
+        run: git diff --check
+
+      - name: Commit materialized HTML
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "Static HTML is already current."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add --all
+          git commit -m "build: materialize static-first HTML [skip ci]"
+          git push origin HEAD:${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
