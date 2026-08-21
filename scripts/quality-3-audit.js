@@ -48,6 +48,7 @@ const qualitySources = [
   "js/expansion-batch-02-calculators.js",
   "js/expansion-batch-03-calculators.js",
   "js/expansion-batch-04-calculators.js",
+  "js/expansion-batch-05-calculators.js",
 ].map((file) => fs.readFileSync(path.join(root, file), "utf8")).join("\n");
 
 const hardErrors = [];
