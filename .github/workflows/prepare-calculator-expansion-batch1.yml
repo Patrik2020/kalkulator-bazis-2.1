@@ -1,5 +1,6 @@
 name: Prepare calculator expansion batch 1
 
+# Branch-local one-shot builder for the first five quality calculators.
 on:
   push:
     branches:
