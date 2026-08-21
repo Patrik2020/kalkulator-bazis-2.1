@@ -99,7 +99,12 @@
 <h1>Kilométerdíj kalkulátor</h1>
 <p>Számold ki, mennyibe kerül egy kilométer a saját autóddal a teljes havi fenntartási költség alapján.</p>
 </section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="ac-heading"><h2>Teljes kilométerköltség-kalkulátor</h2><p>A mezők tájékoztató tervezésre valók; hivatalos, gyártói vagy szolgáltatói adat esetén mindig azt használd.</p></div><form class="ac-grid"><label class="ac-field"><span>Éves teljes autóköltség (Ft)</span><input type="number" inputmode="decimal" required id="annual" name="annual" step="any"></label><label class="ac-field"><span>Éves futás (km)</span><input type="number" inputmode="decimal" required id="km" name="km" step="any"></label><label class="ac-field"><span>Vizsgált út (km)</span><input type="number" inputmode="decimal" required id="trip" name="trip" step="any"></label><label class="ac-field"><span>Fizető utasok száma</span><input type="number" inputmode="decimal" required id="passengers" name="passengers" step="any"></label><button type="submit" class="ac-submit">Számítás</button><div class="ac-result" role="status" aria-live="polite" aria-atomic="true"><dl><div><dt>Teljes költség</dt><dd>80 Ft/km</dd></div><div><dt>Vizsgált út költsége</dt><dd>16&nbsp;000 Ft</dd></div><div><dt>Egy főre</dt><dd>16&nbsp;000 Ft</dd></div></dl></div></form><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="ac-heading"><h2>Teljes kilométerköltség-kalkulátor</h2><p>A mezők tájékoztató tervezésre valók; hivatalos, gyártói vagy szolgáltatói adat esetén mindig azt használd.</p></div><form class="ac-grid"><label class="ac-field"><span>Éves teljes autóköltség (Ft)</span><input type="number" inputmode="decimal" required id="annual" name="annual" step="any"></label><label class="ac-field"><span>Éves futás (km)</span><input type="number" inputmode="decimal" required id="km" name="km" step="any"></label><label class="ac-field"><span>Vizsgált út (km)</span><input type="number" inputmode="decimal" required id="trip" name="trip" step="any"></label><label class="ac-field"><span>Fizető utasok száma</span><input type="number" inputmode="decimal" required id="passengers" name="passengers" step="any"></label><button type="submit" class="ac-submit">Számítás</button><div class="ac-result" role="status" aria-live="polite" aria-atomic="true"><dl><div><dt>Teljes költség</dt><dd>80 Ft/km</dd></div><div><dt>Vizsgált út költsége</dt><dd>16&nbsp;000 Ft</dd></div><div><dt>Egy főre</dt><dd>16&nbsp;000 Ft</dd></div></dl></div></form><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -109,41 +114,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-05">
 <h2>Mennyibe kerül valójában egy kilométer autózás?</h2>

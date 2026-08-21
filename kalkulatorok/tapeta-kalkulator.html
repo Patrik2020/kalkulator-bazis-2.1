@@ -73,7 +73,12 @@
     </div>
   </div>
 </header>
-</div><main id="main-content" class="container page-simple-calculator" data-simple-calc="tapeta-kalkulator"><section class="hero"><h1>Tapéta kalkulátor</h1><p>Számold ki, hány tekercs tapétára lehet szükség egy helyiségben.</p></section><section class="card card-calculator kb-calculator-shell" id="kalkulator"><form class="construction-planner" novalidate><div class="construction-heading"><p class="eyebrow">Részletes anyagtervező</p><h2>Tapétatekercs- és mintaismétlés-tervező</h2><p>A mintaismétlést, vágási tartalékot, nyílászárókat és a tényleges tekercsméretet is figyelembe veszi.</p></div><div class="construction-fields"><label class="construction-field"><span>Tapétázandó falak kerülete (m)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="perimeter" id="construction-perimeter"></label><label class="construction-field"><span>Belmagasság (m)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="height" id="construction-height"></label><label class="construction-field"><span>Ajtók összes felülete (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="doorArea" id="construction-doorArea"></label><label class="construction-field"><span>Ablakok összes felülete (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="windowArea" id="construction-windowArea"></label><label class="construction-field"><span>Egyéb kivonható felület (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="otherArea" id="construction-otherArea"></label><label class="construction-field"><span>Tekercs szélessége (m)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="rollWidth" id="construction-rollWidth"></label><label class="construction-field"><span>Tekercs hossza (m)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="rollLength" id="construction-rollLength"></label><label class="construction-field"><span>Mintaismétlés (cm, 0 = nincs)</span><input type="number" step="any" min="0" inputmode="decimal" name="patternRepeat" id="construction-patternRepeat"></label><label class="construction-field"><span>Vágási tartalék csíkonként (cm)</span><input type="number" step="any" min="0" inputmode="decimal" name="trim" id="construction-trim"></label><label class="construction-field"><span>További ráhagyás</span><select name="waste" id="construction-waste"><option value="5">5% – egyszerű, kevés vágás</option><option value="8">8% – általános</option><option value="12">12% – sok vágás / mintázat</option><option value="15">15% – bonyolult felület</option></select></label></div><div class="construction-actions"><button type="submit">Anyagigény kiszámítása</button><button type="reset" class="secondary-btn">Alapértékek visszaállítása</button></div><p class="construction-error" role="alert"></p><div class="result-box construction-results" role="status" aria-live="polite" aria-atomic="true"><dl class="construction-results-grid"><div><dt>Bruttó falterület</dt><dd>31,2 m²</dd></div><div><dt>Nettó tapétázandó felület</dt><dd>31,2 m²</dd></div><div><dt>Egy csík vágási hossza</dt><dd>2,7 m</dd></div><div><dt>Szükséges csík</dt><dd>23 db</dd></div><div><dt>Egy tekercsből vágható</dt><dd>3 csík</dd></div><div><dt>Alap tekercsigény</dt><dd>8 db</dd></div><div><dt>Vásárolandó tekercs</dt><dd>9 db</dd></div></dl></div></form><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+</div><main id="main-content" class="container page-simple-calculator" data-simple-calc="tapeta-kalkulator"><section class="hero"><h1>Tapéta kalkulátor</h1><p>Számold ki, hány tekercs tapétára lehet szükség egy helyiségben.</p></section><section class="card card-calculator kb-calculator-shell" id="kalkulator"><form class="construction-planner" novalidate><div class="construction-heading"><p class="eyebrow">Részletes anyagtervező</p><h2>Tapétatekercs- és mintaismétlés-tervező</h2><p>A mintaismétlést, vágási tartalékot, nyílászárókat és a tényleges tekercsméretet is figyelembe veszi.</p></div><div class="construction-fields"><label class="construction-field"><span>Tapétázandó falak kerülete (m)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="perimeter" id="construction-perimeter"></label><label class="construction-field"><span>Belmagasság (m)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="height" id="construction-height"></label><label class="construction-field"><span>Ajtók összes felülete (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="doorArea" id="construction-doorArea"></label><label class="construction-field"><span>Ablakok összes felülete (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="windowArea" id="construction-windowArea"></label><label class="construction-field"><span>Egyéb kivonható felület (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="otherArea" id="construction-otherArea"></label><label class="construction-field"><span>Tekercs szélessége (m)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="rollWidth" id="construction-rollWidth"></label><label class="construction-field"><span>Tekercs hossza (m)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="rollLength" id="construction-rollLength"></label><label class="construction-field"><span>Mintaismétlés (cm, 0 = nincs)</span><input type="number" step="any" min="0" inputmode="decimal" name="patternRepeat" id="construction-patternRepeat"></label><label class="construction-field"><span>Vágási tartalék csíkonként (cm)</span><input type="number" step="any" min="0" inputmode="decimal" name="trim" id="construction-trim"></label><label class="construction-field"><span>További ráhagyás</span><select name="waste" id="construction-waste"><option value="5">5% – egyszerű, kevés vágás</option><option value="8">8% – általános</option><option value="12">12% – sok vágás / mintázat</option><option value="15">15% – bonyolult felület</option></select></label></div><div class="construction-actions"><button type="submit">Anyagigény kiszámítása</button><button type="reset" class="secondary-btn">Alapértékek visszaállítása</button></div><p class="construction-error" role="alert"></p><div class="result-box construction-results" role="status" aria-live="polite" aria-atomic="true"><dl class="construction-results-grid"><div><dt>Bruttó falterület</dt><dd>31,2 m²</dd></div><div><dt>Nettó tapétázandó felület</dt><dd>31,2 m²</dd></div><div><dt>Egy csík vágási hossza</dt><dd>2,7 m</dd></div><div><dt>Szükséges csík</dt><dd>23 db</dd></div><div><dt>Egy tekercsből vágható</dt><dd>3 csík</dd></div><div><dt>Alap tekercsigény</dt><dd>8 db</dd></div><div><dt>Vásárolandó tekercs</dt><dd>9 db</dd></div></dl></div></form><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -83,41 +88,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-08"><h2>Tapétatekercsek számának becslése</h2><p>A kalkulátor a falkerületből, a belmagasságból, valamint a tekercs szélességéből és hosszából becsüli a teljes csíkok és tekercsek számát. Ez pontosabb kiindulás, mint a fal négyzetméterének egyszerű elosztása a tekercs névleges területével, mert a falhoz teljes hosszúságú csíkokra van szükség.</p><h2>Hogyan számol?</h2><p>A szükséges csíkok száma a falkerület osztva a tekercs szélességével, felfelé kerekítve. Az egy tekercsből vágható csíkok száma a tekercshossz osztva a szükséges csíkhosszal, lefelé kerekítve.</p><div class="example-box"><h3>Példa</h3><p>16 méter falkerület, 2,6 méter belmagasság és 0,53 × 10,05 méteres tekercs esetén 31 csík kell. Egy tekercsből 3 teljes csík vágható, így legalább 11 tekercs szükséges.</p></div><h2>A mintaillesztés sokat változtathat</h2><p>Mintás tapétánál a rapport, vagyis a minta függőleges ismétlődési távolsága miatt minden csíkhoz extra hossz szükséges. Eltolt illesztésnél a veszteség még nagyobb lehet. Ha a kalkulátor nem kap külön rapportadatot, mintás tapétánál érdemes nagyobb csíkhosszal vagy plusz tartaléktekerccsel számolni.</p><h2>Ajtók és ablakok levonása</h2><p>Nagy nyílások csökkenthetik az anyagigényt, de nem minden maradék használható fel. Mintás tapétánál a rövid darabok gyakran csak korlátozottan hasznosíthatók, ezért egy ablak teljes felületének levonása túl optimista becslést adhat.</p><h2>Miért fontos a gyártási tétel?</h2><p>Azonos cikkszám mellett is lehet enyhe árnyalatkülönbség eltérő gyártási tételek között. Emiatt célszerű egyszerre megvenni a szükséges mennyiséget és lehetőség szerint egy kis javítási tartalékot is ugyanabból a batchből.</p><h2>Gyakori hibák</h2><ul><li>A helyiség alapterületét adják meg falkerület helyett.</li><li>Nem számolnak a rapporttal.</li><li>A belmagassághoz nem adnak vágási tartalékot.</li><li>Túl sokat vonnak le a nyílások miatt.</li><li>Eltérő gyártási tételből vesznek pótlást.</li></ul><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Levonjam az ajtót és az ablakot?</summary><p>Nagy nyílásnál részben igen, de mintás tapétánál a maradék darabok korlátozottan használhatók.</p></details><details><summary>Mit jelent a rapport?</summary><p>A minta ismétlődési távolsága, amely plusz vágási hosszt igényel.</p></details><details><summary>Öntapadós tapétára is jó?</summary><p>Igen, ha teljes falmagasságú csíkokkal dolgozol és a tekercsméretet helyesen adod meg.</p></details><details><summary>Kell egy plusz tekercs?</summary><p>Összetett minta, sok vágás vagy későbbi javítás miatt gyakran hasznos lehet.</p></details><details><summary>Miért nem elég a tekercs m²-adatát nézni?</summary><p>Mert a tekercsből csak teljes hosszúságú csíkok vághatók, így maradék keletkezik.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="festek-kalkulator.html">Festék kalkulátor</a><a href="vakolat-kalkulator.html">Vakolat kalkulátor</a><a href="padlo-burkolat-kalkulator.html">Padlóburkolat</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-08">2026. augusztus 8.</time></p></section>
 
 

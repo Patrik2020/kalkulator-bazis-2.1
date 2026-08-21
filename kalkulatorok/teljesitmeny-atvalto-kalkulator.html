@@ -99,7 +99,12 @@
 <h1>Teljesítmény átváltó kalkulátor</h1>
 <p>Válts át watt, kilowatt és lóerő között.</p>
 </section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="ac-heading"><h2>Teljesítményátváltó kétféle lóerővel</h2><p>A mezők tájékoztató tervezésre valók; hivatalos, gyártói vagy szolgáltatói adat esetén mindig azt használd.</p></div><form class="ac-grid"><label class="ac-field"><span>Érték</span><input type="number" inputmode="decimal" required id="value" name="value" step="any"></label><label class="ac-field"><span>Egység</span><select required id="unit" name="unit"><option value="W">watt</option><option value="kW">kilowatt</option><option value="PS">metrikus lóerő (PS)</option><option value="hp">mechanikai lóerő (hp)</option></select></label><button type="submit" class="ac-submit">Számítás</button><div class="ac-result" role="status" aria-live="polite" aria-atomic="true"><dl><div><dt>W</dt><dd>100&nbsp;000</dd></div><div><dt>kW</dt><dd>100</dd></div><div><dt>Metrikus lóerő (PS)</dt><dd>135,9622</dd></div><div><dt>Mechanikai lóerő (hp)</dt><dd>134,1022</dd></div></dl></div></form><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="ac-heading"><h2>Teljesítményátváltó kétféle lóerővel</h2><p>A mezők tájékoztató tervezésre valók; hivatalos, gyártói vagy szolgáltatói adat esetén mindig azt használd.</p></div><form class="ac-grid"><label class="ac-field"><span>Érték</span><input type="number" inputmode="decimal" required id="value" name="value" step="any"></label><label class="ac-field"><span>Egység</span><select required id="unit" name="unit"><option value="W">watt</option><option value="kW">kilowatt</option><option value="PS">metrikus lóerő (PS)</option><option value="hp">mechanikai lóerő (hp)</option></select></label><button type="submit" class="ac-submit">Számítás</button><div class="ac-result" role="status" aria-live="polite" aria-atomic="true"><dl><div><dt>W</dt><dd>100&nbsp;000</dd></div><div><dt>kW</dt><dd>100</dd></div><div><dt>Metrikus lóerő (PS)</dt><dd>135,9622</dd></div><div><dt>Mechanikai lóerő (hp)</dt><dd>134,1022</dd></div></dl></div></form><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -109,41 +114,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
 <h2>Watt, kilowatt és lóerő átváltása</h2>
 <p>A teljesítmény azt mutatja meg, mennyi energia alakul át vagy mennyi munkavégzés történik időegység alatt. Villamos készülékeknél többnyire wattal és kilowattal, autóknál gyakran kilowattal és lóerővel találkozol. A kalkulátor a három egység között vált.</p>

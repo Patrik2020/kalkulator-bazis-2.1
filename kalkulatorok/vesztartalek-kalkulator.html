@@ -91,7 +91,12 @@
 <main id="main-content" class="container page-simple-calculator" data-batch05-calc="vesztartalek-kalkulator">
 <nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../penzugyi.html">Pénzügy</a></li><li><span aria-current="page">Vésztartalék</span></li></ol></nav>
 <section class="hero"><h1>Vésztartalék kalkulátor</h1><p>Vésztartalék célösszeg, jelenlegi fedezet, hiányzó összeg és megtakarítási idő becslése havi alapkiadásokból.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="reserveMonthly">Szükséges havi alapkiadás (Ft)</label><input id="reserveMonthly" type="number" value="350000" min="0" step="1000" inputmode="decimal"></div><div><label for="reserveMonths">Célzott tartalék (hónap)</label><input id="reserveMonths" type="number" value="6" min="0" step="0.5" inputmode="decimal"></div><div><label for="reserveCurrent">Jelenlegi vésztartalék (Ft)</label><input id="reserveCurrent" type="number" value="500000" min="0" step="1000" inputmode="decimal"></div><div><label for="reserveSaving">Havi félretehető összeg (Ft)</label><input id="reserveSaving" type="number" value="100000" min="0" step="1000" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="reserveResult"><p><strong>Célösszeg:</strong> 2&nbsp;100&nbsp;000 Ft</p><p><strong>Jelenlegi fedezet:</strong> 1,43 hónap</p><p><strong>Hiányzó összeg:</strong> 1&nbsp;600&nbsp;000 Ft</p><p><strong>Becsült idő a célhoz:</strong> 16 hónap</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="reserveMonthly">Szükséges havi alapkiadás (Ft)</label><input id="reserveMonthly" type="number" value="350000" min="0" step="1000" inputmode="decimal"></div><div><label for="reserveMonths">Célzott tartalék (hónap)</label><input id="reserveMonths" type="number" value="6" min="0" step="0.5" inputmode="decimal"></div><div><label for="reserveCurrent">Jelenlegi vésztartalék (Ft)</label><input id="reserveCurrent" type="number" value="500000" min="0" step="1000" inputmode="decimal"></div><div><label for="reserveSaving">Havi félretehető összeg (Ft)</label><input id="reserveSaving" type="number" value="100000" min="0" step="1000" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="reserveResult"><p><strong>Célösszeg:</strong> 2&nbsp;100&nbsp;000 Ft</p><p><strong>Jelenlegi fedezet:</strong> 1,43 hónap</p><p><strong>Hiányzó összeg:</strong> 1&nbsp;600&nbsp;000 Ft</p><p><strong>Becsült idő a célhoz:</strong> 16 hónap</p></div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -101,41 +106,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" hidden>
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Mit mutat a vésztartalék kalkulátor?</h2><p>A célösszeg a saját, szükséges havi alapkiadásod és az általad választott hónapszám szorzata. Az alapkiadásba jellemzően azokat a tételeket érdemes beleszámítani, amelyeket jövedelemkiesés esetén is fizetni kellene: lakhatás, élelmiszer, közlekedés, biztosítások és kötelező törlesztések.</p><p>A kalkulátor megmutatja, hogy a jelenlegi tartalék hány ilyen hónapot fedez, mennyi hiányzik a célhoz, és változatlan havi megtakarítással nagyjából hány hónap alatt érhető el.</p><div class="example-box"><h3>Példa</h3><p>350 000 Ft alapkiadás és 6 hónapos cél esetén 2,1 millió Ft a célösszeg. 500 000 Ft meglévő tartalék mellett 1,6 millió Ft hiányzik, amely havi 100 000 Ft félretétellel 16 hónap alatt gyűlhet össze.</p></div><h2>Mekkora tartalék az ideális?</h2><p>Nincs mindenki számára egyetlen helyes hónapszám. Stabil, több lábon álló háztartásnál és bizonytalanabb jövedelemnél eltérő biztonsági szint lehet indokolt. A kalkulátor ezért nem ír elő célt, hanem az általad választott hónapszámmal számol.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>A teljes havi költést írjam be?</summary><p>Elsősorban azokat a kiadásokat, amelyeket egy váratlan jövedelemkiesés idején is fenn kellene tartanod.</p></details><details><summary>Számol hozammal?</summary><p>Nem. A vésztartalék célját egyszerű, hozam nélküli biztonsági keretként kezeli.</p></details><details><summary>A havi megtakarítás nulla lehet?</summary><p>Igen. Ilyenkor a hiányzó összeget kiszámolja, de nem ad elérési hónapszámot, ha a cél még nincs meg.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="havi-koltsegvetes-kalkulator.html">havi koltsegvetes</a><a href="megtakaritasi-cel-kalkulator.html">megtakaritasi cel</a><a href="kamatos-kamat-kalkulator.html">kamatos kamat</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
 <section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>Tervezési segédeszköz, nem személyre szabott pénzügyi tanács. A megfelelő tartalék mérete a háztartás kockázataitól és pénzügyi helyzetétől függ.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20V%C3%A9sztartal%C3%A9k%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>

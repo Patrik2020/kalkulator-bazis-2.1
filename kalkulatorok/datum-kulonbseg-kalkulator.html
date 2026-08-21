@@ -99,7 +99,12 @@
 <h1>Dátum különbség kalkulátor</h1>
 <p>Számold ki két dátum közötti napok számát egyszerűen.</p>
 </section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="everyday-heading"><h2>Dátumkülönbség-, munkanap- és dátumművelet-kalkulátor</h2><p>Két dátum között számol naptári napot, hétvégét és munkanapot, illetve napokat ad hozzá vagy von ki.</p></div><form class="everyday-grid"><label class="everyday-field"><span>Kezdő dátum</span><input type="date" name="start"></label><label class="everyday-field"><span>Záró dátum</span><input type="date" name="end"></label><label class="everyday-field"><span>Hozzáadandó/levonandó nap</span><input type="number" step="1" name="offset" inputmode="decimal"></label><label class="everyday-field"><span>Dátumművelet típusa</span><select name="offsetMode"><option value="calendar">Naptári nap</option><option value="workday">Munkanap</option></select></label><button type="submit" class="everyday-submit">Számítás</button></form><div class="everyday-result" role="status" aria-live="polite" aria-atomic="true"></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="everyday-heading"><h2>Dátumkülönbség-, munkanap- és dátumművelet-kalkulátor</h2><p>Két dátum között számol naptári napot, hétvégét és munkanapot, illetve napokat ad hozzá vagy von ki.</p></div><form class="everyday-grid"><label class="everyday-field"><span>Kezdő dátum</span><input type="date" name="start"></label><label class="everyday-field"><span>Záró dátum</span><input type="date" name="end"></label><label class="everyday-field"><span>Hozzáadandó/levonandó nap</span><input type="number" step="1" name="offset" inputmode="decimal"></label><label class="everyday-field"><span>Dátumművelet típusa</span><select name="offsetMode"><option value="calendar">Naptári nap</option><option value="workday">Munkanap</option></select></label><button type="submit" class="everyday-submit">Számítás</button></form><div class="everyday-result" role="status" aria-live="polite" aria-atomic="true"></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -109,41 +114,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
 <h2>Két dátum között eltelt napok kiszámítása</h2>
 <p>A dátumkülönbség kalkulátor két kiválasztott naptári nap távolságát adja meg napokban. Az opcionális napi értékkel a napok száma megszorozható, így például napidíj, bérleti díj vagy késedelmi tétel egyszerű előzetes becslése készíthető.</p>

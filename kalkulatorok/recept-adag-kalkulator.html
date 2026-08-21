@@ -93,7 +93,12 @@
 <section class="hero"><h1>Recept adag átszámító kalkulátor</h1><p>Recept hozzávalóinak átszámítása más adagszámra, több hozzávaló egyszerre történő skálázásával.</p></section>
 <section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="recipeOriginal">Eredeti adagszám</label><input id="recipeOriginal" type="number" value="4" min="0" step="1" inputmode="decimal"></div><div><label for="recipeTarget">Kívánt adagszám</label><input id="recipeTarget" type="number" value="6" min="0" step="1" inputmode="decimal"></div><div class="calc-grid-full"><label for="recipeIngredients">Hozzávalók</label><textarea id="recipeIngredients" rows="5">Liszt;500;g
 Tej;300;ml
-Tojás;2;db</textarea><small>Soronként: név; mennyiség; egység. Például: Liszt;500;g</small></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="recipeResult"><p><strong>Átszámítási szorzó:</strong> 1,5×</p><p><strong>Liszt:</strong> 750 g</p><p><strong>Tej:</strong> 450 ml</p><p><strong>Tojás:</strong> 3 db</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+Tojás;2;db</textarea><small>Soronként: név; mennyiség; egység. Például: Liszt;500;g</small></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="recipeResult"><p><strong>Átszámítási szorzó:</strong> 1,5×</p><p><strong>Liszt:</strong> 750 g</p><p><strong>Tej:</strong> 450 ml</p><p><strong>Tojás:</strong> 3 db</p></div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -103,41 +108,58 @@ Tojás;2;db</textarea><small>Soronként: név; mennyiség; egység. Például: L
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Hogyan skálázza a receptet?</h2><p>A kalkulátor először kiszámítja a kívánt és az eredeti adagszám arányát. Ezzel a szorzóval módosítja minden megadott hozzávaló mennyiségét, ezért ugyanazt a receptet kisebb vagy nagyobb társaságra is gyorsan át lehet számítani.</p><p>A hozzávalókat külön sorokban add meg, három adattal: név, mennyiség és egység. Az egységet nem alakítja át, csak a számszerű mennyiséget skálázza.</p><div class="example-box"><h3>Példa</h3><p>Egy 4 adagos receptet 6 adagra növelve a szorzó 6/4 = 1,5. Így 500 g lisztből 750 g, 300 ml tejből 450 ml, 2 tojásból pedig matematikailag 3 darab lesz.</p></div><h2>Mikor kell kézzel korrigálni?</h2><p>A sütés-főzés nem mindig lineáris. Fűszereknél, sózásnál, sűrítőanyagoknál vagy tojásnál gyakran érdemes kerekíteni és kóstolással finomhangolni. A tepsi mérete, sütési idő és hőátadás sem feltétlenül skálázódik az adagszámmal.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Tizedes mennyiséget is elfogad?</summary><p>Igen, ponttal vagy tizedesvesszővel is megadhatsz mennyiséget.</p></details><details><summary>Átváltja a grammot dekagrammra?</summary><p>Nem. A megadott egységet változatlanul hagyja, csak a mennyiséget szorozza fel vagy le.</p></details><details><summary>Mi történik a darabos hozzávalókkal?</summary><p>Matematikai eredményt kapsz, amelyet a gyakorlatban szükség esetén egész darabra kell kerekíteni.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="egysegar-kalkulator.html">egysegar</a><a href="terfogat-atvalto-kalkulator.html">terfogat atvalto</a><a href="tomeg-atvalto-kalkulator.html">tomeg atvalto</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
 <section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>Mennyiségi arányosítás. A recept technológiai tulajdonságai, sütési idő és ízesítés nem feltétlenül változik lineárisan az adagszámmal.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20Recept%20adag%20%C3%A1tsz%C3%A1m%C3%ADt%C3%B3%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>

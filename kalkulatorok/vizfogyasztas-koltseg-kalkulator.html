@@ -91,7 +91,12 @@
 <main id="main-content" class="container page-simple-calculator" data-batch05-calc="vizfogyasztas-koltseg-kalkulator">
 <nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../mindennapi.html">Mindennapok</a></li><li><span aria-current="page">Vízfogyasztás költsége</span></li></ol></nav>
 <section class="hero"><h1>Vízfogyasztás költség kalkulátor</h1><p>Vízfogyasztás köbméterben és becsült költség számítása napi literből, időszakból és saját m³-árral.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="waterDaily">Napi fogyasztás (liter)</label><input id="waterDaily" type="number" value="300" min="0" step="1" inputmode="decimal"></div><div><label for="waterDays">Időszak (nap)</label><input id="waterDays" type="number" value="30" min="0" step="1" inputmode="decimal"></div><div><label for="waterPrice">Saját díj (Ft/m³)</label><input id="waterPrice" type="number" value="800" min="0" step="1" inputmode="decimal"></div><div><label for="waterFixed">Fix díj az időszakra (Ft)</label><input id="waterFixed" type="number" value="0" min="0" step="1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="waterResult"><p><strong>Teljes fogyasztás:</strong> 9000 liter</p><p><strong>Fogyasztás:</strong> 9 m³</p><p><strong>Változó díj:</strong> 7200 Ft</p><p><strong>Becsült összes költség:</strong> 7200 Ft</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="waterDaily">Napi fogyasztás (liter)</label><input id="waterDaily" type="number" value="300" min="0" step="1" inputmode="decimal"></div><div><label for="waterDays">Időszak (nap)</label><input id="waterDays" type="number" value="30" min="0" step="1" inputmode="decimal"></div><div><label for="waterPrice">Saját díj (Ft/m³)</label><input id="waterPrice" type="number" value="800" min="0" step="1" inputmode="decimal"></div><div><label for="waterFixed">Fix díj az időszakra (Ft)</label><input id="waterFixed" type="number" value="0" min="0" step="1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="waterResult"><p><strong>Teljes fogyasztás:</strong> 9000 liter</p><p><strong>Fogyasztás:</strong> 9 m³</p><p><strong>Változó díj:</strong> 7200 Ft</p><p><strong>Becsült összes költség:</strong> 7200 Ft</p></div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -101,41 +106,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" hidden>
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Hogyan számolható a vízfogyasztás költsége?</h2><p>A napi literfogyasztást megszorozzuk az időszak napjaival, majd ezerrel osztva köbméterre váltjuk. A változó költség a köbméter és az általad megadott Ft/m³ díj szorzata. Ha az adott számlázásban fix díj is van, azt külön mezőben hozzáadhatod.</p><p>Az egységár szándékosan kézzel megadható. A víz- és csatornadíj település, szolgáltató, felhasználási mód és díjstruktúra szerint eltérhet, ezért az aktuális számládról vagy szolgáltatói tájékoztatóból érdemes kiolvasni a saját összevont vagy releváns egységáradat.</p><div class="example-box"><h3>Példa</h3><p>Napi 300 liter 30 napon át 9 000 liter, azaz 9 m³. 800 Ft/m³ saját egységárral ez 7 200 Ft változó költséget jelent; fix díj nélkül az összes becslés is 7 200 Ft.</p></div><h2>Mire jó a napi literes megközelítés?</h2><p>Használható háztartási becslésre, egy készülék vagy tevékenység hatásának modellezésére, illetve spórolási forgatókönyvek összehasonlítására. Ha már ismered a mérőóra szerinti köbméterfogyasztást, abból közvetlenebb számítás készíthető.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>A csatornadíj benne van?</summary><p>Csak akkor, ha a saját Ft/m³ mezőben olyan összeget adsz meg, amely ezt is tartalmazza, vagy a fix díjjal kiegészíted a modellt.</p></details><details><summary>Miért nincs beépített tarifa?</summary><p>A díjak szolgáltatónként és felhasználónként eltérhetnek és változhatnak, ezért az eszköz a saját aktuális egységároddal számol.</p></details><details><summary>1000 liter tényleg 1 m³?</summary><p>Igen. Egy köbméter térfogat 1000 liternek felel meg.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="rezsi-megosztas-kalkulator.html">rezsi megosztas</a><a href="villanyfogyasztas-koltseg-kalkulator.html">villanyfogyasztas koltseg</a><a href="terfogat-atvalto-kalkulator.html">terfogat atvalto</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
 <section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>Költségbecslés saját egységárral. Az aktuális szolgáltatói díjszabás, alapdíj, csatornadíj és egyéb tételek eltérhetnek a modellben megadottaktól.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20V%C3%ADzfogyaszt%C3%A1s%20k%C3%B6lts%C3%A9g%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>

@@ -94,7 +94,12 @@
         <label for="hip">Csípőbőség (cm)</label>
         <input type="text" id="hip" value="" inputmode="decimal" autocomplete="off">
       </div>
-    </div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="simpleCalcResults" role="status" aria-live="polite" aria-atomic="true">Az értékek legyenek nagyobbak nullánál</div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+    </div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="simpleCalcResults" role="status" aria-live="polite" aria-atomic="true">Az értékek legyenek nagyobbak nullánál</div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -104,41 +109,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-08"><h2>Mi a derék–csípő arány?</h2><p>A WHR a derékbőség és a csípőbőség hányadosa. Egyszerű módon közelíti a testzsír eloszlását: magasabb arány általában nagyobb hasi dominanciát jelez. A mutató azonban nem diagnózis, és nem képes önmagában megmondani valakinek az egészségi állapotát.</p><p>A kalkulátor nem alapján tájékoztató küszöbhöz viszonyíthatja az eredményt. Ezek csoportszintű irányszámok, amelyeket nem szabad személyre szabott kockázati ítéletként kezelni.</p><h2>A képlet</h2><p><strong>Derék–csípő arány = derékbőség / csípőbőség</strong>. Mindkét körfogatot ugyanabban az egységben kell megadni.</p><div class="example-box"><h3>Példa</h3><p>82 cm-es derék és 100 cm-es csípő esetén a WHR 0,82. Ha ugyanennél a személynél a derék 88 cm-re nő, miközben a csípő változatlan marad, az arány 0,88 lesz.</p></div><h2>Hogyan mérd helyesen?</h2><ul><li>A mérőszalag legyen vízszintes, ne csavarodjon meg.</li><li>A derekat nyugodt kilégzés után mérd, ne behúzott hassal.</li><li>A csípőt a legszélesebb ponton mérd.</li><li>A szalag simuljon a testhez, de ne vágjon be.</li><li>Trendkövetéshez mindig hasonló napszakban és hasonló körülmények között mérj.</li></ul><h2>WHR, derékkörfogat és BMI – nem ugyanaz</h2><p>A BMI a testsúlyt viszonyítja a magassághoz, a derékkörfogat közvetlenül a hasi méretet mutatja, a WHR pedig a derekat a csípőhöz hasonlítja. Ugyanannál az embernél ezek eltérő képet adhatnak, ezért inkább kiegészítik, mint helyettesítik egymást.</p><h2>Mikor lehet félrevezető?</h2><p>Terhesség, jelentős ödéma, nagyon izmos testalkat, nagy testsúlyváltozás vagy szokatlan testarányok esetén a WHR kevésbé jól értelmezhető. Az életkor, az etnikai háttér, a vérnyomás, a laboreredmények és az életmód szintén fontos részei az egészségi kockázatnak.</p><h2>Miért hasznos trendként nézni?</h2><p>Egyetlen mérésnél fontosabb lehet a változás iránya. Ha azonos körülmények között hónapokon át csökken a derékbőség és ezzel együtt a WHR, az jobban használható visszajelzés, mint egyetlen, esetleg pontatlan adat.</p><h2>Gyakori hibák</h2><ul><li>Nadrágméretből próbálják meghatározni a derékkörfogatot.</li><li>Eltérő mérési pontot használnak minden alkalommal.</li><li>A szalag ferdén fut vagy túl szoros.</li><li>A küszöbértéket diagnózisként kezelik.</li><li>A változást néhány milliméteres mérési hibából következtetik.</li></ul><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Jobb a WHR a BMI-nél?</summary><p>Nem általánosan jobb, hanem más információt ad. A kettő együtt több kontextust adhat.</p></details><details><summary>Ruhán keresztül mérjek?</summary><p>Lehetőleg közvetlenül a testen vagy nagyon vékony ruhán.</p></details><details><summary>Milyen gyakran érdemes mérni?</summary><p>Trendkövetéshez általában néhány hetente bőven elegendő; a napi változás inkább mérési zaj lehet.</p></details><details><summary>Terhesség alatt használható?</summary><p>A megszokott WHR-értelmezés ilyenkor nem megfelelő.</p></details><details><summary>Sportolóknál is értelmezhető?</summary><p>Igen, de a testalkat és izomtömeg miatt az egyszerű küszöbértékeket óvatosan kell kezelni.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="bmi-kalkulator.html">BMI kalkulátor</a><a href="testzsir-kalkulator.html">Testzsír kalkulátor</a><a href="idealis-testsuly-kalkulator.html">Testsúlytartomány kalkulátor</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-08">2026. augusztus 8.</time></p></section>
 
 

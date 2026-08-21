@@ -91,7 +91,12 @@
 <main id="main-content" class="container page-simple-calculator" data-batch02-calc="mertani-atlag-kalkulator">
 <nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../mindennapi.html">Mindennapok</a></li><li><span aria-current="page">Mértani átlag</span></li></ol></nav>
 <section class="hero"><h1>Mértani átlag kalkulátor</h1><p>Pozitív értékek mértani átlagának kiszámítása, különösen egymásra épülő szorzók és növekedési tényezők összevetéséhez.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="geoValues">Pozitív számok</label><textarea id="geoValues" rows="4" autocomplete="off">1,05; 0,98; 1,12</textarea><small>Szóköz, pontosvessző vagy sortörés használható. Tizedesvesszőt is elfogad.</small></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="geoResult"><p><strong>Mértani átlag:</strong> 1,048442</p><p><strong>Elemszám:</strong> 3</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="geoValues">Pozitív számok</label><textarea id="geoValues" rows="4" autocomplete="off">1,05; 0,98; 1,12</textarea><small>Szóköz, pontosvessző vagy sortörés használható. Tizedesvesszőt is elfogad.</small></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="geoResult"><p><strong>Mértani átlag:</strong> 1,048442</p><p><strong>Elemszám:</strong> 3</p></div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -101,41 +106,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" hidden>
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Mi a mértani átlag?</h2><p>A mértani átlag több pozitív szám szorzatának n-edik gyöke. Akkor különösen hasznos, amikor az értékek egymásra épülő arányokat, növekedési tényezőket vagy szorzókat jelentenek. Emiatt pénzügyi hozamok, népességváltozás, indexek és más összetett növekedési folyamatok összehasonlításánál gyakran többet mond, mint a számtani átlag.</p><p>A kalkulátor numerikusan stabil módon, logaritmusok segítségével számol. A pozitív értékek logaritmusának átlagát veszi, majd exponenciális visszaalakítással kapja meg a mértani közepet.</p><h2>Mikor ne a számtani átlagot használd?</h2><p>Egymást követő százalékos változásoknál a hatások összeszorzódnak. Például +20% és −20% nem oltja ki egymást: 1,20 × 0,80 = 0,96, vagyis összességében 4%-os csökkenés történik. Ilyen helyzetben a növekedési szorzók mértani átlaga ad értelmesebb periódusonkénti átlagot.</p><div class="example-box"><h3>Példa</h3><p>Az 1,05; 0,98 és 1,12 szorzók mértani átlaga körülbelül 1,0447. Ez nagyjából 4,47%-os összetett átlagos növekedési tényezőnek felel meg periódusonként.</p></div><h2>Korlátok</h2><p>A hagyományos valós mértani átlaghoz minden bemenetnek pozitívnak kell lennie. Nulla vagy negatív szám esetén ez a kalkulátor nem ad eredményt. Százalékos hozamot előbb növekedési szorzóvá kell alakítani: például +5% → 1,05, −3% → 0,97.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Miért nem enged nullát?</summary><p>A használt logaritmikus módszerhez és a valós mértani átlag hagyományos értelmezéséhez minden értéknek pozitívnak kell lennie.</p></details><details><summary>Hozamot hogyan adjak meg?</summary><p>Például +5% esetén 1,05, míg −3% esetén 0,97 növekedési szorzót adj meg.</p></details><details><summary>Ugyanaz, mint az átlag kalkulátor?</summary><p>Nem. A számtani átlag összeadáson, a mértani átlag szorzaton alapul, ezért más típusú problémákhoz való.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="atlag-kalkulator.html">atlag</a><a href="szazalekos-valtozas-kalkulator.html">szazalekos valtozas</a><a href="kamatos-kamat-kalkulator.html">kamatos kamat</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
 <section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>A mértani átlag pozitív értékek összetett arányainak összehasonlítására alkalmas; önmagában nem hozamígéret vagy pénzügyi előrejelzés.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20M%C3%A9rtani%20%C3%A1tlag%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>

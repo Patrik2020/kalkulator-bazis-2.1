@@ -85,7 +85,12 @@
 </header>
 </div><main id="main-content" class="container page-simple-calculator" data-simple-calc="oraber-kalkulator">
 <section class="hero"><h1>Órabér kalkulátor</h1><p>Számold ki az órabéred havi bér és munkaóra alapján.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="everyday-heading"><h2>Órabér-, túlóra- és pótlékkalkulátor</h2><p>Nettó vagy bruttó havi bérből becsül alapórabért, túlórát, pótlékot és fizetett távolléti időt.</p></div><form class="everyday-grid"><label class="everyday-field"><span>Megadott bér típusa</span><select name="basis"><option value="gross">Bruttó</option><option value="net">Nettó</option></select></label><label class="everyday-field"><span>Havi alapbér (Ft)</span><input type="number" min="0" name="salary" step="any" inputmode="decimal"></label><label class="everyday-field"><span>Havi alapórák</span><input type="number" min="1" name="monthlyHours" step="any" inputmode="decimal"></label><label class="everyday-field"><span>Túlóra (óra)</span><input type="number" min="0" name="overtimeHours" step="any" inputmode="decimal"></label><label class="everyday-field"><span>Túlóra szorzó</span><input type="number" step="0.1" min="1" name="overtimeRate" inputmode="decimal"></label><label class="everyday-field"><span>Pótlékos órák</span><input type="number" min="0" name="premiumHours" step="any" inputmode="decimal"></label><label class="everyday-field"><span>Pótlék (%)</span><input type="number" min="0" name="premiumPercent" step="any" inputmode="decimal"></label><label class="everyday-field"><span>Fizetett szabadság/távollét (óra)</span><input type="number" min="0" name="paidLeaveHours" step="any" inputmode="decimal"></label><button type="submit" class="everyday-submit">Számítás</button></form><div class="everyday-result" role="status" aria-live="polite" aria-atomic="true"></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="everyday-heading"><h2>Órabér-, túlóra- és pótlékkalkulátor</h2><p>Nettó vagy bruttó havi bérből becsül alapórabért, túlórát, pótlékot és fizetett távolléti időt.</p></div><form class="everyday-grid"><label class="everyday-field"><span>Megadott bér típusa</span><select name="basis"><option value="gross">Bruttó</option><option value="net">Nettó</option></select></label><label class="everyday-field"><span>Havi alapbér (Ft)</span><input type="number" min="0" name="salary" step="any" inputmode="decimal"></label><label class="everyday-field"><span>Havi alapórák</span><input type="number" min="1" name="monthlyHours" step="any" inputmode="decimal"></label><label class="everyday-field"><span>Túlóra (óra)</span><input type="number" min="0" name="overtimeHours" step="any" inputmode="decimal"></label><label class="everyday-field"><span>Túlóra szorzó</span><input type="number" step="0.1" min="1" name="overtimeRate" inputmode="decimal"></label><label class="everyday-field"><span>Pótlékos órák</span><input type="number" min="0" name="premiumHours" step="any" inputmode="decimal"></label><label class="everyday-field"><span>Pótlék (%)</span><input type="number" min="0" name="premiumPercent" step="any" inputmode="decimal"></label><label class="everyday-field"><span>Fizetett szabadság/távollét (óra)</span><input type="number" min="0" name="paidLeaveHours" step="any" inputmode="decimal"></label><button type="submit" class="everyday-submit">Számítás</button></form><div class="everyday-result" role="status" aria-live="polite" aria-atomic="true"></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -95,41 +100,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" hidden>
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-08">
 <h2>Havi fizetés átszámítása óradíjra</h2><p>A kalkulátor a megadott havi bért elosztja a havi munkaórák számával, így egy egyszerű, összehasonlítható óradíjat ad. Ez különösen hasznos eltérő óraszámú állásajánlatok, részmunkaidő vagy változó havi munkaidő összevetésénél.</p>

@@ -91,7 +91,12 @@
 <main id="main-content" class="container page-simple-calculator" data-batch05-calc="szegolec-kalkulator">
 <nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../epitoipari.html">Otthon &amp; felújítás</a></li><li><span aria-current="page">Szegőléc</span></li></ol></nav>
 <section class="hero"><h1>Szegőléc kalkulátor</h1><p>Szegőléc szükséges hosszának és darabszámának becslése kerületből, nyílásokból, szálhosszból és ráhagyásból.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="skirtPerimeter">Burkolandó kerület (m)</label><input id="skirtPerimeter" type="number" value="20" min="0" step="0.1" inputmode="decimal"></div><div><label for="skirtOpenings">Kihagyandó nyílások összesen (m)</label><input id="skirtOpenings" type="number" value="1" min="0" step="0.1" inputmode="decimal"></div><div><label for="skirtPiece">Egy szál hossza (m)</label><input id="skirtPiece" type="number" value="2.4" min="0" step="0.01" inputmode="decimal"></div><div><label for="skirtWaste">Ráhagyás (%)</label><input id="skirtWaste" type="number" value="10" min="0" max="100" step="1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="skirtResult"><p><strong>Nettó kerület:</strong> 19 m</p><p><strong>Ráhagyással szükséges:</strong> 20,9 m</p><p><strong>Szükséges szál:</strong> 9 db</p><p><strong>Megvásárolt hossz:</strong> 21,6 m</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="skirtPerimeter">Burkolandó kerület (m)</label><input id="skirtPerimeter" type="number" value="20" min="0" step="0.1" inputmode="decimal"></div><div><label for="skirtOpenings">Kihagyandó nyílások összesen (m)</label><input id="skirtOpenings" type="number" value="1" min="0" step="0.1" inputmode="decimal"></div><div><label for="skirtPiece">Egy szál hossza (m)</label><input id="skirtPiece" type="number" value="2.4" min="0" step="0.01" inputmode="decimal"></div><div><label for="skirtWaste">Ráhagyás (%)</label><input id="skirtWaste" type="number" value="10" min="0" max="100" step="1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="skirtResult"><p><strong>Nettó kerület:</strong> 19 m</p><p><strong>Ráhagyással szükséges:</strong> 20,9 m</p><p><strong>Szükséges szál:</strong> 9 db</p><p><strong>Megvásárolt hossz:</strong> 21,6 m</p></div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -101,41 +106,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Hogyan számol a szegőléc kalkulátor?</h2><p>A kiindulás a helyiség vagy helyiségek burkolandó falkerülete. Ebből levonhatod azokat a nyílásokat, ahol biztosan nem kerül szegőléc, például egy ajtó szélességét. A maradó hosszra ráhagyást alkalmazunk, majd elosztjuk a megvásárolható szál hosszával.</p><p>A darabszámot mindig felfelé kerekítjük, mert tört szálat nem lehet megvásárolni. Emiatt a ténylegesen megvett hossz általában valamivel nagyobb lesz a számított szükségletnél.</p><div class="example-box"><h3>Példa</h3><p>20 m kerületből 1 m nyílást levonva 19 m nettó hossz marad. 10% ráhagyással 20,9 m szükséges. 2,4 m-es szálból 9 darab kell, ami összesen 21,6 m vásárolt hosszt jelent.</p></div><h2>Miért kell ráhagyás?</h2><p>A sarkok, gérvágások, hibás vágások, mintázat és a szálak optimális kiosztása miatt a tiszta geometriai hossz ritkán azonos a tényleges beszerzéssel. Bonyolult alaprajznál több tartalék indokolt lehet.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Az ajtókat mindig le kell vonni?</summary><p>Csak ott vond le a nyílást, ahol valóban nem fut végig szegőléc vagy más lezáró elem.</p></details><details><summary>Miért felfelé kerekít a darabszám?</summary><p>Mert a szálakat egész darabban kell megvenni.</p></details><details><summary>Több helyiségre is jó?</summary><p>Igen. Add össze a burkolandó kerületeket és a levonandó nyílások hosszát, vagy számold a helyiségeket külön a pontosabb vágási tervhez.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="padlo-burkolat-kalkulator.html">padlo burkolat</a><a href="csempe-kalkulator.html">csempe</a><a href="festek-kalkulator.html">festek</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
 <section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>Beszerzési becslés. A tényleges darabszámot a vágási kiosztás, sarokkialakítás, profil és helyszíni méretek módosíthatják.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20Szeg%C5%91l%C3%A9c%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>

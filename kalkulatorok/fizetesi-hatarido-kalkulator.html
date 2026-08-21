@@ -75,7 +75,12 @@
   </div>
 </header>
 </div><main id="main-content" class="container page-hatarido"><section class="hero"><h1>Fizetési határidő kalkulátor</h1><p>Számold ki, mikor jár le egy számla fizetési határideje.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="startDate">Számla kiállítás dátuma</label><input type="date" id="startDate"></div><div><label for="days">Fizetési határidő (nap)</label><input type="number" id="days" placeholder="pl. 8 vagy 30" step="any" inputmode="decimal"></div></div><div class="radio-group"><label><input type="radio" name="mode" value="calendar" checked> Naptári napok</label><label><input type="radio" name="mode" value="workdays"> Munkanapok</label></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Fizetési határidő:</p><p id="result-date">–</p></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="startDate">Számla kiállítás dátuma</label><input type="date" id="startDate"></div><div><label for="days">Fizetési határidő (nap)</label><input type="number" id="days" placeholder="pl. 8 vagy 30" step="any" inputmode="decimal"></div></div><div class="radio-group"><label><input type="radio" name="mode" value="calendar" checked> Naptári napok</label><label><input type="radio" name="mode" value="workdays"> Munkanapok</label></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Fizetési határidő:</p><p id="result-date">–</p></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -85,41 +90,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="article calculator-guide" data-quality-upgrade="2026-08-08"><h2>Mit számol a fizetési határidő kalkulátor?</h2><p>A kalkulátor a megadott kezdődátumhoz hozzáadja a választott napok számát. Naptári nap módban minden nap számít; munkanap módban a program a támogatott naptári év szabályai szerint zárja ki a nem munkanapokat.</p><p>Ez egyszerű dátumszámítás. A szerződés, az általános szerződési feltételek, külön jogszabály vagy az adott ügylet jellege meghatározhatja, hogy valójában melyik dátumtól és milyen szabály szerint kell számolni.</p>
 <h2>Naptári nap és munkanap között nagy lehet a különbség</h2><p>Egy 8 napos naptári határidő hétvégén is tovább fut. Nyolc munkanap viszont a kieső hétvégék és munkaszüneti napok miatt hosszabb naptári időtartamot jelenthet. Emiatt mindig azt a módszert válaszd, amelyet a szerződés vagy az alkalmazandó szabály használ.</p>

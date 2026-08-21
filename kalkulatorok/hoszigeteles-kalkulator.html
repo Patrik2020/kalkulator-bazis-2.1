@@ -73,7 +73,12 @@
     </div>
   </div>
 </header>
-</div><main id="main-content" class="container page-simple-calculator" data-simple-calc="hoszigeteles-kalkulator"><section class="hero"><h1>Hőszigetelés kalkulátor</h1><p>Tervezd meg a homlokzati vagy födémszigetelés lapmennyiségét.</p></section><section class="card card-calculator kb-calculator-shell" id="kalkulator"><form class="construction-planner" novalidate><div class="construction-heading"><p class="eyebrow">Részletes anyagtervező</p><h2>Hőszigetelő lap-, ragasztó- és dübeltervező</h2><p>A nettó homlokzati felületből csomagszámot, ragasztó- és dübeltartományt készít.</p></div><div class="construction-fields"><label class="construction-field"><span>Teljes szigetelendő felület (m²)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="grossArea" id="construction-grossArea"></label><label class="construction-field"><span>Ajtók összes felülete (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="doorArea" id="construction-doorArea"></label><label class="construction-field"><span>Ablakok összes felülete (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="windowArea" id="construction-windowArea"></label><label class="construction-field"><span>Egyéb kivonható felület (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="otherArea" id="construction-otherArea"></label><label class="construction-field"><span>Egy csomag fedése (m²)</span><input type="number" step="any" min="0.01" inputmode="decimal" name="packCoverage" id="construction-packCoverage"></label><label class="construction-field"><span>Vágási ráhagyás</span><select name="waste" id="construction-waste"><option value="5">5% – egyszerű, kevés vágás</option><option value="8">8% – általános</option><option value="12">12% – sok vágás / mintázat</option><option value="15">15% – bonyolult felület</option></select></label><label class="construction-field"><span>Ragasztó minimum (kg/m²)</span><input type="number" step="any" min="0" inputmode="decimal" name="adhesiveMin" id="construction-adhesiveMin"></label><label class="construction-field"><span>Ragasztó maximum (kg/m²)</span><input type="number" step="any" min="0" inputmode="decimal" name="adhesiveMax" id="construction-adhesiveMax"></label><label class="construction-field"><span>Ragasztózsák mérete (kg)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="adhesiveBag" id="construction-adhesiveBag"></label><label class="construction-field"><span>Dübel minimum (db/m²)</span><input type="number" step="any" min="0" inputmode="decimal" name="dowelsMin" id="construction-dowelsMin"></label><label class="construction-field"><span>Dübel maximum (db/m²)</span><input type="number" step="any" min="0" inputmode="decimal" name="dowelsMax" id="construction-dowelsMax"></label></div><div class="construction-actions"><button type="submit">Anyagigény kiszámítása</button><button type="reset" class="secondary-btn">Alapértékek visszaállítása</button></div><p class="construction-error" role="alert"></p><div class="result-box construction-results" role="status" aria-live="polite" aria-atomic="true"><dl class="construction-results-grid"><div><dt>Nettó szigetelendő felület</dt><dd>100 m²</dd></div><div><dt>Lapigény ráhagyással</dt><dd>108 m²</dd></div><div><dt>Szigetelőanyag-csomag</dt><dd>22 db</dd></div><div><dt>Ragasztóanyag</dt><dd>400–600 kg</dd></div><div><dt>Ragasztózsák</dt><dd>16–24 db</dd></div><div><dt>Dübel</dt><dd>600–800 db</dd></div></dl></div></form><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+</div><main id="main-content" class="container page-simple-calculator" data-simple-calc="hoszigeteles-kalkulator"><section class="hero"><h1>Hőszigetelés kalkulátor</h1><p>Tervezd meg a homlokzati vagy födémszigetelés lapmennyiségét.</p></section><section class="card card-calculator kb-calculator-shell" id="kalkulator"><form class="construction-planner" novalidate><div class="construction-heading"><p class="eyebrow">Részletes anyagtervező</p><h2>Hőszigetelő lap-, ragasztó- és dübeltervező</h2><p>A nettó homlokzati felületből csomagszámot, ragasztó- és dübeltartományt készít.</p></div><div class="construction-fields"><label class="construction-field"><span>Teljes szigetelendő felület (m²)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="grossArea" id="construction-grossArea"></label><label class="construction-field"><span>Ajtók összes felülete (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="doorArea" id="construction-doorArea"></label><label class="construction-field"><span>Ablakok összes felülete (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="windowArea" id="construction-windowArea"></label><label class="construction-field"><span>Egyéb kivonható felület (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="otherArea" id="construction-otherArea"></label><label class="construction-field"><span>Egy csomag fedése (m²)</span><input type="number" step="any" min="0.01" inputmode="decimal" name="packCoverage" id="construction-packCoverage"></label><label class="construction-field"><span>Vágási ráhagyás</span><select name="waste" id="construction-waste"><option value="5">5% – egyszerű, kevés vágás</option><option value="8">8% – általános</option><option value="12">12% – sok vágás / mintázat</option><option value="15">15% – bonyolult felület</option></select></label><label class="construction-field"><span>Ragasztó minimum (kg/m²)</span><input type="number" step="any" min="0" inputmode="decimal" name="adhesiveMin" id="construction-adhesiveMin"></label><label class="construction-field"><span>Ragasztó maximum (kg/m²)</span><input type="number" step="any" min="0" inputmode="decimal" name="adhesiveMax" id="construction-adhesiveMax"></label><label class="construction-field"><span>Ragasztózsák mérete (kg)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="adhesiveBag" id="construction-adhesiveBag"></label><label class="construction-field"><span>Dübel minimum (db/m²)</span><input type="number" step="any" min="0" inputmode="decimal" name="dowelsMin" id="construction-dowelsMin"></label><label class="construction-field"><span>Dübel maximum (db/m²)</span><input type="number" step="any" min="0" inputmode="decimal" name="dowelsMax" id="construction-dowelsMax"></label></div><div class="construction-actions"><button type="submit">Anyagigény kiszámítása</button><button type="reset" class="secondary-btn">Alapértékek visszaállítása</button></div><p class="construction-error" role="alert"></p><div class="result-box construction-results" role="status" aria-live="polite" aria-atomic="true"><dl class="construction-results-grid"><div><dt>Nettó szigetelendő felület</dt><dd>100 m²</dd></div><div><dt>Lapigény ráhagyással</dt><dd>108 m²</dd></div><div><dt>Szigetelőanyag-csomag</dt><dd>22 db</dd></div><div><dt>Ragasztóanyag</dt><dd>400–600 kg</dd></div><div><dt>Ragasztózsák</dt><dd>16–24 db</dd></div><div><dt>Dübel</dt><dd>600–800 db</dd></div></dl></div></form><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -83,41 +88,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-08"><h2>Szigetelőanyag és csomagszám tervezése</h2><p>A kalkulátor a lemért nettó felületből, a választott ráhagyásból és az egy csomaghoz tartozó gyártói fedésből becsüli meg a megvásárolandó mennyiséget. Homlokzati EPS, grafitos EPS, kőzetgyapot vagy táblás födémszigetelés előzetes anyagtervéhez használható, ha a megfelelő csomagfedést adod meg.</p><p>Ez mennyiségi kalkulátor, nem energetikai vagy páratechnikai méretező. Nem dönti el, melyik anyag, vastagság vagy rétegrend megfelelő az adott falhoz. Felújításnál különösen fontos lehet a meglévő szerkezet nedvessége, a hőhidak, a lábazat, a tűzvédelmi követelmény és a csatlakozások kialakítása.</p><h2>Hogyan készül a becslés?</h2><p><strong>Szükséges felület = nettó felület × (1 + ráhagyás / 100)</strong>. A szükséges felületet a program elosztja az egy csomagban lévő négyzetméterrel, majd teljes csomagra felfelé kerekít.</p><div class="example-box"><h3>Példa: 82 m² homlokzat</h3><p>82 m² nettó felületnél 5% ráhagyással 86,1 m² anyag szükséges. Ha egy csomag 4,8 m²-t fed, 17,94 csomag adódik, ezért 18 teljes csomaggal kell számolni.</p></div><h2>EPS, grafitos EPS vagy kőzetgyapot?</h2><p>A kalkulátor szempontjából mindegyik táblás anyag ugyanúgy számolható, a műszaki választás azonban nem azonos. A hővezetési tényező, pára- és tűztechnikai tulajdonságok, mechanikai igénybevétel és az alkalmazási hely együtt számít. Két azonos vastagságú termék hőtechnikai teljesítménye sem feltétlenül azonos.</p><h2>A teljes rendszer több, mint a lap</h2><p>Homlokzati rendszerhez a lapokon kívül ragasztó, dübel, üvegszövet háló, alapozó, vékonyvakolat, élvédő és egyéb kiegészítők is szükségesek. Ezek fogyása termék- és rendszerfüggő, ezért a lapmennyiségből nem érdemes automatikus darabszámot levezetni. A gyártói rendszeradatlap az elsődleges.</p><h2>Milyen felületet adj meg?</h2><p>A teljes fal- vagy födémfelületből a nagy ajtók és ablakok levonhatók, de a kávák, lábazat, sarkok és csomópontok plusz anyagot igényelhetnek. Sok nyílásnál a vágási veszteség miatt a geometriai nettó felület önmagában túl optimista lehet.</p><h2>Tipikus hibák</h2><ul><li>A csomagon szereplő darabszámot összekeverik a csomag m²-fedésével.</li><li>Nem az adott vastagsághoz tartozó csomagfedést használják.</li><li>Elmarad a vágási és sérülési tartalék.</li><li>A kalkulátort energetikai vastagságválasztásra használják.</li><li>A ragasztó és dübel fogyását gyártói adat nélkül becsülik.</li></ul><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Mekkora ráhagyást érdemes megadni?</summary><p>Egyszerű nagy sík felületnél gyakran 3–5%, sok nyílásnál és vágásnál ennél több lehet életszerű.</p></details><details><summary>Levonjam az ablakokat?</summary><p>A nagy nyílásokat általában igen, de a kávák és vágási veszteség miatt a tényleges megtakarítás kisebb lehet.</p></details><details><summary>Megmondja a szükséges vastagságot?</summary><p>Nem. A vastagság kiválasztásához energetikai, szerkezeti és páratechnikai szempontokat kell vizsgálni.</p></details><details><summary>Miért lehet több a valós fogyás?</summary><p>Törés, szabás, bonyolult csomópontok, hibás lapok és a kivitelezés módja miatt.</p></details><details><summary>Kombinálhatok eltérő anyagokat?</summary><p>Csak rendszerterv és gyártói előírás alapján; a kompatibilitást a kalkulátor nem ellenőrzi.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="festek-kalkulator.html">Festék kalkulátor</a><a href="vakolat-kalkulator.html">Vakolat kalkulátor</a><a href="gipszkarton-kalkulator.html">Gipszkarton kalkulátor</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-08">2026. augusztus 8.</time></p></section>
 
 

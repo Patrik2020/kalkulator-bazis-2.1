@@ -91,7 +91,12 @@
 <main id="main-content" class="container page-simple-calculator" data-batch04-calc="lepesszam-tavolsag-kalkulator">
 <nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../egeszseg.html">Egészség &amp; sport</a></li><li><span aria-current="page">Lépésszám–távolság</span></li></ol></nav>
 <section class="hero"><h1>Lépésszám–távolság kalkulátor</h1><p>Becsült megtett távolság és gyaloglási idő kiszámítása lépésszámból, átlagos lépéshosszból és lépésszámból percenként.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="stepCount">Lépések száma</label><input id="stepCount" type="number" value="10000" min="0" step="100" inputmode="decimal"></div><div><label for="stepLength">Átlagos lépéshossz (cm)</label><input id="stepLength" type="number" value="75" min="1" step="0.5" inputmode="decimal"></div><div><label for="stepCadence">Lépésszám percenként</label><input id="stepCadence" type="number" value="110" min="1" step="1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="stepsResult"><p><strong>Becsült távolság:</strong> 7,5 km</p><p><strong>Becsült idő:</strong> 90,9 perc</p><p><strong>Átlagsebesség:</strong> 4,95 km/h</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="stepCount">Lépések száma</label><input id="stepCount" type="number" value="10000" min="0" step="100" inputmode="decimal"></div><div><label for="stepLength">Átlagos lépéshossz (cm)</label><input id="stepLength" type="number" value="75" min="1" step="0.5" inputmode="decimal"></div><div><label for="stepCadence">Lépésszám percenként</label><input id="stepCadence" type="number" value="110" min="1" step="1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="stepsResult"><p><strong>Becsült távolság:</strong> 7,5 km</p><p><strong>Becsült idő:</strong> 90,9 perc</p><p><strong>Átlagsebesség:</strong> 4,95 km/h</p></div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -101,41 +106,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Hogyan lesz a lépésszámból kilométer?</h2><p>A kalkulátor a lépések számát megszorozza az átlagos lépéshosszal. A centiméterben kapott teljes távolságot kilométerre váltja. A megadott percenkénti lépésszámból megbecsüli a szükséges időt és az átlagsebességet is.</p><div class="example-box"><h3>Példa</h3><p>10 000 lépés és 75 cm átlagos lépéshossz körülbelül 7,5 km. 110 lépés/perc átlagos ritmus mellett ez kb. 90,9 perc, ami kb. 4,95 km/h átlagsebességnek felel meg.</p></div><h2>Miért csak becslés?</h2><p>A lépéshossz tempótól, tereptől, fáradtságtól és egyéni járásmintától is változik. Telefon vagy okosóra lépésszáma szintén tartalmazhat mérési hibát, ezért az eredmény nem GPS-pontosságú távolságmérés.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Honnan tudom a lépéshosszamat?</summary><p>Mérj le például 20–30 normál lépést egy ismert távolságon, majd oszd el a távolságot a lépések számával.</p></details><details><summary>10 000 lépés mindenkinek ugyanannyi kilométer?</summary><p>Nem. A távolság a lépéshossztól függ, ezért két ember azonos lépésszámmal eltérő távot tehet meg.</p></details><details><summary>Futáshoz is használható?</summary><p>Közelítésként igen, de futásnál a lépéshossz és ritmus jobban változhat; pontosabb távhoz GPS-adat előnyösebb.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="futotempo-kalkulator.html">futotempo</a><a href="kaloria-kalkulator.html">kaloria</a><a href="pulzus-zona-kalkulator.html">pulzus zona</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
 <section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>Mozgási becslés, nem orvosi mérés. A valós távolság és tempó a lépéshossz változása és az eszköz lépésszámlálási hibája miatt eltérhet.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20L%C3%A9p%C3%A9ssz%C3%A1m%E2%80%93t%C3%A1vols%C3%A1g%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>

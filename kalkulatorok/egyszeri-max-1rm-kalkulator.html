@@ -91,7 +91,12 @@
 <main id="main-content" class="container page-simple-calculator" data-batch02-calc="egyszeri-max-1rm-kalkulator">
 <nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../egeszseg.html">Egészség &amp; sport</a></li><li><span aria-current="page">1RM</span></li></ol></nav>
 <section class="hero"><h1>1RM kalkulátor</h1><p>Becsült egyismétléses maximum számítása Epley- és Brzycki-képlettel a használt súly és az ismétlésszám alapján.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="rmWeight">Használt súly (kg)</label><input id="rmWeight" type="number" value="80" min="0" step="0.5" inputmode="decimal"></div><div><label for="rmReps">Szabályos ismétlések</label><input id="rmReps" type="number" value="5" min="1" max="12" step="1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="rmResult"><p><strong>Epley becslés:</strong> 93,3 kg</p><p><strong>Brzycki becslés:</strong> 90 kg</p><p><strong>Átlagos becslés:</strong> 91,7 kg</p><p><strong>80% terhelés:</strong> 73,3 kg</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="rmWeight">Használt súly (kg)</label><input id="rmWeight" type="number" value="80" min="0" step="0.5" inputmode="decimal"></div><div><label for="rmReps">Szabályos ismétlések</label><input id="rmReps" type="number" value="5" min="1" max="12" step="1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="rmResult"><p><strong>Epley becslés:</strong> 93,3 kg</p><p><strong>Brzycki becslés:</strong> 90 kg</p><p><strong>Átlagos becslés:</strong> 91,7 kg</p><p><strong>80% terhelés:</strong> 73,3 kg</p></div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -101,41 +106,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Mi az 1RM?</h2><p>Az 1RM, vagyis egyismétléses maximum annak a terhelésnek a becslése, amelyből ideális körülmények között egy szabályos ismétlés végezhető. A kalkulátor nem kér valódi maximális próbát: egy többismétléses sorozatból készít matematikai közelítést.</p><p>Két gyakori képletet használ: az <strong>Epley</strong> képletet (súly × (1 + ismétlés/30)) és a <strong>Brzycki</strong> képletet (súly × 36 / (37 − ismétlés)). A két eredmény átlagát is megmutatja, mert egyik képlet sem pontos minden embernél és minden gyakorlatnál.</p><h2>Milyen ismétléstartományban érdemes használni?</h2><p>A becslés általában alacsony-közepes ismétlésszámnál használható a legértelmesebben. Ezért a kalkulátor 1–12 szabályos ismétlést enged. Nagyon magas ismétlésszámnál az állóképesség, a technika és a fáradás egyre jobban torzíthatja az 1RM-közelítést.</p><div class="example-box"><h3>Példa</h3><p>80 kg-ból 5 szabályos ismétlés esetén az Epley képlet kb. 93,3 kg, a Brzycki képlet pontosan 90 kg 1RM-et becsül. A kettő átlaga kb. 91,7 kg, ennek 80%-a körülbelül 73,3 kg.</p></div><h2>Biztonságos használat</h2><p>A becsült 1RM nem kötelező célterhelés, és nem jelenti azt, hogy tényleges maximális próbát kell végezni. Technikailag összetett gyakorlatnál, fájdalom, sérülés vagy bizonytalanság esetén a terhelés megválasztását érdemes képzett szakemberrel egyeztetni.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Pontos az 1RM becslés?</summary><p>Nem teljesen. Képletalapú közelítés, amely egyénenként, gyakorlatonként és edzettségi szintenként eltérhet a tényleges maximumtól.</p></details><details><summary>Miért két képletet mutat?</summary><p>Az Epley és Brzycki eltérően közelít, ezért a különbség jól jelzi, hogy a szám nem laborpontosságú.</p></details><details><summary>Muszáj kipróbálnom a kiszámolt maximumot?</summary><p>Nem. A becslés főleg edzéstervezési viszonyítási pont; maximális próbát nem szükséges végezni.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="feherje-szukseglet-kalkulator.html">feherje szukseglet</a><a href="pulzus-zona-kalkulator.html">pulzus zona</a><a href="kaloria-kalkulator.html">kaloria</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
 <section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>Edzéstervezési becslés, nem teljesítménygarancia. A tényleges 1RM függ a technikától, fáradtságtól, gyakorlattól és egyéni adottságoktól.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%201RM%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>

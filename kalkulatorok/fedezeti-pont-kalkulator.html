@@ -91,7 +91,12 @@
 <main id="main-content" class="container page-simple-calculator" data-batch05-calc="fedezeti-pont-kalkulator">
 <nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../mindennapi.html">Mindennapok</a></li><li><span aria-current="page">Fedezeti pont</span></li></ol></nav>
 <section class="hero"><h1>Fedezeti pont kalkulátor</h1><p>Fedezeti darabszám és árbevétel becslése fix költségből, egységárból és egységnyi változó költségből.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="beFixed">Fix költség (Ft)</label><input id="beFixed" type="number" value="1000000" min="0" step="1000" inputmode="decimal"></div><div><label for="bePrice">Eladási ár / egység (Ft)</label><input id="bePrice" type="number" value="10000" min="0" step="1" inputmode="decimal"></div><div><label for="beVariable">Változó költség / egység (Ft)</label><input id="beVariable" type="number" value="6000" min="0" step="1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="beResult"><p><strong>Egységnyi fedezet:</strong> 4000 Ft</p><p><strong>Fedezeti hányad:</strong> 40%</p><p><strong>Fedezeti mennyiség:</strong> 250 db</p><p><strong>Fedezeti árbevétel:</strong> 2&nbsp;500&nbsp;000 Ft</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="beFixed">Fix költség (Ft)</label><input id="beFixed" type="number" value="1000000" min="0" step="1000" inputmode="decimal"></div><div><label for="bePrice">Eladási ár / egység (Ft)</label><input id="bePrice" type="number" value="10000" min="0" step="1" inputmode="decimal"></div><div><label for="beVariable">Változó költség / egység (Ft)</label><input id="beVariable" type="number" value="6000" min="0" step="1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="beResult"><p><strong>Egységnyi fedezet:</strong> 4000 Ft</p><p><strong>Fedezeti hányad:</strong> 40%</p><p><strong>Fedezeti mennyiség:</strong> 250 db</p><p><strong>Fedezeti árbevétel:</strong> 2&nbsp;500&nbsp;000 Ft</p></div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -101,41 +106,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Mi a fedezeti pont?</h2><p>A fedezeti pont az a mennyiség, amelynél az értékesítésből származó fedezet éppen kitermeli a vizsgált fix költséget. A számítás alapja az egységnyi fedezet: eladási ár mínusz az adott egységhez közvetlenül kapcsolódó változó költség.</p><p>A szükséges darabszám a fix költség és az egységnyi fedezet hányadosa. Mivel a valóságban tört darabot sok terméknél nem lehet értékesíteni, a kalkulátor a szükséges mennyiséget felfelé kerekíti.</p><div class="example-box"><h3>Példa</h3><p>1 000 000 Ft fix költség, 10 000 Ft eladási ár és 6 000 Ft változó költség mellett 4 000 Ft az egységnyi fedezet. A fedezeti pont 250 darab, ami 2,5 millió Ft árbevételnek felel meg.</p></div><h2>Mit hagy ki az egyszerű modell?</h2><p>Több termék, eltérő árrés, készletveszteség, adók, kapacitáskorlátok, lépcsőzetesen változó fix költségek és szezonális hatások esetén összetettebb üzleti modellre lehet szükség. Ez az eszköz egy termékre vagy homogén egységre ad gyors becslést.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Mi számít fix költségnek?</summary><p>Olyan vizsgált időszaki költség, amelyet a modellben nem kötünk közvetlenül minden egyes eladott egységhez.</p></details><details><summary>Mi történik, ha a változó költség eléri az eladási árat?</summary><p>Nincs pozitív egységnyi fedezet, ezért ebből az egyszerű modellből nem adható értelmes fedezeti pont.</p></details><details><summary>Az ÁFA benne van?</summary><p>Az inputokat egységes alapon add meg: nettó árat nettó költséggel vagy bruttót bruttóval hasonlíts össze.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="arres-kalkulator.html">arres</a><a href="haszonkulcs-kalkulator.html">haszonkulcs</a><a href="afa-kalkulator.html">afa</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
 <section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>Egyszerű egytermékes fedezeti modell. Nem helyettesít részletes költségszámítást, könyvelési vagy üzleti tervezési elemzést.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20Fedezeti%20pont%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>

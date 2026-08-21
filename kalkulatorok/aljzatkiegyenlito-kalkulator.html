@@ -91,7 +91,12 @@
 <main id="main-content" class="container page-simple-calculator" data-batch02-calc="aljzatkiegyenlito-kalkulator">
 <nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../epitoipari.html">Otthon &amp; felújítás</a></li><li><span aria-current="page">Aljzatkiegyenlítő</span></li></ol></nav>
 <section class="hero"><h1>Aljzatkiegyenlítő kalkulátor</h1><p>Aljzatkiegyenlítő anyagszükséglet és zsákszám becslése felület, átlagos rétegvastagság, fajlagos fogyás és ráhagyás alapján.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="levelArea">Felület (m²)</label><input id="levelArea" type="number" value="20" min="0" step="0.1" inputmode="decimal"></div><div><label for="levelThickness">Átlagos rétegvastagság (mm)</label><input id="levelThickness" type="number" value="3" min="0" step="0.1" inputmode="decimal"></div><div><label for="levelConsumption">Fajlagos fogyás (kg/m²/mm)</label><input id="levelConsumption" type="number" value="1.6" min="0" step="0.01" inputmode="decimal"></div><div><label for="levelWaste">Ráhagyás (%)</label><input id="levelWaste" type="number" value="10" min="0" max="100" step="1" inputmode="decimal"></div><div><label for="levelBag">Zsák tömege (kg)</label><input id="levelBag" type="number" value="25" min="0" step="0.1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="levelResult"><p><strong>Alap anyagigény:</strong> 96 kg</p><p><strong>Ráhagyással:</strong> 105,6 kg</p><p><strong>Szükséges zsák:</strong> 5 db</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="levelArea">Felület (m²)</label><input id="levelArea" type="number" value="20" min="0" step="0.1" inputmode="decimal"></div><div><label for="levelThickness">Átlagos rétegvastagság (mm)</label><input id="levelThickness" type="number" value="3" min="0" step="0.1" inputmode="decimal"></div><div><label for="levelConsumption">Fajlagos fogyás (kg/m²/mm)</label><input id="levelConsumption" type="number" value="1.6" min="0" step="0.01" inputmode="decimal"></div><div><label for="levelWaste">Ráhagyás (%)</label><input id="levelWaste" type="number" value="10" min="0" max="100" step="1" inputmode="decimal"></div><div><label for="levelBag">Zsák tömege (kg)</label><input id="levelBag" type="number" value="25" min="0" step="0.1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="levelResult"><p><strong>Alap anyagigény:</strong> 96 kg</p><p><strong>Ráhagyással:</strong> 105,6 kg</p><p><strong>Szükséges zsák:</strong> 5 db</p></div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -101,41 +106,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Hogyan számolja az anyagszükségletet?</h2><p>A kalkulátor a felületet megszorozza az átlagos rétegvastagsággal és a termék fajlagos fogyásával, majd hozzáadja a választott ráhagyást. A végeredményt a zsák tömegével elosztva és felfelé kerekítve megkapod a becsült egész zsákszámot.</p><p>A legfontosabb bemenet a gyártói <strong>fajlagos fogyás</strong>, amelyet általában kg/m²/mm formában adnak meg. A termék adatlapja mindig elsőbbséget élvez az itt szereplő példabeállítással szemben.</p><h2>Miért csak átlagos vastagsággal számol?</h2><p>A valós aljzat ritkán teljesen egyenletes. Ha egy helyen 2 mm, máshol 5 mm kiegyenlítés szükséges, akkor az átlagos rétegvastagság csak becslés. Nagy szintkülönbségnél érdemes több mérési pontból átlagot képezni, és ellenőrizni a termék minimális és maximális rétegvastagságát.</p><div class="example-box"><h3>Példa</h3><p>20 m² felület × 3 mm × 1,6 kg/m²/mm = 96 kg alapigény. 10% ráhagyással 105,6 kg adódik, ami 25 kg-os kiszerelésből 5 zsák beszerzését jelenti.</p></div><h2>Mire figyelj kivitelezés előtt?</h2><p>Az alapozás, az aljzat szilárdsága, nedvessége, a dilatációk és a termék feldolgozási ideje ugyanolyan fontos, mint a mennyiség. A kalkulátor beszerzési becslést ad, nem helyettesíti a gyártói technológiai előírást.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Milyen fajlagos fogyást adjak meg?</summary><p>A választott aljzatkiegyenlítő műszaki adatlapján szereplő kg/m²/mm értéket használd.</p></details><details><summary>Miért kell ráhagyás?</summary><p>Az aljzat egyenetlensége, a keverési és felhordási veszteség miatt érdemes némi tartalékot tervezni.</p></details><details><summary>A kalkulátor megmondja a megfelelő rétegvastagságot?</summary><p>Nem. A szükséges vastagságot helyszíni szintmérés és a kiválasztott termék megengedett rétegtartománya alapján kell meghatározni.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="padlo-burkolat-kalkulator.html">padlo burkolat</a><a href="csemperagaszto-kalkulator.html">csemperagaszto</a><a href="csempe-kalkulator.html">csempe</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
 <section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>A mennyiség becslés; a konkrét termék gyártói fogyási adata, rétegvastagság-tartománya és feldolgozási előírása az irányadó.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20Aljzatkiegyenl%C3%ADt%C5%91%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
