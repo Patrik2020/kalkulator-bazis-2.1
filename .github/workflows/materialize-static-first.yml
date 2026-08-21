@@ -33,6 +33,9 @@ jobs:
       - name: Install validation dependencies
         run: npm ci
 
+      - name: Generate expansion-aware sitemap
+        run: npm run sitemap
+
       - name: Verify Chrome is available
         shell: bash
         run: |
