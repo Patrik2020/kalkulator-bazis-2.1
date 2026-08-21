@@ -91,7 +91,12 @@
 <main id="main-content" class="container page-simple-calculator" data-batch02-calc="fektav-kalkulator">
 <nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../auto.html">Autó &amp; közlekedés</a></li><li><span aria-current="page">Féktáv</span></li></ol></nav>
 <section class="hero"><h1>Féktáv kalkulátor</h1><p>Elméleti reakcióút, fékút és teljes megállási távolság becslése sebesség, reakcióidő és tapadási tényező alapján.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="brakeSpeed">Sebesség (km/h)</label><input id="brakeSpeed" type="number" value="50" min="0" step="1" inputmode="decimal"></div><div><label for="brakeReaction">Reakcióidő (s)</label><input id="brakeReaction" type="number" value="1" min="0" step="0.1" inputmode="decimal"></div><div><label for="brakeMu">Tapadási tényező (μ)</label><input id="brakeMu" type="number" value="0.7" min="0.05" max="1.5" step="0.05" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="brakeResult"><p><strong>Reakcióút:</strong> 13,9 m</p><p><strong>Elméleti fékút:</strong> 14,1 m</p><p><strong>Teljes megállási távolság:</strong> 27,9 m</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="brakeSpeed">Sebesség (km/h)</label><input id="brakeSpeed" type="number" value="50" min="0" step="1" inputmode="decimal"></div><div><label for="brakeReaction">Reakcióidő (s)</label><input id="brakeReaction" type="number" value="1" min="0" step="0.1" inputmode="decimal"></div><div><label for="brakeMu">Tapadási tényező (μ)</label><input id="brakeMu" type="number" value="0.7" min="0.05" max="1.5" step="0.05" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="brakeResult"><p><strong>Reakcióút:</strong> 13,9 m</p><p><strong>Elméleti fékút:</strong> 14,1 m</p><p><strong>Teljes megállási távolság:</strong> 27,9 m</p></div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -101,49 +106,63 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" hidden>
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Mit becsül a féktáv kalkulátor?</h2><p>A teljes megállási távolság két részből áll: a vezető reakcióideje alatt megtett <strong>reakcióútból</strong> és a tényleges lassítás alatt megtett <strong>fékútból</strong>. A kalkulátor ezeket külön is megmutatja, hogy látható legyen, miért nő gyorsan a szükséges távolság a sebesség emelkedésével.</p><p>A reakcióút a sebesség és a reakcióidő szorzata. Az elméleti fékút sík úton a v²/(2·μ·g) képlettel készül, ahol μ a megadott tapadási tényező, g pedig 9,80665 m/s².</p><h2>Miért csak becslés?</h2><p>A valós fékút függ a gumiabroncs állapotától és hőmérsékletétől, az útfelülettől, a lejtéstől, a jármű fékrendszerétől, terhelésétől, az ABS működésétől és számos más körülménytől. A tapadási tényező nem egy fix „útminőség” szám, hanem erősen helyzetfüggő közelítés.</p><div class="example-box"><h3>Példa</h3><p>50 km/h, 1 másodperces reakcióidő és μ=0,7 mellett a reakcióút kb. 13,9 m, az elméleti fékút kb. 14,0 m, így a teljes becsült megállási távolság közel 27,9 m.</p></div><h2>Biztonsági értelmezés</h2><p>A kalkulátor eredménye nem használható arra, hogy minimális követési távolságot vagy „biztonságos” sebességet igazoljon. Közúton mindig az aktuális látási, időjárási és forgalmi viszonyokhoz kell igazítani a sebességet és a követési távolságot.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Mit jelent a μ érték?</summary><p>Egy egyszerű tapadási közelítés a gumi és az út kapcsolatára. A valós érték sok tényezőtől függ és menet közben is változhat.</p></details><details><summary>Miért nő ennyire gyorsan a fékút?</summary><p>Az elméleti fékút a sebesség négyzetével arányos, ezért kétszeres sebesség ideális esetben is körülbelül négyszeres fékutat jelent.</p></details><details><summary>Ez megadja a biztonságos követési távolságot?</summary><p>Nem. A követési távolságnál további bizonytalanságokkal és a forgalmi környezettel is számolni kell.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="utazasi-ido-kalkulator.html">utazasi ido</a><a href="gumi-meret-kalkulator.html">gumi meret</a><a href="auto-kalkulator.html">auto</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
 <section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>Elméleti fizikai becslés sík útra. Valós közúti fékút és biztonságos követési távolság meghatározására önmagában nem alkalmas.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20F%C3%A9kt%C3%A1v%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
 
 
-<!-- KB_STATIC:reliability:START -->
-<section class="reliability-note"><div><h2 id="hitelesseg-es-szamitasi-korlatok">Hitelesség és számítási korlátok</h2><p>Elméleti fizikai becslés sík útra. Valós közúti fékút és biztonságos követési távolság meghatározására önmagában nem alkalmas.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20F%C3%A9kt%C3%A1v%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
-<!-- KB_STATIC:reliability:END -->
 </main>
 <div id="footer"><div class="footer-container kb-footer">
   <section class="footer-cta" aria-labelledby="footerCtaTitle">

@@ -98,7 +98,12 @@
 <h1>CO2 kibocsátás kalkulátor</h1>
 <p>Becsüld meg az autós utazás közvetlen szén-dioxid-kibocsátását.</p>
 </section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="ac-heading"><h2>Közvetlen és életciklusos CO₂-becslés</h2><p>A mezők tájékoztató tervezésre valók; hivatalos, gyártói vagy szolgáltatói adat esetén mindig azt használd.</p></div><form class="ac-grid"><label class="ac-field"><span>Hajtás</span><select id="type" name="type"><option value="petrol">Benzin</option><option value="diesel">Dízel</option><option value="lpg">LPG</option><option value="hybrid">Hibrid</option><option value="phev">Plug-in hibrid</option><option value="ev">Elektromos</option></select></label><label class="ac-field"><span>Távolság (km)</span><input type="number" inputmode="decimal" id="km" name="km" step="any"></label><label class="ac-field"><span>Fogyasztás (l/100 km vagy kWh/100 km)</span><input type="number" inputmode="decimal" id="cons" name="cons" step="any"></label><label class="ac-field"><span>Közvetlen tényező (kg CO₂/l)</span><input type="number" step="0.01" inputmode="decimal" id="tailpipe" name="tailpipe"><small>Szerkeszthető; a forrás és év eltérhet.</small></label><label class="ac-field"><span>Üzemanyag/áram előállítási pótlék (kg/l vagy kg/kWh)</span><input type="number" step="0.01" inputmode="decimal" id="upstream" name="upstream"></label><label class="ac-field"><span>PHEV elektromos használati arány (%)</span><input type="number" inputmode="decimal" id="electricShare" name="electricShare" step="any"></label><label class="ac-field"><span>Árammix (kg CO₂/kWh)</span><input type="number" step="0.01" inputmode="decimal" id="grid" name="grid"></label><label class="ac-field"><span>Töltési veszteség (%)</span><input type="number" inputmode="decimal" id="chargingLoss" name="chargingLoss" step="any"></label><button type="submit" class="ac-submit">Számítás</button><div class="ac-result" role="status" aria-live="polite" aria-atomic="true"><dl><div><dt>Közvetlen használati kibocsátás</dt><dd>15,02 kg CO₂</dd></div><div><dt>Használati életciklus-becslés</dt><dd>18,59 kg CO₂e</dd></div><div><dt>Kilométerenként</dt><dd>186 g CO₂e/km</dd></div><div><dt>Fontos</dt><dd>Gyártás és akkumulátorgyártás nincs automatikusan benne</dd></div></dl></div></form><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="ac-heading"><h2>Közvetlen és életciklusos CO₂-becslés</h2><p>A mezők tájékoztató tervezésre valók; hivatalos, gyártói vagy szolgáltatói adat esetén mindig azt használd.</p></div><form class="ac-grid"><label class="ac-field"><span>Hajtás</span><select required id="type" name="type"><option value="petrol">Benzin</option><option value="diesel">Dízel</option><option value="lpg">LPG</option><option value="hybrid">Hibrid</option><option value="phev">Plug-in hibrid</option><option value="ev">Elektromos</option></select></label><label class="ac-field"><span>Távolság (km)</span><input type="number" inputmode="decimal" required id="km" name="km" step="any"></label><label class="ac-field"><span>Fogyasztás (l/100 km vagy kWh/100 km)</span><input type="number" inputmode="decimal" required id="cons" name="cons" step="any"></label><label class="ac-field"><span>Közvetlen tényező (kg CO₂/l)</span><input type="number" step="0.01" inputmode="decimal" required id="tailpipe" name="tailpipe"><small>Szerkeszthető; a forrás és év eltérhet.</small></label><label class="ac-field"><span>Üzemanyag/áram előállítási pótlék (kg/l vagy kg/kWh)</span><input type="number" step="0.01" inputmode="decimal" required id="upstream" name="upstream"></label><label class="ac-field"><span>PHEV elektromos használati arány (%)</span><input type="number" inputmode="decimal" required id="electricShare" name="electricShare" step="any"></label><label class="ac-field"><span>Árammix (kg CO₂/kWh)</span><input type="number" step="0.01" inputmode="decimal" required id="grid" name="grid"></label><label class="ac-field"><span>Töltési veszteség (%)</span><input type="number" inputmode="decimal" required id="chargingLoss" name="chargingLoss" step="any"></label><button type="submit" class="ac-submit">Számítás</button><div class="ac-result" role="status" aria-live="polite" aria-atomic="true">Ellenőrizd a kötelező mezőket és az értékhatárokat.</div></form><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -108,41 +113,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" hidden>
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-08">
 <h2>Mit számol ez a CO₂-kalkulátor?</h2>

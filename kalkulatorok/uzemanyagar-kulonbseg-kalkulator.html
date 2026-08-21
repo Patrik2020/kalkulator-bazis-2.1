@@ -91,7 +91,12 @@
 <main id="main-content" class="container page-simple-calculator" data-batch03-calc="uzemanyagar-kulonbseg-kalkulator">
 <nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../auto.html">Autó &amp; közlekedés</a></li><li><span aria-current="page">Üzemanyagár-különbség</span></li></ol></nav>
 <section class="hero"><h1>Üzemanyagár-különbség kalkulátor</h1><p>Hasonlíts össze két üzemanyagárat ugyanarra az útra, és számold ki a teljes költségkülönbséget a távolság és fogyasztás alapján.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="fuelDiffDistance">Távolság (km)</label><input id="fuelDiffDistance" type="number" value="500" min="0" step="1" inputmode="decimal"></div><div><label for="fuelDiffConsumption">Átlagfogyasztás (l/100 km)</label><input id="fuelDiffConsumption" type="number" value="6.5" min="0" step="0.1" inputmode="decimal"></div><div><label for="fuelDiffPriceA">Üzemanyagár A (Ft/l)</label><input id="fuelDiffPriceA" type="number" value="600" min="0" step="1" inputmode="decimal"></div><div><label for="fuelDiffPriceB">Üzemanyagár B (Ft/l)</label><input id="fuelDiffPriceB" type="number" value="620" min="0" step="1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="fuelDiffResult"><p><strong>Szükséges üzemanyag:</strong> 32,5 l</p><p><strong>Költség A árral:</strong> 19&nbsp;500 Ft</p><p><strong>Költség B árral:</strong> 20&nbsp;150 Ft</p><p><strong>Különbség:</strong> 650 Ft</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="fuelDiffDistance">Távolság (km)</label><input id="fuelDiffDistance" type="number" value="500" min="0" step="1" inputmode="decimal"></div><div><label for="fuelDiffConsumption">Átlagfogyasztás (l/100 km)</label><input id="fuelDiffConsumption" type="number" value="6.5" min="0" step="0.1" inputmode="decimal"></div><div><label for="fuelDiffPriceA">Üzemanyagár A (Ft/l)</label><input id="fuelDiffPriceA" type="number" value="600" min="0" step="1" inputmode="decimal"></div><div><label for="fuelDiffPriceB">Üzemanyagár B (Ft/l)</label><input id="fuelDiffPriceB" type="number" value="620" min="0" step="1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="fuelDiffResult"><p><strong>Szükséges üzemanyag:</strong> 32,5 l</p><p><strong>Költség A árral:</strong> 19&nbsp;500 Ft</p><p><strong>Költség B árral:</strong> 20&nbsp;150 Ft</p><p><strong>Különbség:</strong> 650 Ft</p></div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -101,49 +106,63 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Mire jó az üzemanyagár-különbség kalkulátor?</h2><p>Az eszköz megmutatja, hogy ugyanazon távolság és fogyasztás mellett mekkora forintkülönbséget okoz két eltérő literenkénti üzemanyagár. Így gyorsan eldönthető, hogy egy olcsóbb töltőállomás vagy egy másik útvonal árkülönbsége pénzben mennyit jelent.</p><p>Először kiszámolja a szükséges üzemanyag mennyiségét: <strong>távolság × fogyasztás / 100</strong>. Ezt megszorozza mindkét literárral, majd a két teljes költség abszolút különbségét is megadja.</p><h2>Miért lehet kisebb a különbség, mint gondolnád?</h2><p>A táblán látott literenkénti eltérés önmagában nem mondja meg az út teljes hatását. Például 20 Ft/l árkülönbség 32,5 liter felhasználásnál 650 Ft eltérést jelent. Ha az olcsóbb kút eléréséhez jelentős kitérőt kell tenni, annak külön üzemanyag- és időigénye lehet.</p><div class="example-box"><h3>Példa</h3><p>500 km, 6,5 l/100 km fogyasztás esetén 32,5 liter szükséges. 600 Ft/l árral ez 19 500 Ft, 620 Ft/l árral 20 150 Ft, vagyis a különbség 650 Ft.</p></div><h2>Mit nem vesz figyelembe?</h2><p>A számítás állandó átlagfogyasztást feltételez. A forgalom, sebesség, időjárás, terhelés és vezetési stílus miatt a valós fogyasztás eltérhet, ezért az eredmény tájékozódó becslés.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Melyik ár az olcsóbb?</summary><p>A kalkulátor mindkét teljes költséget kiírja, így közvetlenül látható, melyik ár mellett alacsonyabb az út költsége.</p></details><details><summary>A kitérő költségét számolja?</summary><p>Nem automatikusan. Ha az egyik kúthoz plusz kilométert kell menni, azt külön érdemes hozzáadni a távolsághoz.</p></details><details><summary>Elektromos autónál használható?</summary><p>Nem. Ehhez a külön EV töltési költség kalkulátor való, amely kWh-alapú fogyasztással számol.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="uzemanyag-koltseg-kalkulator.html">uzemanyag koltseg</a><a href="auto-fogyasztas-kalkulator.html">auto fogyasztas</a><a href="tankolas-kalkulator.html">tankolas</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
 <section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>Állandó átlagfogyasztással készült összehasonlító becslés. A valós üzemanyagköltséget a tényleges fogyasztás és a megtett út határozza meg.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20%C3%9Czemanyag%C3%A1r-k%C3%BCl%C3%B6nbs%C3%A9g%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
 
 
-<!-- KB_STATIC:reliability:START -->
-<section class="reliability-note"><div><h2 id="hitelesseg-es-szamitasi-korlatok-2">Hitelesség és számítási korlátok</h2><p>Állandó átlagfogyasztással készült összehasonlító becslés. A valós üzemanyagköltséget a tényleges fogyasztás és a megtett út határozza meg.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20%C3%9Czemanyag%C3%A1r-k%C3%BCl%C3%B6nbs%C3%A9g%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
-<!-- KB_STATIC:reliability:END -->
 </main>
 <div id="footer"><div class="footer-container kb-footer">
   <section class="footer-cta" aria-labelledby="footerCtaTitle">

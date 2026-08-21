@@ -165,6 +165,29 @@ for (const page of pages) {
       const fieldsState = hasNonEmptyElement(html, "simpleCalcFields");
       if (fieldsState === false) errors.push(`${page}: a kalkulátor mezői továbbra is csak JavaScriptből jönnek`);
     }
+
+    const installButton = html.match(
+      /<button\b(?=[^>]*\bdata-retention-action=["']install["'])[^>]*>/i
+    )?.[0];
+    if (!installButton || !/\bhidden\b/i.test(installButton) || /\bdata-install-mode\b/i.test(installButton)) {
+      errors.push(`${page}: a statikus telepítési CTA nem kanonikus, rejtett állapotú`);
+    }
+  }
+
+  if (page === "kalkulatorok/deviza-atvalto-kalkulator.html") {
+    if (!/<span\s+id=["']lastUpdate["']>A böngészőben frissül<\/span>/i.test(html)) {
+      errors.push(`${page}: élő árfolyamdátum került a statikus forrásba`);
+    }
+    if (!/<span\s+id=["']rateSource["']>Frankfurter \/ Európai Központi Bank<\/span>/i.test(html)) {
+      errors.push(`${page}: élő árfolyamforrás került a statikus forrásba`);
+    }
+  }
+
+  if (page.startsWith("kalkulatorok/")) {
+    const reliabilityNotes = html.match(/class=["'][^"']*\breliability-note\b/gi) || [];
+    if (reliabilityNotes.length !== 1) {
+      errors.push(`${page}: pontosan 1 megbízhatósági megjegyzés kell, jelenleg ${reliabilityNotes.length}`);
+    }
   }
 
   if (financePages.has(page)) requireMarker(html, "KB_STATIC:quality-finance:START", page, errors);

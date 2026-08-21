@@ -73,7 +73,12 @@
     </div>
   </div>
 </header>
-</div><main id="main-content" class="container page-simple-calculator" data-simple-calc="fuga-kalkulator"><section class="hero"><h1>Fuga kalkulátor</h1><p>Számold ki a várható fugázóanyag-szükségletet burkoláshoz.</p></section><section class="card card-calculator kb-calculator-shell" id="kalkulator"><form class="construction-planner" novalidate><div class="construction-heading"><p class="eyebrow">Részletes anyagtervező</p><h2>Fugázóanyag-tervező lapvastagsággal</h2><p>A lapméret, fugaszélesség, fugamélység, anyagsűrűség, csomagméret és ráhagyás alapján számol.</p></div><div class="construction-fields"><label class="construction-field"><span>Burkolt felület (m²)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="area" id="construction-area"></label><label class="construction-field"><span>Lap hossza (mm)</span><input type="number" step="any" min="1" inputmode="decimal" name="tileLength" id="construction-tileLength"></label><label class="construction-field"><span>Lap szélessége (mm)</span><input type="number" step="any" min="1" inputmode="decimal" name="tileWidth" id="construction-tileWidth"></label><label class="construction-field"><span>Lap vastagsága (mm)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="tileThickness" id="construction-tileThickness"></label><label class="construction-field"><span>Fugaszélesség (mm)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="jointWidth" id="construction-jointWidth"></label><label class="construction-field"><span>Fugamélység a lapvastagság %-ában</span><input type="number" step="any" min="1" max="100" inputmode="decimal" name="fillRatio" id="construction-fillRatio"></label><label class="construction-field"><span>Fugázóanyag sűrűségi tényezője</span><input type="number" step="any" min="0.1" inputmode="decimal" name="density" id="construction-density"></label><label class="construction-field"><span>Csomag mérete (kg)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="packSize" id="construction-packSize"></label><label class="construction-field"><span>Anyagveszteség</span><select name="waste" id="construction-waste"><option value="5">5% – egyszerű, kevés vágás</option><option value="8">8% – általános</option><option value="12">12% – sok vágás / mintázat</option><option value="15">15% – bonyolult felület</option></select></label></div><div class="construction-actions"><button type="submit">Anyagigény kiszámítása</button><button type="reset" class="secondary-btn">Alapértékek visszaállítása</button></div><p class="construction-error" role="alert"></p><div class="result-box construction-results" role="status" aria-live="polite" aria-atomic="true"><dl class="construction-results-grid"><div><dt>Számított fugamélység</dt><dd>9 mm</dd></div><div><dt>Nettó fugázóanyag</dt><dd>4,32 kg</dd></div><div><dt>Vásárolandó mennyiség</dt><dd>4,67 kg</dd></div><div><dt>Szükséges csomag</dt><dd>1 db</dd></div></dl></div></form><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+</div><main id="main-content" class="container page-simple-calculator" data-simple-calc="fuga-kalkulator"><section class="hero"><h1>Fuga kalkulátor</h1><p>Számold ki a várható fugázóanyag-szükségletet burkoláshoz.</p></section><section class="card card-calculator kb-calculator-shell" id="kalkulator"><form class="construction-planner" novalidate><div class="construction-heading"><p class="eyebrow">Részletes anyagtervező</p><h2>Fugázóanyag-tervező lapvastagsággal</h2><p>A lapméret, fugaszélesség, fugamélység, anyagsűrűség, csomagméret és ráhagyás alapján számol.</p></div><div class="construction-fields"><label class="construction-field"><span>Burkolt felület (m²)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="area" id="construction-area"></label><label class="construction-field"><span>Lap hossza (mm)</span><input type="number" step="any" min="1" inputmode="decimal" name="tileLength" id="construction-tileLength"></label><label class="construction-field"><span>Lap szélessége (mm)</span><input type="number" step="any" min="1" inputmode="decimal" name="tileWidth" id="construction-tileWidth"></label><label class="construction-field"><span>Lap vastagsága (mm)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="tileThickness" id="construction-tileThickness"></label><label class="construction-field"><span>Fugaszélesség (mm)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="jointWidth" id="construction-jointWidth"></label><label class="construction-field"><span>Fugamélység a lapvastagság %-ában</span><input type="number" step="any" min="1" max="100" inputmode="decimal" name="fillRatio" id="construction-fillRatio"></label><label class="construction-field"><span>Fugázóanyag sűrűségi tényezője</span><input type="number" step="any" min="0.1" inputmode="decimal" name="density" id="construction-density"></label><label class="construction-field"><span>Csomag mérete (kg)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="packSize" id="construction-packSize"></label><label class="construction-field"><span>Anyagveszteség</span><select name="waste" id="construction-waste"><option value="5">5% – egyszerű, kevés vágás</option><option value="8">8% – általános</option><option value="12">12% – sok vágás / mintázat</option><option value="15">15% – bonyolult felület</option></select></label></div><div class="construction-actions"><button type="submit">Anyagigény kiszámítása</button><button type="reset" class="secondary-btn">Alapértékek visszaállítása</button></div><p class="construction-error" role="alert"></p><div class="result-box construction-results" role="status" aria-live="polite" aria-atomic="true"><dl class="construction-results-grid"><div><dt>Számított fugamélység</dt><dd>9 mm</dd></div><div><dt>Nettó fugázóanyag</dt><dd>4,32 kg</dd></div><div><dt>Vásárolandó mennyiség</dt><dd>4,67 kg</dd></div><div><dt>Szükséges csomag</dt><dd>1 db</dd></div></dl></div></form><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -83,41 +88,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-08"><h2>Fugázóanyag-szükséglet előzetes becslése</h2><p>A kalkulátor a burkolt felület, a lapok mérete, a fugaszélesség és a fugamélység alapján becsüli meg a szükséges fugázóanyag tömegét. Kisebb lapoknál ugyanakkora felületen több fugavonal található, ezért az anyagigény is nagyobb lehet.</p><p>Az eredmény tájékoztató. A tényleges fogyást befolyásolja a termék sűrűsége, a lap éle, a valós fugamélység, az aljzat és a bedolgozási veszteség. Vásárlás előtt a konkrét fugázó gyártói fogyási táblázatát is ellenőrizd.</p><h2>Hogyan számol?</h2><p>A becslés a lap hosszát és szélességét, a fuga keresztmetszetét és egy közelítő sűrűségi tényezőt kombinálja. Ezért ugyanakkora 20 m² felülethez mozaiknál jóval több anyag kellhet, mint nagyformátumú lapoknál.</p><div class="example-box"><h3>Példa 30 × 30 cm-es lapokra</h3><p>20 m² burkolatnál, 300 × 300 mm-es lappal, 3 mm széles és 8 mm mély fugával a becslés körülbelül 5,1 kg lehet. 5 kg-os kiszerelésből emiatt 2 csomaggal kell számolni.</p></div><h2>A fugamélység nem mindig a lapvastagság</h2><p>A tényleges kitöltési mélységet befolyásolhatja a ragasztó, a lap élkialakítása és a fugatisztítás. Ha túl nagy mélységet adsz meg, a kalkulátor túlbecsülhet, ha túl kicsit, akkor alábecsülhet.</p><h2>Cementes és epoxi fuga</h2><p>Eltérő terméktípusok sűrűsége és feldolgozási vesztesége különbözhet. Epoxi fugánál vagy speciális ipari terméknél a gyártói kalkulátor, adatlap és kiszerelés az elsődleges. A jelenlegi eredményt ilyenkor inkább ellenőrző becslésként használd.</p><h2>A dilatáció nem normál fuga</h2><p>Sarkoknál, szerkezeti mozgási hézagoknál és bizonyos csatlakozásoknál rugalmas tömítőanyagra lehet szükség. Ezeket nem szabad egyszerűen normál fugázóanyaggal kiváltani, és a kalkulátor a szilikon vagy más rugalmas tömítő mennyiségét nem számolja.</p><h2>Gyakori hibák</h2><ul><li>A lapméretet centiméterben írják be, miközben a mező millimétert kér.</li><li>A fugaszélességet és a mélységet felcserélik.</li><li>Nem számolnak mosási és bedolgozási veszteséggel.</li><li>A termék gyártói fogyási adatát nem ellenőrzik.</li><li>Dilatációs hézaghoz normál fugázót terveznek.</li></ul><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Miért kell több anyag kisebb laphoz?</summary><p>Mert ugyanakkora területen több lapél és több fugavonal található.</p></details><details><summary>Epoxi fugára is jó?</summary><p>Csak durva becslésként; a konkrét gyártói fogyási adat az elsődleges.</p></details><details><summary>Mekkora tartalékot vegyek?</summary><p>A felület bonyolultságától és a kivitelezéstől függ, de egy kisebb biztonsági tartalék általában életszerű.</p></details><details><summary>A szilikon is benne van?</summary><p>Nem. A rugalmas csatlakozások tömítőanyagát külön kell számolni.</p></details><details><summary>Kültérre ugyanígy számoljak?</summary><p>A mennyiség becslése hasonló lehet, de a megfelelő terméktípust, fugaszélességet és dilatációt külön ellenőrizni kell.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="csempe-kalkulator.html">Csempe kalkulátor</a><a href="padlo-burkolat-kalkulator.html">Padlóburkolat kalkulátor</a><a href="vakolat-kalkulator.html">Vakolat kalkulátor</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-08">2026. augusztus 8.</time></p></section>
 
 

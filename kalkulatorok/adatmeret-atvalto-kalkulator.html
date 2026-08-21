@@ -114,7 +114,12 @@
 
       <!-- KALKULÁTOR -->
 
-      <section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="ac-heading"><h2>Decimális és bináris adatméret-átváltó</h2><p>A mezők tájékoztató tervezésre valók; hivatalos, gyártói vagy szolgáltatói adat esetén mindig azt használd.</p></div><form class="ac-grid"><label class="ac-field"><span>Érték</span><input type="number" inputmode="decimal" id="value" name="value" step="any"></label><label class="ac-field"><span>Kiinduló egység</span><select id="unit" name="unit"><option value="KB">KB (1000)</option><option value="MB">MB (1000²)</option><option value="GB">GB (1000³)</option><option value="KiB">KiB (1024)</option><option value="MiB">MiB (1024²)</option><option value="GiB">GiB (1024³)</option></select></label><button type="submit" class="ac-submit">Számítás</button><div class="ac-result" role="status" aria-live="polite" aria-atomic="true"><dl><div><dt>Byte</dt><dd>1&nbsp;000&nbsp;000&nbsp;000</dd></div><div><dt>KB</dt><dd>1&nbsp;000&nbsp;000</dd></div><div><dt>MB</dt><dd>1000</dd></div><div><dt>GB</dt><dd>1</dd></div><div><dt>KiB</dt><dd>976&nbsp;562,5</dd></div><div><dt>MiB</dt><dd>953,6743</dd></div><div><dt>GiB</dt><dd>0,931323</dd></div></dl></div></form><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="ac-heading"><h2>Decimális és bináris adatméret-átváltó</h2><p>A mezők tájékoztató tervezésre valók; hivatalos, gyártói vagy szolgáltatói adat esetén mindig azt használd.</p></div><form class="ac-grid"><label class="ac-field"><span>Érték</span><input type="number" min="0" inputmode="decimal" required id="value" name="value" step="any"></label><label class="ac-field"><span>Kiinduló egység</span><select required id="unit" name="unit"><option value="KB">KB (1000)</option><option value="MB">MB (1000²)</option><option value="GB">GB (1000³)</option><option value="KiB">KiB (1024)</option><option value="MiB">MiB (1024²)</option><option value="GiB">GiB (1024³)</option></select></label><button type="submit" class="ac-submit">Számítás</button><div class="ac-result" role="status" aria-live="polite" aria-atomic="true"><dl><div><dt>Byte</dt><dd>1&nbsp;000&nbsp;000&nbsp;000</dd></div><div><dt>KB</dt><dd>1&nbsp;000&nbsp;000</dd></div><div><dt>MB</dt><dd>1000</dd></div><div><dt>GB</dt><dd>1</dd></div><div><dt>KiB</dt><dd>976&nbsp;562,5</dd></div><div><dt>MiB</dt><dd>953,6743</dd></div><div><dt>GiB</dt><dd>0,931323</dd></div></dl></div></form><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -124,41 +129,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 
       <!-- SEO SZÖVEG -->

@@ -3,10 +3,16 @@ const path = require("path");
 const { spawn, execFileSync } = require("child_process");
 
 const root = path.resolve(__dirname, "..");
+const retentionTemplate = fs
+  .readFileSync(path.join(root, "components", "retention-cta.html"), "utf8")
+  .trim();
 const port = Number(process.env.KB_STATIC_PORT || 4173);
 const origin = `http://127.0.0.1:${port}`;
 const dryRun = process.argv.includes("--check");
 const verbose = process.argv.includes("--verbose");
+const liveApiCalculatorPages = new Set([
+  "kalkulatorok/deviza-atvalto-kalkulator.html",
+]);
 
 const BLOCK_START = (key) => `<!-- KB_STATIC:${key}:START -->`;
 const BLOCK_END = (key) => `<!-- KB_STATIC:${key}:END -->`;
@@ -181,7 +187,32 @@ function qualityFallback(fragment, type, originalAttribute) {
 function runtimeFallback(fragment, type) {
   if (!fragment) return null;
   let result = addAttributeToOpeningTag(fragment, "data-static-runtime-fallback", type);
+  // A heading enhancer can add generated ids before Chrome dumps the DOM. The
+  // timing of that enhancer is not deterministic in headless mode, so those
+  // runtime-only ids must not become part of the materialized source.
+  result = result.replace(/<h([1-6])\b([^>]*)>/gi, (full, level, attributes) => {
+    const stableAttributes = attributes.replace(
+      /\s+id\s*=\s*(["'])[^"']*\1/gi,
+      ""
+    );
+    return `<h${level}${stableAttributes}>`;
+  });
   return result;
+}
+
+function canonicalizeRetentionCta(fragment) {
+  if (!fragment) return fragment;
+  const retention = findElement(fragment, { attr: "data-retention-cta" });
+  if (!retention) return fragment;
+
+  // retention-cta.js adapts the install action to transient browser/PWA state.
+  // Keep that behavior dynamic, but always materialize the canonical hidden
+  // component so repeated static builds produce the same source HTML.
+  return (
+    fragment.slice(0, retention.start) +
+    retentionTemplate +
+    fragment.slice(retention.end)
+  );
 }
 
 function ensureMainId(source) {
@@ -226,15 +257,32 @@ function mergeRenderedPage(pagePath, originalSource, rendered) {
   if (footer) source = replaceElement(source, { id: "footer" }, footer.html);
 
   const card = findElement(rendered, { className: "card-calculator" });
-  if (card && findElement(source, { className: "card-calculator" })) {
-    source = replaceElement(source, { className: "card-calculator" }, card.html);
+  const authoredCard = findElement(source, { className: "card-calculator" });
+  if (card && authoredCard) {
+    // Live API values belong to browser state. The authored form and example
+    // remain the crawler fallback; JavaScript replaces them after a successful
+    // request without making a remote date, provider or result part of Git.
+    const stableCard = liveApiCalculatorPages.has(pagePath)
+      ? authoredCard.html
+      : card.html;
+    source = replaceElement(
+      source,
+      { className: "card-calculator" },
+      canonicalizeRetentionCta(stableCard)
+    );
   }
 
   const skipLink = findElement(rendered, { className: "kb-skip-link" });
   source = upsertStaticBlock(source, "skip-link", skipLink?.html || null, "body-start");
 
   const reliability = findElement(rendered, { className: "reliability-note" });
-  source = upsertStaticBlock(source, "reliability", reliability?.html || null);
+  const sourceWithoutStaticReliability = removeStaticBlock(source, "reliability");
+  const authoredReliability = findElement(sourceWithoutStaticReliability, {
+    className: "reliability-note",
+  });
+  source = authoredReliability
+    ? sourceWithoutStaticReliability
+    : upsertStaticBlock(sourceWithoutStaticReliability, "reliability", reliability?.html || null);
 
   const related = findElement(rendered, { attr: "data-render", value: "related-calculators" });
   const relatedHtml = related && /related-section/.test(related.html) ? related.html : null;

@@ -21,17 +21,7 @@
 <meta name="twitter:title" content="Éves autóköltség kalkulátor | Havi és éves fenntartás" />
 <meta name="twitter:description" content="Éves autóköltség kalkulátor üzemanyag, biztosítás, szerviz, adók, parkolás és értékvesztés összesítéséhez. Számold ki a havi és éves fenntartást." />
 <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"Milyen költségeket érdemes beleszámolni az éves autóköltségbe?","acceptedAnswer":{"@type":"Answer","text":"Üzemanyag, biztosítás, szerviz, adók, gumi, műszaki vizsga, parkolás, autópályadíj, finanszírozás és értékvesztés is számíthat."}},
-    {"@type":"Question","name":"Miért fontos az autó értékvesztése?","acceptedAnswer":{"@type":"Answer","text":"Az értékvesztés nem azonnali számla, de valós vagyonvesztés, és újabb vagy drágább autónál az egyik legnagyobb költség lehet."}},
-    {"@type":"Question","name":"Hogyan számoljak havi átlagot?","acceptedAnswer":{"@type":"Answer","text":"Az éves összes költséget oszd el tizenkettővel. Ez megmutatja, mennyit érdemes átlagosan havonta félretenni az autóra."}}
-  ]
-}
-</script>
+
 
 <!-- KB_STATIC:structured-data:START -->
 <script id="kb-structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/eves-auto-koltseg-kalkulator.html#webpage","url":"https://kalkulatorbazis.hu/kalkulatorok/eves-auto-koltseg-kalkulator.html","name":"Éves autóköltség kalkulátor | Havi és éves fenntartás","description":"Éves autóköltség kalkulátor üzemanyag, biztosítás, szerviz, adók, parkolás és értékvesztés összesítéséhez. Számold ki a havi és éves fenntartást.","inLanguage":"hu-HU","isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"}},{"@type":"SoftwareApplication","@id":"https://kalkulatorbazis.hu/kalkulatorok/eves-auto-koltseg-kalkulator.html#calculator","name":"Éves autóköltség kalkulátor","applicationCategory":"CalculatorApplication","operatingSystem":"Web","url":"https://kalkulatorbazis.hu/kalkulatorok/eves-auto-koltseg-kalkulator.html","description":"Becsüld meg az autó éves fenntartási költségét.","offers":{"@type":"Offer","price":"0","priceCurrency":"HUF"},"isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"},"about":"Autó és közlekedés kalkulátorok"},{"@type":"BreadcrumbList","@id":"https://kalkulatorbazis.hu/kalkulatorok/eves-auto-koltseg-kalkulator.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://kalkulatorbazis.hu/"},{"@type":"ListItem","position":2,"name":"Autó & közlekedés","item":"https://kalkulatorbazis.hu/auto.html"},{"@type":"ListItem","position":3,"name":"Éves autóköltség kalkulátor","item":"https://kalkulatorbazis.hu/kalkulatorok/eves-auto-koltseg-kalkulator.html"}]},{"@type":"FAQPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/eves-auto-koltseg-kalkulator.html#gyik","mainEntity":[{"@type":"Question","name":"Havi adatokból hogyan számoljak?","acceptedAnswer":{"@type":"Answer","text":"Szorozd meg a rendszeres havi tételt tizenkettővel."}},{"@type":"Question","name":"A hiteltörlesztő teljes összege költség?","acceptedAnswer":{"@type":"Answer","text":"A tőkerész vagyonátrendezés is lehet; pénzügyi elemzésnél a kamatot és értékvesztést érdemes külön kezelni."}},{"@type":"Question","name":"Céges autóra használható?","acceptedAnswer":{"@type":"Answer","text":"Belső becslésre igen, adózási elszámoláshoz könyvelői szabályok szükségesek."}},{"@type":"Question","name":"Hogyan hasonlítsak két autót?","acceptedAnswer":{"@type":"Answer","text":"Azonos éves futással és azonos költségkategóriákkal számolj."}}]}]}</script>
@@ -109,7 +99,12 @@
 <h1>Éves autóköltség kalkulátor</h1>
 <p>Számold ki az autótartás teljes éves költségét és a havi átlagos fenntartási terhet.</p>
 </section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="ac-heading"><h2>Éves autóköltség-tervező</h2><p>A mezők tájékoztató tervezésre valók; hivatalos, gyártói vagy szolgáltatói adat esetén mindig azt használd.</p></div><form class="ac-grid"><label class="ac-field"><span>Éves futás (km)</span><input type="number" inputmode="decimal" id="km" name="km" step="any"></label><label class="ac-field"><span>Fogyasztás (l/100 km)</span><input type="number" inputmode="decimal" id="cons" name="cons" step="any"></label><label class="ac-field"><span>Üzemanyagár (Ft/l)</span><input type="number" inputmode="decimal" id="fuel" name="fuel" step="any"></label><label class="ac-field"><span>Biztosítás évente</span><input type="number" inputmode="decimal" id="insurance" name="insurance" step="any"></label><label class="ac-field"><span>Adó és matrica</span><input type="number" inputmode="decimal" id="tax" name="tax" step="any"></label><label class="ac-field"><span>Szerviz és javítás</span><input type="number" inputmode="decimal" id="service" name="service" step="any"></label><label class="ac-field"><span>Gumi évesített költsége</span><input type="number" inputmode="decimal" id="tyres" name="tyres" step="any"></label><label class="ac-field"><span>Parkolás évente</span><input type="number" inputmode="decimal" id="parking" name="parking" step="any"></label><label class="ac-field"><span>Értékvesztés évente</span><input type="number" inputmode="decimal" id="depreciation" name="depreciation" step="any"></label><button type="submit" class="ac-submit">Számítás</button><div class="ac-result" role="status" aria-live="polite" aria-atomic="true"><dl><div><dt>Üzemanyag</dt><dd>604&nbsp;500 Ft</dd></div><div><dt>Fix és fenntartási költség</dt><dd>990&nbsp;000 Ft</dd></div><div><dt>Éves összes költség</dt><dd>1&nbsp;594&nbsp;500 Ft</dd></div><div><dt>Havi átlag</dt><dd>132&nbsp;875 Ft</dd></div><div><dt>Teljes költség kilométerenként</dt><dd>106,3 Ft/km</dd></div></dl></div></form><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="ac-heading"><h2>Éves autóköltség-tervező</h2><p>A mezők tájékoztató tervezésre valók; hivatalos, gyártói vagy szolgáltatói adat esetén mindig azt használd.</p></div><form class="ac-grid"><label class="ac-field"><span>Éves futás (km)</span><input type="number" inputmode="decimal" required id="km" name="km" step="any"></label><label class="ac-field"><span>Fogyasztás (l/100 km)</span><input type="number" inputmode="decimal" required id="cons" name="cons" step="any"></label><label class="ac-field"><span>Üzemanyagár (Ft/l)</span><input type="number" inputmode="decimal" required id="fuel" name="fuel" step="any"></label><label class="ac-field"><span>Biztosítás évente</span><input type="number" inputmode="decimal" required id="insurance" name="insurance" step="any"></label><label class="ac-field"><span>Adó és matrica</span><input type="number" inputmode="decimal" required id="tax" name="tax" step="any"></label><label class="ac-field"><span>Szerviz és javítás</span><input type="number" inputmode="decimal" required id="service" name="service" step="any"></label><label class="ac-field"><span>Gumi évesített költsége</span><input type="number" inputmode="decimal" required id="tyres" name="tyres" step="any"></label><label class="ac-field"><span>Parkolás évente</span><input type="number" inputmode="decimal" required id="parking" name="parking" step="any"></label><label class="ac-field"><span>Értékvesztés évente</span><input type="number" inputmode="decimal" required id="depreciation" name="depreciation" step="any"></label><button type="submit" class="ac-submit">Számítás</button><div class="ac-result" role="status" aria-live="polite" aria-atomic="true">Ellenőrizd a kötelező mezőket és az értékhatárokat.</div></form><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -119,41 +114,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-05">
 <h2>Az autótartás teljes éves költségének összesítése</h2>

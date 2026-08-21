@@ -26,38 +26,6 @@
   <meta name="twitter:description" content="BMI kalkulátor felnőtteknek: testtömegindex számítás testsúly és magasság alapján, kategóriák, képlet, példaszámítás és értelmezési korlátok." />
   <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "A BMI diagnózis?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Nem. A BMI tájékoztató jellegű mutató, és nem helyettesít orvosi vizsgálatot vagy testösszetétel-mérést."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Miért lehet félrevezető a BMI sportolóknál?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "A nagyobb izomtömeg magasabb testsúlyt okozhat, miközben a testzsír aránya nem feltétlenül magas."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Gyerekeknél használható a felnőtt BMI kalkulátor?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Gyermekeknél életkor- és nemspecifikus értelmezés szükséges, ezért a felnőtteknek készült BMI-kategóriák nem alkalmazhatók közvetlenül."
-        }
-      }
-    ]
-  }
-  </script>
 
 <!-- KB_STATIC:structured-data:START -->
 <script id="kb-structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/bmi-kalkulator.html#webpage","url":"https://kalkulatorbazis.hu/kalkulatorok/bmi-kalkulator.html","name":"BMI kalkulátor 2026 | Testtömegindex számítás és értelmezés","description":"BMI kalkulátor felnőtteknek: testtömegindex számítás testsúly és magasság alapján, kategóriák, képlet, példaszámítás és értelmezési korlátok.","inLanguage":"hu-HU","isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"}},{"@type":"SoftwareApplication","@id":"https://kalkulatorbazis.hu/kalkulatorok/bmi-kalkulator.html#calculator","name":"BMI kalkulátor","applicationCategory":"CalculatorApplication","operatingSystem":"Web","url":"https://kalkulatorbazis.hu/kalkulatorok/bmi-kalkulator.html","description":"Testtömegindex kiszámítása testsúly és magasság alapján.","offers":{"@type":"Offer","price":"0","priceCurrency":"HUF"},"isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"},"about":"Egészség és sport kalkulátorok"},{"@type":"BreadcrumbList","@id":"https://kalkulatorbazis.hu/kalkulatorok/bmi-kalkulator.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://kalkulatorbazis.hu/"},{"@type":"ListItem","position":2,"name":"Egészség & sport","item":"https://kalkulatorbazis.hu/egeszseg.html"},{"@type":"ListItem","position":3,"name":"BMI kalkulátor","item":"https://kalkulatorbazis.hu/kalkulatorok/bmi-kalkulator.html"}]},{"@type":"FAQPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/bmi-kalkulator.html#gyik","mainEntity":[{"@type":"Question","name":"A BMI diagnózis?","acceptedAnswer":{"@type":"Answer","text":"Nem. Tájékoztató jellegű mutató, nem helyettesít orvosi vizsgálatot."}},{"@type":"Question","name":"Miért lehet félrevezető sportolóknál?","acceptedAnswer":{"@type":"Answer","text":"Mert a nagyobb izomtömeg magasabb testsúlyt okozhat, miközben a testzsír nem feltétlenül magas."}},{"@type":"Question","name":"Milyen gyakran érdemes számolni?","acceptedAnswer":{"@type":"Answer","text":"Életmódváltásnál havi vagy néhány heti követés hasznosabb lehet, mint a napi ingadozás figyelése."}},{"@type":"Question","name":"Gyerekeknél használható?","acceptedAnswer":{"@type":"Answer","text":"Gyermekeknél életkor- és nemspecifikus értelmezés kell, ezért szakmai forrás vagy orvosi segítség javasolt."}},{"@type":"Question","name":"Mivel érdemes kiegészíteni?","acceptedAnswer":{"@type":"Answer","text":"Derék-csípő aránnyal, testzsírszázalékkal, aktivitási adatokkal és az egészségi állapot figyelembevételével."}}]}]}</script>
@@ -156,7 +124,12 @@
         <p id="result-bmi">–</p>
         <p id="result-category"></p>
       </div>
-    <section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+    <section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -166,41 +139,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" hidden>
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 
     <section class="article">

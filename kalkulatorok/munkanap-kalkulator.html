@@ -91,7 +91,12 @@
 <main id="main-content" class="container page-simple-calculator" data-batch05-calc="munkanap-kalkulator">
 <nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../mindennapi.html">Mindennapok</a></li><li><span aria-current="page">Munkanap</span></li></ol></nav>
 <section class="hero"><h1>Munkanap kalkulátor</h1><p>Számold ki két dátum között a hétfőtől péntekig eső napokat, és adj meg külön kihagyandó dátumokat is.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="workStart">Kezdő dátum</label><input id="workStart" type="date" value="2026-08-24"></div><div><label for="workEnd">Záró dátum</label><input id="workEnd" type="date" value="2026-08-28"></div><div class="calc-grid-full"><label for="workExcluded">Kihagyandó dátumok (opcionális)</label><textarea id="workExcluded" rows="3" placeholder="2026-08-20; 2026-10-23"></textarea><small>Pontosvesszővel, vesszővel vagy sortöréssel választhatod el. A kalkulátor nem tölt be automatikus ünnepnaplistát.</small></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="workResult"><p><strong>Naptári napok:</strong> 5</p><p><strong>Hétköznapok:</strong> 5</p><p><strong>Kihagyott hétköznapok:</strong> 0</p><p><strong>Számított munkanapok:</strong> 5</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="workStart">Kezdő dátum</label><input id="workStart" type="date" value="2026-08-24"></div><div><label for="workEnd">Záró dátum</label><input id="workEnd" type="date" value="2026-08-28"></div><div class="calc-grid-full"><label for="workExcluded">Kihagyandó dátumok (opcionális)</label><textarea id="workExcluded" rows="3" placeholder="2026-08-20; 2026-10-23"></textarea><small>Pontosvesszővel, vesszővel vagy sortöréssel választhatod el. A kalkulátor nem tölt be automatikus ünnepnaplistát.</small></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="workResult"><p><strong>Naptári napok:</strong> 5</p><p><strong>Hétköznapok:</strong> 5</p><p><strong>Kihagyott hétköznapok:</strong> 0</p><p><strong>Számított munkanapok:</strong> 5</p></div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -101,49 +106,63 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Mit számol a munkanap kalkulátor?</h2><p>A kalkulátor a kezdő és záró dátumot is beleszámítja, majd végiglépked az időszak naptári napjain. A szombatot és vasárnapot automatikusan hétvégének tekinti, a hétfőtől péntekig tartó napokat pedig hétköznapként számolja.</p><p>Ha van olyan hétköznap, amelyet nem szeretnél munkanapnak számítani, a kihagyandó dátumok mezőben külön megadhatod. Ez lehet például ünnepnap, céges szünnap vagy bármilyen saját kivétel.</p><div class="example-box"><h3>Példa</h3><p>2026. augusztus 24. és 28. között öt naptári nap van, és mind az öt hétfőtől péntekig esik. Külön kizárás nélkül ezért az eredmény 5 munkanap.</p></div><h2>Miért nincs automatikus magyar ünnepnaplista?</h2><p>Az ünnepnapok, áthelyezett munkanapok és egyedi munkarendek évről évre változhatnak. Az eszköz ezért tudatosan általános naptári számítást végez, és a speciális napokat rád bízza. Így régi vagy jövőbeli dátumtartományokra is használható anélkül, hogy elavult naptáradatokra támaszkodna.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>A kezdő és záró nap beleszámít?</summary><p>Igen. Ha hétköznapra esnek és nincsenek kizárva, mindkettőt beleszámítja.</p></details><details><summary>Az ünnepnapokat ismeri?</summary><p>Nem automatikusan. Az ünnepnapokat vagy más szünnapokat a kihagyandó dátumok mezőben adhatod meg.</p></details><details><summary>Mi történik, ha hétvégi dátumot adok meg kizárásként?</summary><p>Nem csökkenti kétszer az eredményt: a hétvége eleve nem számít hétköznapnak.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="datum-kulonbseg-kalkulator.html">datum kulonbseg</a><a href="datum-hozzaadas-kivonas-kalkulator.html">datum hozzaadas kivonas</a><a href="fizetesi-hatarido-kalkulator.html">fizetesi hatarido</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
 <section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>Általános naptári segédeszköz. Nem alkalmaz automatikusan magyar munkaszüneti napokat, áthelyezett munkanapokat vagy munkajogi szabályokat.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20Munkanap%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
 
 
-<!-- KB_STATIC:reliability:START -->
-<section class="reliability-note"><div><h2 id="hitelesseg-es-szamitasi-korlatok-2">Hitelesség és számítási korlátok</h2><p>Általános naptári segédeszköz. Nem alkalmaz automatikusan magyar munkaszüneti napokat, áthelyezett munkanapokat vagy munkajogi szabályokat.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20Munkanap%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
-<!-- KB_STATIC:reliability:END -->
 </main>
 <div id="footer"><div class="footer-container kb-footer">
   <section class="footer-cta" aria-labelledby="footerCtaTitle">

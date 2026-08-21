@@ -99,7 +99,12 @@
 <h1>Vakolat kalkulátor</h1>
 <p>Becsüld meg a vakolat vagy glettanyag mennyiségét felület és rétegvastagság alapján.</p>
 </section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><form class="construction-planner" novalidate><div class="construction-heading"><p class="eyebrow">Részletes anyagtervező</p><h2>Vakolat- és glettanyag-tervező</h2><p>Minimum–maximum gyártói kiadóssággal, rétegvastagsággal, nyílászáró-kivonással és zsákszámmal számol.</p></div><div class="construction-fields"><label class="construction-field"><span>Teljes falfelület (m²)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="grossArea" id="construction-grossArea"></label><label class="construction-field"><span>Ajtók összes felülete (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="doorArea" id="construction-doorArea"></label><label class="construction-field"><span>Ablakok összes felülete (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="windowArea" id="construction-windowArea"></label><label class="construction-field"><span>Egyéb kivonható felület (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="otherArea" id="construction-otherArea"></label><label class="construction-field"><span>Átlagos rétegvastagság (mm)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="thickness" id="construction-thickness"></label><label class="construction-field"><span>Minimum kiadósság (kg/m²/mm)</span><input type="number" step="any" min="0.01" inputmode="decimal" name="minConsumption" id="construction-minConsumption"></label><label class="construction-field"><span>Maximum kiadósság (kg/m²/mm)</span><input type="number" step="any" min="0.01" inputmode="decimal" name="maxConsumption" id="construction-maxConsumption"></label><label class="construction-field"><span>Zsák mérete (kg)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="bagSize" id="construction-bagSize"></label><label class="construction-field"><span>Anyagveszteség</span><select name="waste" id="construction-waste"><option value="5">5% – egyszerű, kevés vágás</option><option value="8">8% – általános</option><option value="12">12% – sok vágás / mintázat</option><option value="15">15% – bonyolult felület</option></select></label></div><div class="construction-actions"><button type="submit">Anyagigény kiszámítása</button><button type="reset" class="secondary-btn">Alapértékek visszaállítása</button></div><p class="construction-error" role="alert"></p><div class="result-box construction-results" role="status" aria-live="polite" aria-atomic="true"><dl class="construction-results-grid"><div><dt>Nettó vakolandó felület</dt><dd>40 m²</dd></div><div><dt>Nettó anyagigény</dt><dd>480–600 kg</dd></div><div><dt>Vásárolandó anyag</dt><dd>518,4–648 kg</dd></div><div><dt>Szükséges zsák</dt><dd>21–26 db</dd></div></dl></div></form><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><form class="construction-planner" novalidate><div class="construction-heading"><p class="eyebrow">Részletes anyagtervező</p><h2>Vakolat- és glettanyag-tervező</h2><p>Minimum–maximum gyártói kiadóssággal, rétegvastagsággal, nyílászáró-kivonással és zsákszámmal számol.</p></div><div class="construction-fields"><label class="construction-field"><span>Teljes falfelület (m²)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="grossArea" id="construction-grossArea"></label><label class="construction-field"><span>Ajtók összes felülete (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="doorArea" id="construction-doorArea"></label><label class="construction-field"><span>Ablakok összes felülete (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="windowArea" id="construction-windowArea"></label><label class="construction-field"><span>Egyéb kivonható felület (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="otherArea" id="construction-otherArea"></label><label class="construction-field"><span>Átlagos rétegvastagság (mm)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="thickness" id="construction-thickness"></label><label class="construction-field"><span>Minimum kiadósság (kg/m²/mm)</span><input type="number" step="any" min="0.01" inputmode="decimal" name="minConsumption" id="construction-minConsumption"></label><label class="construction-field"><span>Maximum kiadósság (kg/m²/mm)</span><input type="number" step="any" min="0.01" inputmode="decimal" name="maxConsumption" id="construction-maxConsumption"></label><label class="construction-field"><span>Zsák mérete (kg)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="bagSize" id="construction-bagSize"></label><label class="construction-field"><span>Anyagveszteség</span><select name="waste" id="construction-waste"><option value="5">5% – egyszerű, kevés vágás</option><option value="8">8% – általános</option><option value="12">12% – sok vágás / mintázat</option><option value="15">15% – bonyolult felület</option></select></label></div><div class="construction-actions"><button type="submit">Anyagigény kiszámítása</button><button type="reset" class="secondary-btn">Alapértékek visszaállítása</button></div><p class="construction-error" role="alert"></p><div class="result-box construction-results" role="status" aria-live="polite" aria-atomic="true"><dl class="construction-results-grid"><div><dt>Nettó vakolandó felület</dt><dd>40 m²</dd></div><div><dt>Nettó anyagigény</dt><dd>480–600 kg</dd></div><div><dt>Vásárolandó anyag</dt><dd>518,4–648 kg</dd></div><div><dt>Szükséges zsák</dt><dd>21–26 db</dd></div></dl></div></form><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -109,41 +114,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
 <h2>Vakolat- vagy glettanyag mennyiségének becslése</h2>
 <p>A kalkulátor a felület, a tervezett rétegvastagság, a gyártó által megadott fajlagos anyagigény és a zsákméret alapján számol kilogrammot és teljes zsákszámot. Kézi vagy gépi vakolat, illetve megfelelő adatokkal más poranyag előzetes tervezésére használható.</p>

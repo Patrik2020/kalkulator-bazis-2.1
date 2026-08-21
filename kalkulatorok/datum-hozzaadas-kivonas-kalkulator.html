@@ -91,7 +91,12 @@
 <main id="main-content" class="container page-simple-calculator" data-batch02-calc="datum-hozzaadas-kivonas-kalkulator">
 <nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../mindennapi.html">Mindennapok</a></li><li><span aria-current="page">Dátum hozzáadás/kivonás</span></li></ol></nav>
 <section class="hero"><h1>Dátum hozzáadás és kivonás kalkulátor</h1><p>Napok hozzáadása egy dátumhoz vagy kivonása belőle, a cél dátum és a hét napjának megjelenítésével.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="dateBase">Kiinduló dátum</label><input id="dateBase" type="date" value="2026-08-21"></div><div><label for="dateDays">Napok száma</label><input id="dateDays" type="number" value="30" step="1" inputmode="decimal"></div><div><label for="dateOperation">Művelet</label><select id="dateOperation"><option value="add">Hozzáadás</option><option value="subtract">Kivonás</option></select></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="dateResult"><p><strong>Eredmény dátuma:</strong> 2026. szeptember 20.</p><p><strong>A hét napja:</strong> vasárnap</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="dateBase">Kiinduló dátum</label><input id="dateBase" type="date" value="2026-08-21"></div><div><label for="dateDays">Napok száma</label><input id="dateDays" type="number" value="30" step="1" inputmode="decimal"></div><div><label for="dateOperation">Művelet</label><select id="dateOperation"><option value="add">Hozzáadás</option><option value="subtract">Kivonás</option></select></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="dateResult"><p><strong>Eredmény dátuma:</strong> 2026. szeptember 20.</p><p><strong>A hét napja:</strong> vasárnap</p></div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -101,49 +106,63 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Mire jó a dátum hozzáadás/kivonás?</h2><p>Az eszköz egy megadott naptári dátumhoz egész napokat ad hozzá, vagy napokat von ki belőle. Hasznos lehet tervezési határidők, próbaidők, utazások, garanciális időpontok vagy egyszerű naptári ellenőrzések során.</p><p>A számítás naptári napokkal dolgozik, tehát a hétvégéket és ünnepnapokat is beleszámítja. Nem munkanap-kalkulátor, és jogszabály szerinti határidő-számításnál külön szabályok vonatkozhatnak a kezdőnapra, a lejárati napra és a munkaszüneti napokra.</p><h2>Hogyan számol?</h2><p>A dátumot időzónától független naptári értékként kezeli, majd a megadott egész napszámot hozzáadja vagy kivonja. Így az óraátállítás nem okoz egy nappal elcsúszó eredményt.</p><div class="example-box"><h3>Példa</h3><p>2026. augusztus 21-hez 30 napot hozzáadva 2026. szeptember 20. adódik. Ugyanebből a dátumból 30 napot kivonva 2026. július 22. lenne az eredmény.</p></div><h2>Mikor használj másik kalkulátort?</h2><p>Ha két dátum közötti eltérést keresel, a Dátum különbség kalkulátor közvetlenebb. Fizetési vagy hivatalos határidőnél pedig mindig ellenőrizd, hogy naptári napot, munkanapot vagy külön jogi szabályt kell-e alkalmazni.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>A hétvégék beleszámítanak?</summary><p>Igen. A kalkulátor naptári napokkal dolgozik, ezért a szombat, vasárnap és ünnepnap is egy-egy nap.</p></details><details><summary>Lehet negatív napszámot írni?</summary><p>A félreértések elkerülésére pozitív egész napszámot kér, az irányt pedig a Hozzáadás/Kivonás választóval állíthatod be.</p></details><details><summary>Hivatalos határidőhöz használható?</summary><p>Tájékozódásra igen, de hivatalos határidőnél az adott szabályozás kezdő- és lejárati napra vonatkozó előírásait külön ellenőrizni kell.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="datum-kulonbseg-kalkulator.html">datum kulonbseg</a><a href="eletkor-kalkulator.html">eletkor</a><a href="fizetesi-hatarido-kalkulator.html">fizetesi hatarido</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
 <section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>A kalkulátor naptári napokat ad hozzá vagy von ki; munkanap-, ünnepnap- és jogi határidőszabályokat nem alkalmaz automatikusan.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20D%C3%A1tum%20hozz%C3%A1ad%C3%A1s%20%C3%A9s%20kivon%C3%A1s%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
 
 
-<!-- KB_STATIC:reliability:START -->
-<section class="reliability-note"><div><h2 id="hitelesseg-es-szamitasi-korlatok">Hitelesség és számítási korlátok</h2><p>A kalkulátor naptári napokat ad hozzá vagy von ki; munkanap-, ünnepnap- és jogi határidőszabályokat nem alkalmaz automatikusan.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20D%C3%A1tum%20hozz%C3%A1ad%C3%A1s%20%C3%A9s%20kivon%C3%A1s%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
-<!-- KB_STATIC:reliability:END -->
 </main>
 <div id="footer"><div class="footer-container kb-footer">
   <section class="footer-cta" aria-labelledby="footerCtaTitle">

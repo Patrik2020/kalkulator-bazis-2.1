@@ -73,7 +73,12 @@
     </div>
   </div>
 </header>
-</div><main id="main-content" class="container page-simple-calculator" data-simple-calc="tetocserep-kalkulator"><section class="hero"><h1>Tetőcserép kalkulátor</h1><p>Becsüld meg a tetőfedéshez szükséges cserepek számát.</p></section><section class="card card-calculator kb-calculator-shell" id="kalkulator"><form class="construction-planner" novalidate><div class="construction-heading"><p class="eyebrow">Részletes anyagtervező</p><h2>Tetőcserép- és csomagtervező</h2><p>Minimum–maximum darabszámmal, áttörésekkel, vágási ráhagyással és csomagmérettel számol.</p></div><div class="construction-fields"><label class="construction-field"><span>Teljes tetőfelület (m²)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="roofArea" id="construction-roofArea"></label><label class="construction-field"><span>Tetőablakok és áttörések (m²)</span><input type="number" step="any" min="0" inputmode="decimal" name="openings" id="construction-openings"></label><label class="construction-field"><span>Minimum cserépigény (db/m²)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="tilesMin" id="construction-tilesMin"></label><label class="construction-field"><span>Maximum cserépigény (db/m²)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="tilesMax" id="construction-tilesMax"></label><label class="construction-field"><span>Vágási/törési ráhagyás</span><select name="waste" id="construction-waste"><option value="5">5% – egyszerű, kevés vágás</option><option value="8">8% – általános</option><option value="12">12% – sok vágás / mintázat</option><option value="15">15% – bonyolult felület</option></select></label><label class="construction-field"><span>Csomag/raklap darabszáma</span><input type="number" step="any" min="1" inputmode="decimal" name="packSize" id="construction-packSize"></label></div><div class="construction-actions"><button type="submit">Anyagigény kiszámítása</button><button type="reset" class="secondary-btn">Alapértékek visszaállítása</button></div><p class="construction-error" role="alert"></p><div class="result-box construction-results" role="status" aria-live="polite" aria-atomic="true"><dl class="construction-results-grid"><div><dt>Nettó fedendő tetőfelület</dt><dd>117 m²</dd></div><div><dt>Cserépigény ráhagyással</dt><dd>1201–1390 db</dd></div><div><dt>Csomag/raklap</dt><dd>6–6 db</dd></div></dl></div></form><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+</div><main id="main-content" class="container page-simple-calculator" data-simple-calc="tetocserep-kalkulator"><section class="hero"><h1>Tetőcserép kalkulátor</h1><p>Becsüld meg a tetőfedéshez szükséges cserepek számát.</p></section><section class="card card-calculator kb-calculator-shell" id="kalkulator"><form class="construction-planner" novalidate><div class="construction-heading"><p class="eyebrow">Részletes anyagtervező</p><h2>Tetőcserép- és csomagtervező</h2><p>Minimum–maximum darabszámmal, áttörésekkel, vágási ráhagyással és csomagmérettel számol.</p></div><div class="construction-fields"><label class="construction-field"><span>Teljes tetőfelület (m²)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="roofArea" id="construction-roofArea"></label><label class="construction-field"><span>Tetőablakok és áttörések (m²)</span><input type="number" step="any" min="0" inputmode="decimal" name="openings" id="construction-openings"></label><label class="construction-field"><span>Minimum cserépigény (db/m²)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="tilesMin" id="construction-tilesMin"></label><label class="construction-field"><span>Maximum cserépigény (db/m²)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="tilesMax" id="construction-tilesMax"></label><label class="construction-field"><span>Vágási/törési ráhagyás</span><select name="waste" id="construction-waste"><option value="5">5% – egyszerű, kevés vágás</option><option value="8">8% – általános</option><option value="12">12% – sok vágás / mintázat</option><option value="15">15% – bonyolult felület</option></select></label><label class="construction-field"><span>Csomag/raklap darabszáma</span><input type="number" step="any" min="1" inputmode="decimal" name="packSize" id="construction-packSize"></label></div><div class="construction-actions"><button type="submit">Anyagigény kiszámítása</button><button type="reset" class="secondary-btn">Alapértékek visszaállítása</button></div><p class="construction-error" role="alert"></p><div class="result-box construction-results" role="status" aria-live="polite" aria-atomic="true"><dl class="construction-results-grid"><div><dt>Nettó fedendő tetőfelület</dt><dd>117 m²</dd></div><div><dt>Cserépigény ráhagyással</dt><dd>1201–1390 db</dd></div><div><dt>Csomag/raklap</dt><dd>6–6 db</dd></div></dl></div></form><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -83,41 +88,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" hidden>
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-08"><h2>Tetőcserép-darabszám becslése</h2><p>A kalkulátor a tető tényleges ferde felületéből, a kiválasztott cserép négyzetméterenkénti igényéből és a ráhagyásból számol darabszámot. Első költségbecsléshez használható, de a tetőfedési tervet és a gyártói kiosztási előírást nem helyettesíti.</p><p>A tető vízszintes vetülete nem azonos a ferde tetőfelülettel. Hajlásszög, konty, vápa, tetőkibúvó, kémény és törések mind növelhetik a tényleges felületet és a vágási veszteséget.</p><h2>Számítás</h2><p><strong>Darabszám = tetőfelület × db/m² × (1 + ráhagyás / 100)</strong>, felfelé kerekítve. A db/m² értéket mindig a konkrét cserép műszaki adatlapjáról vedd.</p><div class="example-box"><h3>Példa</h3><p>140 m² tetőfelületnél, 10 db/m² cserépigénnyel és 8% ráhagyással 1 512 darab adódik.</p></div><h2>Miért változhat a db/m²?</h2><p>Egyes cserepeknél a tényleges fedési hossz és léctávolság tartományban állítható, ezért ugyanannak a típusnak a négyzetméterenkénti igénye sem feltétlenül egyetlen fix szám. A gyártói táblázat és az adott tető hajlásszöge együtt lehet irányadó.</p><h2>A kiegészítő elemeket külön számold</h2><p>Gerinccserép, szegélycserép, szellőzőelem, hófogó, kezdőelem, félcserép, fólia, ellenléc, tetőléc, rögzítők és bádogos elemek külön mennyiséget igényelnek. Ezeket normál cserép-darabszámmal nem lehet megbízhatóan helyettesíteni.</p><h2>Ráhagyás összetett tetőn</h2><p>Egyszerű nyeregtetőn kisebb, sok vápánál, kontynál és tetőkibúvónál nagyobb tartalék lehet indokolt. Az azonos gyártási tételből félretett néhány darab későbbi javításnál is értékes lehet.</p><h2>Gyakori hibák</h2><ul><li>Az épület alapterületét tetőfelületként használják.</li><li>Más cseréptípus db/m² adatát adják meg.</li><li>A kiegészítő elemeket normál cserépként számolják.</li><li>A hajlásszög és a léctávolság hatását figyelmen kívül hagyják.</li><li>Túl kevés tartalékot hagynak későbbi javításhoz.</li></ul><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Hol találom a db/m² értéket?</summary><p>A gyártó műszaki adatlapján, gyakran a léctávolság függvényében.</p></details><details><summary>Miért kell ráhagyás?</summary><p>Vágás, törés, vápa, konty és későbbi javítás miatt.</p></details><details><summary>A gerinccserepet is számolja?</summary><p>Nem, azt a gerinc és élgerinc hossza alapján külön kell számítani.</p></details><details><summary>Elég a tető alapterületét megadni?</summary><p>Nem. A ferde tetőfelület nagyobb a vízszintes vetületnél.</p></details><details><summary>Palára vagy lemezre használható?</summary><p>Csak akkor, ha a megfelelő egységigényt adod meg, de az adott fedési rendszer szabályai eltérhetnek.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="tegla-kalkulator.html">Tégla kalkulátor</a><a href="hoszigeteles-kalkulator.html">Hőszigetelés</a><a href="beton-kalkulator.html">Beton kalkulátor</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-08">2026. augusztus 8.</time></p></section>
 
 

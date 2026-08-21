@@ -91,7 +91,12 @@
 <main id="main-content" class="container page-simple-calculator" data-batch05-calc="zuzottko-kalkulator">
 <nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../epitoipari.html">Otthon &amp; felújítás</a></li><li><span aria-current="page">Zúzottkő</span></li></ol></nav>
 <section class="hero"><h1>Zúzottkő kalkulátor</h1><p>Zúzottkő térfogat és tömeg becslése felület, rétegvastagság, anyagsűrűség és ráhagyás alapján.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="stoneArea">Felület (m²)</label><input id="stoneArea" type="number" value="40" min="0" step="0.1" inputmode="decimal"></div><div><label for="stoneDepth">Rétegvastagság (cm)</label><input id="stoneDepth" type="number" value="8" min="0" step="0.5" inputmode="decimal"></div><div><label for="stoneDensity">Sűrűség (t/m³)</label><input id="stoneDensity" type="number" value="1.6" min="0" step="0.01" inputmode="decimal"></div><div><label for="stoneWaste">Ráhagyás (%)</label><input id="stoneWaste" type="number" value="10" min="0" max="100" step="1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="stoneResult"><p><strong>Alap térfogat:</strong> 3,2 m³</p><p><strong>Ráhagyással:</strong> 3,52 m³</p><p><strong>Becsült tömeg:</strong> 5,632 t</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="stoneArea">Felület (m²)</label><input id="stoneArea" type="number" value="40" min="0" step="0.1" inputmode="decimal"></div><div><label for="stoneDepth">Rétegvastagság (cm)</label><input id="stoneDepth" type="number" value="8" min="0" step="0.5" inputmode="decimal"></div><div><label for="stoneDensity">Sűrűség (t/m³)</label><input id="stoneDensity" type="number" value="1.6" min="0" step="0.01" inputmode="decimal"></div><div><label for="stoneWaste">Ráhagyás (%)</label><input id="stoneWaste" type="number" value="10" min="0" max="100" step="1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="stoneResult"><p><strong>Alap térfogat:</strong> 3,2 m³</p><p><strong>Ráhagyással:</strong> 3,52 m³</p><p><strong>Becsült tömeg:</strong> 5,632 t</p></div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -101,49 +106,63 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Hogyan becsülhető a zúzottkő mennyisége?</h2><p>A felületet megszorozzuk a méterben kifejezett rétegvastagsággal, így megkapjuk a geometriai térfogatot köbméterben. Erre kerül a választott ráhagyás, majd a megadott tonna/köbméter sűrűséggel becsülhető a tömeg.</p><p>A sűrűség erősen függ az anyag szemcseméretétől, nedvességétől és tömörségétől. A példában szereplő 1,6 t/m³ csak kiinduló érték; rendelésnél a beszállító adatát érdemes használni.</p><div class="example-box"><h3>Példa</h3><p>40 m² felület és 8 cm rétegvastagság 3,2 m³ alap térfogatot ad. 10% ráhagyással 3,52 m³ szükséges, ami 1,6 t/m³ sűrűséggel körülbelül 5,63 tonna.</p></div><h2>Laza vagy tömörített réteggel számol?</h2><p>A geometriai méret jellemzően a kész rétegre vonatkozik, miközben a szállított laza anyag tömörítés után kisebb térfogatot foglalhat el. A ráhagyás segíthet, de komoly alaprétegnél a kívánt tömörséget és a beszállító váltószámait külön is figyelembe kell venni.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Milyen sűrűséget használjak?</summary><p>A választott anyagra vonatkozó beszállítói vagy gyártói t/m³ adatot, lehetőleg a szállítási állapothoz igazítva.</p></details><details><summary>A ráhagyás kötelező?</summary><p>Nem, de egyenetlen aljzat, tömörödés és kivitelezési veszteség miatt gyakran indokolt.</p></details><details><summary>Kavicsra is használható?</summary><p>Igen, ha a megfelelő sűrűséget adod meg, de az anyagfajtának megfelelő kivitelezési szabályokat külön ellenőrizd.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="terkovezes-kalkulator.html">terkovezes</a><a href="beton-kalkulator.html">beton</a><a href="terfogat-atvalto-kalkulator.html">terfogat atvalto</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
 <section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>Anyagszükséglet-becslés. A tényleges tömeg a szemcsemérettől, nedvességtől, laza/tömör állapottól és beszállítói adatoktól függ.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20Z%C3%BAzottk%C5%91%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
 
 
-<!-- KB_STATIC:reliability:START -->
-<section class="reliability-note"><div><h2 id="hitelesseg-es-szamitasi-korlatok-2">Hitelesség és számítási korlátok</h2><p>Anyagszükséglet-becslés. A tényleges tömeg a szemcsemérettől, nedvességtől, laza/tömör állapottól és beszállítói adatoktól függ.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20Z%C3%BAzottk%C5%91%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
-<!-- KB_STATIC:reliability:END -->
 </main>
 <div id="footer"><div class="footer-container kb-footer">
   <section class="footer-cta" aria-labelledby="footerCtaTitle">

@@ -86,7 +86,12 @@
 </div>
 <main id="main-content" class="container page-kaloria">
 <section class="hero"><h1>Kalória kalkulátor</h1><p>Számold ki a becsült napi energiaigényedet, és értsd meg, hogyan használd az eredményt.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="gender">Nem</label><select id="gender"><option value="male">Férfi</option><option value="female">Nő</option></select></div><div><label for="weight">Testsúly (kg)</label><input type="number" id="weight" placeholder="pl. 75" step="any" inputmode="decimal"></div><div><label for="height">Magasság (cm)</label><input type="number" id="height" placeholder="pl. 175" step="any" inputmode="decimal"></div><div><label for="age">Életkor</label><input type="number" id="age" placeholder="pl. 30" step="any" inputmode="decimal"></div><div><label for="activity">Aktivitási szint</label><select id="activity"><option value="1.2">Ülő életmód</option><option value="1.375">Könnyű mozgás</option><option value="1.55">Közepes aktivitás</option><option value="1.725">Magas aktivitás</option></select></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Napi kalóriaszükséglet:</p><p id="result-calories">–</p><p id="result-goal"></p></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="gender">Nem</label><select id="gender"><option value="male">Férfi</option><option value="female">Nő</option></select></div><div><label for="weight">Testsúly (kg)</label><input type="number" id="weight" placeholder="pl. 75" step="any" inputmode="decimal"></div><div><label for="height">Magasság (cm)</label><input type="number" id="height" placeholder="pl. 175" step="any" inputmode="decimal"></div><div><label for="age">Életkor</label><input type="number" id="age" placeholder="pl. 30" step="any" inputmode="decimal"></div><div><label for="activity">Aktivitási szint</label><select id="activity"><option value="1.2">Ülő életmód</option><option value="1.375">Könnyű mozgás</option><option value="1.55">Közepes aktivitás</option><option value="1.725">Magas aktivitás</option></select></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Napi kalóriaszükséglet:</p><p id="result-calories">–</p><p id="result-goal"></p></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -96,41 +101,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="article"><div class="info-box"><strong>Tipp:</strong> A kalkulátor becslést ad. A többhetes testsúlytrend és a közérzet mutatja meg, mennyire közelít hozzád az eredmény.</div><h2>Mit jelent a napi kalóriaszükséglet?</h2><p>A napi energiaigény azt becsüli, mennyi energiát használ fel a szervezet nyugalomban és a mindennapi aktivitás során. Ez nem egy merev szám: ugyanannál az embernél is változhat a mozgás, alvás, stressz, testösszetétel és életmód függvényében.</p><h2>Hogyan számoljuk?</h2><p>A kalkulátor a Mifflin–St Jeor képlettel becsüli az alapanyagcserét, majd aktivitási szorzóval közelíti a napi teljes energiafelhasználást.</p></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-08"><h2>Az eredmény három részből érthető meg</h2><p><strong>Alapanyagcsere (BMR):</strong> a nyugalmi energiafelhasználás becslése. <strong>Aktivitási szorzó:</strong> a mindennapi mozgás és edzés közelítése. <strong>Célmódosítás:</strong> fogyásnál deficit, tömegnövelésnél többlet alkalmazható.</p><p>A számolt érték ezért nem azt jelenti, hogy pontosan ennyi kalóriát „szabad” enned. Inkább egy tesztelhető kiindulópont.</p><h2>Konkrét példaszámítás</h2><div class="example-box"><h3>2 500 kcal becsült fenntartási igénynél</h3><p>Ha a kalkulátor körülbelül 2 500 kcal napi energiaigényt ad, akkor fogyási célhoz kisebb deficit, tömegnöveléshez kisebb többlet lehet kiindulás. A valós hatást 2–4 hetes trendből érdemes megítélni, nem egyetlen napi mérésből.</p></div><h2>Miért tévedhet az aktivitási szorzó?</h2><p>Az „ülő”, „könnyű”, „közepes” és „magas” aktivitás kategóriák szükségszerűen durva csoportok. Két ember, aki ugyanazt a kategóriát választja, a munkája, lépésszáma, edzésmennyisége és testösszetétele miatt mégis több száz kilokalóriával eltérhet egymástól.</p><h2>Fogyásnál mi fontosabb, mint a tökéletes szám?</h2><ul><li>fenntartható, nem szélsőséges deficit</li><li>elegendő fehérje és változatos étrend</li><li>rendszeres mozgás és megfelelő alvás</li><li>többhetes testsúlytrend, nem napi ingadozás</li><li>olyan étrend, amely hosszabb távon is tartható</li></ul><h2>Miért ingadozik a testsúly akkor is, ha jól számolsz?</h2><p>A mérleg rövid távon nem csak testzsírt mutat. Vízvisszatartás, sóbevitel, szénhidrátbevitel, emésztőrendszeri tartalom, menstruációs ciklus és edzés utáni gyulladás is mozgathatja. Emiatt a heti átlag vagy hosszabb trend informatívabb, mint két egymást követő nap különbsége.</p><h2>Tömegnövelésnél sem kell nagy többlet</h2><p>A nagyobb kalóriatöbblet nem jelenti automatikusan gyorsabb izomépítést. A túlzott többlet több testzsír-növekedést okozhat, miközben az izomépítés ütemét az edzés, regeneráció, fehérjebevitel, edzettségi szint és genetikai adottságok is korlátozzák.</p><h2>Mikor nem megfelelő ez a kalkulátor?</h2><p>Gyermekkorban, várandósság alatt, evészavar fennállásakor vagy gyanúja esetén, jelentős krónikus betegség, gyors nem szándékos testsúlyváltozás vagy speciális klinikai étrend mellett ne általános kalkulátorra építs személyes tervet.</p><h2>Gyakori hibák</h2><ul><li>A BMR-t összekeverik a teljes napi energiaigénnyel.</li><li>Túl magas aktivitási szorzót választanak.</li><li>Egyetlen nap súlyváltozásából következtetnek a kalóriadeficitre.</li><li>A becsült értéket pontos mérésnek tekintik.</li><li>Túl nagy deficitet vagy többletet választanak a gyorsabb eredmény reményében.</li></ul><h2>Gyakori kérdések</h2><div class="faq-list"><details><summary>Pontosan megmondja, mennyit ehetek?</summary><p>Nem. Becsült kiindulópontot ad, amelyet a többhetes eredmények alapján lehet finomítani.</p></details><details><summary>Mi az alapanyagcsere?</summary><p>Az az energiamennyiség, amelyet a szervezet teljes nyugalomban az alapvető életműködések fenntartására használ.</p></details><details><summary>Miért fontos az aktivitás?</summary><p>Mert a napi energiafelhasználás jelentős része a mozgásból, munkából és edzésből származhat.</p></details><details><summary>Mekkora deficit jó fogyáshoz?</summary><p>Nincs mindenkire érvényes ideális szám; általában a fenntartható, mérsékelt megközelítés életszerűbb, mint a drasztikus csökkentés.</p></details><details><summary>Miért nem fogyok, ha a kalkulátor szerint deficitben vagyok?</summary><p>Lehet, hogy a becsült fenntartási érték túl magas, a bevitel alulbecsült, vagy a rövid távú vízingadozás elfedi a trendet. Többhetes adatokból érdemes következtetni.</p></details><details><summary>Makrókat is számol?</summary><p>Nem ezen az oldalon. A kalóriaeredményt a külön makró kalkulátorban tudod fehérjére, zsírra és szénhidrátra felosztani.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="bmi-kalkulator.html">BMI kalkulátor</a><a href="bmr-kalkulator.html">BMR kalkulátor</a><a href="makro-kalkulator.html">Makró kalkulátor</a><a href="feherje-szukseglet-kalkulator.html">Fehérje szükséglet kalkulátor</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-08">2026. augusztus 8.</time></p></section>

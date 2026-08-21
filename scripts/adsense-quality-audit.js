@@ -262,6 +262,33 @@ const records = htmlFiles.map(scoreRecord).sort((a, b) => a.name.localeCompare(b
 const average = Math.round(records.reduce((sum, record) => sum + record.score, 0) / records.length);
 const weak = records.filter((record) => record.score < 80);
 const excellent = records.filter((record) => record.score >= 90);
+const lifeHubPages = new Set([
+  "elethelyzetek.html",
+  "landing-pages/elethelyzetek/autofenntartas.html",
+  "landing-pages/elethelyzetek/befektetes-kezdoknek.html",
+  "landing-pages/elethelyzetek/csaladi-koltsegvetes.html",
+  "landing-pages/elethelyzetek/felujitas-tervezese.html",
+  "landing-pages/elethelyzetek/fizetes-munkaber.html",
+  "landing-pages/elethelyzetek/lakasvasarlas.html",
+]);
+
+if (process.argv.includes("--gate-life-hubs")) {
+  const hubs = records.filter((record) => lifeHubPages.has(record.name));
+  const failedHubs = hubs.filter((record) => record.score < 80);
+
+  if (hubs.length !== lifeHubPages.size) {
+    console.error(`AdSense élethelyzet-gate: ${hubs.length}/${lifeHubPages.size} oldal található.`);
+    process.exit(1);
+  }
+  if (failedHubs.length) {
+    console.error("AdSense élethelyzet-gate: 80 pont alatti indexelhető hub:");
+    failedHubs.forEach((record) => console.error(`- ${record.name}: ${record.score}/100`));
+    process.exit(1);
+  }
+
+  console.log(`AdSense élethelyzet-gate OK: ${hubs.length}/${lifeHubPages.size} oldal legalább 80 pont.`);
+  process.exit(0);
+}
 
 const lines = [
   "# Kalkulátor Bázis – AdSense és EEAT minőségi audit",

@@ -173,6 +173,20 @@ function categoryCard(calculator, category) {
   return `        <a class="card card-link calculator-card ${escapeHtml(category.cardClass)}" href="${escapeHtml(calculator.url)}">\n          <h3>${escapeHtml(calculator.title)}</h3>\n          <p>${escapeHtml(calculator.description)}</p>\n        </a>`;
 }
 
+function renderCalculatorCatalog(data) {
+  const catalogOrder = ["penzugyi", "epitoipari", "egeszseg", "mindennapi", "auto", "atvaltok"];
+
+  const sections = catalogOrder.map((categoryId) => {
+    const category = categories.find((item) => item.id === categoryId);
+    if (!category) throw new Error(`Ismeretlen katalóguskategória: ${categoryId}`);
+
+    const calculators = data.calculators.filter((calculator) => calculator.category === categoryId);
+    return `    <section class="section-block" aria-labelledby="catalog-${escapeHtml(categoryId)}">\n      <h2 class="section-heading" id="catalog-${escapeHtml(categoryId)}">${escapeHtml(category.title)}</h2>\n      <div class="category-grid">\n${calculators.map((calculator) => categoryCard(calculator, category)).join("\n\n")}\n      </div>\n    </section>`;
+  });
+
+  return `<div data-render="calculator-catalog">\n${sections.join("\n\n")}\n  </div>`;
+}
+
 function renderGroupedCalculators(category, calculators) {
   const blocks = category.groups.map((group) => {
     const items = calculators.filter(
@@ -226,10 +240,25 @@ function updateHomePage(data) {
   fs.writeFileSync(filePath, html, "utf8");
 }
 
+function updateCatalogPage(data) {
+  const filePath = path.join(root, "kalkulatorok.html");
+  let html = fs.readFileSync(filePath, "utf8");
+  const catalog = findElement(html, { attr: "data-render", value: "calculator-catalog" });
+  if (!catalog) throw new Error("A kalkulatorok.html statikus katalógushelyőrzője nem található.");
+
+  html = replaceElement(
+    html,
+    { attr: "data-render", value: "calculator-catalog" },
+    renderCalculatorCatalog(data)
+  );
+  fs.writeFileSync(filePath, html, "utf8");
+}
+
 const updatedSource = updateSiteData();
 const data = mergeExpansionData(loadData(updatedSource));
 
 for (const category of categories) updateCategoryPage(category, data);
 updateHomePage(data);
+updateCatalogPage(data);
 
 console.log(`Kategória-taxonomia alkalmazva: ${categories.length} fő kategória, ${data.calculators.length} katalogizált kalkulátor.`);

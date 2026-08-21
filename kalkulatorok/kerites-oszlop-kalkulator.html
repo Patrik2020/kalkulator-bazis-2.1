@@ -91,7 +91,12 @@
 <main id="main-content" class="container page-simple-calculator" data-batch03-calc="kerites-oszlop-kalkulator">
 <nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../epitoipari.html">Otthon &amp; felújítás</a></li><li><span aria-current="page">Kerítés oszlop</span></li></ol></nav>
 <section class="hero"><h1>Kerítés oszlop kalkulátor</h1><p>Becsüld meg egy egyenes, kapu nélküli kerítésszakaszhoz szükséges mezők és oszlopok számát a teljes hossz és a legnagyobb oszloptávolság alapján.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="fenceLength">Egyenes kerítésszakasz hossza (m)</label><input id="fenceLength" type="number" value="20" min="0" step="0.1" inputmode="decimal"></div><div><label for="fenceSpacing">Legnagyobb oszloptávolság (m)</label><input id="fenceSpacing" type="number" value="2.5" min="0" step="0.05" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="fenceResult"><p><strong>Kerítésmezők száma:</strong> 8 db</p><p><strong>Oszlopok száma:</strong> 9 db</p><p><strong>Tényleges átlagos osztás:</strong> 2,5 m</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="fenceLength">Egyenes kerítésszakasz hossza (m)</label><input id="fenceLength" type="number" value="20" min="0" step="0.1" inputmode="decimal"></div><div><label for="fenceSpacing">Legnagyobb oszloptávolság (m)</label><input id="fenceSpacing" type="number" value="2.5" min="0" step="0.05" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="fenceResult"><p><strong>Kerítésmezők száma:</strong> 8 db</p><p><strong>Oszlopok száma:</strong> 9 db</p><p><strong>Tényleges átlagos osztás:</strong> 2,5 m</p></div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -101,49 +106,63 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Hogyan becsüli az oszlopok számát?</h2><p>A kalkulátor egyetlen egyenes, két végponttal rendelkező kerítésszakaszt feltételez. A teljes hosszt elosztja a megadott legnagyobb oszloptávolsággal, a szükséges mezők számát felfelé kerekíti, majd ehhez egy záró oszlopot ad. Így az elkészült átlagos osztás nem lesz nagyobb a megadott határnál.</p><p>Például 20 méteres szakasznál és legfeljebb 2,5 méteres osztásnál 8 mező és 9 oszlop szükséges, az átlagos oszloptávolság pontosan 2,5 méter.</p><h2>Mire nem alkalmas ez a gyors becslés?</h2><p>Sarkok, kapuk, különálló szakaszok, lejtős terep vagy eltérő mezőszélességek esetén további oszlopokra lehet szükség. A szerkezeti méretezést, az alapozást és az oszloptávolság megengedett maximumát a választott kerítésrendszer gyártói előírása és a helyi körülmények alapján kell meghatározni.</p><div class="example-box"><h3>Példa</h3><p>Ha 17 méter hosszú kerítést legfeljebb 2,5 méteres osztással építesz, 17 / 2,5 = 6,8, tehát 7 mező szükséges. Egy folyamatos egyenes szakaszon ehhez 8 oszlop tartozik, az átlagos osztás kb. 2,43 méter.</p></div><h2>Anyagtervezési tipp</h2><p>A darabszám után külön számold ki az oszlopok alapjához szükséges betont, valamint a választott panel, deszka vagy háló tényleges modulméreteit. A névleges és szerelési méret eltérhet.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>A kapuoszlopokat beleszámolja?</summary><p>Nem. A modell kapu nélküli, egyenes szakaszt feltételez. Kapunál a rendszer kialakításától függően külön oszlopok szükségesek.</p></details><details><summary>Miért kerekít felfelé?</summary><p>Azért, hogy a tényleges átlagos oszloptávolság ne lépje túl a megadott maximumot.</p></details><details><summary>Saroknál ugyanígy számolhatok?</summary><p>A külön irányba forduló szakaszokat célszerű külön-külön kiszámolni, majd a közös sarokoszlopot csak egyszer számolni.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="beton-kalkulator.html">beton</a><a href="tegla-kalkulator.html">tegla</a><a href="terkovezes-kalkulator.html">terkovezes</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
 <section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>Gyors darabszám-becslés egyenes, kapu nélküli kerítésszakaszra. A végleges kiosztást és szerkezeti méretezést a konkrét rendszer előírásaihoz kell igazítani.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20Ker%C3%ADt%C3%A9s%20oszlop%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
 
 
-<!-- KB_STATIC:reliability:START -->
-<section class="reliability-note"><div><h2 id="hitelesseg-es-szamitasi-korlatok-2">Hitelesség és számítási korlátok</h2><p>Gyors darabszám-becslés egyenes, kapu nélküli kerítésszakaszra. A végleges kiosztást és szerkezeti méretezést a konkrét rendszer előírásaihoz kell igazítani.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20Ker%C3%ADt%C3%A9s%20oszlop%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
-<!-- KB_STATIC:reliability:END -->
 </main>
 <div id="footer"><div class="footer-container kb-footer">
   <section class="footer-cta" aria-labelledby="footerCtaTitle">

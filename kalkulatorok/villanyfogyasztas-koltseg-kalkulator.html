@@ -91,7 +91,12 @@
 <main id="main-content" class="container page-simple-calculator" data-batch03-calc="villanyfogyasztas-koltseg-kalkulator">
 <nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../mindennapi.html">Mindennapok</a></li><li><span aria-current="page">Villanyfogyasztás költség</span></li></ol></nav>
 <section class="hero"><h1>Villanyfogyasztás költség kalkulátor</h1><p>Becsüld meg egy elektromos készülék energiafogyasztását és költségét teljesítmény, napi használati idő, időszak és kWh-ár alapján.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="electricPower">Készülék teljesítménye (W)</label><input id="electricPower" type="number" value="1500" min="0" step="1" inputmode="decimal"></div><div><label for="electricHours">Használat naponta (óra)</label><input id="electricHours" type="number" value="2" min="0" max="24" step="0.1" inputmode="decimal"></div><div><label for="electricDays">Időszak (nap)</label><input id="electricDays" type="number" value="30" min="1" max="3660" step="1" inputmode="decimal"></div><div><label for="electricPrice">Villamosenergia ára (Ft/kWh)</label><input id="electricPrice" type="number" value="70" min="0" step="0.1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="electricResult"><p><strong>Napi fogyasztás:</strong> 3 kWh</p><p><strong>Időszak fogyasztása:</strong> 90 kWh</p><p><strong>Napi becsült költség:</strong> 210 Ft</p><p><strong>Időszak becsült költsége:</strong> 6300 Ft</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="electricPower">Készülék teljesítménye (W)</label><input id="electricPower" type="number" value="1500" min="0" step="1" inputmode="decimal"></div><div><label for="electricHours">Használat naponta (óra)</label><input id="electricHours" type="number" value="2" min="0" max="24" step="0.1" inputmode="decimal"></div><div><label for="electricDays">Időszak (nap)</label><input id="electricDays" type="number" value="30" min="1" max="3660" step="1" inputmode="decimal"></div><div><label for="electricPrice">Villamosenergia ára (Ft/kWh)</label><input id="electricPrice" type="number" value="70" min="0" step="0.1" inputmode="decimal"></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="electricResult"><p><strong>Napi fogyasztás:</strong> 3 kWh</p><p><strong>Időszak fogyasztása:</strong> 90 kWh</p><p><strong>Napi becsült költség:</strong> 210 Ft</p><p><strong>Időszak becsült költsége:</strong> 6300 Ft</p></div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -101,49 +106,63 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Hogyan számolható egy készülék villanyköltsége?</h2><p>A névleges teljesítményt wattból kilowattra kell átváltani, majd meg kell szorozni a használati idővel. Egy 1500 W-os készülék 2 órás működés mellett elméletileg 1,5 kW × 2 h = 3 kWh energiát használ naponta. A költséghez ezt kell megszorozni a tényleges Ft/kWh árral.</p><p>A kalkulátor a napi fogyasztást, a teljes időszak fogyasztását, valamint a napi és összes becsült költséget is megmutatja.</p><h2>Névleges teljesítmény és valós fogyasztás</h2><p>Sok készülék nem folyamatosan működik a névleges teljesítményén. Termosztátos fűtőeszköz, hűtő, klíma vagy szabályozott motor esetén a tényleges átlagfogyasztás alacsonyabb vagy változó lehet. Pontosabb becsléshez konnektoros fogyasztásmérő vagy a készülék mért energiaadata használható.</p><div class="example-box"><h3>Példa</h3><p>1500 W teljesítmény, napi 2 óra használat és 30 nap esetén az elméleti fogyasztás 90 kWh. 70 Ft/kWh egységárral ez kb. 6300 Ft költséget jelent.</p></div><h2>Milyen árat adj meg?</h2><p>A számládon vagy szolgáltatói tájékoztatóban szereplő, a saját fogyasztásodra érvényes egységárat használd. A kalkulátor nem ismeri automatikusan a tarifádat, kedvezményes sávodat, rendszerhasználati díjaidat vagy egyéb számlatételeidet.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>A 1500 W azt jelenti, hogy mindig ennyit fogyaszt?</summary><p>Nem feltétlenül. Ez jellemzően névleges vagy maximális teljesítmény; szabályozott készülékek átlagos fogyasztása eltérhet.</p></details><details><summary>A teljes villanyszámlát megkapom?</summary><p>Nem. Ez egy készülék energia-költség becslése, és nem tartalmaz minden fix vagy egyéb számlatételt.</p></details><details><summary>Több készüléket hogyan számoljak?</summary><p>Számold ki őket külön, majd add össze az időszakra kapott kWh- és költségértékeket.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="rezsi-megosztas-kalkulator.html">rezsi megosztas</a><a href="teljesitmeny-atvalto-kalkulator.html">teljesitmeny atvalto</a><a href="energia-atvalto-kalkulator.html">energia atvalto</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
 <section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>A számítás névleges teljesítményből és megadott használati időből készül. A tényleges fogyasztás szabályozott készülékeknél és valós használat mellett eltérhet.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20Villanyfogyaszt%C3%A1s%20k%C3%B6lts%C3%A9g%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
 
 
-<!-- KB_STATIC:reliability:START -->
-<section class="reliability-note"><div><h2 id="hitelesseg-es-szamitasi-korlatok-2">Hitelesség és számítási korlátok</h2><p>A számítás névleges teljesítményből és megadott használati időből készül. A tényleges fogyasztás szabályozott készülékeknél és valós használat mellett eltérhet.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20Villanyfogyaszt%C3%A1s%20k%C3%B6lts%C3%A9g%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
-<!-- KB_STATIC:reliability:END -->
 </main>
 <div id="footer"><div class="footer-container kb-footer">
   <section class="footer-cta" aria-labelledby="footerCtaTitle">

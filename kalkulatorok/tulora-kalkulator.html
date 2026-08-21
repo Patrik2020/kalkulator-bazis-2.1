@@ -91,7 +91,12 @@
 <main id="main-content" class="container page-simple-calculator" data-batch05-calc="tulora-kalkulator">
 <nav class="breadcrumb" aria-label="Morzsamenü"><ol><li><a href="../index.html">Főoldal</a></li><li><a href="../mindennapi.html">Mindennapok</a></li><li><span aria-current="page">Túlóra díj</span></li></ol></nav>
 <section class="hero"><h1>Túlóra díj kalkulátor</h1><p>Túlóra óradíj, teljes túlóradíj és a normál órabér feletti többlet kiszámítása saját szorzóval.</p></section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="otRate">Alap órabér (Ft)</label><input id="otRate" type="number" value="3000" min="0" step="1" inputmode="decimal"></div><div><label for="otHours">Túlóra (óra)</label><input id="otHours" type="number" value="8" min="0" step="0.25" inputmode="decimal"></div><div><label for="otMultiplier">Elszámolási szorzó</label><input id="otMultiplier" type="number" value="1.5" min="0" step="0.05" inputmode="decimal"><small>Például 1,5 = az alap órabér 150%-a.</small></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="otResult"><p><strong>Túlóra óradíja:</strong> 4500 Ft/óra</p><p><strong>Teljes túlóradíj:</strong> 36&nbsp;000 Ft</p><p><strong>Normál órabér feletti rész:</strong> 12&nbsp;000 Ft</p></div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid"><div><label for="otRate">Alap órabér (Ft)</label><input id="otRate" type="number" value="3000" min="0" step="1" inputmode="decimal"></div><div><label for="otHours">Túlóra (óra)</label><input id="otHours" type="number" value="8" min="0" step="0.25" inputmode="decimal"></div><div><label for="otMultiplier">Elszámolási szorzó</label><input id="otMultiplier" type="number" value="1.5" min="0" step="0.05" inputmode="decimal"><small>Például 1,5 = az alap órabér 150%-a.</small></div></div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="otResult"><p><strong>Túlóra óradíja:</strong> 4500 Ft/óra</p><p><strong>Teljes túlóradíj:</strong> 36&nbsp;000 Ft</p><p><strong>Normál órabér feletti rész:</strong> 12&nbsp;000 Ft</p></div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -101,49 +106,63 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" hidden>
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-21"><h2>Hogyan működik a túlóra díj kalkulátor?</h2><p>Az eszköz nem próbálja kitalálni, hogy egy adott munkaviszonyban milyen pótlék vagy elszámolási szabály jár. Ehelyett te adod meg az alap órabért, a túlórák számát és azt a szorzót, amellyel az órabért számolni szeretnéd.</p><p>A teljes túlóradíj képlete egyszerű: alap órabér × túlóra órák × szorzó. Külön megmutatjuk azt is, hogy ebből mennyi a normál órabérhez képest jelentkező többlet.</p><div class="example-box"><h3>Példa</h3><p>3 000 Ft-os órabér, 8 túlóra és 1,5-ös szorzó esetén a túlóra óradíja 4 500 Ft, a teljes összeg 36 000 Ft. A normál 24 000 Ft-os nyolcórás díjhoz képest a többlet 12 000 Ft.</p></div><h2>Miért kell saját szorzót megadni?</h2><p>A pótlékok és elszámolások függhetnek a munkaszerződéstől, kollektív szerződéstől, a munkarendtől, a túlóra időpontjától és az aktuális szabályoktól. A szabadon megadható szorzó ezért átláthatóbb, mint egy olyan automatikus jogi feltételezés, amely könnyen félrevezető lehet.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Mit jelent az 1,5-ös szorzó?</summary><p>Azt, hogy az adott túlóra óradíját az alap órabér 150%-ával számolod.</p></details><details><summary>Bruttó vagy nettó órabért adjak meg?</summary><p>Bármelyikkel számolhatsz, de az eredmény ugyanazon az alapon lesz. Bruttó bemenetből bruttó összeg, nettóból nettó összeg adódik.</p></details><details><summary>Megmondja, milyen pótlék jár nekem?</summary><p>Nem. A kalkulátor a megadott szorzóval számol; a rád vonatkozó elszámolási szabályt külön kell ellenőrizned.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="oraber-kalkulator.html">oraber</a><a href="munkaido-kalkulator.html">munkaido</a><a href="netto-brutto-kalkulator.html">netto brutto</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-21">2026. augusztus 21.</time></p></section>
 <section class="reliability-note"><div><h2>Hitelesség és számítási korlátok</h2><p>Általános bérszámítás saját szorzóval. Nem állapít meg munkajogi jogosultságot, pótlékot vagy kötelező elszámolási módot.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20T%C3%BAl%C3%B3ra%20d%C3%ADj%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
 
 
-<!-- KB_STATIC:reliability:START -->
-<section class="reliability-note"><div><h2 id="hitelesseg-es-szamitasi-korlatok-2">Hitelesség és számítási korlátok</h2><p>Általános bérszámítás saját szorzóval. Nem állapít meg munkajogi jogosultságot, pótlékot vagy kötelező elszámolási módot.</p></div><div class="reliability-actions"><a href="../szamitasi-modszertan.html">Számítási módszertan</a><a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelentés%20–%20T%C3%BAl%C3%B3ra%20d%C3%ADj%20kalkul%C3%A1tor">Hibát találtál? Jelezd.</a></div></section>
-<!-- KB_STATIC:reliability:END -->
 </main>
 <div id="footer"><div class="footer-container kb-footer">
   <section class="footer-cta" aria-labelledby="footerCtaTitle">

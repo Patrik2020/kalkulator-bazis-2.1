@@ -251,6 +251,7 @@ const run = async () => {
     [1440, 1000]
   ];
   const layouts = [];
+  const consentVersion = "2026-08-12.v3";
   const consentRecord = (categories, overrides = {}) => {
     const decidedAt = overrides.decidedAt || new Date().toISOString();
     const expiresAt =
@@ -258,7 +259,7 @@ const run = async () => {
       new Date(Date.now() + 180 * 24 * 60 * 60 * 1000).toISOString();
 
     return JSON.stringify({
-      version: overrides.version || "2026-06-26.v2",
+      version: overrides.version || consentVersion,
       categories: { necessary: true, analytics: !!categories.analytics, ads: !!categories.ads },
       decidedAt,
       expiresAt
@@ -322,7 +323,7 @@ const run = async () => {
     {
       name: "malformed_categories",
       setup: `localStorage.setItem('kbCookieConsent', JSON.stringify({
-        version: '2026-06-26.v2',
+        version: '${consentVersion}',
         categories: { necessary: true, analytics: 'yes', ads: true },
         decidedAt: new Date().toISOString(),
         expiresAt: new Date(Date.now() + 180 * 24 * 60 * 60 * 1000).toISOString()
@@ -862,6 +863,15 @@ run()
     console.log(JSON.stringify({ summary: result.summary, screenshots: result.screenshots }, null, 2));
     processHandle.kill();
     if (Object.entries(result.summary).some(([key, value]) => key.endsWith("Failures") && value > 0)) {
+      console.error(JSON.stringify({
+        layoutFailures: result.layoutFailures,
+        consentMatrixFailures: result.consentMatrixFailures,
+        categoryAdsConsentFailures: result.categoryAdsConsentFailures,
+        interactionFailures: result.interactionFailures,
+        calculatorFailures: result.calculatorFailures,
+        themeFailures: result.themeFailures,
+        consoleErrors: result.consoleErrors
+      }, null, 2));
       process.exitCode = 1;
     }
   })

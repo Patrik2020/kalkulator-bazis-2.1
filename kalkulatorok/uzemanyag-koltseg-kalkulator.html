@@ -21,17 +21,7 @@
   <meta name="twitter:title" content="Üzemanyagköltség kalkulátor | Útiköltség számítás" />
   <meta name="twitter:description" content="Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét." />
   <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {"@type":"Question","name":"Hogyan számolható ki egy út üzemanyagköltsége?","acceptedAnswer":{"@type":"Answer","text":"A távolságot oszd százzal, szorozd meg az autó liter/100 km fogyasztásával, majd az üzemanyag literárával."}},
-      {"@type":"Question","name":"Oda-vissza útra hogyan számoljak?","acceptedAnswer":{"@type":"Answer","text":"Duplázd meg a teljes távolságot, vagy az egyirányú útra kapott költséget."}},
-      {"@type":"Question","name":"Miért térhet el a valós költség?","acceptedAnswer":{"@type":"Answer","text":"A forgalom, sebesség, terhelés, időjárás, klímahasználat, guminyomás és vezetési stílus is módosíthatja a fogyasztást."}}
-    ]
-  }
-  </script>
+
 
 <!-- KB_STATIC:structured-data:START -->
 <script id="kb-structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/uzemanyag-koltseg-kalkulator.html#webpage","url":"https://kalkulatorbazis.hu/kalkulatorok/uzemanyag-koltseg-kalkulator.html","name":"Üzemanyagköltség kalkulátor | Útiköltség számítás","description":"Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét.","inLanguage":"hu-HU","isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"}},{"@type":"SoftwareApplication","@id":"https://kalkulatorbazis.hu/kalkulatorok/uzemanyag-koltseg-kalkulator.html#calculator","name":"Üzemanyag költség kalkulátor","applicationCategory":"CalculatorApplication","operatingSystem":"Web","url":"https://kalkulatorbazis.hu/kalkulatorok/uzemanyag-koltseg-kalkulator.html","description":"Számold ki egy út várható üzemanyagköltségét.","offers":{"@type":"Offer","price":"0","priceCurrency":"HUF"},"isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"},"about":"Autó és közlekedés kalkulátorok"},{"@type":"BreadcrumbList","@id":"https://kalkulatorbazis.hu/kalkulatorok/uzemanyag-koltseg-kalkulator.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://kalkulatorbazis.hu/"},{"@type":"ListItem","position":2,"name":"Autó & közlekedés","item":"https://kalkulatorbazis.hu/auto.html"},{"@type":"ListItem","position":3,"name":"Üzemanyag költség kalkulátor","item":"https://kalkulatorbazis.hu/kalkulatorok/uzemanyag-koltseg-kalkulator.html"}]},{"@type":"FAQPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/uzemanyag-koltseg-kalkulator.html#gyik","mainEntity":[{"@type":"Question","name":"Miért térhet el a valós költség?","acceptedAnswer":{"@type":"Answer","text":"Mert az átlagfogyasztás és az üzemanyagár változhat, az útviszonyok pedig módosítják a fogyasztást."}},{"@type":"Question","name":"Autópályára is használható?","acceptedAnswer":{"@type":"Answer","text":"Igen, de az autópályadíjat külön kell hozzáadni."}},{"@type":"Question","name":"Oda-vissza útra hogyan számoljak?","acceptedAnswer":{"@type":"Answer","text":"Duplázd meg a távolságot, vagy az egyirányú eredményt."}},{"@type":"Question","name":"Telekocsinál mire figyeljek?","acceptedAnswer":{"@type":"Answer","text":"Az üzemanyag mellett autópályadíj, parkolás és más közös költség is megosztható."}},{"@type":"Question","name":"Elektromos autóra használható?","acceptedAnswer":{"@type":"Answer","text":"Nem közvetlenül; ahhoz kWh/100 km fogyasztás és áramár alapján működő számítás szükséges."}}]}]}</script>
@@ -109,7 +99,12 @@
       <h1>Üzemanyagköltség kalkulátor</h1>
       <p>Számold ki egy út várható benzinköltségét vagy dízelköltségét távolság, fogyasztás és literár alapján.</p>
     </section>
-    <section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="ac-heading"><h2>Útiköltség- és érzékenységkalkulátor</h2><p>A mezők tájékoztató tervezésre valók; hivatalos, gyártói vagy szolgáltatói adat esetén mindig azt használd.</p></div><form class="ac-grid"><label class="ac-field"><span>Távolság (km)</span><input type="number" inputmode="decimal" id="distance" name="distance" step="any"></label><label class="ac-field"><span>Fogyasztás (l/100 km)</span><input type="number" inputmode="decimal" id="cons" name="cons" step="any"></label><label class="ac-field"><span>Üzemanyagár (Ft/l)</span><input type="number" inputmode="decimal" id="price" name="price" step="any"></label><label class="ac-field"><span>Útdíj és parkolás</span><input type="number" inputmode="decimal" id="toll" name="toll" step="any"></label><label class="ac-field"><span>Utasok száma</span><input type="number" inputmode="decimal" id="people" name="people" step="any"></label><label class="ac-field"><span>Árváltozás teszt (%)</span><input type="number" inputmode="decimal" id="priceChange" name="priceChange" step="any"></label><button type="submit" class="ac-submit">Számítás</button><div class="ac-result" role="status" aria-live="polite" aria-atomic="true"><dl><div><dt>Szükséges üzemanyag</dt><dd>32,5 l</dd></div><div><dt>Teljes útiköltség</dt><dd>20&nbsp;150 Ft</dd></div><div><dt>Egy főre</dt><dd>20&nbsp;150 Ft</dd></div><div><dt>Stresszelt költség</dt><dd>22&nbsp;165 Ft</dd></div></dl></div></form><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+    <section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="ac-heading"><h2>Útiköltség- és érzékenységkalkulátor</h2><p>A mezők tájékoztató tervezésre valók; hivatalos, gyártói vagy szolgáltatói adat esetén mindig azt használd.</p></div><form class="ac-grid"><label class="ac-field"><span>Távolság (km)</span><input type="number" inputmode="decimal" required id="distance" name="distance" step="any"></label><label class="ac-field"><span>Fogyasztás (l/100 km)</span><input type="number" inputmode="decimal" required id="cons" name="cons" step="any"></label><label class="ac-field"><span>Üzemanyagár (Ft/l)</span><input type="number" inputmode="decimal" required id="price" name="price" step="any"></label><label class="ac-field"><span>Útdíj és parkolás</span><input type="number" inputmode="decimal" required id="toll" name="toll" step="any"></label><label class="ac-field"><span>Utasok száma</span><input type="number" inputmode="decimal" required id="people" name="people" step="any"></label><label class="ac-field"><span>Árváltozás teszt (%)</span><input type="number" inputmode="decimal" required id="priceChange" name="priceChange" step="any"></label><button type="submit" class="ac-submit">Számítás</button><div class="ac-result" role="status" aria-live="polite" aria-atomic="true">Ellenőrizd a kötelező mezőket és az értékhatárokat.</div></form><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -119,41 +114,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
     <section class="adsense-content" data-adsense-upgrade="uzemanyag-koltseg">
       <h2>Üzemanyagköltség számítás utazás előtt</h2>

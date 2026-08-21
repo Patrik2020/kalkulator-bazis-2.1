@@ -83,7 +83,12 @@
         <label for="activity">Aktivitás pótlás (ml)</label>
         <input type="text" id="activity" value="500" inputmode="decimal" autocomplete="off">
       </div>
-    </div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="simpleCalcResults" role="status" aria-live="polite" aria-atomic="true">Az értékek legyenek nagyobbak nullánál</div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+    </div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="simpleCalcResults" role="status" aria-live="polite" aria-atomic="true">Az értékek legyenek nagyobbak nullánál</div></div><section
+  class="retention-cta"
+  data-retention-cta
+  aria-labelledby="retentionCtaTitle"
+  hidden
+>
   <div class="retention-cta-copy">
     <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
     <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
@@ -93,41 +98,58 @@
     </p>
   </div>
 
-  <div class="retention-cta-actions" role="group">
-    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+  <div class="retention-cta-actions" role="group" aria-label="Mentési, telepítési és megosztási műveletek">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="bookmark"
+      aria-expanded="false"
+      aria-controls="retentionBookmarkGuide"
+    >
       <span aria-hidden="true">☆</span>
       <span>Könyvjelzőzöm</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="install"
+      aria-expanded="false"
+      aria-controls="retentionInstallGuide"
+      hidden
+    >
       <span aria-hidden="true">▣</span>
-      <span data-retention-install-label="">Telepítem</span>
+      <span data-retention-install-label>Telepítem</span>
     </button>
 
-    <button class="retention-cta-button" type="button" data-retention-action="share">
+    <button
+      class="retention-cta-button"
+      type="button"
+      data-retention-action="share"
+    >
       <span aria-hidden="true">↗</span>
-      <span data-retention-share-label="">Megosztom</span>
+      <span data-retention-share-label>Megosztom</span>
     </button>
   </div>
 
   <div class="retention-cta-panels">
     <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
-      <p data-retention-bookmark-text="">
+      <p data-retention-bookmark-text>
         Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
       </p>
     </div>
 
     <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
-      <p data-retention-install-text=""></p>
+      <p data-retention-install-text></p>
     </div>
 
     <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
       <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
-      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url />
     </div>
   </div>
 
-  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+  <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-08"><h2>Napi folyadékigény: csak kiindulópont</h2><p>A kalkulátor testsúly alapján ad egy egyszerű napi becslést, amelyhez aktivitási pótlás adható. Ez segíthet tudatosabban figyelni a folyadékbevitelre, de nem tekinthető személyre szabott egészségügyi előírásnak.</p><p>A tényleges szükségletet jelentősen módosíthatja a hőség, fizikai munka, sport, izzadás, láz, hasmenés, hányás, várandósság, szoptatás, étrend, gyógyszerek, valamint egyes szív- és vesebetegségek.</p><h2>Hogyan számol?</h2><p>A kalkulátor alapként <strong>35 ml × testsúlykilogramm</strong> értéket használ, majd hozzáadja az aktivitáshoz megadott millilitert. A „pohár” átváltás 250 ml-es pohárral számol. Ez egy könnyen használható becslés, nem mindenkire érvényes hivatalos norma.</p><div class="example-box"><h3>Példa 70 kg testsúlynál</h3><p>70 × 35 ml = 2 450 ml. Ha egy aktívabb napra 500 ml pótlást adsz hozzá, az eredmény 2,95 liter, vagyis nagyjából 12 darab 250 ml-es pohár.</p></div><h2>Mi számít bele a folyadékbevitelbe?</h2><p>Nem csak a tiszta víz számít. Tea, kávé, tej, levesek, gyümölcsök és más magas víztartalmú élelmiszerek is hozzájárulhatnak a teljes bevitelhez. Ettől még a napi folyadék nagy részét célszerű egyszerű, alacsony energiatartalmú italokból fedezni.</p><h2>Edzés és meleg idő</h2><p>Sport és hőség alatt a folyadékigény nem csak az időtartamtól, hanem az izzadás mértékétől is függ. Két azonos testsúlyú ember ugyanazon az edzésen is eltérő mennyiséget veszíthet. Hosszabb, intenzív terhelésnél az elektrolitok pótlása is szempont lehet, nem csak a vízmennyiség.</p><h2>Honnan tudhatod, hogy elég-e?</h2><p>A szomjúság, a közérzet, a vizelet mennyisége és színe együtt adhat durva visszajelzést, de egyik sem tökéletes mérőszám. Vitaminok, gyógyszerek, bizonyos ételek és betegségek is megváltoztathatják a vizelet színét.</p><h2>A túl sok víz sem feltétlenül jobb</h2><p>Nagy mennyiségű folyadék rövid idő alatt felboríthatja a szervezet só-víz egyensúlyát. Ezért nem cél a kalkulált napi mennyiséget minél gyorsabban elfogyasztani. Orvosi folyadékkorlátozás esetén mindig az egészségügyi utasítás az elsődleges.</p><h2>Gyakori hibák</h2><ul><li>Az aktivitási pótlást literben írják be, miközben a mező millilitert kér.</li><li>Egyszerre próbálják meginni a teljes napi mennyiséget.</li><li>Forró időben vagy betegség alatt változatlan célt használnak.</li><li>A kávét, teát vagy leveseket teljesen figyelmen kívül hagyják.</li><li>Orvosi folyadékkorlátozás mellett általános kalkulátort követnek.</li></ul><h2>Mikor kérj segítséget?</h2><p>Tartós hányás, súlyos hasmenés, zavartság, ájulás, szokatlan gyengeség, nagyon kevés vizelet vagy más aggasztó tünet esetén ne csak kalkulátorra hagyatkozz.</p><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>A kávé beleszámít?</summary><p>A folyadéktartalma hozzájárulhat a bevitelhez, de a teljes mennyiséget nem érdemes kizárólag koffeintartalmú italokból fedezni.</p></details><details><summary>Edzéshez mennyit adjak hozzá?</summary><p>Nincs egyetlen mindenkinél jó szám; az izzadás, a hőmérséklet, a terhelés intenzitása és időtartama számít.</p></details><details><summary>A vizelet színe jó támpont?</summary><p>Durva jelzés lehet, de önmagában nem megbízható mérőeszköz.</p></details><details><summary>Gyermeknél használható?</summary><p>Gyermekek folyadékigénye életkor- és állapotfüggő, ezért ehhez külön, életkornak megfelelő útmutató szükséges.</p></details><details><summary>Miért nem mindig ugyanannyi a szükségletem?</summary><p>Mert a környezet, aktivitás, étrend és egészségi állapot naponta is változhat.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="kaloria-kalkulator.html">Kalória kalkulátor</a><a href="bmr-kalkulator.html">BMR kalkulátor</a><a href="pulzus-zona-kalkulator.html">Pulzuszóna kalkulátor</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-08">2026. augusztus 8.</time></p></section>
 
 
