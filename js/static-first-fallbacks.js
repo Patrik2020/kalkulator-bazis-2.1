@@ -46,6 +46,14 @@
     });
   };
 
+  const removeTransientStaticEnhancements = () => {
+    // The headless static exporter can capture the hidden retention component
+    // after it has been fetched but before the user interacts. It is runtime UI,
+    // so remove that captured copy before retention-cta.js initializes and loads
+    // its own fresh, event-bound component.
+    document.querySelectorAll("[data-retention-cta]").forEach((node) => node.remove());
+  };
+
   const queueCleanup = () => {
     if (cleanupQueued) return;
     cleanupQueued = true;
@@ -53,6 +61,7 @@
   };
 
   const start = () => {
+    removeTransientStaticEnhancements();
     cleanup();
 
     const observer = new MutationObserver(queueCleanup);
