@@ -33,19 +33,13 @@ jobs:
       - name: Install validation dependencies
         run: npm ci
 
-      - name: Generate expansion-aware sitemap in workspace
-        run: npm run sitemap
-
       - name: Audit crawler-visible source HTML
         run: npm run static:check
 
       - name: Validate HTML, JavaScript and calculator logic
         run: npm run quality
 
-      - name: Validate generated sitemap contains expansion batch
+      - name: Verify generated sitemap URL set is current
         run: |
-          grep -q 'kalkulatorok/harmasszabaly-kalkulator.html' sitemap.xml
-          grep -q 'kalkulatorok/szazalekos-valtozas-kalkulator.html' sitemap.xml
-          grep -q 'kalkulatorok/csemperagaszto-kalkulator.html' sitemap.xml
-          grep -q 'kalkulatorok/ev-toltesi-koltseg-kalkulator.html' sitemap.xml
-          grep -q 'kalkulatorok/futotempo-kalkulator.html' sitemap.xml
+          npm run sitemap
+          git diff --exit-code -I '<lastmod>.*</lastmod>' -- sitemap.xml
