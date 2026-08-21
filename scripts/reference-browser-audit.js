@@ -95,7 +95,10 @@ async function createClient(webSocketUrl) {
   };
 }
 
-const helpers = `
+// String.raw preserves the backslashes in the regular expressions that are
+// evaluated inside the browser. A normal template literal would turn `\d`
+// and `\s` into plain `d`/`s` characters before CDP receives the source.
+const helpers = String.raw`
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const element = (selector) => document.querySelector(selector);
   const set = (id, value) => {
