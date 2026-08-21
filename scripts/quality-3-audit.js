@@ -44,6 +44,7 @@ const qualitySources = [
   "js/health-everyday-quality-upgrades.js",
   "js/auto-converter-quality-upgrades.js",
   "js/site-quality-final.js",
+  "js/expansion-quality.js",
 ].map((file) => fs.readFileSync(path.join(root, file), "utf8")).join("\n");
 
 const hardErrors = [];

@@ -178,6 +178,11 @@ const groupByCalculator = {
   "kalkulatorok/nyomas-atvalto-kalkulator.html": "muszaki-digitalis",
   "kalkulatorok/teljesitmeny-atvalto-kalkulator.html": "muszaki-digitalis",
   "kalkulatorok/deviza-atvalto-kalkulator.html": "deviza",
+  "kalkulatorok/harmasszabaly-kalkulator.html": "matematika",
+  "kalkulatorok/mertani-atlag-kalkulator.html": "matematika",
+  "kalkulatorok/csemperagaszto-kalkulator.html": "burkolas-feluletek",
+  "kalkulatorok/elektromos-auto-toltesi-koltseg-kalkulator.html": "utazas-uzemanyag",
+  "kalkulatorok/futotempo-kalkulator.html": "edzes-regeneracio",
 };
 
 module.exports = { categories, groupByCalculator };

@@ -768,6 +768,46 @@
       description: "Válts át watt, kilowatt és lóerő között.",
       keywords: "teljesítmény watt kilowatt lóerő átváltás",
     },
+    {
+      title: "Hármasszabály kalkulátor",
+      url: "kalkulatorok/harmasszabaly-kalkulator.html",
+      category: "mindennapi",
+      group: "matematika",
+      description: "Egyenes vagy fordított arányosság ismeretlen értékének kiszámítása három ismert adatból.",
+      keywords: "hármasszabály aránypár egyenes fordított arányosság matematika százalék",
+    },
+    {
+      title: "Mértani átlag kalkulátor",
+      url: "kalkulatorok/mertani-atlag-kalkulator.html",
+      category: "mindennapi",
+      group: "matematika",
+      description: "Pozitív értékek mértani közepének kiszámítása, különösen növekedési szorzók és arányok összevetéséhez.",
+      keywords: "mértani átlag geometriai közép hozam növekedés szorzó matematika",
+    },
+    {
+      title: "Csemperagasztó kalkulátor",
+      url: "kalkulatorok/csemperagaszto-kalkulator.html",
+      category: "epitoipari",
+      group: "burkolas-feluletek",
+      description: "Csemperagasztó anyagszükséglet és zsákszám becslése felület, gyártói fajlagos fogyás és ráhagyás alapján.",
+      keywords: "csemperagasztó burkolás ragasztó kg m2 zsák anyagszükséglet felújítás",
+    },
+    {
+      title: "Elektromos autó töltési költség kalkulátor",
+      url: "kalkulatorok/elektromos-auto-toltesi-koltseg-kalkulator.html",
+      category: "auto",
+      group: "utazas-uzemanyag",
+      description: "EV-töltés hálózati energiaigényének, várható költségének és ideális töltési idejének becslése töltési veszteséggel.",
+      keywords: "elektromos autó ev töltés kWh villany költség akkumulátor soc töltési veszteség",
+    },
+    {
+      title: "Futótempó kalkulátor",
+      url: "kalkulatorok/futotempo-kalkulator.html",
+      category: "egeszseg",
+      group: "edzes-regeneracio",
+      description: "Futótempó, átlagsebesség és becsült célidő számítása távolság és idő vagy megadott perc/km tempó alapján.",
+      keywords: "futótempó pace perc km futás célidő átlagsebesség 5k 10k félmaraton maraton",
+    },
   ];
 
   const relatedGroups = [

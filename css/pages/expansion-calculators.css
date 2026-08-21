@@ -1,0 +1,8 @@
+.page-expansion-calculator .expansion-form { display: grid; gap: 1rem; }
+.page-expansion-calculator textarea { width: 100%; resize: vertical; min-height: 8rem; }
+.page-expansion-calculator small { display: block; margin-top: .35rem; color: var(--text-light); line-height: 1.5; }
+.expansion-results dl { margin: .75rem 0 0; display: grid; gap: .65rem; }
+.expansion-results .expansion-result-row { display: flex; justify-content: space-between; gap: 1rem; border-top: 1px solid var(--border); padding-top: .65rem; }
+.expansion-results dt { color: var(--text-light); }
+.expansion-results dd { margin: 0; font-weight: 800; text-align: right; }
+@media (max-width: 560px) { .expansion-results .expansion-result-row { display: grid; gap: .2rem; } .expansion-results dd { text-align: left; } }
