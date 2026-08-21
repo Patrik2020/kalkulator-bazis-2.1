@@ -1,28 +1,29 @@
-name: Materialize static-first HTML
+name: Prepare calculator expansion batch 1
 
+# Branch-local one-shot builder for the first five quality calculators.
 on:
-  workflow_dispatch:
-  pull_request:
+  push:
+    branches:
+      - calculator-expansion-batch1-2026-08
 
 permissions:
   contents: write
 
 concurrency:
-  group: static-first-${{ github.ref }}
+  group: prepare-calculator-expansion-batch1
   cancel-in-progress: true
 
 jobs:
-  materialize:
-    if: github.actor != 'github-actions[bot]' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+  prepare:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
     steps:
-      - name: Checkout source branch
+      - name: Checkout expansion branch
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
-          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v7
@@ -33,11 +34,12 @@ jobs:
       - name: Install validation dependencies
         run: npm ci
 
-      - name: Prepare calculator expansion batch when present
-        if: ${{ hashFiles('scripts/add-calculator-expansion-batch1.js') != '' }}
+      - name: Generate first expansion batch
+        run: node scripts/add-calculator-expansion-batch1.js
+
+      - name: Apply taxonomy and regenerate sitemap
         run: |
-          node scripts/add-calculator-expansion-batch1.js
-          node scripts/fix-expansion-html-entities.js
+          npm run taxonomy:apply
           npm run sitemap
 
       - name: Verify Chrome is available
@@ -52,8 +54,10 @@ jobs:
             exit 1
           fi
 
-      - name: Materialize and normalize browser-rendered content
-        run: npm run static:build
+      - name: Materialize static-first HTML
+        run: |
+          npm run static:materialize
+          npm run static:normalize
 
       - name: Audit crawler-visible source HTML
         run: npm run static:check
@@ -61,24 +65,18 @@ jobs:
       - name: Validate HTML, JavaScript and calculator logic
         run: npm run quality
 
-      - name: Verify generated sitemap URL set is current
-        run: |
-          npm run sitemap
-          git diff --exit-code -I '<lastmod>.*</lastmod>' -- sitemap.xml
-
       - name: Check whitespace errors
         run: git diff --check
 
-      - name: Commit materialized HTML
+      - name: Commit generated expansion
         shell: bash
         run: |
           if git diff --quiet; then
-            echo "Static HTML is already current."
+            echo "Expansion output is already current."
             exit 0
           fi
-
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add --all
-          git commit -m "build: materialize static-first HTML [skip ci]"
-          git push origin HEAD:${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
+          git commit -m "build: materialize calculator expansion batch 1 [skip ci]"
+          git push origin HEAD:calculator-expansion-batch1-2026-08
