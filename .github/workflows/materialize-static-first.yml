@@ -36,6 +36,7 @@ jobs:
       - name: Prepare final 100-calculator milestone batch when present
         if: ${{ hashFiles('scripts/add-calculator-expansion-final100.js') != '' }}
         run: |
+          node scripts/fix-final100-generator.js
           node scripts/add-calculator-expansion-final100.js
           npm run sitemap
 
