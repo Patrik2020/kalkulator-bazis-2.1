@@ -10,6 +10,7 @@
 <title>Autós út- és hatótáv kalkulátor | Fogyasztás</title>
 <link href="../css/style.css" rel="stylesheet"/>
 <link href="../css/pages/auto.css" rel="stylesheet"/>
+<script src="../js/static-first-fallbacks.js"></script>
 <script src="../js/global-head.js"></script>
 <meta content="website" property="og:type"/>
 <meta content="Kalkulátor Bázis" property="og:site_name"/>
@@ -21,33 +22,147 @@
 <meta content="Autós út- és hatótáv kalkulátor | Fogyasztás" name="twitter:title"/>
 <meta content="Autós út- és hatótáv kalkulátor: számold ki a fogyasztást, az üzemanyagköltséget és a becsült hatótávot egyetlen eszközben." name="twitter:description"/>
 <meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
+
+<!-- KB_STATIC:structured-data:START -->
+<script id="kb-structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/auto-kalkulator.html#webpage","url":"https://kalkulatorbazis.hu/kalkulatorok/auto-kalkulator.html","name":"Autós út- és hatótáv kalkulátor | Fogyasztás","description":"Autós út- és hatótáv kalkulátor: számold ki a fogyasztást, az üzemanyagköltséget és a becsült hatótávot egyetlen eszközben.","inLanguage":"hu-HU","isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"}},{"@type":"SoftwareApplication","@id":"https://kalkulatorbazis.hu/kalkulatorok/auto-kalkulator.html#calculator","name":"Autós út- és hatótáv kalkulátor","applicationCategory":"CalculatorApplication","operatingSystem":"Web","url":"https://kalkulatorbazis.hu/kalkulatorok/auto-kalkulator.html","description":"Fogyasztás, üzemanyagköltség és becsült hatótáv egy összetett eszközben.","offers":{"@type":"Offer","price":"0","priceCurrency":"HUF"},"isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"},"about":"Autó és közlekedés kalkulátorok"},{"@type":"BreadcrumbList","@id":"https://kalkulatorbazis.hu/kalkulatorok/auto-kalkulator.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://kalkulatorbazis.hu/"},{"@type":"ListItem","position":2,"name":"Autó & közlekedés","item":"https://kalkulatorbazis.hu/auto.html"},{"@type":"ListItem","position":3,"name":"Autós út- és hatótáv kalkulátor","item":"https://kalkulatorbazis.hu/kalkulatorok/auto-kalkulator.html"}]},{"@type":"FAQPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/auto-kalkulator.html#gyik","mainEntity":[{"@type":"Question","name":"Melyik fogyasztási adatot használjam úttervezéshez?","acceptedAnswer":{"@type":"Answer","text":"Az adott út jellegéhez hasonló korábbi utak átlagát. Autópályára ne feltétlenül a városi értéket add meg."}},{"@type":"Question","name":"Miért más a fedélzeti számítógép?","acceptedAnswer":{"@type":"Answer","text":"A jármű becsült befecskendezési és távolságadatai eltérhetnek a tankolásból számolt értéktől."}},{"@type":"Question","name":"Elektromos autóra használható?","acceptedAnswer":{"@type":"Answer","text":"Nem közvetlenül; ott kWh/100 km, akkukapacitás és áramár szükséges."}},{"@type":"Question","name":"A teljes autóköltséget mutatja?","acceptedAnswer":{"@type":"Answer","text":"Nem. Az értékvesztés, biztosítás, szerviz, adók és kopás külön számolandó."}}]}]}</script>
+<!-- KB_STATIC:structured-data:END -->
 </head>
 <body>
-<div id="header"></div>
-<main class="container page-auto">
+<!-- KB_STATIC:skip-link:START -->
+<a class="kb-skip-link" href="#main-content">Ugrás a tartalomhoz</a>
+<!-- KB_STATIC:skip-link:END -->
+
+<div id="header"><header class="header-shell">
+  <div class="header-inner">
+    <a href="../" class="logo" aria-label="Kalkulátor Bázis főoldal">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="logo-text">Kalkulátor Bázis</span>
+    </a>
+
+    <nav id="menu" aria-label="Fő navigáció">
+      <a class="nav-home" href="../">Főoldal</a>
+
+      <details class="nav-dropdown nav-catalog has-active" open>
+        <summary>
+          <span>Kalkulátorok</span>
+          <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="nav-submenu">
+          <a href="../kalkulatorok.html">Összes kalkulátor</a>
+          <a href="../egeszseg.html">Egészség</a>
+          <a href="../auto.html" class="is-active" aria-current="page">Autó</a>
+          <a href="../epitoipari.html">Építőipari</a>
+          <a href="../atvaltok.html">Átváltók</a>
+          <a href="../kalkulatorok/multifunkcios-szamologep.html">Tudományos számológép</a>
+        </div>
+      </details>
+
+      <a href="../penzugyi.html">Pénzügyi</a>
+      <a href="../mindennapi.html">Mindennapi</a>
+
+      <details class="nav-dropdown nav-knowledge">
+        <summary>
+          <span>Tudástár</span>
+          <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="nav-submenu">
+          <a href="../elethelyzetek.html">Élethelyzetek</a>
+          <a href="../landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html">Pénzügyi tudatosság</a>
+          <a href="../szamitasi-modszertan.html">Számítási módszertan</a>
+          <a href="../miert-bizhatsz-bennunk.html">Miért bízhatsz bennünk?</a>
+          <a href="../atlathatosag-es-minoseg.html">Átláthatóság és minőség</a>
+          <a href="../kapcsolat.html">Kapcsolat</a>
+        </div>
+      </details>
+
+      <a href="../rolunk.html">Rólunk</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-search" href="../kalkulatorok.html#calculatorSearch" aria-label="Kalkulátor keresése">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-4-4"></path>
+        </svg>
+      </a>
+      <button class="theme-toggle" type="button" data-theme-toggle="" aria-label="Váltás sötét módra" aria-pressed="false" title="Váltás sötét módra">
+        <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+        <span class="theme-toggle-text">Sötét</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menü megnyitása" aria-controls="menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+</div>
+<main id="main-content" class="container page-auto">
 <!-- HERO -->
 <section class="hero">
 <h1>Autós út- és hatótáv kalkulátor</h1>
 <p>Fogyasztás, költség és üzemanyag számítás egy helyen.</p>
 </section>
 <!-- 1. KALKULÁTOR -->
-<section class="card card-calculator">
+<section class="card card-calculator kb-calculator-shell" id="kalkulator">
 <h2>Fogyasztás kalkulátor</h2>
 <div class="calc-grid">
 <div>
 <label for="distance">Megtett távolság (km)</label>
-<input id="distance" type="number"/>
+<input id="distance" type="number" step="any" inputmode="decimal">
 </div>
 <div>
 <label for="fuelUsed">Elhasznált üzemanyag (liter)</label>
-<input id="fuelUsed" type="number"/>
+<input id="fuelUsed" type="number" step="any" inputmode="decimal">
 </div>
 </div>
-<div class="result-box">
+<div class="result-box" role="status" aria-live="polite" aria-atomic="true">
 <p>Fogyasztás:</p>
 <p id="result-consumption">–</p>
 </div>
-</section>
+<section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+  <div class="retention-cta-copy">
+    <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
+    <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
+    <p>
+      Tedd el a Kalkulátor Bázist, hogy legközelebb egy mozdulattal visszatalálj
+      ehhez a számításhoz – vagy oszd meg azzal, akinek szintén jól jöhet.
+    </p>
+  </div>
+
+  <div class="retention-cta-actions" role="group">
+    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+      <span aria-hidden="true">☆</span>
+      <span>Könyvjelzőzöm</span>
+    </button>
+
+    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+      <span aria-hidden="true">▣</span>
+      <span data-retention-install-label="">Telepítem</span>
+    </button>
+
+    <button class="retention-cta-button" type="button" data-retention-action="share">
+      <span aria-hidden="true">↗</span>
+      <span data-retention-share-label="">Megosztom</span>
+    </button>
+  </div>
+
+  <div class="retention-cta-panels">
+    <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
+      <p data-retention-bookmark-text="">
+        Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
+      </p>
+    </div>
+
+    <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
+      <p data-retention-install-text=""></p>
+    </div>
+
+    <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
+      <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+    </div>
+  </div>
+
+  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+</section></section>
 <!-- 2. KALKULÁTOR -->
 <section class="card card-calculator">
 <h2>Utazási költség kalkulátor</h2>
@@ -111,11 +226,108 @@
 </section>
 
 
+<!-- KB_STATIC:reliability:START -->
+<section class="reliability-note">
+      <div>
+        <h2>Hitelesség és számítási korlátok</h2>
+        <p>Az eredmény a megadott fogyasztási, ár- és útadatokból készülő becslés. A tényleges értéket a vezetési körülmények, a jármű állapota és a díjak változása is módosíthatja.</p>
+      </div>
+      <div class="reliability-actions">
+        <a href="../atlathatosag-es-minoseg.html">A számítások módszertana és minőségbiztosítása</a>
+        <a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelent%C3%A9s%20%E2%80%93%20Aut%C3%B3s%20%C3%BAt-%20%C3%A9s%20hat%C3%B3t%C3%A1v%20kalkul%C3%A1tor&amp;body=Kalkul%C3%A1tor%3A%20Aut%C3%B3s%20%C3%BAt-%20%C3%A9s%20hat%C3%B3t%C3%A1v%20kalkul%C3%A1tor%0AOldal%3A%20https%3A%2F%2Fkalkulatorbazis.hu%2Fkalkulatorok%2Fauto-kalkulator.html%0A%0AA%20hiba%20r%C3%B6vid%20le%C3%ADr%C3%A1sa%3A%0A">Hibát találtál? Jelezd nekünk.</a>
+      </div>
+    </section>
+<!-- KB_STATIC:reliability:END -->
+
+<!-- KB_STATIC:quality-auto:START -->
+<section data-static-quality-version="2026-08" data-static-quality-fallback="auto" class="auto-converter-quality acq-interactive">
+      <p class="acq-kicker">Marginalis vagy teljes autóköltség?</p>
+      <h2>Ugyanaz az út kétféleképpen is árazható</h2>
+      <p>Ha azt kérdezed, mennyivel kerül többe, hogy ma elindulsz, a változó költség a fontos. Ha azt kérdezed, mennyibe kerül neked valójában az autózás, a fix és évesített költségeket is fel kell osztani a megtett kilométerekre.</p>
+      <div class="acq-form"><label>Út hossza (km)<input type="text" data-acq-input="km" value="200" inputmode="decimal"></label><label>Fogyasztás (l/100 km)<input type="text" data-acq-input="cons" value="6.5" inputmode="decimal"></label><label>Üzemanyagár (Ft/l)<input type="text" data-acq-input="fuel" value="620" inputmode="decimal"></label><label>Éves nem üzemanyagköltség (Ft)<input type="text" data-acq-input="fixed" value="900000" inputmode="decimal"></label><label>Éves futás (km)<input type="text" data-acq-input="annual" value="15000" inputmode="decimal"></label></div>
+      <div class="acq-metrics"><div><span>Csak üzemanyag</span><strong data-acq="fuelcost">8060 Ft</strong></div><div><span>Fix költség ráosztva</span><strong data-acq="allocated">12&nbsp;000 Ft</strong></div><div><span>Teljes útiköltség</span><strong data-acq="full">20&nbsp;060 Ft</strong></div><div><span>Teljes Ft/km</span><strong data-acq="perkm">100,3 Ft/km</strong></div></div>
+      <div class="acq-note"><strong>Mire jó ez?</strong><p>Utastársak közti elszámolásnál előre tisztázzátok, csak a plusz útiköltséget osztjátok-e, vagy a teljes autóhasználatból is szeretnétek részt számolni.</p></div>
+    </section>
+<!-- KB_STATIC:quality-auto:END -->
 </main>
-<div id="footer"></div>
-<script defer="" src="../js/cookie.js"></script>
+<div id="footer"><div class="footer-container kb-footer">
+  <section class="footer-cta" aria-labelledby="footerCtaTitle">
+    <div class="footer-cta-copy">
+      <span class="footer-eyebrow">Segíts fejleszteni a Kalkulátor Bázist</span>
+      <h2 id="footerCtaTitle">Nem találtad meg a keresett kalkulátort?</h2>
+      <p>Írd meg, milyen számítás lenne hasznos. A jó ötleteket felvesszük a fejlesztési listára.</p>
+    </div>
+    <a class="footer-cta-button" href="../kapcsolat.html?tema=uj-kalkulator">Kalkulátort javaslok</a>
+  </section>
+
+  <div class="footer-main">
+    <section class="footer-brand" aria-labelledby="footerBrandTitle">
+      <a href="../" class="footer-logo" id="footerBrandTitle">
+        <span class="footer-logo-mark" aria-hidden="true"></span>
+        <span>Kalkulátor Bázis</span>
+      </a>
+      <p class="footer-brand-copy">
+        Ingyenes, magyar nyelvű online kalkulátorok pénzügyi, egészségügyi,
+        építőipari, autós és mindennapi döntésekhez.
+      </p>
+      <ul class="footer-trust-list">
+        <li>Regisztráció nélkül használható</li>
+        <li>Közérthető módszertan és források</li>
+        <li>Mobilon is kényelmesen működik</li>
+      </ul>
+      <a class="footer-mail" href="mailto:kalkulatorbazis@gmail.com">kalkulatorbazis@gmail.com</a>
+    </section>
+
+    <nav class="footer-col" aria-label="Kalkulátorkategóriák">
+      <h2>Kalkulátorok</h2>
+      <a href="../penzugyi.html">Pénzügyi</a>
+      <a href="../egeszseg.html">Egészség</a>
+      <a href="../epitoipari.html">Építőipari</a>
+      <a href="../auto.html">Autós</a>
+      <a href="../mindennapi.html">Mindennapi</a>
+      <a href="../atvaltok.html">Átváltók</a>
+      <a class="footer-link-emphasis" href="../kalkulatorok.html">Összes kalkulátor</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Kiemelt kalkulátorok">
+      <h2>Népszerű oldalak</h2>
+      <a href="../kalkulatorok/netto-brutto-kalkulator.html">Nettó–bruttó kalkulátor</a>
+      <a href="../kalkulatorok/etf-kalkulator.html">ETF kalkulátor</a>
+      <a href="../kalkulatorok/afa-kalkulator.html">ÁFA-kalkulátor</a>
+      <a href="../kalkulatorok/hitel-torleszto-kalkulator.html">Hiteltörlesztő kalkulátor</a>
+      <a href="../kalkulatorok/szazalek-kalkulator.html">Százalékkalkulátor</a>
+      <a href="../#newTitle">Újdonságok</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Információ és bizalom">
+      <h2>Információ</h2>
+      <a href="../rolunk.html">Rólunk</a>
+      <a href="../szamitasi-modszertan.html">Számítási módszertan</a>
+      <a href="../miert-bizhatsz-bennunk.html">Miért bízhatsz bennünk?</a>
+      <a href="../atlathatosag-es-minoseg.html">Átláthatóság és minőség</a>
+      <a href="../kapcsolat.html">Kapcsolat és hibabejelentés</a>
+      <button class="footer-link-button" type="button" data-cookie-settings="">Sütibeállítások</button>
+    </nav>
+  </div>
+
+  <nav class="footer-legal" aria-label="Jogi hivatkozások">
+    <a href="../impresszum.html">Impresszum</a>
+    <a href="../adatvedelem.html">Adatkezelés</a>
+    <a href="../felhasznalasi-feltetelek.html">Felhasználási feltételek</a>
+    <a href="../cookie.html">Sütik</a>
+    <a href="../jogi-nyilatkozat.html">Jogi nyilatkozat</a>
+    <a href="../landing-pages/wise/wise.html">Partnerinformáció</a>
+  </nav>
+
+  <div class="footer-bottom">
+    <p>© 2026 Kalkulátor Bázis</p>
+    <p>Az eredmények tájékoztató becslések; fontos döntés előtt ellenőrizd az aktuális hivatalos vagy szakmai forrást.</p>
+  </div>
+</div>
+</div>
+<script defer src="../js/cookie.js"></script>
 <script src="../js/utils.js"></script>
-<script defer="" src="../js/autos/auto-super.js"></script>
+<script defer src="../js/autos/auto-super.js"></script>
   <script src="../js/help-widget.js" defer></script>
 </body>
 </html>

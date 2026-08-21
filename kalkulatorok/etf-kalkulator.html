@@ -10,6 +10,7 @@
 <title>ETF kalkulátor | Befektetés, célösszeg, TER és infláció</title>
 <link href="../css/style.css" rel="stylesheet"/>
 <link href="../css/pages/etf.css?v=20260627-2" rel="stylesheet"/>
+<script src="../js/static-first-fallbacks.js"></script>
 <script src="../js/global-head.js"></script>
 <meta content="website" property="og:type"/>
 <meta content="Kalkulátor Bázis" property="og:site_name"/>
@@ -21,10 +22,79 @@
 <meta content="ETF kalkulátor | Befektetés, célösszeg, TER és infláció" name="twitter:title"/>
 <meta content="ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással." name="twitter:description"/>
 <meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
+
+<!-- KB_STATIC:structured-data:START -->
+<script id="kb-structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/etf-kalkulator.html#webpage","url":"https://kalkulatorbazis.hu/kalkulatorok/etf-kalkulator.html","name":"ETF kalkulátor | Befektetés, célösszeg, TER és infláció","description":"ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással.","inLanguage":"hu-HU","isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"}},{"@type":"SoftwareApplication","@id":"https://kalkulatorbazis.hu/kalkulatorok/etf-kalkulator.html#calculator","name":"ETF kalkulátor","applicationCategory":"CalculatorApplication","operatingSystem":"Web","url":"https://kalkulatorbazis.hu/kalkulatorok/etf-kalkulator.html","description":"ETF befektetés, célösszeg, TER és infláció becslése.","offers":{"@type":"Offer","price":"0","priceCurrency":"HUF"},"isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"},"about":"Pénzügyi kalkulátorok"},{"@type":"BreadcrumbList","@id":"https://kalkulatorbazis.hu/kalkulatorok/etf-kalkulator.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://kalkulatorbazis.hu/"},{"@type":"ListItem","position":2,"name":"Pénzügy","item":"https://kalkulatorbazis.hu/penzugyi.html"},{"@type":"ListItem","position":3,"name":"ETF kalkulátor","item":"https://kalkulatorbazis.hu/kalkulatorok/etf-kalkulator.html"}]},{"@type":"FAQPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/etf-kalkulator.html#gyik","mainEntity":[{"@type":"Question","name":"Garantálja a kalkulátor az ETF-befektetés jövőbeni értékét?","acceptedAnswer":{"@type":"Answer","text":"Nem. A kalkulátor matematikai becslést készít a megadott feltételek alapján. A tényleges piaci teljesítmény ennél jobb és rosszabb is lehet."}},{"@type":"Question","name":"Miért szerepel külön a TER a számításban?","acceptedAnswer":{"@type":"Answer","text":"Mert az éves alapkezelési költség hosszú idő alatt jelentősen csökkentheti a portfólió várható értékét. A kalkulátor megmutatja a becsült költséghatást is."}},{"@type":"Question","name":"Mi a különbség a nominális és a mai vásárlóérték között?","acceptedAnswer":{"@type":"Answer","text":"A nominális érték a jövőbeni forintösszeg. A mai vásárlóérték azt becsüli, hogy ez inflációval korrigálva nagyjából mennyit érne mai pénzben."}},{"@type":"Question","name":"Miért számít a havi befizetés éves emelése?","acceptedAnswer":{"@type":"Answer","text":"Ha a bevételed idővel nő, a befizetés emelése segíthet tartani a tempót az inflációval és gyorsíthatja a cél elérését. A kalkulátor ezt éves lépésekben kezeli."}},{"@type":"Question","name":"Használható az ETF kalkulátor nyugdíjcél tervezésére?","acceptedAnswer":{"@type":"Answer","text":"Igen, előzetes becslésre alkalmas, de nyugdíjcél esetén érdemes külön figyelni az időtávra, adózásra, devizakitettségre, kockázattűrésre és a likvid tartalékra."}},{"@type":"Question","name":"Mi történik, ha a nettó hozam negatív?","acceptedAnswer":{"@type":"Answer","text":"A kalkulátor ilyenkor is számol, de az eredmény csökkenő vagy lassabban növekvő portfóliót mutathat. Ez segít látni, hogy a költség és a gyenge hozam milyen hatással lehet a hosszú távú tervre."}}]}]}</script>
+<!-- KB_STATIC:structured-data:END -->
 </head>
 <body>
-<div id="header"></div>
-<main class="container page-etf">
+<!-- KB_STATIC:skip-link:START -->
+<a class="kb-skip-link" href="#main-content">Ugrás a tartalomhoz</a>
+<!-- KB_STATIC:skip-link:END -->
+
+<div id="header"><header class="header-shell">
+  <div class="header-inner">
+    <a href="../" class="logo" aria-label="Kalkulátor Bázis főoldal">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="logo-text">Kalkulátor Bázis</span>
+    </a>
+
+    <nav id="menu" aria-label="Fő navigáció">
+      <a class="nav-home" href="../">Főoldal</a>
+
+      <details class="nav-dropdown nav-catalog" open>
+        <summary>
+          <span>Kalkulátorok</span>
+          <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="nav-submenu">
+          <a href="../kalkulatorok.html" class="">Összes kalkulátor</a>
+          <a href="../egeszseg.html">Egészség</a>
+          <a href="../auto.html">Autó</a>
+          <a href="../epitoipari.html">Építőipari</a>
+          <a href="../atvaltok.html">Átváltók</a>
+          <a href="../kalkulatorok/multifunkcios-szamologep.html">Tudományos számológép</a>
+        </div>
+      </details>
+
+      <a href="../penzugyi.html" class="is-active" aria-current="page">Pénzügyi</a>
+      <a href="../mindennapi.html">Mindennapi</a>
+
+      <details class="nav-dropdown nav-knowledge">
+        <summary>
+          <span>Tudástár</span>
+          <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="nav-submenu">
+          <a href="../elethelyzetek.html">Élethelyzetek</a>
+          <a href="../landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html">Pénzügyi tudatosság</a>
+          <a href="../szamitasi-modszertan.html">Számítási módszertan</a>
+          <a href="../miert-bizhatsz-bennunk.html">Miért bízhatsz bennünk?</a>
+          <a href="../atlathatosag-es-minoseg.html">Átláthatóság és minőség</a>
+          <a href="../kapcsolat.html">Kapcsolat</a>
+        </div>
+      </details>
+
+      <a href="../rolunk.html">Rólunk</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-search" href="../kalkulatorok.html#calculatorSearch" aria-label="Kalkulátor keresése">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-4-4"></path>
+        </svg>
+      </a>
+      <button class="theme-toggle" type="button" data-theme-toggle="" aria-label="Váltás sötét módra" aria-pressed="false" title="Váltás sötét módra">
+        <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+        <span class="theme-toggle-text">Sötét</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menü megnyitása" aria-controls="menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+</div>
+<main id="main-content" class="container page-etf">
 <section class="hero etf-hero">
 <p class="eyebrow">ETF tervező</p>
 <h1>ETF kalkulátor</h1>
@@ -33,7 +103,7 @@
           mekkora kezdő havi összeg kell egy pénzügyi cél eléréséhez.
         </p>
 </section>
-<section aria-labelledby="etfCalculatorTitle" class="card card-calculator etf-calculator">
+<section aria-labelledby="etfCalculatorTitle" class="card card-calculator etf-calculator kb-calculator-shell" id="kalkulator">
 <div class="etf-card-heading">
 <div>
 <p class="eyebrow">Kalkulátor</p>
@@ -47,43 +117,43 @@
 <fieldset class="etf-mode-switch">
 <legend>Mit szeretnél kiszámolni?</legend>
 <label>
-<input checked="" name="etfMode" type="radio" value="future"/>
+<input checked name="etfMode" type="radio" value="future">
 <span>Mennyim lehet?</span>
 </label>
 <label>
-<input name="etfMode" type="radio" value="goal"/>
+<input name="etfMode" type="radio" value="goal">
 <span>Mennyit kell befektetnem?</span>
 </label>
 </fieldset>
-<form class="etf-form" id="etfForm" novalidate="">
+<form class="etf-form" id="etfForm" novalidate>
 <div class="calc-grid etf-input-grid">
 <div class="input-group etf-field" data-field="target" data-mode-panel="goal" hidden>
 <label for="target">Célösszeg (Ft)</label>
-<input aria-describedby="target-help target-error" autocomplete="off" id="target" inputmode="decimal" placeholder="pl. 30 000 000" type="text"/>
+<input aria-describedby="target-help target-error" autocomplete="off" id="target" inputmode="decimal" placeholder="pl. 30 000 000" type="text" disabled aria-invalid="false">
 <small id="target-help">Az az összeg, amit a megadott időtáv végére szeretnél elérni.</small>
 <p class="field-error" id="target-error" role="alert"></p>
 </div>
 <div class="input-group etf-field" data-field="initial">
 <label for="initial">Kezdőtőke (Ft)</label>
-<input aria-describedby="initial-help initial-error" autocomplete="off" id="initial" inputmode="decimal" placeholder="pl. 200 000" type="text" value="0"/>
+<input aria-describedby="initial-help initial-error" autocomplete="off" id="initial" inputmode="decimal" placeholder="pl. 200 000" type="text" value="0" aria-invalid="false">
 <small id="initial-help">A már meglévő befektethető összeg. Ha nincs ilyen, maradhat 0 Ft.</small>
 <p class="field-error" id="initial-error" role="alert"></p>
 </div>
 <div class="input-group etf-field" data-field="monthly" data-mode-panel="future">
 <label for="monthly">Havi befektetés (Ft)</label>
-<input aria-describedby="monthly-help monthly-error" autocomplete="off" id="monthly" inputmode="decimal" placeholder="pl. 50 000" type="text" value="50 000"/>
+<input aria-describedby="monthly-help monthly-error" autocomplete="off" id="monthly" inputmode="decimal" placeholder="pl. 50 000" type="text" value="50 000" aria-invalid="false">
 <small id="monthly-help">A havonta, rendszeresen befektetett összeg.</small>
 <p class="field-error" id="monthly-error" role="alert"></p>
 </div>
 <div class="input-group etf-field" data-field="rate">
 <label for="rate">Éves várható effektív hozam (%)</label>
-<input aria-describedby="rate-help rate-error" id="rate" inputmode="decimal" placeholder="pl. 6" type="text" value="6"/>
+<input aria-describedby="rate-help rate-error" id="rate" inputmode="decimal" placeholder="pl. 6" type="text" value="6" aria-invalid="false">
 <small id="rate-help">Nem ígéret, hanem feltételezés. A múltbeli hozam nem garancia.</small>
 <p class="field-error" id="rate-error" role="alert"></p>
 </div>
 <div class="input-group etf-field" data-field="years">
 <label for="years">Időtáv (év)</label>
-<input aria-describedby="years-help years-error" id="years" inputmode="decimal" placeholder="pl. 20" type="text" value="20"/>
+<input aria-describedby="years-help years-error" id="years" inputmode="decimal" placeholder="pl. 20" type="text" value="20" aria-invalid="false">
 <small id="years-help">ETF-eknél a hosszabb időtáv segíthet tompítani a rövid távú kilengéseket.</small>
 <p class="field-error" id="years-error" role="alert"></p>
 </div>
@@ -91,11 +161,11 @@
 <fieldset class="etf-goal-type" data-mode-panel="goal" hidden>
 <legend>A célösszeg értelmezése</legend>
 <label>
-<input checked="" name="targetType" type="radio" value="nominal"/>
+<input checked name="targetType" type="radio" value="nominal" disabled>
 <span>Jövőbeni nominális célösszeg</span>
 </label>
 <label>
-<input name="targetType" type="radio" value="real"/>
+<input name="targetType" type="radio" value="real" disabled>
 <span>Mai vásárlóértéken megadott célösszeg</span>
 </label>
 </fieldset>
@@ -104,19 +174,19 @@
 <div class="calc-grid etf-input-grid">
 <div class="input-group etf-field" data-field="ter">
 <label for="ter">ETF éves költsége, TER (%)</label>
-<input aria-describedby="ter-help ter-error" id="ter" inputmode="decimal" placeholder="pl. 0,20" type="text" value="0,20"/>
+<input aria-describedby="ter-help ter-error" id="ter" inputmode="decimal" placeholder="pl. 0,20" type="text" value="0,20" aria-invalid="false">
 <small id="ter-help">Az ETF alapkezelési költsége, amely évente csökkenti a várható értéket.</small>
 <p class="field-error" id="ter-error" role="alert"></p>
 </div>
 <div class="input-group etf-field" data-field="inflation">
 <label for="inflation">Éves infláció (%)</label>
-<input aria-describedby="inflation-help inflation-error" id="inflation" inputmode="decimal" placeholder="pl. 3" type="text" value="3"/>
+<input aria-describedby="inflation-help inflation-error" id="inflation" inputmode="decimal" placeholder="pl. 3" type="text" value="3" aria-invalid="false">
 <small id="inflation-help">A pénz vásárlóerejének feltételezett éves csökkenése.</small>
 <p class="field-error" id="inflation-error" role="alert"></p>
 </div>
 <div class="input-group etf-field" data-field="increase">
 <label for="increase">Havi befizetés éves emelése (%)</label>
-<input aria-describedby="increase-help increase-error" id="increase" inputmode="decimal" placeholder="pl. 5" type="text" value="0"/>
+<input aria-describedby="increase-help increase-error" id="increase" inputmode="decimal" placeholder="pl. 5" type="text" value="0" aria-invalid="false">
 <small id="increase-help">Évente ennyivel nő a havi befektetés az új befektetési év kezdetén.</small>
 <p class="field-error" id="increase-error" role="alert"></p>
 </div>
@@ -129,33 +199,31 @@
           befektetési tanácsadásnak vagy hozamígéretnek. A befektetések értéke
           csökkenhet és növekedhet, a tényleges eredmény eltérhet a számított értéktől.
         </div>
-<div aria-live="polite" class="result-box etf-result">
+<div aria-live="polite" class="result-box etf-result" role="status" aria-atomic="false">
 <div class="etf-result-header">
 <p class="eyebrow">Eredmény</p>
 <h2 id="result-heading">Várható végösszeg</h2>
-<p id="result-final">–</p>
+<p id="result-final">22&nbsp;141&nbsp;430 Ft</p>
 </div>
 <div class="etf-result-grid">
 <div>
 <span>Teljes saját befizetés</span>
-<strong id="result-invested">–</strong>
+<strong id="result-invested">12&nbsp;000&nbsp;000 Ft</strong>
 </div>
 <div>
 <span>Várható nyereség</span>
-<strong id="result-profit">–</strong>
+<strong id="result-profit">10&nbsp;141&nbsp;430 Ft</strong>
 </div>
 <div>
 <span>Mai vásárlóértéken</span>
-<strong id="result-real">–</strong>
+<strong id="result-real">12&nbsp;259&nbsp;173 Ft</strong>
 </div>
 <div>
 <span>A költségek becsült hosszú távú hatása</span>
-<strong id="result-cost">–</strong>
+<strong id="result-cost">530&nbsp;502 Ft</strong>
 </div>
 </div>
-<p class="etf-result-note" id="result-interpretation">
-            Adj meg értelmezhető adatokat, és a kalkulátor megmutatja a becsült eredményt.
-          </p>
+<p class="etf-result-note" id="result-interpretation">A megadott feltételek alapján 20 év alatt körülbelül 22,1 M Ft gyűlhet össze. Ebből 12 M Ft lenne a saját befizetésed, a fennmaradó rész pedig becslés szerint 10,1 M Ft becsült hozam.</p>
 </div>
 <section aria-labelledby="etfScenarioTitle" class="etf-scenarios">
 <div class="etf-section-heading">
@@ -165,7 +233,25 @@
 <p class="etf-muted">
             A forgatókönyvek nem hozamígéretek, csak eltérő feltételezéseken alapuló becslések.
           </p>
-<div class="etf-scenario-grid" id="scenarioGrid"></div>
+<div class="etf-scenario-grid" id="scenarioGrid">
+          <article class="etf-scenario" data-scenario="cautious">
+            <span>Óvatos</span>
+            <strong>17&nbsp;788&nbsp;001 Ft</strong>
+            <small>4% éves bruttó hozamfeltételezés</small>
+          </article>
+
+          <article class="etf-scenario" data-scenario="base">
+            <span>Alap</span>
+            <strong>22&nbsp;141&nbsp;430 Ft</strong>
+            <small>6% éves bruttó hozamfeltételezés</small>
+          </article>
+
+          <article class="etf-scenario" data-scenario="optimistic">
+            <span>Optimista</span>
+            <strong>27&nbsp;752&nbsp;497 Ft</strong>
+            <small>8% éves bruttó hozamfeltételezés</small>
+          </article>
+        </div>
 </section>
 <section aria-labelledby="etfChartTitle" class="etf-chart-section">
 <div class="etf-section-heading">
@@ -173,7 +259,21 @@
 <h2 id="etfChartTitle">Portfólióérték és saját befizetés évenként</h2>
 </div>
 <div class="etf-chart-wrap" id="etfChartWrap">
-<svg aria-labelledby="etfChartTitle etfChartSummary" class="etf-chart" id="etfChart" preserveaspectratio="xMidYMid meet" role="img" viewbox="0 0 760 340"></svg>
+<svg aria-labelledby="etfChartTitle etfChartSummary" class="etf-chart" id="etfChart" preserveAspectRatio="xMidYMid meet" role="img" viewBox="0 0 760 340">
+      <g class="etf-chart-grid">
+        <line x1="72" y1="286" x2="732" y2="286"></line><text x="62" y="290" text-anchor="end">0 Ft</text><line x1="72" y1="220.5" x2="732" y2="220.5"></line><text x="62" y="224.5" text-anchor="end">5,5 M Ft</text><line x1="72" y1="155" x2="732" y2="155"></line><text x="62" y="159" text-anchor="end">11,1 M Ft</text><line x1="72" y1="89.5" x2="732" y2="89.5"></line><text x="62" y="93.5" text-anchor="end">16,6 M Ft</text><line x1="72" y1="24" x2="732" y2="24"></line><text x="62" y="28" text-anchor="end">22,1 M Ft</text>
+      </g>
+      <polyline class="line-invested" points="72.00,278.90 106.74,271.80 141.47,264.70 176.21,257.60 210.95,250.50 245.68,243.40 280.42,236.30 315.16,229.20 349.89,222.10 384.63,215.00 419.37,207.90 454.11,200.80 488.84,193.70 523.58,186.60 558.32,179.50 593.05,172.40 627.79,165.30 662.53,158.20 697.26,151.10 732.00,144.00"></polyline>
+      <polyline class="line-balance" points="72.00,278.71 106.74,271.01 141.47,262.85 176.21,254.23 210.95,245.10 245.68,235.45 280.42,225.23 315.16,214.43 349.89,203.00 384.63,190.91 419.37,178.12 454.11,164.59 488.84,150.28 523.58,135.14 558.32,119.12 593.05,102.17 627.79,84.25 662.53,65.28 697.26,45.22 732.00,24.00"></polyline>
+      <polyline class="line-real" points="72.00,278.93 106.74,271.87 141.47,264.82 176.21,257.77 210.95,250.72 245.68,243.66 280.42,236.59 315.16,229.50 349.89,222.39 384.63,215.25 419.37,208.07 454.11,200.85 488.84,193.58 523.58,186.26 558.32,178.89 593.05,171.45 627.79,163.94 662.53,156.35 697.26,148.69 732.00,140.94"></polyline>
+      <g class="etf-chart-axis">
+        <line x1="72" y1="286" x2="732" y2="286"></line>
+        <text x="72" y="318" text-anchor="middle">1. év</text><text x="176.21052631578948" y="318" text-anchor="middle">4. év</text><text x="315.1578947368421" y="318" text-anchor="middle">8. év</text><text x="454.10526315789474" y="318" text-anchor="middle">12. év</text><text x="593.0526315789474" y="318" text-anchor="middle">16. év</text><text x="732" y="318" text-anchor="middle">20. év</text>
+      </g>
+      <g class="etf-chart-points">
+        <circle tabindex="0" role="button" aria-label="1. év: portfólió 615&nbsp;755 Ft, saját befizetés 600&nbsp;000 Ft" cx="72" cy="278.71375459238635" r="6" data-chart-point="0"></circle><circle tabindex="0" role="button" aria-label="2. év: portfólió 1&nbsp;267&nbsp;151 Ft, saját befizetés 1&nbsp;200&nbsp;000 Ft" cx="106.73684210526315" cy="271.00578130058" r="6" data-chart-point="1"></circle><circle tabindex="0" role="button" aria-label="3. év: portfólió 1&nbsp;956&nbsp;248 Ft, saját befizetés 1&nbsp;800&nbsp;000 Ft" cx="141.4736842105263" cy="262.8516705146439" r="6" data-chart-point="2"></circle><circle tabindex="0" role="button" aria-label="4. év: portfólió 2&nbsp;685&nbsp;231 Ft, saját befizetés 2&nbsp;400&nbsp;000 Ft" cx="176.21052631578948" cy="254.22559979641784" r="6" data-chart-point="3"></circle><circle tabindex="0" role="button" aria-label="5. év: portfólió 3&nbsp;456&nbsp;408 Ft, saját befizetés 3&nbsp;000&nbsp;000 Ft" cx="210.94736842105263" cy="245.10025210502084" r="6" data-chart-point="4"></circle><circle tabindex="0" role="button" aria-label="6. év: portfólió 4&nbsp;272&nbsp;220 Ft, saját befizetés 3&nbsp;600&nbsp;000 Ft" cx="245.68421052631578" cy="235.44672928924578" r="6" data-chart-point="5"></circle><circle tabindex="0" role="button" aria-label="7. év: portfólió 5&nbsp;135&nbsp;252 Ft, saját befizetés 4&nbsp;200&nbsp;000 Ft" cx="280.42105263157896" cy="225.23446057289368" r="6" data-chart-point="6"></circle><circle tabindex="0" role="button" aria-label="8. év: portfólió 6&nbsp;048&nbsp;235 Ft, saját befizetés 4&nbsp;800&nbsp;000 Ft" cx="315.1578947368421" cy="214.43110574323913" r="6" data-chart-point="7"></circle><circle tabindex="0" role="button" aria-label="9. év: portfólió 7&nbsp;014&nbsp;062 Ft, saját befizetés 5&nbsp;400&nbsp;000 Ft" cx="349.89473684210526" cy="203.00245273604415" r="6" data-chart-point="8"></circle><circle tabindex="0" role="button" aria-label="10. év: portfólió 8&nbsp;035&nbsp;792 Ft, saját befizetés 6&nbsp;000&nbsp;000 Ft" cx="384.6315789473684" cy="190.9123092927927" r="6" data-chart-point="9"></circle><circle tabindex="0" role="button" aria-label="11. év: portfólió 9&nbsp;116&nbsp;659 Ft, saját befizetés 6&nbsp;600&nbsp;000 Ft" cx="419.36842105263156" cy="178.12238834704596" r="6" data-chart-point="10"></circle><circle tabindex="0" role="button" aria-label="12. év: portfólió 10&nbsp;260&nbsp;086 Ft, saját befizetés 7&nbsp;200&nbsp;000 Ft" cx="454.10526315789474" cy="164.5921867769593" r="6" data-chart-point="11"></circle><circle tabindex="0" role="button" aria-label="13. év: portfólió 11&nbsp;469&nbsp;695 Ft, saját befizetés 7&nbsp;800&nbsp;000 Ft" cx="488.84210526315786" cy="150.2788571399961" r="6" data-chart-point="12"></circle><circle tabindex="0" role="button" aria-label="14. év: portfólió 12&nbsp;749&nbsp;316 Ft, saját befizetés 8&nbsp;400&nbsp;000 Ft" cx="523.578947368421" cy="135.13707198364546" r="6" data-chart-point="13"></circle><circle tabindex="0" role="button" aria-label="15. év: portfólió 14&nbsp;103&nbsp;002 Ft, saját befizetés 9&nbsp;000&nbsp;000 Ft" cx="558.3157894736842" cy="119.1188803024452" r="6" data-chart-point="14"></circle><circle tabindex="0" role="button" aria-label="16. év: portfólió 15&nbsp;535&nbsp;039 Ft, saját befizetés 9&nbsp;600&nbsp;000 Ft" cx="593.0526315789474" cy="102.17355568673716" r="6" data-chart-point="15"></circle><circle tabindex="0" role="button" aria-label="17. év: portfólió 17&nbsp;049&nbsp;963 Ft, saját befizetés 10&nbsp;200&nbsp;000 Ft" cx="627.7894736842105" cy="84.24743568227186" r="6" data-chart-point="16"></circle><circle tabindex="0" role="button" aria-label="18. év: portfólió 18&nbsp;652&nbsp;570 Ft, saját befizetés 10&nbsp;800&nbsp;000 Ft" cx="662.5263157894736" cy="65.28375185194815" r="6" data-chart-point="17"></circle><circle tabindex="0" role="button" aria-label="19. év: portfólió 20&nbsp;347&nbsp;936 Ft, saját befizetés 11&nbsp;400&nbsp;000 Ft" cx="697.2631578947368" cy="45.22245000152529" r="6" data-chart-point="18"></circle><circle tabindex="0" role="button" aria-label="20. év: portfólió 22&nbsp;141&nbsp;430 Ft, saját befizetés 12&nbsp;000&nbsp;000 Ft" cx="732" cy="24" r="6" data-chart-point="19"></circle>
+      </g>
+    </svg>
 <div class="etf-chart-tooltip" hidden id="etfChartTooltip"></div>
 </div>
 <p class="sr-only" id="etfChartSummary">
@@ -203,14 +303,235 @@
 </tr>
 </thead>
 <tbody id="yearlyTableBody">
-<tr>
-<td colspan="6">Adj meg adatokat az éves bontáshoz.</td>
-</tr>
-</tbody>
+          <tr>
+            <td>1. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>15&nbsp;755 Ft</td>
+            <td>615&nbsp;755 Ft</td>
+            <td>597&nbsp;821 Ft</td>
+          </tr>
+
+          <tr>
+            <td>2. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>1&nbsp;200&nbsp;000 Ft</td>
+            <td>51&nbsp;395 Ft</td>
+            <td>1&nbsp;267&nbsp;151 Ft</td>
+            <td>1&nbsp;194&nbsp;411 Ft</td>
+          </tr>
+
+          <tr>
+            <td>3. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>1&nbsp;800&nbsp;000 Ft</td>
+            <td>89&nbsp;098 Ft</td>
+            <td>1&nbsp;956&nbsp;248 Ft</td>
+            <td>1&nbsp;790&nbsp;244 Ft</td>
+          </tr>
+
+          <tr>
+            <td>4. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>2&nbsp;400&nbsp;000 Ft</td>
+            <td>128&nbsp;983 Ft</td>
+            <td>2&nbsp;685&nbsp;231 Ft</td>
+            <td>2&nbsp;385&nbsp;793 Ft</td>
+          </tr>
+
+          <tr>
+            <td>5. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>3&nbsp;000&nbsp;000 Ft</td>
+            <td>171&nbsp;177 Ft</td>
+            <td>3&nbsp;456&nbsp;408 Ft</td>
+            <td>2&nbsp;981&nbsp;528 Ft</td>
+          </tr>
+
+          <tr>
+            <td>6. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>3&nbsp;600&nbsp;000 Ft</td>
+            <td>215&nbsp;812 Ft</td>
+            <td>4&nbsp;272&nbsp;220 Ft</td>
+            <td>3&nbsp;577&nbsp;917 Ft</td>
+          </tr>
+
+          <tr>
+            <td>7. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>4&nbsp;200&nbsp;000 Ft</td>
+            <td>263&nbsp;031 Ft</td>
+            <td>5&nbsp;135&nbsp;252 Ft</td>
+            <td>4&nbsp;175&nbsp;429 Ft</td>
+          </tr>
+
+          <tr>
+            <td>8. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>4&nbsp;800&nbsp;000 Ft</td>
+            <td>312&nbsp;984 Ft</td>
+            <td>6&nbsp;048&nbsp;235 Ft</td>
+            <td>4&nbsp;774&nbsp;533 Ft</td>
+          </tr>
+
+          <tr>
+            <td>9. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>5&nbsp;400&nbsp;000 Ft</td>
+            <td>365&nbsp;827 Ft</td>
+            <td>7&nbsp;014&nbsp;062 Ft</td>
+            <td>5&nbsp;375&nbsp;695 Ft</td>
+          </tr>
+
+          <tr>
+            <td>10. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>6&nbsp;000&nbsp;000 Ft</td>
+            <td>421&nbsp;729 Ft</td>
+            <td>8&nbsp;035&nbsp;792 Ft</td>
+            <td>5&nbsp;979&nbsp;384 Ft</td>
+          </tr>
+
+          <tr>
+            <td>11. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>6&nbsp;600&nbsp;000 Ft</td>
+            <td>480&nbsp;867 Ft</td>
+            <td>9&nbsp;116&nbsp;659 Ft</td>
+            <td>6&nbsp;586&nbsp;068 Ft</td>
+          </tr>
+
+          <tr>
+            <td>12. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>7&nbsp;200&nbsp;000 Ft</td>
+            <td>543&nbsp;427 Ft</td>
+            <td>10&nbsp;260&nbsp;086 Ft</td>
+            <td>7&nbsp;196&nbsp;218 Ft</td>
+          </tr>
+
+          <tr>
+            <td>13. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>7&nbsp;800&nbsp;000 Ft</td>
+            <td>609&nbsp;609 Ft</td>
+            <td>11&nbsp;469&nbsp;695 Ft</td>
+            <td>7&nbsp;810&nbsp;304 Ft</td>
+          </tr>
+
+          <tr>
+            <td>14. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>8&nbsp;400&nbsp;000 Ft</td>
+            <td>679&nbsp;621 Ft</td>
+            <td>12&nbsp;749&nbsp;316 Ft</td>
+            <td>8&nbsp;428&nbsp;800 Ft</td>
+          </tr>
+
+          <tr>
+            <td>15. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>9&nbsp;000&nbsp;000 Ft</td>
+            <td>753&nbsp;686 Ft</td>
+            <td>14&nbsp;103&nbsp;002 Ft</td>
+            <td>9&nbsp;052&nbsp;180 Ft</td>
+          </tr>
+
+          <tr>
+            <td>16. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>9&nbsp;600&nbsp;000 Ft</td>
+            <td>832&nbsp;037 Ft</td>
+            <td>15&nbsp;535&nbsp;039 Ft</td>
+            <td>9&nbsp;680&nbsp;923 Ft</td>
+          </tr>
+
+          <tr>
+            <td>17. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>10&nbsp;200&nbsp;000 Ft</td>
+            <td>914&nbsp;923 Ft</td>
+            <td>17&nbsp;049&nbsp;963 Ft</td>
+            <td>10&nbsp;315&nbsp;508 Ft</td>
+          </tr>
+
+          <tr>
+            <td>18. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>10&nbsp;800&nbsp;000 Ft</td>
+            <td>1&nbsp;002&nbsp;607 Ft</td>
+            <td>18&nbsp;652&nbsp;570 Ft</td>
+            <td>10&nbsp;956&nbsp;419 Ft</td>
+          </tr>
+
+          <tr>
+            <td>19. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>11&nbsp;400&nbsp;000 Ft</td>
+            <td>1&nbsp;095&nbsp;366 Ft</td>
+            <td>20&nbsp;347&nbsp;936 Ft</td>
+            <td>11&nbsp;604&nbsp;143 Ft</td>
+          </tr>
+
+          <tr>
+            <td>20. év</td>
+            <td>600&nbsp;000 Ft</td>
+            <td>12&nbsp;000&nbsp;000 Ft</td>
+            <td>1&nbsp;193&nbsp;494 Ft</td>
+            <td>22&nbsp;141&nbsp;430 Ft</td>
+            <td>12&nbsp;259&nbsp;173 Ft</td>
+          </tr>
+        </tbody>
 </table>
 </div>
 </details>
-</section>
+<section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+  <div class="retention-cta-copy">
+    <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
+    <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
+    <p>
+      Tedd el a Kalkulátor Bázist, hogy legközelebb egy mozdulattal visszatalálj
+      ehhez a számításhoz – vagy oszd meg azzal, akinek szintén jól jöhet.
+    </p>
+  </div>
+
+  <div class="retention-cta-actions" role="group">
+    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+      <span aria-hidden="true">☆</span>
+      <span>Könyvjelzőzöm</span>
+    </button>
+
+    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+      <span aria-hidden="true">▣</span>
+      <span data-retention-install-label="">Telepítem</span>
+    </button>
+
+    <button class="retention-cta-button" type="button" data-retention-action="share">
+      <span aria-hidden="true">↗</span>
+      <span data-retention-share-label="">Megosztom</span>
+    </button>
+  </div>
+
+  <div class="retention-cta-panels">
+    <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
+      <p data-retention-bookmark-text="">
+        Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
+      </p>
+    </div>
+
+    <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
+      <p data-retention-install-text=""></p>
+    </div>
+
+    <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
+      <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+    </div>
+  </div>
+
+  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+</section></section>
 <section class="article etf-guide">
 <div class="info-box">
 <strong>Röviden:</strong> az ETF kalkulátor nem azt mondja meg, mi fog
@@ -341,10 +662,112 @@
           Wise bemutató →
         </a>
 </section>
+
+<!-- KB_STATIC:reliability:START -->
+<section class="reliability-note">
+      <div>
+        <h2>Hitelesség és számítási korlátok</h2>
+        <p>Az eredmény tájékoztató becslés, nem pénzügyi, befektetési vagy adótanács, hitelajánlat vagy garantált eredmény. Döntés előtt ellenőrizd az aktuális feltételeket és szükség esetén kérj szakértői segítséget.</p>
+      </div>
+      <div class="reliability-actions">
+        <a href="../atlathatosag-es-minoseg.html">A számítások módszertana és minőségbiztosítása</a>
+        <a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelent%C3%A9s%20%E2%80%93%20ETF%20kalkul%C3%A1tor&amp;body=Kalkul%C3%A1tor%3A%20ETF%20kalkul%C3%A1tor%0AOldal%3A%20https%3A%2F%2Fkalkulatorbazis.hu%2Fkalkulatorok%2Fetf-kalkulator.html%0A%0AA%20hiba%20r%C3%B6vid%20le%C3%ADr%C3%A1sa%3A%0A">Hibát találtál? Jelezd nekünk.</a>
+      </div>
+    </section>
+<!-- KB_STATIC:reliability:END -->
+
+<!-- KB_STATIC:quality-finance:START -->
+<section data-static-quality-version="2026-08" data-static-quality-fallback="finance" class="finance-quality etf-selection-lab">
+      <p class="quality-kicker">ETF kiválasztási ellenőrző</p>
+      <h2>A TER csak egy sor a döntésben</h2>
+      <p>A kalkulátor a hosszú távú matematikát modellezi, de egy konkrét ETF kiválasztásakor a költségnél több tulajdonságot kell ellenőrizni. Két hasonló nevű alap kitettsége és működése is eltérhet.</p>
+      <div class="quality-check-grid">
+        <article><h3>Mit követ?</h3><p>Index, régió, szektor, eszközosztály és koncentráció. A „világ ETF” elnevezés önmagában nem mondja meg a mögöttes piac pontos összetételét.</p></article>
+        <article><h3>Hogyan kezeli a hozamot?</h3><p>Felhalmozó és kifizető alap eltérően kezeli az osztalékot. A befektetési cél és az adózási környezet miatt ez gyakorlati különbség.</p></article>
+        <article><h3>Mekkora a tényleges súrlódás?</h3><p>TER mellett vételi/eladási spread, brókerdíj, devizaváltás és követési eltérés is befolyásolhatja az eredményt.</p></article>
+        <article><h3>Milyen kockázatot vállalsz?</h3><p>A széles diverzifikáció sem védi ki a teljes részvénypiac esését. A kalkulált sima hozampálya nem mutatja a közbenső visszaeséseket.</p></article>
+      </div>
+      <div class="quality-note"><strong>Hasznos gyakorlat:</strong> ugyanazt a célt számold végig legalább három hozammal, és nézd meg a mai vásárlóértéket is. Így a kalkulátor nem „jósol”, hanem döntési tartományt mutat.</div>
+    </section>
+<!-- KB_STATIC:quality-finance:END -->
 </main>
-<div id="footer"></div>
+<div id="footer"><div class="footer-container kb-footer">
+  <section class="footer-cta" aria-labelledby="footerCtaTitle">
+    <div class="footer-cta-copy">
+      <span class="footer-eyebrow">Segíts fejleszteni a Kalkulátor Bázist</span>
+      <h2 id="footerCtaTitle">Nem találtad meg a keresett kalkulátort?</h2>
+      <p>Írd meg, milyen számítás lenne hasznos. A jó ötleteket felvesszük a fejlesztési listára.</p>
+    </div>
+    <a class="footer-cta-button" href="../kapcsolat.html?tema=uj-kalkulator">Kalkulátort javaslok</a>
+  </section>
+
+  <div class="footer-main">
+    <section class="footer-brand" aria-labelledby="footerBrandTitle">
+      <a href="../" class="footer-logo" id="footerBrandTitle">
+        <span class="footer-logo-mark" aria-hidden="true"></span>
+        <span>Kalkulátor Bázis</span>
+      </a>
+      <p class="footer-brand-copy">
+        Ingyenes, magyar nyelvű online kalkulátorok pénzügyi, egészségügyi,
+        építőipari, autós és mindennapi döntésekhez.
+      </p>
+      <ul class="footer-trust-list">
+        <li>Regisztráció nélkül használható</li>
+        <li>Közérthető módszertan és források</li>
+        <li>Mobilon is kényelmesen működik</li>
+      </ul>
+      <a class="footer-mail" href="mailto:kalkulatorbazis@gmail.com">kalkulatorbazis@gmail.com</a>
+    </section>
+
+    <nav class="footer-col" aria-label="Kalkulátorkategóriák">
+      <h2>Kalkulátorok</h2>
+      <a href="../penzugyi.html">Pénzügyi</a>
+      <a href="../egeszseg.html">Egészség</a>
+      <a href="../epitoipari.html">Építőipari</a>
+      <a href="../auto.html">Autós</a>
+      <a href="../mindennapi.html">Mindennapi</a>
+      <a href="../atvaltok.html">Átváltók</a>
+      <a class="footer-link-emphasis" href="../kalkulatorok.html">Összes kalkulátor</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Kiemelt kalkulátorok">
+      <h2>Népszerű oldalak</h2>
+      <a href="../kalkulatorok/netto-brutto-kalkulator.html">Nettó–bruttó kalkulátor</a>
+      <a href="../kalkulatorok/etf-kalkulator.html">ETF kalkulátor</a>
+      <a href="../kalkulatorok/afa-kalkulator.html">ÁFA-kalkulátor</a>
+      <a href="../kalkulatorok/hitel-torleszto-kalkulator.html">Hiteltörlesztő kalkulátor</a>
+      <a href="../kalkulatorok/szazalek-kalkulator.html">Százalékkalkulátor</a>
+      <a href="../#newTitle">Újdonságok</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Információ és bizalom">
+      <h2>Információ</h2>
+      <a href="../rolunk.html">Rólunk</a>
+      <a href="../szamitasi-modszertan.html">Számítási módszertan</a>
+      <a href="../miert-bizhatsz-bennunk.html">Miért bízhatsz bennünk?</a>
+      <a href="../atlathatosag-es-minoseg.html">Átláthatóság és minőség</a>
+      <a href="../kapcsolat.html">Kapcsolat és hibabejelentés</a>
+      <button class="footer-link-button" type="button" data-cookie-settings="">Sütibeállítások</button>
+    </nav>
+  </div>
+
+  <nav class="footer-legal" aria-label="Jogi hivatkozások">
+    <a href="../impresszum.html">Impresszum</a>
+    <a href="../adatvedelem.html">Adatkezelés</a>
+    <a href="../felhasznalasi-feltetelek.html">Felhasználási feltételek</a>
+    <a href="../cookie.html">Sütik</a>
+    <a href="../jogi-nyilatkozat.html">Jogi nyilatkozat</a>
+    <a href="../landing-pages/wise/wise.html">Partnerinformáció</a>
+  </nav>
+
+  <div class="footer-bottom">
+    <p>© 2026 Kalkulátor Bázis</p>
+    <p>Az eredmények tájékoztató becslések; fontos döntés előtt ellenőrizd az aktuális hivatalos vagy szakmai forrást.</p>
+  </div>
+</div>
+</div>
 <script src="../js/utils.js"></script>
-<script defer="" src="../js/penzugyi/etf.js?v=20260627-2"></script>
+<script defer src="../js/penzugyi/etf.js?v=20260627-2"></script>
   <script src="../js/help-widget.js" defer></script>
 </body>
 </html>

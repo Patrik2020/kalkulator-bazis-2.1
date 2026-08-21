@@ -10,6 +10,7 @@
 <title>Árkedvezmény kalkulátor | Akciós ár és megtakarítás</title>
 <link href="../css/style.css" rel="stylesheet"/>
 <link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/static-first-fallbacks.js"></script>
 <script src="../js/global-head.js"></script>
 <meta content="website" property="og:type"/>
 <meta content="Kalkulátor Bázis" property="og:site_name"/>
@@ -21,21 +22,129 @@
 <meta content="Árkedvezmény kalkulátor | Akciós ár és megtakarítás" name="twitter:title"/>
 <meta content="Árkedvezmény kalkulátor akciós árhoz: add meg az eredeti árat és a kedvezmény százalékát, majd lásd a fizetendő összeget és megtakarítást." name="twitter:description"/>
 <meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
+
+<!-- KB_STATIC:structured-data:START -->
+<script id="kb-structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/ar-kedvezmeny-kalkulator.html#webpage","url":"https://kalkulatorbazis.hu/kalkulatorok/ar-kedvezmeny-kalkulator.html","name":"Árkedvezmény kalkulátor | Akciós ár és megtakarítás","description":"Árkedvezmény kalkulátor akciós árhoz: add meg az eredeti árat és a kedvezmény százalékát, majd lásd a fizetendő összeget és megtakarítást.","inLanguage":"hu-HU","isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"}},{"@type":"SoftwareApplication","@id":"https://kalkulatorbazis.hu/kalkulatorok/ar-kedvezmeny-kalkulator.html#calculator","name":"Árkedvezmény kalkulátor","applicationCategory":"CalculatorApplication","operatingSystem":"Web","url":"https://kalkulatorbazis.hu/kalkulatorok/ar-kedvezmeny-kalkulator.html","description":"Számold ki az akciós árat, kedvezményt és megtakarítást.","offers":{"@type":"Offer","price":"0","priceCurrency":"HUF"},"isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"},"about":"Mindennapi kalkulátorok"},{"@type":"BreadcrumbList","@id":"https://kalkulatorbazis.hu/kalkulatorok/ar-kedvezmeny-kalkulator.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://kalkulatorbazis.hu/"},{"@type":"ListItem","position":2,"name":"Mindennapok","item":"https://kalkulatorbazis.hu/mindennapi.html"},{"@type":"ListItem","position":3,"name":"Árkedvezmény kalkulátor","item":"https://kalkulatorbazis.hu/kalkulatorok/ar-kedvezmeny-kalkulator.html"}]},{"@type":"FAQPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/ar-kedvezmeny-kalkulator.html#gyik","mainEntity":[{"@type":"Question","name":"100% kedvezménynél mi történik?","acceptedAnswer":{"@type":"Answer","text":"A fizetendő ár nulla."}},{"@type":"Question","name":"Áremelést is számol?","acceptedAnswer":{"@type":"Answer","text":"Nem ezen a nézeten; a százalékkalkulátor alkalmas növekedésre."}},{"@type":"Question","name":"Kuponnal együtt hogyan számoljak?","acceptedAnswer":{"@type":"Answer","text":"Alkalmazd sorban a kedvezményeket a mindenkori csökkentett árra."}},{"@type":"Question","name":"ÁFÁ-t figyelembe veszi?","acceptedAnswer":{"@type":"Answer","text":"A megadott ár egészére számol, függetlenül attól, hogy nettó vagy bruttó."}}]}]}</script>
+<!-- KB_STATIC:structured-data:END -->
 </head>
 <body>
-<div id="header"></div>
-<main class="container page-simple-calculator" data-simple-calc="ar-kedvezmeny-kalkulator">
+<!-- KB_STATIC:skip-link:START -->
+<a class="kb-skip-link" href="#main-content">Ugrás a tartalomhoz</a>
+<!-- KB_STATIC:skip-link:END -->
+
+<div id="header"><header class="header-shell">
+  <div class="header-inner">
+    <a href="../" class="logo" aria-label="Kalkulátor Bázis főoldal">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="logo-text">Kalkulátor Bázis</span>
+    </a>
+
+    <nav id="menu" aria-label="Fő navigáció">
+      <a class="nav-home" href="../">Főoldal</a>
+
+      <details class="nav-dropdown nav-catalog" open>
+        <summary>
+          <span>Kalkulátorok</span>
+          <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="nav-submenu">
+          <a href="../kalkulatorok.html" class="">Összes kalkulátor</a>
+          <a href="../egeszseg.html">Egészség</a>
+          <a href="../auto.html">Autó</a>
+          <a href="../epitoipari.html">Építőipari</a>
+          <a href="../atvaltok.html">Átváltók</a>
+          <a href="../kalkulatorok/multifunkcios-szamologep.html">Tudományos számológép</a>
+        </div>
+      </details>
+
+      <a href="../penzugyi.html">Pénzügyi</a>
+      <a href="../mindennapi.html" class="is-active" aria-current="page">Mindennapi</a>
+
+      <details class="nav-dropdown nav-knowledge">
+        <summary>
+          <span>Tudástár</span>
+          <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="nav-submenu">
+          <a href="../elethelyzetek.html">Élethelyzetek</a>
+          <a href="../landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html">Pénzügyi tudatosság</a>
+          <a href="../szamitasi-modszertan.html">Számítási módszertan</a>
+          <a href="../miert-bizhatsz-bennunk.html">Miért bízhatsz bennünk?</a>
+          <a href="../atlathatosag-es-minoseg.html">Átláthatóság és minőség</a>
+          <a href="../kapcsolat.html">Kapcsolat</a>
+        </div>
+      </details>
+
+      <a href="../rolunk.html">Rólunk</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-search" href="../kalkulatorok.html#calculatorSearch" aria-label="Kalkulátor keresése">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-4-4"></path>
+        </svg>
+      </a>
+      <button class="theme-toggle" type="button" data-theme-toggle="" aria-label="Váltás sötét módra" aria-pressed="false" title="Váltás sötét módra">
+        <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+        <span class="theme-toggle-text">Sötét</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menü megnyitása" aria-controls="menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+</div>
+<main id="main-content" class="container page-simple-calculator" data-simple-calc="ar-kedvezmeny-kalkulator">
 <section class="hero">
 <h1>Árkedvezmény kalkulátor</h1>
 <p>Számold ki az akciós árat, kedvezményt és megtakarítást.</p>
 </section>
-<section class="card card-calculator">
-<div class="calc-grid" id="simpleCalcFields"></div>
-<div class="result-box">
-<p>Eredmény:</p>
-<div id="simpleCalcResults">–</div>
-</div>
-</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="everyday-heading"><h2>Többlépcsős kedvezmény- és kuponkalkulátor</h2><p>Egymás utáni százalékos kedvezményt, fix kupont és maximális kedvezményi korlátot kezel.</p></div><form class="everyday-grid"><label class="everyday-field"><span>Eredeti ár (Ft)</span><input type="number" min="0" name="price" step="any" inputmode="decimal"></label><label class="everyday-field"><span>Első kedvezmény (%)</span><input type="number" min="0" name="discount1" step="any" inputmode="decimal"></label><label class="everyday-field"><span>Második kedvezmény (%)</span><input type="number" min="0" name="discount2" step="any" inputmode="decimal"></label><label class="everyday-field"><span>Fix kupon (Ft)</span><input type="number" min="0" name="coupon" step="any" inputmode="decimal"></label><label class="everyday-field"><span>Maximum összes kedvezmény (Ft, 0 = nincs)</span><input type="number" min="0" name="cap" step="any" inputmode="decimal"></label><button type="submit" class="everyday-submit">Számítás</button></form><div class="everyday-result" role="status" aria-live="polite" aria-atomic="true"></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+  <div class="retention-cta-copy">
+    <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
+    <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
+    <p>
+      Tedd el a Kalkulátor Bázist, hogy legközelebb egy mozdulattal visszatalálj
+      ehhez a számításhoz – vagy oszd meg azzal, akinek szintén jól jöhet.
+    </p>
+  </div>
+
+  <div class="retention-cta-actions" role="group">
+    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+      <span aria-hidden="true">☆</span>
+      <span>Könyvjelzőzöm</span>
+    </button>
+
+    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" hidden>
+      <span aria-hidden="true">▣</span>
+      <span data-retention-install-label="">Telepítem</span>
+    </button>
+
+    <button class="retention-cta-button" type="button" data-retention-action="share">
+      <span aria-hidden="true">↗</span>
+      <span data-retention-share-label="">Megosztom</span>
+    </button>
+  </div>
+
+  <div class="retention-cta-panels">
+    <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
+      <p data-retention-bookmark-text="">
+        Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
+      </p>
+    </div>
+
+    <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
+      <p data-retention-install-text=""></p>
+    </div>
+
+    <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
+      <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+    </div>
+  </div>
+
+  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+</section></section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
 <h2>Akciós ár és megtakarítás kiszámítása</h2>
 <p>Az árkedvezmény kalkulátor az eredeti árból és a megadott kedvezményszázalékból kiszámolja a megtakarítást és a fizetendő akciós árat. Vásárlás közben gyorsan ellenőrizhető vele, mennyit jelent valójában egy százalékos leárazás.</p>
 <p>A kalkulátor egyetlen kedvezményt alkalmaz. Több egymás utáni akció nem egyszerűen összeadható: a második kedvezmény már a csökkentett árra vonatkozik.</p>
@@ -53,9 +162,118 @@
 <p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-01">2026. július 1.</time></p>
 </section>
 
+
+<!-- KB_STATIC:reliability:START -->
+<section class="reliability-note">
+      <div>
+        <h2>Hitelesség és számítási korlátok</h2>
+        <p>Az eredmény a megadott adatok és az oldalon bemutatott számítási logika alapján készül.</p>
+      </div>
+      <div class="reliability-actions">
+        <a href="../atlathatosag-es-minoseg.html">A számítások módszertana és minőségbiztosítása</a>
+        <a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelent%C3%A9s%20%E2%80%93%20%C3%81rkedvezm%C3%A9ny%20kalkul%C3%A1tor&amp;body=Kalkul%C3%A1tor%3A%20%C3%81rkedvezm%C3%A9ny%20kalkul%C3%A1tor%0AOldal%3A%20https%3A%2F%2Fkalkulatorbazis.hu%2Fkalkulatorok%2Far-kedvezmeny-kalkulator.html%0A%0AA%20hiba%20r%C3%B6vid%20le%C3%ADr%C3%A1sa%3A%0A">Hibát találtál? Jelezd nekünk.</a>
+      </div>
+    </section>
+<!-- KB_STATIC:reliability:END -->
+
+<!-- KB_STATIC:quality-lifestyle:START -->
+<section data-static-quality-version="2026-08" data-static-quality-fallback="lifestyle" class="lifestyle-quality lq-discount">
+      <p class="lq-kicker">Kedvezményhalmozás teszt</p>
+      <h2>Két kedvezmény nem egyszerűen összeadódik</h2>
+      <div class="lq-form-row">
+        <label>Eredeti ár (Ft)<input type="text" data-price="" inputmode="decimal" value="20 000"></label>
+        <label>Első kedvezmény (%)<input type="text" data-d1="" inputmode="decimal" value="20"></label>
+        <label>Második kedvezmény (%)<input type="text" data-d2="" inputmode="decimal" value="10"></label>
+      </div>
+      <div class="lq-metrics">
+        <div><span>Végső ár</span><strong data-final="">14&nbsp;400 Ft</strong></div>
+        <div><span>Tényleges összkedvezmény</span><strong data-effective="">28%</strong></div>
+        <div><span>Egyszerű összeadás tévesen ezt sugallná</span><strong data-naive="">30%</strong></div>
+      </div>
+      <p class="lq-caption">Az első kedvezmény után a második már a csökkentett árra vonatkozik.</p>
+    </section>
+<!-- KB_STATIC:quality-lifestyle:END -->
+
+<!-- KB_STATIC:everyday-method:START -->
+<section data-static-runtime-fallback="everyday-method" class="article everyday-method"><h2>Mit tud többet ez a változat?</h2><p>A kalkulátor az egyszerű egylépéses számítás helyett több gyakori élethelyzetet kezel, részletes eredményeket ad, és a hibás vagy hiányos beviteleket külön jelzi. Az eredmény tájékoztató tervezési segédlet.</p><h3>Adatkezelés</h3><p>A beírt értékek a böngésződben kerülnek feldolgozásra; a kalkulátor nem menti el őket saját szerverre.</p><p class="last-reviewed">Utolsó módszertani ellenőrzés: <time datetime="2026-07-15">2026. július 15.</time></p></section>
+<!-- KB_STATIC:everyday-method:END -->
 </main>
-<div id="footer"></div>
-<script defer="" src="../js/simple-calculators.js"></script>
+<div id="footer"><div class="footer-container kb-footer">
+  <section class="footer-cta" aria-labelledby="footerCtaTitle">
+    <div class="footer-cta-copy">
+      <span class="footer-eyebrow">Segíts fejleszteni a Kalkulátor Bázist</span>
+      <h2 id="footerCtaTitle">Nem találtad meg a keresett kalkulátort?</h2>
+      <p>Írd meg, milyen számítás lenne hasznos. A jó ötleteket felvesszük a fejlesztési listára.</p>
+    </div>
+    <a class="footer-cta-button" href="../kapcsolat.html?tema=uj-kalkulator">Kalkulátort javaslok</a>
+  </section>
+
+  <div class="footer-main">
+    <section class="footer-brand" aria-labelledby="footerBrandTitle">
+      <a href="../" class="footer-logo" id="footerBrandTitle">
+        <span class="footer-logo-mark" aria-hidden="true"></span>
+        <span>Kalkulátor Bázis</span>
+      </a>
+      <p class="footer-brand-copy">
+        Ingyenes, magyar nyelvű online kalkulátorok pénzügyi, egészségügyi,
+        építőipari, autós és mindennapi döntésekhez.
+      </p>
+      <ul class="footer-trust-list">
+        <li>Regisztráció nélkül használható</li>
+        <li>Közérthető módszertan és források</li>
+        <li>Mobilon is kényelmesen működik</li>
+      </ul>
+      <a class="footer-mail" href="mailto:kalkulatorbazis@gmail.com">kalkulatorbazis@gmail.com</a>
+    </section>
+
+    <nav class="footer-col" aria-label="Kalkulátorkategóriák">
+      <h2>Kalkulátorok</h2>
+      <a href="../penzugyi.html">Pénzügyi</a>
+      <a href="../egeszseg.html">Egészség</a>
+      <a href="../epitoipari.html">Építőipari</a>
+      <a href="../auto.html">Autós</a>
+      <a href="../mindennapi.html">Mindennapi</a>
+      <a href="../atvaltok.html">Átváltók</a>
+      <a class="footer-link-emphasis" href="../kalkulatorok.html">Összes kalkulátor</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Kiemelt kalkulátorok">
+      <h2>Népszerű oldalak</h2>
+      <a href="../kalkulatorok/netto-brutto-kalkulator.html">Nettó–bruttó kalkulátor</a>
+      <a href="../kalkulatorok/etf-kalkulator.html">ETF kalkulátor</a>
+      <a href="../kalkulatorok/afa-kalkulator.html">ÁFA-kalkulátor</a>
+      <a href="../kalkulatorok/hitel-torleszto-kalkulator.html">Hiteltörlesztő kalkulátor</a>
+      <a href="../kalkulatorok/szazalek-kalkulator.html">Százalékkalkulátor</a>
+      <a href="../#newTitle">Újdonságok</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Információ és bizalom">
+      <h2>Információ</h2>
+      <a href="../rolunk.html">Rólunk</a>
+      <a href="../szamitasi-modszertan.html">Számítási módszertan</a>
+      <a href="../miert-bizhatsz-bennunk.html">Miért bízhatsz bennünk?</a>
+      <a href="../atlathatosag-es-minoseg.html">Átláthatóság és minőség</a>
+      <a href="../kapcsolat.html">Kapcsolat és hibabejelentés</a>
+      <button class="footer-link-button" type="button" data-cookie-settings="">Sütibeállítások</button>
+    </nav>
+  </div>
+
+  <nav class="footer-legal" aria-label="Jogi hivatkozások">
+    <a href="../impresszum.html">Impresszum</a>
+    <a href="../adatvedelem.html">Adatkezelés</a>
+    <a href="../felhasznalasi-feltetelek.html">Felhasználási feltételek</a>
+    <a href="../cookie.html">Sütik</a>
+    <a href="../jogi-nyilatkozat.html">Jogi nyilatkozat</a>
+    <a href="../landing-pages/wise/wise.html">Partnerinformáció</a>
+  </nav>
+
+  <div class="footer-bottom">
+    <p>© 2026 Kalkulátor Bázis</p>
+    <p>Az eredmények tájékoztató becslések; fontos döntés előtt ellenőrizd az aktuális hivatalos vagy szakmai forrást.</p>
+  </div>
+</div>
+</div>
+<script defer src="../js/simple-calculators.js"></script>
 <script src="../js/utils.js"></script>
   <script src="../js/help-widget.js" defer></script>
 </body>

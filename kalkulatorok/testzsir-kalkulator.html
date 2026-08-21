@@ -9,6 +9,7 @@
 <title>Testzsír százalék kalkulátor</title>
 <link href="../css/style.css" rel="stylesheet"/>
 <link href="../css/pages/simple-calculator.css" rel="stylesheet"/>
+<script src="../js/static-first-fallbacks.js"></script>
 <script src="../js/global-head.js"></script>
 <meta content="website" property="og:type"/>
 <meta content="Kalkulátor Bázis" property="og:site_name"/>
@@ -20,12 +21,157 @@
 <meta content="Testzsír százalék kalkulátor" name="twitter:title"/>
 <meta content="Becsüld meg a testzsírszázalékot derék, nyak, csípő és magasság alapján." name="twitter:description"/>
 <meta content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" name="twitter:image"/>
+
+<!-- KB_STATIC:structured-data:START -->
+<script id="kb-structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/testzsir-kalkulator.html#webpage","url":"https://kalkulatorbazis.hu/kalkulatorok/testzsir-kalkulator.html","name":"Testzsír százalék kalkulátor","description":"Becsüld meg a testzsírszázalékot derék, nyak, csípő és magasság alapján.","inLanguage":"hu-HU","isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"}},{"@type":"SoftwareApplication","@id":"https://kalkulatorbazis.hu/kalkulatorok/testzsir-kalkulator.html#calculator","name":"Testzsír százalék kalkulátor","applicationCategory":"CalculatorApplication","operatingSystem":"Web","url":"https://kalkulatorbazis.hu/kalkulatorok/testzsir-kalkulator.html","description":"Becsüld meg a testzsírszázalékot derék, nyak, csípő és magasság alapján.","offers":{"@type":"Offer","price":"0","priceCurrency":"HUF"},"isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"},"about":"Egészség és sport kalkulátorok"},{"@type":"BreadcrumbList","@id":"https://kalkulatorbazis.hu/kalkulatorok/testzsir-kalkulator.html#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://kalkulatorbazis.hu/"},{"@type":"ListItem","position":2,"name":"Egészség & sport","item":"https://kalkulatorbazis.hu/egeszseg.html"},{"@type":"ListItem","position":3,"name":"Testzsír százalék kalkulátor","item":"https://kalkulatorbazis.hu/kalkulatorok/testzsir-kalkulator.html"}]},{"@type":"FAQPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/testzsir-kalkulator.html#gyik","mainEntity":[{"@type":"Question","name":"Pontosabb a BMI-nél?","acceptedAnswer":{"@type":"Answer","text":"Más információt ad, de ez is becslés és mérési hibára érzékeny."}},{"@type":"Question","name":"Mikor mérjek?","acceptedAnswer":{"@type":"Answer","text":"Lehetőleg azonos napszakban, hasonló hidratáltság és testhelyzet mellett."}},{"@type":"Question","name":"Sportolóknál használható?","acceptedAnswer":{"@type":"Answer","text":"Trendkövetésre használható lehet, de egyéni testalkatnál a képlet eltérhet a valós értéktől."}},{"@type":"Question","name":"Gyermekeknél megfelelő?","acceptedAnswer":{"@type":"Answer","text":"Nem általános gyermekértékelésre készült; ehhez életkor-specifikus szakmai módszer szükséges."}},{"@type":"Question","name":"Miért változik az eredmény, ha csak 1–2 cm-t mérek másként?","acceptedAnswer":{"@type":"Answer","text":"A képlet közvetlenül használja a körméreteket, ezért a mérési pontosság erősen befolyásolja a becslést."}}]}]}</script>
+<!-- KB_STATIC:structured-data:END -->
 </head>
 <body>
-<div id="header"></div>
-<main class="container page-simple-calculator" data-simple-calc="testzsir-kalkulator">
+<!-- KB_STATIC:skip-link:START -->
+<a class="kb-skip-link" href="#main-content">Ugrás a tartalomhoz</a>
+<!-- KB_STATIC:skip-link:END -->
+
+<div id="header"><header class="header-shell">
+  <div class="header-inner">
+    <a href="../" class="logo" aria-label="Kalkulátor Bázis főoldal">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span class="logo-text">Kalkulátor Bázis</span>
+    </a>
+
+    <nav id="menu" aria-label="Fő navigáció">
+      <a class="nav-home" href="../">Főoldal</a>
+
+      <details class="nav-dropdown nav-catalog has-active" open>
+        <summary>
+          <span>Kalkulátorok</span>
+          <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="nav-submenu">
+          <a href="../kalkulatorok.html" class="">Összes kalkulátor</a>
+          <a href="../egeszseg.html" class="is-active" aria-current="page">Egészség</a>
+          <a href="../auto.html">Autó</a>
+          <a href="../epitoipari.html">Építőipari</a>
+          <a href="../atvaltok.html">Átváltók</a>
+          <a href="../kalkulatorok/multifunkcios-szamologep.html">Tudományos számológép</a>
+        </div>
+      </details>
+
+      <a href="../penzugyi.html">Pénzügyi</a>
+      <a href="../mindennapi.html">Mindennapi</a>
+
+      <details class="nav-dropdown nav-knowledge">
+        <summary>
+          <span>Tudástár</span>
+          <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
+        </summary>
+        <div class="nav-submenu">
+          <a href="../elethelyzetek.html">Élethelyzetek</a>
+          <a href="../landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html">Pénzügyi tudatosság</a>
+          <a href="../szamitasi-modszertan.html">Számítási módszertan</a>
+          <a href="../miert-bizhatsz-bennunk.html">Miért bízhatsz bennünk?</a>
+          <a href="../atlathatosag-es-minoseg.html">Átláthatóság és minőség</a>
+          <a href="../kapcsolat.html">Kapcsolat</a>
+        </div>
+      </details>
+
+      <a href="../rolunk.html">Rólunk</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="header-search" href="../kalkulatorok.html#calculatorSearch" aria-label="Kalkulátor keresése">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="m20 20-4-4"></path>
+        </svg>
+      </a>
+      <button class="theme-toggle" type="button" data-theme-toggle="" aria-label="Váltás sötét módra" aria-pressed="false" title="Váltás sötét módra">
+        <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+        <span class="theme-toggle-text">Sötét</span>
+      </button>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menü megnyitása" aria-controls="menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+</div>
+<main id="main-content" class="container page-simple-calculator" data-simple-calc="testzsir-kalkulator">
 <section class="hero"><h1>Testzsír százalék kalkulátor</h1><p>Becsüld meg a testzsírszázalékot derék, nyak, csípő és magasság alapján.</p></section>
-<section class="card card-calculator"><div class="calc-grid" id="simpleCalcFields"></div><div class="result-box"><p>Eredmény:</p><div id="simpleCalcResults">–</div></div></section>
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="calc-grid" id="simpleCalcFields">
+        <div>
+          <label for="gender">Nem</label>
+          <select id="gender">
+
+              <option value="1" selected>Nő</option>
+
+              <option value="2">Férfi</option>
+
+          </select>
+        </div>
+
+      <div>
+        <label for="waist">Derék (cm)</label>
+        <input type="text" id="waist" value="" inputmode="decimal" autocomplete="off">
+      </div>
+
+      <div>
+        <label for="neck">Nyak (cm)</label>
+        <input type="text" id="neck" value="" inputmode="decimal" autocomplete="off">
+      </div>
+
+      <div>
+        <label for="hip">Csípő (cm, férfinál 0)</label>
+        <input type="text" id="hip" value="0" inputmode="decimal" autocomplete="off">
+      </div>
+
+      <div>
+        <label for="height">Magasság (cm)</label>
+        <input type="text" id="height" value="" inputmode="decimal" autocomplete="off">
+      </div>
+    </div><div class="result-box" role="status" aria-live="polite" aria-atomic="true"><p>Eredmény:</p><div id="simpleCalcResults" role="status" aria-live="polite" aria-atomic="true">Az értékek legyenek nagyobbak nullánál</div></div><section class="retention-cta" data-retention-cta="" aria-labelledby="retentionCtaTitle" hidden>
+  <div class="retention-cta-copy">
+    <p class="retention-cta-kicker">Hasznos volt ez a kalkulátor?</p>
+    <h2 id="retentionCtaTitle">Ne keresd újra. Mentsd le. Használd.</h2>
+    <p>
+      Tedd el a Kalkulátor Bázist, hogy legközelebb egy mozdulattal visszatalálj
+      ehhez a számításhoz – vagy oszd meg azzal, akinek szintén jól jöhet.
+    </p>
+  </div>
+
+  <div class="retention-cta-actions" role="group">
+    <button class="retention-cta-button" type="button" data-retention-action="bookmark" aria-expanded="false" aria-controls="retentionBookmarkGuide">
+      <span aria-hidden="true">☆</span>
+      <span>Könyvjelzőzöm</span>
+    </button>
+
+    <button class="retention-cta-button" type="button" data-retention-action="install" aria-expanded="false" aria-controls="retentionInstallGuide" data-install-mode="prompt">
+      <span aria-hidden="true">▣</span>
+      <span data-retention-install-label="">Telepítem</span>
+    </button>
+
+    <button class="retention-cta-button" type="button" data-retention-action="share">
+      <span aria-hidden="true">↗</span>
+      <span data-retention-share-label="">Megosztom</span>
+    </button>
+  </div>
+
+  <div class="retention-cta-panels">
+    <div class="retention-cta-guide" id="retentionBookmarkGuide" data-retention-guide="bookmark" hidden>
+      <p data-retention-bookmark-text="">
+        Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
+      </p>
+    </div>
+
+    <div class="retention-cta-guide" id="retentionInstallGuide" data-retention-guide="install" hidden>
+      <p data-retention-install-text=""></p>
+    </div>
+
+    <div class="retention-cta-guide" data-retention-guide="manual-share" hidden>
+      <label for="retentionShareUrl">Másold ki ezt a hivatkozást, és küldd tovább.</label>
+      <input id="retentionShareUrl" type="text" readonly data-retention-share-url="">
+    </div>
+  </div>
+
+  <p class="retention-cta-status" data-retention-status="" role="status" aria-live="polite"></p>
+</section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-08">
 <h2>Mit becsül a testzsír kalkulátor?</h2>
 <p>A kalkulátor a nem, magasság, derék-, nyak- és nőknél csípőkörfogat alapján ad testzsírszázalék-becslést. A módszer mérőszalagos, ezért otthon is használható, de nem azonos a laboratóriumi vagy képalkotó testösszetétel-méréssel.</p>
@@ -53,7 +199,115 @@
 <h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="bmi-kalkulator.html">BMI kalkulátor</a><a href="derek-csipo-kalkulator.html">Derék–csípő arány</a><a href="idealis-testsuly-kalkulator.html">Testsúlytartomány</a></div>
 <p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-08">2026. augusztus 8.</time></p>
 </section>
+
+<!-- KB_STATIC:reliability:START -->
+<section class="reliability-note">
+      <div>
+        <h2>Hitelesség és számítási korlátok</h2>
+        <p>Az eredmény általános tájékoztatást ad, nem diagnózis és nem helyettesít orvosi vizsgálatot vagy személyre szabott kezelési javaslatot.</p>
+      </div>
+      <div class="reliability-actions">
+        <a href="../atlathatosag-es-minoseg.html">A számítások módszertana és minőségbiztosítása</a>
+        <a href="mailto:kalkulatorbazis@gmail.com?subject=Hibabejelent%C3%A9s%20%E2%80%93%20Testzs%C3%ADr%20sz%C3%A1zal%C3%A9k%20kalkul%C3%A1tor&amp;body=Kalkul%C3%A1tor%3A%20Testzs%C3%ADr%20sz%C3%A1zal%C3%A9k%20kalkul%C3%A1tor%0AOldal%3A%20https%3A%2F%2Fkalkulatorbazis.hu%2Fkalkulatorok%2Ftestzsir-kalkulator.html%0A%0AA%20hiba%20r%C3%B6vid%20le%C3%ADr%C3%A1sa%3A%0A">Hibát találtál? Jelezd nekünk.</a>
+      </div>
+    </section>
+<!-- KB_STATIC:reliability:END -->
+
+<!-- KB_STATIC:quality-lifestyle:START -->
+<section data-static-quality-version="2026-08" data-static-quality-fallback="lifestyle" class="lifestyle-quality lq-body-fat">
+      <p class="lq-kicker">Mérési reprodukálhatóság</p>
+      <h2>A becslés pontosságát a mérőszalag is eldönti</h2>
+      <div class="lq-card-grid"><article><h3>Ugyanaz a pont</h3><p>Mindig ugyanazon anatómiai pontokon mérj; néhány centiméter eltérés érdemben módosíthatja a becslést.</p></article><article><h3>Ugyanaz a körülmény</h3><p>Trendkövetéshez hasonló napszakban és hasonló állapotban mérj, ne egyetlen értéket hasonlíts össze tetszőleges korábbi méréssel.</p></article><article><h3>Becslés, nem vizsgálat</h3><p>Körfogatból számolt testzsírérték nem azonos DEXA-val vagy más műszeres testösszetétel-vizsgálattal.</p></article></div>
+      <div class="lq-note"><strong>Hasznosabb kérdés:</strong> „azonos módszerrel merre változik a trend?” – nem az, hogy egyetlen tizedesjegy pontos-e.</div>
+
+    <div class="lq-source"><strong>Forrás és ellenőrzési alap</strong><div><a href="https://www.who.int/publications/i/item/9241208546" target="_blank" rel="noopener noreferrer">WHO – Anthropometry expert report</a></div><p>A kalkulátor tájékoztató segédlet; egyedi egészségügyi vagy jogi döntést nem helyettesít.</p></div>
+    </section>
+<!-- KB_STATIC:quality-lifestyle:END -->
+
+<!-- KB_STATIC:priority-upgrade:START -->
+<section data-static-quality-version="2026-08" data-static-quality-fallback="priority" class="priority-upgrade"><h2>US Navy testzsírbecslés – mérési pontok és hibahatár</h2><p class="priority-upgrade__lead">A körméretes képlet trendkövetésre használható, de mérési hiba és egyéni testalkat miatt több százalékpontos eltérés is előfordulhat.</p><div class="priority-health-figure"><svg viewBox="0 0 520 240" role="img"><rect x="1" y="1" width="518" height="238" rx="18" fill="none" stroke="currentColor" opacity=".18"></rect><circle cx="150" cy="45" r="24" fill="none" stroke="currentColor" stroke-width="4"></circle><path d="M150 69v85M95 102h110M150 154l-38 64M150 154l38 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"></path><path d="M122 78c18 10 38 10 56 0M108 126c28 12 56 12 84 0M102 151c32 15 64 15 96 0" fill="none" stroke="#2563eb" stroke-width="5"></path><text x="250" y="82" font-size="17" fill="currentColor">Nyak: vízszintesen, az ádámcsutka alatt</text><text x="250" y="130" font-size="17" fill="currentColor">Derék: az előírt mérési ponton, nyugodt kilégzésnél</text><text x="250" y="178" font-size="17" fill="currentColor">Csípő: nőknél a legszélesebb ponton</text></svg></div><ul class="priority-checklist"><li>Mindig azonos napszakban és azonos mérési ponton mérj.</li><li>A szalag simuljon, de ne vágjon a bőrbe.</li><li>Az eredményt inkább több mérés trendjeként értelmezd.</li><li>Laboratóriumi vagy klinikai testösszetétel-vizsgálat eltérhet.</li></ul><div class="priority-warning">A kalkulátor nem gyermekek, várandósság vagy speciális testalkat klinikai értékelésére készült.</div>
+    <div class="priority-source">
+      <h3>Források és módszertani ellenőrzés</h3>
+      <ul><li><a href="https://www.esd.whs.mil/Directives/issuances/dodi/" target="_blank" rel="noopener noreferrer">U.S. Department of Defense – body composition standards</a></li><li><a href="https://www.cdc.gov/healthy-weight-growth/" target="_blank" rel="noopener noreferrer">CDC – Healthy Weight and Growth</a></li></ul>
+      <p>Az oldal tájékoztató kalkulátor; egyedi döntéshez szakember vagy hivatalos szerv adata szükséges.</p>
+      <p><strong>Módszertani frissítés:</strong> 2026. július 15.</p>
+    </div></section>
+<!-- KB_STATIC:priority-upgrade:END -->
 </main>
-<div id="footer"></div>
-<script defer="" src="../js/simple-calculators.js"></script><script src="../js/utils.js"></script><script src="../js/help-widget.js" defer></script>
+<div id="footer"><div class="footer-container kb-footer">
+  <section class="footer-cta" aria-labelledby="footerCtaTitle">
+    <div class="footer-cta-copy">
+      <span class="footer-eyebrow">Segíts fejleszteni a Kalkulátor Bázist</span>
+      <h2 id="footerCtaTitle">Nem találtad meg a keresett kalkulátort?</h2>
+      <p>Írd meg, milyen számítás lenne hasznos. A jó ötleteket felvesszük a fejlesztési listára.</p>
+    </div>
+    <a class="footer-cta-button" href="../kapcsolat.html?tema=uj-kalkulator">Kalkulátort javaslok</a>
+  </section>
+
+  <div class="footer-main">
+    <section class="footer-brand" aria-labelledby="footerBrandTitle">
+      <a href="../" class="footer-logo" id="footerBrandTitle">
+        <span class="footer-logo-mark" aria-hidden="true"></span>
+        <span>Kalkulátor Bázis</span>
+      </a>
+      <p class="footer-brand-copy">
+        Ingyenes, magyar nyelvű online kalkulátorok pénzügyi, egészségügyi,
+        építőipari, autós és mindennapi döntésekhez.
+      </p>
+      <ul class="footer-trust-list">
+        <li>Regisztráció nélkül használható</li>
+        <li>Közérthető módszertan és források</li>
+        <li>Mobilon is kényelmesen működik</li>
+      </ul>
+      <a class="footer-mail" href="mailto:kalkulatorbazis@gmail.com">kalkulatorbazis@gmail.com</a>
+    </section>
+
+    <nav class="footer-col" aria-label="Kalkulátorkategóriák">
+      <h2>Kalkulátorok</h2>
+      <a href="../penzugyi.html">Pénzügyi</a>
+      <a href="../egeszseg.html">Egészség</a>
+      <a href="../epitoipari.html">Építőipari</a>
+      <a href="../auto.html">Autós</a>
+      <a href="../mindennapi.html">Mindennapi</a>
+      <a href="../atvaltok.html">Átváltók</a>
+      <a class="footer-link-emphasis" href="../kalkulatorok.html">Összes kalkulátor</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Kiemelt kalkulátorok">
+      <h2>Népszerű oldalak</h2>
+      <a href="../kalkulatorok/netto-brutto-kalkulator.html">Nettó–bruttó kalkulátor</a>
+      <a href="../kalkulatorok/etf-kalkulator.html">ETF kalkulátor</a>
+      <a href="../kalkulatorok/afa-kalkulator.html">ÁFA-kalkulátor</a>
+      <a href="../kalkulatorok/hitel-torleszto-kalkulator.html">Hiteltörlesztő kalkulátor</a>
+      <a href="../kalkulatorok/szazalek-kalkulator.html">Százalékkalkulátor</a>
+      <a href="../#newTitle">Újdonságok</a>
+    </nav>
+
+    <nav class="footer-col" aria-label="Információ és bizalom">
+      <h2>Információ</h2>
+      <a href="../rolunk.html">Rólunk</a>
+      <a href="../szamitasi-modszertan.html">Számítási módszertan</a>
+      <a href="../miert-bizhatsz-bennunk.html">Miért bízhatsz bennünk?</a>
+      <a href="../atlathatosag-es-minoseg.html">Átláthatóság és minőség</a>
+      <a href="../kapcsolat.html">Kapcsolat és hibabejelentés</a>
+      <button class="footer-link-button" type="button" data-cookie-settings="">Sütibeállítások</button>
+    </nav>
+  </div>
+
+  <nav class="footer-legal" aria-label="Jogi hivatkozások">
+    <a href="../impresszum.html">Impresszum</a>
+    <a href="../adatvedelem.html">Adatkezelés</a>
+    <a href="../felhasznalasi-feltetelek.html">Felhasználási feltételek</a>
+    <a href="../cookie.html">Sütik</a>
+    <a href="../jogi-nyilatkozat.html">Jogi nyilatkozat</a>
+    <a href="../landing-pages/wise/wise.html">Partnerinformáció</a>
+  </nav>
+
+  <div class="footer-bottom">
+    <p>© 2026 Kalkulátor Bázis</p>
+    <p>Az eredmények tájékoztató becslések; fontos döntés előtt ellenőrizd az aktuális hivatalos vagy szakmai forrást.</p>
+  </div>
+</div>
+</div>
+<script defer src="../js/simple-calculators.js"></script><script src="../js/utils.js"></script><script src="../js/help-widget.js" defer></script>
 </body></html>
