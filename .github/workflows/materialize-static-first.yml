@@ -37,6 +37,7 @@ jobs:
         if: ${{ hashFiles('scripts/add-calculator-expansion-batch2.js') != '' }}
         run: |
           node scripts/add-calculator-expansion-batch2.js
+          node scripts/fix-expansion-batch2-1rm.js
           npm run sitemap
 
       - name: Verify Chrome is available
