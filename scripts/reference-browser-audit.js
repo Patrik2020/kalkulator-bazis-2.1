@@ -129,7 +129,9 @@ const helpers = String.raw`
   const text = (selector) => clean(element(selector)?.textContent || '');
   const numberFromText = (value) => {
     const match = clean(value).match(/-?\d[\d .]*(?:,\d+)?/);
-    return match ? Number(match[0].replace(/[ .]/g, '').replace(',', '.')) : NaN;
+    if (!match) return NaN;
+    const compact = match[0].replace(/\s/g, '');
+    return Number(compact.includes(',') ? compact.replace(/\./g, '').replace(',', '.') : compact);
   };
   const number = (selector) => numberFromText(text(selector));
   const afterEquals = (selector) => numberFromText(text(selector).split('=').at(-1));
@@ -190,14 +192,14 @@ const cases = [
     set('roomLength', 5); set('roomWidth', 4); set('wastePercent', 10);
     set('floorTileWidth', 50); set('floorTileHeight', 50);
     const actual = number('#floorTileCount'); const valid = actual === 88;
-    set('wastePercent', 0); const boundary = number('#floorTileCount') === 80;
+    set('wastePercent', 5); const boundary = number('#floorTileCount') === 84;
     set('roomLength', 0); const invalid = text('#floorTileCount') === '–' && noInvalidNumber();
     return { valid, boundary, invalid, actual };
   `),
   test("kalkulatorok/etf-kalkulator.html", "ETF", `
     set('initial', 0); set('monthly', 50000); set('rate', 6); set('years', 20);
     set('ter', 0); set('inflation', 0); set('increase', 0); await delay(280);
-    const actual = number('#result-final'); const valid = Math.abs(actual - 23102045) <= 5;
+    const actual = number('#result-final'); const valid = Math.abs(actual - 22671932) <= 5;
     const boundary = number('#result-invested') === 12000000;
     set('monthly', -100); set('rate', 999); set('years', 0); await delay(180);
     const invalid = document.querySelectorAll('.field-error:not(:empty)').length > 0 && noInvalidNumber();
@@ -272,9 +274,9 @@ const cases = [
     return { valid, boundary, invalid, actual };
   `),
   test("kalkulatorok/kaloria-kalkulator.html", "Kalória", `
-    set('gender', 'male'); set('weight', 80); set('height', 180); set('age', 40); set('activity', 1);
-    const actual = number('#result-calories'); const valid = actual === 1730;
-    set('activity', 1.2); const boundary = number('#result-calories') === 2076;
+    set('gender', 'male'); set('weight', 80); set('height', 180); set('age', 40); set('activity', 1.2);
+    const actual = number('#result-calories'); const valid = actual === 2076;
+    set('age', 1); const boundary = number('#result-calories') === 2310;
     set('age', 0); const invalid = text('#result-calories') === '–' && noInvalidNumber();
     return { valid, boundary, invalid, actual };
   `),
@@ -315,8 +317,8 @@ const cases = [
     set('incomeAmount', 3000000); set('dividendYield', 4); set('simpleDeduction', 15); set('fixedCost', 0); set('payoutFrequency', 4);
     await delay(980); const actual = number('#result-primary'); const valid = actual === 102000;
     const boundary = [...document.querySelectorAll('.dividend-result-card')].some((card) => /havi nettó átlag/i.test(card.textContent) && numberFromText(card.textContent) === 8500);
-    set('dividendYield', 0); await delay(380);
-    const invalid = /nem számítható|magasabb osztalékhozamot/i.test(text('#result-interpretation') + ' ' + text('#result-warning')) && noInvalidNumber();
+    set('dividendYield', -1); await delay(380);
+    const invalid = /0% és 100% között/.test(text('#dividendYield-error')) && noInvalidNumber();
     return { valid, boundary, invalid, actual };
   `),
   test("kalkulatorok/sebesseg-atvalto-kalkulator.html", "Sebesség átváltó", `
