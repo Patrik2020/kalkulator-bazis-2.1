@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 const { execFileSync } = require("child_process");
+const expansionCalculators = require("../js/expansion-batch-01-data.js");
 
 const root = path.resolve(__dirname, "..");
 const siteUrl = "https://kalkulatorbazis.hu";
@@ -51,7 +52,7 @@ const staticPages = [
   "landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html",
 ];
 
-const calculatorPages = calculators.map((calculator) => calculator.url);
+const calculatorPages = [...calculators, ...expansionCalculators].map((calculator) => calculator.url);
 
 // Only shared files whose changes materially alter visible page content belong here.
 // Technical loaders (for example global-head.js / analytics / AdSense) must not
