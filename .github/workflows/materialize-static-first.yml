@@ -33,11 +33,10 @@ jobs:
       - name: Install validation dependencies
         run: npm ci
 
-      - name: Prepare calculator expansion batch when present
-        if: ${{ hashFiles('scripts/add-calculator-expansion-batch1.js') != '' }}
+      - name: Prepare calculator expansion batch 2 when present
+        if: ${{ hashFiles('scripts/add-calculator-expansion-batch2.js') != '' }}
         run: |
-          node scripts/add-calculator-expansion-batch1.js
-          node scripts/fix-expansion-html-entities.js
+          node scripts/add-calculator-expansion-batch2.js
           npm run sitemap
 
       - name: Verify Chrome is available
@@ -80,5 +79,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add --all
-          git commit -m "build: materialize static-first HTML [skip ci]"
+          git commit -m "build: materialize calculator expansion batch 2 [skip ci]"
           git push origin HEAD:${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
