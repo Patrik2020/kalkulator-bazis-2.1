@@ -3,10 +3,6 @@ name: Materialize static-first HTML
 on:
   workflow_dispatch:
   pull_request:
-  push:
-    branches:
-      - main
-      - adsense-static-quality-2026-08
 
 permissions:
   contents: write
