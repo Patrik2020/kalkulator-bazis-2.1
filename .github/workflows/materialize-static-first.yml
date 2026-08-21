@@ -33,13 +33,6 @@ jobs:
       - name: Install validation dependencies
         run: npm ci
 
-      - name: Prepare calculator expansion batch 3 when present
-        if: ${{ hashFiles('scripts/add-calculator-expansion-batch3.js') != '' }}
-        run: |
-          node scripts/add-calculator-expansion-batch3.js
-          node scripts/fix-batch3-home-count.js
-          npm run sitemap
-
       - name: Verify Chrome is available
         shell: bash
         run: |
@@ -64,11 +57,7 @@ jobs:
       - name: Verify generated sitemap URL set is current
         run: |
           npm run sitemap
-          if [ -f scripts/add-calculator-expansion-batch3.js ]; then
-            echo "Batch 3 intentionally expands the sitemap; generated sitemap will be committed with the batch."
-          else
-            git diff --exit-code -I '<lastmod>.*</lastmod>' -- sitemap.xml
-          fi
+          git diff --exit-code -I '<lastmod>.*</lastmod>' -- sitemap.xml
 
       - name: Check whitespace errors
         run: git diff --check
@@ -84,5 +73,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add --all
-          git commit -m "build: materialize calculator expansion batch 3 [skip ci]"
+          git commit -m "build: materialize static-first HTML [skip ci]"
           git push origin HEAD:${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
