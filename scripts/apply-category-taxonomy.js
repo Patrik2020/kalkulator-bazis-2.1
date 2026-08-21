@@ -5,6 +5,7 @@ const { categories, groupByCalculator } = require("./category-taxonomy-config");
 const expansionCalculators = [
   ...require("../js/expansion-batch-01-data.js"),
   ...require("../js/expansion-batch-02-data.js"),
+  ...require("../js/expansion-batch-03-data.js"),
 ];
 
 const root = path.resolve(__dirname, "..");
@@ -207,7 +208,7 @@ function updateCategoryPage(category, data) {
   fs.writeFileSync(filePath, html, "utf8");
 }
 
-function updateHomePage() {
+function updateHomePage(data) {
   const filePath = path.join(root, "index.html");
   let html = fs.readFileSync(filePath, "utf8");
 
@@ -217,7 +218,7 @@ function updateHomePage() {
 
   html = html.replace(
     /<p class="home-hero-lead">[\s\S]*?<\/p>/i,
-    '<p class="home-hero-lead">Több mint 70 magyar nyelvű kalkulátor mindennapi, pénzügyi, otthoni, autós, egészség- és mértékegység-számításokhoz, érthető magyarázatokkal.</p>'
+    `<p class="home-hero-lead">Több mint ${Math.floor(data.calculators.length / 10) * 10} magyar nyelvű kalkulátor mindennapi, pénzügyi, otthoni, autós, egészség- és mértékegység-számításokhoz, érthető magyarázatokkal.</p>`
   );
 
   fs.writeFileSync(filePath, html, "utf8");
@@ -227,6 +228,6 @@ const updatedSource = updateSiteData();
 const data = mergeExpansionData(loadData(updatedSource));
 
 for (const category of categories) updateCategoryPage(category, data);
-updateHomePage();
+updateHomePage(data);
 
 console.log(`Kategória-taxonomia alkalmazva: ${categories.length} fő kategória, ${data.calculators.length} katalogizált kalkulátor.`);
