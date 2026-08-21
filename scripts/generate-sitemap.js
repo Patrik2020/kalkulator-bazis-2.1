@@ -13,9 +13,21 @@ vm.runInContext(dataCode, context);
 
 const { categories, calculators } = context.window.KB_DATA;
 
+// Keep sitemap URL ordering independent from the visual/category navigation order.
+// Reordering cards on the site should not create a meaningless sitemap diff.
+const stableCategoryOrder = ["penzugyi", "mindennapi", "egeszseg", "auto", "epitoipari", "atvaltok"];
+const categoryById = new Map(categories.map((category) => [category.id, category]));
+const orderedCategoryUrls = [
+  ...stableCategoryOrder.map((id) => categoryById.get(id)?.url).filter(Boolean),
+  ...categories
+    .filter((category) => !stableCategoryOrder.includes(category.id))
+    .map((category) => category.url)
+    .sort((a, b) => a.localeCompare(b, "hu")),
+];
+
 const staticPages = [
   "",
-  ...categories.map((category) => category.url),
+  ...orderedCategoryUrls,
   "kalkulatorok.html",
   "kalkulatorok/multifunkcios-szamologep.html",
   "rolunk.html",
