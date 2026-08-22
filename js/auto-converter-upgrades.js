@@ -6,6 +6,7 @@
     "adatmeret-atvalto-kalkulator","energia-atvalto-kalkulator","teljesitmeny-atvalto-kalkulator","hosszusag-atvalto-kalkulator","tomeg-atvalto-kalkulator","terulet-atvalto-kalkulator","terfogat-atvalto-kalkulator","ido-atvalto-kalkulator","sebesseg-atvalto-kalkulator"
   ]);
   if (!supported.has(slug)) return;
+  window.KB_AUTO_CONVERTER_UPGRADE_READY = null;
   const card = document.querySelector(".card-calculator");
   if (!card) return;
   const n = (v, f = 0) => { const x = Number(String(v ?? "").replace(/\s/g, "").replace(",", ".")); return Number.isFinite(x) ? x : f; };
@@ -47,12 +48,12 @@
   };
   const referenceMap={"hosszusag-atvalto-kalkulator":"length","tomeg-atvalto-kalkulator":"mass","terulet-atvalto-kalkulator":"area","terfogat-atvalto-kalkulator":"volume","ido-atvalto-kalkulator":"time","sebesseg-atvalto-kalkulator":"speed"};
   if(referenceMap[slug]){
-    const section=document.createElement("section");section.className="adsense-content ac-note";section.innerHTML=`<h2>Gyors referencia és hétköznapi példák</h2><table class="ac-table"><tbody>${refs[referenceMap[slug]].map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td></tr>`).join("")}</tbody></table><p>A referenciaértékek segítenek fejben ellenőrizni az eredményt. A kalkulátor kerekítése miatt az utolsó tizedesek eltérhetnek.</p>`;card.insertAdjacentElement("afterend",section);return;
+    const section=document.createElement("section");section.className="adsense-content ac-note";section.innerHTML=`<h2>Gyors referencia és hétköznapi példák</h2><table class="ac-table"><tbody>${refs[referenceMap[slug]].map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td></tr>`).join("")}</tbody></table><p>A referenciaértékek segítenek fejben ellenőrizni az eredményt. A kalkulátor kerekítése miatt az utolsó tizedesek eltérhetnek.</p>`;card.insertAdjacentElement("afterend",section);window.KB_AUTO_CONVERTER_UPGRADE_READY=slug;return;
   }
   const cfg=configs[slug]; if(!cfg) return;
   card.innerHTML=`<div class="ac-heading"><h2>${cfg.title}</h2><p>A mezők tájékoztató tervezésre valók; hivatalos, gyártói vagy szolgáltatói adat esetén mindig azt használd.</p></div>`;
   const form=document.createElement("form");form.className="ac-grid";cfg.fields.forEach(s=>form.appendChild(field(s)));const btn=document.createElement("button");btn.type="submit";btn.className="ac-submit";btn.textContent="Számítás";form.appendChild(btn);const out=document.createElement("div");out.className="ac-result";out.innerHTML="Add meg az adatokat.";form.appendChild(out);card.appendChild(form);
   form.addEventListener("submit",e=>{e.preventDefault();if(!form.checkValidity()){out.textContent="Ellenőrizd a kötelező mezőket és az értékhatárokat.";return;}try{const v=Object.fromEntries(new FormData(form).entries());out.innerHTML=rows(cfg.compute(v));}catch(err){out.textContent=err.message||"Hibás adat.";}});
   form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
-  const note=document.createElement("section");note.className="adsense-content ac-note";note.innerHTML=`<h2>Módszertan és korlátok</h2><p>A számítás a megadott adatokból matematikai becslést készít. Az autós költségek, értékvesztés, kibocsátási tényezők, árfolyamok és gyártói mérethatárok időben és szolgáltatónként változhatnak.</p><p><strong>Forráskezelés:</strong> az oldalon szereplő alapértékeket ellenőrizd az aktuális gyártói dokumentációban, hivatalos árfolyamforrásban vagy közzétett kibocsátási faktorokban. A CO₂-oldal a közvetlen használati kibocsátást elkülöníti a felhasználó által megadott upstream/árammix becsléstől.</p><p>Utolsó módszertani frissítés: 2026. július 15.</p>`;card.insertAdjacentElement("afterend",note);
+  const note=document.createElement("section");note.className="adsense-content ac-note";note.innerHTML=`<h2>Módszertan és korlátok</h2><p>A számítás a megadott adatokból matematikai becslést készít. Az autós költségek, értékvesztés, kibocsátási tényezők, árfolyamok és gyártói mérethatárok időben és szolgáltatónként változhatnak.</p><p><strong>Forráskezelés:</strong> az oldalon szereplő alapértékeket ellenőrizd az aktuális gyártói dokumentációban, hivatalos árfolyamforrásban vagy közzétett kibocsátási faktorokban. A CO₂-oldal a közvetlen használati kibocsátást elkülöníti a felhasználó által megadott upstream/árammix becsléstől.</p><p>Utolsó módszertani frissítés: 2026. július 15.</p>`;card.insertAdjacentElement("afterend",note);window.KB_AUTO_CONVERTER_UPGRADE_READY=slug;
 })();

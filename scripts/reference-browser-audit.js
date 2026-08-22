@@ -102,6 +102,14 @@ async function createClient(webSocketUrl) {
 // and `\s` into plain `d`/`s` characters before CDP receives the source.
 const helpers = String.raw`
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const waitFor = async (predicate, timeout = 3000, interval = 25) => {
+    const deadline = Date.now() + timeout;
+    while (Date.now() < deadline) {
+      if (predicate()) return true;
+      await delay(interval);
+    }
+    return Boolean(predicate());
+  };
   const element = (selector) => document.querySelector(selector);
   const set = (id, value) => {
     const target = document.getElementById(id);
@@ -148,9 +156,10 @@ const test = (page, name, body) => ({ page, name, expression: `(async () => {${h
 
 const cases = [
   test("kalkulatorok/adatmeret-atvalto-kalkulator.html", "Adatméret átváltó", `
+    const ready = await waitFor(() => window.KB_AUTO_CONVERTER_UPGRADE_READY === 'adatmeret-atvalto-kalkulator');
     set('value', 1); set('unit', 'GiB'); document.querySelector('.ac-submit').click(); await delay(40);
     const actual = numberFromText(row('Byte'));
-    const valid = actual === 1073741824;
+    const valid = ready && actual === 1073741824;
     set('value', 0); document.querySelector('.ac-submit').click();
     const boundary = numberFromText(row('Byte')) === 0;
     set('value', ''); document.querySelector('.ac-submit').click();
