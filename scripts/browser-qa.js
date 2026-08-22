@@ -2,6 +2,7 @@ const fs = require("fs");
 const os = require("os");
 const path = require("path");
 const { spawn } = require("child_process");
+const { toExtensionlessHref } = require("./url-paths");
 
 const chromeCandidates = [
   process.env.KB_CHROME_PATH,
@@ -240,7 +241,7 @@ const run = async () => {
     "/kalkulatorok/multifunkcios-szamologep.html",
     "/landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html",
     "/landing-pages/wise/wise.html"
-  ];
+  ].map(toExtensionlessHref);
   const viewports = [
     [320, 720],
     [390, 844],
@@ -431,7 +432,7 @@ const run = async () => {
     "/mindennapi.html",
     "/auto.html",
     "/atvaltok.html"
-  ];
+  ].map(toExtensionlessHref);
   const categoryAdsConsentChecks = [];
 
   for (const pagePath of categoryAdsConsentPages) {
@@ -568,7 +569,7 @@ const run = async () => {
           "/penzugyi.html",
           "/landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html",
           "/landing-pages/wise/wise.html"
-        ].includes(pagePath)
+        ].map(toExtensionlessHref).includes(pagePath)
       ) {
         const screenshot = await client.send("Page.captureScreenshot", { format: "png", fromSurface: true });
         const name = pagePath.includes("penzugyi-tudatossag")
@@ -585,7 +586,7 @@ const run = async () => {
           "/kalkulatorok/netto-brutto-kalkulator.html",
           "/kalkulatorok/etf-kalkulator.html",
           "/kalkulatorok/multifunkcios-szamologep.html"
-        ].includes(pagePath)
+        ].map(toExtensionlessHref).includes(pagePath)
       ) {
         const screenshot = await client.send("Page.captureScreenshot", { format: "png", fromSurface: true });
         const pageName = pagePath.split("/").pop().replace(".html", "");
@@ -686,11 +687,11 @@ const run = async () => {
   const darkScreenshot = await client.send("Page.captureScreenshot", { format: "png", fromSurface: true });
   fs.writeFileSync(path.join(screenshotDirectory, "index-dark-390.png"), Buffer.from(darkScreenshot.data, "base64"));
 
-  await navigate("/kalkulatorok/netto-brutto-kalkulator.html");
+  await navigate(toExtensionlessHref("/kalkulatorok/netto-brutto-kalkulator.html"));
   theme.calculatorReliability = await evaluate(`(() => {
     const note = document.querySelector('.reliability-note');
     const report = note?.querySelector('a[href^="mailto:kalkulatorbazis@gmail.com"]');
-    const transparency = note?.querySelector('a[href*="atlathatosag-es-minoseg.html"]');
+    const transparency = note?.querySelector('a[href*="atlathatosag-es-minoseg"]');
     note?.scrollIntoView({ block: 'center' });
     return {
       present: !!note,
@@ -708,11 +709,11 @@ const run = async () => {
   const reliabilityScreenshot = await client.send("Page.captureScreenshot", { format: "png", fromSurface: true });
   fs.writeFileSync(path.join(screenshotDirectory, "megbizhatosag-dark-390.png"), Buffer.from(reliabilityScreenshot.data, "base64"));
 
-  await navigate("/atlathatosag-es-minoseg.html");
+  await navigate(toExtensionlessHref("/atlathatosag-es-minoseg.html"));
   theme.transparency = await evaluate(`(() => ({
     h1: document.querySelectorAll('h1').length,
     theme: document.documentElement.dataset.theme,
-    footerLink: !![...document.querySelectorAll('#footer a, footer a, .legal-footer a')].find((link) => link.getAttribute('href')?.includes('atlathatosag-es-minoseg.html')),
+    footerLink: !![...document.querySelectorAll('#footer a, footer a, .legal-footer a')].find((link) => link.getAttribute('href')?.includes('atlathatosag-es-minoseg')),
     mailto: !!document.querySelector('a[href^="mailto:kalkulatorbazis@gmail.com"]'),
     breadcrumb: !!document.querySelector('.breadcrumb'),
     toggleCount: document.querySelectorAll('.theme-toggle').length
@@ -744,7 +745,7 @@ const run = async () => {
   for (const pagePath of [
     "/landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html",
     "/landing-pages/wise/wise.html"
-  ]) {
+  ].map(toExtensionlessHref)) {
     await navigate(pagePath);
     landingInteractions.push({
       page: pagePath,
@@ -784,7 +785,7 @@ const run = async () => {
     })()`],
     ["/kalkulatorok/szamla-teljesites-kalkulator.html", `(() => { const issue=document.getElementById('issueDate');const performance=document.getElementById('performanceDate');const days=document.getElementById('days');issue.value='2026-06-01';performance.value='2026-06-01';days.value='30';days.dispatchEvent(new Event('input',{bubbles:true}));return document.querySelector('.result-box')?.innerText; })()`],
     ["/kalkulatorok/deviza-atvalto-kalkulator.html", `(() => ({ result: document.getElementById('result')?.innerText || '', updated: document.getElementById('lastUpdate')?.innerText || '', sourceFormPreserved: Boolean(document.getElementById('fromCurrency') && document.getElementById('toCurrency')) }))()`]
-  ];
+  ].map(([pagePath, expression]) => [toExtensionlessHref(pagePath), expression]);
   const calculators = [];
   for (const [pagePath, expression] of calculatorTests) {
     await navigate(pagePath);

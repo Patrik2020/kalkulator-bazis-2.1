@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { publicUrlForSource } = require("./url-paths");
 
 const root = path.resolve(__dirname, "..");
 const siteUrl = "https://kalkulatorbazis.hu";
@@ -70,7 +71,7 @@ files.forEach((file) => {
     stats.descriptions.push(name);
   }
 
-  const canonicalUrl = name === "index.html" ? `${siteUrl}/` : `${siteUrl}/${name}`;
+  const canonicalUrl = publicUrlForSource(name);
   if (!/<link\b(?=[^>]*\brel=["']canonical["'])[^>]*>/i.test(html)) {
     html = html.replace(
       /(<meta\b[^>]*\bname=["']description["'][^>]*>)/i,

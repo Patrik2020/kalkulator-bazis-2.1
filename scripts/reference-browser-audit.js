@@ -4,6 +4,7 @@ const os = require("os");
 const path = require("path");
 const { spawn } = require("child_process");
 const { browserReferencePages } = require("./reference-test-manifest");
+const { publicPathToSourceFile, sourceFileToPublicPath } = require("./url-paths");
 
 const root = path.resolve(__dirname, "..");
 const chromeCandidates = [
@@ -38,7 +39,8 @@ const contentTypes = {
 
 const server = http.createServer((request, response) => {
   const url = new URL(request.url, "http://127.0.0.1");
-  const requested = decodeURIComponent(url.pathname === "/" ? "/index.html" : url.pathname);
+  const pathname = decodeURIComponent(url.pathname);
+  const requested = path.extname(pathname) ? pathname : `/${publicPathToSourceFile(pathname)}`;
   const file = path.resolve(root, requested.replace(/^\/+/, ""));
 
   if (!file.startsWith(`${root}${path.sep}`) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
@@ -100,6 +102,14 @@ async function createClient(webSocketUrl) {
 // and `\s` into plain `d`/`s` characters before CDP receives the source.
 const helpers = String.raw`
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const waitFor = async (predicate, timeout = 3000, interval = 25) => {
+    const deadline = Date.now() + timeout;
+    while (Date.now() < deadline) {
+      if (predicate()) return true;
+      await delay(interval);
+    }
+    return Boolean(predicate());
+  };
   const element = (selector) => document.querySelector(selector);
   const set = (id, value) => {
     const target = document.getElementById(id);
@@ -146,9 +156,10 @@ const test = (page, name, body) => ({ page, name, expression: `(async () => {${h
 
 const cases = [
   test("kalkulatorok/adatmeret-atvalto-kalkulator.html", "Adatméret átváltó", `
+    const ready = await waitFor(() => window.KB_AUTO_CONVERTER_UPGRADE_READY === 'adatmeret-atvalto-kalkulator');
     set('value', 1); set('unit', 'GiB'); document.querySelector('.ac-submit').click(); await delay(40);
     const actual = numberFromText(row('Byte'));
-    const valid = actual === 1073741824;
+    const valid = ready && actual === 1073741824;
     set('value', 0); document.querySelector('.ac-submit').click();
     const boundary = numberFromText(row('Byte')) === 0;
     set('value', ''); document.querySelector('.ac-submit').click();
@@ -499,8 +510,8 @@ async function main() {
 
     const results = [];
     for (const item of cases) {
-      currentPage = `/${item.page}`;
-      await client.send("Page.navigate", { url: `${origin}/${item.page}` });
+      currentPage = sourceFileToPublicPath(item.page);
+      await client.send("Page.navigate", { url: `${origin}${currentPage}` });
       await sleep(item.page.includes("osztalek") || item.page.includes("etf-") ? 800 : 450);
       try {
         const result = await evaluate(item.expression);

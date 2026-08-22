@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 const { execFileSync } = require("child_process");
+const { publicUrlForSource } = require("./url-paths");
 const expansionCalculators = [
   ...require("../js/expansion-batch-01-data.js"),
   ...require("../js/expansion-batch-02-data.js"),
@@ -11,7 +12,6 @@ const expansionCalculators = [
 ];
 
 const root = path.resolve(__dirname, "..");
-const siteUrl = "https://kalkulatorbazis.hu";
 const dataCode = fs.readFileSync(path.join(root, "js", "site-data.js"), "utf8");
 const context = { window: {} };
 
@@ -102,7 +102,7 @@ const getLastModified = (url) => {
 const urls = [...new Set([...staticPages, ...calculatorPages])];
 
 const body = urls
-  .map((url) => `    <url>\n        <loc>${siteUrl}/${url}</loc>\n        <lastmod>${getLastModified(url)}</lastmod>\n    </url>`)
+  .map((url) => `    <url>\n        <loc>${publicUrlForSource(url)}</loc>\n        <lastmod>${getLastModified(url)}</lastmod>\n    </url>`)
   .join("\n\n");
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n\n${body}\n\n</urlset>\n`;

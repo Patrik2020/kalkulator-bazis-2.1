@@ -2,7 +2,12 @@
   "use strict";
 
   const root = window.KB_PROJECT_ROOT || "";
-  const href = (path) => `${root}${path}` || "/";
+  const href = (path) => {
+    const value = `${root}${path}` || "/";
+    return value
+      .replace(/\/index\.html(?=([?#]|$))/i, "/")
+      .replace(/\.html(?=([?#]|$))/i, "");
+  };
 
   const nextStepJourneys = {
     "netto-brutto-kalkulator": {

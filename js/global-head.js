@@ -20,9 +20,17 @@ const sectionIndex = ["kalkulatorok", "landing-pages"].reduce((found, section) =
   const index = pathParts.indexOf(section);
   return found === -1 || (index !== -1 && index < found) ? index : found;
 }, -1);
-const isFilePath = (value) => /\.(?:html?|css|js|json|xml|txt|png|jpe?g|webp|svg|ico|webmanifest)$/i.test(value);
-const rootParts = sectionIndex > -1 ? pathParts.slice(0, sectionIndex) : pathParts.length === 1 && !isFilePath(pathParts[0]) ? pathParts : pathParts.length > 1 ? pathParts.slice(0, 1) : [];
-const projectRoot = rootParts.length ? `/${rootParts.join("/")}` : "";
+const fallbackRootParts = sectionIndex > -1 ? pathParts.slice(0, sectionIndex) : [];
+let scriptProjectRoot = null;
+try {
+  const scriptUrl = new URL(document.currentScript?.src || "", window.location.href);
+  const marker = "/js/global-head.js";
+  const markerIndex = scriptUrl.pathname.lastIndexOf(marker);
+  if (markerIndex !== -1) scriptProjectRoot = scriptUrl.pathname.slice(0, markerIndex).replace(/\/+$/, "");
+} catch (error) {
+  scriptProjectRoot = null;
+}
+const projectRoot = scriptProjectRoot ?? (fallbackRootParts.length ? `/${fallbackRootParts.join("/")}` : "");
 const basePath = `${projectRoot}/favicon`;
 const themeCssPath = `${projectRoot}/css/theme.css`;
 const footerCssPath = `${projectRoot}/css/layout/footer.css`;
@@ -57,9 +65,9 @@ const calculatorCssPath = `${projectRoot}/css/pages/calculator-suite.css`;
 const calculatorScriptPath = `${projectRoot}/js/calculator-suite.js`;
 const normalizedPath = window.location.pathname.replace(/\/+$/, "");
 const currentPathPart = pathParts.at(-1) || "index.html";
-const currentFile = (isFilePath(currentPathPart) ? currentPathPart : "index.html").toLowerCase();
-const currentSlug = currentFile.replace(/\.html?$/, "");
-const isCalculatorPage = pathParts.includes("kalkulatorok") && /\.html?$/i.test(currentFile);
+const currentSlug = currentPathPart.replace(/\.html?$/i, "").toLowerCase();
+const currentFile = currentSlug === "index" ? "index.html" : `${currentSlug}.html`;
+const isCalculatorPage = pathParts.includes("kalkulatorok") && currentSlug !== "kalkulatorok";
 const isHomePage =
   normalizedPath === projectRoot ||
   normalizedPath === `${projectRoot}/` ||

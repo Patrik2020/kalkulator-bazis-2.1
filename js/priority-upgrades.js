@@ -1,7 +1,8 @@
 (() => {
   "use strict";
 
-  const page = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+  const pathPart = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+  const page = /\.html?$/i.test(pathPart) ? pathPart : `${pathPart}.html`;
   const root = window.KB_PROJECT_ROOT || "";
   const money = (value) => Number.isFinite(value)
     ? new Intl.NumberFormat("hu-HU", { maximumFractionDigits: 0 }).format(Math.round(value)) + " Ft"

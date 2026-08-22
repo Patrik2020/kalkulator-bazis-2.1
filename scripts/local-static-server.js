@@ -29,9 +29,20 @@ const server = http.createServer((request, response) => {
 
     if (pathname.endsWith("/")) pathname += "index.html";
 
+    const requestedPath = path.resolve(root, pathname.replace(/^\/+/, ""));
+    if (requestedPath !== root && !requestedPath.startsWith(`${root}${path.sep}`)) {
+      response.writeHead(403, { "content-type": "text/plain; charset=utf-8" });
+      response.end("Forbidden");
+      return;
+    }
+
+    if (!path.extname(pathname) && fs.existsSync(`${requestedPath}.html`)) {
+      pathname += ".html";
+    }
+
     const filePath = path.resolve(root, pathname.replace(/^\/+/, ""));
 
-    if (!filePath.startsWith(root)) {
+    if (filePath !== root && !filePath.startsWith(`${root}${path.sep}`)) {
       response.writeHead(403, { "content-type": "text/plain; charset=utf-8" });
       response.end("Forbidden");
       return;

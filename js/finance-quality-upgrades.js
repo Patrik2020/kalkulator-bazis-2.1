@@ -39,11 +39,11 @@
       <h2>Ne kalkulátort válassz először, hanem kérdést</h2>
       <p>A pénzügyi oldalak célja nem az, hogy ugyanazt a sablont ismételjék más képlettel. Minden eszköz más döntési helyzetet bont fel: jövedelem, hitelteher, lakásvásárlás, megtakarítás, befektetés vagy számlázás.</p>
       <div class="quality-path-grid">
-        <article><span>1</span><h3>Mennyi pénzből gazdálkodom?</h3><p>Nettó–bruttó és havi költségvetés. Előbb a valós havi mozgásteredet tisztázd.</p><a href="${root}/kalkulatorok/netto-brutto-kalkulator.html">Bérből indulok →</a></article>
-        <article><span>2</span><h3>Mekkora terhet bírok el?</h3><p>Hitelképesség, törlesztő és önerő. A banki maximum nem azonos a kényelmes háztartási limittel.</p><a href="${root}/kalkulatorok/hitelkepesseg-kalkulator.html">Hitelt tervezek →</a></article>
-        <article><span>3</span><h3>Mikor érem el a célomat?</h3><p>Kamatos kamat, célösszeg és infláció. Külön kezeld a nominális forintot és a vásárlóerőt.</p><a href="${root}/kalkulatorok/milliomos-kalkulator.html">Célösszeget tervezek →</a></article>
-        <article><span>4</span><h3>Mit jelent a befektetési feltételezés?</h3><p>ETF és osztalék. A költség, adó, deviza, hozam és időtáv külön-külön is módosíthatja az eredményt.</p><a href="${root}/kalkulatorok/etf-kalkulator.html">Befektetést modellezek →</a></article>
-        <article><span>5</span><h3>Melyik dátum mit jelent?</h3><p>Fizetési határidő és teljesítési dátum. A kiállítás, teljesítés és esedékesség nem felcserélhető fogalmak.</p><a href="${root}/kalkulatorok/szamla-teljesites-kalkulator.html">Számlázást ellenőrzök →</a></article>
+        <article><span>1</span><h3>Mennyi pénzből gazdálkodom?</h3><p>Nettó–bruttó és havi költségvetés. Előbb a valós havi mozgásteredet tisztázd.</p><a href="${root}/kalkulatorok/netto-brutto-kalkulator">Bérből indulok →</a></article>
+        <article><span>2</span><h3>Mekkora terhet bírok el?</h3><p>Hitelképesség, törlesztő és önerő. A banki maximum nem azonos a kényelmes háztartási limittel.</p><a href="${root}/kalkulatorok/hitelkepesseg-kalkulator">Hitelt tervezek →</a></article>
+        <article><span>3</span><h3>Mikor érem el a célomat?</h3><p>Kamatos kamat, célösszeg és infláció. Külön kezeld a nominális forintot és a vásárlóerőt.</p><a href="${root}/kalkulatorok/milliomos-kalkulator">Célösszeget tervezek →</a></article>
+        <article><span>4</span><h3>Mit jelent a befektetési feltételezés?</h3><p>ETF és osztalék. A költség, adó, deviza, hozam és időtáv külön-külön is módosíthatja az eredményt.</p><a href="${root}/kalkulatorok/etf-kalkulator">Befektetést modellezek →</a></article>
+        <article><span>5</span><h3>Melyik dátum mit jelent?</h3><p>Fizetési határidő és teljesítési dátum. A kiállítás, teljesítés és esedékesség nem felcserélhető fogalmak.</p><a href="${root}/kalkulatorok/szamla-teljesites-kalkulator">Számlázást ellenőrzök →</a></article>
       </div>
       <div class="quality-note"><strong>Minőségi elv:</strong> minden kalkulátor saját módszertani, értelmezési és korlátblokkot kap. Nem ugyanazt a SEO-szöveget variáljuk.</div>
     `);

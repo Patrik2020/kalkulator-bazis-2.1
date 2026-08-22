@@ -29,6 +29,29 @@
       .filter((token) => /^[a-z0-9_-]+$/i.test(token))
       .join(" ");
 
+  const toPublicPath = (value) => {
+    const original = (value ?? "").toString();
+    const match = original.match(/^([^?#]*)([?#][\s\S]*)?$/);
+    if (!match) return original;
+    let route = match[1];
+    if (/^index\.html$/i.test(route)) route = "./";
+    else if (/\/index\.html$/i.test(route)) route = route.replace(/index\.html$/i, "");
+    else route = route.replace(/\.html$/i, "");
+    return `${route}${match[2] || ""}`;
+  };
+
+  const normalizeRoute = (value) =>
+    decodeURIComponent((value ?? "").toString().split(/[?#]/, 1)[0])
+      .replace(/\\/g, "/")
+      .replace(/\.html$/i, "")
+      .replace(/^\/+|\/+$/g, "");
+
+  const pathMatchesRoute = (currentPath, route) => {
+    const current = normalizeRoute(currentPath);
+    const expected = normalizeRoute(route);
+    return Boolean(expected) && (current === expected || current.endsWith(`/${expected}`));
+  };
+
   const safeInternalPath = (value) => {
     const path = (value ?? "").toString().trim().replace(/^\/+/, "");
 
@@ -44,7 +67,7 @@
   };
 
   const buildInternalHref = (basePath, value) => {
-    const path = safeInternalPath(value);
+    const path = safeInternalPath(toPublicPath(value));
     return path === "#" ? "#" : `${basePath}${path}`;
   };
 
@@ -536,7 +559,7 @@
     const fallbackBreadcrumb = main.querySelector(":scope > .kb-breadcrumb");
 
     const currentPath = window.location.pathname.replace(/\\/g, "/");
-    const calculator = data.calculators.find((item) => currentPath.endsWith(item.url));
+    const calculator = data.calculators.find((item) => pathMatchesRoute(currentPath, item.url));
     const categoryPage = document.querySelector("[data-category-page]");
     const category = calculator
       ? getCategory(calculator.category)
@@ -548,7 +571,7 @@
 
     const basePath = getBasePath();
     const items = [
-      `<a href="${escapeAttribute(`${basePath}index.html`)}">Főoldal</a>`,
+      `<a href="${escapeAttribute(buildInternalHref(basePath, "index.html"))}">Főoldal</a>`,
       calculator
         ? `<a href="${escapeAttribute(buildInternalHref(basePath, category.url))}">${escapeHtml(category.shortTitle)}</a>`
         : `<span aria-current="page">${escapeHtml(category.shortTitle)}</span>`,
@@ -569,7 +592,7 @@
   const renderRelatedCalculators = () => {
     const currentPath = window.location.pathname.replace(/\\/g, "/");
     const current = data.calculators.find((calculator) =>
-      currentPath.endsWith(calculator.url)
+      pathMatchesRoute(currentPath, calculator.url)
     );
 
     if (!current) return;
@@ -609,7 +632,7 @@
   const renderCalculatorPageExtras = () => {
     const currentPath = window.location.pathname.replace(/\\/g, "/");
     const current = data.calculators.find((calculator) =>
-      currentPath.endsWith(calculator.url)
+      pathMatchesRoute(currentPath, calculator.url)
     );
     const main = document.querySelector("main");
 
@@ -637,7 +660,7 @@
   const renderReliabilityNote = () => {
     const currentPath = window.location.pathname.replace(/\\/g, "/");
     const current = data.calculators.find((calculator) =>
-      currentPath.endsWith(calculator.url)
+      pathMatchesRoute(currentPath, calculator.url)
     );
     const main = document.querySelector("main");
 
@@ -673,7 +696,7 @@
         <p>${escapeHtml(messages[current.category] || messages.mindennapi)}</p>
       </div>
       <div class="reliability-actions">
-        <a href="${escapeAttribute(`${basePath}atlathatosag-es-minoseg.html`)}">A számítások módszertana és minőségbiztosítása</a>
+        <a href="${escapeAttribute(buildInternalHref(basePath, "atlathatosag-es-minoseg.html"))}">A számítások módszertana és minőségbiztosítása</a>
         <a href="${escapeAttribute(reportHref)}">Hibát találtál? Jelezd nekünk.</a>
       </div>
     `;
@@ -741,7 +764,7 @@
       document.querySelector('link[rel="canonical"]')?.href || window.location.href;
     const path = window.location.pathname.replace(/\\/g, "/");
     const currentCalculator = data.calculators.find((calculator) =>
-      path.endsWith(calculator.url)
+      pathMatchesRoute(path, calculator.url)
     );
     const categoryPage = document.querySelector("[data-category-page]");
     const visibleFaq = [...document.querySelectorAll(".faq-list > details")]
@@ -801,7 +824,7 @@
             "@id": `${canonicalUrl}#breadcrumb`,
             itemListElement: [
               { "@type": "ListItem", position: 1, name: "Főoldal", item: `${siteOrigin}/` },
-              { "@type": "ListItem", position: 2, name: category.shortTitle, item: `${siteOrigin}/${category.url}` },
+              { "@type": "ListItem", position: 2, name: category.shortTitle, item: `${siteOrigin}/${toPublicPath(category.url)}` },
               { "@type": "ListItem", position: 3, name: currentCalculator.title, item: canonicalUrl },
             ],
           },
@@ -838,7 +861,7 @@
               .map((calculator, index) => ({
                 "@type": "ListItem",
                 position: index + 1,
-                url: `${siteOrigin}/${calculator.url}`,
+                url: `${siteOrigin}/${toPublicPath(calculator.url)}`,
                 name: calculator.title,
               })),
           },
@@ -898,7 +921,7 @@
               .map((calculator, index) => ({
                 "@type": "ListItem",
                 position: index + 1,
-                url: `${siteOrigin}/${calculator.url}`,
+                url: `${siteOrigin}/${toPublicPath(calculator.url)}`,
                 name: calculator.title,
               })),
           },

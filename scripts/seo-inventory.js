@@ -1,6 +1,11 @@
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
+const {
+  publicPathToSourceFile,
+  publicUrlForSource,
+  sourceFileToPublicPath,
+} = require("./url-paths");
 
 const root = path.resolve(__dirname, "..");
 const siteUrl = "https://kalkulatorbazis.hu";
@@ -44,7 +49,7 @@ const normalize = (value) =>
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
-const canonicalFor = (name) => (name === "index.html" ? `${siteUrl}/` : `${siteUrl}/${name}`);
+const canonicalFor = (name) => publicUrlForSource(name);
 
 const records = htmlFiles.map((file) => {
   const name = relative(file);
@@ -83,16 +88,10 @@ const records = htmlFiles.map((file) => {
 const byName = new Map(records.map((record) => [record.name, record]));
 const resolveLocal = (source, href) => {
   if (!href || /^(?:https?:|mailto:|tel:|javascript:|data:|#)/i.test(href)) return null;
-  const clean = href.split(/[?#]/)[0];
-  if (!clean) return null;
-  const absolute = clean.startsWith("/")
-    ? path.join(root, clean.replace(/^\/+/, ""))
-    : path.resolve(path.dirname(source.file), clean);
-  if (path.extname(absolute) && path.extname(absolute) !== ".html") return null;
-  const candidate = fs.existsSync(absolute) && fs.statSync(absolute).isDirectory()
-    ? path.join(absolute, "index.html")
-    : absolute;
-  return relative(candidate);
+  const base = `${siteUrl}${sourceFileToPublicPath(source.name)}`;
+  const url = new URL(href, base);
+  if (path.extname(url.pathname) && !/\.html$/i.test(url.pathname)) return null;
+  return publicPathToSourceFile(url.pathname);
 };
 
 const componentLinks = ["components/header.html", "components/footer.html"].flatMap((name) => {
@@ -112,7 +111,7 @@ records.forEach((source) => {
 });
 
 componentLinks.forEach((href) => {
-  const target = href.replace(/^\/+/, "");
+  const target = publicPathToSourceFile(new URL(href, `${siteUrl}/`).pathname);
   if (!inbound.has(target)) return;
   records.forEach((record) => inbound.get(target).add(`${record.name} (közös navigáció)`));
 });
@@ -131,10 +130,7 @@ calculators.forEach((calculator) => {
 const sitemap = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
 const sitemapUrls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim());
 const sitemapNames = new Set(
-  sitemapUrls.map((url) => {
-    const pathname = new URL(url).pathname.replace(/^\/+|\/+$/g, "");
-    return pathname || "index.html";
-  })
+  sitemapUrls.map((url) => publicPathToSourceFile(new URL(url).pathname))
 );
 
 const typeOf = (name) => {

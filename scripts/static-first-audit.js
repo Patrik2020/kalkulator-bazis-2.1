@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { publicPathToSourceFile } = require("./url-paths");
 
 const root = path.resolve(__dirname, "..");
 
@@ -123,9 +124,8 @@ function sitemapPages() {
   const pages = [];
   for (const match of xml.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/gi)) {
     const url = new URL(match[1].trim());
-    let relative = decodeURIComponent(url.pathname).replace(/^\/+/, "") || "index.html";
-    if (relative.endsWith("/")) relative += "index.html";
-    if (relative.endsWith(".html") && fs.existsSync(path.join(root, relative))) pages.push(relative);
+    const relative = publicPathToSourceFile(url.pathname);
+    if (fs.existsSync(path.join(root, relative))) pages.push(relative);
   }
   return [...new Set(pages)];
 }

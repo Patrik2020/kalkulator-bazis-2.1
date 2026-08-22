@@ -269,11 +269,11 @@ const run = async () => {
     structured: JSON.parse(document.getElementById('kb-structured-data')?.textContent || '{}'),
   }))()`);
   if (seo.h1 !== "ETF kalkulátor") failures.push("A H1 nem maradt ETF kalkulátor.");
-  if (seo.canonical !== "https://kalkulatorbazis.hu/kalkulatorok/etf-kalkulator.html") failures.push("A canonical URL megváltozott.");
+  if (seo.canonical !== "https://kalkulatorbazis.hu/kalkulatorok/etf-kalkulator") failures.push("A canonical URL megváltozott.");
   if (!seo.etfCssHref.includes("?v=20260627-2")) failures.push("Az ETF CSS nem verziózott URL-lel töltődik.");
   if (!seo.etfScriptSrc.includes("?v=20260627-2")) failures.push("Az ETF JS nem verziózott URL-lel töltődik.");
   if (seo.faqCount < 5) failures.push("Nincs legalább 5 ETF GYIK.");
-  ["kamatos-kamat-kalkulator.html", "inflacio-kalkulator.html", "osztalek-kalkulator.html", "milliomos-kalkulator.html", "../penzugyi.html"].forEach((href) => {
+  ["kamatos-kamat-kalkulator", "inflacio-kalkulator", "osztalek-kalkulator", "milliomos-kalkulator", "../penzugyi"].forEach((href) => {
     if (!seo.related.includes(href)) failures.push(`Hiányzó belső link: ${href}`);
   });
 

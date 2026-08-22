@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 const { categories, groupByCalculator } = require("./category-taxonomy-config");
+const { publicPathToSourceFile } = require("./url-paths");
 const expansionCalculators = [
   ...require("../js/expansion-batch-01-data.js"),
   ...require("../js/expansion-batch-02-data.js"),
@@ -31,7 +32,7 @@ function calculatorCardUrls(file) {
     if (!className.split(/\s+/).includes("calculator-card")) continue;
     const href = readAttribute(match[0], "href");
     if (!href) continue;
-    const normalized = decodeURIComponent(new URL(href, "https://kalkulatorbazis.hu/").pathname).replace(/^\/+/, "");
+    const normalized = publicPathToSourceFile(new URL(href, "https://kalkulatorbazis.hu/").pathname);
     if (normalized.startsWith("kalkulatorok/") && normalized.endsWith(".html")) urls.push(normalized);
   }
 

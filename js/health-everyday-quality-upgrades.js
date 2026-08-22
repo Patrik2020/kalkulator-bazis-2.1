@@ -64,10 +64,10 @@
         { title: "Külön élethelyzet", text: `Várandósság és folyadékbevitel. Itt a kalkulátor eredménye különösen csak tájékozódási pont, mert az egyéni körülmények nagy súllyal számítanak.` },
       ])}
       <div class="lq-paths">
-        <a href="${root}/kalkulatorok/bmi-kalkulator.html">Testméretből indulok →</a>
-        <a href="${root}/kalkulatorok/kaloria-kalkulator.html">Energiaigényt becsülök →</a>
-        <a href="${root}/kalkulatorok/pulzus-zona-kalkulator.html">Edzést tervezek →</a>
-        <a href="${root}/kalkulatorok/alvasciklus-kalkulator.html">Alvást tervezek →</a>
+        <a href="${root}/kalkulatorok/bmi-kalkulator">Testméretből indulok →</a>
+        <a href="${root}/kalkulatorok/kaloria-kalkulator">Energiaigényt becsülök →</a>
+        <a href="${root}/kalkulatorok/pulzus-zona-kalkulator">Edzést tervezek →</a>
+        <a href="${root}/kalkulatorok/alvasciklus-kalkulator">Alvást tervezek →</a>
       </div>
       ${healthGate("Várandósság, gyermekkor, krónikus betegség, gyógyszerszedés vagy panasz esetén ne egy általános kalkulátorból hozz egészségügyi döntést.")}
     `);

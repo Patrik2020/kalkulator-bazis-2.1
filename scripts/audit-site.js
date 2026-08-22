@@ -1,5 +1,10 @@
 const fs = require("fs");
 const path = require("path");
+const {
+  publicPathToSourceFile,
+  publicUrlForSource,
+  sourceFileToPublicPath,
+} = require("./url-paths");
 
 const root = path.resolve(__dirname, "..");
 const reportPath = path.join(root, "docs", "projekt-audit.md");
@@ -207,10 +212,7 @@ const issuesFor = (record) => {
   if (!record.title) add("Hiányzik a title.", "<head>", "Adj egyedi, témaspecifikus címet.", "Hozzáadni");
   if (!record.description) add("Hiányzik a meta description.", "<head>", "Adj egyedi leírást.", "Hozzáadni");
   if (!record.canonical) add("Hiányzik a canonical URL.", "<head>", "Adj önmagára mutató canonical linket.", "Hozzáadni");
-  const expectedCanonical =
-    record.name === "index.html"
-      ? "https://kalkulatorbazis.hu/"
-      : `https://kalkulatorbazis.hu/${record.name}`;
+  const expectedCanonical = publicUrlForSource(record.name);
   if (!record.isRedirect && record.canonical && record.canonical !== expectedCanonical) {
     add("A canonical nem a saját publikus HTTPS URL-re mutat.", "<head>", `Állítsd erre: ${expectedCanonical}.`, "Átírni", "Magas");
   }
@@ -344,11 +346,14 @@ const issues = new Map(records.map((record) => [record.name, issuesFor(record)])
 
 const resolveLocalReference = (record, href) => {
   if (!href || /^(?:https?:|mailto:|tel:|#|data:|javascript:)/i.test(href)) return null;
-  const clean = href.split(/[?#]/)[0];
-  if (!clean) return null;
-  const target = clean.startsWith("/")
-    ? path.join(root, clean.replace(/^\/+/, ""))
-    : path.resolve(path.dirname(record.file), clean);
+  const sourceName = record.name || relative(record.file);
+  const base = `https://kalkulatorbazis.hu${sourceFileToPublicPath(sourceName)}`;
+  const url = new URL(href, base);
+  const pathname = decodeURIComponent(url.pathname);
+  const sourcePath = path.extname(pathname)
+    ? pathname.replace(/^\/+/, "")
+    : publicPathToSourceFile(pathname);
+  const target = path.join(root, sourcePath);
   return fs.existsSync(target) ? null : relative(target);
 };
 

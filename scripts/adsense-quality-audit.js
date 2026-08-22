@@ -1,10 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
+const { publicUrlForSource } = require("./url-paths");
 
 const root = path.resolve(__dirname, "..");
 const reportPath = path.join(root, "docs", "adsense-quality-audit.md");
-const siteUrl = "https://kalkulatorbazis.hu";
 const adsenseSrc =
   "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2639795157074812";
 
@@ -52,7 +52,7 @@ const stripHtml = (value = "") =>
 
 const first = (value, pattern) => value.match(pattern)?.[1]?.trim() || "";
 const count = (value, pattern) => [...value.matchAll(pattern)].length;
-const canonicalFor = (name) => (name === "index.html" ? `${siteUrl}/` : `${siteUrl}/${name}`);
+const canonicalFor = (name) => publicUrlForSource(name);
 
 const classify = (name) => {
   if (name === "404.html") return "hibaoldal";

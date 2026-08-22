@@ -39,10 +39,10 @@
       <h2>Ne anyagot számolj először, hanem rétegrendet és munkafázist</h2>
       <p>Az építőipari kalkulátorok akkor adnak igazán használható eredményt, ha a mérés, az aljzat vagy szerkezet állapota, a konkrét termék és a kivitelezési veszteség külön-külön is tisztázott. Ugyanaz a négyzetméter más anyagigényt jelenthet festésnél, burkolásnál, vakolásnál vagy hőszigetelésnél.</p>
       <div class="cq-path">
-        <article><span>1</span><h3>Méret és geometria</h3><p>Terület, térfogat, nyílások és rétegvastagság. Itt dől el a matematikai minimum.</p><a href="${root}/kalkulatorok/beton-kalkulator.html">Térfogatot számolok →</a></article>
-        <article><span>2</span><h3>Felület és alapállapot</h3><p>Festék, vakolat, tapéta és hőszigetelés fogyását az alapfelület is erősen befolyásolja.</p><a href="${root}/kalkulatorok/festek-kalkulator.html">Felületet tervezek →</a></article>
-        <article><span>3</span><h3>Kiosztás és vágás</h3><p>Csempe, padló, térkő és tetőcserép esetén a veszteség nem puszta százalék: a geometria és a minta is számít.</p><a href="${root}/kalkulatorok/csempe-kalkulator.html">Burkolatot tervezek →</a></article>
-        <article><span>4</span><h3>Rendszerben gondolkodás</h3><p>Gipszkarton, hőszigetelés és tetőfedés nem egyetlen termékből áll. A kiegészítők és csomópontok is részei a beszerzésnek.</p><a href="${root}/kalkulatorok/gipszkarton-kalkulator.html">Rendszert tervezek →</a></article>
+        <article><span>1</span><h3>Méret és geometria</h3><p>Terület, térfogat, nyílások és rétegvastagság. Itt dől el a matematikai minimum.</p><a href="${root}/kalkulatorok/beton-kalkulator">Térfogatot számolok →</a></article>
+        <article><span>2</span><h3>Felület és alapállapot</h3><p>Festék, vakolat, tapéta és hőszigetelés fogyását az alapfelület is erősen befolyásolja.</p><a href="${root}/kalkulatorok/festek-kalkulator">Felületet tervezek →</a></article>
+        <article><span>3</span><h3>Kiosztás és vágás</h3><p>Csempe, padló, térkő és tetőcserép esetén a veszteség nem puszta százalék: a geometria és a minta is számít.</p><a href="${root}/kalkulatorok/csempe-kalkulator">Burkolatot tervezek →</a></article>
+        <article><span>4</span><h3>Rendszerben gondolkodás</h3><p>Gipszkarton, hőszigetelés és tetőfedés nem egyetlen termékből áll. A kiegészítők és csomópontok is részei a beszerzésnek.</p><a href="${root}/kalkulatorok/gipszkarton-kalkulator">Rendszert tervezek →</a></article>
       </div>
       <div class="cq-note"><strong>Minőségi elv:</strong> a kalkulátor eredménye rendelési kiindulópont, nem helyszíni felmérés. A végleges mennyiséget a konkrét gyártói adatlap, a kivitelezési terv és szükség esetén szakember ellenőrzése tegye véglegessé.</div>
     `);
