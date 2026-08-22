@@ -1,8 +1,8 @@
 const fs = require("fs");
 const path = require("path");
+const { publicUrlForSource } = require("./url-paths");
 
 const root = path.resolve(__dirname, "..");
-const siteUrl = "https://kalkulatorbazis.hu";
 
 const walk = (directory) => fs.readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
   if ([".git", "node_modules"].includes(entry.name)) return [];
@@ -33,7 +33,7 @@ const stripHtml = (value = "") => decode(value
 
 const first = (value, pattern) => value.match(pattern)?.[1]?.trim() || "";
 const count = (value, pattern) => [...value.matchAll(pattern)].length;
-const canonicalFor = (name) => name === "index.html" ? `${siteUrl}/` : `${siteUrl}/${name}`;
+const canonicalFor = (name) => publicUrlForSource(name);
 
 const sitemapXml = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
 const sitemapUrls = new Set([...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim()));

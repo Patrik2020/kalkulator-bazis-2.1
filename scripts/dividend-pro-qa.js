@@ -350,7 +350,7 @@ const runFunctionalQa = async () => {
 
   let state = await readState();
   if (state.h1 !== "Osztalék kalkulátor") failures.push("H1 nem maradt valtozatlan.");
-  if (!state.canonical.endsWith("/kalkulatorok/osztalek-kalkulator.html")) failures.push("Canonical hiba.");
+  if (!state.canonical.endsWith("/kalkulatorok/osztalek-kalkulator")) failures.push("Canonical hiba.");
   if (!state.cssHref.includes("?v=20260628-1")) failures.push("Osztalek CSS nem verziozott.");
   if (!state.scriptSrc.includes("?v=20260628-1")) failures.push("Osztalek JS nem verziozott.");
   if (state.faqCount < 9) failures.push("Kevesebb mint 9 GYIK van az oldalon.");

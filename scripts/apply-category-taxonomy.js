@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 const { categories, groupByCalculator } = require("./category-taxonomy-config");
+const { toExtensionlessHref } = require("./url-paths");
 const expansionCalculators = [
   ...require("../js/expansion-batch-01-data.js"),
   ...require("../js/expansion-batch-02-data.js"),
@@ -170,7 +171,7 @@ function ensureTaxonomyStylesheet(html) {
 }
 
 function categoryCard(calculator, category) {
-  return `        <a class="card card-link calculator-card ${escapeHtml(category.cardClass)}" href="${escapeHtml(calculator.url)}">\n          <h3>${escapeHtml(calculator.title)}</h3>\n          <p>${escapeHtml(calculator.description)}</p>\n        </a>`;
+  return `        <a class="card card-link calculator-card ${escapeHtml(category.cardClass)}" href="${escapeHtml(toExtensionlessHref(calculator.url))}">\n          <h3>${escapeHtml(calculator.title)}</h3>\n          <p>${escapeHtml(calculator.description)}</p>\n        </a>`;
 }
 
 function renderCalculatorCatalog(data) {
@@ -212,7 +213,7 @@ function updateCategoryPage(category, data) {
   const intro = `<section class="page-hero" data-render="category-intro">\n      <h1>${escapeHtml(category.title)}</h1>\n      <p>${escapeHtml(category.description)}</p>\n    </section>`;
   html = replaceElement(html, { attr: "data-render", value: "category-intro" }, intro);
 
-  const breadcrumb = `<nav class="breadcrumb" aria-label="Morzsamenü">\n      <ol><li><a href="index.html">Főoldal</a></li><li><span aria-current="page">${escapeHtml(category.shortTitle)}</span></li></ol>\n    </nav>`;
+  const breadcrumb = `<nav class="breadcrumb" aria-label="Morzsamenü">\n      <ol><li><a href="./">Főoldal</a></li><li><span aria-current="page">${escapeHtml(category.shortTitle)}</span></li></ol>\n    </nav>`;
   html = replaceElement(html, { className: "breadcrumb" }, breadcrumb);
 
   html = replaceElement(
@@ -228,7 +229,7 @@ function updateHomePage(data) {
   const filePath = path.join(root, "index.html");
   let html = fs.readFileSync(filePath, "utf8");
 
-  const cards = categories.map((category) => `          <a href="${escapeHtml(category.url)}" class="card card-link ${escapeHtml(category.cardClass)}">\n            <h3>${escapeHtml(category.title)}</h3>\n            <p>${escapeHtml(category.description)}</p>\n          </a>`).join("\n\n");
+  const cards = categories.map((category) => `          <a href="${escapeHtml(toExtensionlessHref(category.url))}" class="card card-link ${escapeHtml(category.cardClass)}">\n            <h3>${escapeHtml(category.title)}</h3>\n            <p>${escapeHtml(category.description)}</p>\n          </a>`).join("\n\n");
   const grid = `<div class="category-grid home-category-grid" data-render="home-categories">\n${cards}\n        </div>`;
   html = replaceElement(html, { attr: "data-render", value: "home-categories" }, grid);
 

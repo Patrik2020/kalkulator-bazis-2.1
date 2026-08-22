@@ -129,7 +129,7 @@ function pageHtml(calc) {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="${esc(description)}" />
-  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/${slug}.html" />
+  <link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/${slug}" />
   <title>${esc(title)}</title>
   <link rel="stylesheet" href="../css/style.css" />
   <link rel="stylesheet" href="../css/pages/simple-calculator.css" />
@@ -316,9 +316,9 @@ function updateSitemap() {
   const sitemapPath = path.join(root, "sitemap.xml");
   let text = fs.readFileSync(sitemapPath, "utf8");
   const additions = calculators
-    .filter(([slug]) => !text.includes(`kalkulatorok/${slug}.html`))
+    .filter(([slug]) => !text.includes(`kalkulatorok/${slug}</loc>`))
     .map(([slug]) => `    <url>
-        <loc>https://kalkulatorbazis.hu/kalkulatorok/${slug}.html</loc>
+        <loc>https://kalkulatorbazis.hu/kalkulatorok/${slug}</loc>
         <priority>0.8</priority>
     </url>`)
     .join("\n");

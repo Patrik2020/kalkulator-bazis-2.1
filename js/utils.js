@@ -115,6 +115,39 @@ function hardenExternalLinks(container = document) {
   });
 }
 
+function normalizeRoutePath(value) {
+  return decodeURIComponent(String(value || "").split(/[?#]/, 1)[0])
+    .replace(/\\/g, "/")
+    .replace(/\.html$/i, "")
+    .replace(/^\/+|\/+$/g, "");
+}
+
+function normalizeInternalPublicLinks(container = document) {
+  const links = [];
+  if (container instanceof HTMLAnchorElement) links.push(container);
+  if (typeof container.querySelectorAll === "function") {
+    links.push(...container.querySelectorAll("a[href]"));
+  }
+
+  links.forEach((link) => {
+    const rawHref = link.getAttribute("href");
+    if (!rawHref || /^(?:mailto:|tel:|javascript:|data:|#)/i.test(rawHref)) return;
+
+    try {
+      const url = new URL(rawHref, window.location.href);
+      if (url.origin !== window.location.origin || !/\.html$/i.test(url.pathname)) return;
+      url.pathname = /\/index\.html$/i.test(url.pathname)
+        ? url.pathname.replace(/index\.html$/i, "")
+        : url.pathname.replace(/\.html$/i, "");
+      link.setAttribute("href", `${url.pathname}${url.search}${url.hash}`);
+    } catch (error) {
+      // A hibás URL-t a böngésző eredeti formájában hagyjuk.
+    }
+  });
+}
+
+window.KB_NORMALIZE_INTERNAL_LINKS = normalizeInternalPublicLinks;
+
 // =========================
 // HEADER és FOOTER betöltése
 // =========================
@@ -129,6 +162,16 @@ document.addEventListener("DOMContentLoaded", () => {
   loadComponent("footer", base + "components/footer.html");
   ensureCookieBanner(base, () => loadSiteScripts(base));
   hardenExternalLinks(document);
+  normalizeInternalPublicLinks(document);
+
+  const linkObserver = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node.nodeType === Node.ELEMENT_NODE) normalizeInternalPublicLinks(node);
+      });
+    });
+  });
+  linkObserver.observe(document.body, { childList: true, subtree: true });
 });
 
 function ensureCookieBanner(base, onReady) {
@@ -249,6 +292,7 @@ function loadComponent(id, path) {
 
       target.replaceChildren(sanitizeComponentHtml(data));
       normalizeRootLinks(target, path.includes("../") ? "../" : "./");
+      normalizeInternalPublicLinks(target);
       hardenExternalLinks(target);
 
       if (id === "header") {
@@ -277,7 +321,7 @@ function getActiveNavTarget() {
 
   if (path.includes("/kalkulatorok/")) {
     const calculator = window.KB_DATA?.calculators?.find((item) =>
-      path.endsWith(`/${item.url}`) || path.endsWith(item.url)
+      normalizeRoutePath(path).endsWith(normalizeRoutePath(item.url))
     );
     const category = calculator
       ? window.KB_DATA?.categories?.find((item) => item.id === calculator.category)
@@ -286,7 +330,8 @@ function getActiveNavTarget() {
     return category?.url || "kalkulatorok.html";
   }
 
-  const fileName = path.split("/").filter(Boolean).pop() || "index.html";
+  const currentPart = path.split("/").filter(Boolean).pop() || "index";
+  const fileName = /\.html$/i.test(currentPart) ? currentPart : `${currentPart}.html`;
   const knownTargets = new Set([
     "index.html",
     "penzugyi.html",
@@ -318,7 +363,9 @@ function linkMatchesTarget(link, target) {
       return !href.hash && /\/(?:index\.html)?$/.test(path);
     }
 
-    return path.endsWith(`/${target}`) || path.endsWith(target);
+    const normalizedPath = normalizeRoutePath(path);
+    const normalizedTarget = normalizeRoutePath(target);
+    return normalizedPath === normalizedTarget || normalizedPath.endsWith(`/${normalizedTarget}`);
   } catch (error) {
     return false;
   }

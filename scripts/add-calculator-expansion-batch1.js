@@ -249,7 +249,7 @@ function renderFaq(faqs) {
 }
 
 function renderJsonLd(c) {
-  const url = `https://kalkulatorbazis.hu/kalkulatorok/${c.slug}.html`;
+  const url = `https://kalkulatorbazis.hu/kalkulatorok/${c.slug}`;
   return JSON.stringify({
     '@context': 'https://schema.org',
     '@graph': [
@@ -257,7 +257,7 @@ function renderJsonLd(c) {
       { '@type': 'SoftwareApplication', '@id': `${url}#calculator`, name: c.title, applicationCategory: 'CalculatorApplication', operatingSystem: 'Web', url, description: c.description, offers: { '@type': 'Offer', price: '0', priceCurrency: 'HUF' }, isPartOf: { '@id': 'https://kalkulatorbazis.hu/#website' } },
       { '@type': 'BreadcrumbList', '@id': `${url}#breadcrumb`, itemListElement: [
         { '@type': 'ListItem', position: 1, name: 'Főoldal', item: 'https://kalkulatorbazis.hu/' },
-        { '@type': 'ListItem', position: 2, name: c.categoryTitle, item: `https://kalkulatorbazis.hu/${c.categoryUrl.replace('../', '')}` },
+        { '@type': 'ListItem', position: 2, name: c.categoryTitle, item: `https://kalkulatorbazis.hu/${c.categoryUrl.replace('../', '').replace(/\.html$/, '')}` },
         { '@type': 'ListItem', position: 3, name: c.title, item: url },
       ] },
       { '@type': 'FAQPage', '@id': `${url}#gyik`, mainEntity: c.faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
@@ -268,7 +268,7 @@ function renderJsonLd(c) {
 function renderPage(c) {
   const related = calculators.filter((x) => x.slug !== c.slug && x.category === c.category).slice(0, 2);
   const fallbackRelated = related.length ? related : calculators.filter((x) => x.slug !== c.slug).slice(0, 2);
-  const relatedLinks = fallbackRelated.map((x) => `<li><a href="./${x.slug}.html">${x.title}</a></li>`).join('\n');
+  const relatedLinks = fallbackRelated.map((x) => `<li><a href="./${x.slug}">${x.title}</a></li>`).join('\n');
   return `<!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -276,7 +276,7 @@ function renderPage(c) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="${c.description}">
-<link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/${c.slug}.html">
+<link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/${c.slug}">
 <title>${c.title} | Kalkulátor Bázis</title>
 <link rel="stylesheet" href="../css/style.css">
 <link rel="stylesheet" href="../css/pages/simple-calculator.css">
@@ -287,7 +287,7 @@ function renderPage(c) {
 <meta property="og:site_name" content="Kalkulátor Bázis">
 <meta property="og:title" content="${c.title} | Kalkulátor Bázis">
 <meta property="og:description" content="${c.description}">
-<meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/${c.slug}.html">
+<meta property="og:url" content="https://kalkulatorbazis.hu/kalkulatorok/${c.slug}">
 <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <script id="kb-structured-data" type="application/ld+json">${renderJsonLd(c)}</script>
@@ -314,8 +314,8 @@ function renderPage(c) {
     <h2>Kapcsolódó kalkulátorok</h2>
     <ul>
       ${relatedLinks}
-      <li><a href="${c.categoryUrl}">${c.categoryTitle} kalkulátorok</a></li>
-      <li><a href="../kalkulatorok.html">Összes kalkulátor</a></li>
+      <li><a href="${c.categoryUrl.replace(/\.html$/, '')}">${c.categoryTitle} kalkulátorok</a></li>
+      <li><a href="../kalkulatorok">Összes kalkulátor</a></li>
     </ul>
   </section>
 </main>
@@ -352,15 +352,16 @@ function writeRuntime() {
 }
 
 function writeAudit() {
-  write('scripts/expansion-calculators-audit.js', `const fs = require('fs');\nconst path = require('path');\nconst root = path.resolve(__dirname, '..');\nconst core = require('../js/expansion-calculators-core.js');\nconst expected = ${JSON.stringify(calculators.map((c) => c.slug), null, 2)};\nconst runtime = fs.readFileSync(path.join(root, 'js/expansion-calculators.js'), 'utf8');\nconst data = fs.readFileSync(path.join(root, 'js/site-data.js'), 'utf8');\nconst taxonomy = fs.readFileSync(path.join(root, 'scripts/category-taxonomy-config.js'), 'utf8');\nconst quality = fs.readFileSync(path.join(root, 'js/expansion-quality.js'), 'utf8');\nconst errors = [];\nconst near = (actual, expectedValue, epsilon = 1e-9) => Math.abs(actual - expectedValue) <= epsilon;\nfor (const slug of expected) {\n  const htmlPath = path.join(root, 'kalkulatorok', slug + '.html');\n  if (!fs.existsSync(htmlPath)) { errors.push(slug + ': hiányzó HTML'); continue; }\n  const html = fs.readFileSync(htmlPath, 'utf8');\n  if (!html.includes('data-expansion-calc="' + slug + '"')) errors.push(slug + ': hiányzó kalkulátor azonosító');\n  if (!html.includes('class="card card-calculator')) errors.push(slug + ': hiányzó kalkulátorkártya');\n  if (!html.includes('<link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/' + slug + '.html">')) errors.push(slug + ': hibás canonical');\n  if (!runtime.includes("'" + slug + "'")) errors.push(slug + ': hiányzó runtime logika');\n  if (!data.includes('kalkulatorok/' + slug + '.html')) errors.push(slug + ': hiányzik site-data.js-ből');\n  if (!taxonomy.includes('kalkulatorok/' + slug + '.html')) errors.push(slug + ': hiányzik a taxonómiából');\n  if (!quality.includes('"' + slug + '"')) errors.push(slug + ': hiányzik a quality registryből');\n}\nconst direct = core.ruleOfThree({ mode: 'direct', a: 4, b: 10, c: 6 });\nif (!near(direct.x, 15)) errors.push('hármasszabály: 4:10 = 6:x referencia hibás');\nconst inverse = core.ruleOfThree({ mode: 'inverse', a: 4, b: 6, c: 8 });\nif (!near(inverse.x, 3)) errors.push('hármasszabály: fordított referencia hibás');\nconst geometric = core.geometricMean([1, 4]);\nif (!near(geometric.mean, 2)) errors.push('mértani átlag: [1,4] referencia hibás');\nconst adhesive = core.tileAdhesive({ area: 24, consumption: 4, waste: 10, bag: 25 });\nif (!near(adhesive.total, 105.6) || adhesive.bags !== 5) errors.push('csemperagasztó: referencia hibás');\nconst ev = core.evCharge({ battery: 64, start: 20, target: 80, loss: 10, price: 70, power: 11 });\nif (!near(ev.batteryEnergy, 38.4) || !near(ev.gridEnergy, 42.666666666666664) || !near(ev.cost, 2986.6666666666665)) errors.push('EV töltés: referencia hibás');\nconst pace = core.runningPace({ mode: 'pace', distance: 5, hours: 0, minutes: 30, seconds: 0, paceMinutes: 0, paceSeconds: 0 });\nif (!near(pace.paceSecondsPerKm, 360) || !near(pace.speedKmh, 10)) errors.push('futótempó: 5 km / 30 perc referencia hibás');\nconst finish = core.runningPace({ mode: 'finish', distance: 10, hours: 0, minutes: 0, seconds: 0, paceMinutes: 6, paceSeconds: 0 });\nif (!near(finish.totalSeconds, 3600)) errors.push('futótempó: 10 km @ 6:00 célidő referencia hibás');\nif (errors.length) { console.error('Expansion kalkulátor audit hibák:'); errors.forEach((e) => console.error('- ' + e)); process.exit(1); }\nconsole.log('Expansion kalkulátor audit OK: ' + expected.length + ' új kalkulátor + referencia számítások ellenőrizve.');\n`);
+  write('scripts/expansion-calculators-audit.js', `const fs = require('fs');\nconst path = require('path');\nconst root = path.resolve(__dirname, '..');\nconst core = require('../js/expansion-calculators-core.js');\nconst expected = ${JSON.stringify(calculators.map((c) => c.slug), null, 2)};\nconst runtime = fs.readFileSync(path.join(root, 'js/expansion-calculators.js'), 'utf8');\nconst data = fs.readFileSync(path.join(root, 'js/site-data.js'), 'utf8');\nconst taxonomy = fs.readFileSync(path.join(root, 'scripts/category-taxonomy-config.js'), 'utf8');\nconst quality = fs.readFileSync(path.join(root, 'js/expansion-quality.js'), 'utf8');\nconst errors = [];\nconst near = (actual, expectedValue, epsilon = 1e-9) => Math.abs(actual - expectedValue) <= epsilon;\nfor (const slug of expected) {\n  const htmlPath = path.join(root, 'kalkulatorok', slug + '.html');\n  if (!fs.existsSync(htmlPath)) { errors.push(slug + ': hiányzó HTML'); continue; }\n  const html = fs.readFileSync(htmlPath, 'utf8');\n  if (!html.includes('data-expansion-calc="' + slug + '"')) errors.push(slug + ': hiányzó kalkulátor azonosító');\n  if (!html.includes('class="card card-calculator')) errors.push(slug + ': hiányzó kalkulátorkártya');\n  if (!html.includes('<link rel="canonical" href="https://kalkulatorbazis.hu/kalkulatorok/' + slug + '">')) errors.push(slug + ': hibás canonical');\n  if (!runtime.includes("'" + slug + "'")) errors.push(slug + ': hiányzó runtime logika');\n  if (!data.includes('kalkulatorok/' + slug + '.html')) errors.push(slug + ': hiányzik site-data.js-ből');\n  if (!taxonomy.includes('kalkulatorok/' + slug + '.html')) errors.push(slug + ': hiányzik a taxonómiából');\n  if (!quality.includes('"' + slug + '"')) errors.push(slug + ': hiányzik a quality registryből');\n}\nconst direct = core.ruleOfThree({ mode: 'direct', a: 4, b: 10, c: 6 });\nif (!near(direct.x, 15)) errors.push('hármasszabály: 4:10 = 6:x referencia hibás');\nconst inverse = core.ruleOfThree({ mode: 'inverse', a: 4, b: 6, c: 8 });\nif (!near(inverse.x, 3)) errors.push('hármasszabály: fordított referencia hibás');\nconst geometric = core.geometricMean([1, 4]);\nif (!near(geometric.mean, 2)) errors.push('mértani átlag: [1,4] referencia hibás');\nconst adhesive = core.tileAdhesive({ area: 24, consumption: 4, waste: 10, bag: 25 });\nif (!near(adhesive.total, 105.6) || adhesive.bags !== 5) errors.push('csemperagasztó: referencia hibás');\nconst ev = core.evCharge({ battery: 64, start: 20, target: 80, loss: 10, price: 70, power: 11 });\nif (!near(ev.batteryEnergy, 38.4) || !near(ev.gridEnergy, 42.666666666666664) || !near(ev.cost, 2986.6666666666665)) errors.push('EV töltés: referencia hibás');\nconst pace = core.runningPace({ mode: 'pace', distance: 5, hours: 0, minutes: 30, seconds: 0, paceMinutes: 0, paceSeconds: 0 });\nif (!near(pace.paceSecondsPerKm, 360) || !near(pace.speedKmh, 10)) errors.push('futótempó: 5 km / 30 perc referencia hibás');\nconst finish = core.runningPace({ mode: 'finish', distance: 10, hours: 0, minutes: 0, seconds: 0, paceMinutes: 6, paceSeconds: 0 });\nif (!near(finish.totalSeconds, 3600)) errors.push('futótempó: 10 km @ 6:00 célidő referencia hibás');\nif (errors.length) { console.error('Expansion kalkulátor audit hibák:'); errors.forEach((e) => console.error('- ' + e)); process.exit(1); }\nconsole.log('Expansion kalkulátor audit OK: ' + expected.length + ' új kalkulátor + referencia számítások ellenőrizve.');\n`);
 }
 
 function patchAllCalculatorsPage() {
   const file = 'kalkulatorok.html';
   let html = read(file);
   for (const c of calculators) {
-    const url = `kalkulatorok/${c.slug}.html`;
-    if (html.includes(`href="${url}"`)) continue;
+    const sourceUrl = `kalkulatorok/${c.slug}.html`;
+    const publicUrl = `kalkulatorok/${c.slug}`;
+    if (html.includes(`href="${publicUrl}"`) || html.includes(`href="${sourceUrl}"`)) continue;
     const heading = categoryHeadings[c.category];
     const headingNeedle = `<h2 class="section-heading">${heading}</h2>`;
     const headingIndex = html.indexOf(headingNeedle);
@@ -368,7 +369,7 @@ function patchAllCalculatorsPage() {
     const gridStart = html.indexOf('<div class="category-grid">', headingIndex);
     const gridEnd = html.indexOf('</div>', gridStart);
     if (gridStart === -1 || gridEnd === -1) throw new Error(`Category grid not found for ${heading}`);
-    const card = `\n      <a class="card card-link calculator-card ${c.cardClass}" href="${url}">\n        <h3>${c.title}</h3>\n        <p>${c.description}</p>\n      </a>\n`;
+    const card = `\n      <a class="card card-link calculator-card ${c.cardClass}" href="${publicUrl}">\n        <h3>${c.title}</h3>\n        <p>${c.description}</p>\n      </a>\n`;
     html = html.slice(0, gridEnd) + card + html.slice(gridEnd);
   }
   write(file, html);

@@ -44,12 +44,12 @@
         <section class="kb-help-view" data-view="search" hidden>
           <button class="kb-help-back" type="button">← Vissza</button>
           <div class="kb-help-links">
-            <a href="${rootPath()}kalkulatorok.html">Összes kalkulátor megnyitása</a>
-            <a href="${rootPath()}penzugyi.html">Pénzügyi kalkulátorok</a>
-            <a href="${rootPath()}auto.html">Autós kalkulátorok</a>
-            <a href="${rootPath()}egeszseg.html">Egészség kalkulátorok</a>
-            <a href="${rootPath()}epitoipari.html">Építőipari kalkulátorok</a>
-            <a href="${rootPath()}atvaltok.html">Átváltók</a>
+            <a href="${rootPath()}kalkulatorok">Összes kalkulátor megnyitása</a>
+            <a href="${rootPath()}penzugyi">Pénzügyi kalkulátorok</a>
+            <a href="${rootPath()}auto">Autós kalkulátorok</a>
+            <a href="${rootPath()}egeszseg">Egészség kalkulátorok</a>
+            <a href="${rootPath()}epitoipari">Építőipari kalkulátorok</a>
+            <a href="${rootPath()}atvaltok">Átváltók</a>
           </div>
         </section>
         <section class="kb-help-view" data-view="question" hidden>
@@ -85,7 +85,7 @@
         <label>
           <span><input type="checkbox" name="consent" required /> Hozzájárulok, hogy a bejelentés adatait a kivizsgálás és válaszadás céljából kezeljék.</span>
         </label>
-        <p class="kb-help-note">A beküldéshez automatikusan csatoljuk az oldal címét, URL-jét, az eszköz és böngésző alapvető technikai adatait. Részletek az <a href="${rootPath()}adatvedelem.html">adatvédelmi tájékoztatóban</a>.</p>
+        <p class="kb-help-note">A beküldéshez automatikusan csatoljuk az oldal címét, URL-jét, az eszköz és böngésző alapvető technikai adatait. Részletek az <a href="${rootPath()}adatvedelem">adatvédelmi tájékoztatóban</a>.</p>
         <button class="kb-help-submit" type="submit">Beküldés</button>
         <p class="kb-help-status" data-form-status role="status" aria-live="polite" aria-atomic="true" hidden></p>
       </form>

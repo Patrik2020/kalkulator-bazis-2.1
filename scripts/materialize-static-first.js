@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { spawn, execFileSync } = require("child_process");
+const { publicPathToSourceFile, sourceFileToPublicPath } = require("./url-paths");
 
 const root = path.resolve(__dirname, "..");
 const retentionTemplate = fs
@@ -55,10 +56,7 @@ function sitemapPages() {
 
   for (const match of sitemap.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/gi)) {
     const url = new URL(match[1].trim());
-    let relative = decodeURIComponent(url.pathname).replace(/^\/+/, "");
-    if (!relative) relative = "index.html";
-    if (relative.endsWith("/")) relative += "index.html";
-    if (!relative.endsWith(".html")) continue;
+    const relative = publicPathToSourceFile(url.pathname);
 
     const filePath = path.join(root, relative);
     if (!fs.existsSync(filePath) || seen.has(relative)) continue;
@@ -357,7 +355,11 @@ function mergeRenderedPage(pagePath, originalSource, rendered) {
 }
 
 function chromeDump(chrome, pagePath) {
-  const url = `${origin}/${pagePath.split("/").map(encodeURIComponent).join("/")}?__kb_static_export=1`;
+  const publicPath = sourceFileToPublicPath(pagePath)
+    .split("/")
+    .map(encodeURIComponent)
+    .join("/");
+  const url = `${origin}${publicPath}?__kb_static_export=1`;
   const profile = path.join(process.env.RUNNER_TEMP || process.env.TMPDIR || "/tmp", `kb-static-chrome-${process.pid}`);
 
   const args = [
@@ -396,7 +398,7 @@ async function waitForServer() {
   let lastError;
   for (let attempt = 0; attempt < 60; attempt += 1) {
     try {
-      const response = await fetch(`${origin}/index.html`, { cache: "no-store" });
+      const response = await fetch(`${origin}/`, { cache: "no-store" });
       if (response.ok) return;
     } catch (error) {
       lastError = error;

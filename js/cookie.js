@@ -424,7 +424,7 @@
         <div class="cookie-modal-body">
           <p>
             Részletes információt a
-            <a href="${basePath}cookie.html">Sütikezelési tájékoztatóban</a>
+            <a href="${basePath}cookie">Sütikezelési tájékoztatóban</a>
             találsz.
           </p>
           <p class="cookie-status" id="cookieConsentStatus" role="status" aria-live="polite"></p>

@@ -15,32 +15,32 @@ const pages = [
     file: "landing-pages/wise/adatkezelesi-tajekoztato.html",
     title: "Adatkezelési tájékoztató",
     description: "A Wise aloldal külön adatkezelési tájékoztatója helyett a Kalkulátor Bázis központi adatvédelmi tájékoztatója érvényes.",
-    canonical: "https://kalkulatorbazis.hu/adatvedelem.html",
-    target: "../../adatvedelem.html",
+    canonical: "https://kalkulatorbazis.hu/adatvedelem",
+    target: "../../adatvedelem",
     button: "Központi adatvédelmi tájékoztató megnyitása",
   },
   {
     file: "landing-pages/wise/cookie-tajekoztato.html",
     title: "Süti tájékoztató",
     description: "A Wise aloldal külön sütitájékoztatója helyett a Kalkulátor Bázis központi sütikezelési tájékoztatója érvényes.",
-    canonical: "https://kalkulatorbazis.hu/cookie.html",
-    target: "../../cookie.html",
+    canonical: "https://kalkulatorbazis.hu/cookie",
+    target: "../../cookie",
     button: "Központi sütitájékoztató megnyitása",
   },
   {
     file: "landing-pages/wise/jogi-nyilatkozat.html",
     title: "Jogi nyilatkozat",
     description: "A Wise aloldal külön jogi nyilatkozata helyett a Kalkulátor Bázis központi jogi nyilatkozata érvényes.",
-    canonical: "https://kalkulatorbazis.hu/jogi-nyilatkozat.html",
-    target: "../../jogi-nyilatkozat.html",
+    canonical: "https://kalkulatorbazis.hu/jogi-nyilatkozat",
+    target: "../../jogi-nyilatkozat",
     button: "Központi jogi nyilatkozat megnyitása",
   },
   {
     file: "landing-pages/wise/kapcsolat.html",
     title: "Kapcsolat",
     description: "A Wise aloldal külön kapcsolatoldala helyett a Kalkulátor Bázis központi kapcsolatoldala használható.",
-    canonical: "https://kalkulatorbazis.hu/kapcsolat.html",
-    target: "../../kapcsolat.html",
+    canonical: "https://kalkulatorbazis.hu/kapcsolat",
+    target: "../../kapcsolat",
     button: "Központi kapcsolatoldal megnyitása",
   },
 ];
@@ -81,10 +81,10 @@ for (const page of pages) {
 const wiseFile = path.join(root, "landing-pages/wise/wise.html");
 let wise = fs.readFileSync(wiseFile, "utf8");
 wise = wise
-  .replaceAll('href="adatkezelesi-tajekoztato.html"', 'href="../../adatvedelem.html"')
-  .replaceAll('href="cookie-tajekoztato.html"', 'href="../../cookie.html"')
-  .replaceAll('href="jogi-nyilatkozat.html"', 'href="../../jogi-nyilatkozat.html"')
-  .replaceAll('href="kapcsolat.html"', 'href="../../kapcsolat.html"');
+  .replaceAll('href="adatkezelesi-tajekoztato.html"', 'href="../../adatvedelem"')
+  .replaceAll('href="cookie-tajekoztato.html"', 'href="../../cookie"')
+  .replaceAll('href="jogi-nyilatkozat.html"', 'href="../../jogi-nyilatkozat"')
+  .replaceAll('href="kapcsolat.html"', 'href="../../kapcsolat"');
 fs.writeFileSync(wiseFile, wise, "utf8");
 
 console.log("Wise legal duplicate pages converted to noindex central redirects.");

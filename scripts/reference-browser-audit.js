@@ -4,6 +4,7 @@ const os = require("os");
 const path = require("path");
 const { spawn } = require("child_process");
 const { browserReferencePages } = require("./reference-test-manifest");
+const { publicPathToSourceFile, sourceFileToPublicPath } = require("./url-paths");
 
 const root = path.resolve(__dirname, "..");
 const chromeCandidates = [
@@ -38,7 +39,8 @@ const contentTypes = {
 
 const server = http.createServer((request, response) => {
   const url = new URL(request.url, "http://127.0.0.1");
-  const requested = decodeURIComponent(url.pathname === "/" ? "/index.html" : url.pathname);
+  const pathname = decodeURIComponent(url.pathname);
+  const requested = path.extname(pathname) ? pathname : `/${publicPathToSourceFile(pathname)}`;
   const file = path.resolve(root, requested.replace(/^\/+/, ""));
 
   if (!file.startsWith(`${root}${path.sep}`) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) {
@@ -499,8 +501,8 @@ async function main() {
 
     const results = [];
     for (const item of cases) {
-      currentPage = `/${item.page}`;
-      await client.send("Page.navigate", { url: `${origin}/${item.page}` });
+      currentPage = sourceFileToPublicPath(item.page);
+      await client.send("Page.navigate", { url: `${origin}${currentPage}` });
       await sleep(item.page.includes("osztalek") || item.page.includes("etf-") ? 800 : 450);
       try {
         const result = await evaluate(item.expression);
