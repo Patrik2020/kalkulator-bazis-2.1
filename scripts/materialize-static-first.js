@@ -174,28 +174,32 @@ function removeAttributeFromOpeningTag(fragment, name) {
   return fragment.replace(new RegExp(`\\s+${escaped}\\s*=\\s*(["']).*?\\1`, "i"), "");
 }
 
-function qualityFallback(fragment, type, originalAttribute) {
-  if (!fragment) return null;
-  let result = removeAttributeFromOpeningTag(fragment, originalAttribute);
-  result = addAttributeToOpeningTag(result, "data-static-quality-fallback", type);
-  result = addAttributeToOpeningTag(result, "data-static-quality-version", "2026-08");
-  return result;
-}
-
-function runtimeFallback(fragment, type) {
-  if (!fragment) return null;
-  let result = addAttributeToOpeningTag(fragment, "data-static-runtime-fallback", type);
-  // A heading enhancer can add generated ids before Chrome dumps the DOM. The
-  // timing of that enhancer is not deterministic in headless mode, so those
-  // runtime-only ids must not become part of the materialized source.
-  result = result.replace(/<h([1-6])\b([^>]*)>/gi, (full, level, attributes) => {
+function stripGeneratedHeadingIds(fragment) {
+  if (!fragment) return fragment;
+  // calculator-polish.js can add navigation ids before Chrome dumps the DOM.
+  // Their timing is not deterministic in headless mode, so dynamic fallback
+  // fragments must not persist those runtime-only ids in source HTML.
+  return fragment.replace(/<h([1-6])\b([^>]*)>/gi, (full, level, attributes) => {
     const stableAttributes = attributes.replace(
       /\s+id\s*=\s*(["'])[^"']*\1/gi,
       ""
     );
     return `<h${level}${stableAttributes}>`;
   });
-  return result;
+}
+
+function qualityFallback(fragment, type, originalAttribute) {
+  if (!fragment) return null;
+  let result = removeAttributeFromOpeningTag(fragment, originalAttribute);
+  result = addAttributeToOpeningTag(result, "data-static-quality-fallback", type);
+  result = addAttributeToOpeningTag(result, "data-static-quality-version", "2026-08");
+  return stripGeneratedHeadingIds(result);
+}
+
+function runtimeFallback(fragment, type) {
+  if (!fragment) return null;
+  let result = addAttributeToOpeningTag(fragment, "data-static-runtime-fallback", type);
+  return stripGeneratedHeadingIds(result);
 }
 
 function canonicalizeRetentionCta(fragment) {
