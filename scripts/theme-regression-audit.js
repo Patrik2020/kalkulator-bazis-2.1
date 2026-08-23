@@ -40,7 +40,16 @@ for (const variable of lightVars) {
   }
 }
 
-const requiredAliases = ['--card-bg', '--input-bg', '--surface-color', '--border-color', '--text-secondary'];
+const requiredAliases = [
+  '--card-bg',
+  '--input-bg',
+  '--surface-color',
+  '--border-color',
+  '--text-secondary',
+  '--soft-bg',
+  '--muted-text',
+  '--primary-color',
+];
 for (const variable of requiredAliases) {
   if (!darkVars.has(variable)) errors.push(`Hiányzó dark kompatibilitási alias: ${variable}`);
 }
@@ -49,13 +58,19 @@ const requiredDarkSelectors = [
   'html[data-theme="dark"] body .notice-box',
   'html[data-theme="dark"] body .category-note',
   'html[data-theme="dark"] body .kb-page-nav a',
+  'html[data-theme="dark"] body .ac-result',
+  'html[data-theme="dark"] body .everyday-result',
+  'html[data-theme="dark"] body .priority-result',
+  'html[data-theme="dark"] body .priority-note',
+  'html[data-theme="dark"] body .priority-warning',
+  'html[data-theme="dark"] body .priority-source',
 ];
 for (const selector of requiredDarkSelectors) {
   if (!hardening.includes(selector)) errors.push(`Hiányzó dark kontrasztvédő szabály: ${selector}`);
 }
 
-if (!style.includes("@import url('./pages/dark-mode-hardening.css?v=20260817-1');")) {
-  errors.push('A dark-mode-hardening.css nincs betöltve a globális style.css-ben.');
+if (!style.includes("@import url('./pages/dark-mode-hardening.css?v=20260823-1');")) {
+  errors.push('A dark-mode-hardening.css friss verziója nincs betöltve a globális style.css-ben.');
 }
 
 function cssFiles(dir) {
@@ -66,7 +81,7 @@ function cssFiles(dir) {
   });
 }
 
-const fallbackPattern = /var\(--(?:card-bg|input-bg|surface-color|surface-warning|surface-pink)\s*,/g;
+const fallbackPattern = /var\(--(?:card-bg|input-bg|surface-color|surface-warning|surface-pink|soft-bg|muted-text|primary-color)\s*,/g;
 const fallbackFiles = cssFiles(path.join(root, 'css')).filter((file) => fallbackPattern.test(fs.readFileSync(file, 'utf8')));
 
 console.log(`Theme regression audit: ${lightVars.size} light body változó, ${darkVars.size} dark változó.`);

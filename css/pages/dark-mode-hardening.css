@@ -7,6 +7,9 @@ body {
   --surface-color: var(--surface);
   --border-color: var(--border);
   --text-secondary: var(--text-light);
+  --soft-bg: var(--surface-secondary);
+  --muted-text: var(--text-light);
+  --primary-color: var(--primary);
 }
 
 html[data-theme="dark"] body {
@@ -21,6 +24,9 @@ html[data-theme="dark"] body {
   --surface-color: var(--surface);
   --border-color: var(--border);
   --text-secondary: var(--text-light);
+  --soft-bg: var(--surface-secondary);
+  --muted-text: var(--text-light);
+  --primary-color: var(--primary);
 }
 
 /* Figyelmeztető és kategória-megjegyzés blokkok: mindig valódi dark felület + világos szöveg. */
@@ -85,6 +91,51 @@ html[data-theme="dark"] body .auto-converter-quality input,
 html[data-theme="dark"] body .auto-converter-quality select {
   background: var(--input-bg);
   border-color: var(--border-strong);
+  color: var(--text);
+}
+
+/* Dinamikus kalkulátor-bővítések eredményfelületei.
+   Ezek a modulok korábban egy nem definiált --soft-bg változó világos fallbackjére estek vissza,
+   miközben a szöveg a dark témából világos maradt. */
+html[data-theme="dark"] body .ac-result,
+html[data-theme="dark"] body .everyday-result,
+html[data-theme="dark"] body .priority-result,
+html[data-theme="dark"] body .priority-health-figure,
+html[data-theme="dark"] body .priority-checklist li {
+  background: var(--surface-secondary);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body .ac-result dt,
+html[data-theme="dark"] body .ac-result dd,
+html[data-theme="dark"] body .everyday-result dt,
+html[data-theme="dark"] body .everyday-result dd,
+html[data-theme="dark"] body .priority-result strong {
+  color: var(--text);
+}
+
+html[data-theme="dark"] body .priority-result span,
+html[data-theme="dark"] body .priority-upgrade__lead,
+html[data-theme="dark"] body .priority-field small {
+  color: var(--text-light);
+}
+
+/* A priority modul korábban csak prefers-color-scheme médiakérdésre sötétítette ezeket.
+   Kézi témaváltásnál is a tényleges data-theme legyen az igazság forrása. */
+html[data-theme="dark"] body .priority-note {
+  background: rgba(37, 99, 235, 0.15);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body .priority-warning {
+  background: rgba(234, 88, 12, 0.15);
+  color: var(--text);
+}
+
+html[data-theme="dark"] body .priority-source {
+  background: rgba(15, 23, 42, 0.55);
+  border-color: var(--border);
   color: var(--text);
 }
 
