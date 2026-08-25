@@ -240,7 +240,7 @@ async function main() {
               );
               const shellStyle = shell ? getComputedStyle(shell) : null;
               const shellVisible = Boolean(shell && shellStyle.display !== 'none' && shellStyle.visibility !== 'hidden' && shell.getBoundingClientRect().height > 0);
-              const badVisibleText = shell ? /(?:NaN|Infinity|undefined|null)/.test(shell.innerText) : false;
+              const badVisibleText = shell ? /(?:\bNaN\b|\bInfinity\b|\bundefined\b|\bnull\b)/.test(shell.innerText) : false;
               return {
                 title: document.title.trim(),
                 main: Boolean(main),
