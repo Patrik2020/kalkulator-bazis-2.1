@@ -22,8 +22,8 @@ const brickData = {
     porotherm20: {
         name: "Porotherm 20 N+F",
         thickness: "20 cm",
-        bricksPerM2: 16,
-        usage: "belső és kisebb teherhordó falak"
+        bricksPerM2: 8,
+        usage: "20 cm vastag válaszfalak"
     },
 
     porotherm30: {

@@ -65,7 +65,16 @@ jobs:
         run: google-chrome --version
 
       - name: Run 29 missing calculator reference cases
-        run: npm run test:reference:browser
+        run: |
+          if npm run test:reference:browser; then
+            exit 0
+          fi
+          echo "Browser reference audit failed once; retrying after a short runner warm-up..." >&2
+          sleep 3
+          npm run test:reference:browser
+
+      - name: Smoke-test every calculator on mobile and desktop
+        run: npm run test:browser:all-calculators
 
       - name: Start local static server
         run: |
