@@ -2,7 +2,6 @@ const fs = require("fs");
 const path = require("path");
 
 const root = path.resolve(__dirname, "..");
-const checkOnly = process.argv.includes("--check");
 
 function replaceExact(source, oldText, newText, label) {
   if (source.includes(newText)) return source;
@@ -75,26 +74,30 @@ const transforms = {
   },
 };
 
-let changed = 0;
-for (const [relativePath, transform] of Object.entries(transforms)) {
-  const filePath = path.join(root, relativePath);
-  if (!fs.existsSync(filePath)) throw new Error(`Hiányzó egészség-upgrade fájl: ${relativePath}`);
-  const source = fs.readFileSync(filePath, "utf8");
-  const expected = transform(source);
-  const secondPass = transform(expected);
-  if (secondPass !== expected) throw new Error(`Nem idempotens egészség-upgrade: ${relativePath}`);
+function run({ checkOnly = process.argv.includes("--check") } = {}) {
+  let changed = 0;
+  for (const [relativePath, transform] of Object.entries(transforms)) {
+    const filePath = path.join(root, relativePath);
+    if (!fs.existsSync(filePath)) throw new Error(`Hiányzó egészség-upgrade fájl: ${relativePath}`);
+    const source = fs.readFileSync(filePath, "utf8");
+    const expected = transform(source);
+    const secondPass = transform(expected);
+    if (secondPass !== expected) throw new Error(`Nem idempotens egészség-upgrade: ${relativePath}`);
 
-  if (checkOnly) continue;
-  if (source !== expected) {
-    fs.writeFileSync(filePath, expected);
-    changed += 1;
+    if (checkOnly) continue;
+    if (source !== expected) {
+      fs.writeFileSync(filePath, expected);
+      changed += 1;
+    }
   }
+
+  console.log(
+    checkOnly
+      ? `Egészség modell-upgrade audit OK: ${Object.keys(transforms).length} fájl, idempotens.`
+      : `Egészség modell-upgrade alkalmazva: ${changed}/${Object.keys(transforms).length} fájl módosult.`
+  );
 }
 
-console.log(
-  checkOnly
-    ? `Egészség modell-upgrade audit OK: ${Object.keys(transforms).length} fájl, idempotens.`
-    : `Egészség modell-upgrade alkalmazva: ${changed}/${Object.keys(transforms).length} fájl módosult.`
-);
+if (require.main === module) run();
 
-module.exports = { transforms };
+module.exports = { transforms, run };
