@@ -53,6 +53,22 @@ const overrides = {
     heroLead:
       "Számold ki a valós átlagfogyasztást tankolt üzemanyag és megtett kilométer alapján.",
   },
+  "kalkulatorok/auto-kalkulator.html": {
+    title: "Utazási költség kalkulátor – fogyasztás és hatótáv",
+    description:
+      "Utazási költség kalkulátor autóhoz: számold ki az üzemanyagköltséget távolság, fogyasztás és literár alapján, valamint a fogyasztást és becsült hatótávot.",
+    h1: "Utazási költség, fogyasztás és hatótáv kalkulátor",
+    heroLead:
+      "Számold ki egy út üzemanyagköltségét, az autó fogyasztását és a becsült hatótávot egy helyen.",
+  },
+  "kalkulatorok/fuga-kalkulator.html": {
+    title: "Fugakalkulátor – fugázóanyag mennyiség és szükséglet",
+    description:
+      "Fugakalkulátor csempe és járólap burkoláshoz: számold ki a szükséges fugázóanyag mennyiségét lapméret, fugaszélesség, mélység, felület és ráhagyás alapján.",
+    h1: "Fugakalkulátor – fugázóanyag mennyiség kalkulátor",
+    heroLead:
+      "Becsüld meg, mennyi fugázóanyag kell a megadott burkolathoz, lapmérethez és fugaszélességhez.",
+  },
 };
 
 function escapeRegExp(value) {
