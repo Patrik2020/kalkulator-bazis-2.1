@@ -276,7 +276,7 @@ async function main() {
     if (client) client.close();
     browser.kill();
     server.close();
-    fs.rmSync(profile, { recursive: true, force: true });
+    fs.rmSync(profile, { recursive: true, force: true, maxRetries: 8, retryDelay: 250 });
   }
 
   if (consoleErrors.length) {
