@@ -30,6 +30,23 @@ const transforms = {
     return out;
   },
 
+  "js/construction-upgrades.js": (source) => {
+    let out = replaceExact(
+      source,
+      '        const factor = 1 + nonNegative(v.waste, "Ráhagyás") / 100, minPieces = ceil(net * min * factor), maxPieces = ceil(net * max * factor), pack = positive(v.packSize, "Csomagméret");\n        return [["Nettó fedendő tetőfelület", `${fmt(net)} m²`], ["Cserépigény ráhagyással", `${minPieces}–${maxPieces} db`], ["Csomag/raklap", `${ceil(minPieces / pack)}–${ceil(maxPieces / pack)} db`]];',
+      '        const factor = 1 + nonNegative(v.waste, "Ráhagyás") / 100, minPieces = ceil(net * min * factor), maxPieces = ceil(net * max * factor), pack = positive(v.packSize, "Csomagméret"); if (!Number.isInteger(pack)) throw new Error("A csomag/raklap darabszáma egész szám legyen.");\n        return [["Nettó fedendő tetőfelület", `${fmt(net)} m²`], ["Cserépigény ráhagyással", `${minPieces}–${maxPieces} db`], ["Csomag/raklap", `${ceil(minPieces / pack)}–${ceil(maxPieces / pack)} db`]];',
+      "tetőcserép egész csomagdarabszám"
+    );
+
+    out = replaceExact(
+      out,
+      '        const area = positive(v.area, "Felület"), l = positive(v.tileLength, "Laphossz"), w = positive(v.tileWidth, "Lapszélesség"), depth = positive(v.tileThickness, "Lapvastagság") * positive(v.fillRatio, "Fugamélység aránya") / 100;\n        const netKg = area * ((l + w) / (l * w)) * positive(v.jointWidth, "Fugaszélesség") * depth * positive(v.density, "Sűrűségi tényező"), purchaseKg = netKg * (1 + nonNegative(v.waste, "Anyagveszteség") / 100), pack = positive(v.packSize, "Csomagméret");',
+      '        const area = positive(v.area, "Felület"), l = positive(v.tileLength, "Laphossz"), w = positive(v.tileWidth, "Lapszélesség"), fillRatio = positive(v.fillRatio, "Fugamélység aránya"); if (fillRatio > 100) throw new Error("A fugamélység aránya legfeljebb 100% lehet."); const depth = positive(v.tileThickness, "Lapvastagság") * fillRatio / 100;\n        const netKg = area * ((l + w) / (l * w)) * positive(v.jointWidth, "Fugaszélesség") * depth * positive(v.density, "Sűrűségi tényező"), purchaseKg = netKg * (1 + nonNegative(v.waste, "Anyagveszteség") / 100), pack = positive(v.packSize, "Csomagméret");',
+      "fuga 100%-os mélységi plafon"
+    );
+    return out;
+  },
+
   "kalkulatorok/festek-kalkulator.html": (source) => {
     let out = replaceExact(source,
       '<input type="number" id="roomLength" step="0.1" placeholder="pl. 5" inputmode="decimal">',
