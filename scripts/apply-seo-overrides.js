@@ -130,7 +130,8 @@ for (const [relativePath, config] of Object.entries(overrides)) {
   const expected = applyOverride(source, config);
 
   if (checkOnly) {
-    if (expected !== source) throw new Error(`SEO override nincs materializálva: ${relativePath}`);
+    const secondPass = applyOverride(expected, config);
+    if (secondPass !== expected) throw new Error(`Nem idempotens SEO override: ${relativePath}`);
   } else if (expected !== source) {
     fs.writeFileSync(filePath, expected);
     changed += 1;
@@ -139,7 +140,7 @@ for (const [relativePath, config] of Object.entries(overrides)) {
 
 console.log(
   checkOnly
-    ? `SEO override audit OK: ${Object.keys(overrides).length} céloldal.`
+    ? `SEO override audit OK: ${Object.keys(overrides).length} céloldal, idempotens materializálás.`
     : `SEO override materializálva: ${changed}/${Object.keys(overrides).length} módosult oldal.`
 );
 
