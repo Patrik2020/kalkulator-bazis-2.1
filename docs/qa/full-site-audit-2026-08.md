@@ -68,6 +68,86 @@ Az oldal külön jelzi a főszabály szerinti legfeljebb 80%-os HFM-et, valamint
 
 Forrás: MNB adósságfék-szabályok.
 
+## Search Console és SEO audit – 2026-08-25
+
+### Kiemelt CTR/rangsorolási lehetőségek
+
+A közvetlen Search Console-lekérdezések alapján a legnagyobb, adatokkal igazolt rések:
+
+- `határidő számítás`: 5 077 megjelenés, 1 kattintás, 7,14 átlagpozíció;
+- `beton kalkulátor`: 1 082 megjelenés, 19 kattintás, 8,99 átlagpozíció;
+- `határidő kalkulátor`: 700 megjelenés, 2 kattintás, 5,62 átlagpozíció;
+- `folyamatos teljesítés kalkulátor`: 666 megjelenés, 4 kattintás, 6,12 átlagpozíció;
+- `teljesítési dátum kalkulátor`: 380 megjelenés, 1 kattintás, 4,70 átlagpozíció;
+- `gumiméret váltó`: 255 megjelenés, 1 kattintás, 9,59 átlagpozíció;
+- `fogyasztás kalkulátor`: 162 megjelenés, 0 kattintás, 8,94 átlagpozíció.
+
+Az ETF és tégla fő lekérdezései ezzel szemben nagyon jó CTR/pozíció értékeket mutatnak, ezért azoknál nincs indok tömeges title/meta módosításra.
+
+### Adatvezérelt SEO override-réteg
+
+A `scripts/apply-seo-overrides.js` buildlépésben idempotens, központilag ellenőrzött SEO-override rendszer működik. Jelenlegi CTR-céloldalak:
+
+- fizetési határidő;
+- számla teljesítés;
+- beton;
+- terület átváltó;
+- gumiméret váltó;
+- autófogyasztás;
+- autós út-/utazási költség;
+- fuga.
+
+A rendszer együtt tartja a title/meta/H1/hero/WebPage structured-data elemeket, és az opcionális OG/Twitter meta eltéréseket régi oldalakon tolerálja.
+
+### Extensionless migráció – két külön minta
+
+1. **Migrációs késés:** a régi `.html` URL még indexben van, az új extensionless URL még csak felfedezett vagy ismeretlen. Példa: kamatos kamat és gipszkarton. A régi `.html` URL-ek jelenleg a live crawlerben a megfelelő extensionless oldalra jutnak, amely 200-as és self-canonical.
+2. **Valóban új, még nem indexelt kalkulátor:** a `.html` változat sem volt indexben, az extensionless URL pedig `Discovered - currently not indexed` vagy `URL is unknown to Google`. Példák: százalékos változás, EV-töltési költség, hitel-előtörlesztés.
+
+A két esetet külön kell kezelni; a migrációs késést nem szabad felesleges tartalmi átírással „javítani”.
+
+### Indexelési tracker
+
+A GSC Wizard Indexing Trackerben 20 kiemelt, még nem indexelt új kalkulátor követése indult el. Az első 10 URL azonnali ellenőrzést is kapott; mindegyik `not_indexed`, részben `Discovered - currently not indexed`, részben `URL is unknown to Google` állapotú.
+
+### PASS – új oldalak alap indexelhetősége
+
+15 reprezentatív új/nem indexelt oldal live on-page crawlja alapján 14 oldal technikailag indexelhető:
+
+- HTTP 200;
+- nincs `noindex`;
+- self-canonical;
+- pontosan 1 H1;
+- van structured data;
+- megfelelő viewport/lang;
+- több tucat belső kimenő link.
+
+Két alacsony súlyú meta-description hosszfigyelmeztetés volt (tetőcserép 161 karakter, EV-töltési költség 174 karakter), de ezek önmagukban nem magyarázzák az indexelési hiányt.
+
+### WARNING – Tapéta kalkulátor 403 / korábbi redirect error
+
+A `tapeta-kalkulator` jelenleg külön vizsgálandó eltérés:
+
+- a Google URL Inspection a régi `.html` URL korábbi crawl-ján `Redirect error` állapotot tárol;
+- az extensionless URL felfedezett, de nincs indexben;
+- a GSCWizard live on-page bot mind a jelenlegi extensionless, mind a `.html` URL-re HTTP 403-at kapott;
+- ugyanakkor a nyilvános kategóriaoldal rendesen linkeli a Tapéta kalkulátort.
+
+Ez nem általános robots/noindex probléma, hanem külön infrastruktúra/UA/path szintű vizsgálati tétel.
+
+A tetőcserép régi `.html` URL-jén szintén szerepel korábbi Google `Redirect error`, de a jelenlegi live crawl már megfelelően az extensionless 200-as self-canonical oldalra jut, ezért ott a hiba valószínűleg történelmi/migrációs állapot.
+
+### Kontextuális belső linkek az indexelési erősítéshez
+
+A buildbe négy természetes, témailag indokolt belső link került:
+
+- Százalék kalkulátor → Százalékos változás kalkulátor;
+- Hitel törlesztő → Hitel előtörlesztés kalkulátor;
+- Fizetési határidő → Munkanap kalkulátor;
+- Autós út-/fogyasztáskalkulátor → EV töltési költség kalkulátor.
+
+A cél nem linkfarm létrehozása, hanem erős, releváns útvonal biztosítása már indexelt/használt oldalakról az új specializált kalkulátorokhoz.
+
 ## Új regresszióvédelem
 
 Létrejött: `scripts/critical-2026-rules-audit.js`
@@ -76,8 +156,12 @@ Létrejött: `scripts/critical-2026-rules-audit.js`
 
 A teszt bekerült a kötelező `quality` láncba. Feladata, hogy a már hivatalosan ellenőrzött, magas kockázatú 2026-os szabálypontok véletlen módosulását a CI azonnal megfogja.
 
+A böngészős referenciasuite CI-lépése egyszeri újrapróbálást kapott: ha a headless Chrome a GitHub runner átmeneti lassulása miatt nem indul el, a teszt 3 másodperc után még egyszer lefut. A valódi, ismétlődő teszthiba továbbra is pirosra állítja a jobot.
+
 ## Következő prioritások
 
+- Tapéta kalkulátor 403/redirect eltérés okának izolálása;
+- nem indexelt új kalkulátorok trackerének követése és a tényleges indexelési változás mérése;
 - pénzügyi kalkulátorok teljes képlet- és forrásellenőrzése;
 - nettó–bruttó API edge-case és fordított számítási mátrix bővítése;
 - mind a 100 kalkulátor többpontos referencia- és határérték-mátrixa;
