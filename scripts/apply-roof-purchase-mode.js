@@ -23,29 +23,41 @@ const upgrade = `  // KB_CONSTRUCTION:roof-purchase-mode:START
     const packField = roofConfig.fields.find((item) => item.id === "packSize");
     if (packField) {
       packField.label = "Példa csomag/raklap darabszáma";
-      packField.help = "Darabonkénti rendelésnél ez csak logisztikai tájékoztató; teljes csomag/raklap módban ezzel kerekítünk felfelé.";
+      packField.help = "Darabonkénti rendelésnél opcionális, csak logisztikai tájékoztató; teljes csomag/raklap módban kötelező pozitív egész szám.";
     }
     const baseCompute = roofConfig.compute;
     roofConfig.compute = (values) => {
       const mode = values.purchaseMode || "pieces";
       if (mode !== "pieces" && mode !== "whole-pack") throw new Error("Ismeretlen tetőcserép rendelési mód.");
-      const rows = baseCompute(values);
+
+      const rawPack = String(values.packSize ?? "").trim().replace(",", ".");
+      const pack = Number(rawPack);
+      const packIsValid = rawPack !== "" && Number.isFinite(pack) && pack > 0 && Number.isInteger(pack);
+      if (mode === "whole-pack" && !packIsValid) throw new Error("A teljes csomag/raklap módhoz a csomag darabszáma pozitív egész szám legyen.");
+
+      // A régi számítási mag a csomagméretet akkor is validálja, amikor csak a cserépdarabszám kell.
+      // Darabos módban ezért semleges 1-es belső értékkel futtatjuk; a Csomag/raklap sort alább eltávolítjuk.
+      const rows = baseCompute({ ...values, packSize: packIsValid ? pack : 1 });
       const pieceRow = rows.find(([label]) => label === "Cserépigény ráhagyással");
       const match = String(pieceRow?.[1] || "").match(/([0-9]+)[^0-9]+([0-9]+)/);
       if (!match) return rows;
       const minPieces = Number(match[1]);
       const maxPieces = Number(match[2]);
-      const pack = Number(String(values.packSize ?? "").replace(",", "."));
-      if (!Number.isFinite(pack) || pack <= 0 || !Number.isInteger(pack)) throw new Error("A csomag/raklap darabszáma pozitív egész szám legyen.");
       const withoutOldPack = rows.filter(([label]) => label !== "Csomag/raklap");
+
       if (mode === "whole-pack") {
         const minPacks = Math.ceil(minPieces / pack);
         const maxPacks = Math.ceil(maxPieces / pack);
         return [["Rendelési mód", "Csak teljes csomag/raklap"], ...withoutOldPack, ["Vásárolandó teljes csomag/raklap", \`\${minPacks}–\${maxPacks} db\`], ["Raklapra kerekített darabszám", \`\${minPacks * pack}–\${maxPacks * pack} db\`]];
       }
-      const minEq = minPieces / pack;
-      const maxEq = maxPieces / pack;
-      return [["Rendelési mód", "Darabonként rendelhető"], ...withoutOldPack, ["Raklap-egyenérték (csak tájékoztató)", \`\${minEq.toLocaleString("hu-HU", { maximumFractionDigits: 2 })}–\${maxEq.toLocaleString("hu-HU", { maximumFractionDigits: 2 })}\`]];
+
+      const result = [["Rendelési mód", "Darabonként rendelhető"], ...withoutOldPack];
+      if (packIsValid) {
+        const minEq = minPieces / pack;
+        const maxEq = maxPieces / pack;
+        result.push(["Raklap-egyenérték (csak tájékoztató)", \`\${minEq.toLocaleString("hu-HU", { maximumFractionDigits: 2 })}–\${maxEq.toLocaleString("hu-HU", { maximumFractionDigits: 2 })}\`]);
+      }
+      return result;
     };
     roofConfig.intro = "A gyártói db/m² adatból darabszámot számol. Raklapra csak akkor kerekít felfelé, ha a kereskedő ténylegesen kizárólag teljes csomagban vagy raklapon értékesít.";
   }
