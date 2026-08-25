@@ -73,6 +73,9 @@ jobs:
           sleep 3
           npm run test:reference:browser
 
+      - name: Smoke-test every calculator on mobile and desktop
+        run: npm run test:browser:all-calculators
+
       - name: Start local static server
         run: |
           node scripts/local-static-server.js > /tmp/kb-static-server.log 2>&1 &
