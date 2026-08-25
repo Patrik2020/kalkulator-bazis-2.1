@@ -3,7 +3,6 @@ const path = require("path");
 
 const root = path.resolve(__dirname, "..");
 const target = path.join(root, "js", "auto-converter-upgrades.js");
-const checkOnly = process.argv.includes("--check");
 
 function replaceExact(source, oldText, newText, label) {
   if (source.includes(newText)) return source;
@@ -71,15 +70,19 @@ function apply(source) {
   return out;
 }
 
-const source = fs.readFileSync(target, "utf8");
-const expected = apply(source);
-if (apply(expected) !== expected) throw new Error("Az autós modell-upgrade nem idempotens.");
-if (!checkOnly && expected !== source) fs.writeFileSync(target, expected, "utf8");
+function run({ checkOnly = process.argv.includes("--check") } = {}) {
+  const source = fs.readFileSync(target, "utf8");
+  const expected = apply(source);
+  if (apply(expected) !== expected) throw new Error("Az autós modell-upgrade nem idempotens.");
+  if (!checkOnly && expected !== source) fs.writeFileSync(target, expected, "utf8");
 
-console.log(
-  checkOnly
-    ? "Autós modell-upgrade audit OK: inputkorlátok és véges-eredmény védelem idempotens."
-    : expected === source ? "Autós modell-upgrade már alkalmazva." : "Autós modell-upgrade alkalmazva."
-);
+  console.log(
+    checkOnly
+      ? "Autós modell-upgrade audit OK: inputkorlátok és véges-eredmény védelem idempotens."
+      : expected === source ? "Autós modell-upgrade már alkalmazva." : "Autós modell-upgrade alkalmazva."
+  );
+}
 
-module.exports = { apply };
+if (require.main === module) run();
+
+module.exports = { apply, run };
