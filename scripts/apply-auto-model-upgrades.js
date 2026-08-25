@@ -13,6 +13,14 @@ function replaceExact(source, oldText, newText, label) {
   return source.replace(oldText, newText);
 }
 
+function replaceAllExact(source, oldText, newText, label) {
+  if (!source.includes(oldText)) {
+    if (source.includes(newText)) return source;
+    throw new Error(`Nem található autós upgrade cél: ${label}`);
+  }
+  return source.split(oldText).join(newText);
+}
+
 function apply(source) {
   let out = source;
 
@@ -23,10 +31,18 @@ function apply(source) {
     "input max támogatás"
   );
 
-  const fieldReplacements = [
+  const sharedFields = [
     ['{id:"km",label:"Éves futás (km)",value:15000}', '{id:"km",label:"Éves futás (km)",value:15000,min:1}'],
-    ['{id:"km",label:"Éves futás (km)",value:15000},{id:"trip",label:"Vizsgált út (km)",value:200},{id:"passengers",label:"Fizető utasok száma",value:1}', '{id:"km",label:"Éves futás (km)",value:15000,min:1},{id:"trip",label:"Vizsgált út (km)",value:200,min:0},{id:"passengers",label:"Fizető utasok száma",value:1,min:1,step:"1"}'],
-    ['{id:"km",label:"Távolság (km)",value:100},{id:"cons",label:"Fogyasztás (l/100 km vagy kWh/100 km)",value:6.5}', '{id:"km",label:"Távolság (km)",value:100,min:0.01},{id:"cons",label:"Fogyasztás (l/100 km vagy kWh/100 km)",value:6.5,min:0}'],
+    ['{id:"cons",label:"Fogyasztás (l/100 km)",value:6.5}', '{id:"cons",label:"Fogyasztás (l/100 km)",value:6.5,min:0}'],
+    ['{id:"price",label:"Üzemanyagár (Ft/l)",value:620}', '{id:"price",label:"Üzemanyagár (Ft/l)",value:620,min:0}'],
+  ];
+  for (const [oldText, newText] of sharedFields) out = replaceAllExact(out, oldText, newText, oldText.slice(0, 45));
+
+  const uniqueFields = [
+    ['{id:"trip",label:"Vizsgált út (km)",value:200}', '{id:"trip",label:"Vizsgált út (km)",value:200,min:0}'],
+    ['{id:"passengers",label:"Fizető utasok száma",value:1}', '{id:"passengers",label:"Fizető utasok száma",value:1,min:1,step:"1"}'],
+    ['{id:"km",label:"Távolság (km)",value:100}', '{id:"km",label:"Távolság (km)",value:100,min:0.01}'],
+    ['{id:"cons",label:"Fogyasztás (l/100 km vagy kWh/100 km)",value:6.5}', '{id:"cons",label:"Fogyasztás (l/100 km vagy kWh/100 km)",value:6.5,min:0}'],
     ['{id:"tailpipe",label:"Közvetlen tényező (kg CO₂/l)",value:2.31,step:"0.01",help:', '{id:"tailpipe",label:"Közvetlen tényező (kg CO₂/l)",value:2.31,step:"0.01",min:0,help:'],
     ['{id:"upstream",label:"Üzemanyag/áram előállítási pótlék (kg/l vagy kg/kWh)",value:0.55,step:"0.01"}', '{id:"upstream",label:"Üzemanyag/áram előállítási pótlék (kg/l vagy kg/kWh)",value:0.55,step:"0.01",min:0}'],
     ['{id:"electricShare",label:"PHEV elektromos használati arány (%)",value:50}', '{id:"electricShare",label:"PHEV elektromos használati arány (%)",value:50,min:0,max:100}'],
@@ -40,15 +56,10 @@ function apply(source) {
     ['{id:"r2",label:"Új felni (inch)",value:15}', '{id:"r2",label:"Új felni (inch)",value:15,min:1}'],
     ['{id:"speed",label:"Műszer szerinti sebesség",value:100}', '{id:"speed",label:"Műszer szerinti sebesség",value:100,min:0}'],
     ['{id:"distance",label:"Távolság (km)",value:500}', '{id:"distance",label:"Távolság (km)",value:500,min:0}'],
-    ['{id:"cons",label:"Fogyasztás (l/100 km)",value:6.5}', '{id:"cons",label:"Fogyasztás (l/100 km)",value:6.5,min:0}'],
-    ['{id:"price",label:"Üzemanyagár (Ft/l)",value:620}', '{id:"price",label:"Üzemanyagár (Ft/l)",value:620,min:0}'],
     ['{id:"toll",label:"Útdíj és parkolás",value:0}', '{id:"toll",label:"Útdíj és parkolás",value:0,min:0}'],
     ['{id:"people",label:"Utasok száma",value:1}', '{id:"people",label:"Utasok száma",value:1,min:1,step:"1"}'],
   ];
-
-  for (const [oldText, newText] of fieldReplacements) {
-    out = replaceExact(out, oldText, newText, oldText.slice(0, 45));
-  }
+  for (const [oldText, newText] of uniqueFields) out = replaceExact(out, oldText, newText, oldText.slice(0, 45));
 
   out = replaceExact(
     out,
