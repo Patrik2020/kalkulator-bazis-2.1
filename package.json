@@ -14,6 +14,7 @@
     "test:calculator-suite": "node scripts/calculator-suite-audit.js",
     "test:reference:coverage": "node scripts/reference-coverage-audit.js",
     "test:reference:browser": "node scripts/reference-browser-audit.js",
+    "test:browser:all-calculators": "node scripts/all-calculator-browser-smoke.js",
     "test:rules:2026": "node scripts/critical-2026-rules-audit.js",
     "test:browser:ui": "node scripts/browser-qa.js",
     "test:currency": "node scripts/currency-converter-audit.js",
