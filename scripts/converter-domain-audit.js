@@ -108,4 +108,11 @@ assert.ok(autoSource.includes("const m={KB:1e3,MB:1e6,GB:1e9,KiB:1024,MiB:104857
 assert.ok(autoSource.includes("const m={J:1,kJ:1000,cal:4.184,kcal:4184,kWh:3600000}"), "Energia faktorok eltértek");
 assert.ok(autoSource.includes("PS:735.49875,hp:745.699872"), "PS/hp teljesítményfaktorok eltértek");
 
-console.log("Converter domain audit OK: faktorok, round-trip párok, hőmérséklet-határok és decimális/bináris egységek.");
+// A nyomásváltó egzaktabb psi-konstansát és az időátváltó feltételezéseit is rögzítjük.
+const simpleSource = read("js/simple-calculators.js");
+assert.ok(simpleSource.includes("6894.757293168"), "A nyomásváltó psi -> Pa konstansa vissza lett kerekítve");
+const timeHtml = read("kalkulatorok/ido-atvalto-kalkulator.html");
+assert.ok(timeHtml.includes("30,436875 nap"), "Az átlagos hónaphossz feltételezése nincs dokumentálva");
+assert.ok(timeHtml.includes("365,2425 nap"), "Az átlagos évhossz feltételezése nincs dokumentálva");
+
+console.log("Converter domain audit OK: faktorok, round-trip párok, hőmérséklet-határok, nyomás és decimális/bináris egységek.");
