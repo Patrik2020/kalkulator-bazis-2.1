@@ -7,14 +7,23 @@ const path = require("path");
 const vm = require("vm");
 const { transforms: baseTransforms } = require("./apply-construction-model-upgrades.js");
 const { transformConstruction } = require("./apply-construction-manufacturer-guards.js");
+const { transform: plasterModeTransform } = require("./apply-plaster-consumption-mode.js");
+const { transform: roofModeTransform } = require("./apply-roof-purchase-mode.js");
+const { transform: insulationPackageTransform } = require("./apply-insulation-package-guidance.js");
 
 const root = path.resolve(__dirname, "..");
 const read = (p) => fs.readFileSync(path.join(root, p), "utf8");
 const advancedPath = "js/construction-upgrades.js";
 
-// A tényleges build sorrendjével azonos állapotot vizsgáljuk, fájlírás nélkül.
+// A tényleges build sorrendjével azonos végállapotot vizsgáljuk, fájlírás nélkül.
+// Ez azért fontos, mert a gyártói guard után további, ugyanazokat a mezőket
+// pontosító transzformok futnak (vakolat egységmód, tető rendelési mód,
+// hőszigetelés csomagfedés-guidance).
 let source = baseTransforms[advancedPath](read(advancedPath));
 source = transformConstruction(source);
+source = plasterModeTransform(source);
+source = roofModeTransform(source);
+source = insulationPackageTransform(source);
 
 // A konfigurációkat kinyerjük anélkül, hogy a DOM-felület felépülne.
 source = source.replace(
@@ -54,17 +63,18 @@ assert.ok(30.2 / 9.2 > 3, "A tetőcserép termékfüggő szórása nem elhanyago
 
 const plaster = configs["vakolat-kalkulator"];
 assert.ok(plaster.fields.some((f) => f.id === "manufacturerConfirmed" && f.value === "no"), "Vakolat gyártói megerősítés alapból nem tiltott");
-assert.ok(plaster.fields.some((f) => f.id === "minConsumption" && /Példa/.test(f.label) && /műszaki adatlap/.test(f.help)), "Vakolat kiadósság nincs példaértékként jelölve");
+assert.ok(plaster.fields.some((f) => f.id === "minConsumption" && /Példa/.test(f.label) && /adatlap/.test(f.help)), "Vakolat anyagszükséglet nincs példaértékként és adatlapfüggőként jelölve");
 assert.throws(() => plaster.compute({
   grossArea: 40, doorArea: 3, windowArea: 2, otherArea: 0, thickness: 10,
   minConsumption: 1.2, maxConsumption: 1.5, bagSize: 25, waste: 8,
-  manufacturerConfirmed: "no",
+  consumptionMode: "per-mm", manufacturerConfirmed: "no",
 }), /ellenőrizd.*gyártói|gyártói.*ellenőrizd/i);
 const plasterOk = rows(plaster.compute({
   grossArea: 40, doorArea: 3, windowArea: 2, otherArea: 0, thickness: 10,
   minConsumption: 1.2, maxConsumption: 1.5, bagSize: 25, waste: 8,
-  manufacturerConfirmed: "yes",
+  consumptionMode: "per-mm", manufacturerConfirmed: "yes",
 }));
+assert.equal(plasterOk["Fogyási mód"], "kg/m²/mm × rétegvastagság");
 assert.equal(plasterOk["Nettó vakolandó felület"], "35 m²");
 assert.equal(plasterOk["Nettó anyagigény"], "420–525 kg");
 assert.equal(plasterOk["Vásárolandó anyag"], "453,6–567 kg");
@@ -72,7 +82,7 @@ assert.equal(plasterOk["Szükséges zsák"], "19–23 db");
 
 const insulation = configs["hoszigeteles-kalkulator"];
 assert.ok(insulation.fields.some((f) => f.id === "systemConfirmed" && f.value === "no"), "Hőszigetelés rendszermegerősítés alapból nem tiltott");
-assert.ok(insulation.fields.some((f) => f.id === "packCoverage" && /Példa/.test(f.label) && /vastagság/.test(f.help)), "Hőszigetelés csomagfedés nincs termékfüggőként jelölve");
+assert.ok(insulation.fields.some((f) => f.id === "packCoverage" && /Konkrét termék/.test(f.label) && /vastagság/.test(f.help) && /példa/.test(f.help)), "Hőszigetelés csomagfedés nincs konkrét termék/vastagság adatként jelölve");
 assert.throws(() => insulation.compute({
   grossArea: 100, doorArea: 10, windowArea: 8, otherArea: 0, packCoverage: 5, waste: 8,
   adhesiveMin: 4, adhesiveMax: 6, adhesiveBag: 25, dowelsMin: 6, dowelsMax: 8,
@@ -95,14 +105,15 @@ assert.ok(roof.fields.some((f) => f.id === "manufacturerConfirmed" && f.value ==
 assert.ok(roof.fields.some((f) => f.id === "tilesMin" && /Példa/.test(f.label) && /gyártói/.test(f.help)), "Tetőcserép db/m² nincs termékfüggőként jelölve");
 assert.throws(() => roof.compute({
   roofArea: 120, openings: 3, tilesMin: 9.2, tilesMax: 10, waste: 8, packSize: 192,
-  manufacturerConfirmed: "no",
+  purchaseMode: "pieces", manufacturerConfirmed: "no",
 }), /ellenőrizd.*tetőcserép|tetőcserép.*ellenőrizd/i);
 const roofOk = rows(roof.compute({
   roofArea: 120, openings: 3, tilesMin: 9.2, tilesMax: 10, waste: 8, packSize: 192,
-  manufacturerConfirmed: "yes",
+  purchaseMode: "pieces", manufacturerConfirmed: "yes",
 }));
+assert.equal(roofOk["Rendelési mód"], "Darabonként rendelhető");
 assert.equal(roofOk["Nettó fedendő tetőfelület"], "117 m²");
 assert.equal(roofOk["Cserépigény ráhagyással"], "1163–1264 db");
-assert.equal(roofOk["Csomag/raklap"], "7–7 db");
+assert.ok(!("Vásárolandó teljes csomag/raklap" in roofOk), "Darabos módban a gyártói guard teszt sem írhat elő teljes raklapot");
 
-console.log("Construction manufacturer guard audit OK: vakolat, hőszigetelés és tetőcserép csak explicit gyártói/rendszeradat-megerősítéssel ad rendelési becslést.");
+console.log("Construction manufacturer guard audit OK: a végleges build-sorrendben a vakolat, hőszigetelés és tetőcserép csak explicit gyártói/rendszeradat-megerősítéssel ad rendelési becslést.");
