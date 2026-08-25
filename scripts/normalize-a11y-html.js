@@ -18,16 +18,35 @@ function walk(dir, files = []) {
 const skipLinkRe = /<a\b(?=[^>]*\bclass\s*=\s*(["'])[^"']*\bkb-skip-link\b[^"']*\1)[^>]*>[\s\S]*?<\/a>/gi;
 
 function normalize(source) {
-  let seen = false;
+  const matches = Array.from(source.matchAll(skipLinkRe));
+  if (matches.length <= 1) return { html: source, removed: 0 };
+
+  let html = source;
   let removed = 0;
-  const html = source.replace(skipLinkRe, (tag) => {
-    if (!seen) {
-      seen = true;
-      return tag;
+
+  // Remove duplicates from the end so original match offsets remain valid.
+  // When a duplicate is the only content on its line, remove the whole line
+  // instead of leaving a blank line that a later static build would normalize.
+  for (let i = matches.length - 1; i >= 1; i -= 1) {
+    const match = matches[i];
+    let start = match.index;
+    let end = start + match[0].length;
+
+    const lineStart = html.lastIndexOf("\n", start - 1) + 1;
+    const nextNewline = html.indexOf("\n", end);
+    const lineEnd = nextNewline === -1 ? html.length : nextNewline + 1;
+    const before = html.slice(lineStart, start);
+    const after = html.slice(end, lineEnd);
+
+    if (/^[ \t]*$/.test(before) && /^[ \t]*(?:\r?\n)?$/.test(after)) {
+      start = lineStart;
+      end = lineEnd;
     }
+
+    html = html.slice(0, start) + html.slice(end);
     removed += 1;
-    return "";
-  });
+  }
+
   return { html, removed };
 }
 
