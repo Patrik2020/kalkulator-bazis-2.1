@@ -56,7 +56,8 @@ close(huNumber(grout15["Becsült fugázóanyag"]), 3.0, 0.051, "fuga K=1.5");
 assert.equal(grout15["Szükséges zsák"], "2 zsák");
 
 // A tényleges felhasználói, részletes construction-upgrade réteg külön védelme.
-const advanced = read("js/construction-upgrades.js");
+const advancedPath = "js/construction-upgrades.js";
+const advanced = transforms[advancedPath](read(advancedPath));
 assert.ok(advanced.includes('{ id: "layers", label: "Rétegek száma oldalanként", value: "1", options: [["1", "1 réteg"], ["2", "2 réteg"]] }'), "Advanced gipszkarton rétegválasztó eltért");
 assert.ok(advanced.includes('if (netOneSide <= 0) throw new Error("A kivont felület nem lehet nagyobb a fal teljes felületénél.")'), "Advanced gipszkarton nyílászáró-védelem hiányzik");
 assert.ok(advanced.includes('if (repeat > 0) cutLength = Math.ceil(cutLength / repeat) * repeat'), "Tapéta mintaismétlés-kerekítés eltért");
@@ -64,8 +65,10 @@ assert.ok(advanced.includes('if (stripsPerRoll < 1) throw new Error("A tekercs h
 assert.ok(advanced.includes('if (minC > maxC) throw new Error("A minimum kiadósság nem lehet nagyobb a maximumnál.")'), "Vakolat min/max védelem hiányzik");
 assert.ok(advanced.includes('if (amin > amax || dmin > dmax) throw new Error("A minimum érték nem lehet nagyobb a maximumnál.")'), "Hőszigetelés min/max védelem hiányzik");
 assert.ok(advanced.includes('if (min > max) throw new Error("A minimum cserépigény nem lehet nagyobb a maximumnál.")'), "Tetőcserép min/max védelem hiányzik");
+assert.ok(advanced.includes('if (!Number.isInteger(pack)) throw new Error("A csomag/raklap darabszáma egész szám legyen.")'), "Tetőcserép egész csomagdarabszám-védelem hiányzik");
 assert.ok(advanced.includes('{ id: "density", label: "Fugázóanyag sűrűségi tényezője", value: 1.6, min: 0.1 }'), "Advanced fuga K/sűrűség mező hiányzik");
 assert.ok(advanced.includes('{ id: "packSize", label: "Csomag mérete (kg)", value: 5, min: 0.1 }'), "Advanced fuga csomagméret mező hiányzik");
+assert.ok(advanced.includes('if (fillRatio > 100) throw new Error("A fugamélység aránya legfeljebb 100% lehet.")'), "Advanced fuga 100%-os mélységi plafon hiányzik");
 assert.ok(advanced.includes('const netKg = area * ((l + w) / (l * w)) * positive(v.jointWidth, "Fugaszélesség") * depth * positive(v.density, "Sűrűségi tényező")'), "Advanced fuga képlet eltért");
 assert.ok(advanced.includes("Gyártói adatlap az elsődleges"), "Advanced építőipari módszertanból hiányzik a gyártói adat elsődlegessége");
 
