@@ -71,6 +71,21 @@ const overrides = {
   },
 };
 
+const internalLinkBoosts = {
+  "kalkulatorok/szazalek-kalkulator.html": [
+    { href: "szazalekos-valtozas-kalkulator", label: "Százalékos változás kalkulátor" },
+  ],
+  "kalkulatorok/hitel-torleszto-kalkulator.html": [
+    { href: "hitel-elotorlesztes-kalkulator", label: "Hitel előtörlesztés kalkulátor" },
+  ],
+  "kalkulatorok/fizetesi-hatarido-kalkulator.html": [
+    { href: "munkanap-kalkulator", label: "Munkanap kalkulátor" },
+  ],
+  "kalkulatorok/auto-kalkulator.html": [
+    { href: "ev-toltesi-koltseg-kalkulator", label: "EV töltési költség kalkulátor" },
+  ],
+};
+
 function escapeRegExp(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -150,6 +165,21 @@ function replaceStructuredData(html, config) {
   return html.replace(re, `${match[1]}${JSON.stringify(data)}${match[4]}`);
 }
 
+function appendRelatedLinks(html, links) {
+  const re = /(<div\b[^>]*\bclass\s*=\s*(["'])[^"']*\brelated-links\b[^"']*\2[^>]*>)([\s\S]*?)(<\/div>)/i;
+  const match = html.match(re);
+  if (!match) throw new Error("Hiányzó .related-links szakasz.");
+
+  let body = match[3];
+  for (const { href, label } of links) {
+    const hrefRe = new RegExp(`href\\s*=\\s*(["'])${escapeRegExp(href)}\\1`, "i");
+    if (hrefRe.test(body)) continue;
+    body += `\n      <a href="${escapeAttribute(href)}">${escapeText(label)}</a>`;
+  }
+
+  return html.replace(re, () => `${match[1]}${body}${match[4]}`);
+}
+
 function applyOverride(source, config) {
   let html = source;
   html = replaceTitle(html, config.title);
@@ -163,7 +193,7 @@ function applyOverride(source, config) {
   return html;
 }
 
-let changed = 0;
+let changedOverrides = 0;
 for (const [relativePath, config] of Object.entries(overrides)) {
   const filePath = path.join(root, relativePath);
   if (!fs.existsSync(filePath)) throw new Error(`Hiányzó SEO céloldal: ${relativePath}`);
@@ -175,14 +205,30 @@ for (const [relativePath, config] of Object.entries(overrides)) {
     if (secondPass !== expected) throw new Error(`Nem idempotens SEO override: ${relativePath}`);
   } else if (expected !== source) {
     fs.writeFileSync(filePath, expected);
-    changed += 1;
+    changedOverrides += 1;
+  }
+}
+
+let changedLinkSources = 0;
+for (const [relativePath, links] of Object.entries(internalLinkBoosts)) {
+  const filePath = path.join(root, relativePath);
+  if (!fs.existsSync(filePath)) throw new Error(`Hiányzó belső linkforrás: ${relativePath}`);
+  const source = fs.readFileSync(filePath, "utf8");
+  const expected = appendRelatedLinks(source, links);
+
+  if (checkOnly) {
+    const secondPass = appendRelatedLinks(expected, links);
+    if (secondPass !== expected) throw new Error(`Nem idempotens belső linkfrissítés: ${relativePath}`);
+  } else if (expected !== source) {
+    fs.writeFileSync(filePath, expected);
+    changedLinkSources += 1;
   }
 }
 
 console.log(
   checkOnly
-    ? `SEO override audit OK: ${Object.keys(overrides).length} céloldal, idempotens materializálás.`
-    : `SEO override materializálva: ${changed}/${Object.keys(overrides).length} módosult oldal.`
+    ? `SEO audit OK: ${Object.keys(overrides).length} CTR-céloldal + ${Object.keys(internalLinkBoosts).length} belső linkforrás, idempotens materializálás.`
+    : `SEO materializálva: ${changedOverrides}/${Object.keys(overrides).length} CTR-oldal és ${changedLinkSources}/${Object.keys(internalLinkBoosts).length} belső linkforrás módosult.`
 );
 
-module.exports = { overrides };
+module.exports = { overrides, internalLinkBoosts };
