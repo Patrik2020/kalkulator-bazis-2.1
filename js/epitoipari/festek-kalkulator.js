@@ -20,6 +20,17 @@ function formatNumber(num, decimals = 2) {
     });
 }
 
+function clearPaintResults(message = "Add meg az adatokat a számításhoz.") {
+    wallAreaEl.textContent = "–";
+    ceilingAreaEl.textContent = "–";
+    openingsAreaEl.textContent = "–";
+    totalAreaEl.textContent = "–";
+    paintNeededEl.textContent = "–";
+    recommendedPaintEl.textContent = "–";
+    paintCostEl.textContent = "–";
+    summaryTextEl.textContent = message;
+}
+
 function calculatePaint() {
 
     const roomLength = parseFloat(document.getElementById("roomLength").value);
@@ -44,43 +55,33 @@ function calculatePaint() {
         !Number.isFinite(roomHeight) || roomHeight <= 0 ||
         !Number.isFinite(windowArea) || windowArea < 0 ||
         !Number.isFinite(doorArea) || doorArea < 0 ||
-        !Number.isFinite(layers) || layers <= 0 ||
+        !Number.isFinite(layers) || !Number.isInteger(layers) || layers <= 0 ||
         !Number.isFinite(coverage) || coverage <= 0 ||
         !Number.isFinite(paintPrice) || paintPrice < 0
     ) {
-
-        wallAreaEl.textContent = "–";
-        ceilingAreaEl.textContent = "–";
-        openingsAreaEl.textContent = "–";
-        totalAreaEl.textContent = "–";
-        paintNeededEl.textContent = "–";
-        recommendedPaintEl.textContent = "–";
-        paintCostEl.textContent = "–";
-
-        summaryTextEl.textContent =
-            "Add meg az adatokat a számításhoz.";
-
+        clearPaintResults();
         return;
     }
 
     // Falak felülete
-
     const wallArea =
         (2 * roomLength * roomHeight) +
         (2 * roomWidth * roomHeight);
 
     // Mennyezet
-
     const ceilingArea =
         roomLength * roomWidth;
 
     // Nyílászárók
-
     const openingsArea =
         windowArea + doorArea;
 
-    // Festendő felület
+    if (openingsArea > wallArea) {
+        clearPaintResults("A nyílászárók összes területe nem lehet nagyobb a négy fal teljes felületénél.");
+        return;
+    }
 
+    // Festendő felület
     let totalArea =
         wallArea - openingsArea;
 
@@ -88,27 +89,21 @@ function calculatePaint() {
         totalArea += ceilingArea;
     }
 
-    if (totalArea < 0) {
-        totalArea = 0;
-    }
-
     // Rétegek figyelembevétele
-
     const layeredArea =
         totalArea * layers;
 
     // Liter szükséglet
-
     const paintNeeded =
         layeredArea / coverage;
 
-    // 10% ráhagyás
-
-    const recommendedPaint =
+    // 10% ráhagyás, vásárlásnál egész literre felfelé kerekítve.
+    const recommendedPaintRaw =
         paintNeeded * 1.1;
+    const recommendedPaint =
+        Math.ceil(recommendedPaintRaw);
 
-    // Költség
-
+    // A költség ugyanarra a kijelzett, egész literes vásárlási mennyiségre vonatkozik.
     const paintCost =
         recommendedPaint * paintPrice;
 
@@ -130,7 +125,7 @@ function calculatePaint() {
         formatNumber(paintNeeded) + " liter";
 
     recommendedPaintEl.textContent =
-        Math.ceil(recommendedPaint) + " liter";
+        recommendedPaint + " liter";
 
     paintCostEl.textContent =
         paintPrice > 0
@@ -155,14 +150,13 @@ function calculatePaint() {
 
     <br><br>
 
-    A biztonság kedvéért legalább
-    <strong>${Math.ceil(recommendedPaint)} liter</strong>
+    A 10%-os ráhagyást is figyelembe véve legalább
+    <strong>${recommendedPaint} liter</strong>
     festék vásárlását javasoljuk.
 
     ${paintPrice > 0
             ? `<br><br>
-      A megadott ár alapján a festéshez szükséges
-      festék várható költsége
+      A megadott literár és a javasolt egész literes vásárlási mennyiség alapján a festék várható költsége
       <strong>${Math.round(paintCost).toLocaleString("hu-HU")} Ft</strong>.`
             : ""}
   `;
