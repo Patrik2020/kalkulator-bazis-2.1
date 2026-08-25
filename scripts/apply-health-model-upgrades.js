@@ -13,6 +13,14 @@ function replaceExact(source, oldText, newText, label) {
   return source.replace(oldText, newText);
 }
 
+function replaceAllExact(source, oldText, newText, label) {
+  if (!source.includes(oldText)) {
+    if (source.includes(newText)) return source;
+    throw new Error(`Nem található egészség-upgrade cél: ${label}`);
+  }
+  return source.split(oldText).join(newText);
+}
+
 const transforms = {
   "js/simple-calculators.js": (source) => replaceExact(
     source,
@@ -37,7 +45,7 @@ const transforms = {
     return output;
   },
   "kalkulatorok/bmr-kalkulator.html": (source) => {
-    let output = replaceExact(
+    let output = replaceAllExact(
       source,
       "BMR kalkulátor az alapanyagcsere becsléséhez életkor, nem, testsúly és magasság alapján. Az eredmény tájékoztató energiaszükséglet.",
       "BMR kalkulátor felnőtteknek az alapanyagcsere becsléséhez életkor, nem, testsúly és magasság alapján. Az eredmény tájékoztató energiaszükséglet.",
@@ -52,7 +60,7 @@ const transforms = {
     return output;
   },
   "kalkulatorok/kaloria-kalkulator.html": (source) => {
-    let output = replaceExact(
+    let output = replaceAllExact(
       source,
       "Kalória kalkulátor napi energiaigény becsléséhez fogyáshoz, szintentartáshoz vagy tömegnöveléshez, módszertani magyarázattal és gyakorlati útmutatóval.",
       "Kalória kalkulátor felnőttek napi energiaigényének becsléséhez, szintentartási és szemléltető ±400 kcal forgatókönyvekkel, módszertani magyarázattal.",
