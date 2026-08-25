@@ -62,6 +62,8 @@ assert.equal(whole["Raklapra kerekített darabszám"], "1344–1344 db");
 assert.equal(1344 - 1264, 80);
 assert.equal(1344 - 1163, 181);
 assert.throws(() => roof.compute({ ...common, purchaseMode: "mystery" }), /Ismeretlen tetőcserép rendelési mód/);
-assert.throws(() => roof.compute({ ...common, purchaseMode: "pieces", packSize: 192.5 }), /pozitív egész szám/);
+// A base construction guard már az egész darabszám feltételnél megáll; a teszt az érdemi szabályt védi,
+// nem a két validációs réteg hibaüzenetének pontos szóhasználatát.
+assert.throws(() => roof.compute({ ...common, purchaseMode: "pieces", packSize: 192.5 }), /egész szám/);
 
 console.log("Roof purchase mode audit OK: darabos rendelés nincs raklapra kerekítve; teljes csomag mód explicit és külön tesztelt.");
