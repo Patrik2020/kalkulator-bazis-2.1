@@ -62,14 +62,19 @@ assert.ok(advanced.includes('{ id: "layers", label: "Rétegek száma oldalankén
 assert.ok(advanced.includes('if (netOneSide <= 0) throw new Error("A kivont felület nem lehet nagyobb a fal teljes felületénél.")'), "Advanced gipszkarton nyílászáró-védelem hiányzik");
 assert.ok(advanced.includes('if (repeat > 0) cutLength = Math.ceil(cutLength / repeat) * repeat'), "Tapéta mintaismétlés-kerekítés eltért");
 assert.ok(advanced.includes('if (stripsPerRoll < 1) throw new Error("A tekercs hossza nem elegendő egy teljes csíkhoz.")'), "Tapéta rövid tekercs védelme hiányzik");
+assert.ok(advanced.includes('stripsWithWaste = ceil(strips * (1 + nonNegative(v.waste, "Ráhagyás") / 100)), rolls = ceil(stripsWithWaste / stripsPerRoll)'), "Tapéta ráhagyást a tekercsre kerekítés előtt kell alkalmazni");
+// 3 szükséges csík, 4 csík/tekercs, 8% ráhagyás: ceil(3*1.08)=4 csík, továbbra is 1 tekercs.
+assert.equal(Math.ceil(Math.ceil(3 * 1.08) / 4), 1, "Tapéta ráhagyási referencia");
 assert.ok(advanced.includes('if (minC > maxC) throw new Error("A minimum kiadósság nem lehet nagyobb a maximumnál.")'), "Vakolat min/max védelem hiányzik");
 assert.ok(advanced.includes('if (amin > amax || dmin > dmax) throw new Error("A minimum érték nem lehet nagyobb a maximumnál.")'), "Hőszigetelés min/max védelem hiányzik");
+assert.ok(advanced.includes('if (openEdge > fullEdge) throw new Error("A nem szegélyezett oldalhossz nem lehet nagyobb a teljes kerületnél.")'), "Térkő lehetetlen nyitottél-védelem hiányzik");
 assert.ok(advanced.includes('if (min > max) throw new Error("A minimum cserépigény nem lehet nagyobb a maximumnál.")'), "Tetőcserép min/max védelem hiányzik");
 assert.ok(advanced.includes('if (!Number.isInteger(pack)) throw new Error("A csomag/raklap darabszáma egész szám legyen.")'), "Tetőcserép egész csomagdarabszám-védelem hiányzik");
 assert.ok(advanced.includes('{ id: "density", label: "Fugázóanyag sűrűségi tényezője", value: 1.6, min: 0.1 }'), "Advanced fuga K/sűrűség mező hiányzik");
 assert.ok(advanced.includes('{ id: "packSize", label: "Csomag mérete (kg)", value: 5, min: 0.1 }'), "Advanced fuga csomagméret mező hiányzik");
 assert.ok(advanced.includes('if (fillRatio > 100) throw new Error("A fugamélység aránya legfeljebb 100% lehet.")'), "Advanced fuga 100%-os mélységi plafon hiányzik");
 assert.ok(advanced.includes('const netKg = area * ((l + w) / (l * w)) * positive(v.jointWidth, "Fugaszélesség") * depth * positive(v.density, "Sűrűségi tényező")'), "Advanced fuga képlet eltért");
+assert.ok(advanced.includes('if (skirtingExclude > fullPerimeter) throw new Error("A nem szegélyezett falszakasz nem lehet hosszabb a helyiség teljes kerületénél.")'), "Padló lehetetlen szegélykivonás-védelem hiányzik");
 assert.ok(advanced.includes("Gyártói adatlap az elsődleges"), "Advanced építőipari módszertanból hiányzik a gyártói adat elsődlegessége");
 
 // Festék: a kijelzett egész literes vásárlási ajánlás és a költség ugyanarra a mennyiségre épüljön.
@@ -85,4 +90,4 @@ assert.ok(tileSource.includes("const grossArea = 2 * (length + width) * height")
 assert.ok(tileSource.includes("const tileCount = Math.ceil(purchaseArea / tileArea)"), "Csempe darabszám kerekítés eltért");
 assert.ok(tileSource.includes("doorArea >= grossArea"), "Csempe ajtófelület határvédelem hiányzik");
 
-console.log("Construction domain audit OK: fallback + advanced geometria, fuga K/zsák, festék konzisztencia, csempe és gyártói feltételek.");
+console.log("Construction domain audit OK: fallback + advanced geometria, tapéta/fuga, festék konzisztencia, csempe és gyártói feltételek.");
