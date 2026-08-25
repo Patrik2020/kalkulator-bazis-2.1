@@ -220,10 +220,12 @@ const cases = [
     set('roomLength', 5); set('roomWidth', 4); set('roomHeight', 2.5);
     set('windowArea', 0); set('doorArea', 0); set('layers', 2); set('coverage', 10); set('paintPrice', 4000);
     checked('paintCeiling', false);
-    const actual = number('#paintCost'); const valid = actual === 39600;
-    set('paintPrice', 0); const boundary = /nincs megadva/i.test(text('#paintCost'));
+    const actual = number('#paintCost');
+    const recommended = number('#recommendedPaint');
+    const valid = actual === 40000 && recommended === 10;
+    set('paintPrice', 0); const boundary = /nincs megadva/i.test(text('#paintCost')) && number('#recommendedPaint') === 10;
     set('roomLength', 0); const invalid = text('#totalArea') === '–' && noInvalidNumber();
-    return { valid, boundary, invalid, actual };
+    return { valid, boundary, invalid, actual, recommended };
   `),
   test("kalkulatorok/fizetesi-hatarido-kalkulator.html", "Fizetési határidő", `
     choose('input[name="mode"][value="workdays"]'); set('startDate', '2025-12-31'); set('days', 1);
