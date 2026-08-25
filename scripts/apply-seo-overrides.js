@@ -29,6 +29,30 @@ const overrides = {
     heroLead:
       "Számold ki gyorsan, hány köbméter beton szükséges a megadott méretekhez.",
   },
+  "kalkulatorok/terulet-atvalto-kalkulator.html": {
+    title: "Terület átváltó – hektár, m², ár és km² kalkulátor",
+    description:
+      "Terület átváltó hektár, m², ár, km², ft² és más egységek között. Válts gyorsan négyzetmétert hektárra, hektárt m²-re és további területeket.",
+    h1: "Terület átváltó – hektár, m², ár és km² kalkulátor",
+    heroLead:
+      "Válts gyorsan négyzetméter, hektár, ár, négyzetkilométer és más területmértékek között.",
+  },
+  "kalkulatorok/gumi-meret-kalkulator.html": {
+    title: "Gumiméret váltó kalkulátor – váltóméret és kerékátmérő",
+    description:
+      "Gumiméret váltó kalkulátor két abroncsméret összehasonlításához. Nézd meg a kerékátmérőt, oldalfalat, százalékos eltérést és becsült sebességhatást.",
+    h1: "Gumiméret váltó kalkulátor",
+    heroLead:
+      "Hasonlíts össze két gumiméretet, és ellenőrizd a kerékátmérő és a sebesség becsült eltérését.",
+  },
+  "kalkulatorok/auto-fogyasztas-kalkulator.html": {
+    title: "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km",
+    description:
+      "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben.",
+    h1: "Átlagfogyasztás és autó fogyasztás kalkulátor",
+    heroLead:
+      "Számold ki a valós átlagfogyasztást tankolt üzemanyag és megtett kilométer alapján.",
+  },
 };
 
 function escapeRegExp(value) {
