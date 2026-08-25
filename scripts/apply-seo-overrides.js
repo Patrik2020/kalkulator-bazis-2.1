@@ -99,14 +99,15 @@ function setAttribute(tag, name, value) {
   return tag.replace(/\s*\/?>(\s*)$/, ` ${name}="${escaped}">$1`);
 }
 
-function replaceMeta(html, selectorName, selectorValue, content) {
+function replaceMeta(html, selectorName, selectorValue, content, { required = true } = {}) {
   const selector = escapeRegExp(selectorValue);
   const re = new RegExp(
     `<meta\\b(?=[^>]*\\b${escapeRegExp(selectorName)}\\s*=\\s*(["'])${selector}\\1)[^>]*>`,
     "i"
   );
   if (!re.test(html)) {
-    throw new Error(`Hiányzó meta: ${selectorName}=${selectorValue}`);
+    if (required) throw new Error(`Hiányzó meta: ${selectorName}=${selectorValue}`);
+    return html;
   }
   return html.replace(re, (tag) => setAttribute(tag, "content", content));
 }
@@ -153,10 +154,10 @@ function applyOverride(source, config) {
   let html = source;
   html = replaceTitle(html, config.title);
   html = replaceMeta(html, "name", "description", config.description);
-  html = replaceMeta(html, "property", "og:title", config.title);
-  html = replaceMeta(html, "property", "og:description", config.description);
-  html = replaceMeta(html, "name", "twitter:title", config.title);
-  html = replaceMeta(html, "name", "twitter:description", config.description);
+  html = replaceMeta(html, "property", "og:title", config.title, { required: false });
+  html = replaceMeta(html, "property", "og:description", config.description, { required: false });
+  html = replaceMeta(html, "name", "twitter:title", config.title, { required: false });
+  html = replaceMeta(html, "name", "twitter:description", config.description, { required: false });
   html = replaceHero(html, config.h1, config.heroLead);
   html = replaceStructuredData(html, config);
   return html;
