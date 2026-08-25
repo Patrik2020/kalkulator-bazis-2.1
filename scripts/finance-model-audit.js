@@ -60,7 +60,7 @@ function dividendIncome({ capital, yieldPercent, deductionPercent, annualFixedCo
 const inflationSource = read("js/penzugyi/inflacio.js");
 assert.ok(inflationSource.includes("initial / Math.pow(1 + annualRatePercent / 100, yearValue)"), "Inflációs diszkontálás eltért");
 close(1_000_000 / Math.pow(1.05, 10), 613_913.2535407591, 1e-6, "1 M Ft / 5% / 10 év vásárlóerő");
-close(1_000_000 / Math.pow(0.98, 5), 1_106_291.6180614623, 1e-6, "2%-os defláció kezelése");
+close(1_000_000 / Math.pow(0.98, 5), 1_106_291.6170754486, 1e-6, "2%-os defláció kezelése");
 
 // Kamatos kamat: effektív éves ráta -> havi egyenérték, hónap végi befizetéssel.
 const compoundSource = read("js/penzugyi/kamatos-kamat.js");
