@@ -18,7 +18,7 @@ const price = 5_000_000;
 const nominal = price * 0.85 * 0.92;
 assert.equal(nominal, 3_910_000);
 const real = nominal / Math.pow(1.035, 2);
-assert.ok(Math.abs(real - 3_649_160.18) < 1, `Mai vásárlóérték referencia eltért: ${real}`);
+assert.ok(Math.abs(real - 3_650_026.84) < 1, `Mai vásárlóérték referencia eltért: ${real}`);
 
 assert.ok(source.includes('{id:"fuel",label:"Üzemanyagár (Ft/l)",value:620,min:0}'), "Éves autóköltség üzemanyagára enged negatív értéket");
 assert.ok(source.includes('{id:"insurance",label:"Biztosítás évente",value:90000,min:0}'), "Biztosítás negatív értéke nincs tiltva");
