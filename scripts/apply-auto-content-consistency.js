@@ -69,6 +69,39 @@ const transforms = {
       "éves autóköltség felülvizsgálati dátum");
     return out;
   },
+
+  "kalkulatorok/kilometerdij-kalkulator.html": (source) => {
+    let out = source;
+    out = replaceExact(out,
+      '<p>Számold ki, mennyibe kerül egy kilométer a saját autóddal a teljes havi fenntartási költség alapján.</p>',
+      '<p>Számold ki, mennyibe kerül egy kilométer a saját autóddal az éves teljes autóköltség és az éves futás alapján.</p>',
+      "kilométerdíj hero");
+    out = replaceExact(out,
+      '<p>A kilométerdíj kalkulátor a havi összes autóköltséget elosztja a hónapban megtett kilométerrel. Így nemcsak a tankolást, hanem biztosítást, szervizt, adókat, parkolást, értékvesztést és más rendszeres tételeket is egyetlen Ft/km értékben lehet összefoglalni.</p>\n<p>Az eredmény annál pontosabb, minél teljesebb a havi költségadat. Ritkább kiadásokat érdemes éves összegből tizenkettedre bontani.</p>',
+      '<p>A kilométerdíj kalkulátor az éves teljes autóköltséget osztja el az éves futással. Így nemcsak a tankolást, hanem biztosítást, szervizt, adókat, parkolást, értékvesztést és más tételeket is egyetlen Ft/km értékben lehet összefoglalni.</p>\n<p>Az eredmény annál pontosabb, minél teljesebb és azonos időszakra vonatkozó az éves költség- és futásadat. A kalkulátor a kapott Ft/km értékből egy választott út teljes költségét és a fizető utasokra jutó összeget is megbecsüli.</p>',
+      "kilométerdíj időszak és mezők");
+    out = replaceExact(out,
+      '<p><strong>Kilométerenkénti költség = havi autóköltség ÷ havi megtett kilométer.</strong> Ha a havi kilométer nagyon alacsony, a fix költségek miatt az egy kilométerre jutó összeg magas lesz.</p>',
+      '<p><strong>Kilométerenkénti költség = éves teljes autóköltség ÷ éves futás.</strong> Ha az éves futás alacsony, a fix és gazdasági költségek miatt az egy kilométerre jutó összeg magas lesz.</p>',
+      "kilométerdíj képlet");
+    out = replaceExact(out,
+      '<div class="example-box"><h3>Példa</h3><p>Ha az autó teljes havi költsége 135 000 Ft, és 1 500 km-t teszel meg, akkor 135 000 ÷ 1 500 = 90 Ft/km. Egy 240 km-es út így nagyjából 21 600 Ft teljes autóköltséget képviselhet.</p></div>',
+      '<div class="example-box"><h3>Példa</h3><p>Ha az autó teljes éves költsége 1 200 000 Ft, és évente 15 000 km-t teszel meg, akkor 1 200 000 ÷ 15 000 = 80 Ft/km. Egy 200 km-es út így körülbelül 16 000 Ft teljes autóköltséget képvisel; két fizető utasnál ez 8 000 Ft/fő.</p></div>',
+      "kilométerdíj példa");
+    out = replaceExact(out,
+      '<ul><li>Csak az üzemanyagot számítják költségnek.</li><li>Az éves biztosítást teljes egészében egy hónaphoz adják.</li><li>A ritka javításokat és gumicserét kihagyják.</li><li>Az értékvesztést nem veszik figyelembe.</li></ul>',
+      '<ul><li>Csak az üzemanyagot számítják költségnek.</li><li>Nem azonos időszakból származó költséget és futást osztanak el egymással.</li><li>A ritka javításokat és gumicserét kihagyják.</li><li>Az értékvesztést nem veszik figyelembe.</li></ul>',
+      "kilométerdíj gyakori hibák");
+    out = replaceAllExact(out,
+      'Az éves becsült értékvesztést oszd tizenkettővel, és add a havi költséghez.',
+      'Az éves becsült értékvesztést add hozzá az éves teljes autóköltséghez. Ez gazdasági költség, nem feltétlenül ugyanabban az évben kifizetett készpénz.',
+      "kilométerdíj értékvesztés FAQ");
+    out = replaceExact(out,
+      '<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-07-05">2026. július 5.</time></p>',
+      '<p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-26">2026. augusztus 26.</time></p>',
+      "kilométerdíj felülvizsgálati dátum");
+    return out;
+  },
 };
 
 function run() {
