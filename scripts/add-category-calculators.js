@@ -3,6 +3,17 @@ const path = require("path");
 
 const root = path.resolve(__dirname, "..");
 
+// LEGACY GENERATOR: a jelenlegi kalkulátor-runtime azóta több szakmai és validációs
+// javítást kapott. Véletlen futtatása ezért visszaírhatna régi képleteket vagy mezőket.
+// Csak tudatos rekonstrukcióhoz engedélyezhető explicit környezeti változóval.
+if (process.env.KB_ALLOW_LEGACY_CATEGORY_GENERATOR !== "1") {
+  throw new Error(
+    "A régi kategória-kalkulátor generátor karanténban van. " +
+      "A jelenlegi js/simple-calculators.js az igazságforrás. " +
+      "Tudatos rekonstrukcióhoz állítsd a KB_ALLOW_LEGACY_CATEGORY_GENERATOR=1 változót."
+  );
+}
+
 const calculators = [
   // Építőipar
   ["padlo-burkolat-kalkulator", "Padlóburkolat kalkulátor", "epitoipari", "Számold ki a szükséges laminált padló, parketta vagy burkolat mennyiségét.", "padló burkolat laminált parketta alapterület veszteség", [

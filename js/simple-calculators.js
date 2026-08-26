@@ -47,7 +47,7 @@ const SIMPLE_CALCULATORS = {
         "value": 3
     }
 ],
-    compute(v) { requirePositive(v.area, v.layers, v.board); requireNonNegative(v.waste); const total=v.area*v.layers*(1+v.waste/100); return [['Teljes számolt felület', m2(total)], ['Szükséges lap', Math.ceil(total/v.board)+' db']]; }
+    compute(v) { requirePositive(v.area, v.layers, v.board); requireNonNegative(v.waste); if (!Number.isInteger(v.layers)) throw new Error('A rétegek száma egész szám legyen'); const total=v.area*v.layers*(1+v.waste/100); return [['Teljes számolt felület', m2(total)], ['Szükséges lap', Math.ceil(total/v.board)+' db']]; }
   },
   "tapeta-kalkulator": {
     fields: [
@@ -190,9 +190,19 @@ const SIMPLE_CALCULATORS = {
         "id": "depth",
         "label": "Fugamélység (mm)",
         "value": 8
+    },
+    {
+        "id": "densityFactor",
+        "label": "K / sűrűségi tényező",
+        "value": 1.6
+    },
+    {
+        "id": "bag",
+        "label": "Zsák mérete (kg)",
+        "value": 5
     }
 ],
-    compute(v) { requirePositive(v.area, v.tileLength, v.tileWidth, v.joint, v.depth); const kg=v.area*((v.tileLength+v.tileWidth)/(v.tileLength*v.tileWidth))*v.joint*v.depth*1.6; return [['Becsült fugázóanyag', kg.toFixed(1).replace('.', ',')+' kg'], ['5 kg-os zsák', Math.ceil(kg/5)+' zsák']]; }
+    compute(v) { const densityFactor=v.densityFactor==null?1.6:v.densityFactor, bag=v.bag==null?5:v.bag; requirePositive(v.area, v.tileLength, v.tileWidth, v.joint, v.depth, densityFactor, bag); const kg=v.area*((v.tileLength+v.tileWidth)/(v.tileLength*v.tileWidth))*v.joint*v.depth*densityFactor; return [['Becsült fugázóanyag', kg.toFixed(1).replace('.', ',')+' kg'], ['Szükséges zsák', Math.ceil(kg/bag)+' zsák']]; }
   },
   "vizfogyasztas-kalkulator": {
     fields: [
@@ -389,7 +399,7 @@ const SIMPLE_CALCULATORS = {
         "value": ""
     }
 ],
-    compute(v) { requirePositive(v.weight, v.height, v.age); const bmr=10*v.weight+6.25*v.height-5*v.age+(v.gender>=2?5:-161); if (bmr <= 0) throw new Error('A megadott adatokból nem adható életszerű becslés'); return [['Becsült nyugalmi energiaigény', Math.round(bmr)+' kcal/nap'], ['1,375-ös aktivitási szorzóval', Math.round(bmr*1.375)+' kcal/nap']]; }
+    compute(v) { requirePositive(v.weight, v.height, v.age); if (v.age < 18) throw new Error('A Mifflin–St Jeor becslést ezen az oldalon felnőtteknek (18+) használjuk'); const bmr=10*v.weight+6.25*v.height-5*v.age+(v.gender>=2?5:-161); if (bmr <= 0) throw new Error('A megadott adatokból nem adható életszerű becslés'); return [['Becsült nyugalmi energiaigény', Math.round(bmr)+' kcal/nap'], ['1,375-ös aktivitási szorzóval', Math.round(bmr*1.375)+' kcal/nap']]; }
   },
   "derek-csipo-kalkulator": {
     fields: [

@@ -114,17 +114,17 @@
         <div class="calc-grid">
           <div>
             <label for="roomLength">Szoba hossza (m)</label>
-            <input type="number" id="roomLength" step="0.1" placeholder="pl. 5" inputmode="decimal">
+            <input type="number" id="roomLength" step="0.1" min="0.1" placeholder="pl. 5" inputmode="decimal">
           </div>
 
           <div>
             <label for="roomWidth">Szoba szélessége (m)</label>
-            <input type="number" id="roomWidth" step="0.1" placeholder="pl. 4" inputmode="decimal">
+            <input type="number" id="roomWidth" step="0.1" min="0.1" placeholder="pl. 4" inputmode="decimal">
           </div>
 
           <div>
             <label for="roomHeight">Belmagasság (m)</label>
-            <input type="number" id="roomHeight" step="0.1" placeholder="pl. 2.7" inputmode="decimal">
+            <input type="number" id="roomHeight" step="0.1" min="0.1" placeholder="pl. 2.7" inputmode="decimal">
           </div>
           <div>
             <label for="windowArea">Ablakok összes területe (m²)</label>
@@ -140,12 +140,12 @@
 
           <div>
             <label for="layers">Festékrétegek száma</label>
-            <input type="number" id="layers" value="2" step="any" inputmode="decimal">
+            <input type="number" id="layers" value="2" min="1" step="1" inputmode="numeric">
           </div>
 
           <div>
             <label for="coverage">Festék kiadóssága (m²/liter)</label>
-            <input type="number" id="coverage" value="10" step="any" inputmode="decimal">
+            <input type="number" id="coverage" value="10" min="0.01" step="any" inputmode="decimal">
           </div>
 
           <div>

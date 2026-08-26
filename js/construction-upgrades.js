@@ -97,24 +97,26 @@
         const rollWidth = positive(v.rollWidth, "Tekercsszélesség"), rollLength = positive(v.rollLength, "Tekercshossz"), repeat = nonNegative(v.patternRepeat, "Mintaismétlés") / 100;
         let cutLength = height + nonNegative(v.trim, "Vágási tartalék") / 100; if (repeat > 0) cutLength = Math.ceil(cutLength / repeat) * repeat;
         const strips = ceil((net / height) / rollWidth), stripsPerRoll = Math.floor(rollLength / cutLength); if (stripsPerRoll < 1) throw new Error("A tekercs hossza nem elegendő egy teljes csíkhoz.");
-        const baseRolls = ceil(strips / stripsPerRoll), rolls = ceil(baseRolls * (1 + nonNegative(v.waste, "Ráhagyás") / 100));
+        const baseRolls = ceil(strips / stripsPerRoll), stripsWithWaste = ceil(strips * (1 + nonNegative(v.waste, "Ráhagyás") / 100)), rolls = ceil(stripsWithWaste / stripsPerRoll);
         return [["Bruttó falterület", `${fmt(gross)} m²`], ["Nettó tapétázandó felület", `${fmt(net)} m²`], ["Egy csík vágási hossza", `${fmt(cutLength)} m`], ["Szükséges csík", `${strips} db`], ["Egy tekercsből vágható", `${stripsPerRoll} csík`], ["Alap tekercsigény", `${baseRolls} db`], ["Vásárolandó tekercs", `${rolls} db`]];
       }, examples: ["12 m kerület és 2,6 m belmagasság mellett a 64 cm-es mintaismétlés több hulladékot okozhat, mint a minta nélküli tapéta.", "Nagy ajtó- és ablakfelület csökkenti a nettó területet, de mintás tapétánál a levágott darabok nem mindig használhatók fel teljesen."],
     },
     "vakolat-kalkulator": {
-      title: "Vakolat- és glettanyag-tervező", intro: "Minimum–maximum gyártói kiadóssággal, rétegvastagsággal, nyílászáró-kivonással és zsákszámmal számol.",
-      fields: [{ id: "grossArea", label: "Teljes falfelület (m²)", value: 40, min: 0.1 }, ...commonOpenings, { id: "thickness", label: "Átlagos rétegvastagság (mm)", value: 10, min: 0.1 }, { id: "minConsumption", label: "Minimum kiadósság (kg/m²/mm)", value: 1.2, min: 0.01 }, { id: "maxConsumption", label: "Maximum kiadósság (kg/m²/mm)", value: 1.5, min: 0.01 }, { id: "bagSize", label: "Zsák mérete (kg)", value: 25, min: 0.1 }, { id: "waste", label: "Anyagveszteség", value: "8", options: wasteOptions }],
+      title: "Vakolat- és glettanyag-tervező", intro: "A számítás a választott termék műszaki adatlapjának kiadósságával és kiszerelésével pontosítható. A megjelenő számok példaértékek, nem univerzális vakolatadatok.",
+      fields: [{ id: "grossArea", label: "Teljes falfelület (m²)", value: 40, min: 0.1 }, ...commonOpenings, { id: "thickness", label: "Átlagos rétegvastagság (mm)", value: 10, min: 0.1 }, { id: "minConsumption", label: "Példa minimum kiadósság (kg/m²/mm)", value: 1.2, min: 0.01, help: "Írd át a kiválasztott termék műszaki adatlapja szerint." }, { id: "maxConsumption", label: "Példa maximum kiadósság (kg/m²/mm)", value: 1.5, min: 0.01, help: "Ha az adatlap egyetlen értéket ad meg, a minimum és maximum legyen azonos." }, { id: "bagSize", label: "Példa zsákméret (kg)", value: 25, min: 0.1, help: "A kiszerelés termékenként eltérhet." }, { id: "waste", label: "Anyagveszteség", value: "8", options: wasteOptions }, { id: "manufacturerConfirmed", label: "Gyártói adatok ellenőrizve?", value: "no", options: [["no", "Nem – előbb ellenőrzöm az adatlapot"], ["yes", "Igen – a választott termék adatlapja alapján"]] }],
       compute(v) {
+        if (v.manufacturerConfirmed !== "yes") throw new Error("A rendelési becslés előtt ellenőrizd és erősítsd meg a választott vakolat gyártói kiadósságát és kiszerelését.");
         const gross = positive(v.grossArea, "Falfelület"), net = gross - nonNegative(v.doorArea, "Ajtó") - nonNegative(v.windowArea, "Ablak") - nonNegative(v.otherArea, "Egyéb kivonás"); if (net <= 0) throw new Error("A nettó felületnek pozitívnak kell maradnia.");
         const thickness = positive(v.thickness, "Rétegvastagság"), minC = positive(v.minConsumption, "Minimum kiadósság"), maxC = positive(v.maxConsumption, "Maximum kiadósság"); if (minC > maxC) throw new Error("A minimum kiadósság nem lehet nagyobb a maximumnál.");
         const factor = 1 + nonNegative(v.waste, "Anyagveszteség") / 100, minKg = net * thickness * minC * factor, maxKg = net * thickness * maxC * factor, bag = positive(v.bagSize, "Zsákméret");
         return [["Nettó vakolandó felület", `${fmt(net)} m²`], ["Nettó anyagigény", `${fmt(net * thickness * minC, 1)}–${fmt(net * thickness * maxC, 1)} kg`], ["Vásárolandó anyag", `${fmt(minKg, 1)}–${fmt(maxKg, 1)} kg`], ["Szükséges zsák", `${ceil(minKg / bag)}–${ceil(maxKg / bag)} db`]];
-      }, examples: ["35 m² nettó fal, 10 mm réteg és 1,2–1,5 kg/m²/mm kiadósság mellett a becslés tartományt ad.", "Hullámos falnál a tényleges átlagvastagság nagyobb lehet, ezért a maximum kiadósság és magasabb ráhagyás biztonságosabb."],
+      }, examples: ["Ha a kiválasztott termék adatlapja 1,2–1,5 kg/m²/mm tartományt ad, 35 m² nettó fal és 10 mm réteg mellett ebből készül a becslés.", "Hullámos falnál a tényleges átlagvastagság nagyobb lehet, ezért a gyártói adat és a helyszíni próba fontosabb az alapértéknél."],
     },
     "hoszigeteles-kalkulator": {
-      title: "Hőszigetelő lap-, ragasztó- és dübeltervező", intro: "A nettó homlokzati felületből csomagszámot, ragasztó- és dübeltartományt készít.",
-      fields: [{ id: "grossArea", label: "Teljes szigetelendő felület (m²)", value: 100, min: 0.1 }, ...commonOpenings, { id: "packCoverage", label: "Egy csomag fedése (m²)", value: 5, min: 0.01 }, { id: "waste", label: "Vágási ráhagyás", value: "8", options: wasteOptions }, { id: "adhesiveMin", label: "Ragasztó minimum (kg/m²)", value: 4, min: 0 }, { id: "adhesiveMax", label: "Ragasztó maximum (kg/m²)", value: 6, min: 0 }, { id: "adhesiveBag", label: "Ragasztózsák mérete (kg)", value: 25, min: 0.1 }, { id: "dowelsMin", label: "Dübel minimum (db/m²)", value: 6, min: 0 }, { id: "dowelsMax", label: "Dübel maximum (db/m²)", value: 8, min: 0 }],
+      title: "Hőszigetelő lap-, ragasztó- és dübeltervező", intro: "A nettó homlokzati felületből rendszeradatok alapján készít csomag-, ragasztó- és dübelbecslést. A megadott alapértékek csak példák.",
+      fields: [{ id: "grossArea", label: "Teljes szigetelendő felület (m²)", value: 100, min: 0.1 }, ...commonOpenings, { id: "packCoverage", label: "Példa csomagfedés (m²)", value: 5, min: 0.01, help: "A szigetelőlap vastagságától és kiszerelésétől is függ; írd át a csomag adata szerint." }, { id: "waste", label: "Vágási ráhagyás", value: "8", options: wasteOptions }, { id: "adhesiveMin", label: "Példa ragasztó minimum (kg/m²)", value: 4, min: 0, help: "A választott hőszigetelő rendszer műszaki előírása az elsődleges." }, { id: "adhesiveMax", label: "Példa ragasztó maximum (kg/m²)", value: 6, min: 0, help: "Ne keverd össze a csak ragasztási és a ragasztó+tapasz rendszerösszesítést." }, { id: "adhesiveBag", label: "Példa ragasztózsák (kg)", value: 25, min: 0.1, help: "A kiszerelést a konkrét termék szerint add meg." }, { id: "dowelsMin", label: "Példa dübel minimum (db/m²)", value: 6, min: 0, help: "A rögzítési kiosztást a rendszerterv, aljzat, magasság és szélterhelés határozza meg." }, { id: "dowelsMax", label: "Példa dübel maximum (db/m²)", value: 8, min: 0 }, { id: "systemConfirmed", label: "Rendszeradatok ellenőrizve?", value: "no", options: [["no", "Nem – előbb ellenőrzöm a rendszertervet"], ["yes", "Igen – a választott rendszer előírása alapján"]] }],
       compute(v) {
+        if (v.systemConfirmed !== "yes") throw new Error("A rendelési becslés előtt ellenőrizd és erősítsd meg a választott hőszigetelő rendszer csomag-, ragasztó- és dübeladatait.");
         const gross = positive(v.grossArea, "Teljes felület"), net = gross - nonNegative(v.doorArea, "Ajtó") - nonNegative(v.windowArea, "Ablak") - nonNegative(v.otherArea, "Egyéb kivonás"); if (net <= 0) throw new Error("A nettó szigetelendő felületnek pozitívnak kell maradnia.");
         const purchase = net * (1 + nonNegative(v.waste, "Ráhagyás") / 100), packs = ceil(purchase / positive(v.packCoverage, "Csomagfedés"));
         const amin = nonNegative(v.adhesiveMin, "Ragasztó minimum"), amax = nonNegative(v.adhesiveMax, "Ragasztó maximum"), dmin = nonNegative(v.dowelsMin, "Dübel minimum"), dmax = nonNegative(v.dowelsMax, "Dübel maximum"); if (amin > amax || dmin > dmax) throw new Error("A minimum érték nem lehet nagyobb a maximumnál.");
@@ -128,25 +130,26 @@
       compute(v) {
         const length = positive(v.length, "Hossz"), width = positive(v.width, "Szélesség"), gross = length * width, net = gross - nonNegative(v.excludeArea, "Kivonható terület"); if (net <= 0) throw new Error("A nettó burkolandó területnek pozitívnak kell maradnia.");
         const purchase = net * (1 + nonNegative(v.waste, "Ráhagyás") / 100), packs = ceil(purchase / positive(v.packCoverage, "Csomagfedés"));
-        const bedding = net * (positive(v.beddingThickness, "Ágyazóréteg") / 100) * (1 + nonNegative(v.beddingLoss, "Tömörödési tartalék") / 100), edge = Math.max(0, 2 * (length + width) - nonNegative(v.openEdge, "Nyitott él"));
+        const bedding = net * (positive(v.beddingThickness, "Ágyazóréteg") / 100) * (1 + nonNegative(v.beddingLoss, "Tömörödési tartalék") / 100), fullEdge = 2 * (length + width), openEdge = nonNegative(v.openEdge, "Nyitott él"); if (openEdge > fullEdge) throw new Error("A nem szegélyezett oldalhossz nem lehet nagyobb a teljes kerületnél."); const edge = fullEdge - openEdge;
         return [["Nettó burkolandó felület", `${fmt(net)} m²`], ["Térkőigény ráhagyással", `${fmt(purchase)} m²`], ["Raklap/csomag", `${packs} db`], ["Ágyazóanyag térfogata", `${fmt(bedding)} m³`], ["Szegélyhossz", `${fmt(edge, 1)} m`], ["Szegélykő", `${ceil(edge / positive(v.edgePiece, "Szegélykő hossza"))} db`]];
       }, examples: ["8 × 4 m-es téglalapnál 32 m² a bruttó felület; egy 2 m²-es akna vagy növényágyás levonható.", "Ha a kapubejárat egyik oldala nem kap szegélyt, annak hosszát a nem szegélyezett oldalhossznál lehet levonni."],
     },
     "tetocserep-kalkulator": {
-      title: "Tetőcserép- és csomagtervező", intro: "Minimum–maximum darabszámmal, áttörésekkel, vágási ráhagyással és csomagmérettel számol.",
-      fields: [{ id: "roofArea", label: "Teljes tetőfelület (m²)", value: 120, min: 0.1 }, { id: "openings", label: "Tetőablakok és áttörések (m²)", value: 3, min: 0 }, { id: "tilesMin", label: "Minimum cserépigény (db/m²)", value: 9.5, min: 0.1 }, { id: "tilesMax", label: "Maximum cserépigény (db/m²)", value: 11, min: 0.1 }, { id: "waste", label: "Vágási/törési ráhagyás", value: "8", options: wasteOptions }, { id: "packSize", label: "Csomag/raklap darabszáma", value: 240, min: 1 }],
+      title: "Tetőcserép- és csomagtervező", intro: "A cserépigény erősen termék- és fedésfüggő. A kalkulátor csak a kiválasztott cserép adatlapjának ellenőrzése után ad rendelési becslést.",
+      fields: [{ id: "roofArea", label: "Teljes tetőfelület (m²)", value: 120, min: 0.1 }, { id: "openings", label: "Tetőablakok és áttörések (m²)", value: 3, min: 0 }, { id: "tilesMin", label: "Példa minimum cserépigény (db/m²)", value: 9.5, min: 0.1, help: "Írd át a kiválasztott cserép gyártói szükségletére; a fedési hossz és típus jelentősen módosíthatja." }, { id: "tilesMax", label: "Példa maximum cserépigény (db/m²)", value: 11, min: 0.1, help: "Ha az adatlap egyetlen értéket ad, a minimum és maximum legyen azonos." }, { id: "waste", label: "Vágási/törési ráhagyás", value: "8", options: wasteOptions }, { id: "packSize", label: "Példa csomag/raklap darabszáma", value: 240, min: 1, help: "A raklap- és kötegméret termékcsaládonként eltér." }, { id: "manufacturerConfirmed", label: "Cserép adatlapja ellenőrizve?", value: "no", options: [["no", "Nem – előbb ellenőrzöm az adatlapot"], ["yes", "Igen – a kiválasztott cserép adatai alapján"]] }],
       compute(v) {
+        if (v.manufacturerConfirmed !== "yes") throw new Error("A rendelési becslés előtt ellenőrizd és erősítsd meg a kiválasztott tetőcserép gyártói db/m² és csomag/raklap adatait.");
         const gross = positive(v.roofArea, "Tetőfelület"), net = gross - nonNegative(v.openings, "Áttörések"); if (net <= 0) throw new Error("A nettó tetőfelületnek pozitívnak kell maradnia.");
         const min = positive(v.tilesMin, "Minimum cserépigény"), max = positive(v.tilesMax, "Maximum cserépigény"); if (min > max) throw new Error("A minimum cserépigény nem lehet nagyobb a maximumnál.");
-        const factor = 1 + nonNegative(v.waste, "Ráhagyás") / 100, minPieces = ceil(net * min * factor), maxPieces = ceil(net * max * factor), pack = positive(v.packSize, "Csomagméret");
+        const factor = 1 + nonNegative(v.waste, "Ráhagyás") / 100, minPieces = ceil(net * min * factor), maxPieces = ceil(net * max * factor), pack = positive(v.packSize, "Csomagméret"); if (!Number.isInteger(pack)) throw new Error("A csomag/raklap darabszáma egész szám legyen.");
         return [["Nettó fedendő tetőfelület", `${fmt(net)} m²`], ["Cserépigény ráhagyással", `${minPieces}–${maxPieces} db`], ["Csomag/raklap", `${ceil(minPieces / pack)}–${ceil(maxPieces / pack)} db`]];
-      }, examples: ["120 m² tetőből 3 m² tetőablakot levonva a gyártó 9,5–11 db/m² értéke alapján darabtartomány készül.", "Kontyolt, vápás vagy sok áttöréses tetőnél a 12–15%-os ráhagyás indokoltabb lehet, de a fedési terv az elsődleges."],
+      }, examples: ["Ha a kiválasztott cserép adatlapja 9,5–11 db/m² tartományt ad, 120 m² tetőből 3 m² áttörést levonva ezzel készül a becslés.", "Más cseréptípus szükséglete többszöröse is lehet ennek, ezért kontyolt, vápás vagy sok áttöréses tetőnél a gyártói fedési terv az elsődleges."],
     },
     "fuga-kalkulator": {
       title: "Fugázóanyag-tervező lapvastagsággal", intro: "A lapméret, fugaszélesség, fugamélység, anyagsűrűség, csomagméret és ráhagyás alapján számol.",
       fields: [{ id: "area", label: "Burkolt felület (m²)", value: 20, min: 0.1 }, { id: "tileLength", label: "Lap hossza (mm)", value: 600, min: 1 }, { id: "tileWidth", label: "Lap szélessége (mm)", value: 300, min: 1 }, { id: "tileThickness", label: "Lap vastagsága (mm)", value: 9, min: 0.1 }, { id: "jointWidth", label: "Fugaszélesség (mm)", value: 3, min: 0.1 }, { id: "fillRatio", label: "Fugamélység a lapvastagság %-ában", value: 100, min: 1, max: 100 }, { id: "density", label: "Fugázóanyag sűrűségi tényezője", value: 1.6, min: 0.1 }, { id: "packSize", label: "Csomag mérete (kg)", value: 5, min: 0.1 }, { id: "waste", label: "Anyagveszteség", value: "8", options: wasteOptions }],
       compute(v) {
-        const area = positive(v.area, "Felület"), l = positive(v.tileLength, "Laphossz"), w = positive(v.tileWidth, "Lapszélesség"), depth = positive(v.tileThickness, "Lapvastagság") * positive(v.fillRatio, "Fugamélység aránya") / 100;
+        const area = positive(v.area, "Felület"), l = positive(v.tileLength, "Laphossz"), w = positive(v.tileWidth, "Lapszélesség"), fillRatio = positive(v.fillRatio, "Fugamélység aránya"); if (fillRatio > 100) throw new Error("A fugamélység aránya legfeljebb 100% lehet."); const depth = positive(v.tileThickness, "Lapvastagság") * fillRatio / 100;
         const netKg = area * ((l + w) / (l * w)) * positive(v.jointWidth, "Fugaszélesség") * depth * positive(v.density, "Sűrűségi tényező"), purchaseKg = netKg * (1 + nonNegative(v.waste, "Anyagveszteség") / 100), pack = positive(v.packSize, "Csomagméret");
         return [["Számított fugamélység", `${fmt(depth, 1)} mm`], ["Nettó fugázóanyag", `${fmt(netKg)} kg`], ["Vásárolandó mennyiség", `${fmt(purchaseKg)} kg`], ["Szükséges csomag", `${ceil(purchaseKg / pack)} db`]];
       }, examples: ["20 m² felület, 60 × 30 cm-es lap, 3 mm fuga és 9 mm mélység mellett a fogyás jóval kisebb, mint apró mozaiklapnál.", "Ha a fugát nem töltik ki a teljes lapvastagságig, a mélységi százalék csökkenthető, de a gyártói képletet kell követni."],
@@ -157,11 +160,170 @@
       compute(v) {
         const length = positive(v.length, "Hossz"), width = positive(v.width, "Szélesség"), gross = length * width, net = gross - nonNegative(v.excludeArea, "Kivonható felület"); if (net <= 0) throw new Error("A nettó alapterületnek pozitívnak kell maradnia.");
         const purchase = net * (1 + nonNegative(v.waste, "Ráhagyás") / 100), packs = ceil(purchase / positive(v.packCoverage, "Csomagfedés")), underlayCoverage = nonNegative(v.underlayPack, "Alátét csomagfedés");
-        const perimeter = Math.max(0, 2 * (length + width) - nonNegative(v.skirtingExclude, "Nem szegélyezett falszakasz"));
+        const fullPerimeter = 2 * (length + width), skirtingExclude = nonNegative(v.skirtingExclude, "Nem szegélyezett falszakasz"); if (skirtingExclude > fullPerimeter) throw new Error("A nem szegélyezett falszakasz nem lehet hosszabb a helyiség teljes kerületénél."); const perimeter = fullPerimeter - skirtingExclude;
         return [["Bruttó alapterület", `${fmt(gross)} m²`], ["Nettó burkolandó felület", `${fmt(net)} m²`], ["5 / 8 / 12%-os forgatókönyv", `${fmt(net * 1.05)} / ${fmt(net * 1.08)} / ${fmt(net * 1.12)} m²`], ["Vásárolandó burkolat", `${fmt(purchase)} m²`], ["Burkolatcsomag", `${packs} db`], ["Alátétcsomag", underlayCoverage > 0 ? `${ceil(net * 1.05 / underlayCoverage)} db` : "nincs számolva"], ["Szegélyléc", `${fmt(perimeter, 1)} m / ${ceil(perimeter / positive(v.skirtingPiece, "Szegélyléc hossza"))} db`]];
       }, examples: ["5 × 4 m-es szobánál 20 m² az alapterület; egy 1,5 m²-es beépített dobogó levonható, ha tényleg nem kerül alá burkolat.", "Átlós fektetésnél vagy sok ajtónyílásnál a 12%-os forgatókönyv reálisabb lehet, mint az alap 5–8%."],
     },
   };
+
+  // KB_CONSTRUCTION:plaster-consumption-mode:START
+  const plasterConfig = configs["vakolat-kalkulator"];
+  if (plasterConfig) {
+    const thicknessIndex = plasterConfig.fields.findIndex((item) => item.id === "thickness");
+    if (thicknessIndex >= 0 && !plasterConfig.fields.some((item) => item.id === "consumptionMode")) {
+      plasterConfig.fields.splice(thicknessIndex + 1, 0, {
+        id: "consumptionMode",
+        label: "Gyártói anyagszükséglet egysége",
+        value: "per-mm",
+        options: [
+          ["per-mm", "kg/m²/mm – rétegvastagsággal szorzandó"],
+          ["per-area", "kg/m² – közvetlen gyártói érték"],
+        ],
+      });
+    }
+    const minField = plasterConfig.fields.find((item) => item.id === "minConsumption");
+    const maxField = plasterConfig.fields.find((item) => item.id === "maxConsumption");
+    const thicknessField = plasterConfig.fields.find((item) => item.id === "thickness");
+    if (minField) {
+      minField.label = "Példa minimum anyagszükséglet";
+      minField.help = "A számérték egységét a fenti mód határozza meg; írd át a kiválasztott termék adatlapja szerint.";
+    }
+    if (maxField) {
+      maxField.label = "Példa maximum anyagszükséglet";
+      maxField.help = "Ha az adatlap egyetlen értéket ad meg, a minimum és maximum legyen azonos.";
+    }
+    if (thicknessField) {
+      thicknessField.help = "Csak a kg/m²/mm módban vesz részt az anyagigény számításában.";
+    }
+    const baseCompute = plasterConfig.compute;
+    plasterConfig.compute = (values) => {
+      const mode = values.consumptionMode || "per-mm";
+      if (mode !== "per-mm" && mode !== "per-area") throw new Error("Ismeretlen vakolat-anyagszükséglet egység.");
+      const rows = baseCompute(mode === "per-area" ? { ...values, thickness: 1 } : values);
+      return [["Fogyási mód", mode === "per-area" ? "kg/m² – közvetlen gyártói érték" : "kg/m²/mm × rétegvastagság"], ...rows];
+    };
+    plasterConfig.intro = "A kalkulátor kezeli a kg/m²/mm és a közvetlen kg/m² gyártói adatokat is. Előbb válaszd ki az adatlap egységét, majd ellenőrizd a termék kiadósságát és kiszerelését.";
+    plasterConfig.examples = [
+      "Alap- vagy gipszvakolatnál gyakori a kg/m²/mm adat: ilyenkor a kalkulátor a megadott rétegvastagsággal is szoroz.",
+      "Dekor- és vékonyvakolatnál gyakori a közvetlen kg/m² adat: ebben a módban a rétegvastagságot nem szorozzuk rá még egyszer.",
+    ];
+  }
+  // KB_CONSTRUCTION:plaster-consumption-mode:END
+
+  // KB_CONSTRUCTION:roof-purchase-mode:START
+  const roofConfig = configs["tetocserep-kalkulator"];
+  if (roofConfig) {
+    const packIndex = roofConfig.fields.findIndex((item) => item.id === "packSize");
+    if (packIndex >= 0 && !roofConfig.fields.some((item) => item.id === "purchaseMode")) {
+      roofConfig.fields.splice(packIndex + 1, 0, {
+        id: "purchaseMode",
+        label: "Értékesítési / rendelési egység",
+        value: "pieces",
+        options: [
+          ["pieces", "Darabonként rendelhető – ne kerekíts raklapra"],
+          ["whole-pack", "Csak teljes csomag/raklap – kerekíts felfelé"],
+        ],
+      });
+    }
+    const packField = roofConfig.fields.find((item) => item.id === "packSize");
+    if (packField) {
+      packField.label = "Példa csomag/raklap darabszáma";
+      packField.help = "Darabonkénti rendelésnél opcionális, csak logisztikai tájékoztató; teljes csomag/raklap módban kötelező pozitív egész szám.";
+    }
+    const baseCompute = roofConfig.compute;
+    roofConfig.compute = (values) => {
+      const mode = values.purchaseMode || "pieces";
+      if (mode !== "pieces" && mode !== "whole-pack") throw new Error("Ismeretlen tetőcserép rendelési mód.");
+
+      const rawPack = String(values.packSize ?? "").trim().replace(",", ".");
+      const pack = Number(rawPack);
+      const packIsValid = rawPack !== "" && Number.isFinite(pack) && pack > 0 && Number.isInteger(pack);
+      if (mode === "whole-pack" && !packIsValid) throw new Error("A teljes csomag/raklap módhoz a csomag darabszáma pozitív egész szám legyen.");
+
+      // A régi számítási mag a csomagméretet akkor is validálja, amikor csak a cserépdarabszám kell.
+      // Darabos módban ezért semleges 1-es belső értékkel futtatjuk; a Csomag/raklap sort alább eltávolítjuk.
+      const rows = baseCompute({ ...values, packSize: packIsValid ? pack : 1 });
+      const pieceRow = rows.find(([label]) => label === "Cserépigény ráhagyással");
+      const match = String(pieceRow?.[1] || "").match(/([0-9]+)[^0-9]+([0-9]+)/);
+      if (!match) return rows;
+      const minPieces = Number(match[1]);
+      const maxPieces = Number(match[2]);
+      const withoutOldPack = rows.filter(([label]) => label !== "Csomag/raklap");
+
+      if (mode === "whole-pack") {
+        const minPacks = Math.ceil(minPieces / pack);
+        const maxPacks = Math.ceil(maxPieces / pack);
+        return [["Rendelési mód", "Csak teljes csomag/raklap"], ...withoutOldPack, ["Vásárolandó teljes csomag/raklap", `${minPacks}–${maxPacks} db`], ["Raklapra kerekített darabszám", `${minPacks * pack}–${maxPacks * pack} db`]];
+      }
+
+      const result = [["Rendelési mód", "Darabonként rendelhető"], ...withoutOldPack];
+      if (packIsValid) {
+        const minEq = minPieces / pack;
+        const maxEq = maxPieces / pack;
+        result.push(["Raklap-egyenérték (csak tájékoztató)", `${minEq.toLocaleString("hu-HU", { maximumFractionDigits: 2 })}–${maxEq.toLocaleString("hu-HU", { maximumFractionDigits: 2 })}`]);
+      }
+      return result;
+    };
+    roofConfig.intro = "A gyártói db/m² adatból darabszámot számol. Raklapra csak akkor kerekít felfelé, ha a kereskedő ténylegesen kizárólag teljes csomagban vagy raklapon értékesít.";
+  }
+  // KB_CONSTRUCTION:roof-purchase-mode:END
+
+  // KB_CONSTRUCTION:insulation-package-guidance:START
+  const insulationConfig = configs["hoszigeteles-kalkulator"];
+  if (insulationConfig) {
+    const packField = insulationConfig.fields.find((item) => item.id === "packCoverage");
+    if (packField) {
+      packField.label = "Konkrét termék csomagfedése (m²/csomag)";
+      packField.help = "A csomagfedés ugyanazon termékcsaládon belül is erősen változhat a lapvastagsággal. Másold be a kiválasztott vastagság csomagolási adatát; az 5 m² csak példa.";
+    }
+    insulationConfig.intro = "A nettó homlokzati felületből a konkrét termék csomagfedése és a választott hőszigetelő rendszer ragasztó-/dübeladatai alapján készít becslést. A lapvastagságból önmagában nem talál ki csomagméretet.";
+  }
+  // KB_CONSTRUCTION:insulation-package-guidance:END
+
+  // KB_CONSTRUCTION:drywall-system-guidance:START
+  const drywallConfig = configs["gipszkarton-kalkulator"];
+  if (drywallConfig) {
+    const layers = drywallConfig.fields.find((item) => item.id === "layers");
+    if (layers) {
+      layers.options = [["1", "1 réteg"], ["2", "2 réteg"], ["3", "3 réteg"]];
+      layers.help = "A rétegrendet mindig a választott minősített rendszer szerint add meg.";
+    }
+    const stud = drywallConfig.fields.find((item) => item.id === "studSpacing");
+    if (stud) {
+      stud.label = "Példa CW profil tengelytáv (m)";
+      stud.help = "A profilkiosztás rendszer-, lap- és terhelésfüggő; például 0,30 / 0,60 / 0,625 m is előfordulhat.";
+    }
+    const screws = drywallConfig.fields.find((item) => item.id === "screwsPerM2");
+    if (screws) {
+      screws.label = "Példa csavarigény (db/m²/réteg)";
+      screws.help = "A tényleges csavartávolság és a rétegenkénti rögzítés a rendszerleírásból jön; a 20 db/m²/réteg csak kiinduló példa.";
+    }
+    const tape = drywallConfig.fields.find((item) => item.id === "tapePerM2");
+    if (tape) {
+      tape.label = "Példa hézagerősítő szalag (m/m²/réteg)";
+      tape.help = "Nem minden belső réteg hézagolása és szalagozása azonos; ellenőrizd a rendszer előírását.";
+    }
+    const compound = drywallConfig.fields.find((item) => item.id === "compoundPerM2");
+    if (compound) {
+      compound.label = "Példa hézagoló/glett (kg/m²/réteg)";
+      compound.help = "A gyártói anyagszükséglet lehet teljes rendszerre megadott kg/m² is; csak azonos vetítési alapú értéket használj itt.";
+    }
+    if (!drywallConfig.fields.some((item) => item.id === "systemConfirmed")) {
+      drywallConfig.fields.push({
+        id: "systemConfirmed",
+        label: "Gipszkarton rendszer adatai ellenőrizve?",
+        value: "no",
+        options: [["no", "Nem – előbb ellenőrzöm a rendszerleírást"], ["yes", "Igen – a választott rendszer alapján"]],
+      });
+    }
+    const baseCompute = drywallConfig.compute;
+    drywallConfig.compute = (values) => {
+      if (values.systemConfirmed !== "yes") throw new Error("A részletes anyagbecslés előtt ellenőrizd és erősítsd meg a választott gipszkarton rendszer rétegrendjét, profilkiosztását és fajlagos kiegészítőanyag-adatait.");
+      return baseCompute(values);
+    };
+    drywallConfig.intro = "A lapgeometriát kiszámítja, a profil-, csavar-, szalag- és hézagolóanyag mennyiségét pedig csak a választott minősített rendszer ellenőrzött fajlagos adataival tekintsd rendelési becslésnek.";
+  }
+  // KB_CONSTRUCTION:drywall-system-guidance:END
 
   const config = configs[slug]; if (!config) return;
   const renderResults = (rows, target) => {
@@ -179,7 +341,17 @@
   const result = document.createElement("div"); result.className = "result-box construction-results"; result.innerHTML = "<p>Az eredmény a számítás után jelenik meg.</p>";
   form.append(heading, grid, actions, message, result); card.replaceChildren(form);
   const collect = () => Object.fromEntries(new FormData(form).entries());
-  const run = () => { message.textContent = ""; try { renderResults(config.compute(collect()), result); } catch (error) { message.textContent = error instanceof Error ? error.message : "A számítás nem végezhető el."; } };
+  const run = () => {
+    message.textContent = "";
+    const values = collect();
+    const confirmationNames = ["manufacturerConfirmed", "systemConfirmed"];
+    const pendingConfirmation = confirmationNames.some((name) => Object.prototype.hasOwnProperty.call(values, name) && values[name] !== "yes");
+    if (pendingConfirmation) {
+      result.innerHTML = "<p><strong>Gyártói/rendszeradat ellenőrzése szükséges.</strong><br>Írd át a példaértékeket a kiválasztott termék vagy rendszer adatai szerint, majd állítsd az ellenőrző mezőt Igenre. Addig nem készítünk rendelési mennyiséget.</p>";
+      return;
+    }
+    try { renderResults(config.compute(values), result); } catch (error) { message.textContent = error instanceof Error ? error.message : "A számítás nem végezhető el."; }
+  };
   form.addEventListener("submit", (event) => { event.preventDefault(); run(); }); form.addEventListener("input", run); form.addEventListener("reset", () => setTimeout(run, 0)); run();
 
   const guide = document.createElement("section"); guide.className = "article construction-methodology";
