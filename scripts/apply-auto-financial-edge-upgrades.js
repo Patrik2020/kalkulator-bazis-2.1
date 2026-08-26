@@ -35,13 +35,6 @@ function transform(source) {
     ['{id:"infl",label:"Infláció (%)",value:3.5}', '{id:"infl",label:"Infláció / defláció (%)",value:3.5,min:-99.99,help:"A mai vásárlóérték számításához; -100% nem értelmezhető."}'],
     ['{id:"annual",label:"Éves teljes autóköltség (Ft)",value:1200000}', '{id:"annual",label:"Éves teljes autóköltség (Ft)",value:1200000,min:0}'],
     ['{id:"priceChange",label:"Árváltozás teszt (%)",value:10}', '{id:"priceChange",label:"Árváltozás teszt (%)",value:10,min:-100,help:"-100% esetén a tesztelt üzemanyagár 0 Ft/l; ennél kisebb érték nem értelmezhető."}'],
-    ['{id:"w1",label:"Régi szélesség (mm)",value:185,min:1}', '{id:"w1",label:"Régi szélesség (mm)",value:185,min:50,max:500}'],
-    ['{id:"a1",label:"Régi oldalfal (%)",value:60,min:1}', '{id:"a1",label:"Régi oldalfal (%)",value:60,min:10,max:100}'],
-    ['{id:"r1",label:"Régi felni (inch)",value:15,min:1}', '{id:"r1",label:"Régi felni (inch)",value:15,min:8,max:30}'],
-    ['{id:"w2",label:"Új szélesség (mm)",value:195,min:1}', '{id:"w2",label:"Új szélesség (mm)",value:195,min:50,max:500}'],
-    ['{id:"a2",label:"Új oldalfal (%)",value:55,min:1}', '{id:"a2",label:"Új oldalfal (%)",value:55,min:10,max:100}'],
-    ['{id:"r2",label:"Új felni (inch)",value:15,min:1}', '{id:"r2",label:"Új felni (inch)",value:15,min:8,max:30}'],
-    ['{id:"speed",label:"Műszer szerinti sebesség",value:100,min:0}', '{id:"speed",label:"Műszer szerinti sebesség",value:100,min:0,max:400}'],
   ];
   for (const [a,b] of fields) out = replaceExact(out, a, b, a.slice(0,55));
 
