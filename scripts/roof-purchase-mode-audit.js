@@ -52,6 +52,15 @@ assert.equal(pieces["Cserépigény ráhagyással"], "1163–1264 db");
 assert.ok(!("Vásárolandó teljes csomag/raklap" in pieces), "Darabonkénti módban tilos teljes raklapra kerekített vásárlást előírni");
 assert.match(pieces["Raklap-egyenérték (csak tájékoztató)"], /^6,06–6,58$/, "Tájékoztató raklap-egyenérték eltért");
 
+// Darabos rendelésnél a raklapméret valóban opcionális: üres vagy használhatatlan érték
+// nem akadályozhatja a cserépdarabszám kiszámítását, és ilyenkor raklap-egyenértéket sem mutatunk.
+const piecesWithoutPack = rows(roof.compute({ ...common, purchaseMode: "pieces", packSize: "" }));
+assert.equal(piecesWithoutPack["Cserépigény ráhagyással"], "1163–1264 db");
+assert.ok(!("Raklap-egyenérték (csak tájékoztató)" in piecesWithoutPack), "Üres raklapméretnél ne jelenjen meg raklap-egyenérték");
+const piecesWithIrrelevantInvalidPack = rows(roof.compute({ ...common, purchaseMode: "pieces", packSize: 192.5 }));
+assert.equal(piecesWithIrrelevantInvalidPack["Cserépigény ráhagyással"], "1163–1264 db");
+assert.ok(!("Raklap-egyenérték (csak tájékoztató)" in piecesWithIrrelevantInvalidPack), "Érvénytelen, de darabos módban irreleváns raklapméretből ne készüljön tájékoztató érték");
+
 const whole = rows(roof.compute({ ...common, purchaseMode: "whole-pack" }));
 assert.equal(whole["Rendelési mód"], "Csak teljes csomag/raklap");
 assert.equal(whole["Vásárolandó teljes csomag/raklap"], "7–7 db");
@@ -62,8 +71,7 @@ assert.equal(whole["Raklapra kerekített darabszám"], "1344–1344 db");
 assert.equal(1344 - 1264, 80);
 assert.equal(1344 - 1163, 181);
 assert.throws(() => roof.compute({ ...common, purchaseMode: "mystery" }), /Ismeretlen tetőcserép rendelési mód/);
-// A base construction guard már az egész darabszám feltételnél megáll; a teszt az érdemi szabályt védi,
-// nem a két validációs réteg hibaüzenetének pontos szóhasználatát.
-assert.throws(() => roof.compute({ ...common, purchaseMode: "pieces", packSize: 192.5 }), /egész szám/);
+assert.throws(() => roof.compute({ ...common, purchaseMode: "whole-pack", packSize: "" }), /pozitív egész szám/);
+assert.throws(() => roof.compute({ ...common, purchaseMode: "whole-pack", packSize: 192.5 }), /pozitív egész szám/);
 
-console.log("Roof purchase mode audit OK: darabos rendelés nincs raklapra kerekítve; teljes csomag mód explicit és külön tesztelt.");
+console.log("Roof purchase mode audit OK: darabos rendeléshez nem kell raklapméret; teljes csomag mód explicit és külön tesztelt.");
