@@ -22,6 +22,12 @@ function calcCalories() {
     return;
   }
 
+  if (a < 18) {
+    resultCalories.textContent = "–";
+    resultGoal.textContent = "A Mifflin–St Jeor becslést ezen az oldalon felnőtteknek (18+) használjuk.";
+    return;
+  }
+
   let bmr;
 
   if (gender.value === "male") {
@@ -40,9 +46,13 @@ function calcCalories() {
 
   resultCalories.textContent = Math.round(maintenance) + " kcal";
 
-  resultGoal.textContent =
-    "Fogyás: " + Math.round(maintenance - 400) +
-    " kcal | Tömegnövelés: " + Math.round(maintenance + 400) + " kcal";
+  const lowerScenario = maintenance - 400;
+  const upperScenario = maintenance + 400;
+  resultGoal.textContent = lowerScenario > 0
+    ? "Példa a fenntartó értékhez képest: -400 kcal → " + Math.round(lowerScenario) +
+      " kcal | +400 kcal → " + Math.round(upperScenario) + " kcal"
+    : "A -400 kcal-os példaforgatókönyv ennél a becslésnél nem értelmezhető. +400 kcal → " +
+      Math.round(upperScenario) + " kcal.";
 }
 
 [weight, height, age].forEach(i => {

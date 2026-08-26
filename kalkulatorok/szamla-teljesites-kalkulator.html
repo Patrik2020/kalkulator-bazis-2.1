@@ -143,6 +143,33 @@
 
   <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
 </section></section>
+
+<section class="card card-calculator" id="periodic-settlement-calculator" data-quality-upgrade="2026-08-25">
+  <h2>Időszakos elszámolás teljesítési időpontja – Áfa tv. 58. §</h2>
+  <p>Add meg az elszámolási időszak utolsó napját, a számla kibocsátását és a fizetési esedékességet. A kalkulátor a tipikus, Áfa tv. 58. § (1) és (1a) szerinti belföldi eset teljesítési időpontját számolja.</p>
+  <div class="calc-grid">
+    <div>
+      <label for="periodEnd">Elszámolási időszak utolsó napja</label>
+      <input type="date" id="periodEnd" />
+    </div>
+    <div>
+      <label for="periodicIssueDate">Számla kibocsátásának napja</label>
+      <input type="date" id="periodicIssueDate" />
+    </div>
+    <div>
+      <label for="periodicDueDate">Fizetési esedékesség napja</label>
+      <input type="date" id="periodicDueDate" />
+    </div>
+  </div>
+  <div class="result-box" role="status" aria-live="polite" aria-atomic="true">
+    <p>Áfa szerinti teljesítési időpont:</p>
+    <p id="result-periodic-performance">–</p>
+    <p id="result-periodic-rule"></p>
+  </div>
+  <p class="source-note">Jogszabályi alap: <a href="https://njt.hu/jogszabaly/2007-127-00-00.55" target="_blank" rel="noopener noreferrer">2007. évi CXXVII. törvény 58. §</a>.</p>
+  <p class="input-help"><strong>Korlát:</strong> ez a rész a tipikus 58. § (1)–(1a) szerinti esetet modellezi. Nem helyettesíti a különleges, hosszú elszámolási időszakokra, Közösségen belüli ügyletekre, fordított adózásra, előlegre, részteljesítésre vagy módosító számlára vonatkozó szabályok vizsgálatát.</p>
+</section>
+
 <section class="article calculator-guide" data-quality-upgrade="2026-08-08"><h2>A teljesítési dátum több mint adminisztráció</h2><p>A számlán szereplő kiállítási dátum, teljesítési dátum és fizetési határidő három külön fogalom. A kiállítás azt mutatja, mikor készült a bizonylat, a teljesítés az ügylet adózási szempontból releváns időpontjához kapcsolódik, a fizetési határidő pedig az ellenérték esedékességét jelzi.</p><p>A kalkulátor ezek áttekintésében segít, de nem dönti el helyetted, hogy egy konkrét ügyletnél mi a jogszerű teljesítési időpont. Ehhez előbb az ügylet típusát kell helyesen azonosítani.</p>
 <h2>Miért különösen fontos az áfa szempontjából?</h2><p>Az Áfa tv. főszabály szerint a teljesítéshez köti a fizetendő adó megállapítását, de több különös szabály létezik. Időszakos elszámolás vagy meghatározott időszakra megállapított ellenérték esetén például az Áfa tv. 58. §-a külön teljesítési időpontokat határozhat meg.</p>
 <div class="example-box"><h3>Egyszerű példa</h3><p>Ha egy egyszeri szolgáltatás ténylegesen augusztus 8-án teljesül, a számla augusztus 10-én készül és 15 napos fizetési határidő tartozik hozzá, a három dátum eltérhet egymástól. A kalkulátor segít ezeket időrendben látni, de a teljesítés helyessége továbbra is az ügylet szabályaitól függ.</p></div>
@@ -191,7 +218,7 @@
 <section data-static-quality-version="2026-08" data-static-quality-fallback="priority" class="priority-upgrade">
       <h2>Teljesítési időpont – gyakori számlázási helyzetek</h2>
       <div class="priority-grid"><div class="priority-field"><label for="iv-type">Ügylet típusa</label><select id="iv-type"><option value="single">Egyszeri teljesítés</option><option value="periodic">Időszakos elszámolás</option><option value="advance">Előleg</option></select></div><div class="priority-field"><label for="iv-physical">Tényleges teljesítés / időszak vége</label><input id="iv-physical" type="date"></div><div class="priority-field"><label for="iv-issue">Számla kelte</label><input id="iv-issue" type="date"></div><div class="priority-field"><label for="iv-due">Fizetési határidő</label><input id="iv-due" type="date"></div><div class="priority-field"><label for="iv-advance">Előleg jóváírása</label><input id="iv-advance" type="date"></div></div>
-      <div class="priority-results" data-results="" role="status" aria-live="polite" aria-atomic="false"><div class="priority-result"><span>Becsült teljesítési időpont</span><strong>2026. 08. 25.</strong></div><div class="priority-result"><span>Ügylet típusa</span><strong>egyszeri</strong></div></div><div class="priority-note" data-explanation="">Egyszeri ügyletnél főszabály szerint a tényleges teljesítés időpontja a kiindulópont.</div>
+      <div class="priority-results" data-results="" role="status" aria-live="polite" aria-atomic="false"><div class="priority-result"><span>Becsült teljesítési időpont</span><strong>2026. 08. 26.</strong></div><div class="priority-result"><span>Ügylet típusa</span><strong>egyszeri</strong></div></div><div class="priority-note" data-explanation="">Egyszeri ügyletnél főszabály szerint a tényleges teljesítés időpontja a kiindulópont.</div>
       <div class="priority-warning"><strong>Jogi korlát:</strong> az időszakos elszámolás szabályai több dátumtól és kivételtől függnek. A kalkulátor gyakori alapesetet modellez, könyvelési vagy adótanácsadási döntést nem helyettesít.</div>
 
     <div class="priority-source">
