@@ -24,4 +24,14 @@ assert.ok(annual.includes("nem azonos a tényleges havi cashflow-val"), "Éves a
 assert.ok(!annual.includes("Az „egyéb” mezőbe kerülhet"), "Nem létező egyéb mezőre hivatkozó szöveg bent maradt");
 assert.ok(annual.includes('datetime="2026-08-26"'), "Éves autóköltség felülvizsgálati dátuma nem frissült");
 
-console.log("Auto content consistency audit OK: értékvesztés és éves autóköltség szövege követi a tényleges runtime-modellt.");
+const kilometer = transformed("kalkulatorok/kilometerdij-kalkulator.html");
+assert.ok(kilometer.includes("éves teljes autóköltség és az éves futás alapján"), "Kilométerdíj hero még havi modellt ír le");
+assert.ok(kilometer.includes("Kilométerenkénti költség = éves teljes autóköltség ÷ éves futás."), "Kilométerdíj képletleírás nem követi az éves runtime-ot");
+assert.ok(kilometer.includes("1 200 000 ÷ 15 000 = 80 Ft/km"), "Kilométerdíj példa nem az éves bemeneteket használja");
+assert.ok(kilometer.includes("két fizető utasnál ez 8 000 Ft/fő"), "Kilométerdíj cikk nem tükrözi az utasszám eredményt");
+assert.ok(kilometer.includes("Az éves becsült értékvesztést add hozzá az éves teljes autóköltséghez."), "Kilométerdíj FAQ még havi értékvesztés-kezelést ír");
+assert.ok(!kilometer.includes("havi autóköltség ÷ havi megtett kilométer"), "Régi havi kilométerdíj-képlet bent maradt");
+assert.ok(!kilometer.includes("Az éves becsült értékvesztést oszd tizenkettővel"), "Régi havi értékvesztés FAQ bent maradt");
+assert.ok(kilometer.includes('datetime="2026-08-26"'), "Kilométerdíj felülvizsgálati dátuma nem frissült");
+
+console.log("Auto content consistency audit OK: értékvesztés, éves autóköltség és kilométerdíj szövege követi a tényleges runtime-modellt.");
