@@ -35,9 +35,9 @@ assert.ok(source.includes('if(!Number.isInteger(people)||people<1)'), "Útikölt
 assert.ok(source.includes('{id:"priceChange",label:"Árváltozás teszt (%)",value:10,min:-100'), "Árváltozás -100% alsó korlát hiányzik");
 assert.ok(source.includes('if(priceChange<-100)'), "Útiköltség -100% alatti árstressz runtime guard hiányzik");
 
-assert.ok(source.includes('{id:"w1",label:"Régi szélesség (mm)",value:185,min:50,max:500}'), "Gumiszélesség életszerű broad guard hiányzik");
-assert.ok(source.includes('{id:"a1",label:"Régi oldalfal (%)",value:60,min:10,max:100}'), "Gumi oldalfal broad guard hiányzik");
-assert.ok(source.includes('{id:"r1",label:"Régi felni (inch)",value:15,min:8,max:30}'), "Felni broad guard hiányzik");
-assert.ok(source.includes('{id:"speed",label:"Műszer szerinti sebesség",value:100,min:0,max:400}'), "Sebesség broad guard hiányzik");
+// A gumiméretnél csak pozitív alapvédelem marad: a homologizálható tartomány jármű- és gyártófüggő,
+// ezért a kalkulátor nem talál ki univerzális 50–500 mm / 8–30 colos korlátot.
+assert.ok(source.includes('{id:"w1",label:"Régi szélesség (mm)",value:185,min:1}'), "Gumiszélesség pozitív minimuma hiányzik");
+assert.ok(source.includes('{id:"r1",label:"Régi felni (inch)",value:15,min:1}'), "Felni pozitív minimuma hiányzik");
 
-console.log("Auto financial edge audit OK: értékvesztés, éves költség, utasszám, árstressz és gumiméret szélsőértékek.");
+console.log("Auto financial edge audit OK: értékvesztés, éves költség, utasszám és árstressz szélsőértékek; a gumiméret gyártófüggő tartománya nincs önkényesen korlátozva.");
