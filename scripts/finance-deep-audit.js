@@ -22,13 +22,19 @@ assert.ok(salaryHtml.includes('id="family-eligible" min="0" max="20" value="0" i
 const compound = transformed("js/penzugyi/kamatos-kamat.js");
 assert.ok(compound.includes("yearValue > 100"), "Kamatos kamat 100 éves teljesítményvédelme hiányzik.");
 assert.ok(compound.includes("months > 1200"), "Kamatos kamat havi iterációs korlátja hiányzik.");
+assert.ok(compound.includes("if (!Number.isFinite(total))"), "Kamatos kamat nem véges eredmény guard hiányzik.");
+assert.ok(compound.includes("A megadott adatokból nem számítható véges eredmény."), "Kamatos kamat véges eredmény hibaüzenet hiányzik.");
 const compoundHtml = transformed("kalkulatorok/kamatos-kamat-kalkulator.html");
 assert.ok(compoundHtml.includes('id="years" placeholder="pl. 20" step="any" min="0.083333" max="100"'), "Kamatos kamat UI időtáv-korlát hiányzik.");
+
+const inflation = transformed("js/penzugyi/inflacio.js");
+assert.ok(inflation.includes("if (!Number.isFinite(futurePurchasingPower))"), "Inflációs kalkulátor nem véges vásárlóerő guard hiányzik.");
+assert.ok(inflation.includes("nem számítható véges vásárlóerő"), "Inflációs kalkulátor véges eredmény hibaüzenet hiányzik.");
 
 const affordability = transformed("kalkulatorok/hitelkepesseg-kalkulator.html");
 assert.ok(affordability.includes("2026-os JTM háttér"), "2026-os JTM magyarázat hiányzik.");
 assert.ok(affordability.includes("800 000 Ft/hó"), "2026-os 800 000 Ft-os JTM küszöb nincs dokumentálva.");
-assert.ok(affordability.includes("50%" ) && affordability.includes("60%"), "A legalább 10 évre fixált HUF jelzáloghitel 50/60%-os főszabálya nincs dokumentálva.");
+assert.ok(affordability.includes("50%") && affordability.includes("60%"), "A legalább 10 évre fixált HUF jelzáloghitel 50/60%-os főszabálya nincs dokumentálva.");
 assert.ok(affordability.includes("Ez a kalkulátor ezeket nem számítja automatikusan."), "A 40%-os tervezési arány és a hivatalos JTM nincs elválasztva.");
 
 const downPayment = transformed("kalkulatorok/lakas-hitel-onero-kalkulator.html");
@@ -38,4 +44,4 @@ assert.ok(downPayment.includes("több adósnál ezt mindegyiküknek teljesíteni
 assert.ok(downPayment.includes("már nincs életkori korlátja"), "Az eltörölt elsőlakás-vásárlói életkori korlát nincs tisztázva.");
 assert.ok(downPayment.includes("nem automatikus banki finanszírozási ígéret"), "A 90%-os HFM szabályozói maximum jellege nincs tisztázva.");
 
-console.log("Finance deep audit OK: bér inputok, kamatos kamat teljesítményguard, 2026 JTM és HFM guidance.");
+console.log("Finance deep audit OK: bér inputok, véges egyszerű pénzügyi eredmények, 2026 JTM és HFM guidance.");
