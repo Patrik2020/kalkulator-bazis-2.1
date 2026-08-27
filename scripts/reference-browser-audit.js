@@ -289,8 +289,8 @@ const cases = [
   test("kalkulatorok/kaloria-kalkulator.html", "Kalória", `
     set('gender', 'male'); set('weight', 80); set('height', 180); set('age', 40); set('activity', 1.2);
     const actual = number('#result-calories'); const valid = actual === 2076;
-    set('age', 1); const boundary = number('#result-calories') === 2310;
-    set('age', 0); const invalid = text('#result-calories') === '–' && noInvalidNumber();
+    set('age', 18); const boundary = number('#result-calories') === 2208;
+    set('age', 17); const invalid = text('#result-calories') === '–' && noInvalidNumber();
     return { valid, boundary, invalid, actual };
   `),
   test("kalkulatorok/kamatos-kamat-kalkulator.html", "Kamatos kamat", `
