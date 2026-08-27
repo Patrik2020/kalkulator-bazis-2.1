@@ -24,7 +24,7 @@ function calc() {
   const yearValue = parseNumber(years.value);
   const months = Math.round(yearValue * 12);
 
-  if (principal < 0 || contribution < 0 || annualRate <= -100 || yearValue <= 0 || months <= 0 || (principal === 0 && contribution === 0)) {
+  if (principal < 0 || contribution < 0 || annualRate <= -100 || yearValue <= 0 || yearValue > 100 || months <= 0 || months > 1200 || (principal === 0 && contribution === 0)) {
     resultFinal.textContent = "–";
     resultProfit.textContent = "";
     return;
@@ -36,6 +36,12 @@ function calc() {
   let total = principal;
   for (let month = 0; month < months; month += 1) {
     total = total * (1 + monthlyRate) + contribution;
+  }
+
+  if (!Number.isFinite(total)) {
+    resultFinal.textContent = "–";
+    resultProfit.textContent = "A megadott adatokból nem számítható véges eredmény.";
+    return;
   }
 
   const invested = principal + contribution * months;

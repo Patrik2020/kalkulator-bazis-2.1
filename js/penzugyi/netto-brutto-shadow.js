@@ -30,8 +30,10 @@
   }
 
   function parseCount(id) {
-    const value = Number.parseInt(document.getElementById(id)?.value, 10);
-    return Number.isFinite(value) ? Math.max(0, Math.min(20, value)) : 0;
+    const raw = document.getElementById(id)?.value;
+    if (raw === undefined || raw === null || raw === "") return 0;
+    const value = Number(raw);
+    return Number.isInteger(value) && value >= 0 && value <= 20 ? value : null;
   }
 
   function clearDetails() {
@@ -61,6 +63,10 @@
 
     const dependants = parseCount("family-dependants");
     const eligibleDependants = parseCount("family-eligible");
+
+    if (dependants === null || eligibleDependants === null) {
+      return { validationError: "Az eltartottak száma 0 és 20 közötti egész szám legyen." };
+    }
 
     if (eligibleDependants > dependants) {
       return {

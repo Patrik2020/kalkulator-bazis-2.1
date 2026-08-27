@@ -27,6 +27,11 @@ function calcInflation() {
   }
 
   const futurePurchasingPower = initial / Math.pow(1 + annualRatePercent / 100, yearValue);
+  if (!Number.isFinite(futurePurchasingPower)) {
+    resultFinal.textContent = "–";
+    resultLoss.textContent = "A megadott adatokból nem számítható véges vásárlóerő.";
+    return;
+  }
   const change = initial - futurePurchasingPower;
   resultFinal.textContent = `${format(futurePurchasingPower)} Ft`;
   resultLoss.textContent = change >= 0
