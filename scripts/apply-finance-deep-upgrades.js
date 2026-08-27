@@ -71,6 +71,24 @@ const transforms = {
     `      <p class="quality-sources">Forrás: <a href="https://www.mnb.hu/penzugyi-stabilitas/makroprudencialis-politika/makroprudencialis-eszkoztar/adossagfek-szabalyok-hfm-jtm" target="_blank" rel="noopener noreferrer">MNB – HFM/JTM szabályok</a>.</p>`,
     `      <div class="quality-note"><strong>Elsőlakás-vásárlói 90%-os HFM:</strong> a jelenlegi MNB-feltétel szerint az érintett adósnak jelenleg nem lehet, és korábban sem lehetett legalább 50%-os lakástulajdona; több adósnál ezt mindegyiküknek teljesítenie kell. A jogszabályon alapuló haszonélvezeti joggal terhelt korábbi vagy jelenlegi tulajdonra külön kivétel vonatkozhat. A kedvezménynek már nincs életkori korlátja. A 90% szabályozói maximum, nem automatikus banki finanszírozási ígéret.</div>\n      <p class="quality-sources">Forrás: <a href="https://www.mnb.hu/penzugyi-stabilitas/makroprudencialis-politika/makroprudencialis-eszkoztar/adossagfek-szabalyok-hfm-jtm" target="_blank" rel="noopener noreferrer">MNB – HFM/JTM szabályok</a>.</p>`,
     "elsőlakás HFM jogosultsági guidance"),
+
+  "js/finance-quality-upgrades.js": (source) => {
+    let out = source;
+    out = replaceExact(out,
+      `        <div><span>HFM alapján becsült maximális hitel</span><strong data-q="loan">–</strong></div>\n        <div><span>Vételárhoz szükséges saját pénz</span><strong data-q="cash">–</strong></div>`,
+      `        <div><span>HFM szerinti fedezeti plafon</span><strong data-q="regulatory-loan">–</strong></div>\n        <div><span>Vételárhoz felhasználható hitel maximuma</span><strong data-q="loan">–</strong></div>\n        <div><span>Vételárhoz szükséges saját pénz</span><strong data-q="cash">–</strong></div>`,
+      "HFM plafon és vételár-finanszírozás külön sor");
+    out = replaceExact(out,
+      `      const maxLoan = estimated * hfm;\n      const cash = Math.max(0, price - maxLoan);\n      node.querySelector('[data-q="loan"]').textContent = money(maxLoan);\n      node.querySelector('[data-q="cash"]').textContent = money(cash);`,
+      `      const regulatoryCap = estimated * hfm;\n      const usableLoan = Math.min(price, regulatoryCap);\n      const cash = Math.max(0, price - usableLoan);\n      node.querySelector('[data-q="regulatory-loan"]').textContent = money(regulatoryCap);\n      node.querySelector('[data-q="loan"]').textContent = money(usableLoan);\n      node.querySelector('[data-q="cash"]').textContent = money(cash);`,
+      "HFM vételár feletti hitel kijelzés védelme");
+    return out;
+  },
+
+  "scripts/reference-browser-audit.js": (source) => replaceExact(source,
+    `    set('age', 1); const boundary = number('#result-calories') === 2310;\n    set('age', 0); const invalid = text('#result-calories') === '–' && noInvalidNumber();`,
+    `    set('age', 18); const boundary = number('#result-calories') === 2208;\n    set('age', 17); const invalid = text('#result-calories') === '–' && noInvalidNumber();`,
+    "kalória felnőtt 18+ browser referencia"),
 };
 
 function applyFile(relativePath, transform) {
