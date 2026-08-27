@@ -39,15 +39,28 @@ const transforms = {
     return out;
   },
 
-  "js/penzugyi/kamatos-kamat.js": (source) => replaceExact(source,
-    `  if (principal < 0 || contribution < 0 || annualRate <= -100 || yearValue <= 0 || months <= 0 || (principal === 0 && contribution === 0)) {`,
-    `  if (principal < 0 || contribution < 0 || annualRate <= -100 || yearValue <= 0 || yearValue > 100 || months <= 0 || months > 1200 || (principal === 0 && contribution === 0)) {`,
-    "kamatos kamat időtáv teljesítményvédelme"),
+  "js/penzugyi/kamatos-kamat.js": (source) => {
+    let out = source;
+    out = replaceExact(out,
+      `  if (principal < 0 || contribution < 0 || annualRate <= -100 || yearValue <= 0 || months <= 0 || (principal === 0 && contribution === 0)) {`,
+      `  if (principal < 0 || contribution < 0 || annualRate <= -100 || yearValue <= 0 || yearValue > 100 || months <= 0 || months > 1200 || (principal === 0 && contribution === 0)) {`,
+      "kamatos kamat időtáv teljesítményvédelme");
+    out = replaceExact(out,
+      `  const invested = principal + contribution * months;\n  const profit = total - invested;`,
+      `  if (!Number.isFinite(total)) {\n    resultFinal.textContent = "–";\n    resultProfit.textContent = "A megadott adatokból nem számítható véges eredmény.";\n    return;\n  }\n\n  const invested = principal + contribution * months;\n  const profit = total - invested;`,
+      "kamatos kamat véges eredmény guard");
+    return out;
+  },
 
   "kalkulatorok/kamatos-kamat-kalkulator.html": (source) => replaceExact(source,
     `<input type="number" id="years" placeholder="pl. 20" step="any" inputmode="decimal">`,
     `<input type="number" id="years" placeholder="pl. 20" step="any" min="0.083333" max="100" inputmode="decimal">`,
     "kamatos kamat időtáv UI-korlát"),
+
+  "js/penzugyi/inflacio.js": (source) => replaceExact(source,
+    `  const futurePurchasingPower = initial / Math.pow(1 + annualRatePercent / 100, yearValue);\n  const change = initial - futurePurchasingPower;`,
+    `  const futurePurchasingPower = initial / Math.pow(1 + annualRatePercent / 100, yearValue);\n  if (!Number.isFinite(futurePurchasingPower)) {\n    resultFinal.textContent = "–";\n    resultLoss.textContent = "A megadott adatokból nem számítható véges vásárlóerő.";\n    return;\n  }\n  const change = initial - futurePurchasingPower;`,
+    "infláció véges eredmény guard"),
 
   "kalkulatorok/hitelkepesseg-kalkulator.html": (source) => replaceExact(source,
     `      <div class="info-box">\n        <strong>Fontos:</strong> Az eszköz egységes, 40%-os tervezési aránnyal számol. Ez nem azonos a mindenkor hatályos JTM-korláttal vagy egy bank hitelbírálatával.\n      </div>`,
