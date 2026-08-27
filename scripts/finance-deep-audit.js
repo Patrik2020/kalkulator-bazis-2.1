@@ -44,4 +44,21 @@ assert.ok(downPayment.includes("több adósnál ezt mindegyiküknek teljesíteni
 assert.ok(downPayment.includes("már nincs életkori korlátja"), "Az eltörölt elsőlakás-vásárlói életkori korlát nincs tisztázva.");
 assert.ok(downPayment.includes("nem automatikus banki finanszírozási ígéret"), "A 90%-os HFM szabályozói maximum jellege nincs tisztázva.");
 
-console.log("Finance deep audit OK: bér inputok, véges egyszerű pénzügyi eredmények, 2026 JTM és HFM guidance.");
+const financeQuality = transformed("js/finance-quality-upgrades.js");
+assert.ok(financeQuality.includes('data-q="regulatory-loan"'), "A HFM fedezeti plafon nincs külön megjelenítve.");
+assert.ok(financeQuality.includes("const regulatoryCap = estimated * hfm;"), "A HFM szabályozói plafon nincs a banki forgalmi értékből számolva.");
+assert.ok(financeQuality.includes("const usableLoan = Math.min(price, regulatoryCap);"), "A vásárlási HFM widget vételár fölötti hitelt mutathat.");
+assert.ok(financeQuality.includes("const cash = Math.max(0, price - usableLoan);"), "Az önerő nem a vételárhoz felhasználható hitelből számolódik.");
+const price = 50_000_000;
+const regulatoryCap = 60_000_000 * 0.90;
+const usableLoan = Math.min(price, regulatoryCap);
+assert.equal(regulatoryCap, 54_000_000);
+assert.equal(usableLoan, 50_000_000);
+assert.equal(Math.max(0, price - usableLoan), 0);
+
+const browserReference = transformed("scripts/reference-browser-audit.js");
+assert.ok(browserReference.includes("set('age', 18); const boundary = number('#result-calories') === 2208;"), "A kalória browser referencia nem a 18+ modell felnőtt alsó határát teszteli.");
+assert.ok(browserReference.includes("set('age', 17); const invalid = text('#result-calories') === '–'"), "A kalória browser referencia nem utasítja el a 18 év alatti bemenetet.");
+assert.ok(!browserReference.includes("set('age', 1); const boundary = number('#result-calories') === 2310;"), "A régi, gyerekre számoló kalória referencia bent maradt.");
+
+console.log("Finance deep audit OK: bér inputok, véges egyszerű pénzügyi eredmények, 2026 JTM/HFM, HFM vételár-cap és 18+ kalória referencia.");
