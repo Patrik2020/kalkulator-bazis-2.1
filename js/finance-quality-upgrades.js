@@ -167,7 +167,8 @@
         </label>
       </div>
       <div class="quality-metric-grid">
-        <div><span>HFM alapján becsült maximális hitel</span><strong data-q="loan">–</strong></div>
+        <div><span>HFM szerinti fedezeti plafon</span><strong data-q="regulatory-loan">–</strong></div>
+        <div><span>Vételárhoz felhasználható hitel maximuma</span><strong data-q="loan">–</strong></div>
         <div><span>Vételárhoz szükséges saját pénz</span><strong data-q="cash">–</strong></div>
         <div><span>Saját pénz aránya a vételárhoz</span><strong data-q="cash-ratio">–</strong></div>
       </div>
@@ -185,9 +186,11 @@
       const estimated = parse(valuation.value) || price;
       const hfm = parse(type.value);
       if (!(price > 0 && estimated > 0 && hfm > 0)) return;
-      const maxLoan = estimated * hfm;
-      const cash = Math.max(0, price - maxLoan);
-      node.querySelector('[data-q="loan"]').textContent = money(maxLoan);
+      const regulatoryCap = estimated * hfm;
+      const usableLoan = Math.min(price, regulatoryCap);
+      const cash = Math.max(0, price - usableLoan);
+      node.querySelector('[data-q="regulatory-loan"]').textContent = money(regulatoryCap);
+      node.querySelector('[data-q="loan"]').textContent = money(usableLoan);
       node.querySelector('[data-q="cash"]').textContent = money(cash);
       node.querySelector('[data-q="cash-ratio"]').textContent = `${pf.format((cash / price) * 100)}%`;
     };
