@@ -2,11 +2,15 @@ const fs = require("fs");
 const path = require("path");
 
 const root = path.resolve(__dirname, "..");
+const supersededTargets = new Set(["BMR felnőtt korhatár"]);
 
 function replaceExact(source, oldText, newText, label) {
   if (source.includes(newText)) return source;
   const first = source.indexOf(oldText);
-  if (first === -1) throw new Error(`Nem található egészség-upgrade cél: ${label}`);
+  if (first === -1) {
+    if (supersededTargets.has(label)) return source;
+    throw new Error(`Nem található egészség-upgrade cél: ${label}`);
+  }
   if (source.indexOf(oldText, first + oldText.length) !== -1) {
     throw new Error(`Nem egyedi egészség-upgrade cél: ${label}`);
   }
@@ -146,6 +150,18 @@ const transforms = {
     );
     output = replaceExact(
       output,
+      `    bodyfat: [
+      { label: "U.S. Department of Defense – body composition standards", href: "https://www.esd.whs.mil/Directives/issuances/dodi/" },
+      { label: "CDC – Healthy Weight and Growth", href: "https://www.cdc.gov/healthy-weight-growth/" }
+    ],`,
+      `    bodyfat: [
+      { label: "MyNavy HR – current Body Composition Assessment Guide", href: "https://www.mynavyhr.navy.mil/Portals/55/Support/Culture%20Resilience/Physical/Guide-4%20Body%20Composition%20Assessment.pdf" },
+      { label: "CDC – Healthy Weight and Growth", href: "https://www.cdc.gov/healthy-weight-growth/" }
+    ],`,
+      "aktuális Navy BCA forrás"
+    );
+    output = replaceExact(
+      output,
       `    sleep: [{ label: "CDC – How Much Sleep Do I Need?", href: "https://www.cdc.gov/sleep/about/" }, { label: "American Academy of Sleep Medicine – sleep duration recommendations", href: "https://aasm.org/resources/pdf/sleepdurationrecommendations.pdf" }],`,
       `    sleep: [{ label: "CDC – How Much Sleep Do I Need?", href: "https://www.cdc.gov/sleep/about/" }, { label: "NHLBI/NIH – Sleep Phases and Stages", href: "https://www.nhlbi.nih.gov/health/sleep/stages-of-sleep" }, { label: "American Academy of Sleep Medicine – sleep duration recommendations", href: "https://aasm.org/resources/pdf/sleepdurationrecommendations.pdf" }],`,
       "alvásciklus NIH forrás"
@@ -155,7 +171,7 @@ const transforms = {
       `    const calculate = () => {
       const age = numberValue(section, "pu-age"); const rest = numberValue(section, "pu-rest"); const formula = selectValue(section, "pu-formula", "tanaka");
       const max = formula === "classic" ? 220 - age : 208 - 0.7 * age; const reserve = max - rest;
-      const zone = (low, high) => \`${'${'}Math.round(rest + reserve * low)}–${'${'}Math.round(rest + reserve * high)} bpm\`;
+      const zone = (low, high) => \`${Math.round(rest + reserve * low)}–${Math.round(rest + reserve * high)} bpm\`;
       section.querySelector("[data-results]").innerHTML = resultCards([["Becsült maximális pulzus", Math.round(max) + " bpm"], ["Könnyű 50–60%", zone(.5, .6)], ["Közepes 60–70%", zone(.6, .7)], ["Intenzív 70–85%", zone(.7, .85)], ["220 − életkor kontroll", Math.round(220 - age) + " bpm"], ["Tanaka kontroll", Math.round(208 - .7 * age) + " bpm"]]);
     };`,
       `    const calculate = () => {
@@ -165,10 +181,16 @@ const transforms = {
         section.querySelector("[data-results]").innerHTML = resultCards([["Eredmény", "A felnőtt tervezőhöz 18+ életkort és a becsült maximumnál alacsonyabb pozitív nyugalmi pulzust adj meg."]]);
         return;
       }
-      const zone = (low, high) => \`${'${'}Math.round(rest + reserve * low)}–${'${'}Math.round(rest + reserve * high)} bpm\`;
+      const zone = (low, high) => \`${Math.round(rest + reserve * low)}–${Math.round(rest + reserve * high)} bpm\`;
       section.querySelector("[data-results]").innerHTML = resultCards([["Becsült maximális pulzus", Math.round(max) + " bpm"], ["Közepes relatív intenzitás – HRR 40–59%", zone(.4, .59)], ["Intenzív relatív intenzitás – HRR 60–84%", zone(.6, .84)], ["220 − életkor kontroll", Math.round(220 - age) + " bpm"], ["Tanaka kontroll", Math.round(208 - .7 * age) + " bpm"]]);
     };`,
       "priority pulzus HRR sávok és felnőtt guard"
+    );
+    output = replaceExact(
+      output,
+      `healthBase("US Navy testzsírbecslés – mérési pontok és hibahatár", "A körméretes képlet trendkövetésre használható, de mérési hiba és egyéni testalkat miatt több százalékpontos eltérés is előfordulhat.", \`${figure}<ul class="priority-checklist"><li>Mindig azonos napszakban és azonos mérési ponton mérj.</li><li>A szalag simuljon, de ne vágjon a bőrbe.</li><li>Az eredményt inkább több mérés trendjeként értelmezd.</li><li>Laboratóriumi vagy klinikai testösszetétel-vizsgálat eltérhet.</li></ul><div class="priority-warning">A kalkulátor nem gyermekek, várandósság vagy speciális testalkat klinikai értékelésére készült.</div>\`, healthSources.bodyfat);`,
+      `healthBase("Klasszikus körfogat-alapú testzsírbecslés – mérési pontok és hibahatár", "A nyak/derék/csípő logaritmikus körfogatmodell trendkövetésre használható becslés, de nem azonos a U.S. Navy jelenlegi Body Composition Assessment eljárásával. A jelenlegi Navy útmutató más mérési/értékelési táblákat használ.", \`${figure}<ul class="priority-checklist"><li>Mindig azonos napszakban és azonos mérési ponton mérj.</li><li>A szalag simuljon, de ne vágjon a bőrbe.</li><li>Az eredményt inkább több mérés trendjeként értelmezd.</li><li>Laboratóriumi vagy klinikai testösszetétel-vizsgálat eltérhet.</li></ul><div class="priority-warning">A kalkulátor klasszikus körfogat-alapú becslést ad; nem a jelenlegi Navy BCA minősítésére szolgál, és nem gyermekek, várandósság vagy speciális testalkat klinikai értékelésére készült.</div>\`, healthSources.bodyfat);`,
+      "testzsír klasszikus modell vs aktuális Navy BCA"
     );
     output = replaceExact(
       output,
@@ -263,6 +285,16 @@ const transforms = {
       "<ul><li><strong>Könnyű tartomány:</strong> bemelegítéshez, regeneráló mozgáshoz, hosszabb könnyű edzéshez használható.</li><li><strong>Közepes tartomány:</strong> tartósabb állóképességi munkát jelenthet, ahol a beszéd még többnyire kontrollálható.</li><li><strong>Magasabb tartomány:</strong> nehezebben fenntartható, intenzívebb munka; kezdőként nem ez az elsődleges cél.</li></ul>",
       "<ul><li><strong>Közepes relatív intenzitás (40–59% pulzustartalék):</strong> tájékoztató tartomány; a beszédteszt és a saját terhelésérzet is fontos kontroll.</li><li><strong>Intenzív relatív intenzitás (60–84% pulzustartalék):</strong> nagyobb terhelés; kezdőként, gyógyszer vagy ismert szív-érrendszeri betegség mellett nem önmagában a kalkulált pulzusszám alapján érdemes célozni.</li></ul>",
       "pulzus intenzitási kategóriák"
+    );
+    return output;
+  },
+
+  "kalkulatorok/testzsir-kalkulator.html": (source) => {
+    let output = replaceExact(
+      source,
+      "<p>A program a körméretek logaritmusát használó, úgynevezett US Navy képletet alkalmazza. Férfiaknál derék, nyak és magasság; nőknél derék, csípő, nyak és magasság szerepel a számításban.</p>",
+      "<p>A program egy klasszikus, körméretek logaritmusát használó, gyakran „US Navy” néven említett becslőképletet alkalmaz. Férfiaknál derék, nyak és magasság; nőknél derék, csípő, nyak és magasság szerepel a számításban. Ez nem azonos a U.S. Navy jelenlegi Body Composition Assessment eljárásával, ezért az eredményt általános körfogat-alapú becslésként kezeld.</p>",
+      "testzsír modell aktuális Navy BCA elhatárolása"
     );
     return output;
   },
