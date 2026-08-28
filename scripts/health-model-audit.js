@@ -84,6 +84,7 @@ const calorieExpected = expected("js/egeszseg/kaloria.js");
 const priorityExpected = expected("js/priority-upgrades.js");
 const sleepHtmlExpected = expected("kalkulatorok/alvasciklus-kalkulator.html");
 const pulseHtmlExpected = expected("kalkulatorok/pulzus-zona-kalkulator.html");
+const bodyFatHtmlExpected = expected("kalkulatorok/testzsir-kalkulator.html");
 
 // Mifflin–St Jeor – felnőtt scope + képlet, az aktivitási érték csak példa.
 assert.ok(simpleExpected.includes("v.age < 18"), "BMR 18+ guard hiányzik");
@@ -98,11 +99,16 @@ assert.ok(simpleExpected.includes("const threshold=v.gender>=2?0.90:0.85"), "WHR
 approx(85 / 100, 0.85, 1e-12, "WHR női küszöb");
 approx(90 / 100, 0.90, 1e-12, "WHR férfi küszöb");
 
-// U.S. Navy/Hodgdon–Beckett metrikus körfogatképletek.
+// Klasszikus, körfogat-alapú testzsírmodell. A számítás marad, de nem állítjuk a jelenlegi Navy BCA-eljárásnak.
 assert.ok(simpleExpected.includes("1.0324-0.19077*log10(circumference)+0.15456*log10(v.height)"), "Férfi testzsírképlet eltért");
 assert.ok(simpleExpected.includes("1.29579-0.35004*log10(circumference)+0.221*log10(v.height)"), "Női testzsírképlet eltért");
-approx(navyBodyFat({ sex: "male", waist: 90, neck: 40, height: 175 }), 19.20700892511178, 1e-9, "Navy férfi referencia");
-approx(navyBodyFat({ sex: "female", waist: 75, neck: 35, hip: 100, height: 165 }), 28.435004161152847, 1e-9, "Navy női referencia");
+approx(navyBodyFat({ sex: "male", waist: 90, neck: 40, height: 175 }), 19.20700892511178, 1e-9, "Körfogatmodell férfi referencia");
+approx(navyBodyFat({ sex: "female", waist: 75, neck: 35, hip: 100, height: 165 }), 28.435004161152847, 1e-9, "Körfogatmodell női referencia");
+assert.ok(bodyFatHtmlExpected.includes("klasszikus, körméretek logaritmusát használó"), "Testzsíroldal nem klasszikus körfogatbecslésként címkézi a modellt");
+assert.ok(bodyFatHtmlExpected.includes("nem azonos a U.S. Navy jelenlegi Body Composition Assessment eljárásával"), "Testzsíroldal nem választja el a klasszikus képletet a jelenlegi Navy BCA-tól");
+assert.ok(priorityExpected.includes("Klasszikus körfogat-alapú testzsírbecslés"), "Priority testzsírblokk régi Navy-címkéje bent maradt");
+assert.ok(priorityExpected.includes("MyNavy HR – current Body Composition Assessment Guide"), "Aktuális Navy BCA elsődleges forrás hiányzik");
+assert.ok(priorityExpected.includes("nem azonos a U.S. Navy jelenlegi Body Composition Assessment eljárásával"), "Priority testzsírblokk nem tisztázza az aktuális Navy BCA eltérését");
 
 // Devine – történeti becslés marad, önkényes ±10%-os ál-céltartomány nélkül.
 assert.ok(simpleExpected.includes("if (v.height < 152.4)"), "Devine alsó scope guard hiányzik");
@@ -165,4 +171,4 @@ assert.ok(simpleExpected.includes("const max=220-v.age"), "Pulzus max-becslés e
 assert.ok(simpleExpected.includes("['Becsült max pulzus'"), "Pulzus max nincs becslésként címkézve");
 assert.ok(simpleExpected.includes("c*90-15"), "Alvásciklus példamodell képlete eltért");
 
-console.log("Egészség modell-audit OK: BMI, Mifflin, WHR, Navy testzsír, Devine, terhesség, makró, fehérje, HRR és alvás edge case-ek.");
+console.log("Egészség modell-audit OK: BMI, Mifflin, WHR, klasszikus körfogat-testzsír, Devine, terhesség, makró, fehérje, HRR és alvás edge case-ek.");
