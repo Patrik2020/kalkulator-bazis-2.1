@@ -120,8 +120,8 @@ invariant("karvonen-max-heart-rate-decreases-with-age", () => {
 });
 
 invariant("devine-one-inch-adds-2_3kg", () => {
-  const a = numericRow("idealis-testsuly-kalkulator", { height: 177.8, gender: 2 }, "Devine-képlet szerinti becslés");
-  const b = numericRow("idealis-testsuly-kalkulator", { height: 180.34, gender: 2 }, "Devine-képlet szerinti becslés");
+  const a = numericRow("idealis-testsuly-kalkulator", { height: 177.8, gender: 2 }, "Történeti Devine-becslés");
+  const b = numericRow("idealis-testsuly-kalkulator", { height: 180.34, gender: 2 }, "Történeti Devine-becslés");
   approx(b - a, 2.3, 0.11);
 });
 
@@ -150,8 +150,8 @@ invariant("waist-hip-ratio-increases-with-waist", () => {
 });
 
 invariant("protein-scales-with-weight", () => {
-  const a = numericRow("feherje-szukseglet-kalkulator", { weight: 50, factor: 1.6 }, "Napi fehérjeigény");
-  const b = numericRow("feherje-szukseglet-kalkulator", { weight: 100, factor: 1.6 }, "Napi fehérjeigény");
+  const a = numericRow("feherje-szukseglet-kalkulator", { weight: 50, factor: 1.6 }, "Napi fehérje a választott szorzóval");
+  const b = numericRow("feherje-szukseglet-kalkulator", { weight: 100, factor: 1.6 }, "Napi fehérje a választott szorzóval");
   assert.equal(b, a * 2);
 });
 
