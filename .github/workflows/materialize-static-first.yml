@@ -64,6 +64,9 @@ jobs:
       - name: Validate HTML, JavaScript and calculator logic
         run: npm run quality
 
+      - name: Run final 100-calculator inventory gate
+        run: node scripts/final-fullsite-audit.js
+
       - name: Verify generated sitemap URL set is current
         run: |
           npm run sitemap
