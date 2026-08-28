@@ -7,6 +7,7 @@ const { publicUrlForSource } = require("./url-paths");
 
 const root = path.resolve(__dirname, "..");
 const calculatorDir = path.join(root, "kalkulatorok");
+const supplementalCalculatorPages = ["kalkulatorok/multifunkcios-szamologep.html"];
 
 function sorted(values) {
   return [...values].sort((a, b) => a.localeCompare(b, "hu"));
@@ -43,7 +44,7 @@ for (let batch = 1; batch <= 5; batch += 1) {
   registryEntries.push(...require(`../js/expansion-batch-0${batch}-data.js`));
 }
 
-assert.strictEqual(registryEntries.length, 100, `Pontosan 100 kalkulátor-bejegyzés szükséges, jelenleg ${registryEntries.length}.`);
+assert.strictEqual(registryEntries.length, 100, `Pontosan 100 katalogizált kalkulátor-bejegyzés szükséges, jelenleg ${registryEntries.length}.`);
 
 const registryUrls = registryEntries.map((entry) => entry.url);
 const uniqueRegistryUrls = new Set(registryUrls);
@@ -63,11 +64,18 @@ const calculatorHtml = fs
   .readdirSync(calculatorDir, { withFileTypes: true })
   .filter((entry) => entry.isFile() && entry.name.endsWith(".html"))
   .map((entry) => `kalkulatorok/${entry.name}`);
-assert.strictEqual(calculatorHtml.length, 100, `Pontosan 100 kalkulátor HTML-fájl szükséges, jelenleg ${calculatorHtml.length}.`);
-assertSameSet("Registry ↔ kalkulátor HTML", registryUrls, calculatorHtml);
+
+assert.strictEqual(
+  calculatorHtml.length,
+  101,
+  `100 katalogizált kalkulátor + 1 standalone tudományos számológép szükséges, jelenleg ${calculatorHtml.length} HTML-fájl van.`
+);
+const inventoryDiff = diff(registryUrls, calculatorHtml);
+assert.deepStrictEqual(inventoryDiff.missing, [], `Registryből hiányzó HTML: ${inventoryDiff.missing.join(", ")}`);
+assertSameSet("Ismert standalone kalkulátoroldalak", supplementalCalculatorPages, inventoryDiff.extra);
 
 const manifestPages = Object.values(suites).flat();
-assert.strictEqual(new Set(manifestPages).size, 100, "A tesztmanifest nem pontosan 100 egyedi kalkulátort fed le.");
+assert.strictEqual(new Set(manifestPages).size, 100, "A tesztmanifest nem pontosan 100 egyedi katalogizált kalkulátort fed le.");
 assertSameSet("Registry ↔ tesztmanifest", registryUrls, manifestPages);
 
 const sitemapXml = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
@@ -79,11 +87,11 @@ const sitemapCalculatorUrls = sitemapUrls.filter((value) => {
     return false;
   }
 });
-const expectedPublicUrls = registryUrls.map((sourceFile) => publicUrlForSource(sourceFile));
+const expectedPublicUrls = [...registryUrls, ...supplementalCalculatorPages].map((sourceFile) => publicUrlForSource(sourceFile));
 assert.strictEqual(new Set(sitemapCalculatorUrls).size, sitemapCalculatorUrls.length, "Duplikált kalkulátor URL van a sitemapban.");
-assertSameSet("Registry ↔ sitemap kalkulátorok", expectedPublicUrls, sitemapCalculatorUrls);
+assertSameSet("101 kalkulátoroldal ↔ sitemap", expectedPublicUrls, sitemapCalculatorUrls);
 
-for (const sourceFile of registryUrls) {
+for (const sourceFile of calculatorHtml) {
   const absolute = path.join(root, sourceFile);
   const html = fs.readFileSync(absolute, "utf8");
   const expectedCanonical = publicUrlForSource(sourceFile);
@@ -93,11 +101,23 @@ for (const sourceFile of registryUrls) {
   assert.strictEqual(href, expectedCanonical, `${sourceFile}: canonical eltérés (${href || "hiányzik"} != ${expectedCanonical}).`);
 }
 
+const packageJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
+assert.match(
+  packageJson.scripts?.["test:calculator-suite"] || "",
+  /calculator-suite-audit\.js/,
+  "A standalone multifunkciós számológép saját logikai auditja hiányzik."
+);
+assert.match(
+  packageJson.scripts?.quality || "",
+  /test:calculator-suite/,
+  "A standalone multifunkciós számológép auditja nincs a kötelező quality láncban."
+);
+
 const qualityWorkflow = fs.readFileSync(path.join(root, ".github", "workflows", "quality.yml"), "utf8");
 assert.match(qualityWorkflow, /node scripts\/final-fullsite-audit\.js/, "A final full-site gate nincs bekötve a Site quality workflow-ba.");
 const materializeWorkflow = fs.readFileSync(path.join(root, ".github", "workflows", "materialize-static-first.yml"), "utf8");
 assert.match(materializeWorkflow, /node scripts\/final-fullsite-audit\.js/, "A final full-site gate nincs bekötve a Materialize workflow-ba.");
 
 console.log(
-  `Final full-site audit OK: 100 registry = 100 HTML = 100 tesztelt oldal = 100 sitemap kalkulátor, egyező canonical URL-ekkel.`
+  "Final full-site audit OK: 100 katalogizált kalkulátor + 1 standalone tudományos számológép, teljes registry/HTML/teszt/sitemap/canonical konzisztenciával."
 );
