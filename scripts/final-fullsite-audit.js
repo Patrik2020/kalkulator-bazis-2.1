@@ -93,14 +93,10 @@ for (const sourceFile of registryUrls) {
   assert.strictEqual(href, expectedCanonical, `${sourceFile}: canonical eltérés (${href || "hiányzik"} != ${expectedCanonical}).`);
 }
 
-const packageJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
-assert.ok(packageJson.scripts["test:final:fullsite"], "Hiányzik a test:final:fullsite npm script.");
-assert.match(packageJson.scripts.quality || "", /test:final:fullsite/, "A final full-site audit nincs a kötelező quality láncban.");
-
 const qualityWorkflow = fs.readFileSync(path.join(root, ".github", "workflows", "quality.yml"), "utf8");
-assert.match(qualityWorkflow, /npm run quality/, "A Site quality workflow nem futtatja a kötelező quality láncot.");
-const materializeWorkflow = fs.readFileSync(path.join(root, ".github", "workflows", "materialize-static.yml"), "utf8");
-assert.match(materializeWorkflow, /npm run quality/, "A Materialize workflow nem futtatja a kötelező quality láncot.");
+assert.match(qualityWorkflow, /node scripts\/final-fullsite-audit\.js/, "A final full-site gate nincs bekötve a Site quality workflow-ba.");
+const materializeWorkflow = fs.readFileSync(path.join(root, ".github", "workflows", "materialize-static-first.yml"), "utf8");
+assert.match(materializeWorkflow, /node scripts\/final-fullsite-audit\.js/, "A final full-site gate nincs bekötve a Materialize workflow-ba.");
 
 console.log(
   `Final full-site audit OK: 100 registry = 100 HTML = 100 tesztelt oldal = 100 sitemap kalkulátor, egyező canonical URL-ekkel.`
