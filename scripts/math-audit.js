@@ -20,6 +20,7 @@ const sandbox = {
 vm.createContext(sandbox);
 vm.runInContext(source, sandbox, { filename: sourcePath });
 const calcs = sandbox.__CALCS__;
+const batch04 = require("../js/expansion-batch-04-calculators.js");
 
 const results = [];
 function run(id, values) {
@@ -56,19 +57,19 @@ pass("terkovezes-kalkulator", () => assert.equal(run("terkovezes-kalkulator", { 
 pass("tetocserep-kalkulator", () => assert.equal(run("tetocserep-kalkulator", { area: 100, pieces: 10, waste: 8 })["Szükséges cserép"], "1080 db"));
 pass("fuga-kalkulator", () => approx(huNumber(run("fuga-kalkulator", { area: 10, tileLength: 300, tileWidth: 300, joint: 3, depth: 8, densityFactor: 1.6, bag: 5 })["Becsült fugázóanyag"]), 2.6, 0.06));
 pass("vizfogyasztas-kalkulator", () => approx(huNumber(run("vizfogyasztas-kalkulator", { weight: 70, activity: 500 })["Becsült napi folyadék"]), 2.95, 0.001));
-pass("pulzus-zona-kalkulator", () => assert.equal(run("pulzus-zona-kalkulator", { age: 40, rest: 60 })["60–70%-os Karvonen-zóna"], "132–144 bpm"));
+pass("pulzus-zona-kalkulator", () => assert.equal(run("pulzus-zona-kalkulator", { age: 40, rest: 60 })["Közepes relatív intenzitás – 40–59% pulzustartalék"], "108–131 bpm"));
 pass("terhessegi-kalkulator", () => assert.match(run("terhessegi-kalkulator", { lmpDate: "2026-01-01", cycleLength: 28 })["Várható szülési dátum"], /2026.*10.*8/));
-pass("idealis-testsuly-kalkulator", () => approx(huNumber(run("idealis-testsuly-kalkulator", { height: 177.4, gender: 2 })["Devine-képlet szerinti becslés"]), 72.6, 0.05));
+pass("idealis-testsuly-kalkulator", () => approx(huNumber(run("idealis-testsuly-kalkulator", { height: 177.4, gender: 2 })["Történeti Devine-becslés"]), 72.6, 0.05));
 pass("testzsir-kalkulator", () => {
   const value = huNumber(run("testzsir-kalkulator", { gender: 2, waist: 90, neck: 40, hip: 0, height: 180 })["Becsült testzsír"]);
   assert.ok(value > 15 && value < 22);
 });
 pass("makro-kalkulator", () => assert.equal(run("makro-kalkulator", { calories: 2000, protein: 30, fat: 25 })["Szénhidrát"], "225 g"));
-pass("alvasciklus-kalkulator", () => assert.match(run("alvasciklus-kalkulator", { wakeHour: 7, wakeMinute: 0 })["6 ciklus lefekvés"], /21:45/));
+pass("alvasciklus-kalkulator", () => assert.match(run("alvasciklus-kalkulator", { wakeHour: 7, wakeMinute: 0 })["Példa: 6 × 90 perc + 15 perc elalvás"], /21:45/));
 // A megnevezés szándékosan részletesebb lett; a numerikus eredményt ellenőrizzük.
 pass("bmr-kalkulator-numeric", () => approx(huNumber(run("bmr-kalkulator", { gender: 2, weight: 80, height: 180, age: 40 })["Becsült nyugalmi energiaigény"]), 1730, 0.1));
 pass("derek-csipo-kalkulator", () => approx(huNumber(run("derek-csipo-kalkulator", { gender: 2, waist: 90, hip: 100 })["Derék-csípő arány"]), 0.9, 0.001));
-pass("feherje-szukseglet-kalkulator", () => assert.equal(run("feherje-szukseglet-kalkulator", { weight: 80, factor: 1.6 })["Napi fehérjeigény"], "128 g"));
+pass("feherje-szukseglet-kalkulator", () => assert.equal(run("feherje-szukseglet-kalkulator", { weight: 80, factor: 1.6 })["Napi fehérje a választott szorzóval"], "128 g"));
 pass("ar-kedvezmeny-kalkulator", () => assert.equal(huNumber(run("ar-kedvezmeny-kalkulator", { price: 10000, discount: 20 })["Akciós ár"]), 8000));
 pass("borravalo-kalkulator", () => assert.equal(huNumber(run("borravalo-kalkulator", { bill: 10000, tip: 10, people: 2 })["Egy főre"]), 5500));
 pass("munkaido-kalkulator", () => approx(huNumber(run("munkaido-kalkulator", { days: 5, hours: 8, weeks: 4.33 })["Havi becsült munkaidő"]), 173.2, 0.01));
@@ -113,6 +114,13 @@ pass("regression-macro-over-100", () => assert.throws(() => run("makro-kalkulato
 pass("regression-negative-unit-price", () => assert.throws(() => run("egysegar-kalkulator", { price: -1500, quantity: 3, unit: 1 })));
 pass("regression-devine-min-height", () => assert.throws(() => run("idealis-testsuly-kalkulator", { height: 152.3, gender: 2 })));
 pass("regression-travel-minute-normalization", () => assert.equal(run("utazasi-ido-kalkulator", { distance: 119.9, speed: 120, breaks: 0 })["Várható menetidő"], "1 óra 0 perc"));
+pass("regression-step-count-integer", () => {
+  assert.throws(() => batch04.lepestav(10000.5, 75, 110), /egész szám/);
+  const zero = batch04.lepestav(0, 75, 110);
+  assert.equal(zero.distanceKm, 0);
+  assert.equal(zero.minutes, 0);
+  assert.equal(zero.speedKmh, 0);
+});
 
 const failed = results.filter((item) => item.status === "FAIL");
 if (process.argv.includes("--write")) {
