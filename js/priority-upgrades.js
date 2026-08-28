@@ -578,7 +578,8 @@
       { label: "NHS – Due date calculator and pregnancy guidance", href: "https://www.nhs.uk/pregnancy/finding-out/due-date-calculator/" }
     ],
     pulse: [
-      { label: "American Heart Association – Target Heart Rates", href: "https://www.heart.org/en/healthy-living/fitness/fitness-basics/target-heart-rates" },
+      { label: "American Heart Association – Target Heart Rates", href: "https://www.heart.org/en/healthy-living/exercise-and-physical-activity/fitness-basics/target-heart-rates" },
+      { label: "HHS – Physical Activity Guidelines: relative intensity", href: "https://health.gov/sites/default/files/2019-09/Physical_Activity_Guidelines_2nd_edition.pdf" },
       { label: "Tanaka és mtsai. – életkor alapján becsült maximális pulzus", href: "https://pubmed.ncbi.nlm.nih.gov/11153730/" }
     ],
     water: [
@@ -586,11 +587,11 @@
       { label: "NHS – Water, drinks and hydration", href: "https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/water-drinks-nutrition/" }
     ],
     bodyfat: [
-      { label: "U.S. Department of Defense – body composition standards", href: "https://www.esd.whs.mil/Directives/issuances/dodi/" },
+      { label: "MyNavy HR – current Body Composition Assessment Guide", href: "https://www.mynavyhr.navy.mil/Portals/55/Support/Culture%20Resilience/Physical/Guide-4%20Body%20Composition%20Assessment.pdf" },
       { label: "CDC – Healthy Weight and Growth", href: "https://www.cdc.gov/healthy-weight-growth/" }
     ],
     whr: [{ label: "WHO – Waist circumference and waist–hip ratio report", href: "https://www.who.int/publications/i/item/9789241501491" }],
-    sleep: [{ label: "CDC – How Much Sleep Do I Need?", href: "https://www.cdc.gov/sleep/about/" }, { label: "American Academy of Sleep Medicine – sleep duration recommendations", href: "https://aasm.org/resources/pdf/sleepdurationrecommendations.pdf" }],
+    sleep: [{ label: "CDC – How Much Sleep Do I Need?", href: "https://www.cdc.gov/sleep/about/" }, { label: "NHLBI/NIH – Sleep Phases and Stages", href: "https://www.nhlbi.nih.gov/health/sleep/stages-of-sleep" }, { label: "American Academy of Sleep Medicine – sleep duration recommendations", href: "https://aasm.org/resources/pdf/sleepdurationrecommendations.pdf" }],
     bmi: [{ label: "WHO – BMI classification", href: "https://www.who.int/data/gho/data/themes/topics/topic-details/GHO/body-mass-index" }, { label: "CDC – About Adult BMI", href: "https://www.cdc.gov/bmi/adult-calculator/bmi-categories.html" }],
     nutrition: [{ label: "Mifflin–St Jeor equation – original publication", href: "https://pubmed.ncbi.nlm.nih.gov/2305711/" }, { label: "EFSA – Dietary Reference Values", href: "https://www.efsa.europa.eu/en/topics/topic/dietary-reference-values" }, { label: "WHO – Healthy diet", href: "https://www.who.int/news-room/fact-sheets/detail/healthy-diet" }]
   };
@@ -638,8 +639,12 @@
     const calculate = () => {
       const age = numberValue(section, "pu-age"); const rest = numberValue(section, "pu-rest"); const formula = selectValue(section, "pu-formula", "tanaka");
       const max = formula === "classic" ? 220 - age : 208 - 0.7 * age; const reserve = max - rest;
+      if (age < 18 || rest <= 0 || reserve <= 0) {
+        section.querySelector("[data-results]").innerHTML = resultCards([["Eredmény", "A felnőtt tervezőhöz 18+ életkort és a becsült maximumnál alacsonyabb pozitív nyugalmi pulzust adj meg."]]);
+        return;
+      }
       const zone = (low, high) => `${Math.round(rest + reserve * low)}–${Math.round(rest + reserve * high)} bpm`;
-      section.querySelector("[data-results]").innerHTML = resultCards([["Becsült maximális pulzus", Math.round(max) + " bpm"], ["Könnyű 50–60%", zone(.5, .6)], ["Közepes 60–70%", zone(.6, .7)], ["Intenzív 70–85%", zone(.7, .85)], ["220 − életkor kontroll", Math.round(220 - age) + " bpm"], ["Tanaka kontroll", Math.round(208 - .7 * age) + " bpm"]]);
+      section.querySelector("[data-results]").innerHTML = resultCards([["Becsült maximális pulzus", Math.round(max) + " bpm"], ["Közepes relatív intenzitás – HRR 40–59%", zone(.4, .59)], ["Intenzív relatív intenzitás – HRR 60–84%", zone(.6, .84)], ["220 − életkor kontroll", Math.round(220 - age) + " bpm"], ["Tanaka kontroll", Math.round(208 - .7 * age) + " bpm"]]);
     };
     section.addEventListener("input", calculate); section.addEventListener("change", calculate); calculate();
   }
@@ -654,7 +659,7 @@
 
   function upgradeBodyFat() {
     const figure = `<div class="priority-health-figure"><svg viewBox="0 0 520 240" role="img" aria-label="Mérési pontok sematikus ábrája"><rect x="1" y="1" width="518" height="238" rx="18" fill="none" stroke="currentColor" opacity=".18"/><circle cx="150" cy="45" r="24" fill="none" stroke="currentColor" stroke-width="4"/><path d="M150 69v85M95 102h110M150 154l-38 64M150 154l38 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M122 78c18 10 38 10 56 0M108 126c28 12 56 12 84 0M102 151c32 15 64 15 96 0" fill="none" stroke="#2563eb" stroke-width="5"/><text x="250" y="82" font-size="17" fill="currentColor">Nyak: vízszintesen, az ádámcsutka alatt</text><text x="250" y="130" font-size="17" fill="currentColor">Derék: az előírt mérési ponton, nyugodt kilégzésnél</text><text x="250" y="178" font-size="17" fill="currentColor">Csípő: nőknél a legszélesebb ponton</text></svg></div>`;
-    healthBase("US Navy testzsírbecslés – mérési pontok és hibahatár", "A körméretes képlet trendkövetésre használható, de mérési hiba és egyéni testalkat miatt több százalékpontos eltérés is előfordulhat.", `${figure}<ul class="priority-checklist"><li>Mindig azonos napszakban és azonos mérési ponton mérj.</li><li>A szalag simuljon, de ne vágjon a bőrbe.</li><li>Az eredményt inkább több mérés trendjeként értelmezd.</li><li>Laboratóriumi vagy klinikai testösszetétel-vizsgálat eltérhet.</li></ul><div class="priority-warning">A kalkulátor nem gyermekek, várandósság vagy speciális testalkat klinikai értékelésére készült.</div>`, healthSources.bodyfat);
+    healthBase("Klasszikus körfogat-alapú testzsírbecslés – mérési pontok és hibahatár", "A nyak/derék/csípő logaritmikus körfogatmodell trendkövetésre használható becslés, de nem azonos a U.S. Navy jelenlegi Body Composition Assessment eljárásával. A jelenlegi Navy útmutató más mérési/értékelési táblákat használ.", `${figure}<ul class="priority-checklist"><li>Mindig azonos napszakban és azonos mérési ponton mérj.</li><li>A szalag simuljon, de ne vágjon a bőrbe.</li><li>Az eredményt inkább több mérés trendjeként értelmezd.</li><li>Laboratóriumi vagy klinikai testösszetétel-vizsgálat eltérhet.</li></ul><div class="priority-warning">A kalkulátor klasszikus körfogat-alapú becslést ad; nem a jelenlegi Navy BCA minősítésére szolgál, és nem gyermekek, várandósság vagy speciális testalkat klinikai értékelésére készült.</div>`, healthSources.bodyfat);
   }
 
   function upgradeWhr() {
@@ -662,7 +667,7 @@
   }
 
   function upgradeSleep() {
-    healthBase("Alvásciklus helyett elsőként a megfelelő alvásidő", "A 90 perces ciklus csak átlagos közelítés. A ciklusok hossza egyénenként és ugyanazon éjszakán belül is változik.", `<div class="priority-table-wrap"><table class="priority-table"><thead><tr><th>Életkor</th><th>Általános napi ajánlott alvásidő</th></tr></thead><tbody><tr><td>6–12 év</td><td>9–12 óra</td></tr><tr><td>13–18 év</td><td>8–10 óra</td></tr><tr><td>18–60 év</td><td>legalább 7 óra</td></tr><tr><td>61–64 év</td><td>7–9 óra</td></tr><tr><td>65 év felett</td><td>7–8 óra</td></tr></tbody></table></div><div class="priority-warning">Rendszeres hangos horkolás, légzéskimaradás, tartós nappali álmosság vagy elalvás közlekedés közben kivizsgálást igényelhet.</div>`, healthSources.sleep);
+    healthBase("Alvásciklus helyett elsőként a megfelelő alvásidő", "A 90 perces ciklus csak egyszerű példaforgatókönyv. Az NHLBI/NIH szerint az alvási ciklus jellemzően 80–100 percenként indul újra, és éjszakán belül is változhat.", `<div class="priority-table-wrap"><table class="priority-table"><thead><tr><th>Életkor</th><th>Általános napi ajánlott alvásidő</th></tr></thead><tbody><tr><td>6–12 év</td><td>9–12 óra</td></tr><tr><td>13–17 év</td><td>8–10 óra</td></tr><tr><td>18–60 év</td><td>legalább 7 óra</td></tr><tr><td>61–64 év</td><td>7–9 óra</td></tr><tr><td>65 év felett</td><td>7–8 óra</td></tr></tbody></table></div><div class="priority-warning">Rendszeres hangos horkolás, légzéskimaradás, tartós nappali álmosság vagy elalvás közlekedés közben kivizsgálást igényelhet.</div>`, healthSources.sleep);
   }
 
   function upgradeWeightRange() {

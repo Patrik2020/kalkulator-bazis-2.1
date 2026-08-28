@@ -232,7 +232,7 @@ const SIMPLE_CALCULATORS = {
         "value": 65
     }
 ],
-    compute(v) { requirePositive(v.age, v.rest); const max=220-v.age; if (max <= v.rest) throw new Error('A nyugalmi pulzus legyen kisebb a becsült maximális pulzusnál'); const reserve=max-v.rest; return [['Becsült max pulzus', max+' bpm'], ['60–70%-os Karvonen-zóna', Math.round(v.rest+reserve*.6)+'–'+Math.round(v.rest+reserve*.7)+' bpm'], ['70–85%-os Karvonen-zóna', Math.round(v.rest+reserve*.7)+'–'+Math.round(v.rest+reserve*.85)+' bpm']]; }
+    compute(v) { requirePositive(v.age, v.rest); if (v.age < 18) throw new Error('Ezt a pulzustartalékos tervezőt felnőtteknek (18+) használjuk'); const max=220-v.age; if (max <= v.rest) throw new Error('A nyugalmi pulzus legyen kisebb a becsült maximális pulzusnál'); const reserve=max-v.rest; return [['Becsült max pulzus', max+' bpm'], ['Közepes relatív intenzitás – 40–59% pulzustartalék', Math.round(v.rest+reserve*.4)+'–'+Math.round(v.rest+reserve*.59)+' bpm'], ['Intenzív relatív intenzitás – 60–84% pulzustartalék', Math.round(v.rest+reserve*.6)+'–'+Math.round(v.rest+reserve*.84)+' bpm']]; }
   },
   "terhessegi-kalkulator": {
     fields: [
@@ -252,8 +252,9 @@ const SIMPLE_CALCULATORS = {
       if (!v.lmpDate) return [['Becsült terhességi hét', 'Adj meg egy dátumot'], ['Várható szülési dátum', '–']];
       const lmp = new Date(v.lmpDate + 'T12:00:00');
       if (Number.isNaN(lmp.getTime())) throw new Error('Érvénytelen dátum');
-      const cycleLength = Math.round(v.cycleLength || 28);
-      if (cycleLength < 21 || cycleLength > 45) throw new Error('A ciklushossz 21 és 45 nap között legyen');
+      const rawCycleLength = Number(v.cycleLength || 28);
+      if (!Number.isFinite(rawCycleLength) || rawCycleLength < 21 || rawCycleLength > 45) throw new Error('A ciklushossz 21 és 45 nap között legyen');
+      const cycleLength = Math.round(rawCycleLength);
       const adjustment = cycleLength - 28;
       const due = new Date(lmp);
       due.setDate(due.getDate() + 280 + adjustment);
@@ -261,9 +262,13 @@ const SIMPLE_CALCULATORS = {
       today.setHours(12, 0, 0, 0);
       if (lmp > today) throw new Error('Az utolsó menstruáció dátuma nem lehet jövőbeli');
       const elapsedDays = Math.round((Date.UTC(today.getFullYear(), today.getMonth(), today.getDate()) - Date.UTC(lmp.getFullYear(), lmp.getMonth(), lmp.getDate())) / 86400000);
+      if (elapsedDays > 294) throw new Error('A megadott dátum alapján több mint 42 hét telt el. Ellenőrizd az utolsó menstruáció dátumát és a klinikai datálást.');
       const week = Math.floor(elapsedDays / 7);
       const day = elapsedDays % 7;
-      return [['Becsült terhességi kor', week + '. hét ' + day + '. nap'], ['Várható szülési dátum', due.toLocaleDateString('hu-HU')]];
+      const rows = [['Becsült terhességi kor', week + '. hét ' + day + '. nap'], ['Várható szülési dátum', due.toLocaleDateString('hu-HU')]];
+      if (!Number.isInteger(rawCycleLength)) rows.push(['Ciklushossz kerekítése', String(rawCycleLength).replace('.', ',') + ' → ' + cycleLength + ' nap']);
+      if (elapsedDays === 294) rows.push(['42 hetes modellhatár', 'A naptári becslés elérte a 42 hetet; a klinikai datálás az irányadó.']);
+      return rows;
     }
   },
   "idealis-testsuly-kalkulator": {
@@ -289,7 +294,7 @@ const SIMPLE_CALCULATORS = {
         ]
     }
 ],
-    compute(v) { requirePositive(v.height); if (v.height < 152.4) throw new Error('A Devine-képlet 152,4 cm alatt nem ad megbízható becslést'); const base=v.gender>=2?50:45.5; const kg=base+(2.3/2.54)*(v.height-152.4); return [['Devine-képlet szerinti becslés', kg.toFixed(1).replace('.', ',')+' kg'], ['±10%-os tájékoztató sáv', (kg*0.9).toFixed(1).replace('.', ',')+'–'+(kg*1.1).toFixed(1).replace('.', ',')+' kg']]; }
+    compute(v) { requirePositive(v.height); if (v.height < 152.4) throw new Error('A Devine-képlet 152,4 cm alatt nem ad megbízható becslést'); const base=v.gender>=2?50:45.5; const kg=base+(2.3/2.54)*(v.height-152.4); return [['Történeti Devine-becslés', kg.toFixed(1).replace('.', ',')+' kg']]; }
   },
   "testzsir-kalkulator": {
     fields: [
@@ -364,7 +369,7 @@ const SIMPLE_CALCULATORS = {
         "value": 0
     }
 ],
-    compute(v) { requireNonNegative(v.wakeHour, v.wakeMinute); if (v.wakeHour > 23 || v.wakeMinute > 59) throw new Error('Érvénytelen időpont'); const out=[]; [6,5,4].forEach(c=>{const d=new Date(2000,0,2,v.wakeHour,v.wakeMinute,0,0); d.setMinutes(d.getMinutes()-c*90-15); out.push([c+' ciklus lefekvés', d.toLocaleTimeString('hu-HU',{hour:'2-digit',minute:'2-digit'})]);}); return out; }
+    compute(v) { requireNonNegative(v.wakeHour, v.wakeMinute); if (!Number.isInteger(v.wakeHour) || !Number.isInteger(v.wakeMinute) || v.wakeHour > 23 || v.wakeMinute > 59) throw new Error('Az időpont egész óra- és percértékből álljon'); const out=[]; [6,5,4].forEach(c=>{const d=new Date(2000,0,2,v.wakeHour,v.wakeMinute,0,0); d.setMinutes(d.getMinutes()-c*90-15); const label=c===4?'Rövid példa: 4 × 90 perc + 15 perc elalvás':'Példa: '+c+' × 90 perc + 15 perc elalvás'; out.push([label, d.toLocaleTimeString('hu-HU',{hour:'2-digit',minute:'2-digit'})]);}); out.push(['Alvásidő-megjegyzés', 'A 4 × 90 perces példa 6 óra alvás, ami a legtöbb felnőtt számára az általános ajánlott időtartam alatt van.']); return out; }
   },
   "bmr-kalkulator": {
     fields: [
@@ -399,7 +404,7 @@ const SIMPLE_CALCULATORS = {
         "value": ""
     }
 ],
-    compute(v) { requirePositive(v.weight, v.height, v.age); if (v.age < 18) throw new Error('A Mifflin–St Jeor becslést ezen az oldalon felnőtteknek (18+) használjuk'); const bmr=10*v.weight+6.25*v.height-5*v.age+(v.gender>=2?5:-161); if (bmr <= 0) throw new Error('A megadott adatokból nem adható életszerű becslés'); return [['Becsült nyugalmi energiaigény', Math.round(bmr)+' kcal/nap'], ['1,375-ös aktivitási szorzóval', Math.round(bmr*1.375)+' kcal/nap']]; }
+    compute(v) { requirePositive(v.weight, v.height, v.age); if (v.age < 18) throw new Error('A Mifflin–St Jeor becslést ezen az oldalon felnőtteknek (18+) használjuk'); const bmr=10*v.weight+6.25*v.height-5*v.age+(v.gender>=2?5:-161); if (bmr <= 0) throw new Error('A megadott adatokból nem adható életszerű becslés'); return [['Becsült nyugalmi energiaigény', Math.round(bmr)+' kcal/nap'], ['Példa: 1,375-ös aktivitási szorzóval', Math.round(bmr*1.375)+' kcal/nap']]; }
   },
   "derek-csipo-kalkulator": {
     fields: [
@@ -438,7 +443,7 @@ const SIMPLE_CALCULATORS = {
         "value": 1.6
     }
 ],
-    compute(v) { requirePositive(v.weight, v.factor); const g=v.weight*v.factor; return [['Napi fehérjeigény', Math.round(g)+' g'], ['Étkezésenként 4 részre', Math.round(g/4)+' g']]; }
+    compute(v) { requirePositive(v.weight, v.factor); const g=v.weight*v.factor; return [['Napi fehérje a választott szorzóval', Math.round(g)+' g'], ['Példa: 4 egyenlő részre osztva', Math.round(g/4)+' g']]; }
   },
   "ar-kedvezmeny-kalkulator": {
     fields: [
