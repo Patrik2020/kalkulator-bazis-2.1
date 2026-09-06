@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A Kalkulátor Bázis ChatGPT és Codex plugin adatvédelmi tájékoztatója." />
+  <link rel="canonical" href="https://kalkulatorbazis.hu/plugin-adatvedelem" />
+  <title>Plugin adatvédelmi tájékoztató | Kalkulátor Bázis</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/adatvedelem-sutik-felhasznalasi-feltetelek.css" />
+</head>
+<body>
+  <a class="kb-skip-link" href="#main-content">Ugrás a tartalomhoz</a>
+  <main id="main-content" class="article">
+    <p><a href="./">← Kalkulátor Bázis</a></p>
+    <h1>Kalkulátor Bázis plugin – adatvédelmi tájékoztató</h1>
+    <p>Ez a tájékoztató kifejezetten a Kalkulátor Bázis ChatGPT- és Codex-kompatibilis, MCP-alapú pluginjának adatkezelését ismerteti. A weboldal általános adatkezelési tájékoztatója külön oldalon érhető el.</p>
+    <h2>Adatkezelő</h2>
+    <p>Név: Kovács Patrik<br />E-mail: <a href="mailto:kalkulatorbazis@gmail.com">kalkulatorbazis@gmail.com</a><br />Ország: Magyarország</p>
+    <h2>A plugin működése</h2>
+    <p>A plugin nyilvános MCP-végpontja a <code>https://mcp.kalkulatorbazis.hu/mcp</code>. Amikor a felhasználó a ChatGPT-ben vagy más támogatott OpenAI-felületen a Kalkulátor Bázis egyik számítási eszközét használja, az OpenAI rendszere a számításhoz szükséges tool-bemenetet továbbítja ehhez az MCP-végponthoz. Az MCP Worker a számítási kérést a Kalkulátor Bázis production Salary API-jának adja át.</p>
+    <h2>Milyen adatokat kaphat a plugin?</h2>
+    <p>A jelenlegi, 2026-os bérszámítási eszközök kizárólag a számításhoz szükséges paramétereket fogadják. Ezek például:</p>
+    <ul><li>bruttó munkabér vagy kívánt nettó összeg;</li><li>a támogatott adóév;</li><li>a felhasználó által kifejezetten megadott kedvezménykapcsolók;</li><li>családi kedvezményhez szükséges darabszámok és érvényesítési arány.</li></ul>
+    <p>A plugin nem kér nevet, e-mail-címet, címet, telefonszámot, bankszámlaadatot, jelszót, személyazonosító okmányt, egészségügyi dokumentumot vagy más, a számításhoz szükségtelen azonosító adatot. Kérjük, ilyen adatot ne adj meg a plugin számára.</p>
+    <h2>Mire használjuk a tool-bemenetet?</h2>
+    <p>A továbbított értékeket kizárólag a kért kalkuláció elvégzésére, a szolgáltatás biztonságos működtetésére és technikai hibák elhárítására használjuk. A plugin bemeneteit nem használjuk hirdetési célra, profilalkotásra vagy felhasználók közötti összekapcsolásra.</p>
+    <h2>Tárolás és technikai naplók</h2>
+    <p>A Kalkulátor Bázis MCP Worker és Salary API alkalmazáskódja nem hoz létre felhasználói profilt, és szándékosan nem tárolja tartósan a kalkulátor toolok request body-ját. A szolgáltatást kiszolgáló infrastruktúra technikai naplókat kezelhet, például időpontot, IP-címet, kért útvonalat, HTTP-metódust és válaszkódot a biztonság, hibakeresés és visszaélés-megelőzés érdekében.</p>
+    <h2>Közreműködő szolgáltatók</h2>
+    <ul><li><strong>Cloudflare:</strong> az MCP Worker és a kapcsolódó hálózati kiszolgálás.</li><li><strong>Render:</strong> a Kalkulátor Bázis Salary API infrastruktúrájának kiszolgálása.</li><li><strong>OpenAI:</strong> a ChatGPT/Codex felület, a beszélgetés és a tool-hívás továbbítása az MCP szerver felé.</li></ul>
+    <p>Az OpenAI a saját szolgáltatásának használata során az OpenAI saját adatvédelmi és szolgáltatási feltételei szerint kezelhet adatokat. A Kalkulátor Bázis nem szabályozza a felhasználó ChatGPT-fiókjának beszélgetési előzményeit, megőrzési beállításait vagy az OpenAI által végzett, saját szolgáltatásához kapcsolódó adatkezelést.</p>
+    <h2>Adatkezelési cél és jogalap</h2>
+    <p>A Kalkulátor Bázis oldalán a technikailag szükséges adatkezelés célja a kért számítás teljesítése, a szolgáltatás biztonságos működtetése, a hibakeresés és a visszaélések megelőzése. A technikai működéshez szükséges adatkezelést az adatkezelő jogos érdekére alapozzuk (GDPR 6. cikk (1) f)). A plugin használata nem igényel regisztrációt a Kalkulátor Bázisnál.</p>
+    <h2>Kedvezmény-jogosultság</h2>
+    <p>A plugin nem állapítja meg automatikusan, hogy a felhasználó jogilag jogosult-e valamely adó- vagy családi kedvezményre. A számítás csak a felhasználó által kifejezetten megadott vagy megerősített paraméterekből indul ki.</p>
+    <h2>Érintetti jogok és kapcsolat</h2>
+    <p>Adatvédelmi kérdés, hozzáférési, törlési, korlátozási vagy tiltakozási kérelem esetén írj a <a href="mailto:kalkulatorbazis@gmail.com">kalkulatorbazis@gmail.com</a> címre. Ha a kérés az OpenAI saját szolgáltatásában tárolt beszélgetési adatra vonatkozik, azt az OpenAI saját adatvédelmi felületein kell kezelni.</p>
+    <h2>További információ</h2>
+    <p>Általános adatvédelmi tájékoztató: <a href="./adatvedelem">kalkulatorbazis.hu/adatvedelem</a><br />Kapcsolat: <a href="./kapcsolat">kalkulatorbazis.hu/kapcsolat</a><br />Plugin használati feltételek: <a href="./plugin-felhasznalasi-feltetelek">kalkulatorbazis.hu/plugin-felhasznalasi-feltetelek</a></p>
+    <p><strong>Utolsó frissítés: 2026. szeptember 6.</strong></p>
+  </main>
+</body>
+</html>
