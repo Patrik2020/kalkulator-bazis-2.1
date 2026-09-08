@@ -9,6 +9,7 @@
   let sequence = 0;
   let activeController = null;
 
+  const resultBox = document.querySelector(".page-netto .result-box");
   const resultNet = document.getElementById("result-net");
   const resultGross = document.getElementById("result-gross");
   const resultSzja = document.getElementById("result-szja");
@@ -18,6 +19,24 @@
   const resultUnder25 = document.getElementById("result-under25");
   const resultEmployer = document.getElementById("result-employer");
   const resultDiff = document.getElementById("result-diff");
+
+  function ensureFamilyGuidance() {
+    const familyBox = document.querySelector(".family-box");
+    if (!familyBox) return null;
+    let guidance = document.getElementById("family-guidance");
+    if (!guidance) {
+      guidance = document.createElement("p");
+      guidance.id = "family-guidance";
+      guidance.className = "family-guidance";
+      guidance.setAttribute("role", "status");
+      guidance.setAttribute("aria-live", "polite");
+      guidance.hidden = true;
+      familyBox.appendChild(guidance);
+    }
+    return guidance;
+  }
+
+  const familyGuidance = ensureFamilyGuidance();
 
   function format(value) {
     return new Intl.NumberFormat("hu-HU").format(Math.round(Number(value) || 0));
@@ -36,19 +55,47 @@
     return Number.isInteger(value) && value >= 0 && value <= 20 ? value : null;
   }
 
+  function setFamilyGuidance(message = "", invalidIds = []) {
+    if (familyGuidance) {
+      familyGuidance.textContent = message;
+      familyGuidance.hidden = !message;
+    }
+    ["family-dependants", "family-eligible"].forEach((id) => {
+      const element = document.getElementById(id);
+      if (!element) return;
+      if (invalidIds.includes(id)) element.setAttribute("aria-invalid", "true");
+      else element.removeAttribute("aria-invalid");
+    });
+  }
+
   function clearDetails() {
     [resultGross, resultSzja, resultTb, resultFamily, resultMarried, resultUnder25, resultEmployer]
       .forEach((element) => { element.textContent = ""; });
   }
 
+  function resetResultState() {
+    resultBox?.classList.remove("is-guidance", "is-technical");
+  }
+
   function showPending() {
+    resetResultState();
     resultNet.textContent = "Számítás…";
     clearDetails();
     resultDiff.textContent = "";
   }
 
-  function showError(message) {
-    resultNet.textContent = "API-hiba";
+  function showGuidance(message) {
+    resetResultState();
+    resultBox?.classList.add("is-guidance");
+    resultNet.textContent = "Ellenőrizd a beállításokat";
+    clearDetails();
+    resultDiff.textContent = message;
+  }
+
+  function showTechnicalIssue(message) {
+    resetResultState();
+    resultBox?.classList.add("is-technical");
+    resultNet.textContent = "Most nem sikerült a számítás";
     clearDetails();
     resultDiff.textContent = message;
   }
@@ -70,7 +117,10 @@
 
     if (eligibleDependants > dependants) {
       return {
-        validationError: "A kedvezményezett eltartottak száma nem lehet nagyobb az eltartottak teljes számánál."
+        validationError:
+          `A kedvezményezett eltartottak száma nem lehet több az összes eltartott számánál. ` +
+          `Állítsd az „Eltartottak száma” mezőt legalább ${eligibleDependants}-re, vagy csökkentsd a kedvezményezett eltartottak számát ${dependants}-re.`,
+        invalidFields: ["family-dependants", "family-eligible"],
       };
     }
 
@@ -104,6 +154,8 @@
   function renderApiResult(job, data) {
     if (!data || !data.taxes || !data.benefits || !data.employer) return false;
 
+    resetResultState();
+    setFamilyGuidance();
     resultNet.textContent = `${format(job.direction === "gross-to-net" ? data.net : data.gross)} Ft`;
     resultGross.textContent = job.direction === "gross-to-net"
       ? `Bruttó fizetés: ${format(data.gross)} Ft`
@@ -163,7 +215,13 @@
 
       const elapsedMs = Math.round(performance.now() - started);
       if (!response.ok) {
-        showError(`A számítási API ${response.status} hibát adott. Próbáld újra.`);
+        if (response.status === 400 || response.status === 422) {
+          showGuidance("A megadott adatok egyik kombinációját nem tudjuk kiszámolni. Nézd át a mezőket, majd próbáld újra.");
+        } else if (response.status === 429) {
+          showTechnicalIssue("Most sok számítás érkezik egyszerre. Várj néhány másodpercet, majd próbáld újra.");
+        } else {
+          showTechnicalIssue("A számítás most átmenetileg nem sikerült. Próbáld újra néhány másodperc múlva.");
+        }
         window.dispatchEvent(new CustomEvent("kb:salary-api", {
           detail: { status: "http_error", direction: job.direction, httpStatus: response.status, elapsedMs },
         }));
@@ -174,7 +232,7 @@
       if (jobSequence !== sequence) return;
 
       if (!renderApiResult(job, payload?.data)) {
-        showError("A számítási API érvénytelen választ adott.");
+        showTechnicalIssue("A számítás eredményét most nem tudtuk megjeleníteni. Próbáld újra néhány másodperc múlva.");
         window.dispatchEvent(new CustomEvent("kb:salary-api", {
           detail: { status: "invalid_response", direction: job.direction, elapsedMs },
         }));
@@ -193,9 +251,9 @@
       if (jobSequence !== sequence) return;
       const elapsedMs = Math.round(performance.now() - started);
       const timeoutError = error?.name === "AbortError";
-      showError(timeoutError
-        ? "A számítási API nem válaszolt 6 másodpercen belül. Próbáld újra."
-        : "A számítási API jelenleg nem érhető el. Próbáld újra.");
+      showTechnicalIssue(timeoutError
+        ? "A számítás a szokásosnál tovább tartott. Próbáld újra néhány másodperc múlva."
+        : "Most nem sikerült kapcsolódni a számításhoz. Ellenőrizd az internetkapcsolatot, majd próbáld újra.");
       window.dispatchEvent(new CustomEvent("kb:salary-api", {
         detail: { status: timeoutError ? "timeout" : "network_error", direction: job.direction, elapsedMs },
       }));
@@ -216,6 +274,8 @@
     const job = currentJob();
     if (!job) {
       cancel();
+      setFamilyGuidance();
+      resetResultState();
       resultNet.textContent = "–";
       clearDetails();
       resultDiff.textContent = "";
@@ -224,10 +284,15 @@
 
     if (job.validationError) {
       cancel();
-      showError(job.validationError);
+      setFamilyGuidance(
+        job.validationError,
+        job.invalidFields || ["family-dependants", "family-eligible"],
+      );
+      showGuidance(job.validationError);
       return;
     }
 
+    setFamilyGuidance();
     sequence += 1;
     const jobSequence = sequence;
     window.clearTimeout(timer);
