@@ -19,7 +19,6 @@
   const resultUnder25 = document.getElementById("result-under25");
   const resultEmployer = document.getElementById("result-employer");
   const resultDiff = document.getElementById("result-diff");
-  const familyDependantsInput = document.getElementById("family-dependants");
   const familyEligibleInput = document.getElementById("family-eligible");
 
   function ensureFamilyGuidance() {
@@ -109,21 +108,18 @@
   }
 
   function currentJob() {
+    const direction = document.querySelector("input[name='calc-type']:checked")?.value || "gross-to-net";
+    const amountElement = direction === "gross-to-net"
+      ? document.getElementById("gross")
+      : document.getElementById("net-input");
+    const amount = parseAmount(amountElement?.value);
+    if (amount <= 0) return null;
+
     const dependants = parseCount("family-dependants");
     const eligibleDependants = parseCount("family-eligible");
 
-    if (dependants === null) {
-      return {
-        validationError: "Az „Eltartottak száma” mezőbe 0 és 20 közötti egész számot adj meg.",
-        invalidFields: ["family-dependants"],
-      };
-    }
-
-    if (eligibleDependants === null) {
-      return {
-        validationError: "A „Kedvezményezett eltartottak száma” mezőbe 0 és 20 közötti egész számot adj meg.",
-        invalidFields: ["family-eligible"],
-      };
+    if (dependants === null || eligibleDependants === null) {
+      return { validationError: "Az eltartottak száma 0 és 20 közötti egész szám legyen." };
     }
 
     if (eligibleDependants > dependants) {
@@ -134,13 +130,6 @@
         invalidFields: ["family-dependants", "family-eligible"],
       };
     }
-
-    const direction = document.querySelector("input[name='calc-type']:checked")?.value || "gross-to-net";
-    const amountElement = direction === "gross-to-net"
-      ? document.getElementById("gross")
-      : document.getElementById("net-input");
-    const amount = parseAmount(amountElement?.value);
-    if (amount <= 0) return null;
 
     const common = {
       under25: Boolean(document.getElementById("under25")?.checked),
@@ -291,18 +280,9 @@
   function scheduleFromUi() {
     updateEligibleMaximum();
     const job = currentJob();
-
-    if (job?.validationError) {
-      cancel();
-      setFamilyGuidance(job.validationError, job.invalidFields || []);
-      showGuidance(job.validationError);
-      return;
-    }
-
-    setFamilyGuidance();
-
     if (!job) {
       cancel();
+      setFamilyGuidance();
       resetResultState();
       resultNet.textContent = "–";
       clearDetails();
@@ -310,6 +290,17 @@
       return;
     }
 
+    if (job.validationError) {
+      cancel();
+      setFamilyGuidance(
+        job.validationError,
+        job.invalidFields || ["family-dependants", "family-eligible"],
+      );
+      showGuidance(job.validationError);
+      return;
+    }
+
+    setFamilyGuidance();
     sequence += 1;
     const jobSequence = sequence;
     window.clearTimeout(timer);
