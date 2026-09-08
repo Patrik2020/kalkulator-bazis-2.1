@@ -321,8 +321,12 @@ const cases = [
     const valid = actual === 332500 && window.__salaryRequests?.at(-1)?.body?.gross === 500000;
     checked('under25', true); await delay(720);
     const boundary = number('#result-net') === 407500;
+    const beforeInvalidRequests = window.__salaryRequests?.length || 0;
     set('family-dependants', 0); set('family-eligible', 1); await delay(360);
-    const invalid = /nem lehet nagyobb/.test(text('#result-diff')) && /API-hiba/.test(text('#result-net'));
+    const invalid = /nem lehet több/.test(text('#result-diff'))
+      && /Ellenőrizd a beállításokat/.test(text('#result-net'))
+      && !/API-hiba/.test(text('.result-box'))
+      && (window.__salaryRequests?.length || 0) === beforeInvalidRequests;
     return { valid, boundary, invalid, actual, requestCount: window.__salaryRequests?.length || 0 };
   `),
   test("kalkulatorok/osztalek-kalkulator.html", "Osztalék", `
