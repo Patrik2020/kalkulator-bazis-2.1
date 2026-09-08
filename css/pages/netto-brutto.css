@@ -61,12 +61,32 @@
   line-height: 1.4;
 }
 
+.page-netto .family-guidance {
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--warning-border);
+  border-radius: 8px;
+  background: var(--surface-warning);
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.page-netto .family-guidance[hidden] {
+  display: none;
+}
+
 .page-netto input:not([type="checkbox"]):not([type="radio"]) {
   width: 100%;
   padding: 12px;
   border-radius: 8px;
   border: 1px solid var(--border);
   background: var(--surface-secondary);
+}
+
+.page-netto input[aria-invalid="true"]:not([type="checkbox"]):not([type="radio"]) {
+  border-color: var(--warning-border);
+  background: var(--surface-warning);
 }
 
 .page-netto .radio-group {
@@ -85,6 +105,14 @@
   border-radius: 8px;
   background: linear-gradient(135deg, var(--surface-secondary), var(--surface-muted));
   text-align: left;
+}
+
+.page-netto .result-box.is-guidance {
+  border: 1px solid var(--warning-border);
+}
+
+.page-netto .result-box.is-technical {
+  border: 1px solid var(--border-strong);
 }
 
 .page-netto .result-box p {
