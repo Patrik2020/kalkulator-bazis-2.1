@@ -9,6 +9,7 @@
   let sequence = 0;
   let activeController = null;
 
+  const resultBox = document.querySelector(".page-netto .result-box");
   const resultNet = document.getElementById("result-net");
   const resultGross = document.getElementById("result-gross");
   const resultSzja = document.getElementById("result-szja");
@@ -18,6 +19,26 @@
   const resultUnder25 = document.getElementById("result-under25");
   const resultEmployer = document.getElementById("result-employer");
   const resultDiff = document.getElementById("result-diff");
+  const familyDependantsInput = document.getElementById("family-dependants");
+  const familyEligibleInput = document.getElementById("family-eligible");
+
+  function ensureFamilyGuidance() {
+    const familyBox = document.querySelector(".family-box");
+    if (!familyBox) return null;
+    let guidance = document.getElementById("family-guidance");
+    if (!guidance) {
+      guidance = document.createElement("p");
+      guidance.id = "family-guidance";
+      guidance.className = "family-guidance";
+      guidance.setAttribute("role", "status");
+      guidance.setAttribute("aria-live", "polite");
+      guidance.hidden = true;
+      familyBox.appendChild(guidance);
+    }
+    return guidance;
+  }
+
+  const familyGuidance = ensureFamilyGuidance();
 
   function format(value) {
     return new Intl.NumberFormat("hu-HU").format(Math.round(Number(value) || 0));
@@ -36,43 +57,90 @@
     return Number.isInteger(value) && value >= 0 && value <= 20 ? value : null;
   }
 
+  function setFamilyGuidance(message = "", invalidIds = []) {
+    if (familyGuidance) {
+      familyGuidance.textContent = message;
+      familyGuidance.hidden = !message;
+    }
+    ["family-dependants", "family-eligible"].forEach((id) => {
+      const element = document.getElementById(id);
+      if (!element) return;
+      if (invalidIds.includes(id)) element.setAttribute("aria-invalid", "true");
+      else element.removeAttribute("aria-invalid");
+    });
+  }
+
+  function updateEligibleMaximum() {
+    if (!familyEligibleInput) return;
+    const dependants = parseCount("family-dependants");
+    familyEligibleInput.max = String(dependants === null ? 20 : dependants);
+  }
+
   function clearDetails() {
     [resultGross, resultSzja, resultTb, resultFamily, resultMarried, resultUnder25, resultEmployer]
       .forEach((element) => { element.textContent = ""; });
   }
 
+  function resetResultState() {
+    resultBox?.classList.remove("is-guidance", "is-technical");
+  }
+
   function showPending() {
+    resetResultState();
     resultNet.textContent = "Számítás…";
     clearDetails();
     resultDiff.textContent = "";
   }
 
-  function showError(message) {
-    resultNet.textContent = "API-hiba";
+  function showGuidance(message) {
+    resetResultState();
+    resultBox?.classList.add("is-guidance");
+    resultNet.textContent = "Ellenőrizd a beállításokat";
+    clearDetails();
+    resultDiff.textContent = message;
+  }
+
+  function showTechnicalIssue(message) {
+    resetResultState();
+    resultBox?.classList.add("is-technical");
+    resultNet.textContent = "Most nem sikerült a számítás";
     clearDetails();
     resultDiff.textContent = message;
   }
 
   function currentJob() {
+    const dependants = parseCount("family-dependants");
+    const eligibleDependants = parseCount("family-eligible");
+
+    if (dependants === null) {
+      return {
+        validationError: "Az „Eltartottak száma” mezőbe 0 és 20 közötti egész számot adj meg.",
+        invalidFields: ["family-dependants"],
+      };
+    }
+
+    if (eligibleDependants === null) {
+      return {
+        validationError: "A „Kedvezményezett eltartottak száma” mezőbe 0 és 20 közötti egész számot adj meg.",
+        invalidFields: ["family-eligible"],
+      };
+    }
+
+    if (eligibleDependants > dependants) {
+      return {
+        validationError:
+          `A kedvezményezett eltartottak száma nem lehet több az összes eltartott számánál. ` +
+          `Állítsd az „Eltartottak száma” mezőt legalább ${eligibleDependants}-re, vagy csökkentsd a kedvezményezett eltartottak számát ${dependants}-re.`,
+        invalidFields: ["family-dependants", "family-eligible"],
+      };
+    }
+
     const direction = document.querySelector("input[name='calc-type']:checked")?.value || "gross-to-net";
     const amountElement = direction === "gross-to-net"
       ? document.getElementById("gross")
       : document.getElementById("net-input");
     const amount = parseAmount(amountElement?.value);
     if (amount <= 0) return null;
-
-    const dependants = parseCount("family-dependants");
-    const eligibleDependants = parseCount("family-eligible");
-
-    if (dependants === null || eligibleDependants === null) {
-      return { validationError: "Az eltartottak száma 0 és 20 közötti egész szám legyen." };
-    }
-
-    if (eligibleDependants > dependants) {
-      return {
-        validationError: "A kedvezményezett eltartottak száma nem lehet nagyobb az eltartottak teljes számánál."
-      };
-    }
 
     const common = {
       under25: Boolean(document.getElementById("under25")?.checked),
@@ -104,6 +172,8 @@
   function renderApiResult(job, data) {
     if (!data || !data.taxes || !data.benefits || !data.employer) return false;
 
+    resetResultState();
+    setFamilyGuidance();
     resultNet.textContent = `${format(job.direction === "gross-to-net" ? data.net : data.gross)} Ft`;
     resultGross.textContent = job.direction === "gross-to-net"
       ? `Bruttó fizetés: ${format(data.gross)} Ft`
@@ -163,7 +233,13 @@
 
       const elapsedMs = Math.round(performance.now() - started);
       if (!response.ok) {
-        showError(`A számítási API ${response.status} hibát adott. Próbáld újra.`);
+        if (response.status === 400 || response.status === 422) {
+          showGuidance("A megadott adatok egyik kombinációját nem tudjuk kiszámolni. Nézd át a mezőket, majd próbáld újra.");
+        } else if (response.status === 429) {
+          showTechnicalIssue("Most sok számítás érkezik egyszerre. Várj néhány másodpercet, majd próbáld újra.");
+        } else {
+          showTechnicalIssue("A számítás most átmenetileg nem sikerült. Próbáld újra néhány másodperc múlva.");
+        }
         window.dispatchEvent(new CustomEvent("kb:salary-api", {
           detail: { status: "http_error", direction: job.direction, httpStatus: response.status, elapsedMs },
         }));
@@ -174,7 +250,7 @@
       if (jobSequence !== sequence) return;
 
       if (!renderApiResult(job, payload?.data)) {
-        showError("A számítási API érvénytelen választ adott.");
+        showTechnicalIssue("A számítás eredményét most nem tudtuk megjeleníteni. Próbáld újra néhány másodperc múlva.");
         window.dispatchEvent(new CustomEvent("kb:salary-api", {
           detail: { status: "invalid_response", direction: job.direction, elapsedMs },
         }));
@@ -193,9 +269,9 @@
       if (jobSequence !== sequence) return;
       const elapsedMs = Math.round(performance.now() - started);
       const timeoutError = error?.name === "AbortError";
-      showError(timeoutError
-        ? "A számítási API nem válaszolt 6 másodpercen belül. Próbáld újra."
-        : "A számítási API jelenleg nem érhető el. Próbáld újra.");
+      showTechnicalIssue(timeoutError
+        ? "A számítás a szokásosnál tovább tartott. Próbáld újra néhány másodperc múlva."
+        : "Most nem sikerült kapcsolódni a számításhoz. Ellenőrizd az internetkapcsolatot, majd próbáld újra.");
       window.dispatchEvent(new CustomEvent("kb:salary-api", {
         detail: { status: timeoutError ? "timeout" : "network_error", direction: job.direction, elapsedMs },
       }));
@@ -213,18 +289,24 @@
   }
 
   function scheduleFromUi() {
+    updateEligibleMaximum();
     const job = currentJob();
-    if (!job) {
+
+    if (job?.validationError) {
       cancel();
-      resultNet.textContent = "–";
-      clearDetails();
-      resultDiff.textContent = "";
+      setFamilyGuidance(job.validationError, job.invalidFields || []);
+      showGuidance(job.validationError);
       return;
     }
 
-    if (job.validationError) {
+    setFamilyGuidance();
+
+    if (!job) {
       cancel();
-      showError(job.validationError);
+      resetResultState();
+      resultNet.textContent = "–";
+      clearDetails();
+      resultDiff.textContent = "";
       return;
     }
 
@@ -244,6 +326,7 @@
     radio.addEventListener("change", scheduleFromUi);
   });
 
+  updateEligibleMaximum();
   window.KBSalaryApi = Object.freeze({ scheduleFromUi, cancel });
   scheduleFromUi();
 })();
