@@ -19,7 +19,6 @@
   const resultUnder25 = document.getElementById("result-under25");
   const resultEmployer = document.getElementById("result-employer");
   const resultDiff = document.getElementById("result-diff");
-  const familyEligibleInput = document.getElementById("family-eligible");
 
   function ensureFamilyGuidance() {
     const familyBox = document.querySelector(".family-box");
@@ -67,12 +66,6 @@
       if (invalidIds.includes(id)) element.setAttribute("aria-invalid", "true");
       else element.removeAttribute("aria-invalid");
     });
-  }
-
-  function updateEligibleMaximum() {
-    if (!familyEligibleInput) return;
-    const dependants = parseCount("family-dependants");
-    familyEligibleInput.max = String(dependants === null ? 20 : dependants);
   }
 
   function clearDetails() {
@@ -278,7 +271,6 @@
   }
 
   function scheduleFromUi() {
-    updateEligibleMaximum();
     const job = currentJob();
     if (!job) {
       cancel();
@@ -317,7 +309,6 @@
     radio.addEventListener("change", scheduleFromUi);
   });
 
-  updateEligibleMaximum();
   window.KBSalaryApi = Object.freeze({ scheduleFromUi, cancel });
   scheduleFromUi();
 })();
