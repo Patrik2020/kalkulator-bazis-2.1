@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://kalkulatorbazis.hu/sitemap.xml
+Sitemap: https://kalkulatorbazis.hu/sitemap-aktualis.xml
