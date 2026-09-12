@@ -1,5 +1,5 @@
 /* Kalkulátor Bázis – seasonal visual layer
-   Subtle, reversible skin on top of the core design. No layout-critical rules here. */
+   Finom, visszafordítható skin a fő dizájn fölött. Nincs layout-kritikus szabály. */
 
 html[data-season] {
   --kb-season-accent: #9d6b46;
@@ -35,9 +35,9 @@ html[data-season="autumn"] {
   --kb-season-accent: #a76036;
   --kb-season-accent-soft: rgba(167, 96, 54, 0.14);
   --kb-season-accent-2: #dfad48;
-  --kb-season-glow-1: rgba(222, 163, 74, 0.2);
+  --kb-season-glow-1: rgba(222, 163, 74, 0.20);
   --kb-season-glow-2: rgba(153, 77, 42, 0.13);
-  --kb-season-line: rgba(151, 82, 45, 0.3);
+  --kb-season-line: rgba(151, 82, 45, 0.30);
   --kb-season-topbar: linear-gradient(90deg, #82452f, #d89a3d 48%, #a85833);
 }
 
@@ -76,64 +76,72 @@ html[data-season] .header-shell {
   box-shadow: inset 0 2px 0 color-mix(in srgb, var(--kb-season-accent) 24%, transparent);
 }
 
-/* The 2027 homepage keeps its identity while its palette bends toward the season. */
+/* A visszaállított professional homepage a saját --hp-* tokenjein kap évszakot. */
 html[data-season="spring"] body.home-page.home-professional {
-  --kb27-paper: #f0f2e9;
-  --kb27-paper-2: #e2e8dc;
-  --kb27-acid: #cfe978;
-  --kb27-acid-soft: #e8f4ba;
-  --kb27-blue: #5d6fb7;
-  --kb27-coral: #c98797;
-  --kb27-white: #fffef9;
+  --hp-navy: #35543d;
+  --hp-navy-deep: #263d2d;
+  --hp-blue: #66895f;
+  --hp-blue-strong: #4e7248;
+  --hp-ink: #243228;
+  --hp-muted: #657268;
+  --hp-line: #d5dfd2;
+  --hp-page: #f3f6ef;
+  --hp-blue-soft: #e5efe0;
 }
 
 html[data-season="summer"] body.home-page.home-professional {
-  --kb27-paper: #f2f1e7;
-  --kb27-paper-2: #e5e8dd;
-  --kb27-acid: #f1d766;
-  --kb27-acid-soft: #f8ecae;
-  --kb27-blue: #287f9b;
-  --kb27-coral: #e6815f;
-  --kb27-white: #fffefa;
+  --hp-navy: #175467;
+  --hp-navy-deep: #103d4b;
+  --hp-blue: #21859a;
+  --hp-blue-strong: #176d80;
+  --hp-ink: #183a43;
+  --hp-muted: #5c7479;
+  --hp-line: #cfe0df;
+  --hp-page: #f1f7f5;
+  --hp-blue-soft: #def0ef;
 }
 
 html[data-season="autumn"] body.home-page.home-professional {
-  --kb27-paper: #f1ece3;
-  --kb27-paper-2: #e5dbcd;
-  --kb27-acid: #efbd52;
-  --kb27-acid-soft: #f6dda1;
-  --kb27-blue: #4d6986;
-  --kb27-coral: #c86b48;
-  --kb27-white: #fffaf3;
+  --hp-navy: #51392f;
+  --hp-navy-deep: #33251f;
+  --hp-blue: #b86432;
+  --hp-blue-strong: #934820;
+  --hp-ink: #302822;
+  --hp-muted: #76685d;
+  --hp-line: #dfd0c1;
+  --hp-surface: #fffdf9;
+  --hp-page: #f6f0e7;
+  --hp-blue-soft: #f5dfcc;
+  --hp-mint-soft: #e8ede0;
+  --hp-amber-soft: #fae8c7;
+  --hp-lilac-soft: #eee5df;
+  --hp-rose-soft: #f5ded8;
+  --hp-cyan-soft: #e5eeea;
+  --hp-shadow: 0 18px 50px rgba(91, 57, 36, 0.10);
+  --hp-shadow-strong: 0 28px 70px rgba(65, 39, 28, 0.18);
 }
 
 html[data-season="winter"] body.home-page.home-professional {
-  --kb27-paper: #eef1f1;
-  --kb27-paper-2: #dfe5e7;
-  --kb27-acid: #c8dbe3;
-  --kb27-acid-soft: #e5eff3;
-  --kb27-blue: #476d91;
-  --kb27-coral: #a96572;
-  --kb27-white: #fbfdfe;
+  --hp-navy: #314b61;
+  --hp-navy-deep: #213545;
+  --hp-blue: #5f839d;
+  --hp-blue-strong: #496d88;
+  --hp-ink: #24333d;
+  --hp-muted: #667680;
+  --hp-line: #d2dde2;
+  --hp-page: #f1f5f6;
+  --hp-blue-soft: #e1ebef;
 }
 
 html[data-season] body.home-page.home-professional .header-shell {
-  background: color-mix(in srgb, var(--kb27-paper) 84%, transparent);
+  background: color-mix(in srgb, var(--hp-page) 90%, #fff);
   box-shadow:
     inset 0 2px 0 color-mix(in srgb, var(--kb-season-accent) 32%, transparent),
-    0 12px 32px rgba(24, 20, 14, 0.035);
-}
-
-html[data-season] body.home-page.home-professional .logo-mark {
-  background: color-mix(in srgb, var(--kb27-acid) 84%, var(--kb-season-accent-2));
-}
-
-html[data-season] body.home-page.home-professional .section-label,
-html[data-season] body.home-page.home-professional .kb27-label {
-  color: color-mix(in srgb, var(--kb27-muted) 70%, var(--kb-season-accent));
+    0 10px 28px rgba(38, 29, 22, 0.035);
 }
 
 html[data-season] body.home-page.home-professional .home-hero {
+  position: relative;
   isolation: isolate;
 }
 
@@ -141,23 +149,104 @@ html[data-season] body.home-page.home-professional .home-hero::after {
   content: "";
   position: absolute;
   z-index: -1;
-  inset: -8% -10% -12%;
+  inset: 0;
   background:
-    radial-gradient(circle at 82% 18%, var(--kb-season-glow-1), transparent 24%),
-    radial-gradient(circle at 15% 76%, var(--kb-season-glow-2), transparent 28%),
-    linear-gradient(112deg, transparent 38%, var(--kb-season-accent-soft) 50%, transparent 63%);
-  filter: saturate(108%);
+    radial-gradient(circle at 83% 16%, var(--kb-season-glow-1), transparent 30%),
+    radial-gradient(circle at 12% 82%, var(--kb-season-glow-2), transparent 30%);
   pointer-events: none;
-  transform: translate3d(0, 0, 0);
-  animation: kb-season-drift 18s ease-in-out infinite alternate;
+  animation: kb-season-drift 20s ease-in-out infinite alternate;
 }
 
-html[data-season] body.home-page.home-professional .home-search-control:focus-within,
-html[data-season] body.home-page.home-professional .home-featured-tool:focus-within {
-  outline-color: var(--kb-season-accent);
+html[data-season] body.home-page.home-professional .section-label,
+html[data-season] body.home-page.home-professional .home-eyebrow {
+  color: var(--hp-blue-strong);
 }
 
-/* Event layer – stronger than the season, still intentionally restrained. */
+html[data-season] body.home-page.home-professional .home-button-primary {
+  background: linear-gradient(135deg, var(--hp-blue), color-mix(in srgb, var(--hp-blue) 76%, var(--kb-season-accent-2)));
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--hp-blue) 25%, transparent);
+}
+
+html[data-season] body.home-page.home-professional .home-search input {
+  border-color: color-mix(in srgb, var(--hp-blue) 18%, var(--hp-line));
+  background: color-mix(in srgb, var(--hp-surface, #fff) 94%, var(--kb-season-accent-soft));
+  box-shadow: 0 18px 42px rgba(92, 58, 37, 0.09);
+}
+
+html[data-season] body.home-page.home-professional .home-trust-strip,
+html[data-season] body.home-page.home-professional .popular {
+  border-color: color-mix(in srgb, var(--hp-line) 78%, var(--kb-season-accent));
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-hero {
+  background:
+    radial-gradient(circle at 14% 8%, rgba(191, 111, 57, 0.16), transparent 29%),
+    radial-gradient(circle at 86% 14%, rgba(219, 165, 79, 0.16), transparent 30%),
+    linear-gradient(145deg, #fffaf3 0%, #f6eadc 54%, #fbf5ec 100%);
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-eyebrow {
+  border-color: rgba(168, 91, 43, 0.18);
+  background: rgba(255, 250, 243, 0.86);
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-trust-strip {
+  background: rgba(170, 103, 56, 0.09);
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-trust-item > span,
+html[data-season="autumn"] body.home-page.home-professional .home-popular-index {
+  background: #f4dfcc;
+  color: #934820;
+}
+
+html[data-season="autumn"] body.home-page.home-professional .popular,
+html[data-season="autumn"] body.home-page.home-professional .home-category-grid .card,
+html[data-season="autumn"] body.home-page.home-professional .popular-grid .card {
+  background: color-mix(in srgb, #fffdf9 94%, #f1d6bb);
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-current-panel {
+  background:
+    radial-gradient(circle at 85% 0%, rgba(218, 151, 72, 0.25), transparent 36%),
+    linear-gradient(135deg, #30231e, #51392f 62%, #75472f);
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-current-kicker {
+  color: #f0c78d;
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-current-kicker::before {
+  background: #d9a64d;
+  box-shadow: 0 0 0 6px rgba(217, 166, 77, 0.14);
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-category-grid .card[data-home-category="finance"] {
+  --category-accent: #a9572a;
+  --category-soft: #f5dfcc;
+}
+html[data-season="autumn"] body.home-page.home-professional .home-category-grid .card[data-home-category="home"] {
+  --category-accent: #b87816;
+  --category-soft: #fae8c7;
+}
+html[data-season="autumn"] body.home-page.home-professional .home-category-grid .card[data-home-category="auto"] {
+  --category-accent: #557568;
+  --category-soft: #e5eeea;
+}
+html[data-season="autumn"] body.home-page.home-professional .home-category-grid .card[data-home-category="health"] {
+  --category-accent: #a34f48;
+  --category-soft: #f5ded8;
+}
+html[data-season="autumn"] body.home-page.home-professional .home-category-grid .card[data-home-category="convert"] {
+  --category-accent: #775f55;
+  --category-soft: #eee5df;
+}
+html[data-season="autumn"] body.home-page.home-professional .home-category-grid .card[data-home-category="everyday"] {
+  --category-accent: #667646;
+  --category-soft: #e8ede0;
+}
+
+/* Ünnepi felülírások: erősebbek az évszaknál, de továbbra sem giccsesek. */
 html[data-event="halloween"] {
   --kb-season-accent: #d56a27;
   --kb-season-accent-2: #8c64bc;
@@ -165,42 +254,42 @@ html[data-event="halloween"] {
   --kb-season-glow-2: rgba(94, 61, 122, 0.16);
   --kb-season-topbar: linear-gradient(90deg, #1d1820, #d46b27 50%, #6c4b88);
 }
-
 html[data-event="halloween"] body.home-page.home-professional {
-  --kb27-acid: #f1983d;
-  --kb27-acid-soft: #f6c77f;
-  --kb27-blue: #735997;
-  --kb27-coral: #dd6f35;
+  --hp-blue: #d16b2e;
+  --hp-blue-strong: #a54e21;
+  --hp-blue-soft: #f6dfca;
+  --hp-navy: #382b3d;
+  --hp-navy-deep: #241d29;
 }
 
 html[data-event="christmas"] {
   --kb-season-accent: #2f7055;
   --kb-season-accent-2: #c9a84a;
-  --kb-season-glow-1: rgba(45, 112, 84, 0.2);
+  --kb-season-glow-1: rgba(45, 112, 84, 0.20);
   --kb-season-glow-2: rgba(163, 58, 63, 0.13);
   --kb-season-topbar: linear-gradient(90deg, #1f6249, #c8a94b 48%, #9f3b45);
 }
-
 html[data-event="christmas"] body.home-page.home-professional {
-  --kb27-acid: #d8bd60;
-  --kb27-acid-soft: #efe2a7;
-  --kb27-blue: #2e6b55;
-  --kb27-coral: #a64c54;
+  --hp-blue: #33765a;
+  --hp-blue-strong: #245c45;
+  --hp-blue-soft: #e0ede5;
+  --hp-navy: #294c3d;
+  --hp-navy-deep: #193329;
 }
 
 html[data-event="newyear"] {
   --kb-season-accent: #6e82a5;
   --kb-season-accent-2: #c4b36b;
-  --kb-season-glow-1: rgba(95, 122, 172, 0.2);
+  --kb-season-glow-1: rgba(95, 122, 172, 0.20);
   --kb-season-glow-2: rgba(202, 184, 102, 0.13);
   --kb-season-topbar: linear-gradient(90deg, #263a5c, #b7a764 48%, #637ca8);
 }
-
 html[data-event="newyear"] body.home-page.home-professional {
-  --kb27-acid: #d7c875;
-  --kb27-acid-soft: #eee5af;
-  --kb27-blue: #536ea3;
-  --kb27-coral: #9f7081;
+  --hp-blue: #637ca8;
+  --hp-blue-strong: #4e6590;
+  --hp-blue-soft: #e6eaf2;
+  --hp-navy: #344565;
+  --hp-navy-deep: #263550;
 }
 
 html[data-event="easter"] {
@@ -210,45 +299,39 @@ html[data-event="easter"] {
   --kb-season-glow-2: rgba(184, 148, 188, 0.14);
   --kb-season-topbar: linear-gradient(90deg, #799469, #d7c46f 48%, #b38cb6);
 }
-
 html[data-event="easter"] body.home-page.home-professional {
-  --kb27-acid: #d8d276;
-  --kb27-acid-soft: #eeeab3;
-  --kb27-blue: #7280ae;
-  --kb27-coral: #b98298;
+  --hp-blue: #718a61;
+  --hp-blue-strong: #58724b;
+  --hp-blue-soft: #e8eee2;
+  --hp-navy: #495747;
+  --hp-navy-deep: #354034;
 }
 
-/* Dark mode receives the same atmosphere without sacrificing contrast. */
+/* Dark mód: az őszi hangulat marad, kontrasztvesztés nélkül. */
 html[data-theme="dark"][data-season] body.home-page.home-professional {
-  --kb27-paper: #151612;
-  --kb27-paper-2: #20211c;
-  --kb27-ink: #f3f2eb;
-  --kb27-ink-soft: #d3d2c9;
-  --kb27-muted: #a8aaa0;
-  --kb27-line: rgba(245, 244, 236, 0.12);
-  --kb27-line-strong: rgba(245, 244, 236, 0.23);
-  --kb27-white: #fffef9;
+  --hp-page: #141516;
+  --hp-surface: #1d2022;
+  --hp-ink: #f1f3f4;
+  --hp-muted: #adb4b8;
+  --hp-line: #30363a;
 }
 
 html[data-theme="dark"][data-season="autumn"] body.home-page.home-professional {
-  --kb27-paper: #18140f;
-  --kb27-paper-2: #241d16;
-  --kb27-acid: #e5b757;
-  --kb27-blue: #557998;
-  --kb27-coral: #d27a58;
-}
-
-html[data-theme="dark"][data-season="winter"] body.home-page.home-professional {
-  --kb27-paper: #11171c;
-  --kb27-paper-2: #19242c;
-  --kb27-acid: #b7d4df;
-  --kb27-blue: #5f84aa;
-  --kb27-coral: #b77887;
+  --hp-page: #18130f;
+  --hp-surface: #211a15;
+  --hp-ink: #f5efe8;
+  --hp-muted: #b9aa9d;
+  --hp-line: #3b3028;
+  --hp-blue: #d18450;
+  --hp-blue-strong: #e09a67;
+  --hp-blue-soft: #35251b;
+  --hp-navy: #33251f;
+  --hp-navy-deep: #211814;
 }
 
 @keyframes kb-season-drift {
-  from { transform: translate3d(-0.6%, -0.4%, 0) scale(1); }
-  to { transform: translate3d(0.8%, 0.6%, 0) scale(1.018); }
+  from { transform: translate3d(-0.5%, -0.3%, 0) scale(1); }
+  to { transform: translate3d(0.6%, 0.5%, 0) scale(1.012); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -258,12 +341,6 @@ html[data-theme="dark"][data-season="winter"] body.home-page.home-professional {
 }
 
 @media (max-width: 700px) {
-  html[data-season] body::before {
-    height: 2px;
-  }
-
-  html[data-season] body.home-page.home-professional .home-hero::after {
-    inset: -4% -22% -8%;
-    opacity: 0.8;
-  }
+  html[data-season] body::before { height: 2px; }
+  html[data-season] body.home-page.home-professional .home-hero::after { opacity: 0.78; }
 }
