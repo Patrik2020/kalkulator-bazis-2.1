@@ -1,0 +1,99 @@
+.home-page.home-professional .header-shell {
+  border-bottom: 1px solid var(--kb27-line);
+  background: color-mix(in srgb, var(--kb27-paper) 86%, transparent);
+  backdrop-filter: blur(18px) saturate(130%);
+}
+
+.home-page.home-professional .header-inner {
+  width: min(100% - 40px, 1220px);
+}
+
+.home-page.home-professional .logo {
+  gap: 10px;
+}
+
+.home-page.home-professional .logo-mark {
+  border: 1px solid var(--kb27-ink);
+  border-radius: 50%;
+  background: var(--kb27-acid);
+  box-shadow: none;
+}
+
+.home-page.home-professional .logo-text {
+  color: var(--kb27-ink);
+  font-weight: 800;
+  letter-spacing: -.035em;
+}
+
+.home-page.home-professional #menu > a,
+.home-page.home-professional #menu > details > summary {
+  color: var(--kb27-ink);
+  font-family: var(--kb27-mono);
+  font-size: .69rem;
+  font-weight: 700;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+
+.home-page.home-professional .header-search,
+.home-page.home-professional .theme-toggle {
+  border-color: var(--kb27-line-strong);
+  background: transparent;
+  color: var(--kb27-ink);
+  box-shadow: none;
+}
+
+.home-page.home-professional .header-search:hover,
+.home-page.home-professional .theme-toggle:hover {
+  border-color: var(--kb27-ink);
+  background: var(--kb27-acid);
+  color: var(--kb27-ink);
+}
+
+.home-page.home-professional .nav-submenu {
+  border: 1px solid var(--kb27-ink);
+  border-radius: 0;
+  background: var(--kb27-paper);
+  box-shadow: 10px 10px 0 var(--kb27-ink);
+}
+
+.home-page.home-professional .nav-submenu a {
+  color: var(--kb27-ink);
+}
+
+.home-page.home-professional .nav-submenu a:hover,
+.home-page.home-professional .nav-submenu a:focus-visible {
+  background: var(--kb27-acid);
+}
+
+.home-page.home-professional .kb27-hero-copy,
+.home-page.home-professional .kb27-signal,
+.home-page.home-professional .kb27-search-stage {
+  animation: kb27-enter .65s cubic-bezier(.2,.75,.2,1) both;
+}
+
+.home-page.home-professional .kb27-signal { animation-delay: .08s; }
+.home-page.home-professional .kb27-search-stage { animation-delay: .14s; }
+
+@keyframes kb27-enter {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 700px) {
+  .home-page.home-professional .header-inner {
+    width: min(100% - 28px, 1220px);
+  }
+
+  .home-page.home-professional .logo-text {
+    font-size: .95rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-page.home-professional .kb27-hero-copy,
+  .home-page.home-professional .kb27-signal,
+  .home-page.home-professional .kb27-search-stage {
+    animation: none;
+  }
+}
