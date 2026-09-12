@@ -32,6 +32,14 @@ const orderedCategoryUrls = [
     .sort((a, b) => a.localeCompare(b, "hu")),
 ];
 
+const currentDirectory = path.join(root, "aktualis");
+const currentPages = fs.existsSync(currentDirectory)
+  ? fs.readdirSync(currentDirectory, { withFileTypes: true })
+      .filter((entry) => entry.isFile() && entry.name.endsWith(".html"))
+      .map((entry) => `aktualis/${entry.name}`)
+      .sort((a, b) => a.localeCompare(b, "hu"))
+  : [];
+
 const staticPages = [
   "",
   ...orderedCategoryUrls,
@@ -48,6 +56,8 @@ const staticPages = [
   "miert-bizhatsz-bennunk.html",
   "impresszum.html",
   "elethelyzetek.html",
+  "aktualis.html",
+  ...currentPages,
   "landing-pages/elethelyzetek/lakasvasarlas.html",
   "landing-pages/elethelyzetek/autofenntartas.html",
   "landing-pages/elethelyzetek/fizetes-munkaber.html",
