@@ -1,4 +1,4 @@
-const KB_SW_VERSION = "2026-08-22-extensionless-v12";
+const KB_SW_VERSION = "build-managed";
 const KB_CACHE_PREFIX = "kalkulatorbazis-static";
 const KB_STATIC_CACHE = `${KB_CACHE_PREFIX}-${KB_SW_VERSION}`;
 const KB_CORE_ASSETS = [
@@ -43,6 +43,21 @@ const isCacheableResponse = (response, expectedType = "") => {
   return true;
 };
 
+const versionedNetworkUrl = (inputUrl) => {
+  const url = new URL(inputUrl);
+  url.searchParams.set("__kbv", KB_SW_VERSION);
+  return url;
+};
+
+const fetchFresh = (request, bustVersion = false) => {
+  const url = bustVersion ? versionedNetworkUrl(request.url) : new URL(request.url);
+  return fetch(url.href, {
+    cache: "no-store",
+    credentials: "same-origin",
+    redirect: "follow",
+  });
+};
+
 const cacheCoreAssets = async () => {
   const cache = await caches.open(KB_STATIC_CACHE);
 
@@ -51,14 +66,17 @@ const cacheCoreAssets = async () => {
       const url = new URL(asset, self.registration.scope);
       if (!isSameOrigin(url)) return;
 
-      const request = new Request(url.href, {
-        cache: "reload",
+      const canonicalRequest = new Request(url.href, {
         credentials: "same-origin",
       });
-      const response = await fetch(request);
+      const response = await fetch(versionedNetworkUrl(url.href).href, {
+        cache: "no-store",
+        credentials: "same-origin",
+        redirect: "follow",
+      });
 
       if (isCacheableResponse(response)) {
-        await cache.put(request, response.clone());
+        await cache.put(canonicalRequest, response.clone());
       }
     })
   );
@@ -98,11 +116,11 @@ const offlineResponse = () =>
     }
   );
 
-const networkFirst = async (request, expectedType = "") => {
+const networkFirst = async (request, expectedType = "", bustVersion = false) => {
   const cache = await caches.open(KB_STATIC_CACHE);
 
   try {
-    const response = await fetch(request);
+    const response = await fetchFresh(request, bustVersion);
     if (isCacheableResponse(response, expectedType)) {
       await cache.put(request, response.clone());
     }
@@ -138,7 +156,7 @@ self.addEventListener("fetch", (event) => {
   const acceptsHtml = request.headers.get("accept")?.includes("text/html");
 
   if (request.mode === "navigate" || acceptsHtml) {
-    event.respondWith(networkFirst(request, "text/html"));
+    event.respondWith(networkFirst(request, "text/html", true));
     return;
   }
 
@@ -148,7 +166,7 @@ self.addEventListener("fetch", (event) => {
   }
 
   if (url.pathname.includes("/components/")) {
-    event.respondWith(networkFirst(request, "text/html"));
+    event.respondWith(networkFirst(request, "text/html", true));
     return;
   }
 
