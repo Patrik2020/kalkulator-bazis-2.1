@@ -54,6 +54,9 @@ jobs:
       - name: Normalize final static output
         run: npm run static:normalize
 
+      - name: Apply content-hash asset versions
+        run: node scripts/cache-bust-assets.js
+
       - name: Refresh sitemap after materialization
         run: npm run sitemap
 
@@ -66,6 +69,7 @@ jobs:
           # hasonlítja a következő futáshoz.
           npm run static:build
           npm run static:normalize
+          node scripts/cache-bust-assets.js
           npm run sitemap
 
       - name: Verify static build is idempotent
@@ -74,6 +78,7 @@ jobs:
           git diff --binary > "${RUNNER_TEMP}/static-stable-pass.diff"
           npm run static:build
           npm run static:normalize
+          node scripts/cache-bust-assets.js
           npm run sitemap
           git diff --binary > "${RUNNER_TEMP}/static-verification-pass.diff"
           diff -u \

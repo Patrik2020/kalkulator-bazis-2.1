@@ -180,7 +180,7 @@ function ensureCookieBanner(base, onReady) {
     return;
   }
 
-  loadScriptOnce(base + "js/cookie.js", () => {
+  loadScriptOnce(base + "js/cookie.js?v=08268642992d", () => {
     if (onReady) onReady();
   });
 }
@@ -238,18 +238,18 @@ function loadSiteScripts(base) {
   const loadUi = () => {
     document.dispatchEvent(new CustomEvent("kb:site-data-loaded"));
     markActiveNavigation(document.getElementById("header"));
-    loadScriptOnce(base + "js/site-ui.js");
+    loadScriptOnce(base + "js/site-ui.js?v=aa9502309eb3");
     if (window.location.pathname.toLowerCase().includes("/kalkulatorok/")) {
-      loadScriptOnce(base + "js/retention-cta.js");
+      loadScriptOnce(base + "js/retention-cta.js?v=de234f7c946e");
     }
   };
 
   const loadExpansionData = () => {
-    loadScriptOnce(base + "js/expansion-batch-01-data.js", () => {
-      loadScriptOnce(base + "js/expansion-batch-02-data.js", () => {
-        loadScriptOnce(base + "js/expansion-batch-03-data.js", () => {
-          loadScriptOnce(base + "js/expansion-batch-04-data.js", () => {
-            loadScriptOnce(base + "js/expansion-batch-05-data.js", loadUi);
+    loadScriptOnce(base + "js/expansion-batch-01-data.js?v=1ec41e199816", () => {
+      loadScriptOnce(base + "js/expansion-batch-02-data.js?v=8a7ffb59ab96", () => {
+        loadScriptOnce(base + "js/expansion-batch-03-data.js?v=dd5646626872", () => {
+          loadScriptOnce(base + "js/expansion-batch-04-data.js?v=33876b15f2f4", () => {
+            loadScriptOnce(base + "js/expansion-batch-05-data.js?v=6dd98ee7d334", loadUi);
           });
         });
       });
@@ -261,7 +261,7 @@ function loadSiteScripts(base) {
     return;
   }
 
-  loadScriptOnce(base + "js/site-data.js", loadExpansionData);
+  loadScriptOnce(base + "js/site-data.js?v=f913de69f1dc", loadExpansionData);
 }
 
 function loadComponent(id, path) {

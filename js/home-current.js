@@ -8,8 +8,8 @@
   const currentHref = href("aktualis");
   const inflationHref = href("aktualis/ksh-inflacio-2026-augusztus");
   const fuelHref = href("aktualis/nav-uzemanyag-elszamolasi-arak-2026-szeptember");
-  const professionalCss = href("css/pages/home-professional.css?v=20260912-2");
-  const polishCss = href("css/pages/home-portfolio-2027-polish.css?v=20260912-1");
+  const professionalCss = href("css/pages/home-professional.css?v=34e5ef9d57a8");
+  const polishCss = href("css/pages/home-portfolio-2027-polish.css?v=55e49a1519e0");
 
   const ensureStylesheet = (selector, source, key, value) => {
     if (document.querySelector(selector)) return;
