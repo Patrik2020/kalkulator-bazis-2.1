@@ -9,14 +9,19 @@
   const inflationHref = href("aktualis/ksh-inflacio-2026-augusztus");
   const fuelHref = href("aktualis/nav-uzemanyag-elszamolasi-arak-2026-szeptember");
   const professionalCss = href("css/pages/home-professional.css?v=20260912-2");
+  const polishCss = href("css/pages/home-portfolio-2027-polish.css?v=20260912-1");
 
-  if (!document.querySelector('link[data-home-professional-style]')) {
+  const ensureStylesheet = (selector, source, key, value) => {
+    if (document.querySelector(selector)) return;
     const stylesheet = document.createElement("link");
     stylesheet.rel = "stylesheet";
-    stylesheet.href = professionalCss;
-    stylesheet.dataset.homeProfessionalStyle = "2027";
+    stylesheet.href = source;
+    stylesheet.dataset[key] = value;
     document.head.appendChild(stylesheet);
-  }
+  };
+
+  ensureStylesheet('link[data-home-professional-style]', professionalCss, "homeProfessionalStyle", "2027");
+  ensureStylesheet('link[data-home-portfolio-polish]', polishCss, "homePortfolioPolish", "2027");
 
   document.body.classList.add("home-professional", "home-portfolio-2027");
 
@@ -211,12 +216,12 @@
       <p>A legtöbben nem tudják a kalkulátor nevét. Azt tudják, mit szeretnének eldönteni. Innen ezért élethelyzetből indulsz.</p>
     </div>
     <div class="home-life-grid">
-      <a class="home-life-card" href="${href("kalkulatorok/netto-brutto-kalkulator")}"><span class="home-life-icon">Ft</span><span><strong>Fizetés és munka</strong><small>Nettó, bruttó, órabér, munkaidő</small></span><span class="home-life-arrow">↗</span></a>
-      <a class="home-life-card" href="${href("kalkulatorok/havi-koltsegvetes-kalkulator")}"><span class="home-life-icon">%</span><span><strong>Háztartási pénzügyek</strong><small>Keret, kiadás, megtakarítás</small></span><span class="home-life-arrow">↗</span></a>
-      <a class="home-life-card" href="${href("epitoipari")}"><span class="home-life-icon">m²</span><span><strong>Lakás és felújítás</strong><small>Anyagigény, burkolás, festés</small></span><span class="home-life-arrow">↗</span></a>
-      <a class="home-life-card" href="${href("auto")}"><span class="home-life-icon">km</span><span><strong>Autó és utazás</strong><small>Üzemanyag, út, fenntartás</small></span><span class="home-life-arrow">↗</span></a>
-      <a class="home-life-card" href="${href("egeszseg")}"><span class="home-life-icon">+</span><span><strong>Egészség és életmód</strong><small>BMI, energiaigény, edzés, alvás</small></span><span class="home-life-arrow">↗</span></a>
-      <a class="home-life-card" href="${href("elethelyzetek")}"><span class="home-life-icon">••</span><span><strong>Minden élethelyzet</strong><small>Tematikus kiindulópontok egy helyen</small></span><span class="home-life-arrow">↗</span></a>
+      <a class="home-life-card" href="${href("kalkulatorok/netto-brutto-kalkulator")}"><span class="home-life-icon" aria-hidden="true">Ft</span><span><strong>Fizetés és munka</strong><small>Nettó, bruttó, órabér, munkaidő</small></span><span class="home-life-arrow" aria-hidden="true">↗</span></a>
+      <a class="home-life-card" href="${href("kalkulatorok/havi-koltsegvetes-kalkulator")}"><span class="home-life-icon" aria-hidden="true">%</span><span><strong>Háztartási pénzügyek</strong><small>Keret, kiadás, megtakarítás</small></span><span class="home-life-arrow" aria-hidden="true">↗</span></a>
+      <a class="home-life-card" href="${href("epitoipari")}"><span class="home-life-icon" aria-hidden="true">m²</span><span><strong>Lakás és felújítás</strong><small>Anyagigény, burkolás, festés</small></span><span class="home-life-arrow" aria-hidden="true">↗</span></a>
+      <a class="home-life-card" href="${href("auto")}"><span class="home-life-icon" aria-hidden="true">km</span><span><strong>Autó és utazás</strong><small>Üzemanyag, út, fenntartás</small></span><span class="home-life-arrow" aria-hidden="true">↗</span></a>
+      <a class="home-life-card" href="${href("egeszseg")}"><span class="home-life-icon" aria-hidden="true">+</span><span><strong>Egészség és életmód</strong><small>BMI, energiaigény, edzés, alvás</small></span><span class="home-life-arrow" aria-hidden="true">↗</span></a>
+      <a class="home-life-card" href="${href("elethelyzetek")}"><span class="home-life-icon" aria-hidden="true">••</span><span><strong>Minden élethelyzet</strong><small>Tematikus kiindulópontok egy helyen</small></span><span class="home-life-arrow" aria-hidden="true">↗</span></a>
     </div>`;
 
   const learning = sections.querySelector(".learning-highlight");
