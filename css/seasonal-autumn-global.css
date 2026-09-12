@@ -1,0 +1,442 @@
+/* Kalkulátor Bázis – global autumn skin
+   The seasonal engine adds data-season="autumn" to <html>.
+   This layer themes shared components across every page without changing layout. */
+
+html[data-season="autumn"] {
+  --kb-autumn-copper: #a85d32;
+  --kb-autumn-copper-dark: #82431f;
+  --kb-autumn-amber: #d7a047;
+  --kb-autumn-olive: #68764e;
+  --kb-autumn-cream: #f6efe5;
+  --kb-autumn-paper: #fffaf4;
+  --kb-autumn-line: #dfcdbc;
+
+  --primary: #a85d32;
+  --primary-hover: #87441f;
+  --primary-dark: #87441f;
+  --blue: #a85d32;
+  --action-primary: #a85d32;
+  --action-primary-hover: #87441f;
+  --background: #f5eee5;
+  --bg: #f5eee5;
+  --surface: #fffaf4;
+  --white: #fffaf4;
+  --surface-secondary: #faf1e7;
+  --surface-muted: #f2e6d8;
+  --surface-info: #f6e5d5;
+  --surface-warning: #faead0;
+  --surface-accent: #eee8d9;
+  --surface-pink: #f5e2dc;
+  --text: #302720;
+  --text-light: #76675c;
+  --text-muted: #75665b;
+  --muted: #75665b;
+  --accent-text: #77452c;
+  --border: #e4d5c7;
+  --border-soft: #eaded2;
+  --border-strong: #cfb9a6;
+  --warning-border: #e5c68c;
+  --header-background: rgba(250, 244, 235, 0.96);
+  --shadow-sm: 0 3px 10px rgba(92, 57, 35, 0.07);
+  --shadow-md: 0 10px 28px rgba(92, 57, 35, 0.11);
+}
+
+/* Warm paper atmosphere on all non-home pages. */
+html[data-season="autumn"] body:not(.home-page) {
+  background-color: var(--background);
+  background-image:
+    radial-gradient(circle at 14% 12%, rgba(168, 93, 50, 0.055) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 82% 42%, rgba(215, 160, 71, 0.045) 0 1px, transparent 1.5px),
+    linear-gradient(118deg, transparent 0 46%, rgba(168, 93, 50, 0.026) 49%, transparent 53% 100%);
+  background-size: 25px 25px, 33px 33px, 100% 100%;
+}
+
+/* A faint botanical corner on content pages. */
+html[data-season="autumn"] body:not(.home-page) main {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 230' fill='none'%3E%3Cpath d='M291 13c-64 29-96 67-123 109-25 38-59 67-118 94' stroke='%23A85D32' stroke-width='2.2' stroke-linecap='round'/%3E%3Cpath d='M229 54c-27-5-44 6-51 27c25 4 42-5 51-27Z' stroke='%23A85D32' stroke-width='1.7'/%3E%3Cpath d='M185 111c21-1 35 9 41 26c-20 2-34-7-41-26Z' stroke='%23D7A047' stroke-width='1.7'/%3E%3Cpath d='M143 157c-24-1-40 10-46 29c23 2 38-8 46-29Z' stroke='%2368764E' stroke-width='1.7'/%3E%3C/svg%3E"),
+    radial-gradient(circle at 100% 0%, rgba(215, 160, 71, 0.08), transparent 280px);
+  background-position: calc(100% + 42px) 8px, right top;
+  background-repeat: no-repeat;
+  background-size: 255px auto, 420px 420px;
+}
+
+/* Header and navigation – sitewide. */
+html[data-season="autumn"] .header-shell,
+html[data-season="autumn"] .site-header {
+  background: color-mix(in srgb, var(--header-background) 92%, #f1dfcc);
+  border-bottom-color: #d9c3af;
+  box-shadow:
+    inset 0 3px 0 rgba(168, 93, 50, 0.22),
+    0 8px 24px rgba(92, 57, 35, 0.055);
+}
+
+html[data-season="autumn"] .logo-mark,
+html[data-season="autumn"] .footer-logo-mark {
+  filter: drop-shadow(0 5px 9px rgba(168, 93, 50, 0.2)) saturate(0.88) sepia(0.08);
+}
+
+html[data-season="autumn"] #menu,
+html[data-season="autumn"] .nav-submenu {
+  border-color: var(--border);
+  background: color-mix(in srgb, var(--surface) 96%, #f2dfca);
+  box-shadow: 0 16px 34px rgba(83, 51, 32, 0.13);
+}
+
+html[data-season="autumn"] #menu a:hover,
+html[data-season="autumn"] #menu a:focus-visible,
+html[data-season="autumn"] .nav-dropdown > summary:hover,
+html[data-season="autumn"] .nav-dropdown > summary:focus-visible,
+html[data-season="autumn"] #menu a.is-active,
+html[data-season="autumn"] #menu a[aria-current="page"],
+html[data-season="autumn"] .nav-dropdown.has-active > summary {
+  background: rgba(168, 93, 50, 0.1);
+  color: var(--primary);
+}
+
+html[data-season="autumn"] .header-search,
+html[data-season="autumn"] .theme-toggle,
+html[data-season="autumn"] .menu-toggle {
+  border-color: #d7c2ae;
+  background: color-mix(in srgb, var(--surface) 94%, #f0dcc8);
+}
+
+/* Shared cards and calculator surfaces. */
+html[data-season="autumn"] :is(
+  .card,
+  .calculator,
+  .card-calculator,
+  .article,
+  .category-seo,
+  .portal-content,
+  .adsense-content,
+  .faq-list details,
+  .legal-card
+) {
+  border-color: var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+html[data-season="autumn"] .card,
+html[data-season="autumn"] .article,
+html[data-season="autumn"] .category-seo,
+html[data-season="autumn"] .portal-content,
+html[data-season="autumn"] .adsense-content,
+html[data-season="autumn"] .faq-list details,
+html[data-season="autumn"] .legal-card {
+  background-color: color-mix(in srgb, var(--surface) 96%, #f4dfca);
+}
+
+html[data-season="autumn"] .calculator,
+html[data-season="autumn"] .card-calculator {
+  background-color: color-mix(in srgb, var(--surface) 97%, #f1d9c1);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 90' fill='none'%3E%3Cpath d='M104 7C78 22 62 39 50 58C39 74 26 82 7 87' stroke='%23A85D32' stroke-width='1.35' stroke-linecap='round'/%3E%3Cpath d='M77 28c-12-2-20 3-24 12c11 2 19-2 24-12Z' stroke='%23A85D32' stroke-width='1.15'/%3E%3Cpath d='M54 55c10 0 16 4 20 12c-9 1-16-3-20-12Z' stroke='%23D7A047' stroke-width='1.15'/%3E%3C/svg%3E"),
+    linear-gradient(145deg, rgba(255,255,255,0.34), transparent 44%);
+  background-position: calc(100% - 12px) 10px, center;
+  background-repeat: no-repeat;
+  background-size: 92px auto, 100% 100%;
+}
+
+html[data-season="autumn"] .card-link {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--card-tint, rgba(168,93,50,.09)) 68%, rgba(215,160,71,.08)), transparent 58%),
+    var(--surface);
+}
+
+html[data-season="autumn"] .card-link:hover,
+html[data-season="autumn"] .card-link:focus-visible {
+  border-color: color-mix(in srgb, var(--primary) 36%, var(--border));
+  box-shadow: 0 12px 30px rgba(92, 57, 35, 0.12);
+}
+
+/* Forms and results now feel like part of the same season. */
+html[data-season="autumn"] input:not([type="checkbox"]):not([type="radio"]),
+html[data-season="autumn"] select,
+html[data-season="autumn"] textarea {
+  border-color: #d7c3b1;
+  background: color-mix(in srgb, var(--surface) 97%, #f4dec9);
+}
+
+html[data-season="autumn"] input:not([type="checkbox"]):not([type="radio"]):focus,
+html[data-season="autumn"] select:focus,
+html[data-season="autumn"] textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(168, 93, 50, 0.15);
+}
+
+html[data-season="autumn"] input[type="checkbox"],
+html[data-season="autumn"] input[type="radio"] {
+  accent-color: var(--primary);
+}
+
+html[data-season="autumn"] .result-box {
+  border-color: #cfad8f;
+  background:
+    radial-gradient(circle at 94% 5%, rgba(215, 160, 71, 0.2), transparent 34%),
+    linear-gradient(135deg, rgba(168, 93, 50, 0.13), rgba(255, 250, 244, 0.94)),
+    var(--surface-secondary);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.82),
+    0 8px 22px rgba(92, 57, 35, 0.07);
+}
+
+html[data-season="autumn"] .info-box {
+  border-left-color: var(--primary);
+  background: #f7e8d9;
+}
+
+html[data-season="autumn"] .notice-box {
+  border-color: #dfc59f;
+  border-left-color: #c17b35;
+  background: #f9ecd7;
+}
+
+/* Buttons inherit the autumn palette, while secondary actions stay restrained. */
+html[data-season="autumn"] button:not(.theme-toggle):not(.menu-toggle),
+html[data-season="autumn"] .btn-primary,
+html[data-season="autumn"] .button-primary {
+  background: linear-gradient(135deg, #a85d32, #c47b3e);
+  box-shadow: 0 8px 18px rgba(168, 93, 50, 0.18);
+}
+
+html[data-season="autumn"] button:not(.theme-toggle):not(.menu-toggle):hover,
+html[data-season="autumn"] .btn-primary:hover,
+html[data-season="autumn"] .button-primary:hover {
+  background: linear-gradient(135deg, #87441f, #a9602e);
+}
+
+html[data-season="autumn"] .btn-secondary,
+html[data-season="autumn"] .button-secondary {
+  border-color: #d4bda9;
+  background: #fff8f0;
+  color: #82431f;
+}
+
+/* Breadcrumbs, links and small accents. */
+html[data-season="autumn"] .breadcrumb a,
+html[data-season="autumn"] .highlight-link,
+html[data-season="autumn"] .footer-mail,
+html[data-season="autumn"] .footer-link-emphasis {
+  color: var(--primary);
+}
+
+html[data-season="autumn"] hr {
+  border-color: var(--border);
+}
+
+/* Footer – more obviously seasonal on every page. */
+html[data-season="autumn"] #footer,
+html[data-season="autumn"] .kb-footer-host {
+  position: relative;
+  overflow: hidden;
+  border-top-color: #d6bda7;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(215, 160, 71, 0.14), transparent 30%),
+    linear-gradient(180deg, #f1e3d4, #fff8f0 62%, #f7ecdf);
+}
+
+html[data-season="autumn"] #footer::after,
+html[data-season="autumn"] .kb-footer-host::after {
+  content: "";
+  position: absolute;
+  right: max(8px, calc((100vw - 1180px) / 2));
+  bottom: -34px;
+  width: 250px;
+  height: 170px;
+  opacity: 0.14;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 180' fill='none'%3E%3Cpath d='M251 12c-65 25-104 61-132 100c-24 33-52 48-105 59' stroke='%23A85D32' stroke-width='2.1' stroke-linecap='round'/%3E%3Cpath d='M194 46c-24-4-40 5-47 24c22 3 38-5 47-24Z' stroke='%23A85D32' stroke-width='1.7'/%3E%3Cpath d='M146 91c20 0 34 9 40 25c-19 2-33-6-40-25Z' stroke='%23D7A047' stroke-width='1.7'/%3E%3Cpath d='M95 132c-20-1-34 8-40 24c19 2 32-6 40-24Z' stroke='%2368764E' stroke-width='1.7'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+html[data-season="autumn"] .footer-cta {
+  background:
+    radial-gradient(circle at top right, rgba(255,255,255,0.22), transparent 34%),
+    linear-gradient(135deg, #74412b, #a85d32 58%, #c28b43);
+  box-shadow: 0 16px 38px rgba(92, 57, 35, 0.2);
+}
+
+html[data-season="autumn"] .footer-cta-button {
+  color: #81451f;
+}
+
+/* Home page: turn the current subtle motifs up one notch. */
+html[data-season="autumn"] body.home-page.home-professional {
+  background-image:
+    radial-gradient(circle at 12% 16%, rgba(167, 96, 54, 0.055) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 78% 44%, rgba(217, 166, 77, 0.048) 0 1px, transparent 1.5px),
+    linear-gradient(115deg, transparent 0 47%, rgba(167, 96, 54, 0.034) 50%, transparent 53% 100%);
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-hero-layout::after {
+  opacity: 0.25;
+  width: clamp(200px, 26vw, 340px);
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-hero-layout::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -44px;
+  bottom: 10px;
+  width: clamp(110px, 14vw, 180px);
+  aspect-ratio: 1.1;
+  opacity: 0.13;
+  pointer-events: none;
+  transform: rotate(-12deg);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 165' fill='none'%3E%3Cpath d='M13 153c44-24 71-51 89-84c15-28 34-47 67-59' stroke='%2368764E' stroke-width='1.9' stroke-linecap='round'/%3E%3Cpath d='M54 124c-18 0-30-8-35-22c17-2 29 6 35 22Z' stroke='%23A85D32' stroke-width='1.5'/%3E%3Cpath d='M91 80c17 1 28-6 33-20c-16-2-27 5-33 20Z' stroke='%23D7A047' stroke-width='1.5'/%3E%3Cpath d='M126 43c15 0 25 6 29 18c-14 1-24-5-29-18Z' stroke='%23A85D32' stroke-width='1.4'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-current-panel::after {
+  opacity: 0.2;
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-current-panel::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: -28px;
+  top: -22px;
+  width: 150px;
+  height: 125px;
+  opacity: 0.12;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 130' fill='none'%3E%3Cpath d='M6 8c39 20 64 43 80 69c14 23 33 38 67 47' stroke='%23F4D9B4' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M47 39c-17-1-27 6-31 18c16 2 26-5 31-18Z' stroke='%23E8B96B' stroke-width='1.4'/%3E%3Cpath d='M82 78c15 0 25 6 30 18c-14 2-24-4-30-18Z' stroke='%23F4D9B4' stroke-width='1.4'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+html[data-season="autumn"] body.home-page.home-professional .section-label::before {
+  width: 16px;
+  height: 16px;
+  opacity: 0.95;
+}
+
+html[data-season="autumn"] body.home-page.home-professional footer::after {
+  opacity: 0.14;
+}
+
+/* Dark mode keeps the warmth without sacrificing contrast. */
+html[data-theme="dark"][data-season="autumn"] {
+  --primary: #d78b58;
+  --primary-hover: #e6a071;
+  --primary-dark: #d78b58;
+  --blue: #d78b58;
+  --action-primary: #b96938;
+  --action-primary-hover: #cd7c49;
+  --background: #18130f;
+  --bg: #18130f;
+  --surface: #211a15;
+  --white: #211a15;
+  --surface-secondary: #2a2019;
+  --surface-muted: #30251d;
+  --surface-info: #342419;
+  --surface-warning: #3b2c1b;
+  --surface-accent: #30291e;
+  --surface-pink: #35231f;
+  --text: #f5eee7;
+  --text-light: #c7b7a8;
+  --text-muted: #bcaa9b;
+  --muted: #bcaa9b;
+  --accent-text: #efbb93;
+  --border: #44362b;
+  --border-soft: #3c3027;
+  --border-strong: #5b4738;
+  --header-background: rgba(30, 23, 18, 0.96);
+}
+
+html[data-theme="dark"][data-season="autumn"] body:not(.home-page) {
+  background-image:
+    radial-gradient(circle at 14% 12%, rgba(215, 139, 88, 0.045) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 82% 42%, rgba(215, 160, 71, 0.035) 0 1px, transparent 1.5px);
+}
+
+html[data-theme="dark"][data-season="autumn"] body:not(.home-page) main {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 230' fill='none'%3E%3Cpath d='M291 13c-64 29-96 67-123 109-25 38-59 67-118 94' stroke='%23D78B58' stroke-width='2.2' stroke-linecap='round'/%3E%3Cpath d='M229 54c-27-5-44 6-51 27c25 4 42-5 51-27Z' stroke='%23D78B58' stroke-width='1.7'/%3E%3Cpath d='M185 111c21-1 35 9 41 26c-20 2-34-7-41-26Z' stroke='%23D7A047' stroke-width='1.7'/%3E%3C/svg%3E");
+  background-position: calc(100% + 42px) 8px;
+  background-repeat: no-repeat;
+  background-size: 255px auto;
+}
+
+html[data-theme="dark"][data-season="autumn"] .calculator,
+html[data-theme="dark"][data-season="autumn"] .card-calculator,
+html[data-theme="dark"][data-season="autumn"] .card,
+html[data-theme="dark"][data-season="autumn"] .article,
+html[data-theme="dark"][data-season="autumn"] .category-seo,
+html[data-theme="dark"][data-season="autumn"] .portal-content,
+html[data-theme="dark"][data-season="autumn"] .faq-list details {
+  background-color: var(--surface);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"][data-season="autumn"] input:not([type="checkbox"]):not([type="radio"]),
+html[data-theme="dark"][data-season="autumn"] select,
+html[data-theme="dark"][data-season="autumn"] textarea {
+  background: #1c1612;
+  border-color: var(--border-strong);
+}
+
+html[data-theme="dark"][data-season="autumn"] .result-box {
+  border-color: #765239;
+  background:
+    radial-gradient(circle at 94% 5%, rgba(215, 160, 71, 0.12), transparent 34%),
+    linear-gradient(135deg, rgba(185, 105, 56, 0.2), rgba(33, 26, 21, 0.96));
+}
+
+html[data-theme="dark"][data-season="autumn"] #footer,
+html[data-theme="dark"][data-season="autumn"] .kb-footer-host {
+  background:
+    radial-gradient(circle at 90% 10%, rgba(215, 160, 71, 0.08), transparent 30%),
+    linear-gradient(180deg, #251d17, #1b1511 70%);
+}
+
+@media (max-width: 700px) {
+  html[data-season="autumn"] body:not(.home-page) main {
+    background-position: calc(100% + 82px) 18px, right top;
+    background-size: 220px auto, 320px 320px;
+  }
+
+  html[data-season="autumn"] #footer::after,
+  html[data-season="autumn"] .kb-footer-host::after {
+    right: -74px;
+    width: 205px;
+    opacity: 0.1;
+  }
+
+  html[data-season="autumn"] body.home-page.home-professional .home-hero-layout::before {
+    left: -68px;
+    width: 135px;
+    opacity: 0.08;
+  }
+
+  html[data-season="autumn"] body.home-page.home-professional .home-hero-layout::after {
+    opacity: 0.15;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-season="autumn"] *,
+  html[data-season="autumn"] *::before,
+  html[data-season="autumn"] *::after {
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  html[data-season="autumn"] body,
+  html[data-season="autumn"] main,
+  html[data-season="autumn"] .calculator,
+  html[data-season="autumn"] .card-calculator,
+  html[data-season="autumn"] #footer,
+  html[data-season="autumn"] .kb-footer-host {
+    background-image: none !important;
+  }
+
+  html[data-season="autumn"] #footer::after,
+  html[data-season="autumn"] .kb-footer-host::after,
+  html[data-season="autumn"] body.home-page.home-professional .home-hero-layout::before,
+  html[data-season="autumn"] body.home-page.home-professional .home-hero-layout::after,
+  html[data-season="autumn"] body.home-page.home-professional .home-current-panel::before,
+  html[data-season="autumn"] body.home-page.home-professional .home-current-panel::after {
+    display: none !important;
+  }
+}
