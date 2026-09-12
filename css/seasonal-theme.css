@@ -246,6 +246,86 @@ html[data-season="autumn"] body.home-page.home-professional .home-category-grid 
   --category-soft: #e8ede0;
 }
 
+/* Őszi motívumok – csak dekoráció, a funkcionális tartalom fölé soha nem kerülnek. */
+html[data-season="autumn"] body.home-page.home-professional {
+  background:
+    radial-gradient(circle at 18% 6%, rgba(181, 111, 57, 0.035) 0 1px, transparent 1.6px) 0 0 / 18px 18px,
+    radial-gradient(circle at 78% 14%, rgba(109, 82, 60, 0.025) 0 1px, transparent 1.4px) 0 0 / 24px 24px,
+    var(--hp-page);
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-hero::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 22px;
+  right: max(18px, calc((100vw - 1180px) / 2));
+  width: clamp(150px, 19vw, 260px);
+  aspect-ratio: 1.25;
+  opacity: 0.16;
+  background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 250'%3E%3Cg fill='none' stroke='%23934b25' stroke-width='4' stroke-linecap='round'%3E%3Cpath d='M294 20C245 72 211 111 166 151C119 193 70 213 20 229'/%3E%3Cpath d='M237 83c17-30 41-39 60-35c-2 24-19 42-49 48M194 127c5-34 25-51 47-53c6 24-6 48-34 65M145 169c-8-30 4-51 25-60c14 19 11 45-11 65M97 198c-12-25-5-45 11-57c16 13 20 35 4 56M258 58c-20-12-39-10-53 3c10 17 31 23 54 11M216 108c-25-9-44-3-55 12c14 17 37 19 59 5M167 153c-28-4-45 6-52 23c17 13 41 11 60-5'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+  transform: rotate(7deg);
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-hero-layout {
+  position: relative;
+  z-index: 1;
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-current-panel::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -28px;
+  left: -30px;
+  width: 190px;
+  height: 190px;
+  opacity: 0.13;
+  background: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%23f4c57a' stroke-width='3.5' stroke-linecap='round'%3E%3Cpath d='M25 196C72 153 100 119 124 76C143 43 161 24 198 14'/%3E%3Cpath d='M78 146c-25 0-41 12-47 29c17 10 38 6 55-11M111 101c-25-7-45 1-55 17c15 15 38 15 58 1M145 58c-20-11-39-8-51 6c11 17 32 21 53 8M128 75c4-25 18-40 37-43c7 18 0 39-22 53M94 120c-3-24 7-41 24-48c11 16 9 37-8 53'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+  transform: rotate(-8deg);
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-current-main,
+html[data-season="autumn"] body.home-page.home-professional .home-current-side {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+html[data-season="autumn"] body.home-page.home-professional .section-intro {
+  position: relative;
+}
+
+html[data-season="autumn"] body.home-page.home-professional .section-intro::after {
+  content: "";
+  display: inline-block;
+  width: 46px;
+  height: 18px;
+  margin-top: 10px;
+  opacity: 0.26;
+  background: left center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 36'%3E%3Cg fill='none' stroke='%23a76036' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M6 28C29 23 45 16 61 5'/%3E%3Cpath d='M30 21c-10-3-17 1-21 7c7 6 16 5 24 0M48 14c-8-5-16-3-21 2c5 7 14 8 22 3M58 8c2-8 7-12 13-13c3 6 1 13-6 18'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+html[data-season="autumn"] body.home-page.home-professional .new-tools.home-featured-tool {
+  background:
+    radial-gradient(circle at 96% 8%, rgba(216, 161, 78, 0.13), transparent 25%),
+    linear-gradient(145deg, #fffdf9, #faf1e6);
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-search input:focus,
+html[data-season="autumn"] body.home-page.home-professional .home-search input:focus-visible {
+  border-color: rgba(167, 96, 54, 0.46);
+  box-shadow:
+    0 0 0 4px rgba(216, 161, 78, 0.10),
+    0 18px 42px rgba(92, 58, 37, 0.10);
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-category-grid .card:hover,
+html[data-season="autumn"] body.home-page.home-professional .popular-grid .card:hover {
+  box-shadow: 0 16px 36px rgba(108, 68, 43, 0.10);
+}
+
 /* Ünnepi felülírások: erősebbek az évszaknál, de továbbra sem giccsesek. */
 html[data-event="halloween"] {
   --kb-season-accent: #d56a27;
@@ -329,6 +409,12 @@ html[data-theme="dark"][data-season="autumn"] body.home-page.home-professional {
   --hp-navy-deep: #211814;
 }
 
+html[data-theme="dark"][data-season="autumn"] body.home-page.home-professional .home-hero::before,
+html[data-theme="dark"][data-season="autumn"] body.home-page.home-professional .section-intro::after {
+  opacity: 0.18;
+  filter: sepia(0.12) brightness(1.15);
+}
+
 @keyframes kb-season-drift {
   from { transform: translate3d(-0.5%, -0.3%, 0) scale(1); }
   to { transform: translate3d(0.6%, 0.5%, 0) scale(1.012); }
@@ -343,4 +429,22 @@ html[data-theme="dark"][data-season="autumn"] body.home-page.home-professional {
 @media (max-width: 700px) {
   html[data-season] body::before { height: 2px; }
   html[data-season] body.home-page.home-professional .home-hero::after { opacity: 0.78; }
+
+  html[data-season="autumn"] body.home-page.home-professional .home-hero::before {
+    top: 12px;
+    right: -34px;
+    width: 150px;
+    opacity: 0.10;
+  }
+
+  html[data-season="autumn"] body.home-page.home-professional .home-current-panel::before {
+    width: 135px;
+    height: 135px;
+    opacity: 0.09;
+  }
+
+  html[data-season="autumn"] body.home-page.home-professional .section-intro::after {
+    width: 38px;
+    opacity: 0.22;
+  }
 }
