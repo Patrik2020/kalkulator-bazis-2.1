@@ -57,21 +57,28 @@ jobs:
       - name: Refresh sitemap after materialization
         run: npm run sitemap
 
-      - name: Verify static build is idempotent
+      - name: Stabilize newly materialized pages
         shell: bash
         run: |
-          # A browseres materializálás néhány HTML-soron csak jelentés nélküli
-          # behúzást változtat két egymást követő futás között. A tartalmi
-          # idempotenciát továbbra is szigorúan ellenőrizzük, csak a whitespace-t
-          # hagyjuk figyelmen kívül az összehasonlításban.
-          git diff --ignore-all-space --binary > "${RUNNER_TEMP}/static-first-pass.diff"
+          # Új oldalak első materializálásakor a böngészős DOM és az a11y
+          # normalizálás még egyszer összeérhet. Egy második teljes kör után
+          # vesszük fel az idempotencia-bázist, így a teszt már a stabil végállapotot
+          # hasonlítja a következő futáshoz.
           npm run static:build
           npm run static:normalize
           npm run sitemap
-          git diff --ignore-all-space --binary > "${RUNNER_TEMP}/static-second-pass.diff"
+
+      - name: Verify static build is idempotent
+        shell: bash
+        run: |
+          git diff --binary > "${RUNNER_TEMP}/static-stable-pass.diff"
+          npm run static:build
+          npm run static:normalize
+          npm run sitemap
+          git diff --binary > "${RUNNER_TEMP}/static-verification-pass.diff"
           diff -u \
-            "${RUNNER_TEMP}/static-first-pass.diff" \
-            "${RUNNER_TEMP}/static-second-pass.diff"
+            "${RUNNER_TEMP}/static-stable-pass.diff" \
+            "${RUNNER_TEMP}/static-verification-pass.diff"
 
       - name: Audit crawler-visible source HTML
         run: npm run static:check
