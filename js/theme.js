@@ -5,7 +5,7 @@
   const storageKey = "kalkulatorbazis-theme";
   const root = document.documentElement;
   const colors = { light: "#ffffff", dark: "#111827" };
-  const seasonalCssAsset = "css/seasonal-theme.css?v=07a41c8b58f9";
+  const seasonalCssAsset = "css/seasonal-theme.css?v=17b028ddc6f1";
   const seasonalMotifCssAsset = "css/seasonal-autumn-motifs.css?v=5859aa36e632";
   const seasonalScriptAsset = "js/seasonal-theme.js?v=b4dad1e9d097";
 
