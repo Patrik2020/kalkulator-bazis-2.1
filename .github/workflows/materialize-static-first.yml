@@ -45,10 +45,13 @@ jobs:
             exit 1
           fi
 
+      - name: Generate sitemap for page discovery
+        run: npm run sitemap
+
       - name: Materialize and normalize browser-rendered content
         run: npm run static:build
 
-      - name: Generate sitemap
+      - name: Refresh sitemap after materialization
         run: npm run sitemap
 
       - name: Verify static build is idempotent
