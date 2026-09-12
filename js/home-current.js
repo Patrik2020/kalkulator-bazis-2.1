@@ -9,7 +9,7 @@
   const currentHref = href("aktualis");
   const inflationHref = href("aktualis/ksh-inflacio-2026-augusztus");
   const fuelHref = href("aktualis/nav-uzemanyag-elszamolasi-arak-2026-szeptember");
-  const professionalCss = href("css/pages/home-professional.css?v=20260912-1");
+  const professionalCss = href("css/pages/home-professional.css?v=f820d7ad3f13");
 
   if (!document.querySelector('link[data-home-professional-style]')) {
     const stylesheet = document.createElement("link");
