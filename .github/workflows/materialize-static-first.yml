@@ -51,6 +51,9 @@ jobs:
       - name: Materialize and normalize browser-rendered content
         run: npm run static:build
 
+      - name: Normalize final static output
+        run: npm run static:normalize
+
       - name: Refresh sitemap after materialization
         run: npm run sitemap
 
@@ -59,6 +62,7 @@ jobs:
         run: |
           git diff --binary > "${RUNNER_TEMP}/static-first-pass.diff"
           npm run static:build
+          npm run static:normalize
           npm run sitemap
           git diff --binary > "${RUNNER_TEMP}/static-second-pass.diff"
           diff -u \
