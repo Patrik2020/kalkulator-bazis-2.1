@@ -1,0 +1,269 @@
+/* Kalkulátor Bázis – seasonal visual layer
+   Subtle, reversible skin on top of the core design. No layout-critical rules here. */
+
+html[data-season] {
+  --kb-season-accent: #9d6b46;
+  --kb-season-accent-soft: rgba(157, 107, 70, 0.14);
+  --kb-season-accent-2: #d5a85c;
+  --kb-season-glow-1: rgba(216, 158, 79, 0.18);
+  --kb-season-glow-2: rgba(137, 84, 49, 0.12);
+  --kb-season-line: rgba(157, 107, 70, 0.32);
+  --kb-season-topbar: linear-gradient(90deg, #8d5f40, #d8a14e 48%, #7c4b31);
+}
+
+html[data-season="spring"] {
+  --kb-season-accent: #5d8158;
+  --kb-season-accent-soft: rgba(93, 129, 88, 0.13);
+  --kb-season-accent-2: #d7b8d8;
+  --kb-season-glow-1: rgba(137, 181, 119, 0.16);
+  --kb-season-glow-2: rgba(205, 164, 203, 0.12);
+  --kb-season-line: rgba(93, 129, 88, 0.28);
+  --kb-season-topbar: linear-gradient(90deg, #6f9a67, #d9bddb 50%, #f0ca73);
+}
+
+html[data-season="summer"] {
+  --kb-season-accent: #176d79;
+  --kb-season-accent-soft: rgba(23, 109, 121, 0.12);
+  --kb-season-accent-2: #f2b84d;
+  --kb-season-glow-1: rgba(47, 160, 174, 0.15);
+  --kb-season-glow-2: rgba(242, 184, 77, 0.14);
+  --kb-season-line: rgba(23, 109, 121, 0.26);
+  --kb-season-topbar: linear-gradient(90deg, #168497, #4ab4be 45%, #efb243);
+}
+
+html[data-season="autumn"] {
+  --kb-season-accent: #a76036;
+  --kb-season-accent-soft: rgba(167, 96, 54, 0.14);
+  --kb-season-accent-2: #dfad48;
+  --kb-season-glow-1: rgba(222, 163, 74, 0.2);
+  --kb-season-glow-2: rgba(153, 77, 42, 0.13);
+  --kb-season-line: rgba(151, 82, 45, 0.3);
+  --kb-season-topbar: linear-gradient(90deg, #82452f, #d89a3d 48%, #a85833);
+}
+
+html[data-season="winter"] {
+  --kb-season-accent: #53738d;
+  --kb-season-accent-soft: rgba(83, 115, 141, 0.12);
+  --kb-season-accent-2: #a7c6d6;
+  --kb-season-glow-1: rgba(131, 176, 202, 0.15);
+  --kb-season-glow-2: rgba(157, 174, 196, 0.12);
+  --kb-season-line: rgba(83, 115, 141, 0.26);
+  --kb-season-topbar: linear-gradient(90deg, #415e77, #9bbdce 50%, #718da4);
+}
+
+html[data-season] body {
+  accent-color: var(--kb-season-accent);
+}
+
+html[data-season] body::before {
+  content: "";
+  position: fixed;
+  z-index: 2147483000;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  background: var(--kb-season-topbar);
+  pointer-events: none;
+}
+
+html[data-season] ::selection {
+  background: var(--kb-season-accent);
+  color: #fff;
+}
+
+html[data-season] .header-shell {
+  box-shadow: inset 0 2px 0 color-mix(in srgb, var(--kb-season-accent) 24%, transparent);
+}
+
+/* The 2027 homepage keeps its identity while its palette bends toward the season. */
+html[data-season="spring"] body.home-page.home-professional {
+  --kb27-paper: #f0f2e9;
+  --kb27-paper-2: #e2e8dc;
+  --kb27-acid: #cfe978;
+  --kb27-acid-soft: #e8f4ba;
+  --kb27-blue: #5d6fb7;
+  --kb27-coral: #c98797;
+  --kb27-white: #fffef9;
+}
+
+html[data-season="summer"] body.home-page.home-professional {
+  --kb27-paper: #f2f1e7;
+  --kb27-paper-2: #e5e8dd;
+  --kb27-acid: #f1d766;
+  --kb27-acid-soft: #f8ecae;
+  --kb27-blue: #287f9b;
+  --kb27-coral: #e6815f;
+  --kb27-white: #fffefa;
+}
+
+html[data-season="autumn"] body.home-page.home-professional {
+  --kb27-paper: #f1ece3;
+  --kb27-paper-2: #e5dbcd;
+  --kb27-acid: #efbd52;
+  --kb27-acid-soft: #f6dda1;
+  --kb27-blue: #4d6986;
+  --kb27-coral: #c86b48;
+  --kb27-white: #fffaf3;
+}
+
+html[data-season="winter"] body.home-page.home-professional {
+  --kb27-paper: #eef1f1;
+  --kb27-paper-2: #dfe5e7;
+  --kb27-acid: #c8dbe3;
+  --kb27-acid-soft: #e5eff3;
+  --kb27-blue: #476d91;
+  --kb27-coral: #a96572;
+  --kb27-white: #fbfdfe;
+}
+
+html[data-season] body.home-page.home-professional .header-shell {
+  background: color-mix(in srgb, var(--kb27-paper) 84%, transparent);
+  box-shadow:
+    inset 0 2px 0 color-mix(in srgb, var(--kb-season-accent) 32%, transparent),
+    0 12px 32px rgba(24, 20, 14, 0.035);
+}
+
+html[data-season] body.home-page.home-professional .logo-mark {
+  background: color-mix(in srgb, var(--kb27-acid) 84%, var(--kb-season-accent-2));
+}
+
+html[data-season] body.home-page.home-professional .section-label,
+html[data-season] body.home-page.home-professional .kb27-label {
+  color: color-mix(in srgb, var(--kb27-muted) 70%, var(--kb-season-accent));
+}
+
+html[data-season] body.home-page.home-professional .home-hero {
+  isolation: isolate;
+}
+
+html[data-season] body.home-page.home-professional .home-hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: -8% -10% -12%;
+  background:
+    radial-gradient(circle at 82% 18%, var(--kb-season-glow-1), transparent 24%),
+    radial-gradient(circle at 15% 76%, var(--kb-season-glow-2), transparent 28%),
+    linear-gradient(112deg, transparent 38%, var(--kb-season-accent-soft) 50%, transparent 63%);
+  filter: saturate(108%);
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  animation: kb-season-drift 18s ease-in-out infinite alternate;
+}
+
+html[data-season] body.home-page.home-professional .home-search-control:focus-within,
+html[data-season] body.home-page.home-professional .home-featured-tool:focus-within {
+  outline-color: var(--kb-season-accent);
+}
+
+/* Event layer – stronger than the season, still intentionally restrained. */
+html[data-event="halloween"] {
+  --kb-season-accent: #d56a27;
+  --kb-season-accent-2: #8c64bc;
+  --kb-season-glow-1: rgba(214, 103, 37, 0.22);
+  --kb-season-glow-2: rgba(94, 61, 122, 0.16);
+  --kb-season-topbar: linear-gradient(90deg, #1d1820, #d46b27 50%, #6c4b88);
+}
+
+html[data-event="halloween"] body.home-page.home-professional {
+  --kb27-acid: #f1983d;
+  --kb27-acid-soft: #f6c77f;
+  --kb27-blue: #735997;
+  --kb27-coral: #dd6f35;
+}
+
+html[data-event="christmas"] {
+  --kb-season-accent: #2f7055;
+  --kb-season-accent-2: #c9a84a;
+  --kb-season-glow-1: rgba(45, 112, 84, 0.2);
+  --kb-season-glow-2: rgba(163, 58, 63, 0.13);
+  --kb-season-topbar: linear-gradient(90deg, #1f6249, #c8a94b 48%, #9f3b45);
+}
+
+html[data-event="christmas"] body.home-page.home-professional {
+  --kb27-acid: #d8bd60;
+  --kb27-acid-soft: #efe2a7;
+  --kb27-blue: #2e6b55;
+  --kb27-coral: #a64c54;
+}
+
+html[data-event="newyear"] {
+  --kb-season-accent: #6e82a5;
+  --kb-season-accent-2: #c4b36b;
+  --kb-season-glow-1: rgba(95, 122, 172, 0.2);
+  --kb-season-glow-2: rgba(202, 184, 102, 0.13);
+  --kb-season-topbar: linear-gradient(90deg, #263a5c, #b7a764 48%, #637ca8);
+}
+
+html[data-event="newyear"] body.home-page.home-professional {
+  --kb27-acid: #d7c875;
+  --kb27-acid-soft: #eee5af;
+  --kb27-blue: #536ea3;
+  --kb27-coral: #9f7081;
+}
+
+html[data-event="easter"] {
+  --kb-season-accent: #718a61;
+  --kb-season-accent-2: #b894bc;
+  --kb-season-glow-1: rgba(136, 168, 112, 0.18);
+  --kb-season-glow-2: rgba(184, 148, 188, 0.14);
+  --kb-season-topbar: linear-gradient(90deg, #799469, #d7c46f 48%, #b38cb6);
+}
+
+html[data-event="easter"] body.home-page.home-professional {
+  --kb27-acid: #d8d276;
+  --kb27-acid-soft: #eeeab3;
+  --kb27-blue: #7280ae;
+  --kb27-coral: #b98298;
+}
+
+/* Dark mode receives the same atmosphere without sacrificing contrast. */
+html[data-theme="dark"][data-season] body.home-page.home-professional {
+  --kb27-paper: #151612;
+  --kb27-paper-2: #20211c;
+  --kb27-ink: #f3f2eb;
+  --kb27-ink-soft: #d3d2c9;
+  --kb27-muted: #a8aaa0;
+  --kb27-line: rgba(245, 244, 236, 0.12);
+  --kb27-line-strong: rgba(245, 244, 236, 0.23);
+  --kb27-white: #fffef9;
+}
+
+html[data-theme="dark"][data-season="autumn"] body.home-page.home-professional {
+  --kb27-paper: #18140f;
+  --kb27-paper-2: #241d16;
+  --kb27-acid: #e5b757;
+  --kb27-blue: #557998;
+  --kb27-coral: #d27a58;
+}
+
+html[data-theme="dark"][data-season="winter"] body.home-page.home-professional {
+  --kb27-paper: #11171c;
+  --kb27-paper-2: #19242c;
+  --kb27-acid: #b7d4df;
+  --kb27-blue: #5f84aa;
+  --kb27-coral: #b77887;
+}
+
+@keyframes kb-season-drift {
+  from { transform: translate3d(-0.6%, -0.4%, 0) scale(1); }
+  to { transform: translate3d(0.8%, 0.6%, 0) scale(1.018); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-season] body.home-page.home-professional .home-hero::after {
+    animation: none;
+  }
+}
+
+@media (max-width: 700px) {
+  html[data-season] body::before {
+    height: 2px;
+  }
+
+  html[data-season] body.home-page.home-professional .home-hero::after {
+    inset: -4% -22% -8%;
+    opacity: 0.8;
+  }
+}

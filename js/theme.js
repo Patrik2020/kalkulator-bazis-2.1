@@ -5,6 +5,33 @@
   const storageKey = "kalkulatorbazis-theme";
   const root = document.documentElement;
   const colors = { light: "#ffffff", dark: "#111827" };
+  const seasonalCssAsset = "css/seasonal-theme.css?v=ede4999cb1be";
+  const seasonalScriptAsset = "js/seasonal-theme.js?v=b4dad1e9d097";
+
+  const projectAssetUrl = (asset) => {
+    const projectRoot = String(window.KB_PROJECT_ROOT || "").replace(/\/+$/, "");
+    return `${projectRoot}/${asset}`.replace(/\/{2,}/g, "/");
+  };
+
+  const loadSeasonalTheme = () => {
+    if (!document.querySelector('link[data-kb-seasonal-theme="style"]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = projectAssetUrl(seasonalCssAsset);
+      link.dataset.kbSeasonalTheme = "style";
+      document.head.appendChild(link);
+    }
+
+    if (!document.querySelector('script[data-kb-seasonal-theme="script"]')) {
+      const script = document.createElement("script");
+      script.src = projectAssetUrl(seasonalScriptAsset);
+      script.async = false;
+      script.dataset.kbSeasonalTheme = "script";
+      document.head.appendChild(script);
+    }
+  };
+
+  loadSeasonalTheme();
 
   const readStoredTheme = () => {
     try {
