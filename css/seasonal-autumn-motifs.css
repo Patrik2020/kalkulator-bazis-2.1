@@ -1,0 +1,186 @@
+/* Kalkulátor Bázis – autumn motif layer
+   Decorative only: no layout-critical behaviour, no interaction interception. */
+
+html[data-season="autumn"] body.home-page.home-professional {
+  --kb-autumn-copper: #a76036;
+  --kb-autumn-amber: #d9a64d;
+  --kb-autumn-olive: #667646;
+  --kb-autumn-paper: rgba(255, 250, 243, 0.34);
+  background-image:
+    radial-gradient(circle at 12% 16%, rgba(167, 96, 54, 0.035) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 78% 44%, rgba(217, 166, 77, 0.028) 0 1px, transparent 1.5px),
+    linear-gradient(115deg, transparent 0 47%, rgba(167, 96, 54, 0.022) 50%, transparent 53% 100%);
+  background-size: 23px 23px, 31px 31px, 100% 100%;
+}
+
+/* Hero: a single botanical branch, deliberately subtle. */
+html[data-season="autumn"] body.home-page.home-professional .home-hero-layout {
+  position: relative;
+  isolation: isolate;
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-hero-layout::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 22px;
+  right: -14px;
+  width: clamp(170px, 23vw, 300px);
+  aspect-ratio: 1.22;
+  opacity: 0.16;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 245' fill='none'%3E%3Cpath d='M286 22C230 52 203 91 175 135C149 176 111 204 48 224' stroke='%23A76036' stroke-width='2.2' stroke-linecap='round'/%3E%3Cpath d='M225 62c-31-6-49 7-55 31c26 4 45-6 55-31Z' stroke='%23B86432' stroke-width='1.9'/%3E%3Cpath d='M193 109c23-2 38 9 44 28c-22 3-36-6-44-28Z' stroke='%23D39B47' stroke-width='1.9'/%3E%3Cpath d='M156 149c-28-1-45 12-51 34c26 2 43-9 51-34Z' stroke='%23806C45' stroke-width='1.9'/%3E%3Cpath d='M110 192c18-2 31 6 38 22c-17 3-30-4-38-22Z' stroke='%23B86432' stroke-width='1.8'/%3E%3Cpath d='M249 43c15 2 25 10 30 24c-15 0-25-7-30-24Z' stroke='%23D9A64D' stroke-width='1.7'/%3E%3C/svg%3E");
+  transform: rotate(2deg);
+}
+
+/* Section labels get a tiny line-art leaf instead of emoji/clipart. */
+html[data-season="autumn"] body.home-page.home-professional .section-label::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 7px;
+  vertical-align: -2px;
+  opacity: 0.82;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M16.8 3.2C10.9 3.1 6.4 5.2 4.1 9.1c-1.6 2.7-.8 5.7 1.7 7c2.6 1.4 5.7.2 7.4-2.4c2.1-3.3 2.8-6.7 3.6-10.5Z' stroke='%23A76036' stroke-width='1.45' stroke-linejoin='round'/%3E%3Cpath d='M3.5 16.8c2.9-3.7 6.1-6.6 10.2-8.8' stroke='%23A76036' stroke-width='1.3' stroke-linecap='round'/%3E%3C/svg%3E");
+}
+
+/* Current panel: a faint pale branch lives in the corner, behind the data. */
+html[data-season="autumn"] body.home-page.home-professional .home-current-panel {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-current-panel::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: -34px;
+  bottom: -48px;
+  width: clamp(180px, 27vw, 330px);
+  aspect-ratio: 1.2;
+  opacity: 0.13;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 260' fill='none'%3E%3Cpath d='M18 246c75-41 118-78 148-124c28-43 65-78 136-105' stroke='%23F4D9B4' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M87 204c-31 0-49-14-55-37c27-2 46 10 55 37Z' stroke='%23F4D9B4' stroke-width='1.9'/%3E%3Cpath d='M133 166c25 2 41-9 48-29c-23-3-39 6-48 29Z' stroke='%23E8B96B' stroke-width='1.9'/%3E%3Cpath d='M179 112c-24-3-39-15-43-34c23-1 37 10 43 34Z' stroke='%23F4D9B4' stroke-width='1.9'/%3E%3Cpath d='M225 69c22 2 36-8 42-25c-20-3-34 5-42 25Z' stroke='%23E8B96B' stroke-width='1.8'/%3E%3C/svg%3E");
+  transform: rotate(-4deg);
+}
+
+/* Small leaf accent where the search becomes active. */
+html[data-season="autumn"] body.home-page.home-professional .home-search {
+  position: relative;
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-search::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  bottom: -18px;
+  width: 36px;
+  height: 23px;
+  opacity: 0.28;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 46 28' fill='none'%3E%3Cpath d='M2 25c12-3 22-10 29-21' stroke='%23A76036' stroke-width='1.6' stroke-linecap='round'/%3E%3Cpath d='M18 15c-6-1-10 1-13 5c6 2 10 0 13-5Z' stroke='%23A76036' stroke-width='1.4'/%3E%3Cpath d='M29 7c5 0 9 2 12 6c-5 1-9-1-12-6Z' stroke='%23D9A64D' stroke-width='1.4'/%3E%3C/svg%3E");
+}
+
+html[data-season="autumn"] body.home-page.home-professional .home-search:focus-within::after {
+  opacity: 0.52;
+}
+
+/* Footer closes the page with the same motif language, still barely there. */
+html[data-season="autumn"] body.home-page.home-professional footer {
+  position: relative;
+  overflow: hidden;
+}
+
+html[data-season="autumn"] body.home-page.home-professional footer::after {
+  content: "";
+  position: absolute;
+  right: max(18px, calc((100vw - 1180px) / 2));
+  bottom: -38px;
+  width: 210px;
+  height: 150px;
+  opacity: 0.09;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 170' fill='none'%3E%3Cpath d='M229 9c-62 24-96 56-123 92c-23 31-49 48-94 58' stroke='%23A76036' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M174 42c-22-4-37 4-44 22c21 3 35-4 44-22Z' stroke='%23A76036' stroke-width='1.6'/%3E%3Cpath d='M132 82c19 0 31 8 37 23c-18 2-31-6-37-23Z' stroke='%23D9A64D' stroke-width='1.6'/%3E%3Cpath d='M87 122c-19-1-31 7-37 22c18 2 30-5 37-22Z' stroke='%23806C45' stroke-width='1.6'/%3E%3C/svg%3E");
+}
+
+/* Dark mode: motifs remain visible but never compete with text. */
+html[data-theme="dark"][data-season="autumn"] body.home-page.home-professional .home-hero-layout::after,
+html[data-theme="dark"][data-season="autumn"] body.home-page.home-professional .section-label::before,
+html[data-theme="dark"][data-season="autumn"] body.home-page.home-professional .home-search::after,
+html[data-theme="dark"][data-season="autumn"] body.home-page.home-professional footer::after {
+  filter: saturate(0.82) brightness(1.35);
+}
+
+html[data-theme="dark"][data-season="autumn"] body.home-page.home-professional .home-current-panel::after {
+  opacity: 0.1;
+}
+
+@media (max-width: 900px) {
+  html[data-season="autumn"] body.home-page.home-professional .home-hero-layout::after {
+    top: 8px;
+    right: -56px;
+    width: 210px;
+    opacity: 0.11;
+  }
+
+  html[data-season="autumn"] body.home-page.home-professional .home-current-panel::after {
+    right: -72px;
+    bottom: -58px;
+    width: 250px;
+    opacity: 0.1;
+  }
+}
+
+@media (max-width: 640px) {
+  html[data-season="autumn"] body.home-page.home-professional .home-hero-layout::after {
+    right: -76px;
+    top: 18px;
+    width: 175px;
+    opacity: 0.085;
+  }
+
+  html[data-season="autumn"] body.home-page.home-professional .section-label::before {
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+  }
+
+  html[data-season="autumn"] body.home-page.home-professional .home-search::after {
+    right: 6px;
+    bottom: -15px;
+    width: 30px;
+    opacity: 0.22;
+  }
+
+  html[data-season="autumn"] body.home-page.home-professional footer::after {
+    right: -52px;
+    width: 170px;
+    opacity: 0.07;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-season="autumn"] body.home-page.home-professional .home-hero-layout::after,
+  html[data-season="autumn"] body.home-page.home-professional .home-current-panel::after,
+  html[data-season="autumn"] body.home-page.home-professional .home-search::after,
+  html[data-season="autumn"] body.home-page.home-professional footer::after {
+    transition: none;
+  }
+}
