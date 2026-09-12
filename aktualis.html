@@ -80,13 +80,9 @@
 
         <div class="header-actions">
           <a class="header-search" href="./kalkulatorok#calculatorSearch" aria-label="Kalkulátor keresése">
-            <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path>
-            </svg>
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg>
           </a>
-          <button class="theme-toggle" type="button" data-theme-toggle="" aria-label="Váltás sötét módra" aria-pressed="false" title="Váltás sötét módra">
-            <span class="theme-toggle-icon" aria-hidden="true">☾</span><span class="theme-toggle-text">Sötét</span>
-          </button>
+          <button class="theme-toggle" type="button" data-theme-toggle="" aria-label="Váltás sötét módra" aria-pressed="false" title="Váltás sötét módra"><span class="theme-toggle-icon" aria-hidden="true">☾</span><span class="theme-toggle-text">Sötét</span></button>
           <button class="menu-toggle" id="menuToggle" type="button" aria-label="Menü megnyitása" aria-controls="menu" aria-expanded="false">☰</button>
         </div>
       </div>
@@ -102,9 +98,7 @@
 
         <div class="current-source-strip" aria-label="Elsődleges forrásaink">
           <strong>Elsődleges forrásaink</strong>
-          <ul class="current-source-list">
-            <li>NAV</li><li>KSH</li><li>MNB</li><li>MÁK / ÁKK</li><li>Magyar Közlöny / NJT</li><li>Eurostat</li><li>EUR-Lex / EU</li>
-          </ul>
+          <ul class="current-source-list"><li>NAV</li><li>KSH</li><li>MNB</li><li>MÁK / ÁKK</li><li>Magyar Közlöny / NJT</li><li>Eurostat</li><li>EUR-Lex / EU</li></ul>
         </div>
       </div>
     </section>
@@ -118,6 +112,16 @@
         </div>
 
         <div class="current-feed" data-current-feed>
+          <article class="current-card">
+            <div class="current-meta"><time datetime="2026-09-12">2026. szeptember 12.</time><span>KSH</span><span>Infláció és vásárlóerő</span></div>
+            <h2><a href="./aktualis/ksh-inflacio-2026-augusztus">1,3% volt az éves infláció 2026 augusztusában – júliushoz képest 0,2%-kal nőttek az árak</a></h2>
+            <p>A KSH augusztusi fogyasztóiár-adatai alapján az éves infláció 1,3% volt, az árak pedig júliushoz képest átlagosan 0,2%-kal emelkedtek. Megmutatjuk, mit jelent ez a gyakorlatban.</p>
+            <div class="current-actions">
+              <a class="current-action current-action-primary" href="./aktualis/ksh-inflacio-2026-augusztus">Közlemény elolvasása</a>
+              <a class="current-action" href="./kalkulatorok/inflacio-kalkulator">Infláció kalkulátor</a>
+            </div>
+          </article>
+
           <article class="current-card">
             <div class="current-meta"><time datetime="2026-09-11">2026. szeptember 11.</time><span>NAV</span><span>Autózás és költségelszámolás</span></div>
             <h2><a href="./aktualis/nav-uzemanyag-elszamolasi-arak-2026-szeptember">NAV üzemanyag-elszámolási árak 2026 szeptemberében: 604 Ft/l a benzin, 667 Ft/l a gázolaj</a></h2>
@@ -147,31 +151,12 @@
   <div id="footer">
     <div class="footer-container kb-footer">
       <div class="footer-main">
-        <section class="footer-brand" aria-labelledby="footerBrandTitle">
-          <a href="./" class="footer-logo" id="footerBrandTitle"><span class="footer-logo-mark" aria-hidden="true"></span><span>Kalkulátor Bázis</span></a>
-          <p class="footer-brand-copy">Ingyenes, magyar nyelvű online kalkulátorok és közérthető magyarázatok mindennapi döntésekhez.</p>
-          <a class="footer-mail" href="mailto:kalkulatorbazis@gmail.com">kalkulatorbazis@gmail.com</a>
-        </section>
-
-        <nav class="footer-col" aria-label="Kalkulátorkategóriák">
-          <h2>Kalkulátorok</h2>
-          <a href="./penzugyi">Pénzügyi</a><a href="./egeszseg">Egészség</a><a href="./epitoipari">Építőipari</a><a href="./auto">Autós</a><a href="./mindennapi">Mindennapi</a><a href="./atvaltok">Átváltók</a>
-        </nav>
-
-        <nav class="footer-col" aria-label="Tudástár">
-          <h2>Tudástár</h2>
-          <a href="./aktualis">Aktuális változások</a><a href="./elethelyzetek">Élethelyzetek</a><a href="./szamitasi-modszertan">Számítási módszertan</a><a href="./miert-bizhatsz-bennunk">Miért bízhatsz bennünk?</a>
-        </nav>
-
-        <nav class="footer-col" aria-label="Információ">
-          <h2>Információ</h2>
-          <a href="./rolunk">Rólunk</a><a href="./atlathatosag-es-minoseg">Átláthatóság és minőség</a><a href="./kapcsolat">Kapcsolat és hibabejelentés</a><button class="footer-link-button" type="button" data-cookie-settings="">Sütibeállítások</button>
-        </nav>
+        <section class="footer-brand" aria-labelledby="footerBrandTitle"><a href="./" class="footer-logo" id="footerBrandTitle"><span class="footer-logo-mark" aria-hidden="true"></span><span>Kalkulátor Bázis</span></a><p class="footer-brand-copy">Ingyenes, magyar nyelvű online kalkulátorok és közérthető magyarázatok mindennapi döntésekhez.</p><a class="footer-mail" href="mailto:kalkulatorbazis@gmail.com">kalkulatorbazis@gmail.com</a></section>
+        <nav class="footer-col" aria-label="Kalkulátorkategóriák"><h2>Kalkulátorok</h2><a href="./penzugyi">Pénzügyi</a><a href="./egeszseg">Egészség</a><a href="./epitoipari">Építőipari</a><a href="./auto">Autós</a><a href="./mindennapi">Mindennapi</a><a href="./atvaltok">Átváltók</a></nav>
+        <nav class="footer-col" aria-label="Tudástár"><h2>Tudástár</h2><a href="./aktualis">Aktuális változások</a><a href="./elethelyzetek">Élethelyzetek</a><a href="./szamitasi-modszertan">Számítási módszertan</a><a href="./miert-bizhatsz-bennunk">Miért bízhatsz bennünk?</a></nav>
+        <nav class="footer-col" aria-label="Információ"><h2>Információ</h2><a href="./rolunk">Rólunk</a><a href="./atlathatosag-es-minoseg">Átláthatóság és minőség</a><a href="./kapcsolat">Kapcsolat és hibabejelentés</a><button class="footer-link-button" type="button" data-cookie-settings="">Sütibeállítások</button></nav>
       </div>
-
-      <nav class="footer-legal" aria-label="Jogi hivatkozások">
-        <a href="./impresszum">Impresszum</a><a href="./adatvedelem">Adatkezelés</a><a href="./felhasznalasi-feltetelek">Felhasználási feltételek</a><a href="./cookie">Sütik</a><a href="./jogi-nyilatkozat">Jogi nyilatkozat</a>
-      </nav>
+      <nav class="footer-legal" aria-label="Jogi hivatkozások"><a href="./impresszum">Impresszum</a><a href="./adatvedelem">Adatkezelés</a><a href="./felhasznalasi-feltetelek">Felhasználási feltételek</a><a href="./cookie">Sütik</a><a href="./jogi-nyilatkozat">Jogi nyilatkozat</a></nav>
       <div class="footer-bottom"><p>© 2026 Kalkulátor Bázis</p><p>Az eredmények tájékoztató becslések; fontos döntés előtt ellenőrizd az aktuális hivatalos vagy szakmai forrást.</p></div>
     </div>
   </div>
