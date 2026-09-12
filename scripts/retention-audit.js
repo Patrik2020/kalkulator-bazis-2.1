@@ -28,7 +28,7 @@ const pages = files.map((file) => {
   const html = read(filePath);
   const ctaCount = (html.match(/data-retention-cta/g) || []).length;
   const hasStaticFallbackCleanup = /static-first-fallbacks\.js/i.test(html);
-  const hasUtils = /<script[^>]+src=["']\.\.\/js\/utils\.js["']/i.test(html);
+  const hasUtils = /<script[^>]+src=["']\.\.\/js\/utils\.js(?:\?[^"']*)?["']/i.test(html);
   const calculatorCards = (html.match(/class=["'][^"']*\bcard-calculator\b/g) || []).length;
   const resultBlocks = (
     html.match(
