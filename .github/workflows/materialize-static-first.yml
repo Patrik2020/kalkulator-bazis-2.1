@@ -48,11 +48,15 @@ jobs:
       - name: Materialize and normalize browser-rendered content
         run: npm run static:build
 
+      - name: Generate sitemap
+        run: npm run sitemap
+
       - name: Verify static build is idempotent
         shell: bash
         run: |
           git diff --binary > "${RUNNER_TEMP}/static-first-pass.diff"
           npm run static:build
+          npm run sitemap
           git diff --binary > "${RUNNER_TEMP}/static-second-pass.diff"
           diff -u \
             "${RUNNER_TEMP}/static-first-pass.diff" \
@@ -67,10 +71,12 @@ jobs:
       - name: Run final 100-calculator inventory gate
         run: node scripts/final-fullsite-audit.js
 
-      - name: Verify generated sitemap URL set is current
+      - name: Verify generated sitemap is idempotent
+        shell: bash
         run: |
+          cp sitemap.xml "${RUNNER_TEMP}/sitemap.xml"
           npm run sitemap
-          git diff --exit-code -I '<lastmod>.*</lastmod>' -- sitemap.xml
+          diff -u "${RUNNER_TEMP}/sitemap.xml" sitemap.xml
 
       - name: Check whitespace errors
         run: git diff --check
