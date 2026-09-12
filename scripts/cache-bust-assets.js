@@ -9,6 +9,7 @@ const ROOT = path.resolve(__dirname, "..");
 const HASH_LENGTH = 12;
 const MAX_DYNAMIC_PASSES = 8;
 const SKIP_DIRS = new Set([".git", "node_modules"]);
+const SERVICE_WORKER_FILE = path.join(ROOT, "sw.js");
 
 const hashCache = new Map();
 
@@ -74,13 +75,21 @@ function resolveHtmlAsset(htmlFile, rawValue) {
   return absolute;
 }
 
+function normalizeRuntimePathname(pathname) {
+  return pathname
+    .replace(/^\$\{projectRoot\}\//, "")
+    .replace(/^\.\//, "")
+    .replace(/^\/+/, "");
+}
+
 function resolveRuntimeAsset(rawValue) {
   if (!rawValue || isExternalUrl(rawValue)) return null;
   const { pathname } = parseAssetUrl(rawValue);
-  if (!/^(?:\.\/)?(?:css|js)\//i.test(pathname)) return null;
-  if (!/\.(?:css|js)$/i.test(pathname)) return null;
+  const normalized = normalizeRuntimePathname(pathname);
+  if (!/^(?:css|js)\//i.test(normalized)) return null;
+  if (!/\.(?:css|js)$/i.test(normalized)) return null;
 
-  const absolute = path.join(ROOT, pathname.replace(/^\.\//, "").replace(/^\/+/, ""));
+  const absolute = path.join(ROOT, normalized);
   if (!absolute.startsWith(ROOT + path.sep) || !fs.existsSync(absolute) || !fs.statSync(absolute).isFile()) {
     return null;
   }
@@ -97,7 +106,7 @@ function withVersion(rawValue, assetFile) {
 
 function rewriteRuntimeAssetStrings() {
   const jsFiles = walk(path.join(ROOT, "js"), (file) => file.endsWith(".js"));
-  const literalPattern = /(["'`])((?:\.\/)?(?:css|js)\/[A-Za-z0-9_./-]+\.(?:css|js)(?:\?[^"'`\s\\]*)?(?:#[^"'`\s\\]*)?)\1/g;
+  const literalPattern = /(["'`])((?:(?:\$\{projectRoot\}\/)|(?:\.\/))?(?:css|js)\/[A-Za-z0-9_./-]+\.(?:css|js)(?:\?[^"'`\s\\]*)?(?:#[^"'`\s\\]*)?)\1/g;
 
   for (let pass = 1; pass <= MAX_DYNAMIC_PASSES; pass += 1) {
     let changedThisPass = 0;
@@ -163,6 +172,42 @@ function rewriteHtmlFile(htmlFile) {
   return false;
 }
 
+function deploymentFingerprint() {
+  const files = walk(
+    ROOT,
+    (file) =>
+      file !== SERVICE_WORKER_FILE &&
+      /\.(?:html|css|js|webmanifest)$/i.test(file)
+  ).sort();
+
+  const hash = crypto.createHash("sha256");
+  for (const file of files) {
+    hash.update(path.relative(ROOT, file).replace(/\\/g, "/"));
+    hash.update("\0");
+    hash.update(fs.readFileSync(file));
+    hash.update("\0");
+  }
+  return hash.digest("hex").slice(0, HASH_LENGTH);
+}
+
+function rewriteServiceWorkerVersion() {
+  if (!fs.existsSync(SERVICE_WORKER_FILE)) return null;
+
+  const before = fs.readFileSync(SERVICE_WORKER_FILE, "utf8");
+  const version = `build-${deploymentFingerprint()}`;
+  const pattern = /const KB_SW_VERSION = "[^"]+";/;
+  if (!pattern.test(before)) {
+    throw new Error("A sw.js KB_SW_VERSION konstansa nem található.");
+  }
+
+  const after = before.replace(pattern, `const KB_SW_VERSION = "${version}";`);
+  if (after !== before) {
+    fs.writeFileSync(SERVICE_WORKER_FILE, after);
+    invalidateHash(SERVICE_WORKER_FILE);
+  }
+  return version;
+}
+
 function main() {
   rewriteRuntimeAssetStrings();
 
@@ -172,7 +217,10 @@ function main() {
     if (rewriteHtmlFile(htmlFile)) changedHtml += 1;
   }
 
-  console.log(`Cache busting kész: ${htmlFiles.length} HTML ellenőrizve, ${changedHtml} HTML frissítve.`);
+  const swVersion = rewriteServiceWorkerVersion();
+  console.log(
+    `Cache busting kész: ${htmlFiles.length} HTML ellenőrizve, ${changedHtml} HTML frissítve, service worker: ${swVersion || "n/a"}.`
+  );
 }
 
 main();

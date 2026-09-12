@@ -8,34 +8,18 @@
     : "";
   const serviceWorkerUrl = new URL(`${projectRoot}/sw.js`, window.location.origin);
   const expectedScopeUrl = new URL(`${projectRoot || ""}/`, window.location.origin);
-  const reloadStorageKey = "kb-sw-controller-reload-2026-08-07-ui-v3";
   let deferredPrompt = null;
   let installed = false;
+  let controllerReloading = false;
 
-  const isLocalhost = ["localhost", "127.0.0.1", "::1"].includes(window.location.hostname);
+  // A service worker csak biztonságos, valódi HTTPS környezetben fusson.
+  // A statikus build és a helyi browser QA HTTP localhoston dolgozik; ott a
+  // worker aktiválása újratöltést és nem determinisztikus DOM-snapshotot okozna.
   const canUseServiceWorker =
     "serviceWorker" in navigator &&
     serviceWorkerUrl.origin === window.location.origin &&
     expectedScopeUrl.origin === window.location.origin &&
-    (window.location.protocol === "https:" || isLocalhost);
-
-  const safeSessionStorage = {
-    get(key) {
-      try {
-        return window.sessionStorage.getItem(key);
-      } catch (error) {
-        return null;
-      }
-    },
-    set(key, value) {
-      try {
-        window.sessionStorage.setItem(key, value);
-        return true;
-      } catch (error) {
-        return false;
-      }
-    },
-  };
+    window.location.protocol === "https:";
 
   const isStandalone = () =>
     window.matchMedia?.("(display-mode: standalone)").matches ||
@@ -68,10 +52,8 @@
     const hadController = Boolean(navigator.serviceWorker.controller);
 
     navigator.serviceWorker.addEventListener("controllerchange", () => {
-      if (!hadController) return;
-      if (safeSessionStorage.get(reloadStorageKey) === "done") return;
-
-      safeSessionStorage.set(reloadStorageKey, "done");
+      if (!hadController || controllerReloading) return;
+      controllerReloading = true;
       window.location.reload();
     });
 

@@ -162,6 +162,22 @@ function stripInvalidAriaLabels(html) {
   return output;
 }
 
+function normalizeRetentionInstallAction(html) {
+  return html.replace(
+    /<button\b(?=[^>]*\bdata-retention-action=["']install["'])[^>]*>/gi,
+    (tag) => {
+      let normalized = tag
+        .replace(/\sdata-install-mode\s*=\s*(["'])[^"']*\1/gi, "")
+        .replace(/\sdata-install-method\s*=\s*(["'])[^"']*\1/gi, "");
+
+      if (!/\shidden(?:\s|>|=)/i.test(normalized)) {
+        normalized = normalized.replace(/>$/, " hidden>");
+      }
+      return normalized;
+    }
+  );
+}
+
 function removeDuplicateReliabilityFallback(html) {
   const start = "<!-- KB_STATIC:reliability:START -->";
   const end = "<!-- KB_STATIC:reliability:END -->";
@@ -194,6 +210,7 @@ function normalize(html) {
   output = removeDuplicateReliabilityFallback(output);
   output = removeLegacyFaqStructuredData(output);
   output = normalizeBooleanAttributes(output);
+  output = normalizeRetentionInstallAction(output);
   output = stripInlineStyles(output);
   output = stripInvalidAriaLabels(output);
   output = addExplicitInputTypes(output);
