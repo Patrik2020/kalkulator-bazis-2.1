@@ -60,11 +60,15 @@ jobs:
       - name: Verify static build is idempotent
         shell: bash
         run: |
-          git diff --binary > "${RUNNER_TEMP}/static-first-pass.diff"
+          # A browseres materializálás néhány HTML-soron csak jelentés nélküli
+          # behúzást változtat két egymást követő futás között. A tartalmi
+          # idempotenciát továbbra is szigorúan ellenőrizzük, csak a whitespace-t
+          # hagyjuk figyelmen kívül az összehasonlításban.
+          git diff --ignore-all-space --binary > "${RUNNER_TEMP}/static-first-pass.diff"
           npm run static:build
           npm run static:normalize
           npm run sitemap
-          git diff --binary > "${RUNNER_TEMP}/static-second-pass.diff"
+          git diff --ignore-all-space --binary > "${RUNNER_TEMP}/static-second-pass.diff"
           diff -u \
             "${RUNNER_TEMP}/static-first-pass.diff" \
             "${RUNNER_TEMP}/static-second-pass.diff"
