@@ -12,12 +12,14 @@
   let installed = false;
   let controllerReloading = false;
 
-  const isLocalhost = ["localhost", "127.0.0.1", "::1"].includes(window.location.hostname);
+  // A service worker csak biztonságos, valódi HTTPS környezetben fusson.
+  // A statikus build és a helyi browser QA HTTP localhoston dolgozik; ott a
+  // worker aktiválása újratöltést és nem determinisztikus DOM-snapshotot okozna.
   const canUseServiceWorker =
     "serviceWorker" in navigator &&
     serviceWorkerUrl.origin === window.location.origin &&
     expectedScopeUrl.origin === window.location.origin &&
-    (window.location.protocol === "https:" || isLocalhost);
+    window.location.protocol === "https:";
 
   const isStandalone = () =>
     window.matchMedia?.("(display-mode: standalone)").matches ||
