@@ -40,7 +40,7 @@
   };
 
   const getState = () => ({
-    canInstall: Boolean(deferredPrompt && !isStandalone()),
+    canInstall: Boolean(canUseServiceWorker && deferredPrompt && !isStandalone()),
     installed: isStandalone(),
     serviceWorkerSupported: "serviceWorker" in navigator,
     serviceWorkerAllowed: canUseServiceWorker,
@@ -91,7 +91,11 @@
   };
 
   window.addEventListener("beforeinstallprompt", (event) => {
-    if (isStandalone()) return;
+    // Local/static build környezetben a service worker szándékosan tiltott.
+    // Itt a Chromium ettől még kibocsáthat beforeinstallprompt eseményt, de azt
+    // nem szabad UI-állapottá alakítani, különben a materializált HTML-be
+    // beleég a futásidejű telepítési CTA.
+    if (!canUseServiceWorker || isStandalone()) return;
 
     event.preventDefault();
     deferredPrompt = event;
@@ -107,11 +111,11 @@
 
   window.KB_PWA = {
     canInstall() {
-      return Boolean(deferredPrompt && !isStandalone());
+      return Boolean(canUseServiceWorker && deferredPrompt && !isStandalone());
     },
     getState,
     async promptInstall() {
-      if (!deferredPrompt || isStandalone()) {
+      if (!canUseServiceWorker || !deferredPrompt || isStandalone()) {
         return { outcome: "unavailable" };
       }
 

@@ -7,6 +7,7 @@
   const colors = { light: "#ffffff", dark: "#111827" };
   const seasonalCssAsset = "css/seasonal-theme.css?v=17b028ddc6f1";
   const seasonalMotifCssAsset = "css/seasonal-autumn-motifs.css?v=5859aa36e632";
+  const seasonalGlobalCssAsset = "css/seasonal-autumn-global.css";
   const seasonalScriptAsset = "js/seasonal-theme.js?v=b4dad1e9d097";
 
   const projectAssetUrl = (asset) => {
@@ -29,6 +30,14 @@
       motifLink.href = projectAssetUrl(seasonalMotifCssAsset);
       motifLink.dataset.kbSeasonalTheme = "motifs";
       document.head.appendChild(motifLink);
+    }
+
+    if (!document.querySelector('link[data-kb-seasonal-theme="global"]')) {
+      const globalLink = document.createElement("link");
+      globalLink.rel = "stylesheet";
+      globalLink.href = projectAssetUrl(seasonalGlobalCssAsset);
+      globalLink.dataset.kbSeasonalTheme = "global";
+      document.head.appendChild(globalLink);
     }
 
     if (!document.querySelector('script[data-kb-seasonal-theme="script"]')) {
