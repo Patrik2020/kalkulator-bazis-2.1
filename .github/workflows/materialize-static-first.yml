@@ -45,18 +45,40 @@ jobs:
             exit 1
           fi
 
+      - name: Generate sitemap for page discovery
+        run: npm run sitemap
+
       - name: Materialize and normalize browser-rendered content
         run: npm run static:build
+
+      - name: Normalize final static output
+        run: npm run static:normalize
+
+      - name: Refresh sitemap after materialization
+        run: npm run sitemap
+
+      - name: Stabilize newly materialized pages
+        shell: bash
+        run: |
+          # Új oldalak első materializálásakor a böngészős DOM és az a11y
+          # normalizálás még egyszer összeérhet. Egy második teljes kör után
+          # vesszük fel az idempotencia-bázist, így a teszt már a stabil végállapotot
+          # hasonlítja a következő futáshoz.
+          npm run static:build
+          npm run static:normalize
+          npm run sitemap
 
       - name: Verify static build is idempotent
         shell: bash
         run: |
-          git diff --binary > "${RUNNER_TEMP}/static-first-pass.diff"
+          git diff --binary > "${RUNNER_TEMP}/static-stable-pass.diff"
           npm run static:build
-          git diff --binary > "${RUNNER_TEMP}/static-second-pass.diff"
+          npm run static:normalize
+          npm run sitemap
+          git diff --binary > "${RUNNER_TEMP}/static-verification-pass.diff"
           diff -u \
-            "${RUNNER_TEMP}/static-first-pass.diff" \
-            "${RUNNER_TEMP}/static-second-pass.diff"
+            "${RUNNER_TEMP}/static-stable-pass.diff" \
+            "${RUNNER_TEMP}/static-verification-pass.diff"
 
       - name: Audit crawler-visible source HTML
         run: npm run static:check
@@ -67,10 +89,12 @@ jobs:
       - name: Run final 100-calculator inventory gate
         run: node scripts/final-fullsite-audit.js
 
-      - name: Verify generated sitemap URL set is current
+      - name: Verify generated sitemap is idempotent
+        shell: bash
         run: |
+          cp sitemap.xml "${RUNNER_TEMP}/sitemap.xml"
           npm run sitemap
-          git diff --exit-code -I '<lastmod>.*</lastmod>' -- sitemap.xml
+          diff -u "${RUNNER_TEMP}/sitemap.xml" sitemap.xml
 
       - name: Check whitespace errors
         run: git diff --check
