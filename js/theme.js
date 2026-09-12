@@ -5,8 +5,8 @@
   const storageKey = "kalkulatorbazis-theme";
   const root = document.documentElement;
   const colors = { light: "#ffffff", dark: "#111827" };
-  const seasonalCssAsset = "css/seasonal-theme.css";
-  const seasonalScriptAsset = "js/seasonal-theme.js";
+  const seasonalCssAsset = "css/seasonal-theme.css?v=ede4999cb1be";
+  const seasonalScriptAsset = "js/seasonal-theme.js?v=b4dad1e9d097";
 
   const projectAssetUrl = (asset) => {
     const projectRoot = String(window.KB_PROJECT_ROOT || "").replace(/\/+$/, "");
