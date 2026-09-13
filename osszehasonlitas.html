@@ -5,16 +5,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Összehasonlítás | Kalkulátor Bázis</title>
-  <meta name="description" content="Összehasonlítási kiindulópontok két pénzügyi, autós, munkabér- vagy megtakarítási forgatókönyv vizsgálatához a Kalkulátor Bázison." />
+  <meta name="description" content="Működő A/B összehasonlító mód hitelekhez, autókhoz, állásajánlatokhoz és megtakarítási forgatókönyvekhez a Kalkulátor Bázison." />
   <link rel="canonical" href="https://kalkulatorbazis.hu/osszehasonlitas" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/pages/decision-hub.css" />
+  <link rel="stylesheet" href="css/pages/decision-tools.css" />
   <script src="js/static-first-fallbacks.js"></script>
   <script src="js/global-head.js"></script>
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kalkulátor Bázis" />
   <meta property="og:title" content="Összehasonlítás | Kalkulátor Bázis" />
-  <meta property="og:description" content="Két forgatókönyv. Egy döntés. Kiindulópontok hitelek, autók, fizetések és megtakarítási utak összevetéséhez." />
+  <meta property="og:description" content="Két forgatókönyv. Egy döntés. Hitel, autó, munka és megtakarítás A/B módban." />
   <meta property="og:url" content="https://kalkulatorbazis.hu/osszehasonlitas" />
   <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
   <script type="application/ld+json">
@@ -23,7 +24,7 @@
     "@type": "CollectionPage",
     "name": "Összehasonlítás",
     "url": "https://kalkulatorbazis.hu/osszehasonlitas",
-    "description": "Összehasonlítási kiindulópontok két forgatókönyv vizsgálatához.",
+    "description": "Interaktív A/B összehasonlítás több döntési forgatókönyvhöz.",
     "isPartOf": {"@type": "WebSite", "name": "Kalkulátor Bázis", "url": "https://kalkulatorbazis.hu/"},
     "inLanguage": "hu-HU"
   }
@@ -42,9 +43,9 @@
     </nav>
 
     <section class="decision-hero" aria-labelledby="comparisonHeroTitle">
-      <span class="section-label">Összehasonlítás · rendezett kiindulópont</span>
+      <span class="section-label">Összehasonlítás · működő A/B mód</span>
       <h1 id="comparisonHeroTitle">Két forgatókönyv. Egy döntés.</h1>
-      <p>Ha nem egyetlen eredmény érdekel, hanem két lehetőség közül választanál, innen indulj. A megfelelő kalkulátorokat forgatókönyvek szerint rendeztük össze.</p>
+      <p>Írd be ugyanannak a döntésnek az A és B változatát. A rendszer egymás mellé teszi a fő eredményeket, kiemeli az eltérést, majd az összefoglalót el is mentheted vagy megoszthatod.</p>
       <nav class="decision-mode-strip" aria-label="Fő feladattípusok">
         <a href="kalkulatorok"><strong>Σ</strong> Számolni</a>
         <a href="dontesek"><strong>◇</strong> Dönteni</a>
@@ -52,110 +53,161 @@
       </nav>
     </section>
 
+    <section class="decision-tool-shell" aria-labelledby="comparisonToolTitle">
+      <div class="decision-tool-intro">
+        <div>
+          <span class="section-label">A/B gyors összevetés</span>
+          <h2 id="comparisonToolTitle">Ugyanaz a kérdés, két válasz</h2>
+        </div>
+        <p>A gyors mód a legfontosabb közös mutatókat teszi egymás mellé. A részletes kalkulátorok továbbra is elérhetők az eredményből.</p>
+      </div>
+
+      <div class="decision-tool-switcher" aria-label="Összehasonlítási téma választása">
+        <button type="button" data-comparison-mode="loan" aria-pressed="false">🏦 Hitel</button>
+        <button type="button" data-comparison-mode="car" aria-pressed="false">🚗 Autó</button>
+        <button type="button" data-comparison-mode="job" aria-pressed="false">💼 Állásajánlat</button>
+        <button type="button" data-comparison-mode="savings" aria-pressed="false">📈 Megtakarítás</button>
+      </div>
+
+      <form class="decision-tool-form" data-comparison-form="loan">
+        <div class="comparison-columns">
+          <section class="comparison-column" aria-labelledby="loanA"><h3 id="loanA"><span>A</span> Forgatókönyv</h3>
+            <label>Hitelösszeg (Ft)<input name="aPrincipal" type="number" min="0" step="100000" value="30000000" inputmode="numeric" /></label>
+            <label>Éves kamat (%)<input name="aRate" type="number" min="0" step="0.1" value="6" inputmode="decimal" /></label>
+            <label>Futamidő (év)<input name="aYears" type="number" min="1" max="40" step="1" value="20" inputmode="numeric" /></label>
+          </section>
+          <section class="comparison-column" aria-labelledby="loanB"><h3 id="loanB"><span>B</span> Forgatókönyv</h3>
+            <label>Hitelösszeg (Ft)<input name="bPrincipal" type="number" min="0" step="100000" value="30000000" inputmode="numeric" /></label>
+            <label>Éves kamat (%)<input name="bRate" type="number" min="0" step="0.1" value="6" inputmode="decimal" /></label>
+            <label>Futamidő (év)<input name="bYears" type="number" min="1" max="40" step="1" value="25" inputmode="numeric" /></label>
+          </section>
+        </div>
+        <button class="decision-tool-submit" type="submit">Hitelek összehasonlítása</button>
+      </form>
+
+      <form class="decision-tool-form" data-comparison-form="car" hidden>
+        <div class="comparison-columns">
+          <section class="comparison-column" aria-labelledby="carA"><h3 id="carA"><span>A</span> Jelenlegi / első autó</h3>
+            <label>Éves futás (km)<input name="aKm" type="number" min="0" step="1000" value="15000" inputmode="numeric" /></label>
+            <label>Fogyasztás (l/100 km)<input name="aConsumption" type="number" min="0" step="0.1" value="7" inputmode="decimal" /></label>
+            <label>Üzemanyagár (Ft/l)<input name="aFuelPrice" type="number" min="0" step="1" value="620" inputmode="numeric" /></label>
+            <label>Egyéb éves költség (Ft)<input name="aFixed" type="number" min="0" step="10000" value="350000" inputmode="numeric" /></label>
+            <label>Éves értékvesztés (Ft)<input name="aDepreciation" type="number" min="0" step="10000" value="250000" inputmode="numeric" /></label>
+          </section>
+          <section class="comparison-column" aria-labelledby="carB"><h3 id="carB"><span>B</span> Másik autó</h3>
+            <label>Éves futás (km)<input name="bKm" type="number" min="0" step="1000" value="15000" inputmode="numeric" /></label>
+            <label>Fogyasztás (l/100 km)<input name="bConsumption" type="number" min="0" step="0.1" value="5.5" inputmode="decimal" /></label>
+            <label>Üzemanyagár (Ft/l)<input name="bFuelPrice" type="number" min="0" step="1" value="620" inputmode="numeric" /></label>
+            <label>Egyéb éves költség (Ft)<input name="bFixed" type="number" min="0" step="10000" value="320000" inputmode="numeric" /></label>
+            <label>Éves értékvesztés (Ft)<input name="bDepreciation" type="number" min="0" step="10000" value="650000" inputmode="numeric" /></label>
+          </section>
+        </div>
+        <button class="decision-tool-submit" type="submit">Autók összehasonlítása</button>
+      </form>
+
+      <form class="decision-tool-form" data-comparison-form="job" hidden>
+        <div class="comparison-columns">
+          <section class="comparison-column" aria-labelledby="jobA"><h3 id="jobA"><span>A</span> Első ajánlat</h3>
+            <label>Havi nettó (Ft)<input name="aMonthlyNet" type="number" min="0" step="10000" value="650000" inputmode="numeric" /></label>
+            <label>Heti munkaidő (óra)<input name="aWeeklyHours" type="number" min="1" max="100" step="1" value="40" inputmode="numeric" /></label>
+            <label>Havi rendszeres plusz (Ft)<input name="aExtras" type="number" min="0" step="1000" value="0" inputmode="numeric" /></label>
+          </section>
+          <section class="comparison-column" aria-labelledby="jobB"><h3 id="jobB"><span>B</span> Második ajánlat</h3>
+            <label>Havi nettó (Ft)<input name="bMonthlyNet" type="number" min="0" step="10000" value="600000" inputmode="numeric" /></label>
+            <label>Heti munkaidő (óra)<input name="bWeeklyHours" type="number" min="1" max="100" step="1" value="35" inputmode="numeric" /></label>
+            <label>Havi rendszeres plusz (Ft)<input name="bExtras" type="number" min="0" step="1000" value="30000" inputmode="numeric" /></label>
+          </section>
+        </div>
+        <button class="decision-tool-submit" type="submit">Állásajánlatok összehasonlítása</button>
+      </form>
+
+      <form class="decision-tool-form" data-comparison-form="savings" hidden>
+        <div class="comparison-columns">
+          <section class="comparison-column" aria-labelledby="savingsA"><h3 id="savingsA"><span>A</span> Első megtakarítási út</h3>
+            <label>Kezdőtőke (Ft)<input name="aInitial" type="number" min="0" step="10000" value="1000000" inputmode="numeric" /></label>
+            <label>Havi befizetés (Ft)<input name="aMonthly" type="number" min="0" step="1000" value="50000" inputmode="numeric" /></label>
+            <label>Feltételezett hozam (%/év)<input name="aReturn" type="number" step="0.1" value="7" inputmode="decimal" /></label>
+            <label>Időtáv (év)<input name="aYears" type="number" min="1" max="60" step="1" value="20" inputmode="numeric" /></label>
+          </section>
+          <section class="comparison-column" aria-labelledby="savingsB"><h3 id="savingsB"><span>B</span> Második megtakarítási út</h3>
+            <label>Kezdőtőke (Ft)<input name="bInitial" type="number" min="0" step="10000" value="1000000" inputmode="numeric" /></label>
+            <label>Havi befizetés (Ft)<input name="bMonthly" type="number" min="0" step="1000" value="70000" inputmode="numeric" /></label>
+            <label>Feltételezett hozam (%/év)<input name="bReturn" type="number" step="0.1" value="7" inputmode="decimal" /></label>
+            <label>Időtáv (év)<input name="bYears" type="number" min="1" max="60" step="1" value="20" inputmode="numeric" /></label>
+          </section>
+        </div>
+        <button class="decision-tool-submit" type="submit">Megtakarítások összehasonlítása</button>
+      </form>
+
+      <section class="decision-result" data-comparison-result hidden aria-live="polite"></section>
+    </section>
+
     <section class="decision-section" aria-labelledby="comparisonPathsTitle">
       <div class="decision-section-head">
         <div>
-          <span class="section-label">A/B forgatókönyvek</span>
-          <h2 id="comparisonPathsTitle">Mit szeretnél egymás mellé tenni?</h2>
+          <span class="section-label">Mire jó az A/B mód?</span>
+          <h2 id="comparisonPathsTitle">Ne csak egy számot nézz</h2>
         </div>
-        <p>Az első változatban a megfelelő számításokhoz irányítunk. A későbbi összehasonlító mód célja, hogy ugyanazon az oldalon két bemenetet és két eredményt lehessen kezelni.</p>
+        <p>A két oszlop ugyanazt a logikát használja, így az eltérés láthatóvá válik anélkül, hogy kétszer külön végig kellene számolnod mindent.</p>
       </div>
 
       <div class="decision-grid comparison-grid">
         <article class="decision-card">
           <div class="decision-card-top"><span class="decision-card-icon" aria-hidden="true">A/B</span><span class="decision-card-index">01</span></div>
           <h3>Két hitel vagy futamidő</h3>
-          <p>Rövidebb futamidő és magasabb törlesztő, vagy hosszabb futamidő és nagyobb teljes visszafizetés?</p>
-          <div class="decision-link-list">
-            <a href="kalkulatorok/hitel-torleszto-kalkulator">Havi törlesztő</a>
-            <a href="kalkulatorok/hitel-elotorlesztes-kalkulator">Előtörlesztés</a>
-            <a href="kalkulatorok/hitelkepesseg-kalkulator">Hitelképesség</a>
-          </div>
-          <a class="decision-card-primary" href="kalkulatorok/hitel-torleszto-kalkulator"><span>Hitel forgatókönyvek</span><span aria-hidden="true">→</span></a>
+          <p>Havi törlesztő és teljes visszafizetés különbsége egy helyen.</p>
+          <div class="decision-link-list"><a href="kalkulatorok/hitel-torleszto-kalkulator">Törlesztő</a><a href="kalkulatorok/hitel-elotorlesztes-kalkulator">Előtörlesztés</a></div>
+          <a class="decision-card-primary" href="kalkulatorok/hitel-torleszto-kalkulator"><span>Részletes hitelszámítás</span><span aria-hidden="true">→</span></a>
         </article>
-
         <article class="decision-card">
           <div class="decision-card-top"><span class="decision-card-icon" aria-hidden="true">↗</span><span class="decision-card-index">02</span></div>
           <h3>Jelenlegi autó vagy másik autó</h3>
-          <p>Üzemanyag, éves fenntartás és értékvesztés alapján sokszor más kép jön ki, mint pusztán a vételárból.</p>
-          <div class="decision-link-list">
-            <a href="kalkulatorok/eves-auto-koltseg-kalkulator">Éves költség</a>
-            <a href="kalkulatorok/auto-fogyasztas-kalkulator">Fogyasztás</a>
-            <a href="kalkulatorok/auto-ertekvesztes-kalkulator">Értékvesztés</a>
-            <a href="kalkulatorok/uzemanyagar-kulonbseg-kalkulator">Üzemanyagár</a>
-          </div>
-          <a class="decision-card-primary" href="kalkulatorok/eves-auto-koltseg-kalkulator"><span>Autós forgatókönyvek</span><span aria-hidden="true">→</span></a>
+          <p>Üzemanyag, fix költség és értékvesztés együtt — nem csak fogyasztás.</p>
+          <div class="decision-link-list"><a href="kalkulatorok/eves-auto-koltseg-kalkulator">Éves költség</a><a href="kalkulatorok/auto-ertekvesztes-kalkulator">Értékvesztés</a></div>
+          <a class="decision-card-primary" href="kalkulatorok/eves-auto-koltseg-kalkulator"><span>Részletes autós számítás</span><span aria-hidden="true">→</span></a>
         </article>
-
         <article class="decision-card">
           <div class="decision-card-top"><span class="decision-card-icon" aria-hidden="true">Ft</span><span class="decision-card-index">03</span></div>
           <h3>Két állásajánlat</h3>
-          <p>Ne csak a bruttót hasonlítsd: nettó, ledolgozott idő, órabér és túlóra együtt mutatja a valós különbséget.</p>
-          <div class="decision-link-list">
-            <a href="kalkulatorok/netto-brutto-kalkulator">Nettó–bruttó</a>
-            <a href="kalkulatorok/oraber-kalkulator">Órabér</a>
-            <a href="kalkulatorok/munkaido-kalkulator">Munkaidő</a>
-            <a href="kalkulatorok/tulora-kalkulator">Túlóra</a>
-          </div>
-          <a class="decision-card-primary" href="kalkulatorok/netto-brutto-kalkulator"><span>Fizetési forgatókönyvek</span><span aria-hidden="true">→</span></a>
+          <p>Éves nettó és effektív órabér alapján a magasabb havi fizetés nem mindig jobb.</p>
+          <div class="decision-link-list"><a href="kalkulatorok/netto-brutto-kalkulator">Nettó–bruttó</a><a href="kalkulatorok/oraber-kalkulator">Órabér</a></div>
+          <a class="decision-card-primary" href="kalkulatorok/netto-brutto-kalkulator"><span>Részletes bérszámítás</span><span aria-hidden="true">→</span></a>
         </article>
-
         <article class="decision-card">
           <div class="decision-card-top"><span class="decision-card-icon" aria-hidden="true">%</span><span class="decision-card-index">04</span></div>
           <h3>Két megtakarítási út</h3>
-          <p>Más havi befizetés, időtáv vagy várható hozam esetén nézd meg, mennyire változik a célösszeg és a reálérték.</p>
-          <div class="decision-link-list">
-            <a href="kalkulatorok/etf-kalkulator">ETF</a>
-            <a href="kalkulatorok/kamatos-kamat-kalkulator">Kamatos kamat</a>
-            <a href="kalkulatorok/megtakaritasi-cel-kalkulator">Megtakarítási cél</a>
-            <a href="kalkulatorok/inflacio-kalkulator">Infláció</a>
-          </div>
-          <a class="decision-card-primary" href="kalkulatorok/etf-kalkulator"><span>Megtakarítási forgatókönyvek</span><span aria-hidden="true">→</span></a>
-        </article>
-
-        <article class="decision-card">
-          <div class="decision-card-top"><span class="decision-card-icon" aria-hidden="true">⌂</span><span class="decision-card-index">05</span></div>
-          <h3>Két felújítási megoldás</h3>
-          <p>Eltérő anyagár, ráhagyás vagy rendszer esetén ugyanaz a felület egészen más költséget jelenthet.</p>
-          <div class="decision-link-list">
-            <a href="kalkulatorok/festek-kalkulator">Festék</a>
-            <a href="kalkulatorok/csempe-kalkulator">Csempe</a>
-            <a href="kalkulatorok/hoszigeteles-kalkulator">Hőszigetelés</a>
-            <a href="kalkulatorok/padlo-burkolat-kalkulator">Padlóburkolat</a>
-          </div>
-          <a class="decision-card-primary" href="epitoipari"><span>Felújítási kalkulátorok</span><span aria-hidden="true">→</span></a>
-        </article>
-
-        <article class="decision-card">
-          <div class="decision-card-top"><span class="decision-card-icon" aria-hidden="true">⋯</span><span class="decision-card-index">06</span></div>
-          <h3>Más két lehetőséget néznél?</h3>
-          <p>Válaszd ki a megfelelő kalkulátort a teljes katalógusból, és ugyanazzal a módszerrel számold végig mindkét forgatókönyvet.</p>
-          <div class="decision-link-list">
-            <a href="kalkulatorok">Összes kalkulátor</a>
-            <a href="dontesek">Döntési útvonalak</a>
-          </div>
-          <a class="decision-card-primary" href="kalkulatorok"><span>Eszköz választása</span><span aria-hidden="true">→</span></a>
+          <p>Havi befizetés, hozam és időtáv hatását egyszerre hasonlíthatod össze.</p>
+          <div class="decision-link-list"><a href="kalkulatorok/etf-kalkulator">ETF</a><a href="kalkulatorok/kamatos-kamat-kalkulator">Kamatos kamat</a></div>
+          <a class="decision-card-primary" href="kalkulatorok/etf-kalkulator"><span>Részletes megtakarítás</span><span aria-hidden="true">→</span></a>
         </article>
       </div>
     </section>
 
+    <section class="decision-saved-section" aria-labelledby="savedComparisonTitle">
+      <span class="section-label">Helyi mentések</span>
+      <h2 id="savedComparisonTitle">Mentett összehasonlítások és döntések</h2>
+      <p>A Döntések oldalon mentett összefoglalók is itt jelennek meg. Az adatok kizárólag a böngésződ helyi tárhelyén maradnak.</p>
+      <div class="decision-saved-results" data-saved-results></div>
+    </section>
+
     <section class="decision-section decision-roadmap" aria-labelledby="comparisonRoadmapTitle">
       <div>
-        <span class="section-label">Tervezett összehasonlító mód</span>
-        <h2 id="comparisonRoadmapTitle">Ugyanaz a kalkulátor, két oszlopban</h2>
-        <p>A következő fejlesztési rétegben az A és B forgatókönyv külön bemenetet kaphat, az eredmények pedig automatikusan egymás mellé kerülhetnek.</p>
+        <span class="section-label">A/B mód v1</span>
+        <h2 id="comparisonRoadmapTitle">Különbség, nem adattenger</h2>
+        <p>A gyors összehasonlító mód direkt csak a döntés szempontjából fontos különbséget emeli ki. Ha több részlet kell, az eredményből a kapcsolódó kalkulátorhoz léphetsz.</p>
       </div>
       <ul>
-        <li>A/B bemenet ugyanazon az oldalon;</li>
-        <li>különbség Ft-ban, százalékban vagy időben;</li>
-        <li>fontos eltérések automatikus kiemelése;</li>
-        <li>menthető és megosztható összehasonlítás.</li>
+        <li>négy működő A/B forgatókönyv;</li>
+        <li>különbség automatikus kiemelése;</li>
+        <li>helyi mentés és megosztás;</li>
+        <li>mobilon is egymás alá rendezett A/B nézet.</li>
       </ul>
     </section>
   </main>
 
   <div id="footer"></div>
   <script src="js/utils.js"></script>
+  <script src="js/decision-tools.js"></script>
   <script src="js/help-widget.js" defer></script>
   <script>
     document.addEventListener("kb:component-loaded", (event) => {
