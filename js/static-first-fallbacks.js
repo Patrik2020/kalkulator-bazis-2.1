@@ -23,6 +23,14 @@
       (node) => node !== fallback && !node.hasAttribute(fallbackAttribute)
     );
 
+  const setAttributeIfNeeded = (node, name, value = "") => {
+    if (node && node.getAttribute(name) !== value) node.setAttribute(name, value);
+  };
+
+  const setTextIfNeeded = (node, value) => {
+    if (node && node.textContent !== value) node.textContent = value;
+  };
+
   const canonicalizeStaticExportUi = () => {
     if (!isStaticExport) return;
 
@@ -42,28 +50,27 @@
 
     if (!canonical) return;
 
-    canonical.setAttribute("data-retention-cta", "runtime");
-    canonical.setAttribute("hidden", "");
-    canonical.classList.remove("is-revealed");
+    setAttributeIfNeeded(canonical, "data-retention-cta", "runtime");
+    if (!canonical.hasAttribute("hidden")) canonical.setAttribute("hidden", "");
+    if (canonical.classList.contains("is-revealed")) canonical.classList.remove("is-revealed");
 
-    canonical.querySelectorAll("[data-retention-guide]").forEach((node) => node.setAttribute("hidden", ""));
-    canonical.querySelectorAll("[aria-expanded]").forEach((node) => node.setAttribute("aria-expanded", "false"));
+    canonical.querySelectorAll("[data-retention-guide]").forEach((node) => {
+      if (!node.hasAttribute("hidden")) node.setAttribute("hidden", "");
+    });
+    canonical.querySelectorAll("[aria-expanded]").forEach((node) => {
+      setAttributeIfNeeded(node, "aria-expanded", "false");
+    });
 
     const installButton = canonical.querySelector('[data-retention-action="install"]');
     if (installButton) {
-      installButton.setAttribute("hidden", "");
-      delete installButton.dataset.installMode;
-      delete installButton.dataset.installMethod;
+      if (!installButton.hasAttribute("hidden")) installButton.setAttribute("hidden", "");
+      if (installButton.dataset.installMode) delete installButton.dataset.installMode;
+      if (installButton.dataset.installMethod) delete installButton.dataset.installMethod;
     }
 
-    const installLabel = canonical.querySelector("[data-retention-install-label]");
-    if (installLabel) installLabel.textContent = "Telepítem";
-
-    const installText = canonical.querySelector("[data-retention-install-text]");
-    if (installText) installText.textContent = "";
-
-    const status = canonical.querySelector("[data-retention-status]");
-    if (status) status.textContent = "";
+    setTextIfNeeded(canonical.querySelector("[data-retention-install-label]"), "Telepítem");
+    setTextIfNeeded(canonical.querySelector("[data-retention-install-text]"), "");
+    setTextIfNeeded(canonical.querySelector("[data-retention-status]"), "");
   };
 
   const cleanup = () => {
