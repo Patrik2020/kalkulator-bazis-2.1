@@ -124,7 +124,8 @@
     const heroActions = document.querySelector(".home-hero-actions");
     if (heroActions) heroActions.hidden = true;
 
-    // A fő tartalmi sorrend legyen rövid és kiszámítható.
+    // A fő tartalmi sorrend legyen rövid és kiszámítható. Csak akkor mozgatunk
+    // DOM-elemet, ha a látható fő blokkok sorrendje ténylegesen eltér.
     const ordered = [
       gateway,
       categorySection,
@@ -137,7 +138,15 @@
       sections.querySelector('[data-render="ad-slot"]'),
     ].filter(Boolean);
 
-    ordered.forEach((node) => sections.appendChild(node));
+    const orderedSet = new Set(ordered);
+    const currentOrder = [...sections.children].filter((node) => orderedSet.has(node));
+    const isAlreadyOrdered =
+      currentOrder.length === ordered.length &&
+      currentOrder.every((node, index) => node === ordered[index]);
+
+    if (!isAlreadyOrdered) {
+      ordered.forEach((node) => sections.appendChild(node));
+    }
   };
 
   let queued = false;
