@@ -54,6 +54,9 @@ jobs:
       - name: Normalize final static output
         run: npm run static:normalize
 
+      - name: Canonicalize static retention CTA state
+        run: node scripts/normalize-retention-static.js
+
       - name: Apply content-hash asset versions
         run: node scripts/cache-bust-assets.js
 
@@ -69,6 +72,7 @@ jobs:
           # hasonlítja a következő futáshoz.
           npm run static:build
           npm run static:normalize
+          node scripts/normalize-retention-static.js
           node scripts/cache-bust-assets.js
           npm run sitemap
 
@@ -78,6 +82,7 @@ jobs:
           git diff --binary > "${RUNNER_TEMP}/static-stable-pass.diff"
           npm run static:build
           npm run static:normalize
+          node scripts/normalize-retention-static.js
           node scripts/cache-bust-assets.js
           npm run sitemap
           git diff --binary > "${RUNNER_TEMP}/static-verification-pass.diff"
