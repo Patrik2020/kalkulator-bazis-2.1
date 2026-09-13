@@ -9,6 +9,7 @@
   const seasonalMotifCssAsset = "css/seasonal-autumn-motifs.css?v=5859aa36e632";
   const seasonalGlobalCssAsset = "css/seasonal-autumn-global.css";
   const seasonalScriptAsset = "js/seasonal-theme.js?v=b4dad1e9d097";
+  const homeIaScriptAsset = "js/home-ia.js";
 
   const projectAssetUrl = (asset) => {
     const projectRoot = String(window.KB_PROJECT_ROOT || "").replace(/\/+$/, "");
@@ -47,6 +48,17 @@
       script.dataset.kbSeasonalTheme = "script";
       document.head.appendChild(script);
     }
+  };
+
+  const loadHomeInformationArchitecture = () => {
+    if (!document.body?.classList.contains("home-page")) return;
+    if (document.querySelector('script[data-kb-home-ia="script"]')) return;
+
+    const script = document.createElement("script");
+    script.src = projectAssetUrl(homeIaScriptAsset);
+    script.async = false;
+    script.dataset.kbHomeIa = "script";
+    document.body.appendChild(script);
   };
 
   loadSeasonalTheme();
@@ -145,6 +157,7 @@
   const init = () => {
     ensureToggle();
     applyTheme(root.dataset.theme || "light", false);
+    loadHomeInformationArchitecture();
   };
 
   if (document.readyState === "loading") {
