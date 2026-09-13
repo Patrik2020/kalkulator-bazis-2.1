@@ -1,0 +1,75 @@
+.current-impact {
+  margin: 28px 0 10px;
+  padding: clamp(20px, 3vw, 28px);
+  border: 1px solid color-mix(in srgb, var(--kb-season-accent, #b86d3c) 30%, var(--border, #dfe3e8));
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 96% 4%, color-mix(in srgb, var(--kb-season-accent-soft, #f2dfc3) 48%, transparent), transparent 34%),
+    color-mix(in srgb, var(--surface, #fff) 95%, var(--kb-season-accent-soft, #f2dfc3));
+}
+
+.current-impact-kicker {
+  margin: 0 0 6px;
+  color: var(--kb-season-accent, #b86d3c);
+  font-size: .76rem;
+  font-weight: 850;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.current-impact h2 {
+  margin: 0;
+  font-size: clamp(1.45rem, 2.5vw, 2rem);
+}
+
+.current-impact > p {
+  margin: 9px 0 0;
+  color: var(--muted, #667085);
+  line-height: 1.6;
+}
+
+.current-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 17px;
+}
+
+.current-impact-card {
+  display: grid;
+  gap: 7px;
+  padding: 15px;
+  border: 1px solid var(--border, #dfe3e8);
+  border-radius: 14px;
+  background: var(--surface, #fff);
+  color: var(--text, #17202a);
+  text-decoration: none;
+}
+
+.current-impact-card strong {
+  font-size: .98rem;
+}
+
+.current-impact-card span {
+  color: var(--muted, #667085);
+  font-size: .86rem;
+  line-height: 1.45;
+}
+
+.current-impact-card:hover,
+.current-impact-card:focus-visible {
+  border-color: var(--kb-season-accent, #b86d3c);
+  transform: translateY(-1px);
+  outline: none;
+}
+
+html[data-theme="dark"] .current-impact,
+html[data-theme="dark"] .current-impact-card {
+  background: color-mix(in srgb, #17191c 94%, var(--kb-season-accent, #d59158));
+}
+
+@media (max-width: 620px) {
+  .current-impact-grid {
+    grid-template-columns: 1fr;
+  }
+}
