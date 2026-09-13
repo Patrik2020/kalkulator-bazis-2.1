@@ -10,6 +10,8 @@
   const seasonalGlobalCssAsset = "css/seasonal-autumn-global.css";
   const seasonalScriptAsset = "js/seasonal-theme.js?v=b4dad1e9d097";
   const homeIaScriptAsset = "js/home-ia.js";
+  const currentImpactCssAsset = "css/pages/current-impact.css";
+  const currentImpactScriptAsset = "js/current-impact.js";
 
   const projectAssetUrl = (asset) => {
     const projectRoot = String(window.KB_PROJECT_ROOT || "").replace(/\/+$/, "");
@@ -59,6 +61,27 @@
     script.async = false;
     script.dataset.kbHomeIa = "script";
     document.body.appendChild(script);
+  };
+
+  const loadCurrentImpact = () => {
+    if (!document.body?.classList.contains("current-page")) return;
+    if (!/\/aktualis\/[^/]+(?:\.html)?\/?$/i.test(window.location.pathname)) return;
+
+    if (!document.querySelector('link[data-kb-current-impact="style"]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = projectAssetUrl(currentImpactCssAsset);
+      link.dataset.kbCurrentImpact = "style";
+      document.head.appendChild(link);
+    }
+
+    if (!document.querySelector('script[data-kb-current-impact="script"]')) {
+      const script = document.createElement("script");
+      script.src = projectAssetUrl(currentImpactScriptAsset);
+      script.async = false;
+      script.dataset.kbCurrentImpact = "script";
+      document.body.appendChild(script);
+    }
   };
 
   loadSeasonalTheme();
@@ -158,6 +181,7 @@
     ensureToggle();
     applyTheme(root.dataset.theme || "light", false);
     loadHomeInformationArchitecture();
+    loadCurrentImpact();
   };
 
   if (document.readyState === "loading") {
