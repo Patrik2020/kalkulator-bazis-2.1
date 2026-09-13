@@ -45,6 +45,8 @@ const staticPages = [
   ...orderedCategoryUrls,
   "kalkulatorok.html",
   "kalkulatorok/multifunkcios-szamologep.html",
+  "dontesek.html",
+  "osszehasonlitas.html",
   "rolunk.html",
   "szamitasi-modszertan.html",
   "kapcsolat.html",
