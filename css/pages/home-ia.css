@@ -1,0 +1,254 @@
+/* Kalkulátor Bázis – főoldali információs architektúra, 2026-09 */
+
+body.home-page.home-information-architecture .home-sections {
+  display: grid;
+  gap: clamp(28px, 4vw, 54px);
+}
+
+body.home-page.home-information-architecture .home-hero-actions[hidden],
+body.home-page.home-information-architecture .home-life-section[hidden],
+body.home-page.home-information-architecture .learning-highlight[hidden],
+body.home-page.home-information-architecture .trust-band[hidden],
+body.home-page.home-information-architecture .about-home[hidden] {
+  display: none !important;
+}
+
+.home-intent-gateway {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(26px, 4vw, 44px);
+  border: 1px solid color-mix(in srgb, var(--kb-season-accent, #b86d3c) 26%, var(--border, #dfe3e8));
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 92% 4%, color-mix(in srgb, var(--kb-season-accent, #b86d3c) 11%, transparent), transparent 32%),
+    linear-gradient(145deg, color-mix(in srgb, var(--surface, #fff) 94%, var(--kb-season-accent-soft, #f2dfc3)), var(--surface, #fff));
+  box-shadow: 0 22px 50px rgba(31, 24, 20, 0.07);
+}
+
+.home-intent-gateway::after {
+  content: "";
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  right: -64px;
+  bottom: -76px;
+  border: 1px solid color-mix(in srgb, var(--kb-season-accent, #b86d3c) 18%, transparent);
+  border-radius: 48% 52% 46% 54%;
+  transform: rotate(18deg);
+  pointer-events: none;
+}
+
+.home-intent-head {
+  max-width: 760px;
+  margin-bottom: 24px;
+}
+
+.home-intent-head h2 {
+  margin: 5px 0 10px;
+  font-size: clamp(1.8rem, 3.2vw, 2.65rem);
+  line-height: 1.05;
+}
+
+.home-intent-head p {
+  margin: 0;
+  max-width: 680px;
+  color: var(--muted, #667085);
+  font-size: 1.02rem;
+}
+
+.home-intent-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.home-intent-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    "number number number"
+    "icon copy arrow";
+  align-items: center;
+  gap: 14px;
+  min-height: 168px;
+  padding: 20px;
+  border: 1px solid color-mix(in srgb, var(--border, #dfe3e8) 82%, var(--kb-season-accent, #b86d3c));
+  border-radius: 22px;
+  color: var(--text, #17202a);
+  text-decoration: none;
+  background: color-mix(in srgb, var(--surface, #fff) 96%, transparent);
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.home-intent-card:hover,
+.home-intent-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--kb-season-accent, #b86d3c) 54%, var(--border, #dfe3e8));
+  box-shadow: 0 16px 34px rgba(34, 24, 18, 0.10);
+  outline: none;
+}
+
+.home-intent-card-calc:hover,
+.home-intent-card-calc:focus-visible {
+  background: color-mix(in srgb, var(--surface, #fff) 93%, var(--kb-season-accent-soft, #f2dfc3));
+}
+
+.home-intent-card-decision {
+  background: color-mix(in srgb, var(--surface, #fff) 88%, var(--kb-season-accent-soft, #f2dfc3));
+}
+
+.home-intent-card-compare {
+  background: color-mix(in srgb, var(--surface, #fff) 91%, var(--kb-season-accent-2, #6d7b55));
+}
+
+.home-intent-number {
+  grid-area: number;
+  font: 700 0.72rem/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.14em;
+  color: var(--muted, #667085);
+}
+
+.home-intent-icon {
+  grid-area: icon;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 15px;
+  background: var(--ink, #17202a);
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.home-intent-card-decision .home-intent-icon {
+  background: var(--kb-season-accent, #b86d3c);
+}
+
+.home-intent-card-compare .home-intent-icon {
+  background: var(--kb-season-accent-2, #6d7b55);
+}
+
+.home-intent-copy {
+  grid-area: copy;
+  display: grid;
+  gap: 4px;
+}
+
+.home-intent-copy strong {
+  font-size: 1.18rem;
+  line-height: 1.15;
+}
+
+.home-intent-copy small {
+  color: var(--muted, #667085);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.home-intent-arrow {
+  grid-area: arrow;
+  font-size: 1.45rem;
+  transition: transform 160ms ease;
+}
+
+.home-intent-card:hover .home-intent-arrow,
+.home-intent-card:focus-visible .home-intent-arrow {
+  transform: translateX(4px);
+}
+
+body.home-page.home-information-architecture .home-ia-categories,
+body.home-page.home-information-architecture .home-ia-popular,
+body.home-page.home-information-architecture .home-ia-featured,
+body.home-page.home-information-architecture .home-ia-method,
+body.home-page.home-information-architecture .home-ia-faq {
+  margin-block: 0;
+}
+
+body.home-page.home-information-architecture .home-ia-categories .section-intro,
+body.home-page.home-information-architecture .home-ia-popular .section-intro {
+  margin-bottom: 18px;
+}
+
+body.home-page.home-information-architecture .home-category-grid {
+  gap: 12px;
+}
+
+body.home-page.home-information-architecture .popular-grid {
+  gap: 12px;
+}
+
+body.home-page.home-information-architecture .home-current-panel {
+  margin-block: 0;
+}
+
+body.home-page.home-information-architecture .home-featured-tool {
+  margin-block: 0;
+}
+
+body.home-page.home-information-architecture .home-method-pro {
+  margin-block: 0;
+}
+
+body.home-page.home-information-architecture .home-faq-pro {
+  margin-block: 0;
+}
+
+html[data-theme="dark"] .home-intent-gateway {
+  background:
+    radial-gradient(circle at 92% 4%, color-mix(in srgb, var(--kb-season-accent, #d59158) 12%, transparent), transparent 34%),
+    linear-gradient(145deg, color-mix(in srgb, #17191c 92%, var(--kb-season-accent, #d59158)), #17191c);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.26);
+}
+
+html[data-theme="dark"] .home-intent-card {
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text, #f4f4f5);
+}
+
+html[data-theme="dark"] .home-intent-card-decision {
+  background: color-mix(in srgb, #1a1c1f 84%, var(--kb-season-accent, #d59158));
+}
+
+html[data-theme="dark"] .home-intent-card-compare {
+  background: color-mix(in srgb, #1a1c1f 86%, var(--kb-season-accent-2, #8b9871));
+}
+
+@media (max-width: 900px) {
+  .home-intent-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-intent-card {
+    min-height: 132px;
+    grid-template-areas:
+      "number number number"
+      "icon copy arrow";
+  }
+}
+
+@media (max-width: 600px) {
+  .home-intent-gateway {
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .home-intent-card {
+    padding: 17px;
+    border-radius: 18px;
+  }
+
+  .home-intent-icon {
+    width: 43px;
+    height: 43px;
+    border-radius: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-intent-card,
+  .home-intent-arrow {
+    transition: none;
+  }
+}
