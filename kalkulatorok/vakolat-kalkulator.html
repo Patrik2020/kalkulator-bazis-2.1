@@ -10,8 +10,8 @@
 <title>Vakolat kalkulátor | Habarcs- és anyagszükséglet</title>
 <link href="../css/style.css?v=64628ca819c5" rel="stylesheet"/>
 <link href="../css/pages/simple-calculator.css?v=a76d204ce714" rel="stylesheet"/>
-<script src="../js/static-first-fallbacks.js?v=263330254f64"></script>
-<script src="../js/global-head.js?v=0b07270588dd"></script>
+<script src="../js/static-first-fallbacks.js?v=e190cf7ce386"></script>
+<script src="../js/global-head.js?v=6703013335e0"></script>
 <meta content="website" property="og:type"/>
 <meta content="Kalkulátor Bázis" property="og:site_name"/>
 <meta content="Vakolat kalkulátor | Habarcs- és anyagszükséglet" property="og:title"/>
@@ -41,24 +41,27 @@
     </a>
 
     <nav id="menu" aria-label="Fő navigáció">
-      <a class="nav-home" href="../">Főoldal</a>
+      <a class="nav-primary-link nav-home" href="../">Főoldal</a>
 
-      <details class="nav-dropdown nav-catalog has-active" open>
+      <details class="nav-dropdown nav-catalog">
         <summary>
           <span>Kalkulátorok</span>
           <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
         </summary>
         <div class="nav-submenu">
           <a href="../kalkulatorok" class="">Összes kalkulátor</a>
-          <a href="../mindennapi">Mindennapok</a>
           <a href="../penzugyi">Pénzügy</a>
-          <a href="../epitoipari" class="is-active" aria-current="page">Otthon &amp; felújítás</a>
+          <a href="../epitoipari">Otthon &amp; felújítás</a>
           <a href="../auto">Autó &amp; közlekedés</a>
           <a href="../egeszseg">Egészség &amp; sport</a>
+          <a href="../mindennapi">Mindennapok</a>
           <a href="../atvaltok">Átváltók</a>
           <a href="../kalkulatorok/multifunkcios-szamologep">Tudományos számológép</a>
         </div>
       </details>
+
+      <a class="nav-primary-link nav-decisions" href="../dontesek">Döntések</a>
+      <a class="nav-primary-link nav-compare" href="../osszehasonlitas">Összehasonlítás</a>
 
       <details class="nav-dropdown nav-knowledge">
         <summary>
@@ -66,16 +69,16 @@
           <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
         </summary>
         <div class="nav-submenu">
+          <a href="../aktualis">Aktuális változások</a>
           <a href="../elethelyzetek">Élethelyzetek</a>
           <a href="../landing-pages/penzugyi-tudatossag/penzugyi-tudatossag">Pénzügyi tudatosság</a>
           <a href="../szamitasi-modszertan">Számítási módszertan</a>
           <a href="../miert-bizhatsz-bennunk">Miért bízhatsz bennünk?</a>
           <a href="../atlathatosag-es-minoseg">Átláthatóság és minőség</a>
+          <a href="../rolunk">Rólunk</a>
           <a href="../kapcsolat">Kapcsolat</a>
         </div>
       </details>
-
-      <a href="../rolunk">Rólunk</a>
     </nav>
 
     <div class="header-actions">
@@ -99,9 +102,10 @@
 <h1>Vakolat kalkulátor</h1>
 <p>Becsüld meg a vakolat vagy glettanyag mennyiségét felület és rétegvastagság alapján.</p>
 </section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><form class="construction-planner" novalidate><div class="construction-heading"><p class="eyebrow">Részletes anyagtervező</p><h2>Vakolat- és glettanyag-tervező</h2><p>A kalkulátor kezeli a kg/m²/mm és a közvetlen kg/m² gyártói adatokat is. Előbb válaszd ki az adatlap egységét, majd ellenőrizd a termék kiadósságát és kiszerelését.</p></div><div class="construction-fields"><label class="construction-field"><span>Teljes falfelület (m²)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="grossArea" id="construction-grossArea"></label><label class="construction-field"><span>Ajtók összes felülete (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="doorArea" id="construction-doorArea"></label><label class="construction-field"><span>Ablakok összes felülete (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="windowArea" id="construction-windowArea"></label><label class="construction-field"><span>Egyéb kivonható felület (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="otherArea" id="construction-otherArea"></label><label class="construction-field"><span>Átlagos rétegvastagság (mm)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="thickness" id="construction-thickness"><small>Csak a kg/m²/mm módban vesz részt az anyagigény számításában.</small></label><label class="construction-field"><span>Gyártói anyagszükséglet egysége</span><select name="consumptionMode" id="construction-consumptionMode"><option value="per-mm">kg/m²/mm – rétegvastagsággal szorzandó</option><option value="per-area">kg/m² – közvetlen gyártói érték</option></select></label><label class="construction-field"><span>Példa minimum anyagszükséglet</span><input type="number" step="any" min="0.01" inputmode="decimal" name="minConsumption" id="construction-minConsumption"><small>A számérték egységét a fenti mód határozza meg; írd át a kiválasztott termék adatlapja szerint.</small></label><label class="construction-field"><span>Példa maximum anyagszükséglet</span><input type="number" step="any" min="0.01" inputmode="decimal" name="maxConsumption" id="construction-maxConsumption"><small>Ha az adatlap egyetlen értéket ad meg, a minimum és maximum legyen azonos.</small></label><label class="construction-field"><span>Példa zsákméret (kg)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="bagSize" id="construction-bagSize"><small>A kiszerelés termékenként eltérhet.</small></label><label class="construction-field"><span>Anyagveszteség</span><select name="waste" id="construction-waste"><option value="5">5% – egyszerű, kevés vágás</option><option value="8">8% – általános</option><option value="12">12% – sok vágás / mintázat</option><option value="15">15% – bonyolult felület</option></select></label><label class="construction-field"><span>Gyártói adatok ellenőrizve?</span><select name="manufacturerConfirmed" id="construction-manufacturerConfirmed"><option value="no">Nem – előbb ellenőrzöm az adatlapot</option><option value="yes">Igen – a választott termék adatlapja alapján</option></select></label></div><div class="construction-actions"><button type="submit">Anyagigény kiszámítása</button><button type="reset" class="secondary-btn">Alapértékek visszaállítása</button></div><p class="construction-error" role="alert"></p><div class="result-box construction-results" role="status" aria-live="polite" aria-atomic="true"><p><strong>Gyártói/rendszeradat ellenőrzése szükséges.</strong><br>Írd át a példaértékeket a kiválasztott termék vagy rendszer adatai szerint, majd állítsd az ellenőrző mezőt Igenre. Addig nem készítünk rendelési mennyiséget.</p></div></form><section
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><form class="construction-planner" novalidate><div class="construction-heading"><p class="eyebrow">Részletes anyagtervező</p><h2>Vakolat- és glettanyag-tervező</h2><p>A kalkulátor kezeli a kg/m²/mm és a közvetlen kg/m² gyártói adatokat is. Előbb válaszd ki az adatlap egységét, majd ellenőrizd a termék kiadósságát és kiszerelését.</p></div><div class="construction-fields"><label class="construction-field"><span>Teljes falfelület (m²)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="grossArea" id="construction-grossArea"></label><label class="construction-field"><span>Ajtók összes felülete (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="doorArea" id="construction-doorArea"></label><label class="construction-field"><span>Ablakok összes felülete (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="windowArea" id="construction-windowArea"></label><label class="construction-field"><span>Egyéb kivonható felület (m²)</span><input type="number" step="0.01" min="0" inputmode="decimal" name="otherArea" id="construction-otherArea"></label><label class="construction-field"><span>Átlagos rétegvastagság (mm)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="thickness" id="construction-thickness"><small>Csak a kg/m²/mm módban vesz részt az anyagigény számításában.</small></label><label class="construction-field"><span>Gyártói anyagszükséglet egysége</span><select name="consumptionMode" id="construction-consumptionMode"><option value="per-mm">kg/m²/mm – rétegvastagsággal szorzandó</option><option value="per-area">kg/m² – közvetlen gyártói érték</option></select></label><label class="construction-field"><span>Példa minimum anyagszükséglet</span><input type="number" step="any" min="0.01" inputmode="decimal" name="minConsumption" id="construction-minConsumption"><small>A számérték egységét a fenti mód határozza meg; írd át a kiválasztott termék adatlapja szerint.</small></label><label class="construction-field"><span>Példa maximum anyagszükséglet</span><input type="number" step="any" min="0.01" inputmode="decimal" name="maxConsumption" id="construction-maxConsumption"><small>Ha az adatlap egyetlen értéket ad meg, a minimum és maximum legyen azonos.</small></label><label class="construction-field"><span>Példa zsákméret (kg)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="bagSize" id="construction-bagSize"><small>A kiszerelés termékenként eltérhet.</small></label><label class="construction-field"><span>Anyagveszteség</span><select name="waste" id="construction-waste"><option value="5">5% – egyszerű, kevés vágás</option><option value="8">8% – általános</option><option value="12">12% – sok vágás / mintázat</option><option value="15">15% – bonyolult felület</option></select></label><label class="construction-field"><span>Gyártói adatok ellenőrizve?</span><select name="manufacturerConfirmed" id="construction-manufacturerConfirmed"><option value="no">Nem – előbb ellenőrzöm az adatlapot</option><option value="yes">Igen – a választott termék adatlapja alapján</option></select></label></div><div class="construction-actions"><button type="submit">Anyagigény kiszámítása</button><button type="reset" class="secondary-btn">Alapértékek visszaállítása</button></div><p class="construction-error" role="alert"></p><div class="result-box construction-results" role="status" aria-live="polite" aria-atomic="true"><p><strong>Gyártói/rendszeradat ellenőrzése szükséges.</strong><br>Írd át a példaértékeket a kiválasztott termék vagy rendszer adatai szerint, majd állítsd az ellenőrző mezőt Igenre. Addig nem készítünk rendelési mennyiséget.</p></div></form>
+<section
   class="retention-cta"
-  data-retention-cta
+  data-retention-cta="runtime"
   aria-labelledby="retentionCtaTitle"
   hidden
 >
@@ -166,7 +170,8 @@
   </div>
 
   <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
-</section></section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
+</section>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-07-01">
 <h2>Vakolat- vagy glettanyag mennyiségének becslése</h2>
 <p>A kalkulátor a felület, a tervezett rétegvastagság, a gyártó által megadott fajlagos anyagigény és a zsákméret alapján számol kilogrammot és teljes zsákszámot. Kézi vagy gépi vakolat, illetve megfelelő adatokkal más poranyag előzetes tervezésére használható.</p>
 <p>A legfontosabb bemenet a fogyási adat, amely termékenként eltér. Mindig a konkrét termék adatlapjának kg/m²/mm értékét használd.</p>
@@ -221,10 +226,10 @@
   <section class="footer-cta" aria-labelledby="footerCtaTitle">
     <div class="footer-cta-copy">
       <span class="footer-eyebrow">Segíts fejleszteni a Kalkulátor Bázist</span>
-      <h2 id="footerCtaTitle">Nem találtad meg a keresett kalkulátort?</h2>
-      <p>Írd meg, milyen számítás lenne hasznos. A jó ötleteket felvesszük a fejlesztési listára.</p>
+      <h2 id="footerCtaTitle">Nem találtad meg a keresett számítást vagy döntési helyzetet?</h2>
+      <p>Írd meg, mire lenne szükséged. A jó ötleteket felvesszük a fejlesztési listára.</p>
     </div>
-    <a class="footer-cta-button" href="../kapcsolat?tema=uj-kalkulator">Kalkulátort javaslok</a>
+    <a class="footer-cta-button" href="../kapcsolat?tema=uj-kalkulator">Ötletet küldök</a>
   </section>
 
   <div class="footer-main">
@@ -234,8 +239,8 @@
         <span>Kalkulátor Bázis</span>
       </a>
       <p class="footer-brand-copy">
-        Ingyenes, magyar nyelvű online kalkulátorok pénzügyi, egészségügyi,
-        építőipari, autós és mindennapi döntésekhez.
+        Ingyenes, magyar nyelvű online kalkulátorok és rendezett döntési útvonalak
+        pénzügyi, egészségügyi, építőipari, autós és mindennapi helyzetekhez.
       </p>
       <ul class="footer-trust-list">
         <li>Regisztráció nélkül használható</li>
@@ -249,21 +254,20 @@
       <h2>Kalkulátorok</h2>
       <a href="../penzugyi">Pénzügyi</a>
       <a href="../egeszseg">Egészség</a>
-      <a href="../epitoipari">Építőipari</a>
-      <a href="../auto">Autós</a>
-      <a href="../mindennapi">Mindennapi</a>
+      <a href="../epitoipari">Otthon &amp; felújítás</a>
+      <a href="../auto">Autó &amp; közlekedés</a>
+      <a href="../mindennapi">Mindennapok</a>
       <a href="../atvaltok">Átváltók</a>
       <a class="footer-link-emphasis" href="../kalkulatorok">Összes kalkulátor</a>
     </nav>
 
-    <nav class="footer-col" aria-label="Kiemelt kalkulátorok">
-      <h2>Népszerű oldalak</h2>
-      <a href="../kalkulatorok/netto-brutto-kalkulator">Nettó–bruttó kalkulátor</a>
-      <a href="../kalkulatorok/etf-kalkulator">ETF kalkulátor</a>
-      <a href="../kalkulatorok/afa-kalkulator">ÁFA-kalkulátor</a>
-      <a href="../kalkulatorok/hitel-torleszto-kalkulator">Hiteltörlesztő kalkulátor</a>
-      <a href="../kalkulatorok/szazalek-kalkulator">Százalékkalkulátor</a>
-      <a href="../#newTitle">Újdonságok</a>
+    <nav class="footer-col" aria-label="Döntési és tudástári útvonalak">
+      <h2>Útvonalak</h2>
+      <a class="footer-link-emphasis" href="../dontesek">Döntések</a>
+      <a class="footer-link-emphasis" href="../osszehasonlitas">Összehasonlítás</a>
+      <a href="../aktualis">Aktuális változások</a>
+      <a href="../elethelyzetek">Élethelyzetek</a>
+      <a href="../landing-pages/penzugyi-tudatossag/penzugyi-tudatossag">Pénzügyi tudatosság</a>
     </nav>
 
     <nav class="footer-col" aria-label="Információ és bizalom">

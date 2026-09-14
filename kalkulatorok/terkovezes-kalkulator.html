@@ -2,8 +2,8 @@
 <html lang="hu"><head>
 <meta name="google-adsense-account" content="ca-pub-2639795157074812">
 <meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Térkövezés kalkulátor felület, térkőigény és ráhagyás alapján. Becsüld meg a darabszámot, szegélyhosszt és ismerd meg az alapréteg, lejtés és vágási veszteség fő szempontjait." name="description"/><link href="https://kalkulatorbazis.hu/kalkulatorok/terkovezes-kalkulator" rel="canonical"/><title>Térkövezés kalkulátor | Térkő és szegély mennyisége</title><link href="../css/style.css?v=64628ca819c5" rel="stylesheet"/><link href="../css/pages/simple-calculator.css?v=a76d204ce714" rel="stylesheet"/>
-<script src="../js/static-first-fallbacks.js?v=263330254f64"></script>
-<script src="../js/global-head.js?v=0b07270588dd"></script>
+<script src="../js/static-first-fallbacks.js?v=e190cf7ce386"></script>
+<script src="../js/global-head.js?v=6703013335e0"></script>
 <!-- KB_STATIC:structured-data:START -->
 <script id="kb-structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/terkovezes-kalkulator#webpage","url":"https://kalkulatorbazis.hu/kalkulatorok/terkovezes-kalkulator","name":"Térkövezés kalkulátor | Térkő és szegély mennyisége","description":"Térkövezés kalkulátor felület, térkőigény és ráhagyás alapján. Becsüld meg a darabszámot, szegélyhosszt és ismerd meg az alapréteg, lejtés és vágási veszteség fő szempontjait.","inLanguage":"hu-HU","isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"}},{"@type":"SoftwareApplication","@id":"https://kalkulatorbazis.hu/kalkulatorok/terkovezes-kalkulator#calculator","name":"Térkövezés kalkulátor","applicationCategory":"CalculatorApplication","operatingSystem":"Web","url":"https://kalkulatorbazis.hu/kalkulatorok/terkovezes-kalkulator","description":"Számold ki térkő, szegélykő és ráhagyás becsült mennyiségét.","offers":{"@type":"Offer","price":"0","priceCurrency":"HUF"},"isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"},"about":"Otthon és felújítás kalkulátorok"},{"@type":"BreadcrumbList","@id":"https://kalkulatorbazis.hu/kalkulatorok/terkovezes-kalkulator#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Főoldal","item":"https://kalkulatorbazis.hu/"},{"@type":"ListItem","position":2,"name":"Otthon & felújítás","item":"https://kalkulatorbazis.hu/epitoipari"},{"@type":"ListItem","position":3,"name":"Térkövezés kalkulátor","item":"https://kalkulatorbazis.hu/kalkulatorok/terkovezes-kalkulator"}]},{"@type":"FAQPage","@id":"https://kalkulatorbazis.hu/kalkulatorok/terkovezes-kalkulator#gyik","mainEntity":[{"@type":"Question","name":"Hol találom a db/m² adatot?","acceptedAnswer":{"@type":"Answer","text":"A gyártó termékadatlapján vagy a kereskedő leírásában."}},{"@type":"Question","name":"A szegélykő darabszámát is megkapom?","acceptedAnswer":{"@type":"Answer","text":"A kalkulátor kerülethosszt ad. A darabszámhoz oszd el a tényleges szegélykő hosszával és kerekíts felfelé."}},{"@type":"Question","name":"Az alapozó zúzottkő benne van?","acceptedAnswer":{"@type":"Answer","text":"Nem. Az alapréteg a terheléstől, talajtól és szerkezeti kialakítástól függ."}},{"@type":"Question","name":"Szabálytalan területet hogyan számoljak?","acceptedAnswer":{"@type":"Answer","text":"Bontsd egyszerűbb téglalapokra, háromszögekre vagy más mérhető részekre, majd add össze őket."}},{"@type":"Question","name":"Miért kell tartalék térkő?","acceptedAnswer":{"@type":"Answer","text":"Vágás, törés, színválogatás és későbbi javítás miatt."}}]}]}</script>
 <!-- KB_STATIC:structured-data:END -->
@@ -21,24 +21,27 @@
     </a>
 
     <nav id="menu" aria-label="Fő navigáció">
-      <a class="nav-home" href="../">Főoldal</a>
+      <a class="nav-primary-link nav-home" href="../">Főoldal</a>
 
-      <details class="nav-dropdown nav-catalog has-active" open>
+      <details class="nav-dropdown nav-catalog">
         <summary>
           <span>Kalkulátorok</span>
           <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
         </summary>
         <div class="nav-submenu">
           <a href="../kalkulatorok" class="">Összes kalkulátor</a>
-          <a href="../mindennapi">Mindennapok</a>
           <a href="../penzugyi">Pénzügy</a>
-          <a href="../epitoipari" class="is-active" aria-current="page">Otthon &amp; felújítás</a>
+          <a href="../epitoipari">Otthon &amp; felújítás</a>
           <a href="../auto">Autó &amp; közlekedés</a>
           <a href="../egeszseg">Egészség &amp; sport</a>
+          <a href="../mindennapi">Mindennapok</a>
           <a href="../atvaltok">Átváltók</a>
           <a href="../kalkulatorok/multifunkcios-szamologep">Tudományos számológép</a>
         </div>
       </details>
+
+      <a class="nav-primary-link nav-decisions" href="../dontesek">Döntések</a>
+      <a class="nav-primary-link nav-compare" href="../osszehasonlitas">Összehasonlítás</a>
 
       <details class="nav-dropdown nav-knowledge">
         <summary>
@@ -46,16 +49,16 @@
           <span class="nav-dropdown-chevron" aria-hidden="true">⌄</span>
         </summary>
         <div class="nav-submenu">
+          <a href="../aktualis">Aktuális változások</a>
           <a href="../elethelyzetek">Élethelyzetek</a>
           <a href="../landing-pages/penzugyi-tudatossag/penzugyi-tudatossag">Pénzügyi tudatosság</a>
           <a href="../szamitasi-modszertan">Számítási módszertan</a>
           <a href="../miert-bizhatsz-bennunk">Miért bízhatsz bennünk?</a>
           <a href="../atlathatosag-es-minoseg">Átláthatóság és minőség</a>
+          <a href="../rolunk">Rólunk</a>
           <a href="../kapcsolat">Kapcsolat</a>
         </div>
       </details>
-
-      <a href="../rolunk">Rólunk</a>
     </nav>
 
     <div class="header-actions">
@@ -73,9 +76,10 @@
     </div>
   </div>
 </header>
-</div><main id="main-content" class="container page-simple-calculator" data-simple-calc="terkovezes-kalkulator"><section class="hero"><h1>Térkövezés kalkulátor</h1><p>Számold ki térkő, szegély és ráhagyás becsült mennyiségét.</p></section><section class="card card-calculator kb-calculator-shell" id="kalkulator"><form class="construction-planner" novalidate><div class="construction-heading"><p class="eyebrow">Részletes anyagtervező</p><h2>Térkő-, ágyazóanyag- és szegélytervező</h2><p>A térkő csomagolásán túl ágyazóréteget és szegélyhosszt is becsül.</p></div><div class="construction-fields"><label class="construction-field"><span>Burkolandó terület hossza (m)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="length" id="construction-length"></label><label class="construction-field"><span>Burkolandó terület szélessége (m)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="width" id="construction-width"></label><label class="construction-field"><span>Kivonható terület (m²)</span><input type="number" step="any" min="0" inputmode="decimal" name="excludeArea" id="construction-excludeArea"></label><label class="construction-field"><span>Raklap/csomag fedése (m²)</span><input type="number" step="any" min="0.01" inputmode="decimal" name="packCoverage" id="construction-packCoverage"></label><label class="construction-field"><span>Vágási ráhagyás</span><select name="waste" id="construction-waste"><option value="5">5% – egyszerű, kevés vágás</option><option value="8">8% – általános</option><option value="12">12% – sok vágás / mintázat</option><option value="15">15% – bonyolult felület</option></select></label><label class="construction-field"><span>Ágyazóréteg vastagsága tömörítve (cm)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="beddingThickness" id="construction-beddingThickness"></label><label class="construction-field"><span>Ágyazóanyag tömörödési tartalék (%)</span><input type="number" step="any" min="0" inputmode="decimal" name="beddingLoss" id="construction-beddingLoss"></label><label class="construction-field"><span>Nem szegélyezett oldalhossz (m)</span><input type="number" step="any" min="0" inputmode="decimal" name="openEdge" id="construction-openEdge"></label><label class="construction-field"><span>Egy szegélykő hossza (m)</span><input type="number" step="any" min="0.01" inputmode="decimal" name="edgePiece" id="construction-edgePiece"></label></div><div class="construction-actions"><button type="submit">Anyagigény kiszámítása</button><button type="reset" class="secondary-btn">Alapértékek visszaállítása</button></div><p class="construction-error" role="alert"></p><div class="result-box construction-results" role="status" aria-live="polite" aria-atomic="true"><dl class="construction-results-grid"><div><dt>Nettó burkolandó felület</dt><dd>32 m²</dd></div><div><dt>Térkőigény ráhagyással</dt><dd>34,56 m²</dd></div><div><dt>Raklap/csomag</dt><dd>4 db</dd></div><div><dt>Ágyazóanyag térfogata</dt><dd>1,47 m³</dd></div><div><dt>Szegélyhossz</dt><dd>24 m</dd></div><div><dt>Szegélykő</dt><dd>24 db</dd></div></dl></div></form><section
+</div><main id="main-content" class="container page-simple-calculator" data-simple-calc="terkovezes-kalkulator"><section class="hero"><h1>Térkövezés kalkulátor</h1><p>Számold ki térkő, szegély és ráhagyás becsült mennyiségét.</p></section><section class="card card-calculator kb-calculator-shell" id="kalkulator"><form class="construction-planner" novalidate><div class="construction-heading"><p class="eyebrow">Részletes anyagtervező</p><h2>Térkő-, ágyazóanyag- és szegélytervező</h2><p>A térkő csomagolásán túl ágyazóréteget és szegélyhosszt is becsül.</p></div><div class="construction-fields"><label class="construction-field"><span>Burkolandó terület hossza (m)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="length" id="construction-length"></label><label class="construction-field"><span>Burkolandó terület szélessége (m)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="width" id="construction-width"></label><label class="construction-field"><span>Kivonható terület (m²)</span><input type="number" step="any" min="0" inputmode="decimal" name="excludeArea" id="construction-excludeArea"></label><label class="construction-field"><span>Raklap/csomag fedése (m²)</span><input type="number" step="any" min="0.01" inputmode="decimal" name="packCoverage" id="construction-packCoverage"></label><label class="construction-field"><span>Vágási ráhagyás</span><select name="waste" id="construction-waste"><option value="5">5% – egyszerű, kevés vágás</option><option value="8">8% – általános</option><option value="12">12% – sok vágás / mintázat</option><option value="15">15% – bonyolult felület</option></select></label><label class="construction-field"><span>Ágyazóréteg vastagsága tömörítve (cm)</span><input type="number" step="any" min="0.1" inputmode="decimal" name="beddingThickness" id="construction-beddingThickness"></label><label class="construction-field"><span>Ágyazóanyag tömörödési tartalék (%)</span><input type="number" step="any" min="0" inputmode="decimal" name="beddingLoss" id="construction-beddingLoss"></label><label class="construction-field"><span>Nem szegélyezett oldalhossz (m)</span><input type="number" step="any" min="0" inputmode="decimal" name="openEdge" id="construction-openEdge"></label><label class="construction-field"><span>Egy szegélykő hossza (m)</span><input type="number" step="any" min="0.01" inputmode="decimal" name="edgePiece" id="construction-edgePiece"></label></div><div class="construction-actions"><button type="submit">Anyagigény kiszámítása</button><button type="reset" class="secondary-btn">Alapértékek visszaállítása</button></div><p class="construction-error" role="alert"></p><div class="result-box construction-results" role="status" aria-live="polite" aria-atomic="true"><dl class="construction-results-grid"><div><dt>Nettó burkolandó felület</dt><dd>32 m²</dd></div><div><dt>Térkőigény ráhagyással</dt><dd>34,56 m²</dd></div><div><dt>Raklap/csomag</dt><dd>4 db</dd></div><div><dt>Ágyazóanyag térfogata</dt><dd>1,47 m³</dd></div><div><dt>Szegélyhossz</dt><dd>24 m</dd></div><div><dt>Szegélykő</dt><dd>24 db</dd></div></dl></div></form>
+<section
   class="retention-cta"
-  data-retention-cta
+  data-retention-cta="runtime"
   aria-labelledby="retentionCtaTitle"
   hidden
 >
@@ -140,7 +144,8 @@
   </div>
 
   <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
-</section></section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-08"><h2>Térkődarabszám és szegélyhossz becslése</h2><p>A kalkulátor egy téglalap alakú felület hosszából és szélességéből kiszámítja a burkolandó területet, majd a négyzetméterenkénti térkőigény és a ráhagyás alapján megbecsüli a szükséges darabszámot. Emellett a külső kerületet is megadja, amely a szegélytervezés kiindulópontja lehet.</p><h2>A számítás</h2><p>Terület: <strong>hossz × szélesség</strong>. Térkő: <strong>terület × db/m² × (1 + ráhagyás / 100)</strong>, felfelé kerekítve. Téglalap kerülete: <strong>2 × (hossz + szélesség)</strong>.</p><div class="example-box"><h3>Példa egy 6 × 4 méteres beállóra</h3><p>A terület 24 m². 36 db/m² térkővel és 5% ráhagyással legalább 908 darab kő szükséges, a külső kerület pedig 20 méter.</p></div><h2>A darabszám csak a burkolat felső rétegét mutatja</h2><p>A tartós térburkolat teljes rétegrendje ennél jóval több. A teherbíró alap, tömörített zúzottkő, ágyazóanyag, esetleges geotextília, szegély, fugázóhomok és megfelelő vízelvezetés mind külön tervezést igényel. Személyautós behajtó és gyalogos járda alaprétege nem feltétlenül azonos.</p><h2>Lejtés és vízelvezetés</h2><p>A burkolatot úgy kell kialakítani, hogy a víz ne álljon meg a felületen és ne a fal vagy alap felé vezessen. A kalkulátor geometriai anyagmennyiséget számol, a szükséges lejtést, folyókát vagy vízelvezető rendszert nem méretezi.</p><h2>Mikor kell nagyobb ráhagyás?</h2><p>Egyenes soros fektetésnél és egyszerű téglalapnál kisebb, íves széleknél, átlós vagy összetett mintánál, sok aknafedélnél és szabálytalan határvonalnál nagyobb vágási veszteség várható.</p><h2>Raklap, m² vagy darab?</h2><p>A kereskedők a térkövet gyakran m²-ben vagy raklapban adják meg, miközben a kalkulátor db/m² adattal számol. Mindig ugyanahhoz a konkrét termékhez tartozó adatokat használd, mert eltérő formátum és mintakiosztás esetén a darabszám jelentősen változhat.</p><h2>Gyakori hibák</h2><ul><li>A raklap m²-adatát darab/m²-ként adják meg.</li><li>A szabálytalan részeket nem bontják külön alakzatokra.</li><li>A szegélyből nem vonják le a nyitott kapubejárót.</li><li>Nem számolnak a mintázat miatti vágási veszteséggel.</li><li>A kalkulátor eredményéből próbálják az alapréteg vastagságát meghatározni.</li></ul><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Hol találom a db/m² adatot?</summary><p>A gyártó termékadatlapján vagy a kereskedő leírásában.</p></details><details><summary>A szegélykő darabszámát is megkapom?</summary><p>A kalkulátor kerülethosszt ad. A darabszámhoz oszd el a tényleges szegélykő hosszával és kerekíts felfelé.</p></details><details><summary>Az alapozó zúzottkő benne van?</summary><p>Nem. Az alapréteg a terheléstől, talajtól és szerkezeti kialakítástól függ.</p></details><details><summary>Szabálytalan területet hogyan számoljak?</summary><p>Bontsd egyszerűbb téglalapokra, háromszögekre vagy más mérhető részekre, majd add össze őket.</p></details><details><summary>Miért kell tartalék térkő?</summary><p>Vágás, törés, színválogatás és későbbi javítás miatt.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="beton-kalkulator">Beton kalkulátor</a><a href="csempe-kalkulator">Csempe kalkulátor</a><a href="padlo-burkolat-kalkulator">Padlóburkolat kalkulátor</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-08">2026. augusztus 8.</time></p></section>
+</section>
+</section><section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-08"><h2>Térkődarabszám és szegélyhossz becslése</h2><p>A kalkulátor egy téglalap alakú felület hosszából és szélességéből kiszámítja a burkolandó területet, majd a négyzetméterenkénti térkőigény és a ráhagyás alapján megbecsüli a szükséges darabszámot. Emellett a külső kerületet is megadja, amely a szegélytervezés kiindulópontja lehet.</p><h2>A számítás</h2><p>Terület: <strong>hossz × szélesség</strong>. Térkő: <strong>terület × db/m² × (1 + ráhagyás / 100)</strong>, felfelé kerekítve. Téglalap kerülete: <strong>2 × (hossz + szélesség)</strong>.</p><div class="example-box"><h3>Példa egy 6 × 4 méteres beállóra</h3><p>A terület 24 m². 36 db/m² térkővel és 5% ráhagyással legalább 908 darab kő szükséges, a külső kerület pedig 20 méter.</p></div><h2>A darabszám csak a burkolat felső rétegét mutatja</h2><p>A tartós térburkolat teljes rétegrendje ennél jóval több. A teherbíró alap, tömörített zúzottkő, ágyazóanyag, esetleges geotextília, szegély, fugázóhomok és megfelelő vízelvezetés mind külön tervezést igényel. Személyautós behajtó és gyalogos járda alaprétege nem feltétlenül azonos.</p><h2>Lejtés és vízelvezetés</h2><p>A burkolatot úgy kell kialakítani, hogy a víz ne álljon meg a felületen és ne a fal vagy alap felé vezessen. A kalkulátor geometriai anyagmennyiséget számol, a szükséges lejtést, folyókát vagy vízelvezető rendszert nem méretezi.</p><h2>Mikor kell nagyobb ráhagyás?</h2><p>Egyenes soros fektetésnél és egyszerű téglalapnál kisebb, íves széleknél, átlós vagy összetett mintánál, sok aknafedélnél és szabálytalan határvonalnál nagyobb vágási veszteség várható.</p><h2>Raklap, m² vagy darab?</h2><p>A kereskedők a térkövet gyakran m²-ben vagy raklapban adják meg, miközben a kalkulátor db/m² adattal számol. Mindig ugyanahhoz a konkrét termékhez tartozó adatokat használd, mert eltérő formátum és mintakiosztás esetén a darabszám jelentősen változhat.</p><h2>Gyakori hibák</h2><ul><li>A raklap m²-adatát darab/m²-ként adják meg.</li><li>A szabálytalan részeket nem bontják külön alakzatokra.</li><li>A szegélyből nem vonják le a nyitott kapubejárót.</li><li>Nem számolnak a mintázat miatti vágási veszteséggel.</li><li>A kalkulátor eredményéből próbálják az alapréteg vastagságát meghatározni.</li></ul><h2>Gyakori kérdések</h2><div class="faq-list" data-accordion="single"><details><summary>Hol találom a db/m² adatot?</summary><p>A gyártó termékadatlapján vagy a kereskedő leírásában.</p></details><details><summary>A szegélykő darabszámát is megkapom?</summary><p>A kalkulátor kerülethosszt ad. A darabszámhoz oszd el a tényleges szegélykő hosszával és kerekíts felfelé.</p></details><details><summary>Az alapozó zúzottkő benne van?</summary><p>Nem. Az alapréteg a terheléstől, talajtól és szerkezeti kialakítástól függ.</p></details><details><summary>Szabálytalan területet hogyan számoljak?</summary><p>Bontsd egyszerűbb téglalapokra, háromszögekre vagy más mérhető részekre, majd add össze őket.</p></details><details><summary>Miért kell tartalék térkő?</summary><p>Vágás, törés, színválogatás és későbbi javítás miatt.</p></details></div><h3>Kapcsolódó kalkulátorok</h3><div class="related-links"><a href="beton-kalkulator">Beton kalkulátor</a><a href="csempe-kalkulator">Csempe kalkulátor</a><a href="padlo-burkolat-kalkulator">Padlóburkolat kalkulátor</a></div><p class="last-reviewed">Utolsó tartalmi frissítés: <time datetime="2026-08-08">2026. augusztus 8.</time></p></section>
 
 
 <!-- KB_STATIC:reliability:START -->
@@ -174,10 +179,10 @@
   <section class="footer-cta" aria-labelledby="footerCtaTitle">
     <div class="footer-cta-copy">
       <span class="footer-eyebrow">Segíts fejleszteni a Kalkulátor Bázist</span>
-      <h2 id="footerCtaTitle">Nem találtad meg a keresett kalkulátort?</h2>
-      <p>Írd meg, milyen számítás lenne hasznos. A jó ötleteket felvesszük a fejlesztési listára.</p>
+      <h2 id="footerCtaTitle">Nem találtad meg a keresett számítást vagy döntési helyzetet?</h2>
+      <p>Írd meg, mire lenne szükséged. A jó ötleteket felvesszük a fejlesztési listára.</p>
     </div>
-    <a class="footer-cta-button" href="../kapcsolat?tema=uj-kalkulator">Kalkulátort javaslok</a>
+    <a class="footer-cta-button" href="../kapcsolat?tema=uj-kalkulator">Ötletet küldök</a>
   </section>
 
   <div class="footer-main">
@@ -187,8 +192,8 @@
         <span>Kalkulátor Bázis</span>
       </a>
       <p class="footer-brand-copy">
-        Ingyenes, magyar nyelvű online kalkulátorok pénzügyi, egészségügyi,
-        építőipari, autós és mindennapi döntésekhez.
+        Ingyenes, magyar nyelvű online kalkulátorok és rendezett döntési útvonalak
+        pénzügyi, egészségügyi, építőipari, autós és mindennapi helyzetekhez.
       </p>
       <ul class="footer-trust-list">
         <li>Regisztráció nélkül használható</li>
@@ -202,21 +207,20 @@
       <h2>Kalkulátorok</h2>
       <a href="../penzugyi">Pénzügyi</a>
       <a href="../egeszseg">Egészség</a>
-      <a href="../epitoipari">Építőipari</a>
-      <a href="../auto">Autós</a>
-      <a href="../mindennapi">Mindennapi</a>
+      <a href="../epitoipari">Otthon &amp; felújítás</a>
+      <a href="../auto">Autó &amp; közlekedés</a>
+      <a href="../mindennapi">Mindennapok</a>
       <a href="../atvaltok">Átváltók</a>
       <a class="footer-link-emphasis" href="../kalkulatorok">Összes kalkulátor</a>
     </nav>
 
-    <nav class="footer-col" aria-label="Kiemelt kalkulátorok">
-      <h2>Népszerű oldalak</h2>
-      <a href="../kalkulatorok/netto-brutto-kalkulator">Nettó–bruttó kalkulátor</a>
-      <a href="../kalkulatorok/etf-kalkulator">ETF kalkulátor</a>
-      <a href="../kalkulatorok/afa-kalkulator">ÁFA-kalkulátor</a>
-      <a href="../kalkulatorok/hitel-torleszto-kalkulator">Hiteltörlesztő kalkulátor</a>
-      <a href="../kalkulatorok/szazalek-kalkulator">Százalékkalkulátor</a>
-      <a href="../#newTitle">Újdonságok</a>
+    <nav class="footer-col" aria-label="Döntési és tudástári útvonalak">
+      <h2>Útvonalak</h2>
+      <a class="footer-link-emphasis" href="../dontesek">Döntések</a>
+      <a class="footer-link-emphasis" href="../osszehasonlitas">Összehasonlítás</a>
+      <a href="../aktualis">Aktuális változások</a>
+      <a href="../elethelyzetek">Élethelyzetek</a>
+      <a href="../landing-pages/penzugyi-tudatossag/penzugyi-tudatossag">Pénzügyi tudatosság</a>
     </nav>
 
     <nav class="footer-col" aria-label="Információ és bizalom">

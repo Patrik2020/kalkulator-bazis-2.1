@@ -7,11 +7,11 @@
   const colors = { light: "#ffffff", dark: "#111827" };
   const seasonalCssAsset = "css/seasonal-theme.css?v=17b028ddc6f1";
   const seasonalMotifCssAsset = "css/seasonal-autumn-motifs.css?v=5859aa36e632";
-  const seasonalGlobalCssAsset = "css/seasonal-autumn-global.css";
+  const seasonalGlobalCssAsset = "css/seasonal-autumn-global.css?v=86603e3e382b";
   const seasonalScriptAsset = "js/seasonal-theme.js?v=b4dad1e9d097";
-  const homeIaScriptAsset = "js/home-ia.js";
-  const currentImpactCssAsset = "css/pages/current-impact.css";
-  const currentImpactScriptAsset = "js/current-impact.js";
+  const homeIaScriptAsset = "js/home-ia.js?v=4bb0e12e4274";
+  const currentImpactCssAsset = "css/pages/current-impact.css?v=2d495ca7efb7";
+  const currentImpactScriptAsset = "js/current-impact.js?v=7926006eea55";
 
   const projectAssetUrl = (asset) => {
     const projectRoot = String(window.KB_PROJECT_ROOT || "").replace(/\/+$/, "");

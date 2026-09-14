@@ -37,14 +37,14 @@
     if (!document.querySelector('link[data-site-quality-final]')) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
-      link.href = `${projectRoot}/css/pages/site-quality-final.css?v=20260815-1`;
+      link.href = `${projectRoot}/css/pages/site-quality-final.css?v=7fca4ca72721`;
       link.dataset.siteQualityFinal = "style";
       document.head.appendChild(link);
     }
 
     if (!document.querySelector('script[data-site-quality-final]')) {
       const script = document.createElement("script");
-      script.src = `${projectRoot}/js/site-quality-final.js?v=20260815-1`;
+      script.src = `${projectRoot}/js/site-quality-final.js?v=7ac95441e6e3`;
       script.defer = true;
       script.dataset.siteQualityFinal = "script";
       document.head.appendChild(script);
@@ -57,14 +57,14 @@
     if (!document.querySelector('link[data-site-compatibility]')) {
       const link = document.createElement("link");
       link.rel = "stylesheet";
-      link.href = `${projectRoot}/css/components/site-compatibility.css?v=20260820-1`;
+      link.href = `${projectRoot}/css/components/site-compatibility.css?v=5abb07b16530`;
       link.dataset.siteCompatibility = "style";
       document.head.appendChild(link);
     }
 
     if (!document.querySelector('script[data-site-compatibility]')) {
       const script = document.createElement("script");
-      script.src = `${projectRoot}/js/site-compatibility.js?v=20260820-1`;
+      script.src = `${projectRoot}/js/site-compatibility.js?v=03ae14d7345d`;
       script.defer = true;
       script.dataset.siteCompatibility = "script";
       document.head.appendChild(script);
@@ -76,7 +76,7 @@
     if (document.querySelector('script[data-calculator-expansion="01"]')) return;
 
     const script = document.createElement("script");
-    script.src = `${projectRoot}/js/expansion-batch-01-data.js?v=20260821-1`;
+    script.src = `${projectRoot}/js/expansion-batch-01-data.js?v=1ec41e199816`;
     script.defer = true;
     script.dataset.calculatorExpansion = "01";
     document.head.appendChild(script);

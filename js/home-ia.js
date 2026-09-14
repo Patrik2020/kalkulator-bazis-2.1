@@ -6,7 +6,7 @@
 
   const root = String(window.KB_PROJECT_ROOT || "").replace(/\/+$/, "");
   const href = (path) => `${root}/${String(path || "").replace(/^\/+/, "")}`.replace(/^\/$/, "./");
-  const cssAsset = href("css/pages/home-ia.css");
+  const cssAsset = href("css/pages/home-ia.css?v=577fd9fff894");
 
   const ensureStyles = () => {
     if (document.querySelector('link[data-home-ia-style]')) return;
