@@ -4,6 +4,9 @@ const path = require("path");
 const root = path.resolve(__dirname, "..");
 const checkOnly = process.argv.includes("--check");
 const htmlFiles = [];
+const canonicalRetention = fs
+  .readFileSync(path.join(root, "components", "retention-cta.html"), "utf8")
+  .trim();
 
 function walk(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -14,21 +17,63 @@ function walk(directory) {
   }
 }
 
-function normalizeInstallButton(html) {
-  return html.replace(
-    /<button\b(?=[^>]*\bdata-retention-action=["']install["'])[^>]*>/gi,
-    (openTag) => {
-      let normalized = openTag
-        .replace(/\s+data-install-mode(?:\s*=\s*(["']).*?\1)?/gi, "")
-        .replace(/\s+data-install-method(?:\s*=\s*(["']).*?\1)?/gi, "");
-
-      if (!/\bhidden\b/i.test(normalized)) {
-        normalized = normalized.replace(/>$/, " hidden>");
-      }
-
-      return normalized;
-    }
+function isCalculatorPage(relativePath) {
+  return (
+    relativePath.startsWith(`kalkulatorok${path.sep}`) &&
+    relativePath !== path.join("kalkulatorok", "multifunkcios-szamologep.html")
   );
+}
+
+function hasRetentionBlock(html) {
+  return /<section\b(?=[^>]*\bclass\s*=\s*["'][^"']*\bretention-cta\b[^"']*["'])[^>]*>/i.test(html);
+}
+
+function findCalculatorSectionClose(html) {
+  const opening = /<section\b(?=[^>]*\bclass\s*=\s*["'][^"']*\bcard-calculator\b[^"']*["'])[^>]*>/i.exec(html);
+  if (!opening) return -1;
+
+  const sectionTag = /<\/?section\b[^>]*>/gi;
+  sectionTag.lastIndex = opening.index;
+  let depth = 0;
+  let match;
+
+  while ((match = sectionTag.exec(html))) {
+    if (/^<\/section/i.test(match[0])) {
+      depth -= 1;
+      if (depth === 0) return match.index;
+    } else {
+      depth += 1;
+    }
+  }
+
+  return -1;
+}
+
+function injectRetentionBlock(html) {
+  const closeIndex = findCalculatorSectionClose(html);
+  if (closeIndex >= 0) {
+    return `${html.slice(0, closeIndex)}\n${canonicalRetention}\n${html.slice(closeIndex)}`;
+  }
+
+  const mainClose = html.search(/<\/main>/i);
+  if (mainClose >= 0) {
+    return `${html.slice(0, mainClose)}\n${canonicalRetention}\n${html.slice(mainClose)}`;
+  }
+
+  return html;
+}
+
+function normalizeRetentionBlock(html, relativePath) {
+  let normalized = html.replace(
+    /<section\b(?=[^>]*\bclass\s*=\s*["'][^"']*\bretention-cta\b[^"']*["'])[^>]*>[\s\S]*?<\/section>/gi,
+    canonicalRetention
+  );
+
+  if (isCalculatorPage(relativePath) && !hasRetentionBlock(normalized)) {
+    normalized = injectRetentionBlock(normalized);
+  }
+
+  return normalized;
 }
 
 walk(root);
@@ -37,11 +82,12 @@ let changed = 0;
 const pending = [];
 
 for (const file of htmlFiles) {
+  const relativePath = path.relative(root, file);
   const source = fs.readFileSync(file, "utf8");
-  const normalized = normalizeInstallButton(source);
+  const normalized = normalizeRetentionBlock(source, relativePath);
   if (source === normalized) continue;
   changed += 1;
-  pending.push(path.relative(root, file));
+  pending.push(relativePath);
   if (!checkOnly) fs.writeFileSync(file, normalized, "utf8");
 }
 
