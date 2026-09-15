@@ -1,0 +1,15 @@
+{
+  "year": 2027,
+  "status": "preparation",
+  "confirmedRules": {
+    "twoChildMothersSzja": {
+      "effectiveFrom": "2027-01-01",
+      "eligibility": "A két gyermeket nevelő anyák kedvezménye 2027. január 1-jétől azokra is kiterjed, akik az 50. életévüket 2026. december 31. után töltik be.",
+      "legalBasis": "2025. évi XIV. törvény; Szja tv. 29/H. §",
+      "officialSource": "https://nav.gov.hu/ado/szja/Ket_gyermeket_nevelo_anyak_kedvezmenye",
+      "affectedCalculator": "kalkulatorok/netto-brutto-kalkulator.html",
+      "integrationStatus": "staged",
+      "note": "A számítási motor API-only módban fut, ezért a tényleges nettó-bruttó számítási logika frissítését az API 2027-es szabálykezelésével együtt kell aktiválni."
+    }
+  }
+}
