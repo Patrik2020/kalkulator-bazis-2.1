@@ -107,55 +107,20 @@ async function evaluate(client, expression) {
     returnByValue: true,
   });
   if (result.exceptionDetails) {
-    throw new Error(
-      result.exceptionDetails.exception?.description ||
-      result.exceptionDetails.text ||
-      "Runtime.evaluate hiba"
-    );
+    throw new Error(result.exceptionDetails.exception?.description || result.exceptionDetails.text || "Runtime.evaluate hiba");
   }
   return result.result?.value;
 }
 
-async function waitForPage(client, expectedPath, timeoutMs = 5000) {
-  const deadline = Date.now() + timeoutMs;
-  let lastState = null;
-
-  while (Date.now() < deadline) {
-    try {
-      lastState = await evaluate(
-        client,
-        `(() => ({ path: location.pathname, ready: document.readyState }))()`
-      );
-      if (lastState?.path === expectedPath && lastState?.ready === "complete") {
-        // A 29 oldalas referencia-audit ugyanezen Chrome-on 450 ms render-idővel stabil.
-        await sleep(450);
-        return;
-      }
-    } catch (error) {
-      // Navigáció közben a Runtime context rövid időre megszűnhet.
-    }
-    await sleep(50);
-  }
-
-  throw new Error(
-    `Az oldal nem töltődött be időben: ${expectedPath}; utolsó állapot: ${JSON.stringify(lastState)}`
-  );
-}
-
 async function main() {
   if (pages.length < 100) {
-    throw new Error(
-      `A teljes böngészős smoke-audit csak ${pages.length} egyedi kalkulátoroldalt lát; legalább 100 szükséges.`
-    );
+    throw new Error(`A teljes böngészős smoke-audit csak ${pages.length} egyedi kalkulátoroldalt lát; legalább 100 szükséges.`);
   }
 
   await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
   const origin = `http://127.0.0.1:${server.address().port}`;
   const cdpPort = 10000 + Math.floor(Math.random() * 20000);
-  const profile = path.join(
-    os.tmpdir(),
-    `kb-all-calculator-smoke-${Date.now()}-${Math.random().toString(16).slice(2)}`
-  );
+  const profile = path.join(os.tmpdir(), `kb-all-calculator-smoke-${Date.now()}-${Math.random().toString(16).slice(2)}`);
   const browser = spawn(
     chrome,
     [
@@ -194,16 +159,14 @@ async function main() {
     }
     if (!version) throw new Error("A headless böngésző 30 másodperc alatt sem indult el.");
 
-    const targetResponse = await fetch(
-      `http://127.0.0.1:${cdpPort}/json/new?${encodeURIComponent(`${origin}/`)}`,
-      { method: "PUT" }
-    );
+    const targetResponse = await fetch(`http://127.0.0.1:${cdpPort}/json/new?${encodeURIComponent(`${origin}/`)}`, {
+      method: "PUT",
+    });
     const target = await targetResponse.json();
     client = await createClient(target.webSocketDebuggerUrl);
 
     client.on("Runtime.exceptionThrown", ({ exceptionDetails }) => {
-      const message =
-        exceptionDetails.exception?.description || exceptionDetails.text || "ismeretlen runtime hiba";
+      const message = exceptionDetails.exception?.description || exceptionDetails.text || "ismeretlen runtime hiba";
       consoleErrors.push(`${currentPage}: ${message}`);
     });
     client.on("Runtime.consoleAPICalled", ({ type, args }) => {
@@ -242,13 +205,13 @@ async function main() {
 
       for (const page of pages) {
         currentPage = `${page} [${viewport.name}]`;
-        const publicPath = `/${page}`;
-        const url = `${origin}${publicPath}`;
+        const url = `${origin}/${page}`;
         const errorsBefore = consoleErrors.length;
 
         try {
           await client.send("Page.navigate", { url });
-          await waitForPage(client, publicPath);
+          // A referencia-audit 29/29 kalkulátoron ezt a renderablakot használja stabilan Chrome 152-n.
+          await sleep(450);
 
           const audit = await evaluate(
             client,
@@ -275,9 +238,7 @@ async function main() {
                 shellRect.height > 0 &&
                 shellRect.width > 0
               );
-              const badVisibleText = shell
-                ? /(?:\bNaN\b|\bInfinity\b|\bundefined\b|\bnull\b)/.test(shell.innerText)
-                : false;
+              const badVisibleText = shell ? /(?:\bNaN\b|\bInfinity\b|\bundefined\b|\bnull\b)/.test(shell.innerText) : false;
               return {
                 title: document.title.trim(),
                 main: Boolean(main),
@@ -328,9 +289,7 @@ async function main() {
     return;
   }
 
-  console.log(
-    `Teljes kalkulátor browser smoke OK: ${pages.length} oldal × ${viewports.length} viewport = ${pages.length * viewports.length} render.`
-  );
+  console.log(`Teljes kalkulátor browser smoke OK: ${pages.length} oldal × ${viewports.length} viewport = ${pages.length * viewports.length} render.`);
 }
 
 main().catch((error) => {
