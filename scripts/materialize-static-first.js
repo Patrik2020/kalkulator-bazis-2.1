@@ -390,11 +390,17 @@ function chromeDump(chrome, pagePath) {
       cwd: root,
       encoding: "utf8",
       maxBuffer: 32 * 1024 * 1024,
+      timeout: 30_000,
+      killSignal: "SIGKILL",
       stdio: ["ignore", "pipe", "pipe"],
     });
   } catch (error) {
     const stderr = error.stderr ? String(error.stderr).slice(-3000) : "";
-    throw new Error(`Chrome render hiba (${pagePath}): ${stderr || error.message}`);
+    const timedOut = error.signal === "SIGKILL" || error.code === "ETIMEDOUT";
+    const reason = timedOut
+      ? "Chrome render timeout (30 s)"
+      : stderr || error.message;
+    throw new Error(`Chrome render hiba (${pagePath}): ${reason}`);
   }
 }
 
