@@ -112,19 +112,6 @@ async function evaluate(client, expression) {
   return result.result?.value;
 }
 
-async function waitForReady(client, timeoutMs = 5000) {
-  const deadline = Date.now() + timeoutMs;
-  while (Date.now() < deadline) {
-    try {
-      if ((await evaluate(client, "document.readyState")) === "complete") return;
-    } catch (error) {
-      // Navigáció közben a context rövid ideig megszűnhet.
-    }
-    await sleep(50);
-  }
-  throw new Error("Az oldal nem töltődött be időben.");
-}
-
 async function main() {
   if (pages.length < 100) {
     throw new Error(`A teljes böngészős smoke-audit csak ${pages.length} egyedi kalkulátoroldalt lát; legalább 100 szükséges.`);
@@ -212,6 +199,8 @@ async function main() {
         height: viewport.height,
         deviceScaleFactor: viewport.deviceScaleFactor,
         mobile: viewport.mobile,
+        screenWidth: viewport.width,
+        screenHeight: viewport.height,
       });
 
       for (const page of pages) {
@@ -221,8 +210,8 @@ async function main() {
 
         try {
           await client.send("Page.navigate", { url });
-          await waitForReady(client);
-          await sleep(30);
+          // A referencia-audit 29/29 kalkulátoron ezt a renderablakot használja stabilan Chrome 152-n.
+          await sleep(450);
 
           const audit = await evaluate(
             client,
@@ -239,7 +228,16 @@ async function main() {
                 document.body.scrollWidth - document.body.clientWidth
               );
               const shellStyle = shell ? getComputedStyle(shell) : null;
-              const shellVisible = Boolean(shell && shellStyle.display !== 'none' && shellStyle.visibility !== 'hidden' && shell.getBoundingClientRect().height > 0);
+              const shellRect = shell?.getBoundingClientRect();
+              const shellVisible = Boolean(
+                shell &&
+                shellStyle &&
+                shellStyle.display !== 'none' &&
+                shellStyle.visibility !== 'hidden' &&
+                shellRect &&
+                shellRect.height > 0 &&
+                shellRect.width > 0
+              );
               const badVisibleText = shell ? /(?:\bNaN\b|\bInfinity\b|\bundefined\b|\bnull\b)/.test(shell.innerText) : false;
               return {
                 title: document.title.trim(),
