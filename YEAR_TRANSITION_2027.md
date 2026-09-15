@@ -31,4 +31,12 @@ Elsődleges forrás szükséges: Magyar Közlöny, NAV, kormany.hu, jogszabályt
 
 ## Változásnapló
 
-_Még nincs rögzített 2027-es változás._
+### 2026-09-15 — Két gyermeket nevelő anyák SZJA-kedvezménye
+- **Hatálybalépés:** 2027-01-01.
+- **Változás:** 2027-től a két gyermeket nevelő anyák kedvezményének következő korcsoportja lép be: azok az anyák is jogosulttá válnak, akik az 50. életévüket 2026. december 31. után töltik be.
+- **Jogalap:** 2025. évi XIV. törvény; Szja tv. 29/H. §.
+- **Hivatalos forrás:** NAV — Két gyermeket nevelő anyák kedvezménye: https://nav.gov.hu/ado/szja/Ket_gyermeket_nevelo_anyak_kedvezmenye
+- **Érintett kalkulátor:** `kalkulatorok/netto-brutto-kalkulator.html`.
+- **Érintett kliensfájlok:** `js/penzugyi/netto-brutto.js`, `js/penzugyi/netto-brutto-shadow.js`.
+- **Előkészítés:** a szabály bekerült a `data/years/2027.json` központi 2027-es szabályadatba.
+- **Integrációs megjegyzés:** a nettó–bruttó üzleti számítás jelenleg API-only módban fut. A tényleges számítási logika aktiválását az API 2027-es szabálykezelésével együtt kell elvégezni; a 2026-os éles viselkedést ezen az ágon sem írjuk felül idő előtt.
