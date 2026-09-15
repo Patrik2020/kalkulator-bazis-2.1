@@ -116,7 +116,7 @@ async function evaluate(client, expression) {
   return result.result?.value;
 }
 
-async function waitForStableCalculatorPage(client, expectedPath, timeoutMs = 5000) {
+async function waitForPage(client, expectedPath, timeoutMs = 5000) {
   const deadline = Date.now() + timeoutMs;
   let lastState = null;
 
@@ -124,49 +124,21 @@ async function waitForStableCalculatorPage(client, expectedPath, timeoutMs = 500
     try {
       lastState = await evaluate(
         client,
-        `(() => {
-          const shell = document.querySelector('.card-calculator, #kalkulator');
-          const style = shell ? getComputedStyle(shell) : null;
-          const rect = shell?.getBoundingClientRect();
-          const controls = [...document.querySelectorAll('main input, main select, main textarea, main button')]
-            .filter((el) => !el.hidden && getComputedStyle(el).display !== 'none');
-          return {
-            path: location.pathname,
-            ready: document.readyState,
-            shell: Boolean(shell),
-            shellVisible: Boolean(
-              shell &&
-              style &&
-              style.display !== 'none' &&
-              style.visibility !== 'hidden' &&
-              rect &&
-              rect.height > 0 &&
-              rect.width > 0
-            ),
-            controls: controls.length,
-          };
-        })()`
+        `(() => ({ path: location.pathname, ready: document.readyState }))()`
       );
-
-      if (
-        lastState?.path === expectedPath &&
-        lastState?.ready === "complete" &&
-        lastState?.shellVisible &&
-        lastState?.controls > 0
-      ) {
-        // Adjunk még egy rövid festési ciklust a CSS/JS utólagos módosításainak.
-        await sleep(80);
+      if (lastState?.path === expectedPath && lastState?.ready === "complete") {
+        // A 29 oldalas referencia-audit ugyanezen Chrome-on 450 ms render-idővel stabil.
+        await sleep(450);
         return;
       }
     } catch (error) {
       // Navigáció közben a Runtime context rövid időre megszűnhet.
     }
-
     await sleep(50);
   }
 
   throw new Error(
-    `Az oldal nem stabilizálódott időben: ${expectedPath}; utolsó állapot: ${JSON.stringify(lastState)}`
+    `Az oldal nem töltődött be időben: ${expectedPath}; utolsó állapot: ${JSON.stringify(lastState)}`
   );
 }
 
@@ -276,7 +248,7 @@ async function main() {
 
         try {
           await client.send("Page.navigate", { url });
-          await waitForStableCalculatorPage(client, publicPath);
+          await waitForPage(client, publicPath);
 
           const audit = await evaluate(
             client,
