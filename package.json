@@ -34,7 +34,7 @@
     "test:auto:financial-edge": "node scripts/auto-financial-edge-audit.js",
     "test:auto:content-consistency": "node scripts/auto-content-consistency-audit.js",
     "test:brick:data": "node scripts/brick-product-data-audit.js",
-    "test:browser:ui": "node scripts/browser-qa.js",
+    "test:browser:ui": "node scripts/browser-qa-policy-runner.js",
     "test:currency": "node scripts/currency-converter-audit.js",
     "test:converters:domain": "node scripts/converter-domain-audit.js",
     "test:expansion:01": "node scripts/expansion-batch-01-audit.js",
