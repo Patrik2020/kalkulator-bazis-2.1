@@ -61,6 +61,90 @@
     return wrapper;
   };
 
+  // KB_ADSENSE_CONSTRUCTION_METHOD_V2
+  const methodCopy = {
+    "gipszkarton-kalkulator": {
+      "title": "Mitől lesz reálisabb a gipszkarton anyagterv?",
+      "body": "A nettó falfelület mellett külön kezeli a burkolt oldalak és rétegek számát, a lapméretet, a vágási ráhagyást, valamint opcionálisan a profil-, csavar-, szalag- és glettfajlagos adatokat. A váz és a laprétegek ezért nem egyszerűen ugyanazzal a szorzóval nőnek.",
+      "source": "A profilkiosztás, csavartávolság, rétegrend, tűz- és hanggátlási követelmény rendszerfüggő. Rendelés előtt a választott minősített gipszkarton rendszer gyártói dokumentációját használd.",
+      "limits": [
+        "Nem méretez tartószerkezetet vagy függesztést.",
+        "A nyílások körüli erősítéseket és egyedi csomópontokat nem tervezi.",
+        "A fajlagos segédanyag-adatok csak akkor rendelési alapok, ha az adott rendszerhez ellenőrizted őket."
+      ]
+    },
+    "tapeta-kalkulator": {
+      "title": "Miért nem elég csak a fal négyzetmétere tapétánál?",
+      "body": "A nettó felület mellett a fal kerületéből csíkszámot számol, figyelembe veszi a tekercs szélességét és hosszát, a csíkonkénti vágási tartalékot, valamint a mintaismétlést. Mintás tapétánál emiatt ugyanakkora felülethez több tekercs is kellhet.",
+      "source": "A tekercsméretet és mintaismétlést a kiválasztott tapéta címkéjéről vagy műszaki adatából add meg. A gyártási tétel, illesztési mód és felületi hibák további tartalékot indokolhatnak.",
+      "limits": [
+        "Nem optimalizálja egyenként a nyílásokból megmaradó csíkdarabokat.",
+        "Eltolt illesztésnél a gyártói mintaillesztési szabály az elsődleges.",
+        "A fal előkészítésének és ragasztóigényének mennyiségét nem számolja."
+      ]
+    },
+    "vakolat-kalkulator": {
+      "title": "Mitől függ igazán a vakolat anyagigénye?",
+      "body": "A nettó felületet megszorozza a rétegvastagsággal és a megadott kg/m²/mm fogyással, majd külön ráhagyást és zsákméretet alkalmaz. Minimum–maximum fogyási tartományt is tud kezelni, ezért nem kényszerít egyetlen univerzális kiadósságot minden termékre.",
+      "source": "A fogyási értéket, megengedett rétegvastagságot és kiszerelést a konkrét vakolat gyártói adatlapjából írd be. Ezek termékenként jelentősen eltérhetnek.",
+      "limits": [
+        "Nem méri fel a fal egyenetlenségéből adódó helyi többletvastagságot.",
+        "Nem választ alapozót, hálót vagy rétegrendet.",
+        "A rendelési becslés csak ellenőrzött gyártói fajlagos adatokkal értelmezhető."
+      ]
+    },
+    "hoszigeteles-kalkulator": {
+      "title": "Hogyan választja szét a szigetelési felületet és a csomagigényt?",
+      "body": "A nettó szigetelendő felületből, a választott vastagságból, csomagfedésből és ráhagyásból készít beszerzési becslést. Így a matematikai m²-igény és az egész csomagokra kerekített vásárlási mennyiség külön látható.",
+      "source": "A csomagfedést, táblaméretet, deklarált hővezetési tényezőt és alkalmazási területet a konkrét szigetelőanyag adatlapjából ellenőrizd. A szükséges vastagságot nem ez a kalkulátor méretezi energetikailag.",
+      "limits": [
+        "Nem készít hőtechnikai vagy páratechnikai méretezést.",
+        "Nem számol dübel-, ragasztó-, háló- és élvédő rendszerrel, ha nincs külön megadva.",
+        "Geometriai veszteségek és bonyolult csomópontok további ráhagyást igényelhetnek."
+      ]
+    },
+    "terkovezes-kalkulator": {
+      "title": "Miből áll össze a térkövezés anyagbecslése?",
+      "body": "A burkolandó nettó felülethez külön ráhagyást ad, majd a választott térkő csomag- vagy raklapfedése alapján kerekít vásárlási mennyiségre. A felület és a tényleges csomagszám ezért külön eredményként jelenik meg.",
+      "source": "A térkő fedési adatát, rétegrendet, ágyazatot és fugázóanyag-javaslatot a kiválasztott rendszer gyártói/kivitelezési dokumentációjából ellenőrizd.",
+      "limits": [
+        "Nem méretezi a teherbíró alapréteget vagy vízelvezetést.",
+        "Ívek, szegélyek és sok vágás növelheti a veszteséget.",
+        "Raklap- és csomagkerekítésnél a kereskedő tényleges kiszerelése az irányadó."
+      ]
+    },
+    "tetocserep-kalkulator": {
+      "title": "Miért gyártói adat a tetőcserép fajlagos igénye?",
+      "body": "A tetőfelületből és a megadott db/m² cserépigényből számol, majd ráhagyást és csomagolási kerekítést alkalmaz. A fajlagos darabszámot nem vezeti le pusztán a cserép névleges méretéből, mert a fedési hossz és oldalirányú átfedés termékfüggő.",
+      "source": "A db/m² értéket, minimális hajlásszöget, léctávolságot és kiegészítő elemeket a konkrét tetőcserép gyártói alkalmazástechnikai útmutatójából add meg.",
+      "limits": [
+        "Nem készít tetőszerkezeti vagy statikai tervet.",
+        "Vápa, élgerinc, áttörés és szegély környezetében külön vágási veszteség lehet.",
+        "Kiegészítő cserepek és rögzítők nem vezethetők le megbízhatóan egyetlen db/m² értékből."
+      ]
+    },
+    "fuga-kalkulator": {
+      "title": "Mitől változik a fugázóanyag mennyisége?",
+      "body": "A burkolat felülete mellett a lap méretét, fugaszélességet, fugamélységet és a megadott anyagjellemzőt használja. Ezért ugyanazon m² mellett a kisebb lap és szélesebb/mélyebb fuga több anyagot igényelhet.",
+      "source": "A fugázó sűrűségét vagy gyártói fogyási képletét a kiválasztott termék adatlapja alapján ellenőrizd. Speciális epoxi vagy más rendszer eltérő számítási alapot használhat.",
+      "limits": [
+        "Nem méri a tényleges fugamélység helyszíni változását.",
+        "Nem számol külön dilatációs és rugalmas hézagkitöltő anyaggal.",
+        "A mosási és kivitelezési veszteség termék- és munkamódszerfüggő."
+      ]
+    },
+    "padlo-burkolat-kalkulator": {
+      "title": "Hogyan lesz a nettó padlófelületből vásárolandó csomagszám?",
+      "body": "A helyiség nettó burkolandó felületéhez a választott vágási ráhagyást adja, majd a csomagonkénti fedés alapján egész csomagra kerekít. Ez különösen fontos laminált, vinyl és más csomagolt burkolatoknál.",
+      "source": "A csomagfedést, fektetési mintát, dilatációt és aljzati követelményeket a kiválasztott burkolat gyártói dokumentációjából ellenőrizd. Mintás vagy átlós fektetéshez nagyobb ráhagyás lehet indokolt.",
+      "limits": [
+        "Nem optimalizálja automatikusan a szabási kiosztást helyiségenként.",
+        "Nem számolja az alátét, párazáró vagy ragasztó mennyiségét, ha az nincs külön modellezve.",
+        "Több helyiség eltérő irányú fektetését célszerű külön számolni."
+      ]
+    }
+  };
+
   const card = document.querySelector(".card-calculator");
   if (!card) return;
 
@@ -354,7 +438,8 @@
   };
   form.addEventListener("submit", (event) => { event.preventDefault(); run(); }); form.addEventListener("input", run); form.addEventListener("reset", () => setTimeout(run, 0)); run();
 
+  const method = methodCopy[slug];
   const guide = document.createElement("section"); guide.className = "article construction-methodology";
-  guide.innerHTML = `<h2>Mitől pontosabb ez a tervező?</h2><p>A nettó felületet, a kivonható részeket, a választott termék csomagméretét vagy kiadósságát és a kivitelezési ráhagyást külön kezeli. Az eredmény szétválasztja a matematikai nettó anyagigényt és a ténylegesen megvásárolandó, egész csomagokra kerekített mennyiséget.</p><div class="construction-scenarios"><div><strong>5%</strong><span>egyszerű, kevés vágás</span></div><div><strong>8%</strong><span>általános kiindulás</span></div><div><strong>12%</strong><span>sok vágás vagy minta</span></div><div><strong>15%</strong><span>összetett felület</span></div></div><div class="notice-box"><strong>Gyártói adatlap az elsődleges:</strong> a csomagfedés, kiadósság, sűrűség, rögzítési kiosztás és rétegvastagság termékenként eltér. Vásárlás előtt írd át az alapértékeket a kiválasztott termék műszaki adatlapja és a kivitelezési rendszerterv szerint.</div><h2>Két példaszámítás</h2><div class="construction-example-grid"><article><h3>1. példa</h3><p>${config.examples[0]}</p></article><article><h3>2. példa</h3><p>${config.examples[1]}</p></article></div><h2>A kalkulátor korlátai</h2><ul><li>Nem készít statikai, páratechnikai, rétegrendi vagy kivitelezési tervet.</li><li>Nem ismeri a felület síkpontosságát, a helyszíni vágásokat, töréseket és selejtet.</li><li>A kiegészítő anyagok mennyisége rendszer- és gyártófüggő lehet.</li><li>Rendelés előtt a kivitelezővel és a kereskedővel is érdemes ellenőrizni a mennyiséget.</li></ul><p class="last-reviewed">Módszertani frissítés: <time datetime="2026-07-15">2026. július 15.</time>. A kalkulátor tájékoztató becslést készít; rendelés előtt ellenőrizd a gyártói adatlapot, és szükség esetén egyeztess szakemberrel.</p>`;
+  guide.innerHTML = `<h2>${method.title}</h2><p>${method.body}</p><div class="construction-scenarios"><div><strong>5%</strong><span>egyszerű, kevés vágás</span></div><div><strong>8%</strong><span>általános kiindulás</span></div><div><strong>12%</strong><span>sok vágás vagy minta</span></div><div><strong>15%</strong><span>összetett felület</span></div></div><div class="notice-box"><strong>Gyártói adatlap az elsődleges.</strong> <strong>Ellenőrzési alap:</strong> ${method.source}</div><h2>Két példaszámítás</h2><div class="construction-example-grid"><article><h3>1. példa</h3><p>${config.examples[0]}</p></article><article><h3>2. példa</h3><p>${config.examples[1]}</p></article></div><h2>A kalkulátor korlátai</h2><ul>${method.limits.map((item) => `<li>${item}</li>`).join("")}</ul><p class="last-reviewed">Módszertani ellenőrzés: <time datetime="2026-09-16">2026. szeptember 16.</time>.</p>`;
   const existingGuide = card.nextElementSibling; if (existingGuide) existingGuide.before(guide); else card.after(guide);
 })();

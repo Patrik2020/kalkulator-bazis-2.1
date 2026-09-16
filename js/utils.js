@@ -180,7 +180,7 @@ function ensureCookieBanner(base, onReady) {
     return;
   }
 
-  loadScriptOnce(base + "js/cookie.js?v=08268642992d", () => {
+  loadScriptOnce(base + "js/cookie.js?v=01a9db508ffa", () => {
     if (onReady) onReady();
   });
 }
@@ -238,7 +238,7 @@ function loadSiteScripts(base) {
   const loadUi = () => {
     document.dispatchEvent(new CustomEvent("kb:site-data-loaded"));
     markActiveNavigation(document.getElementById("header"));
-    loadScriptOnce(base + "js/site-ui.js?v=aa9502309eb3");
+    loadScriptOnce(base + "js/site-ui.js?v=272618742636");
     if (window.location.pathname.toLowerCase().includes("/kalkulatorok/")) {
       loadScriptOnce(base + "js/retention-cta.js?v=de234f7c946e");
     }

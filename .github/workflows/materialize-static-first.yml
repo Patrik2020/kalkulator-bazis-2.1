@@ -3,6 +3,9 @@ name: Materialize static-first HTML
 on:
   workflow_dispatch:
   pull_request:
+  push:
+    branches:
+      - adsense-quality-v2
 
 permissions:
   contents: write
@@ -45,6 +48,30 @@ jobs:
             exit 1
           fi
 
+      - name: Apply AdSense template fingerprint cleanup
+        run: node scripts/apply-adsense-template-fingerprint-v2.js
+
+      - name: Apply page-specific domain methodology
+        run: node scripts/apply-adsense-domain-method-copy-v2.js
+
+      - name: Preserve construction manufacturer-first safety rule
+        run: node scripts/apply-construction-manufacturer-first-v2.js
+
+      - name: Apply transparent YMYL trust metadata
+        run: node scripts/apply-adsense-ymyl-trust-v2.js
+
+      - name: Apply primary YMYL source notes
+        run: node scripts/apply-adsense-source-notes-v2.js
+
+      - name: Apply current-content editorial moat
+        run: node scripts/apply-adsense-current-moat-v2.js
+
+      - name: Apply AdSense eligibility and certified-CMP runtime gate
+        run: node scripts/apply-adsense-eligibility-v2.js
+
+      - name: Apply AdSense audit policy normalization
+        run: node scripts/apply-adsense-audit-policy-v2.js
+
       - name: Generate sitemap for page discovery
         run: npm run sitemap
 
@@ -53,6 +80,14 @@ jobs:
 
       - name: Normalize final static output
         run: npm run static:normalize
+
+      - name: Re-apply AdSense editorial transforms after materialization
+        run: |
+          node scripts/apply-adsense-domain-method-copy-v2.js
+          node scripts/apply-construction-manufacturer-first-v2.js
+          node scripts/apply-adsense-ymyl-trust-v2.js
+          node scripts/apply-adsense-source-notes-v2.js
+          node scripts/apply-adsense-current-moat-v2.js
 
       - name: Canonicalize static retention CTA state
         run: node scripts/normalize-retention-static.js
@@ -72,6 +107,11 @@ jobs:
           # hasonlítja a következő futáshoz.
           npm run static:build
           npm run static:normalize
+          node scripts/apply-adsense-domain-method-copy-v2.js
+          node scripts/apply-construction-manufacturer-first-v2.js
+          node scripts/apply-adsense-ymyl-trust-v2.js
+          node scripts/apply-adsense-source-notes-v2.js
+          node scripts/apply-adsense-current-moat-v2.js
           node scripts/normalize-retention-static.js
           node scripts/cache-bust-assets.js
           npm run sitemap
@@ -82,6 +122,11 @@ jobs:
           git diff --binary > "${RUNNER_TEMP}/static-stable-pass.diff"
           npm run static:build
           npm run static:normalize
+          node scripts/apply-adsense-domain-method-copy-v2.js
+          node scripts/apply-construction-manufacturer-first-v2.js
+          node scripts/apply-adsense-ymyl-trust-v2.js
+          node scripts/apply-adsense-source-notes-v2.js
+          node scripts/apply-adsense-current-moat-v2.js
           node scripts/normalize-retention-static.js
           node scripts/cache-bust-assets.js
           npm run sitemap
@@ -96,6 +141,15 @@ jobs:
       - name: Validate HTML, JavaScript and calculator logic
         run: npm run quality
 
+      - name: Validate AdSense runtime policy
+        run: node scripts/adsense-runtime-policy-audit.js
+
+      - name: Validate content-aware sitemap lastmod
+        run: node scripts/sitemap-lastmod-v2-audit.js
+
+      - name: Enforce AdSense Quality v2 gate
+        run: node scripts/adsense-quality-v2-audit.js --report --gate
+
       - name: Run final 100-calculator inventory gate
         run: node scripts/final-fullsite-audit.js
 
@@ -103,8 +157,10 @@ jobs:
         shell: bash
         run: |
           cp sitemap.xml "${RUNNER_TEMP}/sitemap.xml"
+          cp data/sitemap-content-state.json "${RUNNER_TEMP}/sitemap-content-state.json"
           npm run sitemap
           diff -u "${RUNNER_TEMP}/sitemap.xml" sitemap.xml
+          diff -u "${RUNNER_TEMP}/sitemap-content-state.json" data/sitemap-content-state.json
 
       - name: Check whitespace errors
         run: git diff --check
