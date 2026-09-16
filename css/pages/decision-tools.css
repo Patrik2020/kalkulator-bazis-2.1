@@ -64,6 +64,12 @@
   gap: 18px;
 }
 
+/* The HTML hidden state is controlled by decision-tools.js. Keep it authoritative
+   even though the form itself uses an authored display:grid rule. */
+.decision-tool-form[hidden] {
+  display: none !important;
+}
+
 .decision-form-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
