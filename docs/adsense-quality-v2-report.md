@@ -1,8 +1,8 @@
 # AdSense Quality v2 riport
 
-- HTML oldalak: **137**
+- HTML oldalak: **138**
 - Kalkulátoroldalak: **101**
-- Kezdeti AdSense-eligible oldalak: **115**
+- Kezdeti AdSense-eligible oldalak: **116**
 - Kritikus kategóriák: **0**
 - Figyelmeztetések: **0**
 
@@ -51,7 +51,7 @@ A 404, kapcsolat, impresszum, adatvédelem, cookie, jogi/felhasználási, redire
 
 ## Sitemap és consent
 
-- Domináns lastmod: **2026-09-16**, 58/134 URL (43.3%).
+- Domináns lastmod: **2026-09-16**, 61/135 URL (45.2%).
 - Google/IAB CMP-kódjel: **található**.
 
 ## Figyelmeztetések

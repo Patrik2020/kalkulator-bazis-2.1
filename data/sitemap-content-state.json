@@ -39,8 +39,8 @@
       "lastmod": "2026-09-14"
     },
     "dontesek.html": {
-      "hash": "a04a8edecc96c8289610ea4639b02e2765c8b1fc6ebae1dde28db01b49064870",
-      "lastmod": "2026-09-14"
+      "hash": "c31ff3f53c3f64418f42bf0376f02a6c378a9817967e13ead34591ea697ed432",
+      "lastmod": "2026-09-16"
     },
     "osszehasonlitas.html": {
       "hash": "674ad9824837484f33509d340a2bdc167666e904228db8ead6ca44887c4be4fa",
@@ -91,12 +91,16 @@
       "lastmod": "2026-08-21"
     },
     "aktualis.html": {
-      "hash": "85d8067780f58ef82b44d18eb5f3e450f11dc7664eaf80b9e09c797ff48135f6",
-      "lastmod": "2026-09-13"
+      "hash": "43f270d8d3d639b53a50f497286e5a251f0d4a22f7d63b41781640d3e34bb390",
+      "lastmod": "2026-09-16"
     },
     "aktualis/ksh-inflacio-2026-augusztus.html": {
       "hash": "131396f9436fb905079219bfb63eee7d3bf0c032d97b299de7a13d7c0572104a",
       "lastmod": "2026-09-12"
+    },
+    "aktualis/ksh-keresetek-2026-julius.html": {
+      "hash": "0872160abd6c5ce5f94460e897db784f3989b8f84b2ff9a515a5dba99053a3b4",
+      "lastmod": "2026-09-16"
     },
     "aktualis/ksh-uzemanyagarak-2026-augusztus.html": {
       "hash": "a1a3ff4668d31424af88d65bd29396a60a2e858144c2576905b1bc08345a0544",
