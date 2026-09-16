@@ -50,10 +50,89 @@
   if(referenceMap[slug]){
     const section=document.createElement("section");section.className="adsense-content ac-note";section.innerHTML=`<h2>Gyors referencia és hétköznapi példák</h2><table class="ac-table"><tbody>${refs[referenceMap[slug]].map(r=>`<tr><th>${r[0]}</th><td>${r[1]}</td></tr>`).join("")}</tbody></table><p>A referenciaértékek segítenek fejben ellenőrizni az eredményt. A kalkulátor kerekítése miatt az utolsó tizedesek eltérhetnek.</p>`;card.insertAdjacentElement("afterend",section);window.KB_AUTO_CONVERTER_UPGRADE_READY=slug;return;
   }
+  // KB_ADSENSE_DOMAIN_METHOD_V2
+  const methodCopy = {
+    "eves-auto-koltseg-kalkulator": {
+      "title": "Mit tartalmaz az éves autóköltség-becslés?",
+      "body": "Az éves futásból, fogyasztásból és literárból külön számolja az üzemanyagot, majd hozzáadja a biztosítás, adók és matrica, szerviz, gumi, parkolás és értékvesztés megadott éves összegét. Az értékvesztés gazdasági költség, ezért a havi átlag nem feltétlenül azonos a tényleges havi készpénzkiadással.",
+      "source": "A saját autódhoz biztosítói, szerviz-, adó-, útdíj- és üzemanyagadataidat használd. Az alapértékek csak szerkeszthető példák; az aktuális költségeket a szolgáltatói és hivatalos díjtáblák alapján ellenőrizd."
+    },
+    "auto-ertekvesztes-kalkulator": {
+      "title": "Hogyan modellezi az autó értékvesztését?",
+      "body": "A modell az első vizsgált évre és a további évekre külön százalékos értékvesztési rátát enged meg, ezért nem feltételezi, hogy minden év azonos. A nominális maradványérték mellett a megadott infláció vagy defláció alapján mai vásárlóértéket is számol.",
+      "source": "A jövőbeli használtpiaci ár nem előrejelezhető biztosan. A rátákat saját piaci összehasonlításból vagy megbízható értékbecslési adatokból add meg; a kalkulátor a felhasználói feltételezést számolja tovább."
+    },
+    "kilometerdij-kalkulator": {
+      "title": "Mit jelent a teljes Ft/km érték?",
+      "body": "Az éves teljes autóköltséget osztja az éves futással, majd ebből becsüli egy választott út és a fizető utasokra jutó rész költségét. Ez a megközelítés a tankoláson túl a fix, időszakos és gazdasági költségeket is egy közös kilométerértékbe rendezi.",
+      "source": "Csak azonos időszakból származó éves költséget és futást hasonlíts össze. Céges vagy adózási kilométer-elszámoláshoz ne ezt az eredményt tekintsd hivatalos díjnak; ott az aktuális jogszabály és NAV-szabály az irányadó."
+    },
+    "co2-kibocsatas-kalkulator": {
+      "title": "Milyen kibocsátást számol a modell?",
+      "body": "A belső égésű hajtásnál külön kezeli a közvetlen kipufogó- és az energiaellátási tényezőt, elektromos hajtásnál pedig a fogyasztást, töltési többletet és a megadott árammixot. Plug-in hibridnél a folyékony üzemanyag és az elektromos rész külön ágon fut össze.",
+      "source": "A kibocsátási faktorokat az adott üzemanyaghoz és árammixhoz illő, aktuális hivatalos vagy szakmai forrásból add meg. A jármű- és akkumulátorgyártás nincs a modellben, ezért az eredmény nem teljes életciklus-elemzés."
+    },
+    "gumi-meret-kalkulator": {
+      "title": "Hogyan hasonlítja össze a két gumiméretet?",
+      "body": "A szélességből, oldalfal-arányból és felniátmérőből kiszámolja mindkét kerék közelítő külső átmérőjét és gördülési kerületét, majd százalékosan összeveti őket. A megadott műszer szerinti sebességből a geometriai eltérés alapján korrigált értéket is becsül.",
+      "source": "A geometriai egyezés nem jelent automatikus műszaki megfelelőséget. Csak a jármű gyártója, jóváhagyási dokumentuma vagy hiteles műszaki adat alapján engedélyezett méretet használj."
+    },
+    "uzemanyag-koltseg-kalkulator": {
+      "title": "Miből áll össze az út üzemanyagköltsége?",
+      "body": "A távolság és a l/100 km fogyasztás alapján kiszámolja a szükséges üzemanyagmennyiséget, majd ezt megszorozza a megadott literárral. Az eredmény ezért közvetlenül a saját út-, fogyasztás- és áradataidra reagál, nem országos átlagból becsül.",
+      "source": "A tényleges fogyasztást befolyásolja a forgalom, hőmérséklet, terhelés és vezetési mód. Aktuális költséghez a tényleges tankolási árat, elszámolási célra pedig az adott szabály szerint alkalmazható hivatalos értéket használd."
+    },
+    "adatmeret-atvalto-kalkulator": {
+      "title": "Miért kell külön figyelni a bináris és decimális adatméretre?",
+      "body": "Az átváltásnál nem mindegy, hogy 1000-es vagy 1024-es lépcsőt használsz. A kalkulátor a választott egységkapcsolat szerint számol, ezért tárolókapacitás és operációs rendszer által jelzett méret összevetésekor ugyanazt a szabványt kell követned.",
+      "source": "Műszaki dokumentációban ellenőrizd, hogy az adott szolgáltató vagy eszköz SI/decimális vagy IEC/bináris jelölést használ-e. A jelölések összekeverése önmagában több százalékos eltérést okozhat."
+    },
+    "energia-atvalto-kalkulator": {
+      "title": "Mit jelent az energiaegységek közti átváltás?",
+      "body": "A kalkulátor rögzített fizikai átváltási arányokkal viszi át a megadott energiát a kiválasztott egységek között. Az energia mennyiségét váltja át, nem teljesítményt és nem időtartamhoz kötött fogyasztási költséget.",
+      "source": "Mérési vagy számlázási felhasználásnál ellenőrizd a forrásadat egységét és a szükséges kerekítést. Villamosenergia-költséghez az átváltott kWh mellé külön aktuális tarifára van szükség."
+    },
+    "teljesitmeny-atvalto-kalkulator": {
+      "title": "Mit vált át a teljesítménykalkulátor?",
+      "body": "A teljesítmény pillanatnyi energiaátadási rátát fejez ki. A kalkulátor watt, kilowatt, megawatt és más támogatott teljesítményegységek között vált; önmagában nem mondja meg, mennyi energia fogy el egy időszak alatt.",
+      "source": "Energiafogyasztás becsléséhez a teljesítmény mellett az üzemidőt és a terhelési profilt is ismerni kell. Eszközméretezésnél a gyártói névleges és csúcsteljesítmény-adat az elsődleges."
+    },
+    "hosszusag-atvalto-kalkulator": {
+      "title": "Hogyan működik a hosszúságátváltás?",
+      "body": "A megadott hosszúságot előbb egy közös alapegységre vezeti vissza, majd abból számítja a célmértéket. Így ugyanaz a logika kezeli a metrikus és támogatott angolszász egységeket.",
+      "source": "A szabványos hosszúságegységek rögzített arányúak, de műszaki rajznál a kerekítési pontosság számít. Gyártási vagy kivitelezési méretnél őrizd meg az eredeti dokumentum előírt tűrését."
+    },
+    "tomeg-atvalto-kalkulator": {
+      "title": "Mit vált át a tömegkalkulátor?",
+      "body": "A kalkulátor tömegegységeket hasonlít össze közös alapegységen keresztül. A kilogramm, gramm, tonna, font és uncia közti arányokat kezeli; a fizikai tömeget nem keveri össze az erőként értelmezett súllyal.",
+      "source": "Kereskedelmi vagy műszaki felhasználásnál ellenőrizd, hogy a megadott font/uncia valóban a támogatott avoirdupois rendszerre vonatkozik-e. Erő átváltásához külön newton-alapú számítás szükséges."
+    },
+    "terulet-atvalto-kalkulator": {
+      "title": "Miért négyzetesen változnak a területegységek?",
+      "body": "A terület két hosszméret szorzata, ezért például a méter és centiméter közti százas hosszarány a négyzetméter és négyzetcentiméter között tízezres területarányt jelent. A kalkulátor ezeket a négyzetes kapcsolatokat kezeli.",
+      "source": "Ingatlan- vagy földterületnél a matematikai átváltás nem helyettesíti a tulajdoni lap, földmérési vagy hatósági területadatot. Hivatalos ügyben mindig a nyilvántartott érték az elsődleges."
+    },
+    "terfogat-atvalto-kalkulator": {
+      "title": "Hogyan kezeli a térfogat különböző rendszereit?",
+      "body": "A térfogategységeket közös alapra váltja, így liter és köbméter mellett a támogatott gallon-egységek is összevethetők. Különösen fontos, hogy az amerikai és az imperial gallon nem azonos térfogat.",
+      "source": "Recept, tartály vagy műszaki adatlap esetén az eredeti gallonrendszert mindig azonosítsd. Sűrűség nélkül térfogatból nem lehet automatikusan tömeget számolni."
+    },
+    "ido-atvalto-kalkulator": {
+      "title": "Mikor egyszerű és mikor naptárfüggő az időátváltás?",
+      "body": "Másodperc, perc, óra és nap között rögzített arányok használhatók, de hónap és év már naptárfüggő lehet. A kalkulátor csak azokat a kapcsolatokat kezeli közvetlenül, amelyekhez egyértelmű számítási szabály tartozik.",
+      "source": "Határidő, munkanap vagy naptári hónap számításához ne egyszerű időegység-átváltást használj; azokhoz külön dátum- és munkanaplogika szükséges."
+    },
+    "sebesseg-atvalto-kalkulator": {
+      "title": "Mit jelent a sebességegységek átváltása?",
+      "body": "A sebesség megtett út és eltelt idő hányadosa, ezért a kalkulátor a számláló és nevező egységeinek rögzített arányából számít km/h, m/s, mph és a támogatott további egységek között.",
+      "source": "Közlekedési vagy műszaki döntésnél az átváltott szám nem írja felül a helyi sebességkorlátozást, műszerpontosságot vagy gyártói specifikációt."
+    }
+  };
   const cfg=configs[slug]; if(!cfg) return;
   card.innerHTML=`<div class="ac-heading"><h2>${cfg.title}</h2><p>A mezők tájékoztató tervezésre valók; hivatalos, gyártói vagy szolgáltatói adat esetén mindig azt használd.</p></div>`;
   const form=document.createElement("form");form.className="ac-grid";cfg.fields.forEach(s=>form.appendChild(field(s)));const btn=document.createElement("button");btn.type="submit";btn.className="ac-submit";btn.textContent="Számítás";form.appendChild(btn);const out=document.createElement("div");out.className="ac-result";out.innerHTML="Add meg az adatokat.";form.appendChild(out);card.appendChild(form);
   form.addEventListener("submit",e=>{e.preventDefault();if(!form.checkValidity()){out.textContent="Ellenőrizd a kötelező mezőket és az értékhatárokat.";return;}try{const v=Object.fromEntries(new FormData(form).entries());const resultRows=cfg.compute(v);if(resultRows.some(([,value])=>/(?:NaN|Infinity)/.test(String(value))))throw new Error("A megadott adatokból nem számítható véges eredmény.");out.innerHTML=rows(resultRows);}catch(err){out.textContent=err.message||"Hibás adat.";}});
   form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
-  const note=document.createElement("section");note.className="adsense-content ac-note";note.innerHTML=`<h2>Módszertan és korlátok</h2><p>A számítás a megadott adatokból matematikai becslést készít. Az autós költségek, értékvesztés, kibocsátási tényezők, árfolyamok és gyártói mérethatárok időben és szolgáltatónként változhatnak.</p><p><strong>Forráskezelés:</strong> az oldalon szereplő alapértékeket ellenőrizd az aktuális gyártói dokumentációban, hivatalos árfolyamforrásban vagy közzétett kibocsátási faktorokban. A CO₂-oldal a közvetlen használati kibocsátást elkülöníti a felhasználó által megadott upstream/árammix becsléstől.</p><p>Utolsó módszertani frissítés: 2026. július 15.</p>`;card.insertAdjacentElement("afterend",note);window.KB_AUTO_CONVERTER_UPGRADE_READY=slug;
+  const method=methodCopy[slug];
+  const note=document.createElement("section");note.className="adsense-content ac-note";note.innerHTML=`<h2>${method.title}</h2><p>${method.body}</p><p><strong>Ellenőrzési alap:</strong> ${method.source}</p><p class="last-reviewed">Utolsó módszertani ellenőrzés: <time datetime="2026-09-16">2026. szeptember 16.</time></p>`;card.insertAdjacentElement("afterend",note);window.KB_AUTO_CONVERTER_UPGRADE_READY=slug;
 })();

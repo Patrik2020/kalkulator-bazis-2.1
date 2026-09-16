@@ -117,12 +117,28 @@ const benignSharedPatterns = [
   /ez (?:a|az) .* kalkulátor.*nem helyettesíti/i,
   /fontos döntés előtt.*hivatalos.*forrás/i,
   /az eredmények tájékoztató becslések/i,
+  // KB_ADSENSE_AUDIT_POLICY_V2 – standard trust/safety copy is not page-unique editorial content.
+  /az oldal tájékoztató kalkulátor.*egyedi döntéshez szakember/i,
+  /a kalkulátor tájékoztató segédlet.*egyedi egészségügyi vagy jogi döntést/i,
+  /a referenciaértékek segítenek fejben ellenőrizni.*kerekítése/i,
+  /gyártói\/rendszeradat ellenőrzése szükséges/i,
+  /a számítás kiindulópont.*nem személyre szabott étrend/i,
+  /vesebetegség.*fehérjecél.*általános kalkulátorból/i,
+  /evészavar.*szakember bevonása indokolt/i,
+  /a túl nagy kalóriadeficit.*regeneráció/i,
+  /a mezők tájékoztató tervezésre valók.*hivatalos.*adat/i,
 ];
 const isBenignSharedBlock = (text) => benignSharedPatterns.some((pattern) => pattern.test(text));
 
 const extractBlocks = (mainHtml) => {
+  // The following sections are intentionally standardized trust/safety UI.
+  // They remain visible to users and are still checked by the YMYL/runtime gates,
+  // but they must not inflate page-content boilerplate ratios.
+  const editorialHtml = mainHtml
+    .replace(/<!-- KB_ADSENSE:ymyl-trust:START -->[\s\S]*?<!-- KB_ADSENSE:ymyl-trust:END -->/g, " ")
+    .replace(/<!-- KB_STATIC:reliability:START -->[\s\S]*?<!-- KB_STATIC:reliability:END -->/g, " ");
   const blocks = [];
-  for (const match of mainHtml.matchAll(/<(p|h2|h3|li|summary)\b[^>]*>([\s\S]*?)<\/\1>/gi)) {
+  for (const match of editorialHtml.matchAll(/<(p|h2|h3|li|summary)\b[^>]*>([\s\S]*?)<\/\1>/gi)) {
     const text = stripHtml(match[2]);
     const normalized = normalize(text);
     const words = normalized ? normalized.split(/\s+/).filter(Boolean) : [];
