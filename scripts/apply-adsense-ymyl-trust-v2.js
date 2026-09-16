@@ -53,8 +53,13 @@ for (const slug of ymylSlugs) {
     html = html.replace(trustPattern, trustBlock);
   } else {
     const reliabilityEnd = "<!-- KB_STATIC:reliability:END -->";
-    if (!html.includes(reliabilityEnd)) throw new Error(`Hiányzó reliability marker: ${slug}.html`);
-    html = html.replace(reliabilityEnd, `${reliabilityEnd}\n${trustBlock}`);
+    if (html.includes(reliabilityEnd)) {
+      html = html.replace(reliabilityEnd, `${reliabilityEnd}\n${trustBlock}`);
+    } else if (html.includes("</main>")) {
+      html = html.replace("</main>", `${trustBlock}\n</main>`);
+    } else {
+      throw new Error(`Nem található biztonságos YMYL beszúrási pont: ${slug}.html`);
+    }
   }
 
   fs.writeFileSync(file, html, "utf8");
