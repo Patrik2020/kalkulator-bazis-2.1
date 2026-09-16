@@ -235,24 +235,29 @@ async function main() {
               const main = document.querySelector('main');
               const h1s = [...document.querySelectorAll('h1')];
               const shell = document.querySelector('.card-calculator, #kalkulator');
+              const isActuallyVisible = (el) => {
+                if (!el) return false;
+                const style = getComputedStyle(el);
+                const rect = el.getBoundingClientRect();
+                const cssVisible = style.display !== 'none' && style.visibility !== 'hidden';
+                const hasArea = rect.width > 0 && rect.height > 0;
+                const browserVisible = typeof el.checkVisibility !== 'function' || el.checkVisibility({
+                  checkOpacity: true,
+                  checkVisibilityCSS: true,
+                });
+                return cssVisible && hasArea && browserVisible;
+              };
               const controls = [...document.querySelectorAll('main input, main select, main textarea, main button')]
-                .filter((el) => !el.hidden && getComputedStyle(el).display !== 'none');
+                .filter((el) => !el.hidden && isActuallyVisible(el));
               const ids = [...document.querySelectorAll('[id]')].map((el) => el.id).filter(Boolean);
               const duplicateIds = [...new Set(ids.filter((id, index) => ids.indexOf(id) !== index))];
               const overflow = Math.max(
                 document.documentElement.scrollWidth - document.documentElement.clientWidth,
                 document.body.scrollWidth - document.body.clientWidth
               );
-              const shellStyle = shell ? getComputedStyle(shell) : null;
-              const shellRect = shell?.getBoundingClientRect();
               const shellVisible = Boolean(
                 shell &&
-                shellStyle &&
-                shellStyle.display !== 'none' &&
-                shellStyle.visibility !== 'hidden' &&
-                shellRect &&
-                shellRect.height > 0 &&
-                shellRect.width > 0
+                (isActuallyVisible(shell) || controls.some((control) => shell.contains(control)))
               );
               const badVisibleText = shell ? /(?:\bNaN\b|\bInfinity\b|\bundefined\b|\bnull\b)/.test(shell.innerText) : false;
               return {
