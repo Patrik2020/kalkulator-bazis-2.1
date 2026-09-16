@@ -45,6 +45,9 @@ jobs:
             exit 1
           fi
 
+      - name: Apply AdSense template fingerprint cleanup
+        run: node scripts/apply-adsense-template-fingerprint-v2.js
+
       - name: Generate sitemap for page discovery
         run: npm run sitemap
 
