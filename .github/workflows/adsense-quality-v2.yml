@@ -8,8 +8,9 @@ on:
     paths:
       - "**/*.html"
       - "js/**"
-      - "scripts/adsense-quality-v2-audit.js"
+      - "scripts/**"
       - "sitemap.xml"
+      - "data/sitemap-content-state.json"
       - ".github/workflows/adsense-quality-v2.yml"
 
 permissions:
@@ -17,18 +18,43 @@ permissions:
 
 jobs:
   audit:
-    name: Site-wide AdSense quality baseline
+    name: Transformed AdSense quality preview
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: "24"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Apply template fingerprint cleanup
+        run: node scripts/apply-adsense-template-fingerprint-v2.js
+
+      - name: Apply transparent YMYL trust metadata
+        run: node scripts/apply-adsense-ymyl-trust-v2.js
+
+      - name: Apply current-content moat
+        run: node scripts/apply-adsense-current-moat-v2.js
+
+      - name: Apply AdSense runtime policy
+        run: node scripts/apply-adsense-eligibility-v2.js
+
+      - name: Generate content-aware sitemap preview
+        run: npm run sitemap
+
+      - name: Validate runtime policy
+        run: node scripts/adsense-runtime-policy-audit.js
+
+      - name: Validate sitemap state
+        run: node scripts/sitemap-lastmod-v2-audit.js
 
       - name: Generate AdSense Quality v2 report
         run: node scripts/adsense-quality-v2-audit.js --report
