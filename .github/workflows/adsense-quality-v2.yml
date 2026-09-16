@@ -41,6 +41,9 @@ jobs:
       - name: Apply transparent YMYL trust metadata
         run: node scripts/apply-adsense-ymyl-trust-v2.js
 
+      - name: Apply primary YMYL source notes
+        run: node scripts/apply-adsense-source-notes-v2.js
+
       - name: Apply current-content moat
         run: node scripts/apply-adsense-current-moat-v2.js
 
