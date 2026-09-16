@@ -1,0 +1,47 @@
+name: AdSense Quality v2
+
+on:
+  push:
+    branches:
+      - adsense-quality-v2
+  pull_request:
+    paths:
+      - "**/*.html"
+      - "js/**"
+      - "scripts/adsense-quality-v2-audit.js"
+      - "sitemap.xml"
+      - ".github/workflows/adsense-quality-v2.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: Site-wide AdSense quality baseline
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Generate AdSense Quality v2 report
+        run: node scripts/adsense-quality-v2-audit.js --report
+
+      - name: Add report to job summary
+        if: always()
+        run: cat docs/adsense-quality-v2-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: adsense-quality-v2-report
+          path: docs/adsense-quality-v2-report.md
+          if-no-files-found: error
+          retention-days: 30
