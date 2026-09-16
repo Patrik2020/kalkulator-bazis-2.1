@@ -92,6 +92,9 @@ jobs:
           cat /tmp/kb-static-server.log
           exit 1
 
+      - name: Verify decision and comparison switchers
+        run: node scripts/decision-switcher-browser-audit.js
+
       - name: Run mobile and desktop browser QA
         run: npm run test:browser:ui
 
