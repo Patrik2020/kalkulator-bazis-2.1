@@ -48,8 +48,14 @@ jobs:
       - name: Apply AdSense template fingerprint cleanup
         run: node scripts/apply-adsense-template-fingerprint-v2.js
 
+      - name: Apply page-specific domain methodology
+        run: node scripts/apply-adsense-domain-method-copy-v2.js
+
       - name: Apply transparent YMYL trust metadata
         run: node scripts/apply-adsense-ymyl-trust-v2.js
+
+      - name: Apply primary YMYL source notes
+        run: node scripts/apply-adsense-source-notes-v2.js
 
       - name: Apply current-content editorial moat
         run: node scripts/apply-adsense-current-moat-v2.js
@@ -68,7 +74,9 @@ jobs:
 
       - name: Re-apply AdSense editorial transforms after materialization
         run: |
+          node scripts/apply-adsense-domain-method-copy-v2.js
           node scripts/apply-adsense-ymyl-trust-v2.js
+          node scripts/apply-adsense-source-notes-v2.js
           node scripts/apply-adsense-current-moat-v2.js
 
       - name: Canonicalize static retention CTA state
@@ -89,7 +97,9 @@ jobs:
           # hasonlítja a következő futáshoz.
           npm run static:build
           npm run static:normalize
+          node scripts/apply-adsense-domain-method-copy-v2.js
           node scripts/apply-adsense-ymyl-trust-v2.js
+          node scripts/apply-adsense-source-notes-v2.js
           node scripts/apply-adsense-current-moat-v2.js
           node scripts/normalize-retention-static.js
           node scripts/cache-bust-assets.js
@@ -101,7 +111,9 @@ jobs:
           git diff --binary > "${RUNNER_TEMP}/static-stable-pass.diff"
           npm run static:build
           npm run static:normalize
+          node scripts/apply-adsense-domain-method-copy-v2.js
           node scripts/apply-adsense-ymyl-trust-v2.js
+          node scripts/apply-adsense-source-notes-v2.js
           node scripts/apply-adsense-current-moat-v2.js
           node scripts/normalize-retention-static.js
           node scripts/cache-bust-assets.js
