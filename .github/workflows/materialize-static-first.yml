@@ -48,6 +48,9 @@ jobs:
       - name: Apply AdSense template fingerprint cleanup
         run: node scripts/apply-adsense-template-fingerprint-v2.js
 
+      - name: Apply transparent YMYL trust metadata
+        run: node scripts/apply-adsense-ymyl-trust-v2.js
+
       - name: Generate sitemap for page discovery
         run: npm run sitemap
 
@@ -56,6 +59,9 @@ jobs:
 
       - name: Normalize final static output
         run: npm run static:normalize
+
+      - name: Re-apply YMYL trust metadata after materialization
+        run: node scripts/apply-adsense-ymyl-trust-v2.js
 
       - name: Canonicalize static retention CTA state
         run: node scripts/normalize-retention-static.js
@@ -75,6 +81,7 @@ jobs:
           # hasonlítja a következő futáshoz.
           npm run static:build
           npm run static:normalize
+          node scripts/apply-adsense-ymyl-trust-v2.js
           node scripts/normalize-retention-static.js
           node scripts/cache-bust-assets.js
           npm run sitemap
@@ -85,6 +92,7 @@ jobs:
           git diff --binary > "${RUNNER_TEMP}/static-stable-pass.diff"
           npm run static:build
           npm run static:normalize
+          node scripts/apply-adsense-ymyl-trust-v2.js
           node scripts/normalize-retention-static.js
           node scripts/cache-bust-assets.js
           npm run sitemap
