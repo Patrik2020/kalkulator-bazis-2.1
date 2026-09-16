@@ -120,6 +120,9 @@ jobs:
       - name: Validate AdSense runtime policy
         run: node scripts/adsense-runtime-policy-audit.js
 
+      - name: Validate content-aware sitemap lastmod
+        run: node scripts/sitemap-lastmod-v2-audit.js
+
       - name: Run final 100-calculator inventory gate
         run: node scripts/final-fullsite-audit.js
 
@@ -127,8 +130,10 @@ jobs:
         shell: bash
         run: |
           cp sitemap.xml "${RUNNER_TEMP}/sitemap.xml"
+          cp data/sitemap-content-state.json "${RUNNER_TEMP}/sitemap-content-state.json"
           npm run sitemap
           diff -u "${RUNNER_TEMP}/sitemap.xml" sitemap.xml
+          diff -u "${RUNNER_TEMP}/sitemap-content-state.json" data/sitemap-content-state.json
 
       - name: Check whitespace errors
         run: git diff --check
