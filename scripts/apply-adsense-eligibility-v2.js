@@ -67,8 +67,13 @@ if (!cookie.includes("KB_ADSENSE_ELIGIBILITY_V2")) {
   );
 }
 
-const syncPattern = /  const syncAdSense = \(\) => \{[\s\S]*?\n  \};\n\n  const persistConsent/;
-const syncReplacement = `  const setAdSenseRequestReady = () => {
+// The runtime replacement is deliberately idempotent. Once setAdSenseRequestReady
+// exists, the TCF-aware syncAdSense block is already installed and must not be
+// wrapped a second time on later materialization/preview passes.
+if (!cookie.includes("const setAdSenseRequestReady = () =>")) {
+  const syncPattern = /  const syncAdSense = \(\) => \{[\s\S]*?\n  \};\n\n  const persistConsent/;
+  const syncReplacement = `  // KB_ADSENSE_SYNC_V2
+  const setAdSenseRequestReady = () => {
     if (!window.KB_ADSENSE_ELIGIBLE || window.KB_ADSENSE_CAN_REQUEST) return;
     const queue = (window.adsbygoogle = window.adsbygoogle || []);
     window.KB_ADSENSE_CAN_REQUEST = true;
@@ -140,7 +145,8 @@ const syncReplacement = `  const setAdSenseRequestReady = () => {
 
   const persistConsent`;
 
-cookie = replaceOnce(cookie, syncPattern, syncReplacement, "syncAdSense");
+  cookie = replaceOnce(cookie, syncPattern, syncReplacement, "syncAdSense");
+}
 fs.writeFileSync(cookiePath, cookie, "utf8");
 
 let siteUi = fs.readFileSync(siteUiPath, "utf8");
