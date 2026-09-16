@@ -20,7 +20,10 @@
     .replaceAll("'", "&#039;");
 
   const numeric = (form, name, fallback = 0) => {
-    const value = Number(form.elements[name]?.value);
+    const field = form.elements[name];
+    const value = field?.matches?.("[data-grouped-number]")
+      ? Number(String(field.value).replace(/[^\d-]/g, ""))
+      : Number(field?.value);
     return Number.isFinite(value) ? value : fallback;
   };
 
