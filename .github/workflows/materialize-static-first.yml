@@ -54,6 +54,9 @@ jobs:
       - name: Apply page-specific domain methodology
         run: node scripts/apply-adsense-domain-method-copy-v2.js
 
+      - name: Preserve construction manufacturer-first safety rule
+        run: node scripts/apply-construction-manufacturer-first-v2.js
+
       - name: Apply transparent YMYL trust metadata
         run: node scripts/apply-adsense-ymyl-trust-v2.js
 
@@ -81,6 +84,7 @@ jobs:
       - name: Re-apply AdSense editorial transforms after materialization
         run: |
           node scripts/apply-adsense-domain-method-copy-v2.js
+          node scripts/apply-construction-manufacturer-first-v2.js
           node scripts/apply-adsense-ymyl-trust-v2.js
           node scripts/apply-adsense-source-notes-v2.js
           node scripts/apply-adsense-current-moat-v2.js
@@ -104,6 +108,7 @@ jobs:
           npm run static:build
           npm run static:normalize
           node scripts/apply-adsense-domain-method-copy-v2.js
+          node scripts/apply-construction-manufacturer-first-v2.js
           node scripts/apply-adsense-ymyl-trust-v2.js
           node scripts/apply-adsense-source-notes-v2.js
           node scripts/apply-adsense-current-moat-v2.js
@@ -118,6 +123,7 @@ jobs:
           npm run static:build
           npm run static:normalize
           node scripts/apply-adsense-domain-method-copy-v2.js
+          node scripts/apply-construction-manufacturer-first-v2.js
           node scripts/apply-adsense-ymyl-trust-v2.js
           node scripts/apply-adsense-source-notes-v2.js
           node scripts/apply-adsense-current-moat-v2.js
