@@ -75,4 +75,12 @@ for (const [slug, method] of Object.entries(methods)) {
   fs.writeFileSync(file, html, "utf8");
 }
 
-console.log(`Updated ${Object.keys(methods).length} calculator method blocks.`);
+const mortgagePath = path.join(root, "kalkulatorok", "lakas-hitel-onero-kalkulator.html");
+let mortgage = fs.readFileSync(mortgagePath, "utf8");
+mortgage = mortgage.replace(
+  "Ez a kalkulátor segít gyorsan megbecsülni, hogy egy adott vételár mellett mekkora önerőre és hitelösszegre lehet szükség. A cél nem banki előminősítés, hanem egy reálisabb első kép kialakítása.",
+  "A vételár és a választott önerőarány alapján az oldal külön mutatja a szükséges saját forrást és a fennmaradó becsült hitelrészt. Ez nem banki előminősítés: arra jó, hogy még ingatlankeresés vagy hitelajánlat előtt lásd a két összeg nagyságrendjét."
+);
+fs.writeFileSync(mortgagePath, mortgage, "utf8");
+
+console.log(`Updated ${Object.keys(methods).length} calculator method blocks and the mortgage generic copy.`);
