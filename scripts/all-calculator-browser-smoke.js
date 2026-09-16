@@ -226,8 +226,18 @@ async function main() {
           const loaded = client.once("Page.loadEventFired");
           await client.send("Page.navigate", { url });
           if (!await loaded) throw new Error("az oldal betöltése 15 másodpercen belül nem fejeződött be");
-          // A load esemény után hagyunk rövid időt a dinamikusan betöltött közös felületnek is.
-          await sleep(150);
+          const calculatorReady = await evaluate(
+            client,
+            `(async () => {
+              const deadline = Date.now() + 4000;
+              while (Date.now() < deadline) {
+                if (document.documentElement.classList.contains('kb-calculator-ready')) return true;
+                await new Promise((resolve) => setTimeout(resolve, 50));
+              }
+              return false;
+            })()`
+          );
+          if (!calculatorReady) throw new Error("a kalkulátor felülete 4 másodpercen belül nem lett kész");
 
           const audit = await evaluate(
             client,
