@@ -54,7 +54,7 @@ for (const slug of ymylSlugs) {
   } else {
     const reliabilityEnd = "<!-- KB_STATIC:reliability:END -->";
     if (!html.includes(reliabilityEnd)) throw new Error(`Hiányzó reliability marker: ${slug}.html`);
-    html = html.replace(reliabilityEnd, `${trustBlock}\n${reliabilityEnd}`);
+    html = html.replace(reliabilityEnd, `${reliabilityEnd}\n${trustBlock}`);
   }
 
   fs.writeFileSync(file, html, "utf8");
