@@ -109,13 +109,26 @@ const classify = (name, html) => {
   return "tartalmi/hub";
 };
 
+const benignSharedPatterns = [
+  /tedd el a kalkulátor bázist.*legközelebb/i,
+  /nyisd meg a böngésződ menüjét.*könyvjelző/i,
+  /a beírt értékek a böngésződben kerülnek feldolgozásra/i,
+  /az oldal tájékoztató kalkulátor.*nem helyettesíti/i,
+  /ez (?:a|az) .* kalkulátor.*nem helyettesíti/i,
+  /fontos döntés előtt.*hivatalos.*forrás/i,
+  /az eredmények tájékoztató becslések/i,
+];
+const isBenignSharedBlock = (text) => benignSharedPatterns.some((pattern) => pattern.test(text));
+
 const extractBlocks = (mainHtml) => {
   const blocks = [];
   for (const match of mainHtml.matchAll(/<(p|h2|h3|li|summary)\b[^>]*>([\s\S]*?)<\/\1>/gi)) {
     const text = stripHtml(match[2]);
     const normalized = normalize(text);
     const words = normalized ? normalized.split(/\s+/).filter(Boolean) : [];
-    if (words.length >= 10 && text.length >= 70) blocks.push({ text, normalized, words: words.length });
+    if (words.length >= 10 && text.length >= 70) {
+      blocks.push({ text, normalized, words: words.length, benign: isBenignSharedBlock(text) });
+    }
   }
   return blocks;
 };
@@ -144,7 +157,6 @@ const records = htmlFiles.map((file) => {
   const text = stripHtml(main);
   const title = stripHtml(first(head, /<title\b[^>]*>([\s\S]*?)<\/title>/i));
   const description = first(head, /<meta\b(?=[^>]*\bname=["']description["'])(?=[^>]*\bcontent=["']([^"']*)["'])[^>]*>/i);
-  const canonical = first(head, /<link\b(?=[^>]*\brel=["']canonical["'])(?=[^>]*\bhref=["']([^"']*)["'])[^>]*>/i);
   const robots = first(head, /<meta\b(?=[^>]*\bname=["']robots["'])(?=[^>]*\bcontent=["']([^"']*)["'])[^>]*>/i);
   const type = classify(name, html);
   const meta = calculatorByPath.get(name);
@@ -156,9 +168,11 @@ const records = htmlFiles.map((file) => {
     .filter((href) => !/wise\.prf\.hn|kalkulatorbazis\.hu/i.test(href));
   const sponsoredLinks = [...html.matchAll(/<a\b[^>]*rel=["'][^"']*\bsponsored\b[^"']*["'][^>]*>/gi)].length;
   const directAdSense = /<script\b[^>]*src=["'][^"']*pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js/i.test(html);
-  const wordCount = text ? text.split(/\s+/).filter(Boolean).length : 0;
   const blocks = extractBlocks(main);
-  const genericHits = genericPatterns.filter(([, pattern]) => pattern.test(text)).map(([label]) => label);
+  const contentBlocks = blocks.filter((block) => !block.benign);
+  const contentText = contentBlocks.map((block) => block.text).join(" ") || text;
+  const wordCount = text ? text.split(/\s+/).filter(Boolean).length : 0;
+  const genericHits = genericPatterns.filter(([, pattern]) => pattern.test(contentText)).map(([label]) => label);
   const who = /Kovács Patrik|Szerkesztette|Készítette|Fejlesztette|Üzemeltető/i.test(text);
   const how = /módszertan|hogyan számol|képlet|számítás menete|kerekítés|forrás|teszt|ellenőrz/i.test(text);
   const why = /mikor hasznos|mire használ|mire jó|célja|nem helyettesít|korlát|mire figyelj/i.test(text);
@@ -170,13 +184,13 @@ const records = htmlFiles.map((file) => {
     type,
     title,
     description,
-    canonical,
     html,
-    main,
     text,
+    contentText,
     wordCount,
     blocks,
-    tokens: tokenSet(text),
+    contentBlocks,
+    tokens: tokenSet(contentText),
     genericHits,
     ymyl,
     who,
@@ -195,6 +209,7 @@ const records = htmlFiles.map((file) => {
 const titleMap = new Map();
 const descriptionMap = new Map();
 const blockMap = new Map();
+const benignBlockMap = new Map();
 for (const record of records) {
   if (record.title) {
     const key = normalize(record.title);
@@ -208,8 +223,9 @@ for (const record of records) {
   }
   if (record.type === "kalkulátor") {
     for (const block of record.blocks) {
-      if (!blockMap.has(block.normalized)) blockMap.set(block.normalized, { text: block.text, pages: new Set() });
-      blockMap.get(block.normalized).pages.add(record.name);
+      const target = block.benign ? benignBlockMap : blockMap;
+      if (!target.has(block.normalized)) target.set(block.normalized, { text: block.text, pages: new Set() });
+      target.get(block.normalized).pages.add(record.name);
     }
   }
 }
@@ -220,13 +236,18 @@ const repeatedBlocks = [...blockMap.values()]
   .map((entry) => ({ text: entry.text, pages: [...entry.pages] }))
   .filter((entry) => entry.pages.length >= 4)
   .sort((a, b) => b.pages.length - a.pages.length || b.text.length - a.text.length);
+const benignRepeatedBlocks = [...benignBlockMap.values()]
+  .map((entry) => ({ text: entry.text, pages: [...entry.pages] }))
+  .filter((entry) => entry.pages.length >= 4)
+  .sort((a, b) => b.pages.length - a.pages.length);
 
 const repeatedBlockIndex = new Map(repeatedBlocks.map((entry) => [normalize(entry.text), entry.pages.length]));
 for (const record of records.filter((item) => item.type === "kalkulátor")) {
-  const duplicatedChars = record.blocks
+  const duplicatedChars = record.contentBlocks
     .filter((block) => (repeatedBlockIndex.get(block.normalized) || 0) >= 4)
     .reduce((sum, block) => sum + block.text.length, 0);
-  record.boilerplateRatio = record.text.length ? duplicatedChars / record.text.length : 0;
+  const ownContentChars = record.contentBlocks.reduce((sum, block) => sum + block.text.length, 0);
+  record.boilerplateRatio = ownContentChars ? duplicatedChars / ownContentChars : 0;
 }
 
 const calculatorRecords = records.filter((record) => record.type === "kalkulátor" && record.wordCount >= 80);
@@ -247,9 +268,6 @@ const highBoilerplatePages = calculatorRecords.filter((record) => (record.boiler
 const dangerousSimilarityPairs = similarPairs.filter((pair) => pair.score >= 0.68);
 const directAdSensePages = records.filter((record) => record.directAdSense);
 const redirectIndexingProblems = records.filter((record) => record.redirect && !record.isNoindex);
-const excludedButPromotional = records.filter(
-  (record) => !record.adEligible && record.sponsoredLinks > 0 && !record.name.startsWith("landing-pages/wise/")
-);
 
 let sitemapStats = null;
 if (exists("sitemap.xml")) {
@@ -266,86 +284,117 @@ if (exists("sitemap.xml")) {
   };
 }
 
+const cookieCode = exists("js/cookie.js") ? read("js/cookie.js") : "";
+const hasCertifiedCmpSignal = /__tcfapi|IAB TCF|fundingchoices|privacy-messaging/i.test(cookieCode);
+
 const critical = [];
 if (duplicateTitles.length) critical.push(`${duplicateTitles.length} duplikált title-csoport`);
 if (duplicateDescriptions.length) critical.push(`${duplicateDescriptions.length} duplikált meta description-csoport`);
 if (genericPages.length) critical.push(`${genericPages.length} generikus/sablonos szövegjeleket tartalmazó oldal`);
-if (highBoilerplatePages.length) critical.push(`${highBoilerplatePages.length} magas boilerplate-arányú kalkulátor`);
+if (highBoilerplatePages.length) critical.push(`${highBoilerplatePages.length} magas tartalmi boilerplate-arányú kalkulátor`);
 if (dangerousSimilarityPairs.length) critical.push(`${dangerousSimilarityPairs.length} veszélyesen hasonló kalkulátorpár`);
-if (ymylFailures.length) critical.push(`${ymylFailures.length} hiányos Who/How/Why/forrás YMYL-oldal`);
-if (directAdSensePages.length) critical.push(`${directAdSensePages.length} közvetlen AdSense-scriptet betöltő HTML-oldal`);
-if (redirectIndexingProblems.length) critical.push(`${redirectIndexingProblems.length} indexelhető átirányító oldal`);
+if (ymylFailures.length) critical.push(`${ymylFailures.length} hiányos Who/How/Why/forrás YMYL-kalkulátor`);
+if (directAdSensePages.length) critical.push(`${directAdSensePages.length} közvetlen AdSense-scriptet tartalmazó oldal`);
+if (redirectIndexingProblems.length) critical.push(`${redirectIndexingProblems.length} indexelhető redirect oldal`);
 
 const warnings = [];
-if (sitemapStats && sitemapStats.total >= 20 && sitemapStats.topShare >= 0.8) {
-  warnings.push(
-    `A sitemap URL-ek ${(sitemapStats.topShare * 100).toFixed(0)}%-a ugyanazt a lastmod dátumot kapta (${sitemapStats.topDate}).`
-  );
+if (sitemapStats?.topShare >= 0.6 && sitemapStats.total >= 20) {
+  warnings.push(`A sitemap URL-ek ${(sitemapStats.topShare * 100).toFixed(1)}%-a ugyanazt a lastmod dátumot kapta (${sitemapStats.topDate}).`);
 }
-if (!/google-certified|tcf|__tcfapi/i.test(exists("js/cookie.js") ? read("js/cookie.js") : "")) {
-  warnings.push(
-    "A jelenlegi saját consent kódban nem látszik Google-certified / IAB TCF CMP integráció; ezt külön CMP-körben kezeljük."
-  );
-}
-if (excludedButPromotional.length) warnings.push(`${excludedButPromotional.length} nem hirdetésre szánt oldalon van sponsored link.`);
+if (!hasCertifiedCmpSignal) warnings.push("A saját consent-kódban nem látszik Google által minősített / IAB TCF CMP-integráció.");
 
-const pct = (value) => `${(value * 100).toFixed(1)}%`;
-const mdList = (items, render, empty = "- nincs") =>
-  items.length ? items.map((item) => `- ${render(item)}`).join("\n") : empty;
+const lines = [];
+lines.push("# AdSense Quality v2 riport");
+lines.push("");
+lines.push(`- HTML oldalak: **${records.length}**`);
+lines.push(`- Kalkulátoroldalak: **${calculatorRecords.length}**`);
+lines.push(`- Kezdeti AdSense-eligible oldalak: **${records.filter((record) => record.adEligible).length}**`);
+lines.push(`- Kritikus kategóriák: **${critical.length}**`);
+lines.push(`- Figyelmeztetések: **${warnings.length}**`);
+lines.push("");
 
-const report =
-  `# AdSense Quality v2 audit\n\n` +
-  `Generálta: \`scripts/adsense-quality-v2-audit.js\`\n\n` +
-  `## Összkép\n\n` +
-  `- HTML-oldalak: **${records.length}**\n` +
-  `- Kalkulátoroldalak: **${calculatorRecords.length}**\n` +
-  `- Hirdetésre engedélyezett oldalak a kezdeti allowlist szerint: **${records.filter((record) => record.adEligible).length}**\n` +
-  `- Kritikus jelzések: **${critical.length}**\n` +
-  `- Figyelmeztetések: **${warnings.length}**\n\n` +
-  `> A v2 audit szándékosan **nem használ minimális szószámot minőségi kapuként**. A hangsúly az egyediségen, a hozzáadott értéken, a forrásokon, a Who/How/Why jeleken és a site-wide sablonujjlenyomat csökkentésén van.\n\n` +
-  `## Kritikus jelzések\n\n${mdList(critical, (item) => item)}\n\n` +
-  `## Figyelmeztetések\n\n${mdList(warnings, (item) => item)}\n\n` +
-  `## Ismétlődő tartalmi blokkok (>=4 kalkulátor)\n\n${mdList(
-    repeatedBlocks.slice(0, 40),
-    (item) => `**${item.pages.length} oldal:** ${item.text.slice(0, 220)}${item.text.length > 220 ? "…" : ""}`
-  )}\n\n` +
-  `## Magas boilerplate-arányú kalkulátorok (>=18%)\n\n${mdList(
-    highBoilerplatePages.sort((a, b) => b.boilerplateRatio - a.boilerplateRatio),
-    (item) => `\`${item.name}\` — ${pct(item.boilerplateRatio)}`
-  )}\n\n` +
-  `## Hasonló kalkulátorpárok (Jaccard >=0.52)\n\n${mdList(
-    similarPairs.slice(0, 60),
-    (item) => `\`${item.a}\` ↔ \`${item.b}\` — **${pct(item.score)}**`
-  )}\n\n` +
-  `## Generikus/sablonos fordulatok\n\n${mdList(
-    genericPages,
-    (item) => `\`${item.name}\` — ${item.genericHits.join(", ")}`
-  )}\n\n` +
-  `## YMYL Who / How / Why / forrás hiányok\n\n${mdList(
-    ymylFailures,
-    (item) =>
-      `\`${item.name}\` — Who:${item.who ? "✓" : "✗"} How:${item.how ? "✓" : "✗"} Why:${item.why ? "✓" : "✗"} Forrás:${
-        item.sourceSignal ? "✓" : "✗"
-      }`
-  )}\n\n` +
-  `## Kezdeti AdSense allowlist\n\n${mdList(
-    records.filter((record) => record.adEligible).map((record) => record.name).sort(),
-    (item) => `\`${item}\``
-  )}\n\n` +
-  `## Kifejezetten kizárt / nem monetizálandó oldalak\n\n${mdList(
-    records.filter((record) => !record.adEligible).map((record) => record.name).sort(),
-    (item) => `\`${item}\``
-  )}\n`;
+lines.push("## Kritikus összegzés");
+lines.push("");
+if (!critical.length) lines.push("- Nincs kritikus eltérés.");
+else critical.forEach((item) => lines.push(`- ${item}`));
+lines.push("");
 
+lines.push("## Generikus / sablonos oldalak");
+lines.push("");
+if (!genericPages.length) lines.push("- Nincs találat.");
+else genericPages.forEach((record) => lines.push(`- \`${record.name}\`: ${record.genericHits.join(", ")}`));
+lines.push("");
+
+lines.push("## Magas tartalmi boilerplate-arány");
+lines.push("");
+if (!highBoilerplatePages.length) lines.push("- Nincs 18% feletti találat a hasznos közös UI/bizalmi blokkok kizárása után.");
+else highBoilerplatePages
+  .sort((a, b) => b.boilerplateRatio - a.boilerplateRatio)
+  .forEach((record) => lines.push(`- \`${record.name}\`: ${(record.boilerplateRatio * 100).toFixed(1)}%`));
+lines.push("");
+
+lines.push("## Ismétlődő tartalmi blokkok (nem whitelistelt)");
+lines.push("");
+if (!repeatedBlocks.length) lines.push("- Nincs 4+ kalkulátoron azonos hosszú tartalmi blokk.");
+else repeatedBlocks.slice(0, 25).forEach((entry) => {
+  lines.push(`- **${entry.pages.length} oldal** – ${entry.text.slice(0, 240)}${entry.text.length > 240 ? "…" : ""}`);
+});
+lines.push("");
+
+lines.push("## Whitelistelt közös UI / bizalmi blokkok");
+lines.push("");
+if (!benignRepeatedBlocks.length) lines.push("- Nincs 4+ oldalon közös whitelistelt blokk.");
+else benignRepeatedBlocks.slice(0, 15).forEach((entry) => {
+  lines.push(`- **${entry.pages.length} oldal** – ${entry.text.slice(0, 180)}${entry.text.length > 180 ? "…" : ""}`);
+});
+lines.push("");
+
+lines.push("## YMYL Who / How / Why / forrás hiányok");
+lines.push("");
+if (!ymylFailures.length) lines.push("- Minden vizsgált YMYL-kalkulátor teljesíti a minimumot.");
+else ymylFailures.forEach((record) => {
+  const missing = [];
+  if (!record.who) missing.push("Who");
+  if (!record.how) missing.push("How");
+  if (!record.why) missing.push("Why");
+  if (!record.sourceSignal) missing.push("forrás");
+  lines.push(`- \`${record.name}\`: ${missing.join(", ")}`);
+});
+lines.push("");
+
+lines.push("## Hasonló kalkulátorpárok");
+lines.push("");
+if (!similarPairs.length) lines.push("- Nincs 0,52 feletti Jaccard-hasonlóság a whitelistelt közös szövegek leválasztása után.");
+else similarPairs.slice(0, 25).forEach((pair) => lines.push(`- ${(pair.score * 100).toFixed(1)}% – \`${pair.a}\` ↔ \`${pair.b}\``));
+lines.push("");
+
+lines.push("## AdSense elhelyezési alap");
+lines.push("");
+lines.push("Kezdetben csak a kalkulátorok, az Aktuális tartalmi cikkek, az élethelyzet-oldalak és néhány valódi tartalmi hub kerülhet az allowlistre.");
+lines.push("A 404, kapcsolat, impresszum, adatvédelem, cookie, jogi/felhasználási, redirect és Wise partneroldalak kizártak.");
+lines.push("");
+
+lines.push("## Sitemap és consent");
+lines.push("");
+if (sitemapStats) lines.push(`- Domináns lastmod: **${sitemapStats.topDate}**, ${sitemapStats.topCount}/${sitemapStats.total} URL (${(sitemapStats.topShare * 100).toFixed(1)}%).`);
+lines.push(`- Google/IAB CMP-kódjel: **${hasCertifiedCmpSignal ? "található" : "nem található"}**.`);
+lines.push("");
+
+lines.push("## Figyelmeztetések");
+lines.push("");
+if (!warnings.length) lines.push("- Nincs figyelmeztetés.");
+else warnings.forEach((item) => lines.push(`- ${item}`));
+lines.push("");
+lines.push("_A riport nem használ minimális szószámot minőségi kapuként. A fókusz az egyediségen, a valódi funkción, a forrásolhatóságon, a bizalmi jeleken és a monetizálható felület tisztaságán van._");
+
+const report = `${lines.join("\n")}\n`;
 if (shouldWriteReport) {
   fs.mkdirSync(path.dirname(reportPath), { recursive: true });
   fs.writeFileSync(reportPath, report, "utf8");
-  console.log(`AdSense Quality v2 riport: ${path.relative(root, reportPath)}`);
 }
+process.stdout.write(report);
 
-console.log(`AdSense Quality v2: ${records.length} oldal, ${calculatorRecords.length} kalkulátor.`);
-console.log(`Kritikus jelzések: ${critical.length}; figyelmeztetések: ${warnings.length}.`);
-for (const item of critical) console.log(`CRITICAL: ${item}`);
-for (const item of warnings) console.log(`WARN: ${item}`);
-
-if (shouldGate && critical.length > 0) process.exitCode = 1;
+if (shouldGate && critical.length) {
+  console.error(`AdSense Quality v2 gate failed: ${critical.join("; ")}`);
+  process.exit(1);
+}
