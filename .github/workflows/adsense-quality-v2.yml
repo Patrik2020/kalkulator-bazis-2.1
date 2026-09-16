@@ -53,6 +53,9 @@ jobs:
       - name: Apply AdSense runtime policy
         run: node scripts/apply-adsense-eligibility-v2.js
 
+      - name: Apply audit policy normalization
+        run: node scripts/apply-adsense-audit-policy-v2.js
+
       - name: Generate content-aware sitemap preview
         run: npm run sitemap
 
