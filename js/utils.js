@@ -474,3 +474,56 @@ function initMobileMenu() {
 
   desktopQuery.addEventListener?.("change", handleBreakpoint);
 }
+
+// =========================
+// DÖNTÉS / ÖSSZEHASONLÍTÁS SWITCHER KOMPATIBILITÁS
+// =========================
+function repairDecisionSwitchers() {
+  const configs = [
+    {
+      buttonSelector: "[data-decision-mode]",
+      panelSelector: "form[data-decision-form]",
+      buttonKey: "decisionMode",
+      panelKey: "decisionForm",
+    },
+    {
+      buttonSelector: "[data-comparison-mode]",
+      panelSelector: "form[data-comparison-form]",
+      buttonKey: "comparisonMode",
+      panelKey: "comparisonForm",
+    },
+  ];
+
+  configs.forEach(({ buttonSelector, panelSelector, buttonKey, panelKey }) => {
+    const buttons = [...document.querySelectorAll(buttonSelector)];
+    const panels = [...document.querySelectorAll(panelSelector)];
+    if (!buttons.length || !panels.length) return;
+
+    const activate = (value) => {
+      buttons.forEach((button) => {
+        const active = button.dataset[buttonKey] === value;
+        button.classList.toggle("is-active", active);
+        button.setAttribute("aria-pressed", String(active));
+      });
+
+      panels.forEach((panel) => {
+        panel.hidden = panel.dataset[panelKey] !== value;
+      });
+    };
+
+    buttons.forEach((button) => {
+      if (button.dataset.kbSwitcherRepairBound === "true") return;
+      button.dataset.kbSwitcherRepairBound = "true";
+      button.addEventListener("click", () => activate(button.dataset[buttonKey]));
+    });
+
+    const initial = buttons.find((button) => button.classList.contains("is-active")) || buttons[0];
+    activate(initial.dataset[buttonKey]);
+  });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", repairDecisionSwitchers, { once: true });
+} else {
+  repairDecisionSwitchers();
+}
