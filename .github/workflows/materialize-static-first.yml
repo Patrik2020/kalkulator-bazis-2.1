@@ -54,6 +54,9 @@ jobs:
       - name: Apply current-content editorial moat
         run: node scripts/apply-adsense-current-moat-v2.js
 
+      - name: Apply AdSense eligibility and certified-CMP runtime gate
+        run: node scripts/apply-adsense-eligibility-v2.js
+
       - name: Generate sitemap for page discovery
         run: npm run sitemap
 
@@ -113,6 +116,9 @@ jobs:
 
       - name: Validate HTML, JavaScript and calculator logic
         run: npm run quality
+
+      - name: Validate AdSense runtime policy
+        run: node scripts/adsense-runtime-policy-audit.js
 
       - name: Run final 100-calculator inventory gate
         run: node scripts/final-fullsite-audit.js
