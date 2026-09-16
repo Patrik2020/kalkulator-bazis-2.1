@@ -3,6 +3,22 @@ const path = require("path");
 
 const root = path.resolve(__dirname, "..");
 
+// Keep current-article document titles within the repository's HTML lint limit.
+// This is intentionally part of the editorial transform so newly merged/current
+// content cannot reintroduce an overlong <title> during materialization.
+const titleFixes = {
+  "ksh-keresetek-2026-julius.html": "KSH keresetek 2026. július: bruttó átlag 745 500 Ft | Kalkulátor Bázis"
+};
+
+for (const [fileName, title] of Object.entries(titleFixes)) {
+  const file = path.join(root, "aktualis", fileName);
+  if (!fs.existsSync(file)) throw new Error(`Hiányzó Aktuális-cikk a title javításhoz: ${fileName}`);
+  let html = fs.readFileSync(file, "utf8");
+  if (!/<title>[\s\S]*?<\/title>/.test(html)) throw new Error(`Hiányzó <title>: ${fileName}`);
+  html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${title}</title>`);
+  fs.writeFileSync(file, html, "utf8");
+}
+
 const articles = {
   "ksh-inflacio-2026-augusztus.html": {
     previous: "2026. július: 1,2% éves infláció",
@@ -87,4 +103,4 @@ for (const [fileName, [href, label]] of Object.entries(calculatorLinks)) {
   fs.writeFileSync(file, html, "utf8");
 }
 
-console.log(`Strengthened ${Object.keys(articles).length} current articles and ${Object.keys(calculatorLinks).length} calculator back-links.`);
+console.log(`Strengthened ${Object.keys(articles).length} current articles and ${Object.keys(calculatorLinks).length} calculator back-links; normalized ${Object.keys(titleFixes).length} title.`);
