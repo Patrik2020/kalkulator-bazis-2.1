@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   audit:
-    name: Transformed AdSense quality preview
+    name: AdSense Quality v2 gate
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -65,12 +65,12 @@ jobs:
       - name: Validate sitemap state
         run: node scripts/sitemap-lastmod-v2-audit.js
 
-      - name: Generate AdSense Quality v2 report
-        run: node scripts/adsense-quality-v2-audit.js --report
+      - name: Enforce AdSense Quality v2 gate
+        run: node scripts/adsense-quality-v2-audit.js --report --gate
 
       - name: Add report to job summary
         if: always()
-        run: cat docs/adsense-quality-v2-report.md >> "$GITHUB_STEP_SUMMARY"
+        run: test -f docs/adsense-quality-v2-report.md && cat docs/adsense-quality-v2-report.md >> "$GITHUB_STEP_SUMMARY" || true
 
       - name: Upload audit report
         if: always()
@@ -78,5 +78,5 @@ jobs:
         with:
           name: adsense-quality-v2-report
           path: docs/adsense-quality-v2-report.md
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 30
