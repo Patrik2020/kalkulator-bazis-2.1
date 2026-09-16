@@ -7,8 +7,6 @@
   const href = (path) => `${root}/${path.replace(/^\//, "")}`.replace(/^\/$/, "./");
 
   const currentHref = href("aktualis");
-  const inflationHref = href("aktualis/ksh-inflacio-2026-augusztus");
-  const fuelHref = href("aktualis/nav-uzemanyag-elszamolasi-arak-2026-szeptember");
   const professionalCss = href("css/pages/home-professional.css?v=f820d7ad3f13");
 
   if (!document.querySelector('link[data-home-professional-style]')) {
@@ -104,38 +102,62 @@
   if (!currentPanel) {
     currentPanel = document.createElement("section");
     currentPanel.className = "home-current-panel";
-    currentPanel.dataset.homeCurrent = "2026-09-12";
+    currentPanel.dataset.homeCurrent = "latest";
     currentPanel.setAttribute("aria-labelledby", "currentUpdatesTitle");
-    currentPanel.innerHTML = `
-      <div class="home-current-head">
-        <div>
-          <span class="home-current-kicker">Hivatalos adatokból</span>
-          <h2 id="currentUpdatesTitle">Aktuális változások</h2>
-        </div>
-        <a class="home-current-all" href="${currentHref}">Minden közlemény</a>
-      </div>
-      <div class="home-current-layout">
-        <a class="home-current-main" href="${inflationHref}">
-          <strong class="home-current-metric">1,3%</strong>
-          <span>
-            <small>KSH · 2026. szeptember 8.</small>
-            <h3>Ennyi volt az éves infláció 2026 augusztusában</h3>
-            <p>Júliushoz képest 0,2%-kal emelkedtek az árak. Röviden megmutatjuk, mit jelent ez a vásárlóerő szempontjából.</p>
-          </span>
-        </a>
-        <a class="home-current-side" href="${fuelHref}">
-          <span>
-            <small>NAV · 2026. szeptember</small>
-            <strong>NAV üzemanyag-elszámolási árak</strong>
-          </span>
-          <span class="home-current-prices" aria-label="Szeptemberi NAV üzemanyag-elszámolási árak">
-            <span class="home-current-price"><strong>604 Ft/l</strong><span>Benzin</span></span>
-            <span class="home-current-price"><strong>667 Ft/l</strong><span>Gázolaj</span></span>
-          </span>
-          <p>Az augusztusi értékekhez képest a benzin 24, a gázolaj 75 forinttal emelkedett literenként.</p>
-        </a>
-      </div>`;
 
+    const loadLatest = async () => {
+      let cards = [];
+      try {
+        const response = await fetch(currentHref, { cache: "no-cache" });
+        if (!response.ok) throw new Error("Aktuális oldal nem tölthető be");
+        const html = await response.text();
+        const doc = new DOMParser().parseFromString(html, "text/html");
+        cards = [...doc.querySelectorAll("[data-current-feed] .current-card")].slice(0, 2);
+      } catch (error) {
+        console.warn("A Friss számok blokk nem tudta betölteni a legújabb közleményeket.", error);
+      }
+
+      const readCard = (card) => {
+        if (!card) return null;
+        const titleLink = card.querySelector("h2 a");
+        const meta = [...card.querySelectorAll(".current-meta > *")].map((node) => node.textContent.trim()).filter(Boolean);
+        return {
+          href: titleLink?.getAttribute("href") || currentHref,
+          title: titleLink?.textContent.trim() || "Friss közlemény",
+          summary: card.querySelector("p")?.textContent.trim() || "",
+          meta: meta.join(" · "),
+        };
+      };
+
+      const latest = cards.map(readCard).filter(Boolean);
+      const main = latest[0];
+      const side = latest[1];
+
+      currentPanel.innerHTML = `
+        <div class="home-current-head">
+          <div>
+            <span class="home-current-kicker">Hivatalos adatokból</span>
+            <h2 id="currentUpdatesTitle">Friss számok</h2>
+            <p class="home-current-intro">A legújabb adatok és változások, amelyek a számításaidat is érinthetik.</p>
+          </div>
+          <a class="home-current-all" href="${currentHref}">Minden friss adat →</a>
+        </div>
+        <div class="home-current-layout">
+          ${main ? `<a class="home-current-main" href="${main.href}">
+            <span>
+              <small>${main.meta}</small>
+              <h3>${main.title}</h3>
+              <p>${main.summary}</p>
+            </span>
+          </a>` : `<a class="home-current-main" href="${currentHref}"><span><small>Hivatalos forrásokból</small><h3>Friss számok</h3><p>Nézd meg a legújabb, számításokat érintő adatokat és változásokat.</p></span></a>`}
+          ${side ? `<a class="home-current-side" href="${side.href}">
+            <span><small>${side.meta}</small><strong>${side.title}</strong></span>
+            <p>${side.summary}</p>
+          </a>` : ""}
+        </div>`;
+    };
+
+    loadLatest();
     const before = sections.querySelector(".new-tools");
     if (before) sections.insertBefore(currentPanel, before);
     else sections.appendChild(currentPanel);
