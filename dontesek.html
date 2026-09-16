@@ -5,17 +5,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Döntések | Kalkulátor Bázis</title>
-  <meta name="description" content="Döntési mód a Kalkulátor Bázison: lakás, autó és megtakarítás több szempontú gyors összefoglalóval, menthető eredménnyel és kapcsolódó kalkulátorokkal." />
+  <meta name="description" content="Döntési mód a Kalkulátor Bázison: részletes lakásvásárlási döntési kép, autó- és megtakarítási gyorskép, menthető eredmények és kapcsolódó kalkulátorok." />
   <link rel="canonical" href="https://kalkulatorbazis.hu/dontesek" />
   <link rel="stylesheet" href="css/style.css?v=64628ca819c5" />
   <link rel="stylesheet" href="css/pages/decision-hub.css?v=cee5d3b6d6ec" />
   <link rel="stylesheet" href="css/pages/decision-tools.css?v=6e7f6f644046" />
+  <link rel="stylesheet" href="css/pages/home-decision-v2.css?v=c16634f25698" />
 <script src="js/static-first-fallbacks.js?v=e190cf7ce386"></script>
-<script src="js/global-head.js?v=17a44f574afe"></script>
+<script src="js/global-head.js?v=6703013335e0"></script>
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Kalkulátor Bázis" />
   <meta property="og:title" content="Döntések | Kalkulátor Bázis" />
-  <meta property="og:description" content="Ne kalkulátorral kezdd, hanem a kérdéssel. Interaktív döntési gyorskép lakáshoz, autóhoz és megtakarításhoz." />
+  <meta property="og:description" content="Ne kalkulátorral kezdd, hanem a kérdéssel. Lakásvásárlási döntési mód v2, autós és megtakarítási döntési gyorskép." />
   <meta property="og:url" content="https://kalkulatorbazis.hu/dontesek" />
   <meta property="og:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
   <script type="application/ld+json">
@@ -103,16 +104,13 @@
 
   <main id="main-content" class="container decision-hub">
     <nav class="breadcrumb decision-breadcrumb" aria-label="Morzsamenü">
-      <ol>
-        <li><a href="./">Főoldal</a></li>
-        <li><span aria-current="page">Döntések</span></li>
-      </ol>
+      <ol><li><a href="./">Főoldal</a></li><li><span aria-current="page">Döntések</span></li></ol>
     </nav>
 
     <section class="decision-hero" aria-labelledby="decisionHeroTitle">
-      <span class="section-label">Döntési mód · működő v1</span>
+      <span class="section-label">Döntési mód · v2</span>
       <h1 id="decisionHeroTitle">Ne kalkulátorral kezdd. A kérdéssel.</h1>
-      <p>Adj meg néhány kulcsszámot, és egyetlen összefoglalóban megmutatjuk, melyik változó mozgatja leginkább a döntésedet. Utána továbbmehetsz a részletes kalkulátorokra.</p>
+      <p>A lakásvásárlási útvonal már teljes döntési képet ad: havi teher, maradó keret, tartalék, stresszteszt és kritikus változók. Az autós és megtakarítási gyorskép továbbra is egy kattintással elérhető.</p>
       <nav class="decision-mode-strip" aria-label="Fő feladattípusok">
         <a href="kalkulatorok"><strong>Σ</strong> Számolni</a>
         <span class="is-current"><strong>◇</strong> Dönteni</span>
@@ -123,27 +121,73 @@
     <section class="decision-tool-shell" aria-labelledby="decisionToolTitle">
       <div class="decision-tool-intro">
         <div>
-          <span class="section-label">Gyors döntési próba</span>
-          <h2 id="decisionToolTitle">Egy kérdés, több fontos szám</h2>
+          <span class="section-label">Döntési műhely</span>
+          <h2 id="decisionToolTitle">Egy kérdés, több összefüggő szám</h2>
         </div>
-        <p>Nem helyettesíti a részletes kalkulátorokat vagy szakmai döntést. Arra jó, hogy gyorsan lásd a nagyságrendeket és azt, melyik változót érdemes tovább vizsgálni.</p>
+        <p>A cél nem banki vagy szakmai döntést helyettesíteni, hanem láthatóvá tenni a havi mozgásteredet és azt, melyik feltételezés változtatja meg legjobban az eredményt.</p>
       </div>
 
       <div class="decision-tool-switcher" role="group" aria-label="Döntési téma választása">
-        <button type="button" data-decision-mode="home" aria-pressed="false">🏠 Lakásvásárlás</button>
+        <button type="button" data-decision-mode="home" aria-pressed="false">🏠 Lakásvásárlás v2</button>
         <button type="button" data-decision-mode="car" aria-pressed="false">🚗 Autó költségképe</button>
         <button type="button" data-decision-mode="savings" aria-pressed="false">📈 Megtakarítás</button>
       </div>
 
-      <form class="decision-tool-form" data-decision-form="home">
-        <div class="decision-form-grid">
-          <label>Ingatlan ára (Ft)<input name="price" type="number" min="0" step="100000" value="60000000" inputmode="numeric" /></label>
-          <label>Saját forrás (Ft)<input name="ownFunds" type="number" min="0" step="100000" value="20000000" inputmode="numeric" /></label>
-          <label>Éves kamat (%)<input name="rate" type="number" min="0" step="0.1" value="6.5" inputmode="decimal" /></label>
-          <label>Futamidő (év)<input name="years" type="number" min="1" max="40" step="1" value="20" inputmode="numeric" /></label>
-          <label>Havi nettó jövedelem (Ft)<input name="income" type="number" min="0" step="10000" value="700000" inputmode="numeric" /></label>
+      <form class="decision-tool-form decision-home-v2" data-decision-form="home" data-home-decision-v2 id="homeDecisionV2">
+        <div class="home-v2-fieldsets">
+          <fieldset class="home-v2-fieldset">
+            <legend>1. Ingatlan és saját pénz</legend>
+            <p class="home-v2-fieldset-copy">Külön kezeld az összes megtakarítást, a ténylegesen önerőre szánt összeget és a vásárlás egyéb egyszeri költségeit.</p>
+            <div class="home-v2-grid is-4">
+              <label>Ingatlan ára (Ft)
+                <input name="price" type="number" min="1" step="100000" value="60000000" inputmode="numeric" required />
+              </label>
+              <label>Összes megtakarítás (Ft)
+                <input name="totalSavings" type="number" min="0" step="100000" value="25000000" inputmode="numeric" />
+                <small>A vásárlás előtt rendelkezésre álló likvid keret.</small>
+              </label>
+              <label>Vásárlásra szánt saját forrás (Ft)
+                <input name="ownFunds" type="number" min="0" step="100000" value="20000000" inputmode="numeric" />
+                <small>Az ingatlan árából saját pénzből fizetett rész.</small>
+              </label>
+              <label>Egyéb egyszeri költségek (Ft)
+                <input name="purchaseCosts" type="number" min="0" step="100000" value="2000000" inputmode="numeric" />
+                <small>Saját becslés: ügyvéd, költözés, illeték, induló felújítás stb.</small>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="home-v2-fieldset">
+            <legend>2. Havi háztartási keret</legend>
+            <p class="home-v2-fieldset-copy">A nettó háztartási jövedelemből levonjuk a meglévő hiteltörlesztést, a hitelen kívüli megélhetési kiadásokat és az új lakáshitel becsült törlesztőjét.</p>
+            <div class="home-v2-grid">
+              <label>Havi nettó háztartási jövedelem (Ft)
+                <input name="income" type="number" min="1" step="10000" value="700000" inputmode="numeric" required />
+              </label>
+              <label>Meglévő havi hiteltörlesztések (Ft)
+                <input name="existingDebt" type="number" min="0" step="5000" value="45000" inputmode="numeric" />
+              </label>
+              <label>Havi megélhetési kiadás hitelen kívül (Ft)
+                <input name="livingCosts" type="number" min="0" step="10000" value="350000" inputmode="numeric" />
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="home-v2-fieldset">
+            <legend>3. Hitel feltételezése</legend>
+            <p class="home-v2-fieldset-copy">Egyszerű annuitásos becsléssel számolunk. A tényleges banki THM, díjak, kamatperiódus és jogosultsági feltételek eltérhetnek.</p>
+            <div class="home-v2-grid">
+              <label>Éves kamat (%)
+                <input name="rate" type="number" min="0" max="50" step="0.1" value="6.5" inputmode="decimal" />
+              </label>
+              <label>Futamidő (év)
+                <input name="years" type="number" min="1" max="40" step="1" value="20" inputmode="numeric" required />
+              </label>
+            </div>
+          </fieldset>
         </div>
-        <button class="decision-tool-submit" type="submit">Döntési gyorskép készítése</button>
+        <p class="home-v2-form-note">A minősítés tervezési heurisztika. Nem vizsgál banki JTM/HFM jogosultságot és nem minősül hitelajánlatnak.</p>
+        <button class="decision-tool-submit" type="submit">Lakásvásárlási döntési kép készítése</button>
       </form>
 
       <form class="decision-tool-form" data-decision-form="car" hidden>
@@ -173,37 +217,24 @@
 
     <section class="decision-section" aria-labelledby="decisionPathsTitle">
       <div class="decision-section-head">
-        <div>
-          <span class="section-label">Részletes útvonalak</span>
-          <h2 id="decisionPathsTitle">Ha mélyebbre mennél</h2>
-        </div>
-        <p>A gyorskép után ezekkel a kalkulátorokkal tudod külön-külön ellenőrizni azokat a tényezőket, amelyek a döntésedet leginkább befolyásolják.</p>
+        <div><span class="section-label">Részletes útvonalak</span><h2 id="decisionPathsTitle">Ha mélyebbre mennél</h2></div>
+        <p>A döntési kép után ezekkel a kalkulátorokkal tudod külön-külön ellenőrizni azokat a tényezőket, amelyek a döntésedet leginkább befolyásolják.</p>
       </div>
 
       <div class="decision-grid">
         <article class="decision-card">
           <div class="decision-card-top"><span class="decision-card-icon" aria-hidden="true">⌂</span><span class="decision-card-index">01</span></div>
           <h3>Lakásvásárlás és hitel</h3>
-          <p>Önerő, hitelképesség, törlesztő és havi költségvetés egy döntési láncban.</p>
-          <div class="decision-link-list">
-            <a href="kalkulatorok/lakas-hitel-onero-kalkulator">Önerő</a>
-            <a href="kalkulatorok/hitelkepesseg-kalkulator">Hitelképesség</a>
-            <a href="kalkulatorok/hitel-torleszto-kalkulator">Törlesztő</a>
-            <a href="kalkulatorok/havi-koltsegvetes-kalkulator">Havi keret</a>
-          </div>
-          <a class="decision-card-primary" href="kalkulatorok/lakas-hitel-onero-kalkulator"><span>Részletes számítás</span><span aria-hidden="true">→</span></a>
+          <p>A v2 egyben mutatja az önerőt, hitelteher-arányt, törlesztőt, havi maradékot, tartalékot és stresszteszteket.</p>
+          <div class="decision-link-list"><a href="kalkulatorok/lakas-hitel-onero-kalkulator">Önerő</a><a href="kalkulatorok/hitelkepesseg-kalkulator">Hitelképesség</a><a href="kalkulatorok/hitel-torleszto-kalkulator">Törlesztő</a><a href="kalkulatorok/havi-koltsegvetes-kalkulator">Havi keret</a></div>
+          <a class="decision-card-primary" href="#homeDecisionV2"><span>Lakásdöntés v2</span><span aria-hidden="true">↑</span></a>
         </article>
 
         <article class="decision-card">
           <div class="decision-card-top"><span class="decision-card-icon" aria-hidden="true">↗</span><span class="decision-card-index">02</span></div>
           <h3>Autócsere és fenntartás</h3>
           <p>Fogyasztás, éves költség, értékvesztés és használati mód együtt.</p>
-          <div class="decision-link-list">
-            <a href="kalkulatorok/eves-auto-koltseg-kalkulator">Éves költség</a>
-            <a href="kalkulatorok/auto-fogyasztas-kalkulator">Fogyasztás</a>
-            <a href="kalkulatorok/auto-ertekvesztes-kalkulator">Értékvesztés</a>
-            <a href="kalkulatorok/hatotav-kalkulator">Hatótáv</a>
-          </div>
+          <div class="decision-link-list"><a href="kalkulatorok/eves-auto-koltseg-kalkulator">Éves költség</a><a href="kalkulatorok/auto-fogyasztas-kalkulator">Fogyasztás</a><a href="kalkulatorok/auto-ertekvesztes-kalkulator">Értékvesztés</a><a href="kalkulatorok/hatotav-kalkulator">Hatótáv</a></div>
           <a class="decision-card-primary" href="kalkulatorok/eves-auto-koltseg-kalkulator"><span>Részletes számítás</span><span aria-hidden="true">→</span></a>
         </article>
 
@@ -211,12 +242,7 @@
           <div class="decision-card-top"><span class="decision-card-icon" aria-hidden="true">Ft</span><span class="decision-card-index">03</span></div>
           <h3>Fizetés és munka</h3>
           <p>Nettó, órabér, munkaidő és túlóra — a puszta bruttón túl.</p>
-          <div class="decision-link-list">
-            <a href="kalkulatorok/netto-brutto-kalkulator">Nettó–bruttó</a>
-            <a href="kalkulatorok/oraber-kalkulator">Órabér</a>
-            <a href="kalkulatorok/munkaido-kalkulator">Munkaidő</a>
-            <a href="kalkulatorok/tulora-kalkulator">Túlóra</a>
-          </div>
+          <div class="decision-link-list"><a href="kalkulatorok/netto-brutto-kalkulator">Nettó–bruttó</a><a href="kalkulatorok/oraber-kalkulator">Órabér</a><a href="kalkulatorok/munkaido-kalkulator">Munkaidő</a><a href="kalkulatorok/tulora-kalkulator">Túlóra</a></div>
           <a class="decision-card-primary" href="kalkulatorok/netto-brutto-kalkulator"><span>Fizetési számítások</span><span aria-hidden="true">→</span></a>
         </article>
 
@@ -224,12 +250,7 @@
           <div class="decision-card-top"><span class="decision-card-icon" aria-hidden="true">%</span><span class="decision-card-index">04</span></div>
           <h3>Megtakarítás és hosszú távú cél</h3>
           <p>Havi befizetés, időtáv, hozam és infláció együttes hatása.</p>
-          <div class="decision-link-list">
-            <a href="kalkulatorok/megtakaritasi-cel-kalkulator">Megtakarítási cél</a>
-            <a href="kalkulatorok/etf-kalkulator">ETF</a>
-            <a href="kalkulatorok/kamatos-kamat-kalkulator">Kamatos kamat</a>
-            <a href="kalkulatorok/inflacio-kalkulator">Infláció</a>
-          </div>
+          <div class="decision-link-list"><a href="kalkulatorok/megtakaritasi-cel-kalkulator">Megtakarítási cél</a><a href="kalkulatorok/etf-kalkulator">ETF</a><a href="kalkulatorok/kamatos-kamat-kalkulator">Kamatos kamat</a><a href="kalkulatorok/inflacio-kalkulator">Infláció</a></div>
           <a class="decision-card-primary" href="kalkulatorok/megtakaritasi-cel-kalkulator"><span>Részletes számítás</span><span aria-hidden="true">→</span></a>
         </article>
 
@@ -237,25 +258,15 @@
           <div class="decision-card-top"><span class="decision-card-icon" aria-hidden="true">□</span><span class="decision-card-index">05</span></div>
           <h3>Felújítás és anyagtervezés</h3>
           <p>Festék, burkolat, gipszkarton és szigetelés anyagigénye.</p>
-          <div class="decision-link-list">
-            <a href="kalkulatorok/festek-kalkulator">Festék</a>
-            <a href="kalkulatorok/csempe-kalkulator">Csempe</a>
-            <a href="kalkulatorok/gipszkarton-kalkulator">Gipszkarton</a>
-            <a href="kalkulatorok/hoszigeteles-kalkulator">Hőszigetelés</a>
-          </div>
+          <div class="decision-link-list"><a href="kalkulatorok/festek-kalkulator">Festék</a><a href="kalkulatorok/csempe-kalkulator">Csempe</a><a href="kalkulatorok/gipszkarton-kalkulator">Gipszkarton</a><a href="kalkulatorok/hoszigeteles-kalkulator">Hőszigetelés</a></div>
           <a class="decision-card-primary" href="epitoipari"><span>Felújítási kalkulátorok</span><span aria-hidden="true">→</span></a>
         </article>
 
         <article class="decision-card">
           <div class="decision-card-top"><span class="decision-card-icon" aria-hidden="true">A/B</span><span class="decision-card-index">06</span></div>
           <h3>Két lehetőség között vacillálsz?</h3>
-          <p>A gyorskép után tedd egymás mellé a két forgatókönyvet az új A/B módban.</p>
-          <div class="decision-link-list">
-            <a href="osszehasonlitas">Hitel</a>
-            <a href="osszehasonlitas">Autó</a>
-            <a href="osszehasonlitas">Állásajánlat</a>
-            <a href="osszehasonlitas">Megtakarítás</a>
-          </div>
+          <p>A döntési kép után tedd egymás mellé a két forgatókönyvet az A/B módban.</p>
+          <div class="decision-link-list"><a href="osszehasonlitas">Hitel</a><a href="osszehasonlitas">Autó</a><a href="osszehasonlitas">Állásajánlat</a><a href="osszehasonlitas">Megtakarítás</a></div>
           <a class="decision-card-primary" href="osszehasonlitas"><span>Összehasonlítás</span><span aria-hidden="true">→</span></a>
         </article>
       </div>
@@ -270,15 +281,15 @@
 
     <section class="decision-section decision-roadmap" aria-labelledby="decisionRoadmapTitle">
       <div>
-        <span class="section-label">Döntéstámogatás v1</span>
-        <h2 id="decisionRoadmapTitle">A gyorskép már működik — a részletes kalkulátorok maradnak a háttérben</h2>
-        <p>A cél nem egy mindentudó óriáskalkulátor, hanem egy tiszta döntési kapu: gyors összkép, kritikus változó, majd egy kattintás a részletes eszközhöz.</p>
+        <span class="section-label">Döntéstámogatás v2</span>
+        <h2 id="decisionRoadmapTitle">A lakásvásárlás már valódi döntési folyamat</h2>
+        <p>A részletes kalkulátorok továbbra is a háttérben maradnak, de a felhasználó először egy egységes képet kap a havi teherről, tartalékról és érzékeny feltételezésekről.</p>
       </div>
       <ul>
-        <li>több szempont egy összefoglalóban;</li>
-        <li>mentés böngészőn belül;</li>
-        <li>megosztható eredmény;</li>
-        <li>közvetlen átjárás a részletes kalkulátorokhoz.</li>
+        <li>havi mozgástér és vásárlás utáni tartalék;</li>
+        <li>három „mi történik, ha?” stresszteszt;</li>
+        <li>kritikus változók hatás szerinti sorrendje;</li>
+        <li>mentés, megosztás és átjárás a részletes kalkulátorokhoz.</li>
       </ul>
     </section>
   </main>
@@ -357,8 +368,10 @@
   </div>
 </div>
 </div>
-  <script src="js/utils.js?v=612ab2b43f34"></script>
+
+  <script src="js/utils.js?v=f5664c2f4c52"></script>
   <script src="js/decision-tools.js?v=9f1bf26ee444"></script>
+  <script src="js/home-decision-v2.js?v=33215ef873ee"></script>
   <script src="js/help-widget.js?v=3119e300df85" defer></script>
   <script>
     document.addEventListener("kb:component-loaded", (event) => {
