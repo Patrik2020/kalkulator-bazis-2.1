@@ -89,6 +89,20 @@ async function createClient(webSocketUrl) {
       if (!listeners.has(method)) listeners.set(method, []);
       listeners.get(method).push(listener);
     },
+    once(method, timeout = 15000) {
+      return new Promise((resolve) => {
+        const timer = setTimeout(() => {
+          listeners.set(method, (listeners.get(method) || []).filter((item) => item !== listener));
+          resolve(null);
+        }, timeout);
+        const listener = (params) => {
+          clearTimeout(timer);
+          listeners.set(method, (listeners.get(method) || []).filter((item) => item !== listener));
+          resolve(params);
+        };
+        this.on(method, listener);
+      });
+    },
     send(method, params = {}) {
       id += 1;
       socket.send(JSON.stringify({ id, method, params }));
@@ -209,9 +223,11 @@ async function main() {
         const errorsBefore = consoleErrors.length;
 
         try {
+          const loaded = client.once("Page.loadEventFired");
           await client.send("Page.navigate", { url });
-          // A referencia-audit 29/29 kalkulátoron ezt a renderablakot használja stabilan Chrome 152-n.
-          await sleep(450);
+          if (!await loaded) throw new Error("az oldal betöltése 15 másodpercen belül nem fejeződött be");
+          // A load esemény után hagyunk rövid időt a dinamikusan betöltött közös felületnek is.
+          await sleep(150);
 
           const audit = await evaluate(
             client,
