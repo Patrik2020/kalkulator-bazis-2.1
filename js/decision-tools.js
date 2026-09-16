@@ -14,13 +14,45 @@
   const qs = (selector, root = document) => root.querySelector(selector);
   const qsa = (selector, root = document) => [...root.querySelectorAll(selector)];
 
+  const parseGroupedNumber = (value) => Number(String(value ?? "").replace(/[^\d-]/g, ""));
+
   const numeric = (form, name, fallback = 0) => {
-    const raw = Number(form.elements[name]?.value);
+    const field = form.elements[name];
+    const raw = field?.matches?.("[data-grouped-number]")
+      ? parseGroupedNumber(field.value)
+      : Number(field?.value);
     return Number.isFinite(raw) ? raw : fallback;
   };
 
   const positive = (value) => Math.max(0, Number(value) || 0);
   const percent = (value) => `${number.format(value)}%`;
+
+  const setupGroupedNumberInputs = () => {
+    const formatter = new Intl.NumberFormat("hu-HU", { maximumFractionDigits: 0 });
+
+    qsa("[data-grouped-number]").forEach((input) => {
+      const format = () => {
+        const selectionStart = input.selectionStart ?? input.value.length;
+        const digitsBeforeCaret = input.value.slice(0, selectionStart).replace(/\D/g, "").length;
+        const digits = input.value.replace(/\D/g, "");
+
+        input.value = digits ? formatter.format(Number(digits)) : "";
+
+        if (document.activeElement !== input) return;
+        let caret = 0;
+        let seenDigits = 0;
+        while (caret < input.value.length && seenDigits < digitsBeforeCaret) {
+          if (/\d/.test(input.value[caret])) seenDigits += 1;
+          caret += 1;
+        }
+        input.setSelectionRange(caret, caret);
+      };
+
+      input.addEventListener("input", format);
+      input.addEventListener("blur", format);
+      format();
+    });
+  };
 
   const futureValue = (initial, monthly, annualReturn, years) => {
     const months = Math.max(0, Math.round(years * 12));
@@ -488,6 +520,7 @@
     }
   });
 
+  setupGroupedNumberInputs();
   setupDecisionPage();
   setupComparisonPage();
   renderSavedResults();

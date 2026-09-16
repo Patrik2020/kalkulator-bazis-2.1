@@ -9,7 +9,7 @@
   <link rel="canonical" href="https://kalkulatorbazis.hu/dontesek" />
   <link rel="stylesheet" href="css/style.css?v=64628ca819c5" />
   <link rel="stylesheet" href="css/pages/decision-hub.css?v=cee5d3b6d6ec" />
-  <link rel="stylesheet" href="css/pages/decision-tools.css?v=6e7f6f644046" />
+  <link rel="stylesheet" href="css/pages/decision-tools.css?v=2f28e1a88209" />
   <link rel="stylesheet" href="css/pages/home-decision-v2.css?v=c16634f25698" />
 <script src="js/static-first-fallbacks.js?v=e190cf7ce386"></script>
 <script src="js/global-head.js?v=17a44f574afe"></script>
@@ -140,18 +140,18 @@
             <p class="home-v2-fieldset-copy">Külön kezeld az összes megtakarítást, a ténylegesen önerőre szánt összeget és a vásárlás egyéb egyszeri költségeit.</p>
             <div class="home-v2-grid is-4">
               <label>Ingatlan ára (Ft)
-                <input name="price" type="number" min="1" step="100000" value="60000000" inputmode="numeric" required />
+                <input name="price" type="text" value="60 000 000" inputmode="numeric" data-grouped-number required />
               </label>
               <label>Összes megtakarítás (Ft)
-                <input name="totalSavings" type="number" min="0" step="100000" value="25000000" inputmode="numeric" />
+                <input name="totalSavings" type="text" value="25 000 000" inputmode="numeric" data-grouped-number />
                 <small>A vásárlás előtt rendelkezésre álló likvid keret.</small>
               </label>
               <label>Vásárlásra szánt saját forrás (Ft)
-                <input name="ownFunds" type="number" min="0" step="100000" value="20000000" inputmode="numeric" />
+                <input name="ownFunds" type="text" value="20 000 000" inputmode="numeric" data-grouped-number />
                 <small>Az ingatlan árából saját pénzből fizetett rész.</small>
               </label>
               <label>Egyéb egyszeri költségek (Ft)
-                <input name="purchaseCosts" type="number" min="0" step="100000" value="2000000" inputmode="numeric" />
+                <input name="purchaseCosts" type="text" value="2 000 000" inputmode="numeric" data-grouped-number />
                 <small>Saját becslés: ügyvéd, költözés, illeték, induló felújítás stb.</small>
               </label>
             </div>
@@ -162,13 +162,13 @@
             <p class="home-v2-fieldset-copy">A nettó háztartási jövedelemből levonjuk a meglévő hiteltörlesztést, a hitelen kívüli megélhetési kiadásokat és az új lakáshitel becsült törlesztőjét.</p>
             <div class="home-v2-grid">
               <label>Havi nettó háztartási jövedelem (Ft)
-                <input name="income" type="number" min="1" step="10000" value="700000" inputmode="numeric" required />
+                <input name="income" type="text" value="700 000" inputmode="numeric" data-grouped-number required />
               </label>
               <label>Meglévő havi hiteltörlesztések (Ft)
-                <input name="existingDebt" type="number" min="0" step="5000" value="45000" inputmode="numeric" />
+                <input name="existingDebt" type="text" value="45 000" inputmode="numeric" data-grouped-number />
               </label>
               <label>Havi megélhetési kiadás hitelen kívül (Ft)
-                <input name="livingCosts" type="number" min="0" step="10000" value="350000" inputmode="numeric" />
+                <input name="livingCosts" type="text" value="350 000" inputmode="numeric" data-grouped-number />
               </label>
             </div>
           </fieldset>
@@ -192,19 +192,19 @@
 
       <form class="decision-tool-form" data-decision-form="car" hidden>
         <div class="decision-form-grid">
-          <label>Éves futás (km)<input name="annualKm" type="number" min="0" step="1000" value="15000" inputmode="numeric" /></label>
+          <label>Éves futás (km)<input name="annualKm" type="text" value="15 000" inputmode="numeric" data-grouped-number /></label>
           <label>Fogyasztás (l/100 km)<input name="consumption" type="number" min="0" step="0.1" value="6.5" inputmode="decimal" /></label>
-          <label>Üzemanyagár (Ft/l)<input name="fuelPrice" type="number" min="0" step="1" value="620" inputmode="numeric" /></label>
-          <label>Egyéb éves fix költség (Ft)<input name="fixed" type="number" min="0" step="10000" value="350000" inputmode="numeric" /></label>
-          <label>Éves értékvesztés (Ft)<input name="depreciation" type="number" min="0" step="10000" value="400000" inputmode="numeric" /></label>
+          <label>Üzemanyagár (Ft/l)<input name="fuelPrice" type="text" value="620" inputmode="numeric" data-grouped-number /></label>
+          <label>Egyéb éves fix költség (Ft)<input name="fixed" type="text" value="350 000" inputmode="numeric" data-grouped-number /></label>
+          <label>Éves értékvesztés (Ft)<input name="depreciation" type="text" value="400 000" inputmode="numeric" data-grouped-number /></label>
         </div>
         <button class="decision-tool-submit" type="submit">Autós gyorskép készítése</button>
       </form>
 
       <form class="decision-tool-form" data-decision-form="savings" hidden>
         <div class="decision-form-grid">
-          <label>Kezdőtőke (Ft)<input name="initial" type="number" min="0" step="10000" value="1000000" inputmode="numeric" /></label>
-          <label>Havi befizetés (Ft)<input name="monthly" type="number" min="0" step="1000" value="70000" inputmode="numeric" /></label>
+          <label>Kezdőtőke (Ft)<input name="initial" type="text" value="1 000 000" inputmode="numeric" data-grouped-number /></label>
+          <label>Havi befizetés (Ft)<input name="monthly" type="text" value="70 000" inputmode="numeric" data-grouped-number /></label>
           <label>Időtáv (év)<input name="years" type="number" min="1" max="60" step="1" value="20" inputmode="numeric" /></label>
           <label>Feltételezett hozam (%/év)<input name="annualReturn" type="number" step="0.1" value="7" inputmode="decimal" /></label>
           <label>Feltételezett infláció (%/év)<input name="inflation" type="number" step="0.1" value="3" inputmode="decimal" /></label>
@@ -370,8 +370,8 @@
 </div>
 
   <script src="js/utils.js?v=612ab2b43f34"></script>
-  <script src="js/decision-tools.js?v=9f1bf26ee444"></script>
-  <script src="js/home-decision-v2.js?v=33215ef873ee"></script>
+  <script src="js/decision-tools.js?v=bb1ff6bbdfc1"></script>
+  <script src="js/home-decision-v2.js?v=8ce6cc807706"></script>
   <script src="js/help-widget.js?v=bd6b18c3f5ac" defer></script>
   <script>
     document.addEventListener("kb:component-loaded", (event) => {

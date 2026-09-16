@@ -191,6 +191,25 @@ async function main() {
       label: `Döntések ${width}px kezdeti állapot`,
     });
 
+    const groupedNumberState = await evaluate(`(() => {
+      const form = document.querySelector('[data-home-decision-v2]');
+      const price = form.elements.price;
+      price.focus();
+      price.value = '69000000';
+      price.dispatchEvent(new Event('input', { bubbles: true }));
+      return {
+        value: price.value,
+        valid: price.checkValidity(),
+        groupedInputs: form.querySelectorAll('[data-grouped-number]').length
+      };
+    })()`);
+    if (groupedNumberState.value.replace(/\D/g, "") !== "69000000" || !groupedNumberState.valid) {
+      throw new Error(`Döntések ${width}px: a 69 milliós ingatlanár nem lett érvényes és tagolt. Állapot: ${JSON.stringify(groupedNumberState)}`);
+    }
+    if (groupedNumberState.groupedInputs !== 7 || !/\D/.test(groupedNumberState.value)) {
+      throw new Error(`Döntések ${width}px: hiányos az ezres tagolás. Állapot: ${JSON.stringify(groupedNumberState)}`);
+    }
+
     for (const mode of ["car", "savings", "home"]) {
       await clickMode("data-decision-mode", mode);
       await assertMode({
