@@ -51,6 +51,9 @@ jobs:
       - name: Apply transparent YMYL trust metadata
         run: node scripts/apply-adsense-ymyl-trust-v2.js
 
+      - name: Apply current-content editorial moat
+        run: node scripts/apply-adsense-current-moat-v2.js
+
       - name: Generate sitemap for page discovery
         run: npm run sitemap
 
@@ -60,8 +63,10 @@ jobs:
       - name: Normalize final static output
         run: npm run static:normalize
 
-      - name: Re-apply YMYL trust metadata after materialization
-        run: node scripts/apply-adsense-ymyl-trust-v2.js
+      - name: Re-apply AdSense editorial transforms after materialization
+        run: |
+          node scripts/apply-adsense-ymyl-trust-v2.js
+          node scripts/apply-adsense-current-moat-v2.js
 
       - name: Canonicalize static retention CTA state
         run: node scripts/normalize-retention-static.js
@@ -82,6 +87,7 @@ jobs:
           npm run static:build
           npm run static:normalize
           node scripts/apply-adsense-ymyl-trust-v2.js
+          node scripts/apply-adsense-current-moat-v2.js
           node scripts/normalize-retention-static.js
           node scripts/cache-bust-assets.js
           npm run sitemap
@@ -93,6 +99,7 @@ jobs:
           npm run static:build
           npm run static:normalize
           node scripts/apply-adsense-ymyl-trust-v2.js
+          node scripts/apply-adsense-current-moat-v2.js
           node scripts/normalize-retention-static.js
           node scripts/cache-bust-assets.js
           npm run sitemap
