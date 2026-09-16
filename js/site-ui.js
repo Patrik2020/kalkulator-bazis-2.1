@@ -200,7 +200,18 @@
   };
 
   const renderAdSlot = (target) => {
+    // KB_ADSENSE_SLOT_GUARD_V2
     if (!target || !data.adsense) return;
+    if (window.KB_ADSENSE_ELIGIBLE === false) {
+      target.innerHTML = "";
+      target.dataset.adState = "excluded";
+      return;
+    }
+    if (window.KB_ADSENSE_CAN_REQUEST !== true) {
+      target.innerHTML = "";
+      target.dataset.adState = "waiting-consent";
+      return;
+    }
     const adClient = /^ca-pub-\d+$/.test(data.adsense.client || "")
       ? data.adsense.client
       : "";
@@ -208,9 +219,9 @@
 
     if (!adClient || !adSlot) return;
 
-    if (!hasConsent("ads")) {
+    if (window.KB_ADSENSE_CAN_REQUEST !== true) {
       target.innerHTML = "";
-      target.dataset.adState = "hidden";
+      target.dataset.adState = "waiting-consent";
       return;
     }
 
@@ -271,7 +282,7 @@
   };
 
   const loadAdSenseScript = (callback) => {
-    if (!hasConsent("ads")) return;
+    if (window.KB_ADSENSE_ELIGIBLE === false || window.KB_ADSENSE_CAN_REQUEST !== true) return;
 
     const adClient = /^ca-pub-\d+$/.test(data.adsense?.client || "")
       ? data.adsense.client
@@ -964,6 +975,7 @@
 
     document.addEventListener("kb:consent-ready", refreshConsentControlledUi);
     document.addEventListener("kb:consent-updated", refreshConsentControlledUi);
+    document.addEventListener("kb:adsense-ready", refreshConsentControlledUi);
   };
 
   if (document.readyState === "loading") {

@@ -10,10 +10,43 @@
   const adsId = "AW-18204925339";
   const adsenseClient = "ca-pub-2639795157074812";
 
+  // KB_ADSENSE_ELIGIBILITY_V2
+  // Publisher ads are intentionally limited to pages with clear standalone value.
+  // Privacy & Messaging / TCF remains the authority for AdSense consent in regions
+  // where Google requires a certified CMP.
+  const adsenseEligibleExact = new Set([
+    "aktualis",
+    "dontesek",
+    "osszehasonlitas",
+    "elethelyzetek",
+    "landing-pages/penzugyi-tudatossag/penzugyi-tudatossag",
+  ]);
+  const adsenseEligiblePrefixes = ["kalkulatorok/", "aktualis/", "landing-pages/elethelyzetek/"];
+  const adsenseExcludedExact = new Set([
+    "404", "kapcsolat", "impresszum", "adatvedelem", "cookie",
+    "jogi-nyilatkozat", "felhasznalasi-feltetelek", "rolunk",
+    "atlathatosag-es-minoseg", "miert-bizhatsz-bennunk", "szamitasi-modszertan",
+  ]);
+  const adsenseExcludedPrefixes = ["landing-pages/wise/"];
+  const normalizedPublisherPath = () =>
+    decodeURIComponent(window.location.pathname || "/")
+      .replace(/\\/g, "/")
+      .replace(/^\/+|\/+$/g, "")
+      .replace(/\.html$/i, "")
+      .toLowerCase();
+  const isAdSenseEligiblePath = () => {
+    const current = normalizedPublisherPath();
+    if (!current || adsenseExcludedExact.has(current)) return false;
+    if (adsenseExcludedPrefixes.some((prefix) => current.startsWith(prefix))) return false;
+    return adsenseEligibleExact.has(current) || adsenseEligiblePrefixes.some((prefix) => current.startsWith(prefix));
+  };
+  window.KB_ADSENSE_ELIGIBLE = isAdSenseEligiblePath();
+  window.KB_ADSENSE_CAN_REQUEST = false;
+  window.KB_ADSENSE_TCF_REQUIRED = true;
+
   // AdSense requests remain paused until explicit advertising consent.
   window.adsbygoogle = window.adsbygoogle || [];
   window.adsbygoogle.pauseAdRequests = 1;
-  window.adsbygoogle.requestNonPersonalizedAds = 1;
   const maxClockSkewMs = 5 * 60 * 1000;
   const maxRecordAgeMs = (maxAgeDays + 2) * 24 * 60 * 60 * 1000;
   const allowedCategoryKeys = ["necessary", "analytics", "ads"];
@@ -266,37 +299,74 @@
     configure();
   };
 
+  const setAdSenseRequestReady = () => {
+    if (!window.KB_ADSENSE_ELIGIBLE || window.KB_ADSENSE_CAN_REQUEST) return;
+    const queue = (window.adsbygoogle = window.adsbygoogle || []);
+    window.KB_ADSENSE_CAN_REQUEST = true;
+    queue.pauseAdRequests = 0;
+    document.dispatchEvent(new CustomEvent("kb:adsense-ready"));
+  };
+
+  let tcfListenerRegistered = false;
+  let tcfPollTimer = null;
+  let tcfPollCount = 0;
+
+  const registerTcfListener = () => {
+    if (tcfListenerRegistered || typeof window.__tcfapi !== "function") return false;
+    tcfListenerRegistered = true;
+    window.__tcfapi("addEventListener", 2, (tcData, success) => {
+      if (!success || !tcData) return;
+      const settled = ["tcloaded", "useractioncomplete"].includes(tcData.eventStatus);
+      if (tcData.gdprApplies === false || settled) {
+        setAdSenseRequestReady();
+      }
+    });
+    return true;
+  };
+
+  const waitForCertifiedCmp = () => {
+    if (!window.KB_ADSENSE_ELIGIBLE || window.KB_ADSENSE_CAN_REQUEST) return;
+    if (registerTcfListener()) {
+      if (tcfPollTimer) window.clearInterval(tcfPollTimer);
+      tcfPollTimer = null;
+      return;
+    }
+    if (tcfPollTimer) return;
+    tcfPollTimer = window.setInterval(() => {
+      tcfPollCount += 1;
+      if (registerTcfListener() || tcfPollCount >= 48) {
+        window.clearInterval(tcfPollTimer);
+        tcfPollTimer = null;
+      }
+    }, 250);
+  };
+
   const syncAdSense = () => {
     const queue = (window.adsbygoogle = window.adsbygoogle || []);
-    queue.requestNonPersonalizedAds = 1;
+    queue.pauseAdRequests = 1;
 
-    if (!hasConsent("ads")) {
-      queue.pauseAdRequests = 1;
+    if (!window.KB_ADSENSE_ELIGIBLE) {
+      window.KB_ADSENSE_CAN_REQUEST = false;
       return;
     }
 
-    queue.pauseAdRequests = 1;
     const existing = document.querySelector(
       'script[src^="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]'
     );
 
-    const resumeRequests = () => {
-      queue.requestNonPersonalizedAds = 1;
-      queue.pauseAdRequests = 0;
-    };
-
     if (existing) {
-      resumeRequests();
+      waitForCertifiedCmp();
       return;
     }
 
     const script = document.createElement("script");
     script.async = true;
     script.crossOrigin = "anonymous";
-    script.dataset.kbConsentManaged = "adsense";
+    script.dataset.kbConsentManaged = "adsense-cmp-bootstrap";
     script.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`;
-    script.addEventListener("load", resumeRequests, { once: true });
+    script.addEventListener("load", waitForCertifiedCmp, { once: true });
     document.head.appendChild(script);
+    waitForCertifiedCmp();
   };
 
   const persistConsent = (categories) => {
@@ -416,8 +486,8 @@
           <h2 class="cookie-modal-title" id="cookieModalTitle">Sütibeállítások</h2>
           <p class="cookie-modal-description" id="cookieModalDescription">
             A Kalkulátor Bázis a weboldal megfelelő működéséhez szükséges helyi tárolást használ.
-            Az analitikai és hirdetési célú technológiákat csak a hozzájárulásod
-            alapján kapcsoljuk be. A választásodat később bármikor módosíthatod.
+            Az analitikát és a partneri külső tartalmakat csak a hozzájárulásod alapján kapcsoljuk be.
+            A Google AdSense európai hozzájárulását külön, Google-minősített TCF üzenet kezeli, ahol ez szükséges.
           </p>
         </div>
 
@@ -474,15 +544,15 @@
 
           <article class="cookie-category">
             <div class="cookie-category-header">
-              <h3>Hirdetés és marketing</h3>
+              <h3>Partneri tartalom és marketing</h3>
               <label class="cookie-switch" for="cookieAds">
                 <input id="cookieAds" type="checkbox" />
                 <span class="cookie-switch-label">Engedélyezés</span>
               </label>
             </div>
             <p>
-              Ide tartozik a Google AdSense hirdetésbetöltés és a partneri
-              bannerek külső képeinek betöltése.
+              Ez a beállítás a partneri bannerek és más külső marketingtartalmak betöltését kezeli.
+              A Google AdSense hozzájárulását az arra jogosult régiókban a Google TCF/CMP üzenete kezeli.
             </p>
           </article>
 

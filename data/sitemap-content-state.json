@@ -1,0 +1,542 @@
+{
+  "version": 1,
+  "generatedAt": "2026-09-16",
+  "pages": {
+    "": {
+      "hash": "6517c31bf1b7a4c46ee15c0508785e18b883fb436a2f7bd305cb5520b4d59a78",
+      "lastmod": "2026-09-14"
+    },
+    "penzugyi.html": {
+      "hash": "7fdec0868055dc0265c5a9692a28d3329753364adbcf519aa34f077c56a3abab",
+      "lastmod": "2026-07-15"
+    },
+    "mindennapi.html": {
+      "hash": "9f9db82a4b897318b0ddea7be163f0fca1fe3da6aa0c77fb5b221c8f7af7dadd",
+      "lastmod": "2026-07-15"
+    },
+    "egeszseg.html": {
+      "hash": "8eedf6dc4d04354e339b9f0dcf44df51a946d86673b16fd08f01426d0d81bfe3",
+      "lastmod": "2026-07-15"
+    },
+    "auto.html": {
+      "hash": "fe888199e0c7a0430d0c34bac50537ae2a2b0f18a6b7677b5401987c59267c72",
+      "lastmod": "2026-07-15"
+    },
+    "epitoipari.html": {
+      "hash": "fa54a1c6e81584546a33bbf7751b96efabcd92407c2b5024bc17f416088516c2",
+      "lastmod": "2026-07-15"
+    },
+    "atvaltok.html": {
+      "hash": "28b97318cc33612c69705f9ebc171e622d9243056920758a519d7c7cc2294e32",
+      "lastmod": "2026-07-15"
+    },
+    "kalkulatorok.html": {
+      "hash": "6cb0d23e17e7e9dee0f37b0edb4c5b68113ec967a81d429d3bae5c00bb80c17e",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/multifunkcios-szamologep.html": {
+      "hash": "c4d38f1c26c681db1304e863f23329fc05b12c236595f66cd99ee892a26c0784",
+      "lastmod": "2026-09-14"
+    },
+    "dontesek.html": {
+      "hash": "a04a8edecc96c8289610ea4639b02e2765c8b1fc6ebae1dde28db01b49064870",
+      "lastmod": "2026-09-14"
+    },
+    "osszehasonlitas.html": {
+      "hash": "674ad9824837484f33509d340a2bdc167666e904228db8ead6ca44887c4be4fa",
+      "lastmod": "2026-09-14"
+    },
+    "rolunk.html": {
+      "hash": "2506945cfa6958942f9991af6f11f2a25d736c853b2198b9fa5f65ee79e6c336",
+      "lastmod": "2026-07-01"
+    },
+    "szamitasi-modszertan.html": {
+      "hash": "f17c2158070ee99c3fc6347a481193b38d27d1d2dce0b30403c96b5cc0c99c81",
+      "lastmod": "2026-07-01"
+    },
+    "kapcsolat.html": {
+      "hash": "4be1d8a21e88323bc017e6b26c669db1e73f6c1cddeb9a38ed59401547834922",
+      "lastmod": "2026-07-01"
+    },
+    "adatvedelem.html": {
+      "hash": "d8cc2ca6938118417a8a5cccee0fdb59f06f8cf3df94d3b4e3e0b599a77d4812",
+      "lastmod": "2026-09-14"
+    },
+    "cookie.html": {
+      "hash": "c158f94450205158a1368340db7a18760a7bc409801fdbaf0ead5f525ce5b9f7",
+      "lastmod": "2026-09-14"
+    },
+    "felhasznalasi-feltetelek.html": {
+      "hash": "4611a3f167c1b699dbdb5922ef53d2d05178567955a8c9025c42873398e0ab74",
+      "lastmod": "2026-09-14"
+    },
+    "jogi-nyilatkozat.html": {
+      "hash": "b35f81e7c7ff9502889878089f80497e77e38b83a2d3b96f0608f42c05cf3905",
+      "lastmod": "2026-07-01"
+    },
+    "atlathatosag-es-minoseg.html": {
+      "hash": "b6ddafc2378d0e6221d312b6ef7b1fbac63b893582bc45da5ee35d1d06adf174",
+      "lastmod": "2026-09-16"
+    },
+    "miert-bizhatsz-bennunk.html": {
+      "hash": "a120c478924622e557ee440c3fc6679393a73273da2b0d5581b5016a90952189",
+      "lastmod": "2026-07-15"
+    },
+    "impresszum.html": {
+      "hash": "bdc2632288bb0fbfb3191d083f278b0e1e24aee55d29f7673d73cf6dce8e2e8f",
+      "lastmod": "2026-09-14"
+    },
+    "elethelyzetek.html": {
+      "hash": "7f9e3d9f031062360054de829e6a9fb9cb9ba630d72a4ff4b956556ff7b825c0",
+      "lastmod": "2026-08-21"
+    },
+    "aktualis.html": {
+      "hash": "85d8067780f58ef82b44d18eb5f3e450f11dc7664eaf80b9e09c797ff48135f6",
+      "lastmod": "2026-09-13"
+    },
+    "aktualis/ksh-inflacio-2026-augusztus.html": {
+      "hash": "131396f9436fb905079219bfb63eee7d3bf0c032d97b299de7a13d7c0572104a",
+      "lastmod": "2026-09-12"
+    },
+    "aktualis/ksh-uzemanyagarak-2026-augusztus.html": {
+      "hash": "a1a3ff4668d31424af88d65bd29396a60a2e858144c2576905b1bc08345a0544",
+      "lastmod": "2026-09-13"
+    },
+    "aktualis/nav-uzemanyag-elszamolasi-arak-2026-szeptember.html": {
+      "hash": "cbdd095033b0a2cc62c873d14e780b2f716dbd31abcce75ac93ed64b38e6ce48",
+      "lastmod": "2026-09-11"
+    },
+    "landing-pages/elethelyzetek/lakasvasarlas.html": {
+      "hash": "ba094e67c85a7facdbcb72fb28c2177441bb6eb080c6b6c8034d4b302b197160",
+      "lastmod": "2026-08-21"
+    },
+    "landing-pages/elethelyzetek/autofenntartas.html": {
+      "hash": "60aff861ec08ef73b31559cd183b57285e0e2d85d82ef0e3b5799c12c63fb62b",
+      "lastmod": "2026-08-21"
+    },
+    "landing-pages/elethelyzetek/fizetes-munkaber.html": {
+      "hash": "ce3089b26b55ebb8c03c625aa1f151795031d96048c672a9f40f9e5a3753ed96",
+      "lastmod": "2026-08-21"
+    },
+    "landing-pages/elethelyzetek/befektetes-kezdoknek.html": {
+      "hash": "08fd7c50f0320e8f9d7b34e08c4ecf4e785d02d62b04914d6d2469a8c41bc3f4",
+      "lastmod": "2026-08-21"
+    },
+    "landing-pages/elethelyzetek/felujitas-tervezese.html": {
+      "hash": "8a5e14d698467e6129e50e63831665e111cbe2188b60b359c069ff1a861db331",
+      "lastmod": "2026-08-21"
+    },
+    "landing-pages/elethelyzetek/csaladi-koltsegvetes.html": {
+      "hash": "24c9ba4de04585d1f617819e856ce10cdc37558bb2d006171b26eeccf18c4f5f",
+      "lastmod": "2026-08-21"
+    },
+    "landing-pages/wise/wise.html": {
+      "hash": "64c4ca57518516f3c40900a0e3e335a4c5017e84370279a7dd9449e243e6a11c",
+      "lastmod": "2026-09-14"
+    },
+    "landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html": {
+      "hash": "1b3d03dbbd3cb3b89c33d843dafc16c27214800002a2f331d557fc5d581d50ce",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/netto-brutto-kalkulator.html": {
+      "hash": "e34cd8715702dc06749f250027baa9fc57b14348f877e6f5e0a34f66e4940af2",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/hitel-torleszto-kalkulator.html": {
+      "hash": "4e4ab87ccf24f8ff818a4440c9cd4537f44f61539ae3ffc53fe30e7ff64c0c6b",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/hitelkepesseg-kalkulator.html": {
+      "hash": "e38a830a91a8253a0fbd18efc1188dc942ea18893b342e8005caa5430d62c38e",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/lakas-hitel-onero-kalkulator.html": {
+      "hash": "2de360b71bd3230d8529e131242a259d5d3e3a4249c7f1c25c29ba241b527a12",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/osztalek-kalkulator.html": {
+      "hash": "793f95594fa0d01db1a1a9af426d0f433240a2b80f7d57a53fb7ba635c7fa4cc",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/etf-kalkulator.html": {
+      "hash": "a2fa0ccc471dbf6778c518301ccd8c9024efb8fcc4ccba7e295d49b444531740",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/milliomos-kalkulator.html": {
+      "hash": "fc0f4bad2ae15c5ffad869a0683bb4c731d64742ca7b025e61d99dc67cbb7805",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/inflacio-kalkulator.html": {
+      "hash": "f88ec136da4f8216ca8dddd243c1ccfd7e5b4e4e39a09d78b5d3663187ddec62",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/kamatos-kamat-kalkulator.html": {
+      "hash": "70121666df8519637e7960422498ce1d36b97606ff5acea5027a610379d94148",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/havi-koltsegvetes-kalkulator.html": {
+      "hash": "56dd26ab408c6ff62c567d9253978ac2503839b0a71d43495d10204dec2b7df4",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/fizetesi-hatarido-kalkulator.html": {
+      "hash": "3d3b7329652d2f1ddd3030d17d6fb82b47e2a72858224e6ad2d4bb35a420fd34",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/szamla-teljesites-kalkulator.html": {
+      "hash": "21d68985418cea44c4c62b9f221acf61b6fb96838b948f96394bf04f970f43be",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/beton-kalkulator.html": {
+      "hash": "6af9c3f5c77e45a1a154b021b623cf62661e16e4417787d792adab91ba443b57",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/csempe-kalkulator.html": {
+      "hash": "df6f96cd58f5cbfb1d15387199f61406358516383e50847e3ebe2ee793bc753a",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/festek-kalkulator.html": {
+      "hash": "b4d391c54a6991bca105c34aead922d04ab147b0b41b6b5728842320c36cbc65",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/tegla-kalkulator.html": {
+      "hash": "593a404c46e6e4c0c2ea2263c39205c8950ba6d6f80b697449d6c8580c89dc24",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/bmi-kalkulator.html": {
+      "hash": "79715167cf8ee5a41db8b4e68e5b33e6e54126eb45dee22b08a68292afd4554d",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/kaloria-kalkulator.html": {
+      "hash": "feed839f44fbd20c1bf118a69d69c2216a0ea4ef6b36cba0945c22c1c8cf8927",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/szazalek-kalkulator.html": {
+      "hash": "c1480211a94f810ae2b929fe785fc863db7700fe3df553c37388cfdefa52f6cb",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/afa-kalkulator.html": {
+      "hash": "25f952892e6e7631d6989599c624a7e1c0f69e3c0756e1783cf97c6ce033b174",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/auto-kalkulator.html": {
+      "hash": "3a7b8523621ee755dee60cb9e9f6018976b3b0b2d6e04ed36f56e4d5833ba318",
+      "lastmod": "2026-07-01"
+    },
+    "kalkulatorok/homerseklet-atvalto-kalkulator.html": {
+      "hash": "85045f3b67631eb15e9db80f6987acd74fe15f31bb27d84a1e12298bc204bf80",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/hosszusag-atvalto-kalkulator.html": {
+      "hash": "b72efe747066f32243c28b7454dfddd5ca2224c5f4488c07e67ff4e1f8badb7a",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/tomeg-atvalto-kalkulator.html": {
+      "hash": "2cb10be4f2aa9432bd116306c90860dcebea26c8af20dedb99ea491a91b4347a",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/terulet-atvalto-kalkulator.html": {
+      "hash": "f83b5c190a853908c38167380d936c27ace1027da953ab6a6fb7f5ad3d56bf96",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/terfogat-atvalto-kalkulator.html": {
+      "hash": "d3d4aec7e737c83fb20c84144fc28f11af6103db2b0e0035d4ff96e391a9220a",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/ido-atvalto-kalkulator.html": {
+      "hash": "b78fbcd606ee19005b30afb998321b0b20bc65ce2a8b6d321871542dc99ca4b7",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/sebesseg-atvalto-kalkulator.html": {
+      "hash": "8ed0bc9cde2b5bb141c4a90af6a9e0b532ed480a3f7b97c1077ad993a8865899",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/adatmeret-atvalto-kalkulator.html": {
+      "hash": "1aae75bd26bbf3e6f203f27b64912e7880e73d1db467c1a7e188f17d9726a239",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/deviza-atvalto-kalkulator.html": {
+      "hash": "bba6824cfc5c22f8494210e3c11af57d39d8c2c94f20b02aa769fab841715296",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/padlo-burkolat-kalkulator.html": {
+      "hash": "650a445509eb7a76f59519084d145c46316657dbcbe003ee48faaf3c6ee58487",
+      "lastmod": "2026-07-15"
+    },
+    "kalkulatorok/gipszkarton-kalkulator.html": {
+      "hash": "da8b650a84d9bf121e06f1d2346bbe4ed392b9d71d55c9ff763f53e9724b73b6",
+      "lastmod": "2026-08-08"
+    },
+    "kalkulatorok/tapeta-kalkulator.html": {
+      "hash": "378715013493f2135ada5ed4ca08275ed21284d717ced8849e7026cacf40b145",
+      "lastmod": "2026-08-08"
+    },
+    "kalkulatorok/vakolat-kalkulator.html": {
+      "hash": "9465898c28d91b0a3daadd7a8f3e924c156fd19b5d182083aeb6c0499a783114",
+      "lastmod": "2026-07-15"
+    },
+    "kalkulatorok/hoszigeteles-kalkulator.html": {
+      "hash": "16aa04429081a98bf4fe231e9e671b0625791ea70da24f8c6d3343fa588849d5",
+      "lastmod": "2026-08-08"
+    },
+    "kalkulatorok/terkovezes-kalkulator.html": {
+      "hash": "0fe476f532c53eef727c8d8a3d760728a1e04b07e72b7a803aa3a652a1df318b",
+      "lastmod": "2026-08-08"
+    },
+    "kalkulatorok/tetocserep-kalkulator.html": {
+      "hash": "13420d89170defde3fdb8b93c3d64a0fd6d71f924cc5b75ae03470651e076725",
+      "lastmod": "2026-08-08"
+    },
+    "kalkulatorok/fuga-kalkulator.html": {
+      "hash": "269b5c6634c6e25be788acd18010cb48be7fe6ac7c68d6bb749912a4bfc8b40b",
+      "lastmod": "2026-08-08"
+    },
+    "kalkulatorok/vizfogyasztas-kalkulator.html": {
+      "hash": "c91b13d6e76ce09c0fab2fb9f3a228f475d15dd8b5887078b0d39bed6824a8ee",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/pulzus-zona-kalkulator.html": {
+      "hash": "3f7b5fb289fc7de88658afa9cbba4848961133ccdffeed249757f354ab558ca1",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/terhessegi-kalkulator.html": {
+      "hash": "92bb8055f8f919d91ccee90fa72e59b53951d4cedfc3cca14b834c9dfbe4d579",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/idealis-testsuly-kalkulator.html": {
+      "hash": "4174527f4279d577043cbd100d561a82b787388fb9051d5166b1669fea2c191e",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/testzsir-kalkulator.html": {
+      "hash": "f0086c8204de5c3675d26e13fbf303166cb03629f66d25c3856333b33b7410ef",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/makro-kalkulator.html": {
+      "hash": "e214ec94059d78baff3a8f5247bf63ea6abf19a67769ee5000193cb5a7cca6ac",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/alvasciklus-kalkulator.html": {
+      "hash": "63d75e31395413f9db15b8a7c20e7d563cdc52b22c9eace56c674265f5b92cee",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/bmr-kalkulator.html": {
+      "hash": "87b4d326713d8f326b345eabbd0a0c40b4312f1c09a93bebf25c5a64959bcdca",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/derek-csipo-kalkulator.html": {
+      "hash": "8e173e202ff45de211ad420e8cc0fd8e1deca75e3db92d1e74c0476449dff76f",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/feherje-szukseglet-kalkulator.html": {
+      "hash": "caf1bd82c4701e360c8d7263172768df8418f28380604af550c0644a284905bd",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/ar-kedvezmeny-kalkulator.html": {
+      "hash": "87cab4b6d4d73ac31afb003d253a363404d13c4271caa4d4b2470c66c64b1ab4",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/borravalo-kalkulator.html": {
+      "hash": "f20df65333b50e6180aeeae86e7bac4689a334cb5c8f3ae203f441343554923f",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/munkaido-kalkulator.html": {
+      "hash": "bfedf0152594b141e70d46d858e25f606283f008afb41b74e1681e6a80706459",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/eletkor-kalkulator.html": {
+      "hash": "747479e12234b627019bf2d84b18e9a2dcb8decbbec9846f1a9c57d8a826e23a",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/datum-kulonbseg-kalkulator.html": {
+      "hash": "6f7eadd5bc28e18db00ff219291fdb8601f7c3426ef731c228fccf41080a54b8",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/atlag-kalkulator.html": {
+      "hash": "a824859d0d9665f42b6abbc55ebdbd4aaac1531ea3d53e4c774e3aa203992fc9",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/egysegar-kalkulator.html": {
+      "hash": "b62d2483e8c44c1fa3d21fec763fd3cf830847ab87cbfad4eec8b9478f062c63",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/rezsi-megosztas-kalkulator.html": {
+      "hash": "d6dcad1cf705a1d468ee41e31535f0c23b95113de6523ad7938a5c884258d4ed",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/oraber-kalkulator.html": {
+      "hash": "d51266415556eb36017394507d0561d19d9b3cc094e237c80e9f455e0953ea65",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/arany-kalkulator.html": {
+      "hash": "79ced2d01061c28bf2844fec3498a9de42e82b876a2a68c987d3eb4e60985ead",
+      "lastmod": "2026-07-01"
+    },
+    "kalkulatorok/uzemanyag-koltseg-kalkulator.html": {
+      "hash": "3438289769a15cef64d0b3fdcfbee121ee607d41ebbedc8547da0c22dbef1a3e",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/auto-fogyasztas-kalkulator.html": {
+      "hash": "df8add84effd9b139dbca9255e7c92c2abe937db773e66e00ac13b1f6c918bce",
+      "lastmod": "2026-09-14"
+    },
+    "kalkulatorok/hatotav-kalkulator.html": {
+      "hash": "3a267ae035573f00583d5a5ce5330f7eeba418c200125a2abd62b494478e628f",
+      "lastmod": "2026-08-08"
+    },
+    "kalkulatorok/eves-auto-koltseg-kalkulator.html": {
+      "hash": "dfe23f044e49b423f721c54b46791b6f377d24f5644c5a411ea5be0987133363",
+      "lastmod": "2026-08-26"
+    },
+    "kalkulatorok/auto-ertekvesztes-kalkulator.html": {
+      "hash": "39bfceb2616dd8a3dc72ac35e459681bdbd678c49cc5a5e366a397fa8a9ce24a",
+      "lastmod": "2026-08-26"
+    },
+    "kalkulatorok/kilometerdij-kalkulator.html": {
+      "hash": "0e16dee49015c3ebbb4bf496a98a285af00bc5f23d7e2e4b24634ea4bedbb247",
+      "lastmod": "2026-08-26"
+    },
+    "kalkulatorok/co2-kibocsatas-kalkulator.html": {
+      "hash": "8542898550f69db32d6eddd2a0d5c2bd3eec9f3d883333a377878dd27aca9e06",
+      "lastmod": "2026-08-26"
+    },
+    "kalkulatorok/tankolas-kalkulator.html": {
+      "hash": "150302b81fa429716bb268e46f4d333dffd0b2c899479121d346f1fff2493eee",
+      "lastmod": "2026-07-01"
+    },
+    "kalkulatorok/gumi-meret-kalkulator.html": {
+      "hash": "18f7ea00c84149ad0a4a0074aa6df2ec52cc7c154d955dce7063a0ea5ad3a990",
+      "lastmod": "2026-08-08"
+    },
+    "kalkulatorok/autopalyadij-kalkulator.html": {
+      "hash": "53d5cca319b9c4d47f820b74b41a273cfbffa52bd920a8ec55ac22c991a2d77a",
+      "lastmod": "2026-08-08"
+    },
+    "kalkulatorok/utazasi-ido-kalkulator.html": {
+      "hash": "8fe841beb14e03b09de78220abad34badf364a687fe6c0af252c26dbdb29b834",
+      "lastmod": "2026-07-01"
+    },
+    "kalkulatorok/energia-atvalto-kalkulator.html": {
+      "hash": "05cb4bab6156d200fee8db80566670c829ef81c815ed0f32a563f03c8605d703",
+      "lastmod": "2026-07-01"
+    },
+    "kalkulatorok/nyomas-atvalto-kalkulator.html": {
+      "hash": "5a18290bba4219dde65a52180825c9c8a25e2b38ab0d25f4cd0d7ea05ce22f8c",
+      "lastmod": "2026-07-01"
+    },
+    "kalkulatorok/teljesitmeny-atvalto-kalkulator.html": {
+      "hash": "b45d68cce1409e3dc9982406e3c7dc14975b8040aa0794a7e1aea31b397c4425",
+      "lastmod": "2026-07-01"
+    },
+    "kalkulatorok/harmasszabaly-kalkulator.html": {
+      "hash": "3a15b917152c452181db7d0ec35f05e753d17b8abbbfb874f49fb70b2852a838",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/szazalekos-valtozas-kalkulator.html": {
+      "hash": "a88bf3657f6442da5759fa420a802e731350832567b2cbdd1d07309a356975e6",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/csemperagaszto-kalkulator.html": {
+      "hash": "807e6383b162aa2674a9fc7bdeaaa36e160c9eed8e08e1d13b90557ef21dead0",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/ev-toltesi-koltseg-kalkulator.html": {
+      "hash": "a6c6567a8692a9794e2e0aa68a56facbeaabaab08149289b4bc446bd7cee2cf9",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/futotempo-kalkulator.html": {
+      "hash": "6f9c60fabe3c6477e3788649a9d56f3c2bd0bb55adce23e5c15532b6a87aa558",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/mertani-atlag-kalkulator.html": {
+      "hash": "e0d4ad542719959025b9e451c9162f3a3bd919e69a7660247ee203c1a7992e03",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/datum-hozzaadas-kivonas-kalkulator.html": {
+      "hash": "0eb51dd3e078f5980c33f4a2ce60c3beed6f44bad9b46bc7aaa2ff992df37113",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/aljzatkiegyenlito-kalkulator.html": {
+      "hash": "add4b30e249872cec39c35003ed150c90bfe9d67d372d4126dba383c2e856734",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/fektav-kalkulator.html": {
+      "hash": "d4e3c9938468b6f660f1aac77edc37c16b8e73c222ed387f713c0a00850e517d",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/egyszeri-max-1rm-kalkulator.html": {
+      "hash": "33d5779810b1de68384a6a7a3c0e73854a36cfcf1f6c3bcd3a9818ea4d029caa",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/sulyozott-atlag-kalkulator.html": {
+      "hash": "9552582907fc1178c09e9dfa8ce67830508e2caf0bad6148651ca3adcc4d359f",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/megtakaritasi-cel-kalkulator.html": {
+      "hash": "f231e087fb2b7a9e96845dc6413a1ca3f71bf464cd322fdaf73986885834af92",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/kerites-oszlop-kalkulator.html": {
+      "hash": "519d4770f84acc58a93be1b7f4a4093b3fa98af3fb74206557c92c3088a06116",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/uzemanyagar-kulonbseg-kalkulator.html": {
+      "hash": "04cd7f4d658adb70b9a43c6ceadcd07e0b3e48a81fb8517555b947bfcae11af2",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/villanyfogyasztas-koltseg-kalkulator.html": {
+      "hash": "06add00b6c481940c960bacca12f8f76130cd3d4ff802312269f465134bbc800",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/arres-kalkulator.html": {
+      "hash": "3530f7a7dad253b15d1cea79c8a352a3d37916b4baf861eacb0541ded7593663",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/haszonkulcs-kalkulator.html": {
+      "hash": "7a66c0f997af982da250a226206560afbff5fb6c1cf0478db9bdb65f83effceb",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/hitel-elotorlesztes-kalkulator.html": {
+      "hash": "361a6871cf973581ac764c5813147c1d4185090d56075c0d5e445f6e53ca89df",
+      "lastmod": "2026-09-16"
+    },
+    "kalkulatorok/mulcs-kalkulator.html": {
+      "hash": "163ef983e21a618e0295c79a3113bcc325c60283e94234a26b14f8662a96f9d7",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/lepesszam-tavolsag-kalkulator.html": {
+      "hash": "5e2ea24257b5ee140214c2f6a6a7b7557ea45744e168bf974cc7d8164f681903",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/munkanap-kalkulator.html": {
+      "hash": "b615a530299aebb92f40a4f53f222879c1e1bb382b56040d1629b15d9595f6d4",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/tulora-kalkulator.html": {
+      "hash": "f2eaf6db535c10b9a4398ca4bd8cc96779ec8ddb9bd475601f8925ecb957df92",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/recept-adag-kalkulator.html": {
+      "hash": "246cb41a40b40374b4931b8b28a6ba08e290e71398780c76081f8c054ed5e9da",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/vesztartalek-kalkulator.html": {
+      "hash": "cf71d08d978a7329d5bf9b92b8146c6edb65e8443052e4b96ac2420bd8919db2",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/fedezeti-pont-kalkulator.html": {
+      "hash": "34e90e9ffc7f6287f1c8a3b5d313bba71b2fcb8bcbf287001a080e13b60e780d",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/zuzottko-kalkulator.html": {
+      "hash": "710bcd38b09d6302843b0715e7ed0de10bf26165fc78e593812aa134bc235da3",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/szegolec-kalkulator.html": {
+      "hash": "4521fba371c92f241f4c5d9af5fe4b8624ddb5e3fa878b34d25ef6f130f90c66",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/vizfogyasztas-koltseg-kalkulator.html": {
+      "hash": "5ba77b197951f66c96a4e0abd6df6abd6ca40616ef1ba37354209ac44710cf77",
+      "lastmod": "2026-08-21"
+    }
+  }
+}

@@ -55,7 +55,7 @@ const calculatorPageScriptPath = `${projectRoot}/js/calculator-page.js?v=dacda57
 const calculatorPolishScriptPath = `${projectRoot}/js/calculator-polish.js?v=96ed10d7ffb8`;
 const priorityUpgradeScriptPath = `${projectRoot}/js/priority-upgrades.js?v=c8db51dadcf2`;
 const constructionUpgradeScriptPath = `${projectRoot}/js/construction-upgrades.js?v=9286bde417b9`;
-const everydayUpgradeScriptPath = `${projectRoot}/js/everyday-upgrades.js?v=8e5ab7430d6f`;
+const everydayUpgradeScriptPath = `${projectRoot}/js/everyday-upgrades.js?v=62ecf02d2bf0`;
 const autoConverterUpgradeScriptPath = `${projectRoot}/js/auto-converter-upgrades.js?v=b7198cc0569d`;
 const financeQualityScriptPath = `${projectRoot}/js/finance-quality-upgrades.js?v=7207b5e874b7`;
 const constructionQualityScriptPath = `${projectRoot}/js/construction-quality-upgrades.js?v=7c73bd22cd31`;
