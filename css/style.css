@@ -125,3 +125,7 @@
     margin-bottom: 30px;
 }
 
+/* Progressive enhancement: calculator content must never depend on JS readiness to be visible. */
+html.kb-calculator-document main {
+    visibility: visible !important;
+}
