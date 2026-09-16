@@ -89,6 +89,20 @@ async function createClient(webSocketUrl) {
       if (!listeners.has(method)) listeners.set(method, []);
       listeners.get(method).push(listener);
     },
+    once(method, timeout = 15000) {
+      return new Promise((resolve) => {
+        const timer = setTimeout(() => {
+          listeners.set(method, (listeners.get(method) || []).filter((item) => item !== listener));
+          resolve(null);
+        }, timeout);
+        const listener = (params) => {
+          clearTimeout(timer);
+          listeners.set(method, (listeners.get(method) || []).filter((item) => item !== listener));
+          resolve(params);
+        };
+        this.on(method, listener);
+      });
+    },
     send(method, params = {}) {
       id += 1;
       socket.send(JSON.stringify({ id, method, params }));
@@ -209,9 +223,22 @@ async function main() {
         const errorsBefore = consoleErrors.length;
 
         try {
+          const loaded = client.once("Page.loadEventFired");
           await client.send("Page.navigate", { url });
-          // A referencia-audit 29/29 kalkulátoron ezt a renderablakot használja stabilan Chrome 152-n.
-          await sleep(450);
+          if (!await loaded) throw new Error("az oldal betöltése 15 másodpercen belül nem fejeződött be");
+          // The app deliberately hides calculator pages until shared enhancements are ready.
+          const calculatorReady = await evaluate(
+            client,
+            `(async () => {
+              const deadline = Date.now() + 4000;
+              while (Date.now() < deadline) {
+                if (document.documentElement.classList.contains('kb-calculator-ready')) return true;
+                await new Promise((resolve) => setTimeout(resolve, 50));
+              }
+              return false;
+            })()`
+          );
+          if (!calculatorReady) throw new Error("a kalkulátor felülete 4 másodpercen belül nem lett kész");
 
           const audit = await evaluate(
             client,
@@ -219,24 +246,29 @@ async function main() {
               const main = document.querySelector('main');
               const h1s = [...document.querySelectorAll('h1')];
               const shell = document.querySelector('.card-calculator, #kalkulator');
+              const isActuallyVisible = (el) => {
+                if (!el) return false;
+                const style = getComputedStyle(el);
+                const rect = el.getBoundingClientRect();
+                const cssVisible = style.display !== 'none' && style.visibility !== 'hidden';
+                const hasArea = rect.width > 0 && rect.height > 0;
+                const browserVisible = typeof el.checkVisibility !== 'function' || el.checkVisibility({
+                  checkOpacity: true,
+                  checkVisibilityCSS: true,
+                });
+                return cssVisible && hasArea && browserVisible;
+              };
               const controls = [...document.querySelectorAll('main input, main select, main textarea, main button')]
-                .filter((el) => !el.hidden && getComputedStyle(el).display !== 'none');
+                .filter((el) => !el.hidden && isActuallyVisible(el));
               const ids = [...document.querySelectorAll('[id]')].map((el) => el.id).filter(Boolean);
               const duplicateIds = [...new Set(ids.filter((id, index) => ids.indexOf(id) !== index))];
               const overflow = Math.max(
                 document.documentElement.scrollWidth - document.documentElement.clientWidth,
                 document.body.scrollWidth - document.body.clientWidth
               );
-              const shellStyle = shell ? getComputedStyle(shell) : null;
-              const shellRect = shell?.getBoundingClientRect();
               const shellVisible = Boolean(
                 shell &&
-                shellStyle &&
-                shellStyle.display !== 'none' &&
-                shellStyle.visibility !== 'hidden' &&
-                shellRect &&
-                shellRect.height > 0 &&
-                shellRect.width > 0
+                (isActuallyVisible(shell) || controls.some((control) => shell.contains(control)))
               );
               const badVisibleText = shell ? /(?:\bNaN\b|\bInfinity\b|\bundefined\b|\bnull\b)/.test(shell.innerText) : false;
               return {

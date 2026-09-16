@@ -446,32 +446,32 @@
     },
   };
 
-  const setupSwitcher = (buttonSelector, panelSelector, attribute) => {
+  const setupSwitcher = (buttonSelector, panelSelector, buttonAttribute, panelAttribute) => {
     const buttons = qsa(buttonSelector);
     const panels = qsa(panelSelector);
     if (!buttons.length || !panels.length) return;
 
     const activate = (value) => {
       buttons.forEach((button) => {
-        const active = button.dataset[attribute] === value;
+        const active = button.dataset[buttonAttribute] === value;
         button.classList.toggle("is-active", active);
         button.setAttribute("aria-pressed", String(active));
       });
       panels.forEach((panel) => {
-        panel.hidden = panel.dataset[attribute] !== value;
+        panel.hidden = panel.dataset[panelAttribute] !== value;
       });
     };
 
     buttons.forEach((button) => {
-      button.addEventListener("click", () => activate(button.dataset[attribute]));
+      button.addEventListener("click", () => activate(button.dataset[buttonAttribute]));
     });
 
-    activate(buttons[0].dataset[attribute]);
+    activate(buttons[0].dataset[buttonAttribute]);
   };
 
   const setupDecisionPage = () => {
     if (!document.body.classList.contains("decision-hub-page") || document.body.classList.contains("comparison-hub-page")) return;
-    setupSwitcher("[data-decision-mode]", "[data-decision-form]", "decisionMode");
+    setupSwitcher("[data-decision-mode]", "[data-decision-form]", "decisionMode", "decisionForm");
 
     qsa("form[data-decision-form]").forEach((form) => {
       form.addEventListener("submit", (event) => {
@@ -485,7 +485,7 @@
 
   const setupComparisonPage = () => {
     if (!document.body.classList.contains("comparison-hub-page")) return;
-    setupSwitcher("[data-comparison-mode]", "[data-comparison-form]", "comparisonMode");
+    setupSwitcher("[data-comparison-mode]", "[data-comparison-form]", "comparisonMode", "comparisonForm");
 
     qsa("form[data-comparison-form]").forEach((form) => {
       form.addEventListener("submit", (event) => {
