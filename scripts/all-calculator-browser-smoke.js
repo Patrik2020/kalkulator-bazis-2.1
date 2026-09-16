@@ -226,6 +226,7 @@ async function main() {
           const loaded = client.once("Page.loadEventFired");
           await client.send("Page.navigate", { url });
           if (!await loaded) throw new Error("az oldal betöltése 15 másodpercen belül nem fejeződött be");
+          // The app deliberately hides calculator pages until shared enhancements are ready.
           const calculatorReady = await evaluate(
             client,
             `(async () => {
