@@ -108,8 +108,8 @@ for (const page of pages) {
 
   if (retired) {
     retiredPages += 1;
-    if (canonicalScripts.length !== 0) {
-      errors.push(`${relative}: a kivezetett noindex oldalon nem maradhat #kb-structured-data blokk`);
+    if (canonicalScripts.length !== 1) {
+      errors.push(`${relative}: a kivezetett oldalon pontosan 1 semleges #kb-structured-data placeholder kell`);
     }
     const staleTypes = [
       ["WebPage", webPages.length],
@@ -181,5 +181,5 @@ if (errors.length) {
 }
 
 console.log(
-  `Strukturáltadat-audit OK: ${activePages} aktív kalkulátoroldal teljes sémával, ${retiredPages} kivezetett noindex oldal publikus kalkulátor-séma nélkül.`
+  `Strukturáltadat-audit OK: ${activePages} aktív kalkulátoroldal teljes sémával, ${retiredPages} kivezetett noindex oldal semleges schema placeholderrel.`
 );
