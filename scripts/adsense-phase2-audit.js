@@ -63,6 +63,14 @@ for (const slug of slugs) {
   if (category.includes(`href="./kalkulatorok/${slug}`) || category.includes(`href="kalkulatorok/${slug}`)) failures.push(`atvaltok.html: kivezetett kártya maradt: ${slug}`);
 }
 
+const redirects = read("_redirects");
+for (const slug of slugs) {
+  const extensionlessRule = `/kalkulatorok/${slug} /kalkulatorok/mertekegyseg-atvalto-kalkulator 301`;
+  const htmlRule = `/kalkulatorok/${slug}.html /kalkulatorok/mertekegyseg-atvalto-kalkulator 301`;
+  if (!redirects.includes(extensionlessRule)) failures.push(`_redirects: hiányzó 301 szabály ${slug}`);
+  if (!redirects.includes(htmlRule)) failures.push(`_redirects: hiányzó .html 301 szabály ${slug}`);
+}
+
 const cookie = read("js/cookie.js");
 for (const slug of slugs) {
   if (!cookie.includes(`"kalkulatorok/${slug}"`)) failures.push(`cookie policy: hiányzó kizárás ${slug}`);
@@ -77,4 +85,4 @@ if (failures.length) {
 console.log("AdSense Phase 2 consolidation audit OK.");
 console.log(`- kivezetett önálló konverterek: ${slugs.length}`);
 console.log("- új központ: indexelhető, sitemapben és katalógusban");
-console.log("- régi konverterek: noindex + canonical + AdSense-kizárás");
+console.log("- régi konverterek: Cloudflare 301 + noindex/canonical fallback + AdSense-kizárás");
