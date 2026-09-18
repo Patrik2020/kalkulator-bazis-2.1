@@ -50,10 +50,10 @@ function checkExactListing(file, expectedUrls, label) {
   const duplicates = [...counts].filter(([, count]) => count !== 1).map(([url, count]) => `${url} (${count}×)`);
 
   if (missing.length) errors.push(`${label}: hiányzó kalkulátorkártyák: ${missing.join(", ")}`);
-  if (extra.length) errors.push(`${label}: nem katalogizált kalkulátorkártyák: ${extra.join(", ")}`);
+  if (extra.length) errors.push(`${label}: nem katalogizált vagy kivezetett kalkulátorkártyák: ${extra.join(", ")}`);
   if (duplicates.length) errors.push(`${label}: duplikált kalkulátorkártyák: ${duplicates.join(", ")}`);
   if (listed.length !== expectedUrls.size) {
-    errors.push(`${label}: ${listed.length} kártya található, az elvárt darabszám ${expectedUrls.size}.`);
+    errors.push(`${label}: ${listed.length} kártya található, az elvárt nyilvános darabszám ${expectedUrls.size}.`);
   }
 }
 
@@ -62,6 +62,8 @@ if (!data || !Array.isArray(data.calculators)) {
 }
 
 const calculators = [...(data?.calculators || []), ...expansionCalculators];
+const publicCalculators = calculators.filter((calculator) => calculator.hidden !== true);
+const retiredCalculators = calculators.filter((calculator) => calculator.hidden === true);
 const categoryIds = new Set();
 const validGroups = new Map();
 for (const category of categories) {
@@ -113,9 +115,10 @@ for (const url of Object.keys(groupByCalculator)) {
   if (!urls.has(url)) errors.push(`A taxonómia nem létező kalkulátorra hivatkozik: ${url}`);
 }
 
-checkExactListing("kalkulatorok.html", urls, "Összes kalkulátor oldal");
+const publicUrls = new Set(publicCalculators.map((calculator) => calculator.url));
+checkExactListing("kalkulatorok.html", publicUrls, "Összes kalkulátor oldal");
 for (const category of categories) {
-  const expected = new Set(calculators
+  const expected = new Set(publicCalculators
     .filter((calculator) => calculator.category === category.id)
     .map((calculator) => calculator.url));
   checkExactListing(category.url, expected, `${category.shortTitle} kategóriaoldal`);
@@ -128,4 +131,4 @@ if (errors.length) {
 }
 
 const groupCount = categories.reduce((sum, category) => sum + category.groups.length, 0);
-console.log(`Kategória-taxonomia audit OK: ${categories.length} fő kategória, ${groupCount} témacsoport, ${calculators.length} katalogizált kalkulátor, minden URL ellenőrizve.`);
+console.log(`Kategória-taxonomia audit OK: ${categories.length} fő kategória, ${groupCount} témacsoport, ${calculators.length} registry-kalkulátor (${publicCalculators.length} nyilvános + ${retiredCalculators.length} kivezetett), minden URL ellenőrizve.`);
