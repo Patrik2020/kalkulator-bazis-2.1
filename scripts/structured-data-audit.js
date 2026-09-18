@@ -3,6 +3,7 @@ const path = require("path");
 
 const root = path.resolve(__dirname, "..");
 const calculatorDir = path.join(root, "kalkulatorok");
+const phase2Canonical = "https://kalkulatorbazis.hu/kalkulatorok/mertekegyseg-atvalto-kalkulator";
 
 function readAttribute(openTag, name) {
   const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -108,19 +109,29 @@ for (const page of pages) {
 
   if (retired) {
     retiredPages += 1;
-    if (canonicalScripts.length !== 1) {
-      errors.push(`${relative}: a kivezetett oldalon pontosan 1 semleges #kb-structured-data placeholder kell`);
+    if (canonical !== phase2Canonical) {
+      errors.push(`${relative}: a kivezetett oldal canonicalja nem a mértékegység-központra mutat`);
     }
-    const staleTypes = [
-      ["WebPage", webPages.length],
-      ["SoftwareApplication", applications.length],
-      ["BreadcrumbList", breadcrumbs.length],
-      ["FAQPage", faqPages.length],
-    ].filter(([, count]) => count > 0);
-    if (staleTypes.length) {
-      errors.push(
-        `${relative}: kivezetett oldalon régi publikus séma maradt (${staleTypes.map(([type]) => type).join(", ")})`
-      );
+    if (canonicalScripts.length !== 1) {
+      errors.push(`${relative}: a kivezetett oldalon pontosan 1 #kb-structured-data blokk kell`);
+    }
+    if (webPages.length !== 1 || webPages[0]?.url !== phase2Canonical) {
+      errors.push(`${relative}: a kivezetett oldal WebPage sémája nem a központot írja le`);
+    }
+    if (applications.length !== 1 || applications[0]?.url !== phase2Canonical) {
+      errors.push(`${relative}: a kivezetett oldal SoftwareApplication sémája nem a központot írja le`);
+    }
+    if (breadcrumbs.length !== 1) {
+      errors.push(`${relative}: a kivezetett oldalon pontosan 1 központi BreadcrumbList séma kell`);
+    } else {
+      const items = breadcrumbs[0]?.itemListElement;
+      const last = Array.isArray(items) ? items.at(-1) : null;
+      if (last?.item !== phase2Canonical) {
+        errors.push(`${relative}: a kivezetett oldal breadcrumbja nem a központtal zárul`);
+      }
+    }
+    if (faqPages.length !== 0) {
+      errors.push(`${relative}: a kivezetett oldalon nem maradhat régi FAQPage séma`);
     }
     continue;
   }
@@ -181,5 +192,5 @@ if (errors.length) {
 }
 
 console.log(
-  `Strukturáltadat-audit OK: ${activePages} aktív kalkulátoroldal teljes sémával, ${retiredPages} kivezetett noindex oldal semleges schema placeholderrel.`
+  `Strukturáltadat-audit OK: ${activePages} aktív kalkulátoroldal saját sémával, ${retiredPages} kivezetett noindex oldal központi sémavázzal.`
 );
