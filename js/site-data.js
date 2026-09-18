@@ -361,10 +361,20 @@
       popular: true,
     },
     {
+      title: "Mértékegység átváltó",
+      url: "kalkulatorok/mertekegyseg-atvalto-kalkulator.html",
+      category: "atvaltok",
+      group: "meretek",
+      description: "11 mértékegység-kategória egy közös átváltóban, a hosszúságtól a teljesítményig.",
+      keywords: "mértékegység átváltó hosszúság terület térfogat tömeg hőmérséklet idő sebesség adatméret energia nyomás teljesítmény",
+      popular: true,
+    },
+    {
       title: "Hőmérséklet átváltó",
       url: "kalkulatorok/homerseklet-atvalto-kalkulator.html",
       category: "atvaltok",
       group: "hetkoznapi-fizikai",
+      hidden: true,
       description: "Celsius, Fahrenheit és Kelvin átváltása.",
       keywords: "celsius fahrenheit kelvin hőfok",
     },
@@ -373,6 +383,7 @@
       url: "kalkulatorok/hosszusag-atvalto-kalkulator.html",
       category: "atvaltok",
       group: "meretek",
+      hidden: true,
       description: "Milliméter, centiméter, méter, kilométer, inch és mérföld.",
       keywords: "hossz méter inch mérföld",
     },
@@ -381,6 +392,7 @@
       url: "kalkulatorok/tomeg-atvalto-kalkulator.html",
       category: "atvaltok",
       group: "hetkoznapi-fizikai",
+      hidden: true,
       description: "Gramm, kilogramm, tonna, font és uncia átváltása.",
       keywords: "súly tömeg kg font uncia",
     },
@@ -389,6 +401,7 @@
       url: "kalkulatorok/terulet-atvalto-kalkulator.html",
       category: "atvaltok",
       group: "meretek",
+      hidden: true,
       description: "Négyzetméter, hektár és négyzetkilométer átváltása.",
       keywords: "terület négyzetméter hektár",
     },
@@ -397,6 +410,7 @@
       url: "kalkulatorok/terfogat-atvalto-kalkulator.html",
       category: "atvaltok",
       group: "meretek",
+      hidden: true,
       description: "Milliliter, liter, köbméter és gallon átváltása.",
       keywords: "térfogat liter gallon köbméter",
     },
@@ -405,6 +419,7 @@
       url: "kalkulatorok/ido-atvalto-kalkulator.html",
       category: "atvaltok",
       group: "hetkoznapi-fizikai",
+      hidden: true,
       description: "Másodperc, perc, óra, nap és hét átváltása.",
       keywords: "idő óra perc nap hét",
     },
@@ -413,6 +428,7 @@
       url: "kalkulatorok/sebesseg-atvalto-kalkulator.html",
       category: "atvaltok",
       group: "hetkoznapi-fizikai",
+      hidden: true,
       description: "Km/h, mph és m/s közötti átváltás.",
       keywords: "sebesség kmh mph ms",
     },
@@ -421,6 +437,7 @@
       url: "kalkulatorok/adatmeret-atvalto-kalkulator.html",
       category: "atvaltok",
       group: "muszaki-digitalis",
+      hidden: true,
       description: "KB, MB, GB és TB átváltása.",
       keywords: "adat tárhely méret byte",
     },
@@ -749,6 +766,7 @@
       url: "kalkulatorok/energia-atvalto-kalkulator.html",
       category: "atvaltok",
       group: "muszaki-digitalis",
+      hidden: true,
       description: "Válts át joule, kilojoule, kalória és kilowattóra között.",
       keywords: "energia joule kalória kwh átváltás",
     },
@@ -757,6 +775,7 @@
       url: "kalkulatorok/nyomas-atvalto-kalkulator.html",
       category: "atvaltok",
       group: "muszaki-digitalis",
+      hidden: true,
       description: "Válts át pascal, bar, atmoszféra és PSI között.",
       keywords: "nyomás bar psi pascal átváltás",
     },
@@ -765,6 +784,7 @@
       url: "kalkulatorok/teljesitmeny-atvalto-kalkulator.html",
       category: "atvaltok",
       group: "muszaki-digitalis",
+      hidden: true,
       description: "Válts át watt, kilowatt és lóerő között.",
       keywords: "teljesítmény watt kilowatt lóerő átváltás",
     },
@@ -897,13 +917,17 @@
     ],
   ];
 
+  const visibleCalculatorUrls = new Set(
+    calculators.filter((calculator) => !calculator.hidden).map((calculator) => calculator.url)
+  );
+
   calculators.forEach((calculator, index) => {
     const group = relatedGroups.find((items) => items.includes(calculator.url)) || [];
     const categoryPeers = calculators.filter(
-      (item) => item.category === calculator.category && item.url !== calculator.url
+      (item) => !item.hidden && item.category === calculator.category && item.url !== calculator.url
     );
     const ordered = [
-      ...group.filter((url) => url !== calculator.url),
+      ...group.filter((url) => url !== calculator.url && visibleCalculatorUrls.has(url)),
       ...categoryPeers
         .slice(index % Math.max(categoryPeers.length, 1))
         .concat(categoryPeers.slice(0, index % Math.max(categoryPeers.length, 1)))
