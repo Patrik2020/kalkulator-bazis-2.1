@@ -9,12 +9,23 @@ const siteDataSource = fs.readFileSync(path.join(root, "js", "site-data.js"), "u
 const sandbox = { window: {} };
 vm.runInNewContext(siteDataSource, sandbox, { filename: "site-data.js" });
 
-const registry = new Set(sandbox.window.KB_DATA.calculators.map((calculator) => calculator.url));
+const calculators = [...sandbox.window.KB_DATA.calculators];
 for (let batch = 1; batch <= 5; batch += 1) {
-  require(`../js/expansion-batch-0${batch}-data.js`).forEach((calculator) => registry.add(calculator.url));
+  calculators.push(...require(`../js/expansion-batch-0${batch}-data.js`));
 }
 
-assert.strictEqual(registry.size, 100, "A referenciaaudit pontosan 100 katalogizált kalkulátort vár.");
+const registry = new Set(calculators.map((calculator) => calculator.url));
+const publicCalculators = calculators.filter((calculator) => calculator.hidden !== true);
+const retiredCalculators = calculators.filter((calculator) => calculator.hidden === true);
+
+assert.strictEqual(
+  registry.size,
+  calculators.length,
+  "A referenciaaudit duplikált kalkulátor-URL-t talált a registryben."
+);
+assert.strictEqual(registry.size, 101, "A referenciaaudit pontosan 101 registry-kalkulátort vár Phase 2-ben.");
+assert.strictEqual(publicCalculators.length, 90, "A referenciaaudit pontosan 90 nyilvános kalkulátort vár Phase 2-ben.");
+assert.strictEqual(retiredCalculators.length, 11, "A referenciaaudit pontosan 11 kivezetett kalkulátort vár Phase 2-ben.");
 
 const seen = new Map();
 for (const [suite, pages] of Object.entries(suites)) {
@@ -41,5 +52,5 @@ assert.match(
 );
 
 console.log(
-  `Referencia-lefedettségi audit OK: ${seen.size}/100 katalogizált kalkulátor, ${Object.keys(suites).length} kötelező suite.`
+  `Referencia-lefedettségi audit OK: ${seen.size}/${registry.size} registry-kalkulátor (${publicCalculators.length} nyilvános + ${retiredCalculators.length} kivezetett), ${Object.keys(suites).length} kötelező suite.`
 );
