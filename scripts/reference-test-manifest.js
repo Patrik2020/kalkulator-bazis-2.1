@@ -84,6 +84,7 @@ const suites = {
   currency: ["kalkulatorok/deviza-atvalto-kalkulator.html"],
   expansion: expansionPages,
   "browser-reference": browserReferencePages,
+  "phase2-consolidated": ["kalkulatorok/mertekegyseg-atvalto-kalkulator.html"],
 };
 
 module.exports = { browserReferencePages, suites };
