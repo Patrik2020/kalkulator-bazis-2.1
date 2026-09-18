@@ -181,7 +181,7 @@ function renderCalculatorCatalog(data) {
     const category = categories.find((item) => item.id === categoryId);
     if (!category) throw new Error(`Ismeretlen katalóguskategória: ${categoryId}`);
 
-    const calculators = data.calculators.filter((calculator) => calculator.category === categoryId);
+    const calculators = data.calculators.filter((calculator) => calculator.category === categoryId && !calculator.hidden);
     return `    <section class="section-block" aria-labelledby="catalog-${escapeHtml(categoryId)}">\n      <h2 class="section-heading" id="catalog-${escapeHtml(categoryId)}">${escapeHtml(category.title)}</h2>\n      <div class="category-grid">\n${calculators.map((calculator) => categoryCard(calculator, category)).join("\n\n")}\n      </div>\n    </section>`;
   });
 
@@ -191,7 +191,7 @@ function renderCalculatorCatalog(data) {
 function renderGroupedCalculators(category, calculators) {
   const blocks = category.groups.map((group) => {
     const items = calculators.filter(
-      (calculator) => calculator.category === category.id && calculator.group === group.id
+      (calculator) => calculator.category === category.id && calculator.group === group.id && !calculator.hidden
     );
 
     if (!items.length) return "";
@@ -235,7 +235,7 @@ function updateHomePage(data) {
 
   html = html.replace(
     /<p class="home-hero-lead">[\s\S]*?<\/p>/i,
-    `<p class="home-hero-lead">Több mint ${Math.floor(data.calculators.length / 10) * 10} magyar nyelvű kalkulátor mindennapi, pénzügyi, otthoni, autós, egészség- és mértékegység-számításokhoz, érthető magyarázatokkal.</p>`
+    `<p class="home-hero-lead">Magyar nyelvű kalkulátorok és döntési segédletek mindennapi, pénzügyi, otthoni, autós, egészség- és mértékegység-számításokhoz, érthető módszertannal és forrásokkal.</p>`
   );
 
   fs.writeFileSync(filePath, html, "utf8");

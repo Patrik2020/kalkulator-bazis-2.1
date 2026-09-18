@@ -50,17 +50,26 @@ jobs:
       - name: Apply current-content moat
         run: node scripts/apply-adsense-current-moat-v2.js
 
+      - name: Apply Phase 2 converter consolidation
+        run: node scripts/apply-adsense-phase2-consolidation.js
+
       - name: Apply AdSense runtime policy
         run: node scripts/apply-adsense-eligibility-v2.js
 
       - name: Apply audit policy normalization
         run: node scripts/apply-adsense-audit-policy-v2.js
 
+      - name: Materialize Phase 2 public catalog
+        run: npm run taxonomy:apply
+
       - name: Generate content-aware sitemap preview
         run: npm run sitemap
 
       - name: Validate runtime policy
         run: node scripts/adsense-runtime-policy-audit.js
+
+      - name: Validate Phase 2 consolidation
+        run: node scripts/adsense-phase2-audit.js
 
       - name: Validate sitemap state
         run: node scripts/sitemap-lastmod-v2-audit.js

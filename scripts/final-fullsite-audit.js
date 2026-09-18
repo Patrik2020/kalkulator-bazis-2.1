@@ -44,11 +44,23 @@ for (let batch = 1; batch <= 5; batch += 1) {
   registryEntries.push(...require(`../js/expansion-batch-0${batch}-data.js`));
 }
 
-assert.strictEqual(registryEntries.length, 100, `Pontosan 100 katalogizált kalkulátor-bejegyzés szükséges, jelenleg ${registryEntries.length}.`);
+const expectedRegistryCount = 101;
+assert.strictEqual(
+  registryEntries.length,
+  expectedRegistryCount,
+  `101 forrás-registry bejegyzés szükséges a Phase 2 átmenetben, jelenleg ${registryEntries.length}.`
+);
 
 const registryUrls = registryEntries.map((entry) => entry.url);
 const uniqueRegistryUrls = new Set(registryUrls);
-assert.strictEqual(uniqueRegistryUrls.size, 100, "Duplikált kalkulátor URL van a registryben.");
+assert.strictEqual(uniqueRegistryUrls.size, registryEntries.length, "Duplikált kalkulátor URL van a registryben.");
+
+const retiredEntries = registryEntries.filter((entry) => entry.hidden === true);
+const publicRegistryEntries = registryEntries.filter((entry) => entry.hidden !== true);
+const retiredRegistryUrls = new Set(retiredEntries.map((entry) => entry.url));
+const publicRegistryUrls = publicRegistryEntries.map((entry) => entry.url);
+assert.strictEqual(retiredEntries.length, 11, `Pontosan 11 kivezetett Phase 2 konverter szükséges, jelenleg ${retiredEntries.length}.`);
+assert.strictEqual(publicRegistryEntries.length, 90, `Pontosan 90 nyilvános registry-kalkulátor szükséges Batch 1 után, jelenleg ${publicRegistryEntries.length}.`);
 
 const knownCategories = new Set(siteData.categories.map((category) => category.id));
 for (const entry of registryEntries) {
@@ -67,15 +79,19 @@ const calculatorHtml = fs
 
 assert.strictEqual(
   calculatorHtml.length,
-  101,
-  `100 katalogizált kalkulátor + 1 standalone tudományos számológép szükséges, jelenleg ${calculatorHtml.length} HTML-fájl van.`
+  registryEntries.length + supplementalCalculatorPages.length,
+  `${registryEntries.length} registry-oldal + ${supplementalCalculatorPages.length} standalone oldal szükséges, jelenleg ${calculatorHtml.length} HTML-fájl van.`
 );
 const inventoryDiff = diff(registryUrls, calculatorHtml);
 assert.deepStrictEqual(inventoryDiff.missing, [], `Registryből hiányzó HTML: ${inventoryDiff.missing.join(", ")}`);
 assertSameSet("Ismert standalone kalkulátoroldalak", supplementalCalculatorPages, inventoryDiff.extra);
 
 const manifestPages = Object.values(suites).flat();
-assert.strictEqual(new Set(manifestPages).size, 100, "A tesztmanifest nem pontosan 100 egyedi katalogizált kalkulátort fed le.");
+assert.strictEqual(
+  new Set(manifestPages).size,
+  registryEntries.length,
+  `A tesztmanifestnek mind a ${registryEntries.length} forrás-registry kalkulátort le kell fednie.`
+);
 assertSameSet("Registry ↔ tesztmanifest", registryUrls, manifestPages);
 
 const sitemapXml = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
@@ -87,18 +103,25 @@ const sitemapCalculatorUrls = sitemapUrls.filter((value) => {
     return false;
   }
 });
-const expectedPublicUrls = [...registryUrls, ...supplementalCalculatorPages].map((sourceFile) => publicUrlForSource(sourceFile));
+const expectedPublicUrls = [...publicRegistryUrls, ...supplementalCalculatorPages].map((sourceFile) => publicUrlForSource(sourceFile));
 assert.strictEqual(new Set(sitemapCalculatorUrls).size, sitemapCalculatorUrls.length, "Duplikált kalkulátor URL van a sitemapban.");
-assertSameSet("101 kalkulátoroldal ↔ sitemap", expectedPublicUrls, sitemapCalculatorUrls);
+assertSameSet("Nyilvános kalkulátoroldalak ↔ sitemap", expectedPublicUrls, sitemapCalculatorUrls);
 
+const phase2HubCanonical = publicUrlForSource("kalkulatorok/mertekegyseg-atvalto-kalkulator.html");
 for (const sourceFile of calculatorHtml) {
   const absolute = path.join(root, sourceFile);
   const html = fs.readFileSync(absolute, "utf8");
-  const expectedCanonical = publicUrlForSource(sourceFile);
+  const expectedCanonical = retiredRegistryUrls.has(sourceFile)
+    ? phase2HubCanonical
+    : publicUrlForSource(sourceFile);
   const canonicalMatches = [...html.matchAll(/<link\b[^>]*\brel\s*=\s*(["'])canonical\1[^>]*>/gi)];
   assert.strictEqual(canonicalMatches.length, 1, `${sourceFile}: pontosan egy canonical link szükséges.`);
   const href = canonicalMatches[0][0].match(/\bhref\s*=\s*(["'])(.*?)\1/i)?.[2];
   assert.strictEqual(href, expectedCanonical, `${sourceFile}: canonical eltérés (${href || "hiányzik"} != ${expectedCanonical}).`);
+
+  if (retiredRegistryUrls.has(sourceFile)) {
+    assert.match(html, /<meta\b[^>]*\bname=["']robots["'][^>]*\bcontent=["'][^"']*noindex/i, `${sourceFile}: a kivezetett oldalnak noindexnek kell lennie.`);
+  }
 }
 
 const packageJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
@@ -118,6 +141,4 @@ assert.match(qualityWorkflow, /node scripts\/final-fullsite-audit\.js/, "A final
 const materializeWorkflow = fs.readFileSync(path.join(root, ".github", "workflows", "materialize-static-first.yml"), "utf8");
 assert.match(materializeWorkflow, /node scripts\/final-fullsite-audit\.js/, "A final full-site gate nincs bekötve a Materialize workflow-ba.");
 
-console.log(
-  "Final full-site audit OK: 100 katalogizált kalkulátor + 1 standalone tudományos számológép, teljes registry/HTML/teszt/sitemap/canonical konzisztenciával."
-);
+console.log(`Final full-site audit OK: ${registryEntries.length} forrás-registry kalkulátor, ebből ${publicRegistryEntries.length} nyilvános + ${retiredEntries.length} kivezetett, valamint ${supplementalCalculatorPages.length} standalone oldal; registry/HTML/teszt/sitemap/canonical konzisztens.`);

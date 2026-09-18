@@ -387,6 +387,15 @@ const cases = [
     set('inputValue', ''); const invalid = text('#result') === '–' && noInvalidNumber();
     return { valid, boundary, invalid, actual };
   `),
+  test("kalkulatorok/mertekegyseg-atvalto-kalkulator.html", "Mértékegység átváltó központ", `
+    set('measurementType', 'length'); set('fromUnit', 'km'); set('toUnit', 'm'); set('inputValue', 1);
+    const actual = afterEquals('#result'); const valid = actual === 1000;
+    set('measurementType', 'temperature'); set('fromUnit', 'c'); set('toUnit', 'f'); set('inputValue', 0);
+    const boundary = afterEquals('#result') === 32;
+    set('fromUnit', 'c'); set('inputValue', -274);
+    const invalid = /abszolút nulla/.test(text('#result')) && noInvalidNumber();
+    return { valid, boundary, invalid, actual };
+  `),
 ];
 
 async function main() {

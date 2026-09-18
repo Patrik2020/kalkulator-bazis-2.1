@@ -73,6 +73,7 @@ const browserReferencePages = [
   "kalkulatorok/terfogat-atvalto-kalkulator.html",
   "kalkulatorok/terulet-atvalto-kalkulator.html",
   "kalkulatorok/tomeg-atvalto-kalkulator.html",
+  "kalkulatorok/mertekegyseg-atvalto-kalkulator.html",
 ];
 
 const expansionPages = [1, 2, 3, 4, 5].flatMap((batch) =>

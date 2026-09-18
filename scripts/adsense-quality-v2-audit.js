@@ -89,10 +89,23 @@ const adEligibleExact = new Set([
 ]);
 const adEligiblePrefixes = ["kalkulatorok/", "aktualis/", "landing-pages/elethelyzetek/"];
 const adExcludedPrefixes = ["landing-pages/wise/"];
+const phase2RetiredCalculators = new Set([
+  "kalkulatorok/hosszusag-atvalto-kalkulator.html",
+  "kalkulatorok/terulet-atvalto-kalkulator.html",
+  "kalkulatorok/terfogat-atvalto-kalkulator.html",
+  "kalkulatorok/tomeg-atvalto-kalkulator.html",
+  "kalkulatorok/homerseklet-atvalto-kalkulator.html",
+  "kalkulatorok/ido-atvalto-kalkulator.html",
+  "kalkulatorok/sebesseg-atvalto-kalkulator.html",
+  "kalkulatorok/adatmeret-atvalto-kalkulator.html",
+  "kalkulatorok/energia-atvalto-kalkulator.html",
+  "kalkulatorok/nyomas-atvalto-kalkulator.html",
+  "kalkulatorok/teljesitmeny-atvalto-kalkulator.html"
+]);
 
 const isRedirect = (html) => /<meta\b(?=[^>]*http-equiv=["']refresh["'])/i.test(html);
 const isAdEligible = (name, html) => {
-  if (informationalExact.has(name) || isRedirect(html)) return false;
+  if (informationalExact.has(name) || phase2RetiredCalculators.has(name) || isRedirect(html)) return false;
   if (adExcludedPrefixes.some((prefix) => name.startsWith(prefix))) return false;
   return adEligibleExact.has(name) || adEligiblePrefixes.some((prefix) => name.startsWith(prefix));
 };
@@ -227,6 +240,7 @@ const descriptionMap = new Map();
 const blockMap = new Map();
 const benignBlockMap = new Map();
 for (const record of records) {
+  if (record.isNoindex || record.redirect) continue;
   if (record.title) {
     const key = normalize(record.title);
     if (!titleMap.has(key)) titleMap.set(key, []);
@@ -258,7 +272,7 @@ const benignRepeatedBlocks = [...benignBlockMap.values()]
   .sort((a, b) => b.pages.length - a.pages.length);
 
 const repeatedBlockIndex = new Map(repeatedBlocks.map((entry) => [normalize(entry.text), entry.pages.length]));
-for (const record of records.filter((item) => item.type === "kalkulátor")) {
+for (const record of records.filter((item) => item.type === "kalkulátor" && !item.isNoindex && !item.redirect)) {
   const duplicatedChars = record.contentBlocks
     .filter((block) => (repeatedBlockIndex.get(block.normalized) || 0) >= 4)
     .reduce((sum, block) => sum + block.text.length, 0);
@@ -266,7 +280,7 @@ for (const record of records.filter((item) => item.type === "kalkulátor")) {
   record.boilerplateRatio = ownContentChars ? duplicatedChars / ownContentChars : 0;
 }
 
-const calculatorRecords = records.filter((record) => record.type === "kalkulátor" && record.wordCount >= 80);
+const calculatorRecords = records.filter((record) => record.type === "kalkulátor" && !record.isNoindex && !record.redirect && record.wordCount >= 80);
 const similarPairs = [];
 for (let i = 0; i < calculatorRecords.length; i += 1) {
   for (let j = i + 1; j < calculatorRecords.length; j += 1) {
@@ -277,9 +291,9 @@ for (let i = 0; i < calculatorRecords.length; i += 1) {
 similarPairs.sort((a, b) => b.score - a.score);
 
 const ymylFailures = records.filter(
-  (record) => record.ymyl && record.type === "kalkulátor" && (!record.who || !record.how || !record.why || !record.sourceSignal)
+  (record) => record.ymyl && record.type === "kalkulátor" && !record.isNoindex && !record.redirect && (!record.who || !record.how || !record.why || !record.sourceSignal)
 );
-const genericPages = records.filter((record) => record.genericHits.length > 0);
+const genericPages = records.filter((record) => !record.isNoindex && !record.redirect && record.genericHits.length > 0);
 const highBoilerplatePages = calculatorRecords.filter((record) => (record.boilerplateRatio || 0) >= 0.18);
 const dangerousSimilarityPairs = similarPairs.filter((pair) => pair.score >= 0.68);
 const directAdSensePages = records.filter((record) => record.directAdSense);

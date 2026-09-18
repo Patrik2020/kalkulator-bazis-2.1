@@ -420,6 +420,7 @@
       }
 
       visibleMatches = data.calculators
+        .filter((calculator) => !calculator.hidden)
         .map((calculator) => ({
           calculator,
           score: scoreCalculator(calculator, query, queryTokens),
@@ -521,7 +522,7 @@
 
     if (popularGrid && !popularGrid.querySelector(":scope > a")) {
       popularGrid.innerHTML = data.calculators
-        .filter((calculator) => calculator.popular)
+        .filter((calculator) => calculator.popular && !calculator.hidden)
         .map((calculator) => calculatorCard(calculator, basePath))
         .join("");
     }
@@ -550,7 +551,7 @@
 
     if (grid && !grid.querySelector(":scope > .calculator-card")) {
       grid.innerHTML = data.calculators
-        .filter((calculator) => calculator.category === categoryId)
+        .filter((calculator) => calculator.category === categoryId && !calculator.hidden)
         .map((calculator) => calculatorCard(calculator, basePath, 2))
         .join("");
     }
@@ -625,7 +626,7 @@
     const basePath = getBasePath();
     const related = (current.related || [])
       .map((url) => data.calculators.find((calculator) => calculator.url === url))
-      .filter(Boolean)
+      .filter((calculator) => calculator && !calculator.hidden)
       .slice(0, 3);
 
     if (!related.length) return;
@@ -868,7 +869,7 @@
             name: category.title,
             description: category.description,
             itemListElement: data.calculators
-              .filter((calculator) => calculator.category === category.id)
+              .filter((calculator) => calculator.category === category.id && !calculator.hidden)
               .map((calculator, index) => ({
                 "@type": "ListItem",
                 position: index + 1,
@@ -928,7 +929,7 @@
             "@id": `${siteOrigin}/#featured-calculators`,
             name: "Kiemelt kalkulátorok",
             itemListElement: data.calculators
-              .filter((calculator) => calculator.popular)
+              .filter((calculator) => calculator.popular && !calculator.hidden)
               .map((calculator, index) => ({
                 "@type": "ListItem",
                 position: index + 1,

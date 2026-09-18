@@ -93,3 +93,9 @@ Kapu: minden meglévő minőségi teszt zöld + AdSense v2 kritikus hibák szám
 9. ads.txt / ownership / crawl technikai kapcsolat megőrzése → 1. és 6. kör
 10. sitemap lastmod higiénia → 1. és 6. kör
 11. CMP külön kezelése → 1. és 5. kör
+
+## Phase 2 – Batch 1 checkpoint (2026-09-18)
+
+A commodity átváltók konszolidációja elkészült: 11 külön mértékegység-oldal egy közös átváltó központba került, a régi URL-ek 301/noindex/canonical fallback állapotban maradnak, a publikus registry 90 aktív + 11 kivezetett oldalt különböztet meg, és az új központ külön numerikus browser- és Quality 3.0-lefedettséget kapott.
+
+A static-first pipeline teljes Phase 2 állapoton sikeresen lefutott: a 126 oldalas materializálás, stabilizálás, idempotencia, crawler-audit, teljes quality, AdSense runtime policy, Phase 2 audit, sitemap és inventory gate mind zöld lett. Az idempotencia utolsó ingadozását a header almenü-linkjeinek stabil alap-osztálya szüntette meg. Ez a végső emberi checkpoint a már materializált állapot teljes CI-ellenőrzését indítja el; új generált változásnak már nem kell keletkeznie.
