@@ -25,6 +25,13 @@ const notice = `<!-- KB_PHASE2:converter-retired:START -->
 </section>
 <!-- KB_PHASE2:converter-retired:END -->`;
 
+const reliabilityNote = `<p class="reliability-note">
+      <strong>Megbízhatósági megjegyzés:</strong>
+      Az átváltó rögzített, dokumentált egységkapcsolatokkal számol. A kijelzett pontosság
+      nem növeli a bemeneti mérés pontosságát; műszaki felhasználásnál az eredeti
+      specifikációt, tűrést és gyártói adatlapot is ellenőrizd.
+    </p>`;
+
 const transform = (html) => {
   if (/<meta\s+name=["']robots["']/i.test(html)) {
     html = html.replace(
@@ -52,6 +59,23 @@ const transform = (html) => {
   return html;
 };
 
+const transformHub = (html) => {
+  const notes = html.match(/class=["'][^"']*\breliability-note\b/gi) || [];
+  if (notes.length > 1) {
+    throw new Error(`Az új mértékegység-központban ${notes.length} reliability-note található; pontosan 1 szükséges.`);
+  }
+  if (notes.length === 1) return html;
+
+  const calculationNote = html.match(
+    /<p\s+class=["'][^"']*\bcalculation-note\b[^"']*["'][^>]*>[\s\S]*?<\/p>/i
+  );
+  if (!calculationNote) {
+    throw new Error("Hiányzó calculation-note blokk az új mértékegység-központban.");
+  }
+
+  return html.replace(calculationNote[0], `${calculationNote[0]}\n\n    ${reliabilityNote}`);
+};
+
 let changed = 0;
 for (const slug of slugs) {
   const file = path.join(root, "kalkulatorok", `${slug}.html`);
@@ -63,4 +87,12 @@ for (const slug of slugs) {
   }
 }
 
-console.log(`Phase 2 converter retirement: ${changed}/${slugs.length} oldal frissítve.`);
+const hubFile = path.join(root, "kalkulatorok", "mertekegyseg-atvalto-kalkulator.html");
+const hubBefore = fs.readFileSync(hubFile, "utf8");
+const hubAfter = transformHub(hubBefore);
+const hubChanged = hubAfter !== hubBefore;
+if (hubChanged) fs.writeFileSync(hubFile, hubAfter, "utf8");
+
+console.log(
+  `Phase 2 converter retirement: ${changed}/${slugs.length} oldal frissítve; központ reliability-note: ${hubChanged ? "hozzáadva" : "rendben"}.`
+);
