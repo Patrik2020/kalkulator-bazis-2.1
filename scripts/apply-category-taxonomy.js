@@ -233,10 +233,9 @@ function updateHomePage(data) {
   const grid = `<div class="category-grid home-category-grid" data-render="home-categories">\n${cards}\n        </div>`;
   html = replaceElement(html, { attr: "data-render", value: "home-categories" }, grid);
 
-  const visibleCalculatorCount = data.calculators.filter((calculator) => !calculator.hidden).length;
   html = html.replace(
     /<p class="home-hero-lead">[\s\S]*?<\/p>/i,
-    `<p class="home-hero-lead">${visibleCalculatorCount} nyilvános magyar nyelvű kalkulátor mindennapi, pénzügyi, otthoni, autós, egészség- és mértékegység-számításokhoz, érthető magyarázatokkal.</p>`
+    `<p class="home-hero-lead">Magyar nyelvű kalkulátorok és döntési segédletek mindennapi, pénzügyi, otthoni, autós, egészség- és mértékegység-számításokhoz, érthető módszertannal és forrásokkal.</p>`
   );
 
   fs.writeFileSync(filePath, html, "utf8");
