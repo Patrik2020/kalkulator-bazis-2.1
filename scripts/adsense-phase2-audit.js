@@ -28,7 +28,7 @@ if (!siteData.includes('url: "kalkulatorok/mertekegyseg-atvalto-kalkulator.html"
 for (const slug of slugs) {
   const rel = `kalkulatorok/${slug}.html`;
   const html = read(rel);
-  if (!/<meta\\s+name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html) &&
+  if (!/<meta\s+name=["']robots["'][^>]*content=["'][^"']*noindex/i.test(html) &&
       !/<meta[^>]*content=["'][^"']*noindex[^"']*["'][^>]*name=["']robots["']/i.test(html)) {
     failures.push(`${rel}: hiányzik a noindex`);
   }
@@ -42,10 +42,10 @@ for (const slug of slugs) {
   const idx = siteData.indexOf(marker);
   if (idx < 0) failures.push(`${rel}: hiányzik a site-data rekord`);
   else {
-    const start = siteData.lastIndexOf("\\n    {", idx);
-    const end = siteData.indexOf("\\n    },", idx);
+    const start = siteData.lastIndexOf("\n    {", idx);
+    const end = siteData.indexOf("\n    },", idx);
     const block = siteData.slice(start, end);
-    if (!/hidden:\\s*true/.test(block)) failures.push(`${rel}: nincs hidden=true`);
+    if (!/hidden:\s*true/.test(block)) failures.push(`${rel}: nincs hidden=true`);
   }
 }
 
