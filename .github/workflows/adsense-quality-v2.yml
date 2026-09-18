@@ -50,6 +50,9 @@ jobs:
       - name: Apply current-content moat
         run: node scripts/apply-adsense-current-moat-v2.js
 
+      - name: Apply Phase 2 converter consolidation
+        run: node scripts/apply-adsense-phase2-consolidation.js
+
       - name: Apply AdSense runtime policy
         run: node scripts/apply-adsense-eligibility-v2.js
 
