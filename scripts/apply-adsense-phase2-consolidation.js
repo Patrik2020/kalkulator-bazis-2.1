@@ -63,16 +63,50 @@ const hubFaq = {
   ],
 };
 
-function neutralizeRetiredStructuredData(html) {
+const retiredHubSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${canonical}#webpage`,
+      url: canonical,
+      name: "Mértékegység átváltó – 11 kategória egy helyen",
+      description: "Mértékegység átváltó 11 kategóriával egy helyen.",
+      inLanguage: "hu-HU",
+      isPartOf: { "@id": "https://kalkulatorbazis.hu/#website" },
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${canonical}#calculator`,
+      name: "Mértékegység átváltó",
+      applicationCategory: "CalculatorApplication",
+      operatingSystem: "Web",
+      url: canonical,
+      description: "11 mértékegység-kategória átváltása egy közös eszközben.",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "HUF" },
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${canonical}#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Főoldal", item: "https://kalkulatorbazis.hu/" },
+        { "@type": "ListItem", position: 2, name: "Átváltók", item: "https://kalkulatorbazis.hu/atvaltok" },
+        { "@type": "ListItem", position: 3, name: "Mértékegység átváltó", item: canonical },
+      ],
+    },
+  ],
+};
+
+function setRetiredHubStructuredData(html) {
   const blockPattern = /<!--\s*KB_STATIC:structured-data:START\s*-->[\s\S]*?<!--\s*KB_STATIC:structured-data:END\s*-->/i;
-  const neutralBlock = `<!-- KB_STATIC:structured-data:START -->
-<script id="kb-structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[]}</script>
+  const targetBlock = `<!-- KB_STATIC:structured-data:START -->
+<script id="kb-structured-data" type="application/ld+json">${JSON.stringify(retiredHubSchema)}</script>
 <!-- KB_STATIC:structured-data:END -->`;
 
   if (!blockPattern.test(html)) {
     throw new Error("Hiányzó strukturáltadat-konténer a kivezetett átváltó oldalon.");
   }
-  return html.replace(blockPattern, neutralBlock);
+  return html.replace(blockPattern, targetBlock);
 }
 
 function ensureHubFaqSchema(html) {
@@ -131,11 +165,10 @@ const transform = (html) => {
     html = html.replace(hero[0], `${hero[0]}\n${notice}`);
   }
 
-  // A buildlánc a #kb-structured-data konténert szerkezeti bemenetként
-  // használja, ezért a blokkot megtartjuk. A kivezetett/noindex oldalon
-  // viszont az @graph üres: nem marad régi WebPage, SoftwareApplication,
-  // BreadcrumbList vagy FAQPage publikus entitás.
-  html = neutralizeRetiredStructuredData(html);
+  // A buildlánc WebPage node-ot vár a #kb-structured-data blokkban. A
+  // kivezetett/noindex oldal ezért a célközpont minimális sémavázát tartja
+  // meg; a régi kalkulátor- és GYIK-entitások nem maradnak benne.
+  html = setRetiredHubStructuredData(html);
 
   return html;
 };
