@@ -116,6 +116,7 @@ jobs:
           node scripts/apply-adsense-ymyl-trust-v2.js
           node scripts/apply-adsense-source-notes-v2.js
           node scripts/apply-adsense-current-moat-v2.js
+          node scripts/apply-adsense-phase2-consolidation.js
           node scripts/normalize-retention-static.js
           node scripts/cache-bust-assets.js
           npm run sitemap
@@ -131,6 +132,7 @@ jobs:
           node scripts/apply-adsense-ymyl-trust-v2.js
           node scripts/apply-adsense-source-notes-v2.js
           node scripts/apply-adsense-current-moat-v2.js
+          node scripts/apply-adsense-phase2-consolidation.js
           node scripts/normalize-retention-static.js
           node scripts/cache-bust-assets.js
           npm run sitemap
@@ -147,6 +149,9 @@ jobs:
 
       - name: Validate AdSense runtime policy
         run: node scripts/adsense-runtime-policy-audit.js
+
+      - name: Validate Phase 2 consolidation
+        run: node scripts/adsense-phase2-audit.js
 
       - name: Validate content-aware sitemap lastmod
         run: node scripts/sitemap-lastmod-v2-audit.js
