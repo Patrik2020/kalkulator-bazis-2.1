@@ -63,11 +63,16 @@ const hubFaq = {
   ],
 };
 
-function removeRetiredStructuredData(html) {
-  return html.replace(
-    /<!--\s*KB_STATIC:structured-data:START\s*-->[\s\S]*?<!--\s*KB_STATIC:structured-data:END\s*-->\s*/gi,
-    ""
-  );
+function neutralizeRetiredStructuredData(html) {
+  const blockPattern = /<!--\s*KB_STATIC:structured-data:START\s*-->[\s\S]*?<!--\s*KB_STATIC:structured-data:END\s*-->/i;
+  const neutralBlock = `<!-- KB_STATIC:structured-data:START -->
+<script id="kb-structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[]}</script>
+<!-- KB_STATIC:structured-data:END -->`;
+
+  if (!blockPattern.test(html)) {
+    throw new Error("Hiányzó strukturáltadat-konténer a kivezetett átváltó oldalon.");
+  }
+  return html.replace(blockPattern, neutralBlock);
 }
 
 function ensureHubFaqSchema(html) {
@@ -126,11 +131,11 @@ const transform = (html) => {
     html = html.replace(hero[0], `${hero[0]}\n${notice}`);
   }
 
-  // A kivezetett, noindex + 301 fallback oldalak már nem önálló publikus
-  // kalkulátor-entitások. A régi WebPage/SoftwareApplication/FAQ JSON-LD
-  // eltávolítása megakadályozza, hogy a központ canonicaljára 11 eltérő
-  // kalkulátor-séma mutasson.
-  html = removeRetiredStructuredData(html);
+  // A buildlánc a #kb-structured-data konténert szerkezeti bemenetként
+  // használja, ezért a blokkot megtartjuk. A kivezetett/noindex oldalon
+  // viszont az @graph üres: nem marad régi WebPage, SoftwareApplication,
+  // BreadcrumbList vagy FAQPage publikus entitás.
+  html = neutralizeRetiredStructuredData(html);
 
   return html;
 };
