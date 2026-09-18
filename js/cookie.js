@@ -26,6 +26,17 @@
     "404", "kapcsolat", "impresszum", "adatvedelem", "cookie",
     "jogi-nyilatkozat", "felhasznalasi-feltetelek", "rolunk",
     "atlathatosag-es-minoseg", "miert-bizhatsz-bennunk", "szamitasi-modszertan",
+    "kalkulatorok/hosszusag-atvalto-kalkulator",
+    "kalkulatorok/terulet-atvalto-kalkulator",
+    "kalkulatorok/terfogat-atvalto-kalkulator",
+    "kalkulatorok/tomeg-atvalto-kalkulator",
+    "kalkulatorok/homerseklet-atvalto-kalkulator",
+    "kalkulatorok/ido-atvalto-kalkulator",
+    "kalkulatorok/sebesseg-atvalto-kalkulator",
+    "kalkulatorok/adatmeret-atvalto-kalkulator",
+    "kalkulatorok/energia-atvalto-kalkulator",
+    "kalkulatorok/nyomas-atvalto-kalkulator",
+    "kalkulatorok/teljesitmeny-atvalto-kalkulator",
   ]);
   const adsenseExcludedPrefixes = ["landing-pages/wise/"];
   const normalizedPublisherPath = () =>
