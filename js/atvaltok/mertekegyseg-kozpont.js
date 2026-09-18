@@ -181,16 +181,22 @@
   };
 
   const calculate = () => {
-    const input = Number(els.value.value);
+    const rawInput = els.value.value.trim();
+    const input = Number(rawInput);
     const group = groups[els.type.value];
-    if (!Number.isFinite(input)) {
+    if (!rawInput || !Number.isFinite(input)) {
       els.result.textContent = "Adj meg egy számot.";
       return;
     }
 
     let output;
     if (els.type.value === "temperature") {
-      output = fromKelvin(toKelvin(input, els.from.value), els.to.value);
+      const kelvin = toKelvin(input, els.from.value);
+      if (kelvin < 0) {
+        els.result.textContent = "A hőmérséklet nem lehet az abszolút nulla alatt.";
+        return;
+      }
+      output = fromKelvin(kelvin, els.to.value);
     } else {
       const fromFactor = group.units[els.from.value][1];
       const toFactor = group.units[els.to.value][1];
