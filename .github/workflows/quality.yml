@@ -67,7 +67,7 @@ jobs:
       - name: Verify Chrome is available
         run: google-chrome --version
 
-      - name: Run 29 missing calculator reference cases
+      - name: Run 30 calculator reference cases
         run: |
           if npm run test:reference:browser; then
             exit 0
