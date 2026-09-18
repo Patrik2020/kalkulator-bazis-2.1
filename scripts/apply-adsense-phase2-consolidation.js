@@ -32,6 +32,71 @@ const reliabilityNote = `<p class="reliability-note">
       specifikációt, tűrést és gyártói adatlapot is ellenőrizd.
     </p>`;
 
+const hubFaq = {
+  "@type": "FAQPage",
+  "@id": `${canonical}#gyik`,
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Miért jobb egy közös átváltó, mint sok külön oldal?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Ugyanazt a feladatot egy felületen végzi el, kevesebb ismétlődő tartalommal és gyorsabb kategóriaváltással.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Az MB és a MiB ugyanaz?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Nem. Az MB decimális, 1 MB = 1 000 000 byte. Az MiB bináris, 1 MiB = 1 048 576 byte.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Miért nem egyszerű szorzás a hőmérséklet?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Mert a Celsius, Fahrenheit és Kelvin skálák nullpontja eltér, ezért eltolást is alkalmazni kell.",
+      },
+    },
+  ],
+};
+
+function removeRetiredStructuredData(html) {
+  return html.replace(
+    /<!--\s*KB_STATIC:structured-data:START\s*-->[\s\S]*?<!--\s*KB_STATIC:structured-data:END\s*-->\s*/gi,
+    ""
+  );
+}
+
+function ensureHubFaqSchema(html) {
+  const scriptPattern = /<script\b([^>]*)\bid=(["'])kb-structured-data\2([^>]*)>([\s\S]*?)<\/script>/i;
+  const match = html.match(scriptPattern);
+  if (!match) throw new Error("Hiányzó #kb-structured-data blokk az új mértékegység-központban.");
+
+  let data;
+  try {
+    data = JSON.parse(match[4]);
+  } catch (error) {
+    throw new Error(`Hibás JSON-LD az új mértékegység-központban: ${error.message}`);
+  }
+
+  if (!Array.isArray(data["@graph"])) {
+    throw new Error("Az új mértékegység-központ JSON-LD blokkjából hiányzik az @graph tömb.");
+  }
+
+  const graph = data["@graph"].filter((node) => {
+    const types = Array.isArray(node?.["@type"]) ? node["@type"] : [node?.["@type"]];
+    return !types.includes("FAQPage");
+  });
+  graph.push(hubFaq);
+  data["@graph"] = graph;
+
+  const replacement = `<script${match[1]}id="kb-structured-data"${match[3]}>${JSON.stringify(data)}</script>`;
+  return html.replace(scriptPattern, replacement);
+}
+
 const transform = (html) => {
   if (/<meta\s+name=["']robots["']/i.test(html)) {
     html = html.replace(
@@ -50,11 +115,22 @@ const transform = (html) => {
     `<link rel="canonical" href="${canonical}" />`
   );
 
+  html = html.replace(
+    /<meta\s+property=["']og:url["'][^>]*>/i,
+    `<meta property="og:url" content="${canonical}" />`
+  );
+
   if (!html.includes("KB_PHASE2:converter-retired:START")) {
     const hero = html.match(/<section\s+class=["'][^"']*hero[^"']*["'][^>]*>[\s\S]*?<\/section>/i);
     if (!hero) throw new Error("Hiányzó hero blokk a kivezetett átváltó oldalon.");
     html = html.replace(hero[0], `${hero[0]}\n${notice}`);
   }
+
+  // A kivezetett, noindex + 301 fallback oldalak már nem önálló publikus
+  // kalkulátor-entitások. A régi WebPage/SoftwareApplication/FAQ JSON-LD
+  // eltávolítása megakadályozza, hogy a központ canonicaljára 11 eltérő
+  // kalkulátor-séma mutasson.
+  html = removeRetiredStructuredData(html);
 
   return html;
 };
@@ -64,16 +140,18 @@ const transformHub = (html) => {
   if (notes.length > 1) {
     throw new Error(`Az új mértékegység-központban ${notes.length} reliability-note található; pontosan 1 szükséges.`);
   }
-  if (notes.length === 1) return html;
 
-  const calculationNote = html.match(
-    /<p\s+class=["'][^"']*\bcalculation-note\b[^"']*["'][^>]*>[\s\S]*?<\/p>/i
-  );
-  if (!calculationNote) {
-    throw new Error("Hiányzó calculation-note blokk az új mértékegység-központban.");
+  if (notes.length === 0) {
+    const calculationNote = html.match(
+      /<p\s+class=["'][^"']*\bcalculation-note\b[^"']*["'][^>]*>[\s\S]*?<\/p>/i
+    );
+    if (!calculationNote) {
+      throw new Error("Hiányzó calculation-note blokk az új mértékegység-központban.");
+    }
+    html = html.replace(calculationNote[0], `${calculationNote[0]}\n\n    ${reliabilityNote}`);
   }
 
-  return html.replace(calculationNote[0], `${calculationNote[0]}\n\n    ${reliabilityNote}`);
+  return ensureHubFaqSchema(html);
 };
 
 let changed = 0;
@@ -94,5 +172,5 @@ const hubChanged = hubAfter !== hubBefore;
 if (hubChanged) fs.writeFileSync(hubFile, hubAfter, "utf8");
 
 console.log(
-  `Phase 2 converter retirement: ${changed}/${slugs.length} oldal frissítve; központ reliability-note: ${hubChanged ? "hozzáadva" : "rendben"}.`
+  `Phase 2 converter retirement: ${changed}/${slugs.length} oldal frissítve; központ trust/schema: ${hubChanged ? "frissítve" : "rendben"}.`
 );
