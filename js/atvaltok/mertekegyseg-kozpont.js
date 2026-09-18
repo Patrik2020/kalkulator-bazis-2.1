@@ -1,4 +1,5 @@
 (() => {
+  // Quality 3.0 page module: mertekegyseg-atvalto-kalkulator
   const groups = {
     length: {
       label: "Hosszúság",
