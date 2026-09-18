@@ -73,6 +73,7 @@ const browserReferencePages = [
   "kalkulatorok/terfogat-atvalto-kalkulator.html",
   "kalkulatorok/terulet-atvalto-kalkulator.html",
   "kalkulatorok/tomeg-atvalto-kalkulator.html",
+  "kalkulatorok/mertekegyseg-atvalto-kalkulator.html",
 ];
 
 const expansionPages = [1, 2, 3, 4, 5].flatMap((batch) =>
@@ -84,7 +85,6 @@ const suites = {
   currency: ["kalkulatorok/deviza-atvalto-kalkulator.html"],
   expansion: expansionPages,
   "browser-reference": browserReferencePages,
-  "phase2-consolidated": ["kalkulatorok/mertekegyseg-atvalto-kalkulator.html"],
 };
 
 module.exports = { browserReferencePages, suites };
