@@ -43,6 +43,7 @@ const qualitySources = [
   "js/construction-quality-upgrades.js",
   "js/health-everyday-quality-upgrades.js",
   "js/auto-converter-quality-upgrades.js",
+  "js/atvaltok/mertekegyseg-kozpont.js",
   "js/site-quality-final.js",
   "js/expansion-batch-01-calculators.js",
   "js/expansion-batch-02-calculators.js",
