@@ -155,16 +155,16 @@
       "title": "Átváltók és mértékegységek",
       "shortTitle": "Átváltók",
       "url": "atvaltok.html",
-      "description": "Hétköznapi, műszaki, digitális és pénzügyi egységek gyors átváltása.",
-      "seo": "Az átváltók a fizikai mennyiségek mellett az adatméret, energia, nyomás, teljesítmény és deviza értelmezésében is segítenek.",
-      "metaTitle": "Átváltók | Mértékegység, energia, adatméret és deviza",
-      "metaDescription": "Mértékegység-átváltók hosszúsághoz, tömeghez, területhez, térfogathoz, időhöz, sebességhez, energiához, nyomáshoz, teljesítményhez és devizához.",
+      "description": "Egy közös mértékegység-átváltó 11 kategóriához, plusz külön élő devizaeszköz.",
+      "seo": "A mértékegység-átváltó egyetlen felületen kezeli a hétköznapi, műszaki és digitális egységeket; a változó árfolyamú deviza külön eszköz marad.",
+      "metaTitle": "Mértékegység átváltó központ és deviza | Kalkulátor Bázis",
+      "metaDescription": "Egy közös átváltó 11 mértékegység-kategóriához, valamint külön deviza átváltó élő árfolyamadattal.",
       "cardClass": "card-general",
       "groups": [
         {
           "id": "meretek",
-          "title": "Hosszúság, terület és térfogat",
-          "description": "A leggyakoribb térbeli mértékegységek átváltásához."
+          "title": "Mértékegység átváltó központ",
+          "description": "11 kategória egyetlen eszközben: hétköznapi, műszaki és digitális egységekhez."
         },
         {
           "id": "hetkoznapi-fizikai",
