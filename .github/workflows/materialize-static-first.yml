@@ -72,6 +72,9 @@ jobs:
       - name: Apply Phase 2 Batch 2 average consolidation
         run: node scripts/apply-adsense-phase2-batch2.js
 
+      - name: Protect average hub from legacy renderer
+        run: node scripts/apply-average-hub-runtime-guard.js
+
       - name: Apply AdSense eligibility and certified-CMP runtime gate
         run: node scripts/apply-adsense-eligibility-v2.js
 
