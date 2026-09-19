@@ -38,5 +38,9 @@ const ensureBeforeMainEnd = (marker, block) => {
 ensureBeforeMainEnd("KB_STATIC:quality-lifestyle:START", lifestyle);
 ensureBeforeMainEnd("KB_STATIC:everyday-method:START", method);
 
+// A mezők a label elemekbe vannak ágyazva, ezért a for attribútum redundáns.
+// Egységesen eltávolítjuk, hogy a materializált HTML és a lint ugyanazt a szerkezetet várja.
+html = html.replace(/<label class="everyday-field" for="[^"]+">/g, '<label class="everyday-field">');
+
 fs.writeFileSync(file, html, "utf8");
 console.log("Average hub quality blocks applied.");
