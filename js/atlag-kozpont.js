@@ -1,3 +1,4 @@
+// Quality 3.0 page-specific module: atlag-kalkulator
 (() => {
   const root = document.querySelector('[data-average-hub="true"]');
   if (!root) return;
