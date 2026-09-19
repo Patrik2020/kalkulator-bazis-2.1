@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
+// Batch 2 finalization checkpoint: keep the average hub quality shell deterministic after materialization.
 const file = path.resolve(__dirname, "..", "kalkulatorok", "atlag-kalkulator.html");
 let html = fs.readFileSync(file, "utf8");
 
