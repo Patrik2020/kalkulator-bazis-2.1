@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-18",
+  "generatedAt": "2026-09-19",
   "pages": {
     "": {
       "hash": "b5fa61be4e86268430be96407a7277540111d8eabe607f76474bada669b4d64c",
@@ -11,8 +11,8 @@
       "lastmod": "2026-07-15"
     },
     "mindennapi.html": {
-      "hash": "9f9db82a4b897318b0ddea7be163f0fca1fe3da6aa0c77fb5b221c8f7af7dadd",
-      "lastmod": "2026-07-15"
+      "hash": "1914394335e7ab64d4c90de2a0829bd13f07166c3519d599d97083819de68667",
+      "lastmod": "2026-09-19"
     },
     "egeszseg.html": {
       "hash": "8eedf6dc4d04354e339b9f0dcf44df51a946d86673b16fd08f01426d0d81bfe3",
@@ -31,8 +31,8 @@
       "lastmod": "2026-09-18"
     },
     "kalkulatorok.html": {
-      "hash": "b867a3c7c6dd93a53a6881c9910a978294fec93cb357cde4c4cd948088ffb750",
-      "lastmod": "2026-09-18"
+      "hash": "b8ba0b1906407a5697097d811b4198bdd9819ebfd7fbd364699d64f577855485",
+      "lastmod": "2026-09-19"
     },
     "kalkulatorok/multifunkcios-szamologep.html": {
       "hash": "c4d38f1c26c681db1304e863f23329fc05b12c236595f66cd99ee892a26c0784",
@@ -183,12 +183,12 @@
       "lastmod": "2026-09-16"
     },
     "kalkulatorok/fizetesi-hatarido-kalkulator.html": {
-      "hash": "e71a8ac66f6ee7b27ebfc897a7b9dd47c48d2d8c2a3777d092a9b9fd21f898de",
-      "lastmod": "2026-09-18"
+      "hash": "fa96bc08e0f5e6bf4293ce858aad1078691d5d11d54695a1fdda8418844e2895",
+      "lastmod": "2026-09-19"
     },
     "kalkulatorok/szamla-teljesites-kalkulator.html": {
-      "hash": "dc979a809e4c98be540dc327529f165591bc92cdbc545f999aa51837a1ac3034",
-      "lastmod": "2026-09-18"
+      "hash": "af4d2c5f7179f4bda65a769458bbf01ad774e933a82fed1837445fa943b8e085",
+      "lastmod": "2026-09-19"
     },
     "kalkulatorok/beton-kalkulator.html": {
       "hash": "6af9c3f5c77e45a1a154b021b623cf62661e16e4417787d792adab91ba443b57",
@@ -275,8 +275,8 @@
       "lastmod": "2026-09-16"
     },
     "kalkulatorok/terhessegi-kalkulator.html": {
-      "hash": "e98ba84899ce39641d49281436a2686beec5c7dec82649e8323ad62d2816342a",
-      "lastmod": "2026-09-18"
+      "hash": "dbee3a8f36502a12653ffebc69c01cdeecda5541d4c56f36972e1cd087d358ac",
+      "lastmod": "2026-09-19"
     },
     "kalkulatorok/idealis-testsuly-kalkulator.html": {
       "hash": "4174527f4279d577043cbd100d561a82b787388fb9051d5166b1669fea2c191e",
@@ -327,8 +327,8 @@
       "lastmod": "2026-09-16"
     },
     "kalkulatorok/atlag-kalkulator.html": {
-      "hash": "a824859d0d9665f42b6abbc55ebdbd4aaac1531ea3d53e4c774e3aa203992fc9",
-      "lastmod": "2026-09-16"
+      "hash": "46328cad8ff24deaf81273605a179539fb76509237c1b1f93492b2d0de513522",
+      "lastmod": "2026-09-19"
     },
     "kalkulatorok/egysegar-kalkulator.html": {
       "hash": "b62d2483e8c44c1fa3d21fec763fd3cf830847ab87cbfad4eec8b9478f062c63",
@@ -410,10 +410,6 @@
       "hash": "6f9c60fabe3c6477e3788649a9d56f3c2bd0bb55adce23e5c15532b6a87aa558",
       "lastmod": "2026-08-21"
     },
-    "kalkulatorok/mertani-atlag-kalkulator.html": {
-      "hash": "e0d4ad542719959025b9e451c9162f3a3bd919e69a7660247ee203c1a7992e03",
-      "lastmod": "2026-08-21"
-    },
     "kalkulatorok/datum-hozzaadas-kivonas-kalkulator.html": {
       "hash": "0eb51dd3e078f5980c33f4a2ce60c3beed6f44bad9b46bc7aaa2ff992df37113",
       "lastmod": "2026-08-21"
@@ -428,10 +424,6 @@
     },
     "kalkulatorok/egyszeri-max-1rm-kalkulator.html": {
       "hash": "33d5779810b1de68384a6a7a3c0e73854a36cfcf1f6c3bcd3a9818ea4d029caa",
-      "lastmod": "2026-08-21"
-    },
-    "kalkulatorok/sulyozott-atlag-kalkulator.html": {
-      "hash": "9552582907fc1178c09e9dfa8ce67830508e2caf0bad6148651ca3adcc4d359f",
       "lastmod": "2026-08-21"
     },
     "kalkulatorok/megtakaritasi-cel-kalkulator.html": {

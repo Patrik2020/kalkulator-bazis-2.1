@@ -9,6 +9,9 @@
   ]);
   if (!supported.has(slug)) return;
 
+  // KB_PHASE2_BATCH2_AVERAGE_HUB_GUARD
+  if (slug === "atlag-kalkulator" && document.querySelector('[data-average-hub="true"]')) return;
+
   const card = document.querySelector(".card-calculator");
   if (!card) return;
 

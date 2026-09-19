@@ -21,6 +21,7 @@
   {
     "title": "Mértani átlag kalkulátor",
     "url": "kalkulatorok/mertani-atlag-kalkulator.html",
+    "hidden": true,
     "category": "mindennapi",
     "group": "matematika",
     "description": "Pozitív értékek mértani átlagának kiszámítása, különösen egymásra épülő szorzók és növekedési tényezők összevetéséhez.",

@@ -638,8 +638,8 @@
       url: "kalkulatorok/atlag-kalkulator.html",
       category: "mindennapi",
       group: "matematika",
-      description: "Számold ki több érték átlagát darabszám és összeg alapján.",
-      keywords: "átlag számítás összeg darab",
+      description: "Számtani, súlyozott és mértani átlag egy közös eszközben, mediánnal és ellenőrző adatokkal.",
+      keywords: "átlag számtani súlyozott mértani medián jegyátlag növekedési tényező",
     },
     {
       title: "Egységár kalkulátor",
