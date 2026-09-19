@@ -10,7 +10,7 @@ A `.github/workflows/production-smoke.yml` fut:
 - naponta egyszer;
 - kézi `workflow_dispatch` indítással.
 
-A workflow kontrollált retry-t használ, hogy egy rövid deploy/CDN propagáció ne okozzon azonnal fals hibát.
+A workflow kontrollált retry-t használ, hogy egy rövid deploy/CDN propagáció ne okozzon azonnal fals hibát. A production probe böngészőszerű kérésprofilt használ, mert a Cloudflare a nyíltan automatizáltnak jelölt GitHub-hosted runner kéréseket blokkolhatja. HTTP-hibánál a log a `server` és `cf-ray` diagnosztikai adatokat is kiírja.
 
 ## Kézi futtatás
 
