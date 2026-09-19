@@ -1,0 +1,89 @@
+name: Add homepage ChatGPT runtime fallback
+
+on:
+  push:
+    branches:
+      - fix/homepage-stale-sw-v3
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/homepage-stale-sw-v3
+
+      - name: Add runtime fallback
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('js/global-head.js')
+          text = path.read_text(encoding='utf-8')
+          marker = 'KB_CHATGPT_PLUGIN_HOME_FALLBACK'
+          if marker not in text:
+              text += r'''
+
+// KB_CHATGPT_PLUGIN_HOME_FALLBACK
+(() => {
+  const ensureChatgptPluginAnnouncement = () => {
+    if (!isHomePage || document.getElementById("chatgptPluginTitle")) return;
+
+    const homeSections = document.querySelector(".home-sections");
+    if (!homeSections) return;
+
+    const section = document.createElement("section");
+    section.className = "learning-highlight";
+    section.setAttribute("aria-labelledby", "chatgptPluginTitle");
+
+    const mark = document.createElement("div");
+    mark.className = "learning-mark";
+    mark.setAttribute("aria-hidden", "true");
+
+    const content = document.createElement("div");
+    const label = document.createElement("span");
+    label.className = "section-label";
+    label.textContent = "Újdonság · ChatGPT";
+
+    const title = document.createElement("h2");
+    title.id = "chatgptPluginTitle";
+    title.textContent = "A Kalkulátor Bázis már ChatGPT-bővítményként is elérhető";
+
+    const description = document.createElement("p");
+    description.textContent = "A 2026-os nettó–bruttó számításokat a saját Kalkulátor Bázis Salary API végzi, így a számítások közvetlenül ChatGPT-ből is használhatók.";
+
+    content.append(label, title, description);
+
+    const link = document.createElement("a");
+    link.className = "highlight-link";
+    link.href = `${projectRoot}/kalkulatorok/netto-brutto-kalkulator`;
+    link.textContent = "Nettó–bruttó kalkulátor";
+
+    section.append(mark, content, link);
+    homeSections.prepend(section);
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", ensureChatgptPluginAnnouncement, { once: true });
+  } else {
+    ensureChatgptPluginAnnouncement();
+  }
+})();
+'''
+              path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit runtime fallback and remove temporary workflow
+        shell: bash
+        run: |
+          rm -f .github/workflows/add-homepage-plugin-runtime-fallback.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/global-head.js .github/workflows/add-homepage-plugin-runtime-fallback.yml
+          git diff --cached --quiet && exit 0
+          git commit -m "fix: render ChatGPT announcement on stale homepage HTML"
+          git push
