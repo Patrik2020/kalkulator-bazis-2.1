@@ -48,7 +48,7 @@ const constructionQualityCssPath = `${projectRoot}/css/pages/construction-qualit
 const healthEverydayQualityCssPath = `${projectRoot}/css/pages/health-everyday-quality-upgrades.css?v=e10e7cbe585c`;
 const autoConverterQualityCssPath = `${projectRoot}/css/pages/auto-converter-quality-upgrades.css?v=52a3f32da1be`;
 const themeScriptPath = `${projectRoot}/js/theme.js?v=c2756520c7b0`;
-const pwaScriptPath = `${projectRoot}/js/pwa.js?v=68d0d5924294`;
+const pwaScriptPath = `${projectRoot}/js/pwa.js?v=fb055828c8f9`;
 const wiseBannerScriptPath = `${projectRoot}/js/wise-banner-enhancer.js?v=9c6dbaaa839b`;
 const accessibilityScriptPath = `${projectRoot}/js/site-accessibility.js?v=8135c9bdc65a`;
 const calculatorPageScriptPath = `${projectRoot}/js/calculator-page.js?v=dacda57823cf`;
