@@ -3,7 +3,7 @@
 
     <url>
         <loc>https://kalkulatorbazis.hu/</loc>
-        <lastmod>2026-09-18</lastmod>
+        <lastmod>2026-09-19</lastmod>
     </url>
 
     <url>
@@ -13,7 +13,7 @@
 
     <url>
         <loc>https://kalkulatorbazis.hu/mindennapi</loc>
-        <lastmod>2026-09-19</lastmod>
+        <lastmod>2026-07-15</lastmod>
     </url>
 
     <url>
@@ -38,7 +38,7 @@
 
     <url>
         <loc>https://kalkulatorbazis.hu/kalkulatorok</loc>
-        <lastmod>2026-09-19</lastmod>
+        <lastmod>2026-09-18</lastmod>
     </url>
 
     <url>
@@ -178,7 +178,7 @@
 
     <url>
         <loc>https://kalkulatorbazis.hu/kalkulatorok/netto-brutto-kalkulator</loc>
-        <lastmod>2026-09-16</lastmod>
+        <lastmod>2026-09-19</lastmod>
     </url>
 
     <url>
@@ -408,7 +408,7 @@
 
     <url>
         <loc>https://kalkulatorbazis.hu/kalkulatorok/atlag-kalkulator</loc>
-        <lastmod>2026-09-19</lastmod>
+        <lastmod>2026-09-16</lastmod>
     </url>
 
     <url>
@@ -512,6 +512,11 @@
     </url>
 
     <url>
+        <loc>https://kalkulatorbazis.hu/kalkulatorok/mertani-atlag-kalkulator</loc>
+        <lastmod>2026-08-21</lastmod>
+    </url>
+
+    <url>
         <loc>https://kalkulatorbazis.hu/kalkulatorok/datum-hozzaadas-kivonas-kalkulator</loc>
         <lastmod>2026-08-21</lastmod>
     </url>
@@ -528,6 +533,11 @@
 
     <url>
         <loc>https://kalkulatorbazis.hu/kalkulatorok/egyszeri-max-1rm-kalkulator</loc>
+        <lastmod>2026-08-21</lastmod>
+    </url>
+
+    <url>
+        <loc>https://kalkulatorbazis.hu/kalkulatorok/sulyozott-atlag-kalkulator</loc>
         <lastmod>2026-08-21</lastmod>
     </url>
 

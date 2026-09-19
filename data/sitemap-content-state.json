@@ -3,16 +3,16 @@
   "generatedAt": "2026-09-19",
   "pages": {
     "": {
-      "hash": "b5fa61be4e86268430be96407a7277540111d8eabe607f76474bada669b4d64c",
-      "lastmod": "2026-09-18"
+      "hash": "28489a25a951d8c00b3ffacb853be3f0bbe95fc1663498e4ecb559a4a519cc3b",
+      "lastmod": "2026-09-19"
     },
     "penzugyi.html": {
       "hash": "7fdec0868055dc0265c5a9692a28d3329753364adbcf519aa34f077c56a3abab",
       "lastmod": "2026-07-15"
     },
     "mindennapi.html": {
-      "hash": "1914394335e7ab64d4c90de2a0829bd13f07166c3519d599d97083819de68667",
-      "lastmod": "2026-09-19"
+      "hash": "9f9db82a4b897318b0ddea7be163f0fca1fe3da6aa0c77fb5b221c8f7af7dadd",
+      "lastmod": "2026-07-15"
     },
     "egeszseg.html": {
       "hash": "8eedf6dc4d04354e339b9f0dcf44df51a946d86673b16fd08f01426d0d81bfe3",
@@ -31,8 +31,8 @@
       "lastmod": "2026-09-18"
     },
     "kalkulatorok.html": {
-      "hash": "b8ba0b1906407a5697097d811b4198bdd9819ebfd7fbd364699d64f577855485",
-      "lastmod": "2026-09-19"
+      "hash": "b867a3c7c6dd93a53a6881c9910a978294fec93cb357cde4c4cd948088ffb750",
+      "lastmod": "2026-09-18"
     },
     "kalkulatorok/multifunkcios-szamologep.html": {
       "hash": "c4d38f1c26c681db1304e863f23329fc05b12c236595f66cd99ee892a26c0784",
@@ -143,8 +143,8 @@
       "lastmod": "2026-09-14"
     },
     "kalkulatorok/netto-brutto-kalkulator.html": {
-      "hash": "e34cd8715702dc06749f250027baa9fc57b14348f877e6f5e0a34f66e4940af2",
-      "lastmod": "2026-09-16"
+      "hash": "3403da52f6b3c917524ecaec6688a9e4b2f92d7fa140033fbb7c2c85a8b264e2",
+      "lastmod": "2026-09-19"
     },
     "kalkulatorok/hitel-torleszto-kalkulator.html": {
       "hash": "4e4ab87ccf24f8ff818a4440c9cd4537f44f61539ae3ffc53fe30e7ff64c0c6b",
@@ -327,8 +327,8 @@
       "lastmod": "2026-09-16"
     },
     "kalkulatorok/atlag-kalkulator.html": {
-      "hash": "46328cad8ff24deaf81273605a179539fb76509237c1b1f93492b2d0de513522",
-      "lastmod": "2026-09-19"
+      "hash": "a824859d0d9665f42b6abbc55ebdbd4aaac1531ea3d53e4c774e3aa203992fc9",
+      "lastmod": "2026-09-16"
     },
     "kalkulatorok/egysegar-kalkulator.html": {
       "hash": "b62d2483e8c44c1fa3d21fec763fd3cf830847ab87cbfad4eec8b9478f062c63",
@@ -410,6 +410,10 @@
       "hash": "6f9c60fabe3c6477e3788649a9d56f3c2bd0bb55adce23e5c15532b6a87aa558",
       "lastmod": "2026-08-21"
     },
+    "kalkulatorok/mertani-atlag-kalkulator.html": {
+      "hash": "e0d4ad542719959025b9e451c9162f3a3bd919e69a7660247ee203c1a7992e03",
+      "lastmod": "2026-08-21"
+    },
     "kalkulatorok/datum-hozzaadas-kivonas-kalkulator.html": {
       "hash": "0eb51dd3e078f5980c33f4a2ce60c3beed6f44bad9b46bc7aaa2ff992df37113",
       "lastmod": "2026-08-21"
@@ -424,6 +428,10 @@
     },
     "kalkulatorok/egyszeri-max-1rm-kalkulator.html": {
       "hash": "33d5779810b1de68384a6a7a3c0e73854a36cfcf1f6c3bcd3a9818ea4d029caa",
+      "lastmod": "2026-08-21"
+    },
+    "kalkulatorok/sulyozott-atlag-kalkulator.html": {
+      "hash": "9552582907fc1178c09e9dfa8ce67830508e2caf0bad6148651ca3adcc4d359f",
       "lastmod": "2026-08-21"
     },
     "kalkulatorok/megtakaritasi-cel-kalkulator.html": {

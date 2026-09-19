@@ -180,7 +180,7 @@ function ensureCookieBanner(base, onReady) {
     return;
   }
 
-  loadScriptOnce(base + "js/cookie.js?v=8a6d0bffa1e2", () => {
+  loadScriptOnce(base + "js/cookie.js?v=84878dee55bc", () => {
     if (onReady) onReady();
   });
 }
@@ -246,8 +246,8 @@ function loadSiteScripts(base) {
 
   const loadExpansionData = () => {
     loadScriptOnce(base + "js/expansion-batch-01-data.js?v=1ec41e199816", () => {
-      loadScriptOnce(base + "js/expansion-batch-02-data.js?v=1ae83db6af10", () => {
-        loadScriptOnce(base + "js/expansion-batch-03-data.js?v=49f7f172f263", () => {
+      loadScriptOnce(base + "js/expansion-batch-02-data.js?v=8a7ffb59ab96", () => {
+        loadScriptOnce(base + "js/expansion-batch-03-data.js?v=dd5646626872", () => {
           loadScriptOnce(base + "js/expansion-batch-04-data.js?v=33876b15f2f4", () => {
             loadScriptOnce(base + "js/expansion-batch-05-data.js?v=6dd98ee7d334", loadUi);
           });
@@ -261,7 +261,7 @@ function loadSiteScripts(base) {
     return;
   }
 
-  loadScriptOnce(base + "js/site-data.js?v=3542e6c302df", loadExpansionData);
+  loadScriptOnce(base + "js/site-data.js?v=7cb5cb8fbc61", loadExpansionData);
 }
 
 function loadComponent(id, path) {
