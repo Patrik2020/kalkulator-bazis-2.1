@@ -1,0 +1,38 @@
+name: Production smoke
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  schedule:
+    - cron: "17 4 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-smoke
+  cancel-in-progress: true
+
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+
+    steps:
+      - name: Checkout deployed source
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+
+      - name: Verify live Kalkulátor Bázis
+        env:
+          KB_PRODUCTION_BASE_URL: https://kalkulatorbazis.hu
+          KB_PRODUCTION_ATTEMPTS: "8"
+          KB_PRODUCTION_RETRY_DELAY_MS: "15000"
+          KB_PRODUCTION_REQUEST_TIMEOUT_MS: "15000"
+        run: node scripts/production-smoke-audit.js
