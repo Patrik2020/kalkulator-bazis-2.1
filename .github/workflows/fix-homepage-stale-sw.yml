@@ -1,0 +1,47 @@
+name: Fix stale homepage service worker cache
+
+on:
+  push:
+    branches:
+      - fix/homepage-stale-sw-v3
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/homepage-stale-sw-v3
+
+      - name: Patch PWA cache recovery
+        shell: python
+        run: |
+          from pathlib import Path
+
+          pwa = Path('js/pwa.js')
+          text = pwa.read_text(encoding='utf-8')
+          old = '''  const serviceWorkerUrl = new URL(`${projectRoot}/sw.js`, window.location.origin);\n  const expectedScopeUrl = new URL(`${projectRoot || ""}/`, window.location.origin);'''
+          new = '''  const serviceWorkerUrl = new URL(`${projectRoot}/sw.js`, window.location.origin);\n  const currentPwaScriptUrl = new URL(document.currentScript?.src || `${projectRoot}/js/pwa.js`, window.location.href);\n  const serviceWorkerVersion = currentPwaScriptUrl.searchParams.get("v") || "current";\n  serviceWorkerUrl.searchParams.set("v", serviceWorkerVersion);\n  const expectedScopeUrl = new URL(`${projectRoot || ""}/`, window.location.origin);'''
+          if old not in text:
+              raise SystemExit('pwa anchor not found')
+          pwa.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+          sw = Path('sw.js')
+          text = sw.read_text(encoding='utf-8')
+          old = '  "./",\n'
+          if old not in text:
+              raise SystemExit('service worker root precache entry not found')
+          sw.write_text(text.replace(old, '', 1), encoding='utf-8')
+
+      - name: Commit cache recovery and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm .github/workflows/fix-homepage-stale-sw.yml
+          git add js/pwa.js sw.js .github/workflows/fix-homepage-stale-sw.yml
+          git commit -m "fix: force service worker refresh for homepage"
+          git push origin HEAD:fix/homepage-stale-sw-v3
