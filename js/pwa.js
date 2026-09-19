@@ -7,6 +7,9 @@
     ? rawProjectRoot.replace(/\/+$/, "")
     : "";
   const serviceWorkerUrl = new URL(`${projectRoot}/sw.js`, window.location.origin);
+  const currentPwaScriptUrl = new URL(document.currentScript?.src || `${projectRoot}/js/pwa.js`, window.location.href);
+  const serviceWorkerVersion = currentPwaScriptUrl.searchParams.get("v") || "current";
+  serviceWorkerUrl.searchParams.set("v", serviceWorkerVersion);
   const expectedScopeUrl = new URL(`${projectRoot || ""}/`, window.location.origin);
   let deferredPrompt = null;
   let installed = false;

@@ -2,7 +2,6 @@ const KB_SW_VERSION = "build-f1d1dc6107bc";
 const KB_CACHE_PREFIX = "kalkulatorbazis-static";
 const KB_STATIC_CACHE = `${KB_CACHE_PREFIX}-${KB_SW_VERSION}`;
 const KB_CORE_ASSETS = [
-  "./",
   "./manifest.webmanifest",
   "./css/style.css",
   "./css/theme.css",
