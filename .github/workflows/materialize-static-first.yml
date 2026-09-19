@@ -72,6 +72,9 @@ jobs:
       - name: Apply Phase 2 Batch 2 average consolidation
         run: node scripts/apply-adsense-phase2-batch2.js
 
+      - name: Apply average hub quality blocks
+        run: node scripts/apply-average-hub-quality-blocks.js
+
       - name: Protect average hub from legacy renderer
         run: node scripts/apply-average-hub-runtime-guard.js
 
@@ -102,6 +105,7 @@ jobs:
           node scripts/apply-adsense-current-moat-v2.js
           node scripts/apply-adsense-phase2-consolidation.js
           node scripts/apply-adsense-phase2-batch2.js
+          node scripts/apply-average-hub-quality-blocks.js
 
       - name: Canonicalize static retention CTA state
         run: node scripts/normalize-retention-static.js
@@ -124,6 +128,7 @@ jobs:
           node scripts/apply-adsense-current-moat-v2.js
           node scripts/apply-adsense-phase2-consolidation.js
           node scripts/apply-adsense-phase2-batch2.js
+          node scripts/apply-average-hub-quality-blocks.js
           node scripts/normalize-retention-static.js
           node scripts/cache-bust-assets.js
           npm run sitemap
@@ -141,6 +146,7 @@ jobs:
           node scripts/apply-adsense-current-moat-v2.js
           node scripts/apply-adsense-phase2-consolidation.js
           node scripts/apply-adsense-phase2-batch2.js
+          node scripts/apply-average-hub-quality-blocks.js
           node scripts/normalize-retention-static.js
           node scripts/cache-bust-assets.js
           npm run sitemap
