@@ -4,7 +4,8 @@ const baseUrl = new URL(process.env.KB_PRODUCTION_BASE_URL || "https://kalkulato
 const attempts = Math.max(1, Number(process.env.KB_PRODUCTION_ATTEMPTS || 1));
 const retryDelayMs = Math.max(0, Number(process.env.KB_PRODUCTION_RETRY_DELAY_MS || 15000));
 const requestTimeoutMs = Math.max(1000, Number(process.env.KB_PRODUCTION_REQUEST_TIMEOUT_MS || 15000));
-const userAgent = "KalkulatorBazis-Production-Smoke/1.0 (+https://kalkulatorbazis.hu/)";
+const userAgent =
+  "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -25,6 +26,10 @@ const fetchResponse = async (path, options = {}) => {
       headers: {
         "user-agent": userAgent,
         accept: options.accept || "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "accept-language": "hu-HU,hu;q=0.9,en-US;q=0.7,en;q=0.6",
+        "cache-control": "no-cache",
+        pragma: "no-cache",
+        "upgrade-insecure-requests": "1",
       },
     });
   } finally {
@@ -36,7 +41,10 @@ const fetchText = async (path, options = {}) => {
   const response = await fetchResponse(path, options);
   const body = await response.text();
   if (!response.ok) {
-    throw new Error(`${path}: HTTP ${response.status}`);
+    const server = response.headers.get("server");
+    const ray = response.headers.get("cf-ray");
+    const details = [server ? `server=${server}` : "", ray ? `cf-ray=${ray}` : ""].filter(Boolean).join(", ");
+    throw new Error(`${path}: HTTP ${response.status}${details ? ` (${details})` : ""}`);
   }
   return { response, body };
 };
