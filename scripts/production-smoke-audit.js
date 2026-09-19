@@ -1,4 +1,4 @@
-import fs from "node:fs/promises";
+const fs = require("fs").promises;
 
 const baseUrl = new URL(process.env.KB_PRODUCTION_BASE_URL || "https://kalkulatorbazis.hu");
 const attempts = Math.max(1, Number(process.env.KB_PRODUCTION_ATTEMPTS || 1));
@@ -70,7 +70,9 @@ const assertExactSet = (actual, expected, label) => {
     const details = [
       missing.length ? `missing: ${missing.join(", ")}` : "",
       extra.length ? `extra: ${extra.join(", ")}` : "",
-    ].filter(Boolean).join(" | ");
+    ]
+      .filter(Boolean)
+      .join(" | ");
     throw new Error(`${label} mismatch (${details})`);
   }
 };
@@ -169,20 +171,27 @@ const runAudit = async () => {
   };
 };
 
-let lastError = null;
-for (let attempt = 1; attempt <= attempts; attempt += 1) {
-  try {
-    const result = await runAudit();
-    console.log(
-      `Production smoke passed: ${result.pages} key pages, ${result.sitemapUrls} sitemap URLs, ${result.redirects} permanent redirects.`
-    );
-    process.exit(0);
-  } catch (error) {
-    lastError = error;
-    console.error(`Production smoke attempt ${attempt}/${attempts} failed: ${error.message}`);
-    if (attempt < attempts) await sleep(retryDelayMs);
+async function main() {
+  let lastError = null;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const result = await runAudit();
+      console.log(
+        `Production smoke passed: ${result.pages} key pages, ${result.sitemapUrls} sitemap URLs, ${result.redirects} permanent redirects.`
+      );
+      return;
+    } catch (error) {
+      lastError = error;
+      console.error(`Production smoke attempt ${attempt}/${attempts} failed: ${error.message}`);
+      if (attempt < attempts) await sleep(retryDelayMs);
+    }
   }
+
+  throw lastError || new Error("Production smoke failed");
 }
 
-console.error(lastError?.stack || lastError?.message || "Production smoke failed");
-process.exit(1);
+main().catch((error) => {
+  console.error(error?.stack || error?.message || error);
+  process.exit(1);
+});
