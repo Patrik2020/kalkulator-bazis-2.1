@@ -21,6 +21,7 @@
   {
     "title": "Súlyozott átlag kalkulátor",
     "url": "kalkulatorok/sulyozott-atlag-kalkulator.html",
+    "hidden": true,
     "category": "mindennapi",
     "group": "matematika",
     "description": "Súlyozott átlag számítása értékekből és hozzájuk tartozó súlyokból, például jegyek, árak vagy mérési eredmények összesítéséhez.",

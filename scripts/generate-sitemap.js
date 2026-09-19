@@ -23,20 +23,6 @@ vm.runInContext(dataCode, context);
 
 const { categories, calculators } = context.window.KB_DATA;
 
-const phase2RetiredCalculators = new Set([
-  "kalkulatorok/hosszusag-atvalto-kalkulator.html",
-  "kalkulatorok/terulet-atvalto-kalkulator.html",
-  "kalkulatorok/terfogat-atvalto-kalkulator.html",
-  "kalkulatorok/tomeg-atvalto-kalkulator.html",
-  "kalkulatorok/homerseklet-atvalto-kalkulator.html",
-  "kalkulatorok/ido-atvalto-kalkulator.html",
-  "kalkulatorok/sebesseg-atvalto-kalkulator.html",
-  "kalkulatorok/adatmeret-atvalto-kalkulator.html",
-  "kalkulatorok/energia-atvalto-kalkulator.html",
-  "kalkulatorok/nyomas-atvalto-kalkulator.html",
-  "kalkulatorok/teljesitmeny-atvalto-kalkulator.html"
-]);
-
 // Keep sitemap URL ordering independent from the visual/category navigation order.
 // Reordering cards on the site should not create a meaningless sitemap diff.
 const stableCategoryOrder = ["penzugyi", "mindennapi", "egeszseg", "auto", "epitoipari", "atvaltok"];
@@ -87,7 +73,12 @@ const staticPages = [
   "landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html",
 ];
 
-const calculatorPages = [...calculators, ...expansionCalculators].map((calculator) => calculator.url).filter((url) => !phase2RetiredCalculators.has(url));
+// Lifecycle-aware sitemap: every calculator marked hidden=true in the registry is
+// intentionally retired from the public/indexable surface. This scales across
+// Phase 2 batches without maintaining a second hard-coded retired URL list here.
+const calculatorPages = [...calculators, ...expansionCalculators]
+  .filter((calculator) => calculator.hidden !== true)
+  .map((calculator) => calculator.url);
 const urls = [...new Set([...staticPages, ...calculatorPages])];
 const currentDate = new Date().toISOString().slice(0, 10);
 

@@ -3,7 +3,6 @@ const path = require("path");
 
 const root = path.resolve(__dirname, "..");
 const calculatorDir = path.join(root, "kalkulatorok");
-const phase2Canonical = "https://kalkulatorbazis.hu/kalkulatorok/mertekegyseg-atvalto-kalkulator";
 
 function readAttribute(openTag, name) {
   const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -81,7 +80,7 @@ let retiredPages = 0;
 for (const page of pages) {
   const relative = `kalkulatorok/${page}`;
   const html = fs.readFileSync(path.join(calculatorDir, page), "utf8");
-  const retired = html.includes("KB_PHASE2:converter-retired:START");
+  const retired = html.includes("KB_PHASE2:converter-retired:START") || html.includes("KB_PHASE2:retired:START");
   const canonicalTag = [...html.matchAll(/<link\b[^>]*>/gi)].find((match) =>
     (readAttribute(match[0], "rel") || "").split(/\s+/).includes("canonical")
   );
@@ -109,25 +108,22 @@ for (const page of pages) {
 
   if (retired) {
     retiredPages += 1;
-    if (canonical !== phase2Canonical) {
-      errors.push(`${relative}: a kivezetett oldal canonicalja nem a mértékegység-központra mutat`);
-    }
     if (canonicalScripts.length !== 1) {
       errors.push(`${relative}: a kivezetett oldalon pontosan 1 #kb-structured-data blokk kell`);
     }
-    if (webPages.length !== 1 || webPages[0]?.url !== phase2Canonical) {
-      errors.push(`${relative}: a kivezetett oldal WebPage sémája nem a központot írja le`);
+    if (webPages.length !== 1 || webPages[0]?.url !== canonical) {
+      errors.push(`${relative}: a kivezetett oldal WebPage sémája nem a canonical céloldalt írja le`);
     }
-    if (applications.length !== 1 || applications[0]?.url !== phase2Canonical) {
-      errors.push(`${relative}: a kivezetett oldal SoftwareApplication sémája nem a központot írja le`);
+    if (applications.length !== 1 || applications[0]?.url !== canonical) {
+      errors.push(`${relative}: a kivezetett oldal SoftwareApplication sémája nem a canonical céloldalt írja le`);
     }
     if (breadcrumbs.length !== 1) {
-      errors.push(`${relative}: a kivezetett oldalon pontosan 1 központi BreadcrumbList séma kell`);
+      errors.push(`${relative}: a kivezetett oldalon pontosan 1 céloldali BreadcrumbList séma kell`);
     } else {
       const items = breadcrumbs[0]?.itemListElement;
       const last = Array.isArray(items) ? items.at(-1) : null;
-      if (last?.item !== phase2Canonical) {
-        errors.push(`${relative}: a kivezetett oldal breadcrumbja nem a központtal zárul`);
+      if (last?.item !== canonical) {
+        errors.push(`${relative}: a kivezetett oldal breadcrumbja nem a canonical céloldallal zárul`);
       }
     }
     if (faqPages.length !== 0) {
@@ -192,5 +188,5 @@ if (errors.length) {
 }
 
 console.log(
-  `Strukturáltadat-audit OK: ${activePages} aktív kalkulátoroldal saját sémával, ${retiredPages} kivezetett noindex oldal központi sémavázzal.`
+  `Strukturáltadat-audit OK: ${activePages} aktív kalkulátoroldal saját sémával, ${retiredPages} kivezetett noindex oldal céloldali sémavázzal.`
 );

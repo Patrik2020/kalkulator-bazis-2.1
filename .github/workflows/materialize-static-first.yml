@@ -69,11 +69,23 @@ jobs:
       - name: Apply Phase 2 converter consolidation
         run: node scripts/apply-adsense-phase2-consolidation.js
 
+      - name: Apply Phase 2 Batch 2 average consolidation
+        run: node scripts/apply-adsense-phase2-batch2.js
+
+      - name: Apply average hub quality blocks
+        run: node scripts/apply-average-hub-quality-blocks.js
+
+      - name: Protect average hub from legacy renderer
+        run: node scripts/apply-average-hub-runtime-guard.js
+
       - name: Apply AdSense eligibility and certified-CMP runtime gate
         run: node scripts/apply-adsense-eligibility-v2.js
 
       - name: Apply AdSense audit policy normalization
         run: node scripts/apply-adsense-audit-policy-v2.js
+
+      - name: Materialize public taxonomy
+        run: npm run taxonomy:apply
 
       - name: Generate sitemap for page discovery
         run: npm run sitemap
@@ -92,6 +104,8 @@ jobs:
           node scripts/apply-adsense-source-notes-v2.js
           node scripts/apply-adsense-current-moat-v2.js
           node scripts/apply-adsense-phase2-consolidation.js
+          node scripts/apply-adsense-phase2-batch2.js
+          node scripts/apply-average-hub-quality-blocks.js
 
       - name: Canonicalize static retention CTA state
         run: node scripts/normalize-retention-static.js
@@ -105,10 +119,6 @@ jobs:
       - name: Stabilize newly materialized pages
         shell: bash
         run: |
-          # Új oldalak első materializálásakor a böngészős DOM és az a11y
-          # normalizálás még egyszer összeérhet. Egy második teljes kör után
-          # vesszük fel az idempotencia-bázist, így a teszt már a stabil végállapotot
-          # hasonlítja a következő futáshoz.
           npm run static:build
           npm run static:normalize
           node scripts/apply-adsense-domain-method-copy-v2.js
@@ -117,6 +127,8 @@ jobs:
           node scripts/apply-adsense-source-notes-v2.js
           node scripts/apply-adsense-current-moat-v2.js
           node scripts/apply-adsense-phase2-consolidation.js
+          node scripts/apply-adsense-phase2-batch2.js
+          node scripts/apply-average-hub-quality-blocks.js
           node scripts/normalize-retention-static.js
           node scripts/cache-bust-assets.js
           npm run sitemap
@@ -133,6 +145,8 @@ jobs:
           node scripts/apply-adsense-source-notes-v2.js
           node scripts/apply-adsense-current-moat-v2.js
           node scripts/apply-adsense-phase2-consolidation.js
+          node scripts/apply-adsense-phase2-batch2.js
+          node scripts/apply-average-hub-quality-blocks.js
           node scripts/normalize-retention-static.js
           node scripts/cache-bust-assets.js
           npm run sitemap
@@ -153,13 +167,16 @@ jobs:
       - name: Validate Phase 2 consolidation
         run: node scripts/adsense-phase2-audit.js
 
+      - name: Validate Phase 2 Batch 2 consolidation
+        run: node scripts/adsense-phase2-batch2-audit.js
+
       - name: Validate content-aware sitemap lastmod
         run: node scripts/sitemap-lastmod-v2-audit.js
 
       - name: Enforce AdSense Quality v2 gate
         run: node scripts/adsense-quality-v2-audit.js --report --gate
 
-      - name: Run final 100-calculator inventory gate
+      - name: Run final calculator inventory gate
         run: node scripts/final-fullsite-audit.js
 
       - name: Verify generated sitemap is idempotent

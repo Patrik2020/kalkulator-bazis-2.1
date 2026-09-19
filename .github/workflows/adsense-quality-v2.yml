@@ -53,6 +53,9 @@ jobs:
       - name: Apply Phase 2 converter consolidation
         run: node scripts/apply-adsense-phase2-consolidation.js
 
+      - name: Apply Phase 2 Batch 2 average consolidation
+        run: node scripts/apply-adsense-phase2-batch2.js
+
       - name: Apply AdSense runtime policy
         run: node scripts/apply-adsense-eligibility-v2.js
 
@@ -70,6 +73,9 @@ jobs:
 
       - name: Validate Phase 2 consolidation
         run: node scripts/adsense-phase2-audit.js
+
+      - name: Validate Phase 2 Batch 2 consolidation
+        run: node scripts/adsense-phase2-batch2-audit.js
 
       - name: Validate sitemap state
         run: node scripts/sitemap-lastmod-v2-audit.js

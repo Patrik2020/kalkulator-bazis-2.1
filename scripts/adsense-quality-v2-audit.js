@@ -100,7 +100,9 @@ const phase2RetiredCalculators = new Set([
   "kalkulatorok/adatmeret-atvalto-kalkulator.html",
   "kalkulatorok/energia-atvalto-kalkulator.html",
   "kalkulatorok/nyomas-atvalto-kalkulator.html",
-  "kalkulatorok/teljesitmeny-atvalto-kalkulator.html"
+  "kalkulatorok/teljesitmeny-atvalto-kalkulator.html",
+  "kalkulatorok/mertani-atlag-kalkulator.html",
+  "kalkulatorok/sulyozott-atlag-kalkulator.html"
 ]);
 
 const isRedirect = (html) => /<meta\b(?=[^>]*http-equiv=["']refresh["'])/i.test(html);

@@ -23,6 +23,8 @@
   ]);
   const adsenseEligiblePrefixes = ["kalkulatorok/", "aktualis/", "landing-pages/elethelyzetek/"];
   const adsenseExcludedExact = new Set([
+    "kalkulatorok/sulyozott-atlag-kalkulator",
+    "kalkulatorok/mertani-atlag-kalkulator",
     "404", "kapcsolat", "impresszum", "adatvedelem", "cookie",
     "jogi-nyilatkozat", "felhasznalasi-feltetelek", "rolunk",
     "atlathatosag-es-minoseg", "miert-bizhatsz-bennunk", "szamitasi-modszertan",
