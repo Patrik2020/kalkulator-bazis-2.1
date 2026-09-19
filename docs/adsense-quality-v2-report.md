@@ -1,8 +1,8 @@
 # AdSense Quality v2 riport
 
 - HTML oldalak: **139**
-- Kalkulátoroldalak: **91**
-- Kezdeti AdSense-eligible oldalak: **106**
+- Kalkulátoroldalak: **89**
+- Kezdeti AdSense-eligible oldalak: **104**
 - Kritikus kategóriák: **0**
 - Figyelmeztetések: **0**
 
@@ -24,11 +24,11 @@
 
 ## Whitelistelt közös UI / bizalmi blokkok
 
-- **90 oldal** – Tedd el a Kalkulátor Bázist, hogy legközelebb egy mozdulattal visszatalálj ehhez a számításhoz – vagy oszd meg azzal, akinek szintén jól jöhet.
-- **90 oldal** – Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
+- **88 oldal** – Tedd el a Kalkulátor Bázist, hogy legközelebb egy mozdulattal visszatalálj ehhez a számításhoz – vagy oszd meg azzal, akinek szintén jól jöhet.
+- **88 oldal** – Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.
 - **22 oldal** – Az oldal tájékoztató kalkulátor; egyedi döntéshez szakember vagy hivatalos szerv adata szükséges.
 - **12 oldal** – A kalkulátor tájékoztató segédlet; egyedi egészségügyi vagy jogi döntést nem helyettesít.
-- **9 oldal** – A beírt értékek a böngésződben kerülnek feldolgozásra; a kalkulátor nem menti el őket saját szerverre.
+- **8 oldal** – A beírt értékek a böngésződben kerülnek feldolgozásra; a kalkulátor nem menti el őket saját szerverre.
 - **6 oldal** – A mezők tájékoztató tervezésre valók; hivatalos, gyártói vagy szolgáltatói adat esetén mindig azt használd.
 - **4 oldal** – A számítás kiindulópont, nem személyre szabott étrend. A tényleges energia- és tápanyagigény az aktivitás, testösszetétel, cél, egészségi állapot és gyógyszerek miatt eltérhet.
 - **4 oldal** – Evészavar, gyors fogyás, krónikus betegség vagy jelentős túlsúly esetén szakember bevonása indokolt.
@@ -51,7 +51,7 @@ A 404, kapcsolat, impresszum, adatvédelem, cookie, jogi/felhasználási, redire
 
 ## Sitemap és consent
 
-- Domináns lastmod: **2026-09-16**, 48/125 URL (38.4%).
+- Domináns lastmod: **2026-09-16**, 47/123 URL (38.2%).
 - Google/IAB CMP-kódjel: **található**.
 
 ## Figyelmeztetések
