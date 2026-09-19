@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 const { suites } = require("./reference-test-manifest");
-const { publicUrlForSource } = require("./url-paths");
+const { publicUrlForSource, publicPathToSourceFile } = require("./url-paths");
 
 const root = path.resolve(__dirname, "..");
 const calculatorDir = path.join(root, "kalkulatorok");
@@ -59,8 +59,8 @@ const retiredEntries = registryEntries.filter((entry) => entry.hidden === true);
 const publicRegistryEntries = registryEntries.filter((entry) => entry.hidden !== true);
 const retiredRegistryUrls = new Set(retiredEntries.map((entry) => entry.url));
 const publicRegistryUrls = publicRegistryEntries.map((entry) => entry.url);
-assert.strictEqual(retiredEntries.length, 11, `Pontosan 11 kivezetett Phase 2 konverter szükséges, jelenleg ${retiredEntries.length}.`);
-assert.strictEqual(publicRegistryEntries.length, 90, `Pontosan 90 nyilvános registry-kalkulátor szükséges Batch 1 után, jelenleg ${publicRegistryEntries.length}.`);
+assert.strictEqual(retiredEntries.length, 13, `Pontosan 13 kivezetett Phase 2 kalkulátor szükséges Batch 2 után, jelenleg ${retiredEntries.length}.`);
+assert.strictEqual(publicRegistryEntries.length, 88, `Pontosan 88 nyilvános registry-kalkulátor szükséges Batch 2 után, jelenleg ${publicRegistryEntries.length}.`);
 
 const knownCategories = new Set(siteData.categories.map((category) => category.id));
 for (const entry of registryEntries) {
@@ -107,20 +107,22 @@ const expectedPublicUrls = [...publicRegistryUrls, ...supplementalCalculatorPage
 assert.strictEqual(new Set(sitemapCalculatorUrls).size, sitemapCalculatorUrls.length, "Duplikált kalkulátor URL van a sitemapban.");
 assertSameSet("Nyilvános kalkulátoroldalak ↔ sitemap", expectedPublicUrls, sitemapCalculatorUrls);
 
-const phase2HubCanonical = publicUrlForSource("kalkulatorok/mertekegyseg-atvalto-kalkulator.html");
 for (const sourceFile of calculatorHtml) {
   const absolute = path.join(root, sourceFile);
   const html = fs.readFileSync(absolute, "utf8");
-  const expectedCanonical = retiredRegistryUrls.has(sourceFile)
-    ? phase2HubCanonical
-    : publicUrlForSource(sourceFile);
   const canonicalMatches = [...html.matchAll(/<link\b[^>]*\brel\s*=\s*(["'])canonical\1[^>]*>/gi)];
   assert.strictEqual(canonicalMatches.length, 1, `${sourceFile}: pontosan egy canonical link szükséges.`);
   const href = canonicalMatches[0][0].match(/\bhref\s*=\s*(["'])(.*?)\1/i)?.[2];
-  assert.strictEqual(href, expectedCanonical, `${sourceFile}: canonical eltérés (${href || "hiányzik"} != ${expectedCanonical}).`);
 
   if (retiredRegistryUrls.has(sourceFile)) {
     assert.match(html, /<meta\b[^>]*\bname=["']robots["'][^>]*\bcontent=["'][^"']*noindex/i, `${sourceFile}: a kivezetett oldalnak noindexnek kell lennie.`);
+    assert.ok(href && href !== publicUrlForSource(sourceFile), `${sourceFile}: a kivezetett oldal canonicalja nem mutathat saját magára.`);
+    const targetSource = publicPathToSourceFile(new URL(href).pathname);
+    assert.ok(fs.existsSync(path.join(root, targetSource)), `${sourceFile}: a canonical céloldal nem létezik (${targetSource}).`);
+    assert.ok(!retiredRegistryUrls.has(targetSource), `${sourceFile}: a canonical céloldal maga is kivezetett (${targetSource}).`);
+  } else {
+    const expectedCanonical = publicUrlForSource(sourceFile);
+    assert.strictEqual(href, expectedCanonical, `${sourceFile}: canonical eltérés (${href || "hiányzik"} != ${expectedCanonical}).`);
   }
 }
 
