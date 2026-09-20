@@ -61,8 +61,8 @@ const financeQualityScriptPath = `${projectRoot}/js/finance-quality-upgrades.js?
 const constructionQualityScriptPath = `${projectRoot}/js/construction-quality-upgrades.js?v=7c73bd22cd31`;
 const healthEverydayQualityScriptPath = `${projectRoot}/js/health-everyday-quality-upgrades.js?v=3691c106a5e7`;
 const autoConverterQualityScriptPath = `${projectRoot}/js/auto-converter-quality-upgrades.js?v=74a0aa0853ab`;
-const calculatorCssPath = `${projectRoot}/css/pages/calculator-suite.css?v=044427ce1616`;
-const calculatorScriptPath = `${projectRoot}/js/calculator-suite.js?v=1a92495a8d40`;
+const calculatorCssPath = `${projectRoot}/css/pages/calculator-suite.css?v=bd34d7987fdb`;
+const calculatorScriptPath = `${projectRoot}/js/calculator-suite.js?v=580d3a5f4460`;
 const normalizedPath = window.location.pathname.replace(/\/+$/, "");
 const currentPathPart = pathParts.at(-1) || "index.html";
 const currentSlug = currentPathPart.replace(/\.html?$/i, "").toLowerCase();
