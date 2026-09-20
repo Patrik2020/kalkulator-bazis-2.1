@@ -16,7 +16,75 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  reachability:
+    name: Production reachability
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    outputs:
+      blocked: ${{ steps.probe.outputs.blocked }}
+
+    steps:
+      - name: Probe Cloudflare reachability
+        id: probe
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          headers_file="$(mktemp)"
+          trap 'rm -f "$headers_file"' EXIT
+
+          set +e
+          status="$(curl -sS \
+            --max-time 15 \
+            --connect-timeout 10 \
+            -D "$headers_file" \
+            -o /dev/null \
+            -w '%{http_code}' \
+            -A 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36' \
+            -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8' \
+            -H 'Accept-Language: hu-HU,hu;q=0.9,en-US;q=0.7,en;q=0.6' \
+            -H 'Cache-Control: no-cache' \
+            -H 'Pragma: no-cache' \
+            https://kalkulatorbazis.hu/)"
+          curl_exit=$?
+          set -e
+
+          if [[ $curl_exit -ne 0 ]]; then
+            echo "::error title=Production reachability failed::curl exited with code $curl_exit"
+            exit "$curl_exit"
+          fi
+
+          server="$(awk 'BEGIN{IGNORECASE=1} /^server:/ {gsub("\r", ""); sub(/^[^:]*:[[:space:]]*/, ""); print; exit}' "$headers_file")"
+          ray="$(awk 'BEGIN{IGNORECASE=1} /^cf-ray:/ {gsub("\r", ""); sub(/^[^:]*:[[:space:]]*/, ""); print; exit}' "$headers_file")"
+
+          if [[ "$status" == "403" && "${server,,}" == *"cloudflare"* ]]; then
+            echo "blocked=true" >> "$GITHUB_OUTPUT"
+            echo "::warning title=Production audit inconclusive::Cloudflare blocked the GitHub-hosted runner (HTTP 403${ray:+, cf-ray=$ray}). The live audit is intentionally skipped; this is not treated as a site regression."
+            {
+              echo "### Production smoke: inconclusive"
+              echo
+              echo "Cloudflare blocked the GitHub-hosted runner with HTTP 403, so the live production audit could not be executed."
+              echo
+              echo "- Server: ${server:-unknown}"
+              echo "- CF-Ray: ${ray:-unknown}"
+              echo "- Result: **audit skipped, not passed and not failed**"
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          if [[ ! "$status" =~ ^[23][0-9][0-9]$ ]]; then
+            echo "blocked=false" >> "$GITHUB_OUTPUT"
+            echo "::error title=Production reachability failed::Unexpected HTTP $status${server:+ from $server}${ray:+, cf-ray=$ray}"
+            exit 1
+          fi
+
+          echo "blocked=false" >> "$GITHUB_OUTPUT"
+          echo "Production endpoint reachable: HTTP $status${server:+, server=$server}${ray:+, cf-ray=$ray}"
+
   production:
+    name: Production audit
+    needs: reachability
+    if: needs.reachability.outputs.blocked != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 8
 
