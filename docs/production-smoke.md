@@ -10,7 +10,16 @@ A `.github/workflows/production-smoke.yml` fut:
 - naponta egyszer;
 - kézi `workflow_dispatch` indítással.
 
-A workflow kontrollált retry-t használ, hogy egy rövid deploy/CDN propagáció ne okozzon azonnal fals hibát. A production probe böngészőszerű kérésprofilt használ, mert a Cloudflare a nyíltan automatizáltnak jelölt GitHub-hosted runner kéréseket blokkolhatja. HTTP-hibánál a log a `server` és `cf-ray` diagnosztikai adatokat is kiírja.
+A workflow kétlépcsős:
+
+1. **Production reachability** – először ellenőrzi, hogy a GitHub-hosted runner egyáltalán eléri-e az éles domaint.
+2. **Production audit** – csak akkor indul el, ha az éles domain a runner számára ténylegesen elérhető.
+
+Ha a Cloudflare kifejezetten a GitHub-hosted runnert blokkolja HTTP 403-mal, a futás ezt **inconclusive / nem ellenőrizhető** állapotként kezeli: a valódi production audit kimarad, ezért nem kap hamis piros hibát, de a rendszer nem is állítja, hogy az éles audit sikeresen lefutott. A workflow warningot és GitHub Step Summary bejegyzést készít, benne a `server` és `cf-ray` diagnosztikai adatokkal.
+
+Más hálózati hiba vagy nem Cloudflare-eredetű váratlan HTTP státusz továbbra is valódi hibának számít.
+
+Ha a reachability rendben van, a production audit kontrollált retry-t használ, hogy egy rövid deploy/CDN propagáció ne okozzon azonnal fals hibát. A production probe böngészőszerű kérésprofilt használ, és HTTP-hibánál a log a `server` és `cf-ray` diagnosztikai adatokat is kiírja.
 
 ## Kézi futtatás
 
