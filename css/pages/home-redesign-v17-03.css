@@ -1,0 +1,64 @@
+html[data-season="spring"] .season-horizon{background:radial-gradient(75% 100% at 18% 100%,#284f3d 0 58%,transparent 59%),radial-gradient(72% 105% at 62% 100%,#3d7352 0 62%,transparent 63%),linear-gradient(to top,#183e32 0 28%,transparent 29%)}
+html[data-season="spring"] .season-detail{background:radial-gradient(circle at 18% 24%,rgba(255,210,225,.22) 0 2px,transparent 3px),radial-gradient(circle at 42% 18%,rgba(255,235,244,.20) 0 2px,transparent 3px),radial-gradient(circle at 72% 35%,rgba(255,215,229,.18) 0 2px,transparent 3px);background-size:110px 110px,140px 140px,125px 125px}
+html[data-season="spring"] .season-particle{opacity:.62;filter:drop-shadow(0 4px 10px rgba(0,0,0,.08))}
+html[data-season="summer"] .hero{background:linear-gradient(135deg,#04385f 0%,#087cab 46%,#eba44a 100%)}
+html[data-season="summer"] .season-orb{right:7%;top:8%;background:radial-gradient(circle,#fff8cf 0 22%,#ffd56f 46%,rgba(255,204,80,.20) 69%,transparent 71%);box-shadow:0 0 130px rgba(255,205,90,.38)}
+html[data-season="summer"] .season-horizon{height:25%;background:repeating-radial-gradient(ellipse at 50% 115%,rgba(255,255,255,.23) 0 3px,transparent 4px 18px),linear-gradient(to top,#075b80 0 45%,rgba(15,140,181,.62) 46% 100%)}
+html[data-season="summer"] .season-detail{background:linear-gradient(115deg,transparent 0 54%,rgba(255,244,190,.12) 55% 56%,transparent 57% 100%)}
+html[data-season="summer"] .season-particle{opacity:.48;text-shadow:0 0 18px rgba(255,229,135,.45)}
+html[data-season="autumn"] .hero{background:linear-gradient(135deg,#24191d 0%,#603a31 46%,#b8652d 100%)}
+html[data-season="autumn"] .season-orb{right:8%;top:13%;background:radial-gradient(circle,#ffd69b 0 17%,#d98a47 44%,rgba(206,104,48,.18) 69%,transparent 71%);box-shadow:0 0 130px rgba(219,124,57,.30)}
+html[data-season="autumn"] .season-horizon{height:31%;background:radial-gradient(75% 120% at 15% 100%,#2a221f 0 55%,transparent 56%),radial-gradient(70% 120% at 56% 100%,#3c2821 0 58%,transparent 59%),linear-gradient(to top,#1b1718 0 28%,transparent 29%)}
+html[data-season="autumn"] .season-detail{background:radial-gradient(circle at 12% 40%,rgba(225,138,58,.17),transparent 18%),radial-gradient(circle at 84% 30%,rgba(116,59,70,.28),transparent 20%),linear-gradient(165deg,transparent 0 68%,rgba(30,20,20,.22) 69% 70%,transparent 71%)}
+html[data-season="autumn"] .season-particle{opacity:.72;filter:drop-shadow(0 6px 12px rgba(25,10,0,.25));animation-duration:13s}
+html[data-season="winter"] .hero{background:linear-gradient(135deg,#061328 0%,#173b60 48%,#7b9fbd 100%)}
+html[data-season="winter"] .season-orb{right:8%;top:10%;background:radial-gradient(circle,#ffffff 0 18%,#d8efff 42%,rgba(190,226,249,.17) 70%,transparent 72%);box-shadow:0 0 110px rgba(196,230,255,.24)}
+html[data-season="winter"] .season-horizon{height:30%;background:radial-gradient(90% 100% at 18% 115%,#c9ddea 0 54%,transparent 55%),radial-gradient(85% 100% at 78% 120%,#e8f4fb 0 58%,transparent 59%),linear-gradient(to top,#b9d3e3 0 24%,transparent 25%)}
+html[data-season="winter"] .season-detail{background:radial-gradient(circle,rgba(255,255,255,.65) 0 1px,transparent 2px);background-size:58px 58px}
+html[data-season="winter"] .season-particle{opacity:.78;text-shadow:0 0 12px rgba(255,255,255,.5);animation-duration:16s}
+.season-particle.p5{left:18%;top:62%;font-size:1.35rem;animation-delay:-11s}.season-particle.p6{left:52%;top:28%;font-size:1.8rem;animation-delay:-2s}.season-particle.p7{left:76%;top:50%;font-size:1.25rem;animation-delay:-15s}.season-particle.p8{left:92%;top:20%;font-size:1.7rem;animation-delay:-7s}
+.theme-btn{height:42px;border:1px solid rgba(15,23,42,.08);background:rgba(255,255,255,.78);border-radius:13px;cursor:pointer;color:#243145;display:flex;align-items:center;gap:7px;padding:0 11px;font-size:.86rem;font-weight:800;transition:.18s ease}
+.theme-btn:hover{transform:translateY(-1px);border-color:rgba(37,99,235,.25)}
+html[data-theme="dark"]{--ink:#edf4ff;--muted:#aebbd0;--paper:#08111d;--surface:#0f1b2a;--line:rgba(168,190,218,.15);--header:rgba(7,15,27,.78);--season-alt:#0b1624;--season-glass:rgba(10,20,34,.88);--shadow:0 24px 70px rgba(0,0,0,.28);--shadow-soft:0 14px 40px rgba(0,0,0,.22)}
+html[data-theme="dark"] body{background:linear-gradient(180deg,#07101c,var(--paper) 760px)}
+html[data-theme="dark"] body::before{opacity:.34}
+html[data-theme="dark"] .kb-header{border-color:rgba(255,255,255,.10);background:var(--header)}
+html[data-theme="dark"] .kb-header.scrolled{background:rgba(7,15,27,.95)}
+html[data-theme="dark"] .logo,html[data-theme="dark"] .nav a{color:#e9f1ff}
+html[data-theme="dark"] .nav a:hover{background:rgba(96,165,250,.12);color:#9cc7ff}
+html[data-theme="dark"] .icon-btn,html[data-theme="dark"] .season-btn,html[data-theme="dark"] .theme-btn{background:rgba(18,31,48,.88);border-color:rgba(255,255,255,.10);color:#e9f1ff}
+html[data-theme="dark"] .section.alt{background:linear-gradient(180deg,#0b1726,#0f1b2a)}
+html[data-theme="dark"] .chat-strip{background:rgba(11,22,37,.93);border-color:rgba(255,255,255,.10)}
+html[data-theme="dark"] .chat-copy b,html[data-theme="dark"] .chat-copy span{color:#e7eef9}
+html[data-theme="dark"] .calc-card,html[data-theme="dark"] .small-category,html[data-theme="dark"] .trust-card{background:linear-gradient(180deg,#101e30,#0b1726);border-color:var(--line);color:var(--ink)}
+html[data-theme="dark"] .calc-card p,html[data-theme="dark"] .small-category p,html[data-theme="dark"] .trust-card p{color:var(--muted)}
+html[data-theme="dark"] .news-main{background:linear-gradient(135deg,rgba(var(--season-rgb),.14),#101d2c)}
+html[data-theme="dark"] .season-pop{background:rgba(8,17,29,.97);border-color:rgba(255,255,255,.12);color:var(--ink)}
+html[data-theme="dark"] .drawer-close,html[data-theme="dark"] .display,html[data-theme="dark"] .keys button,html[data-theme="dark"] .season-options button,html[data-theme="dark"] .season-auto{background:#132236;color:#edf4ff;border-color:rgba(255,255,255,.12)}
+html[data-theme="dark"] .keys .op{background:#19304f}html[data-theme="dark"] .keys .danger{background:#3a2026;color:#ffd3d3}html[data-theme="dark"] .season-options button.active{background:rgba(var(--season-rgb),.18)}
+html[data-theme="dark"] footer{background:#050b13;color:#dce7f5}
+@media(max-width:680px){.theme-btn .theme-label{display:none}.theme-btn{width:42px;padding:0;justify-content:center}.season-orb{width:190px;right:-35px;top:8%}.season-horizon{height:22%}.season-particle.p7,.season-particle.p8{display:none}}
+.season-swatch{width:13px;height:13px;border-radius:50%;background:linear-gradient(135deg,var(--season-2),var(--season-3));box-shadow:0 0 0 4px rgba(var(--season-rgb),.10),0 2px 8px rgba(var(--season-rgb),.25)}
+.option-swatch{width:14px;height:14px;border-radius:50%;display:inline-block;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+.option-swatch.spring{background:linear-gradient(135deg,#7da97f,#e2a6b7)}.option-swatch.summer{background:linear-gradient(135deg,#1ca0c7,#f2b94b)}.option-swatch.autumn{background:linear-gradient(135deg,#8c402a,#dd8737)}.option-swatch.winter{background:linear-gradient(135deg,#476c93,#d8edf8)}
+.season-options button{display:flex;align-items:center;justify-content:flex-start;gap:9px;text-align:left}
+.hero{min-height:94vh;background:#101827}
+.hero::before{opacity:.72;mix-blend-mode:screen}
+.season-scene{z-index:-6}
+.season-veil,.season-foreground{position:absolute;inset:0;pointer-events:none;transition:.65s ease}.season-veil{z-index:3}.season-foreground{z-index:4}.season-orb{z-index:1;filter:blur(.1px)}.season-horizon{z-index:2}.season-detail{z-index:2}
+.season-particle{z-index:-1;font-size:0;width:18px;height:12px;opacity:.22;filter:none;animation:seasonFloat 18s linear infinite;transform-origin:center}.season-particle::before{content:"";display:block;width:100%;height:100%;background:rgba(255,255,255,.5);border-radius:70% 20% 70% 20%;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.p1{left:7%;top:17%}.p2{left:18%;top:52%}.p3{left:33%;top:23%}.p4{left:46%;top:72%}.p5{left:58%;top:16%}.p6{left:69%;top:42%}.p7{left:79%;top:24%}.p8{left:89%;top:62%}.p9{left:12%;top:76%;animation-delay:-14s}.p10{left:41%;top:10%;animation-delay:-8s}.p11{left:73%;top:78%;animation-delay:-4s}.p12{left:94%;top:32%;animation-delay:-11s}
+@keyframes seasonFloat{0%{transform:translate3d(-10px,-40px,0) rotate(-25deg)}45%{transform:translate3d(25px,20px,0) rotate(120deg)}100%{transform:translate3d(-15px,100px,0) rotate(285deg)}}
+html[data-season="spring"]{--season-page:#e8f1e8;--season-alt:#f4f8f2;--season:#4f7d61;--season-2:#d9a5b4;--season-3:#294c3c;--season-rgb:79,125,97}
+html[data-season="spring"] .hero{background:linear-gradient(122deg,#0c2723 0%,#285a48 38%,#7f9580 68%,#d8aab6 100%)}
+html[data-season="spring"] .season-orb{right:9%;top:9%;background:radial-gradient(circle,#fff9df 0 16%,#efd9b0 34%,rgba(239,217,176,.18) 61%,transparent 69%);box-shadow:0 0 160px rgba(245,218,171,.30)}
+html[data-season="spring"] .season-horizon{height:35%;background:radial-gradient(75% 120% at 10% 112%,#1e4938 0 54%,transparent 55%),radial-gradient(75% 120% at 54% 116%,#315e46 0 59%,transparent 60%),radial-gradient(60% 100% at 92% 112%,#557762 0 54%,transparent 55%),linear-gradient(to top,#153a2e 0 24%,transparent 25%)}
+html[data-season="spring"] .season-detail{background:radial-gradient(ellipse at 4% 8%,rgba(14,35,29,.72) 0 7%,transparent 8%),radial-gradient(ellipse at 17% 2%,rgba(23,57,42,.64) 0 9%,transparent 10%),radial-gradient(ellipse at 91% 0%,rgba(26,61,45,.48) 0 10%,transparent 11%),linear-gradient(180deg,rgba(255,255,255,.06),transparent 42%)}
+html[data-season="spring"] .season-veil{background:linear-gradient(180deg,transparent 50%,rgba(225,240,227,.10)),radial-gradient(circle at 78% 18%,rgba(255,224,233,.12),transparent 23%)}
+html[data-season="spring"] .season-foreground{background:radial-gradient(ellipse at -4% 102%,rgba(5,27,21,.72) 0 28%,transparent 29%),radial-gradient(ellipse at 104% 108%,rgba(9,38,28,.55) 0 25%,transparent 26%)}
+html[data-season="spring"] .season-particle{width:11px;height:17px;opacity:.34;animation-duration:21s}
+html[data-season="spring"] .season-particle::before{background:linear-gradient(145deg,#fff2f5,#dca9b8);border-radius:80% 15% 80% 15%;box-shadow:0 5px 16px rgba(73,35,48,.10)}
+html[data-season="summer"]{--season-page:#f8f3df;--season-alt:#fffaf0;--season:#cf8428;--season-2:#f1ca68;--season-3:#0e7597;--season-rgb:207,132,40}
+html[data-season="summer"] .hero{background:linear-gradient(126deg,#042e4a 0%,#086f91 42%,#2fa2b6 65%,#eaa146 100%)}
+html[data-season="summer"] .season-orb{right:8%;top:5%;background:radial-gradient(circle,#fffef0 0 18%,#ffe491 34%,rgba(255,218,116,.20) 62%,transparent 69%);box-shadow:0 0 190px rgba(255,220,114,.42)}
+html[data-season="summer"] .season-horizon{height:31%;background:linear-gradient(to bottom,rgba(255,255,255,.10) 0 3%,transparent 4%),repeating-linear-gradient(to bottom,rgba(255,255,255,.08) 0 2px,transparent 3px 14px),linear-gradient(to top,#034d70 0 48%,#0d7f9f 49% 100%)}
