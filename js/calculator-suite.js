@@ -173,6 +173,41 @@
     });
   };
 
+  const announcementMarkup = (projectRoot) => `<section class="container learning-highlight home-chatgpt-announcement" aria-labelledby="chatgptPluginTitle"><div class="learning-mark" aria-hidden="true"></div><div><span class="section-label">Újdonság · ChatGPT</span><h2 id="chatgptPluginTitle">Most már ChatGPT-ben is elérhető</h2><p>A Kalkulátor Bázis nettó–bruttó számításai már közvetlenül a saját Salary API-nkon keresztül futnak ChatGPT-ben is.</p></div><a class="highlight-link" href="${projectRoot}/kalkulatorok/netto-brutto-kalkulator">Próbáld ki a nettó–bruttó kalkulátort →</a></section>`;
+
+  const ensureChatgptAnnouncement = (documentRef, hero, projectRoot) => {
+    if (!hero) return null;
+
+    let section = documentRef.getElementById("chatgptPluginTitle")?.closest("section");
+    if (!section) {
+      hero.insertAdjacentHTML("afterend", announcementMarkup(projectRoot));
+      section = hero.nextElementSibling;
+    }
+
+    if (!section) return null;
+
+    section.classList.add("container", "learning-highlight", "home-chatgpt-announcement");
+    section.setAttribute("aria-labelledby", "chatgptPluginTitle");
+
+    const label = section.querySelector(".section-label");
+    const title = section.querySelector("#chatgptPluginTitle");
+    const description = section.querySelector("p");
+    const link = section.querySelector("a.highlight-link");
+
+    if (label) label.textContent = "Újdonság · ChatGPT";
+    if (title) title.textContent = "Most már ChatGPT-ben is elérhető";
+    if (description) {
+      description.textContent = "A Kalkulátor Bázis nettó–bruttó számításai már közvetlenül a saját Salary API-nkon keresztül futnak ChatGPT-ben is.";
+    }
+    if (link) {
+      link.href = `${projectRoot}/kalkulatorok/netto-brutto-kalkulator`;
+      link.textContent = "Próbáld ki a nettó–bruttó kalkulátort →";
+    }
+
+    if (hero.nextElementSibling !== section) hero.insertAdjacentElement("afterend", section);
+    return section;
+  };
+
   const quickMarkup = (projectRoot) => `<section class="container quick-calculator-section" aria-labelledby="quickCalculatorTitle"><details class="quick-calculator-disclosure"><summary><span>Gyors számológép</span><small>Megnyitás</small></summary><div class="quick-calculator-card"><div class="quick-calculator-copy"><span class="section-label">Gyors számolás</span><h2 id="quickCalculatorTitle">Egyszerű számológép</h2><p>Végezd el a leggyakoribb alapműveleteket közvetlenül a főoldalon.</p><div class="calculator-note">Összetettebb művelethez, gyökvonáshoz, hatványozáshoz és trigonometriai számításokhoz <a href="${projectRoot}/kalkulatorok/multifunkcios-szamologep">nyisd meg a multifunkciós számológépet</a>.</div></div><div class="calculator-shell" data-calculator><input class="calculator-display" data-calc-display inputmode="decimal" autocomplete="off" aria-label="Számológép kijelző"><output class="visually-hidden" data-calc-status aria-live="polite" aria-atomic="true"></output><div class="calculator-keys"><button type="button" class="danger" data-action="clear">C</button><button type="button" data-action="backspace">⌫</button><button type="button" class="operator" data-value="/100">%</button><button type="button" class="operator" data-value="÷">÷</button><button type="button" data-value="7">7</button><button type="button" data-value="8">8</button><button type="button" data-value="9">9</button><button type="button" class="operator" data-value="×">×</button><button type="button" data-value="4">4</button><button type="button" data-value="5">5</button><button type="button" data-value="6">6</button><button type="button" class="operator" data-value="−">−</button><button type="button" data-value="1">1</button><button type="button" data-value="2">2</button><button type="button" data-value="3">3</button><button type="button" class="operator" data-value="+">+</button><button type="button" data-value="0">0</button><button type="button" data-value=".">,</button><button type="button" data-value="(">(</button><button type="button" class="equals" data-action="equals">=</button></div></div></div></details></section>`;
 
   const syncQuickCalculatorVisibility = (documentRef, windowRef) => {
@@ -185,8 +220,11 @@
   const init = (documentRef, windowRef) => {
     const start = () => {
       const hero = documentRef.querySelector(".home-hero");
+      const projectRoot = windowRef.KB_PROJECT_ROOT || "";
+      const announcement = ensureChatgptAnnouncement(documentRef, hero, projectRoot);
+
       if (hero && !documentRef.querySelector(".quick-calculator-section")) {
-        hero.insertAdjacentHTML("afterend", quickMarkup(windowRef.KB_PROJECT_ROOT || ""));
+        (announcement || hero).insertAdjacentHTML("afterend", quickMarkup(projectRoot));
       }
       syncQuickCalculatorVisibility(documentRef, windowRef);
       documentRef.querySelectorAll("[data-calculator]").forEach((shell) => bindCalculator(shell, documentRef));
