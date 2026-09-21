@@ -15,6 +15,10 @@ const load=src=>new Promise((resolve,reject)=>{const s=document.createElement('s
 Promise.all([fetchText('fragments/home-redesign-v17-header.inc'),fetchText('fragments/home-redesign-v17-main.inc'),fetchText('fragments/home-redesign-v17-footer.inc')]).then(async([header,main,footer])=>{
  document.querySelectorAll('.kb-help-launcher,.kb-help-panel,[data-kb-backdrop]').forEach(n=>n.remove());
  replace('#header',header);replace('main',main);replace('#footer',footer);
+ const redesignedMain=document.querySelector('main');
+ if(redesignedMain)redesignedMain.id='main-content';
+ const hero=redesignedMain?.querySelector('.hero');
+ if(hero)hero.id='top';
  for(const src of ['js/home-redesign-i18n-hu.js','js/home-redesign-i18n-en.js','js/home-redesign-i18n-de.js','js/home-redesign-help-i18n-hu.js','js/home-redesign-help-i18n-en.js','js/home-redesign-help-i18n-de.js','js/home-redesign-core.js','js/home-redesign-salary.js','js/home-redesign-help.js'])await load(`${src}?v=20260921-1`);
  document.dispatchEvent(new CustomEvent('kb:home-redesign-ready'));
 }).catch(err=>{console.error('Kalkulátor Bázis homepage redesign could not initialize.',err);document.body.classList.remove('home-redesign-v17')});
