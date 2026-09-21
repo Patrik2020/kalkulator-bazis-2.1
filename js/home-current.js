@@ -13,10 +13,11 @@ const fetchText=async p=>{const r=await fetch(url(p),{cache:'no-cache'});if(!r.o
 const replace=(selector,html)=>{const current=document.querySelector(selector);if(!current)return;const t=document.createElement('template');t.innerHTML=html.trim();current.replaceWith(t.content)};
 const load=src=>new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=url(src);s.onload=resolve;s.onerror=reject;document.body.appendChild(s)});
 const preserveStaticQualityMarkers=main=>{
- if(!main||[...main.childNodes].some(n=>n.nodeType===Node.COMMENT_NODE&&String(n.data||'').includes('KB_STATIC:quality-final:START')))return;
+ if(!main||main.querySelector('[data-kb-static-quality-final-start]'))return;
+ const marker=(name,value)=>{const el=document.createElement('span');el.hidden=true;el.setAttribute('aria-hidden','true');el.setAttribute(name,'');el.dataset.kbStaticMarker=value;return el};
+ const start=marker('data-kb-static-quality-final-start','KB_STATIC:quality-final:START');
+ const end=marker('data-kb-static-quality-final-end','KB_STATIC:quality-final:END');
  const trust=main.querySelector('#trust')||main.lastElementChild;
- const start=document.createComment(' KB_STATIC:quality-final:START ');
- const end=document.createComment(' KB_STATIC:quality-final:END ');
  if(trust){main.insertBefore(start,trust);trust.after(end)}else{main.prepend(start);main.append(end)}
 };
 Promise.all([fetchText('fragments/home-redesign-v17-header.inc'),fetchText('fragments/home-redesign-v17-main.inc'),fetchText('fragments/home-redesign-v17-footer.inc')]).then(async([header,main,footer])=>{
