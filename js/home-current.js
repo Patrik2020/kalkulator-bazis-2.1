@@ -12,6 +12,13 @@ if(!document.querySelector('link[data-home-redesign-v17]')){const l=document.cre
 const fetchText=async p=>{const r=await fetch(url(p),{cache:'no-cache'});if(!r.ok)throw new Error(`${p}: HTTP ${r.status}`);return r.text()};
 const replace=(selector,html)=>{const current=document.querySelector(selector);if(!current)return;const t=document.createElement('template');t.innerHTML=html.trim();current.replaceWith(t.content)};
 const load=src=>new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=url(src);s.onload=resolve;s.onerror=reject;document.body.appendChild(s)});
+const preserveStaticQualityMarkers=main=>{
+ if(!main||[...main.childNodes].some(n=>n.nodeType===Node.COMMENT_NODE&&String(n.data||'').includes('KB_STATIC:quality-final:START')))return;
+ const trust=main.querySelector('#trust')||main.lastElementChild;
+ const start=document.createComment(' KB_STATIC:quality-final:START ');
+ const end=document.createComment(' KB_STATIC:quality-final:END ');
+ if(trust){main.insertBefore(start,trust);trust.after(end)}else{main.prepend(start);main.append(end)}
+};
 Promise.all([fetchText('fragments/home-redesign-v17-header.inc'),fetchText('fragments/home-redesign-v17-main.inc'),fetchText('fragments/home-redesign-v17-footer.inc')]).then(async([header,main,footer])=>{
  document.querySelectorAll('.kb-help-launcher,.kb-help-panel,[data-kb-backdrop]').forEach(n=>n.remove());
  replace('#header',header);replace('main',main);replace('#footer',footer);
@@ -19,6 +26,7 @@ Promise.all([fetchText('fragments/home-redesign-v17-header.inc'),fetchText('frag
  if(redesignedMain)redesignedMain.id='main-content';
  const hero=redesignedMain?.querySelector('.hero');
  if(hero)hero.id='top';
+ preserveStaticQualityMarkers(redesignedMain);
  for(const src of ['js/home-redesign-i18n-hu.js','js/home-redesign-i18n-en.js','js/home-redesign-i18n-de.js','js/home-redesign-help-i18n-hu.js','js/home-redesign-help-i18n-en.js','js/home-redesign-help-i18n-de.js','js/home-redesign-core.js','js/home-redesign-salary.js','js/home-redesign-help.js'])await load(`${src}?v=20260921-1`);
  document.dispatchEvent(new CustomEvent('kb:home-redesign-ready'));
 }).catch(err=>{console.error('Kalkulátor Bázis homepage redesign could not initialize.',err);document.body.classList.remove('home-redesign-v17')});
