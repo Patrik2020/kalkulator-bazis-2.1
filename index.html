@@ -45,9 +45,27 @@
 </head>
 
 <body class="home-page">
-<div role="status" style="position:relative;z-index:99999;background:#fff3cd;color:#5c4500;border-bottom:1px solid #e6c65c;padding:12px 18px;text-align:center;font:600 14px/1.45 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
-  🛠️ <strong>A Kalkulátor Bázis jelenleg fejlesztés alatt áll.</strong> A főoldal megjelenése átmenetileg hiányos vagy szokatlan lehet. <strong>A kalkulátorok és a számítások ettől függetlenül működnek.</strong>
+<div id="developmentNotice" role="dialog" aria-modal="true" aria-labelledby="developmentNoticeTitle" style="position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(15,23,42,.62);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);">
+  <div style="width:min(560px,100%);background:#fff;color:#172033;border-radius:22px;padding:30px 28px;box-shadow:0 24px 80px rgba(0,0,0,.32);text-align:center;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+    <div aria-hidden="true" style="font-size:38px;margin-bottom:8px;">🛠️</div>
+    <h2 id="developmentNoticeTitle" style="margin:0 0 14px;font-size:clamp(24px,4vw,32px);line-height:1.15;">A Kalkulátor Bázis jelenleg fejlesztés alatt áll</h2>
+    <p style="margin:0 auto 12px;max-width:470px;font-size:18px;line-height:1.6;">A főoldal új megjelenésén dolgozunk, ezért átmenetileg előfordulhatnak hiányzó képek vagy szokatlan vizuális elemek.</p>
+    <p style="margin:0 auto 24px;max-width:470px;font-size:18px;line-height:1.6;"><strong>A kalkulátorok és a számítások ettől függetlenül működnek.</strong></p>
+    <button type="button" id="developmentNoticeClose" style="border:0;border-radius:14px;padding:14px 22px;background:#2563eb;color:#fff;font:700 16px/1 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;cursor:pointer;">Elolvastam, megértettem</button>
+  </div>
 </div>
+<script>
+(function(){
+  var notice=document.getElementById('developmentNotice');
+  var close=document.getElementById('developmentNoticeClose');
+  if(!notice||!close)return;
+  if(sessionStorage.getItem('kb-development-notice-seen')==='1'){notice.remove();return;}
+  close.addEventListener('click',function(){
+    sessionStorage.setItem('kb-development-notice-seen','1');
+    notice.remove();
+  });
+})();
+</script>
 <!-- KB_STATIC:skip-link:START -->
 <a class="kb-skip-link" href="#main-content">Ugrás a tartalomhoz</a>
 <!-- KB_STATIC:skip-link:END -->
