@@ -1,0 +1,17 @@
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id),root=document.documentElement;
+const launcher=$('kbHelpLauncher'),panel=$('kbHelpPanel'),backdrop=$('kbHelpBackdrop'),close=$('kbHelpClose');if(!launcher||!panel)return;
+const dict=()=>window.KB_HELP_I18N?.[root.dataset.language||'hu']||window.KB_HELP_I18N?.hu||{};
+function open(){panel.dataset.open='true';if(backdrop){backdrop.hidden=false;backdrop.setAttribute('data-open','true')}launcher.setAttribute('aria-expanded','true');panel.hidden=false;show('menu')}
+function shut(){panel.dataset.open='false';if(backdrop){backdrop.hidden=true;backdrop.setAttribute('data-open','false')}launcher.setAttribute('aria-expanded','false');panel.hidden=true}
+function show(name){panel.querySelectorAll('.kb-help-view').forEach(v=>v.hidden=v.dataset.helpView!==name)}
+launcher.addEventListener('click',()=>panel.dataset.open==='true'?shut():open());
+close?.addEventListener('click',shut);backdrop?.addEventListener('click',shut);document.addEventListener('keydown',e=>{if(e.key==='Escape')shut()});
+panel.addEventListener('click',e=>{const b=e.target.closest('[data-help-open]');if(b)show(b.dataset.helpOpen);if(e.target.closest('[data-help-back]'))show('menu')});
+async function send(form){const d=dict(),status=form.querySelector('.kb-help-status'),submit=form.querySelector('[type="submit"]');status.hidden=true;submit.disabled=true;const original=submit.textContent;submit.textContent=d.sending||original;const fd=new FormData(form);fd.set('page',location.href);fd.set('language',root.dataset.language||'hu');try{const r=await fetch('https://formspree.io/f/xgojpond',{method:'POST',body:fd,headers:{Accept:'application/json'}});if(!r.ok)throw new Error('send');status.textContent=d.success||'Köszönjük, megkaptuk az üzenetet.';status.dataset.kind='success';status.hidden=false;form.reset()}catch(_){status.textContent=d.error||'A küldés most nem sikerült. Írj nekünk: kalkulatorbazis@gmail.com';status.dataset.kind='error';status.hidden=false}finally{submit.disabled=false;submit.textContent=d.submit||original}}
+panel.querySelectorAll('[data-help-form]').forEach(f=>f.addEventListener('submit',e=>{e.preventDefault();send(f)}));
+const setText=(id,key,d)=>{const el=$(id);if(el&&d[key]!=null)el.textContent=d[key]};
+function translate(){const d=dict();setText('kbHelpLauncherLabel','launcher',d);setText('kbHelpTitle','title',d);setText('kbHelpSubtitle','subtitle',d);setText('kbHelpFind','find',d);setText('kbHelpQuestion','question',d);setText('kbHelpBug','bug',d);setText('kbHelpSuggestion','suggestion',d);setText('kbHelpQuestionText','questionText',d);setText('kbHelpQuestionSend','questionSend',d);setText('kbHelpQuestionLabel','questionLabel',d);setText('kbHelpBugLabel','bugLabel',d);setText('kbHelpExpectedLabel','expected',d);setText('kbHelpInputLabel','input',d);setText('kbHelpSuggestionLabel','suggestionLabel',d);['kbHelpEmailLabel','kbHelpEmailLabel2','kbHelpEmailLabel3'].forEach(id=>setText(id,'email',d));['kbHelpConsent','kbHelpConsent2','kbHelpConsent3'].forEach(id=>setText(id,'consent',d));['kbHelpSubmitQ','kbHelpSubmitB','kbHelpSubmitS'].forEach(id=>setText(id,'submit',d));panel.querySelectorAll('[data-help-back]').forEach(el=>el.textContent=d.back||'Vissza');launcher.setAttribute('aria-label',d.launcher||'Segítség');close?.setAttribute('aria-label',root.dataset.language==='de'?'Schließen':root.dataset.language==='en'?'Close':'Bezárás')}
+document.addEventListener('kb:language-changed',translate);translate();show('menu');shut();
+})();

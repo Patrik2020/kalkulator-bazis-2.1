@@ -65,20 +65,40 @@ function fail(message, details) {
   process.exitCode = 1;
 }
 
+function runBrowserQa() {
+  if (fs.existsSync(resultsPath)) fs.rmSync(resultsPath, { force: true });
+  return spawnSync(process.execPath, [browserQaPath], {
+    cwd: root,
+    env: process.env,
+    encoding: "utf8",
+    maxBuffer: 16 * 1024 * 1024,
+  });
+}
+
+function printRunOutput(run) {
+  if (run.stdout) process.stdout.write(run.stdout);
+  if (run.stderr) process.stderr.write(run.stderr);
+}
+
+function isTransientTargetDisconnect(run) {
+  const output = `${run.stdout || ""}\n${run.stderr || ""}`;
+  return /Inspected target navigated or closed|Target closed|WebSocket.*(?:closed|disconnect)/i.test(output);
+}
+
 assertCurrentEligibilityPolicy();
 
-const run = spawnSync(process.execPath, [browserQaPath], {
-  cwd: root,
-  env: process.env,
-  encoding: "utf8",
-  maxBuffer: 16 * 1024 * 1024,
-});
-
-if (run.stdout) process.stdout.write(run.stdout);
-if (run.stderr) process.stderr.write(run.stderr);
+let run = runBrowserQa();
+printRunOutput(run);
 
 if (run.error) {
   throw run.error;
+}
+
+if (run.status !== 0 && !fs.existsSync(resultsPath) && isTransientTargetDisconnect(run)) {
+  console.warn("Browser QA: átmeneti Chrome/CDP target-kapcsolati hiba; egyszer újrapróbáljuk tiszta böngészőfolyamattal.");
+  run = runBrowserQa();
+  printRunOutput(run);
+  if (run.error) throw run.error;
 }
 
 if (run.status === 0) {
