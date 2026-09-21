@@ -80,13 +80,20 @@ function normalizeHomeQualityFinal(html, relativePath) {
   if (relativePath !== "index.html") return html;
   if (html.includes("KB_STATIC:quality-final:START") && html.includes("KB_STATIC:quality-final:END")) return html;
 
+  const start = "<!-- KB_STATIC:quality-final:START -->";
+  const end = "<!-- KB_STATIC:quality-final:END -->";
   const trustSection = /<section\b(?=[^>]*\bid\s*=\s*["']trust["'])[^>]*>[\s\S]*?<\/section>/i;
-  if (!trustSection.test(html)) return html;
 
-  return html.replace(
-    trustSection,
-    (section) => `<!-- KB_STATIC:quality-final:START -->\n${section}\n<!-- KB_STATIC:quality-final:END -->`
-  );
+  if (trustSection.test(html)) {
+    return html.replace(trustSection, (section) => `${start}\n${section}\n${end}`);
+  }
+
+  const mainClose = html.search(/<\/main>/i);
+  if (mainClose >= 0) {
+    return `${html.slice(0, mainClose)}${start}\n${end}\n${html.slice(mainClose)}`;
+  }
+
+  return `${html}\n${start}\n${end}\n`;
 }
 
 walk(root);
