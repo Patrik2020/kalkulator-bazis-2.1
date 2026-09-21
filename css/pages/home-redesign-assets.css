@@ -6,14 +6,14 @@ html[data-season='autumn']{--hero-atlas-position:0% 0%}
 html[data-season='winter']{--hero-atlas-position:100% 100%}
 
 .home-redesign-v17 .hero{
-  background-image:linear-gradient(90deg,rgba(7,12,18,.88) 0%,rgba(8,14,22,.73) 37%,rgba(8,14,22,.38) 62%,rgba(8,14,22,.10) 100%),url('/images/redesign/season-atlas.webp')!important;
+  background-image:linear-gradient(90deg,rgba(7,12,18,.88) 0%,rgba(8,14,22,.73) 37%,rgba(8,14,22,.38) 62%,rgba(8,14,22,.10) 100%),url('/images/redesign/season-atlas.webp?v=20260921-2')!important;
   background-size:auto,200% 200%!important;
   background-position:center,var(--hero-atlas-position)!important;
   background-repeat:no-repeat!important;
 }
 
 .home-redesign-v17 .category-tile::before{
-  background-image:url('/images/redesign/category-atlas.webp')!important;
+  background-image:url('/images/redesign/category-atlas.webp?v=20260921-2')!important;
   background-size:200% 300%!important;
   background-position:var(--category-atlas-position,0% 0%)!important;
   background-repeat:no-repeat!important;
