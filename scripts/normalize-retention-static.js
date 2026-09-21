@@ -76,6 +76,19 @@ function normalizeRetentionBlock(html, relativePath) {
   return normalized;
 }
 
+function normalizeHomeQualityFinal(html, relativePath) {
+  if (relativePath !== "index.html") return html;
+  if (html.includes("KB_STATIC:quality-final:START") && html.includes("KB_STATIC:quality-final:END")) return html;
+
+  const trustSection = /<section\b(?=[^>]*\bid\s*=\s*["']trust["'])[^>]*>[\s\S]*?<\/section>/i;
+  if (!trustSection.test(html)) return html;
+
+  return html.replace(
+    trustSection,
+    (section) => `<!-- KB_STATIC:quality-final:START -->\n${section}\n<!-- KB_STATIC:quality-final:END -->`
+  );
+}
+
 walk(root);
 
 let changed = 0;
@@ -84,7 +97,8 @@ const pending = [];
 for (const file of htmlFiles) {
   const relativePath = path.relative(root, file);
   const source = fs.readFileSync(file, "utf8");
-  const normalized = normalizeRetentionBlock(source, relativePath);
+  let normalized = normalizeRetentionBlock(source, relativePath);
+  normalized = normalizeHomeQualityFinal(normalized, relativePath);
   if (source === normalized) continue;
   changed += 1;
   pending.push(relativePath);
@@ -92,13 +106,13 @@ for (const file of htmlFiles) {
 }
 
 if (checkOnly && changed) {
-  console.error(`Retention static normalizálás szükséges: ${changed} fájl.`);
+  console.error(`Retention/static quality normalizálás szükséges: ${changed} fájl.`);
   pending.slice(0, 20).forEach((file) => console.error(`- ${file}`));
   process.exit(1);
 }
 
 console.log(
   checkOnly
-    ? `Retention static normalizálás rendben: ${htmlFiles.length} HTML.`
-    : `Retention static normalizálás: ${changed}/${htmlFiles.length} HTML fájl módosult.`
+    ? `Retention/static quality normalizálás rendben: ${htmlFiles.length} HTML.`
+    : `Retention/static quality normalizálás: ${changed}/${htmlFiles.length} HTML fájl módosult.`
 );
