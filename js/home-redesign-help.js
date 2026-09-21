@@ -3,8 +3,8 @@
 const $=id=>document.getElementById(id),root=document.documentElement;
 const launcher=$('kbHelpLauncher'),panel=$('kbHelpPanel'),backdrop=$('kbHelpBackdrop'),close=$('kbHelpClose');if(!launcher||!panel)return;
 const dict=()=>window.KB_HELP_I18N?.[root.dataset.language||'hu']||window.KB_HELP_I18N?.hu||{};
-function open(){panel.dataset.open='true';backdrop?.setAttribute('data-open','true');launcher.setAttribute('aria-expanded','true');panel.removeAttribute('aria-hidden');show('menu')}
-function shut(){panel.dataset.open='false';backdrop?.setAttribute('data-open','false');launcher.setAttribute('aria-expanded','false');panel.setAttribute('aria-hidden','true')}
+function open(){panel.dataset.open='true';if(backdrop){backdrop.hidden=false;backdrop.setAttribute('data-open','true')}launcher.setAttribute('aria-expanded','true');panel.hidden=false;show('menu')}
+function shut(){panel.dataset.open='false';if(backdrop){backdrop.hidden=true;backdrop.setAttribute('data-open','false')}launcher.setAttribute('aria-expanded','false');panel.hidden=true}
 function show(name){panel.querySelectorAll('.kb-help-view').forEach(v=>v.hidden=v.dataset.helpView!==name)}
 launcher.addEventListener('click',()=>panel.dataset.open==='true'?shut():open());
 close?.addEventListener('click',shut);backdrop?.addEventListener('click',shut);document.addEventListener('keydown',e=>{if(e.key==='Escape')shut()});
