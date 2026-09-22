@@ -80,8 +80,11 @@ expect(
   browserQa.includes('require("./responsive-viewports")') &&
     browserQa.includes("tapTargetOffenders") &&
     browserQa.includes("developmentNoticeFailures") &&
+    browserQa.includes("searchFailures") &&
+    browserQa.includes('Input.dispatchKeyEvent') &&
+    browserQa.includes('Input.dispatchMouseEvent') &&
     browserQa.includes("development-notice-phone-landscape.png"),
-  "A teljes böngészős QA központi viewportmátrixot, tap targetet és modal-képernyőképet ellenőriz."
+  "A teljes böngészős QA központi viewportmátrixot, tap targetet, keresőnavigációt és modal-képernyőképet ellenőriz."
 );
 expect(
   calculatorSmoke.includes('require("./responsive-viewports")') &&

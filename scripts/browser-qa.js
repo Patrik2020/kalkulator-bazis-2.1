@@ -735,7 +735,10 @@ const run = async () => {
       await new Promise((resolve) => setTimeout(resolve, 30));
       return [...document.querySelectorAll('.search-result strong')].map((item) => item.textContent.trim());
     };
+    const accented = await run('építőanyag');
     const accentless = await run('epitoanyag');
+    const partial = await run('szaz');
+    const multipleWords = await run('hitel torleszto');
     const ranked = await run('etf');
     const empty = await run('nincsilyenkereses123');
     const emptyText = document.querySelector('.search-empty')?.textContent.trim() || '';
@@ -743,17 +746,81 @@ const run = async () => {
     input.dispatchEvent(new Event('input', { bubbles: true }));
     input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
     const active = input.getAttribute('aria-activedescendant');
-    let enterTarget = '';
-    document.getElementById('calculatorSearchResults').addEventListener('click', (event) => {
-      const link = event.target.closest('a');
-      if (!link) return;
-      event.preventDefault();
-      enterTarget = link.getAttribute('href');
-    }, { once: true, capture: true });
-    input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
-    await new Promise((resolve) => setTimeout(resolve, 10));
-    return { accentless, ranked, empty, emptyText, active, enterTarget, expanded: input.getAttribute('aria-expanded') };
+    const expectedEnterTarget = document.getElementById(active)?.getAttribute('href') || '';
+    input.focus();
+    return { accented, accentless, partial, multipleWords, ranked, empty, emptyText, active, expectedEnterTarget, expanded: input.getAttribute('aria-expanded') };
   })()`);
+
+  search.expectedEnterPath = new URL(search.expectedEnterTarget, `${origin}/`).pathname;
+  const enterLoaded = client.once("Page.loadEventFired", 12000).catch(() => null);
+  try {
+    await client.send("Input.dispatchKeyEvent", {
+      type: "keyDown",
+      key: "Enter",
+      code: "Enter",
+      windowsVirtualKeyCode: 13,
+      nativeVirtualKeyCode: 13
+    });
+  } catch (error) {
+    if (!/Inspected target navigated or closed|Target closed/i.test(error.message)) throw error;
+    search.enterDispatchWarning = error.message;
+  }
+  search.enterLoaded = Boolean(await enterLoaded);
+  await sleep(350);
+  search.enterPath = await evaluate(`window.location.pathname`);
+
+  await navigate("/");
+  const clickSetup = await evaluate(`(async () => {
+    const input = document.getElementById('calculatorSearch');
+    input.value = 'afa';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    await new Promise((resolve) => setTimeout(resolve, 30));
+    const link = document.querySelector('.search-result');
+    link?.scrollIntoView({ block: 'center' });
+    const rect = link?.getBoundingClientRect();
+    return {
+      expectedTarget: link?.getAttribute('href') || '',
+      x: rect ? rect.left + rect.width / 2 : 0,
+      y: rect ? rect.top + rect.height / 2 : 0
+    };
+  })()`);
+  search.expectedClickPath = new URL(clickSetup.expectedTarget, `${origin}/`).pathname;
+  const clickLoaded = client.once("Page.loadEventFired", 12000).catch(() => null);
+  await client.send("Input.dispatchMouseEvent", {
+    type: "mousePressed",
+    x: clickSetup.x,
+    y: clickSetup.y,
+    button: "left",
+    clickCount: 1
+  });
+  try {
+    await client.send("Input.dispatchMouseEvent", {
+      type: "mouseReleased",
+      x: clickSetup.x,
+      y: clickSetup.y,
+      button: "left",
+      clickCount: 1
+    });
+  } catch (error) {
+    if (!/Inspected target navigated or closed|Target closed/i.test(error.message)) throw error;
+    search.clickDispatchWarning = error.message;
+  }
+  search.clickLoaded = Boolean(await clickLoaded);
+  await sleep(350);
+  search.clickPath = await evaluate(`window.location.pathname`);
+
+  const searchFailures = [
+    [search.accented.length > 0 && search.accentless.length > 0, "A főoldali kereső ékezetes vagy ékezet nélküli keresése nem ad találatot."],
+    [search.partial.length > 0, "A főoldali kereső részleges kifejezésre nem ad találatot."],
+    [search.multipleWords.length > 0, "A főoldali kereső több szavas kifejezésre nem ad találatot."],
+    [search.ranked[0]?.toLowerCase().includes("etf"), "A főoldali kereső pontos ETF-találata nem került előre."],
+    [search.empty.length === 0 && search.emptyText.length > 0, "A főoldali kereső nincs-találat állapota hibás."],
+    [Boolean(search.active) && search.expanded === "true", "A főoldali kereső billentyűzetes aktív találata vagy aria-expanded állapota hibás."],
+    [search.enterLoaded && search.enterPath === search.expectedEnterPath, "A főoldali kereső Enter-navigációja hibás."],
+    [search.clickLoaded && search.clickPath === search.expectedClickPath, "A főoldali kereső kattintásos navigációja hibás."]
+  ].filter(([passed]) => !passed).map(([, message]) => message);
+
+  await navigate("/");
 
   const interactions = await evaluate(`(async () => {
     const menuButton = document.getElementById('menuToggle');
@@ -972,6 +1039,7 @@ const run = async () => {
       developmentNoticeFailures: developmentNoticeFailures.length,
       consentMatrixFailures: consentMatrixFailures.length,
       categoryAdsConsentFailures: categoryAdsConsentFailures.length,
+      searchFailures: searchFailures.length,
       interactionFailures: interactionFailures.length,
       calculatorFailures: calculatorFailures.length,
       themeFailures: themeFailures.length
@@ -985,6 +1053,7 @@ const run = async () => {
     categoryAdsConsentFailures,
     cookieScenarios,
     search,
+    searchFailures,
     interactions,
     interactionFailures,
     theme,
@@ -1011,6 +1080,7 @@ run()
         developmentNoticeFailures: result.developmentNoticeFailures,
         consentMatrixFailures: result.consentMatrixFailures,
         categoryAdsConsentFailures: result.categoryAdsConsentFailures,
+        searchFailures: result.searchFailures,
         interactionFailures: result.interactionFailures,
         calculatorFailures: result.calculatorFailures,
         themeFailures: result.themeFailures,
