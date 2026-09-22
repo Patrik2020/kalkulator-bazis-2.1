@@ -106,6 +106,14 @@ function ensureStylesheet(source) {
   return source.replace(/<script\b[^>]*src=["'][^"']*static-first-fallbacks\.js[^"']*["'][^>]*>/i, `${stylesheet}$&`);
 }
 
+function normalizeAssetVersions(source) {
+  return source.replace(/\b(src|href)=(['"])(.*?)\2/gi, (attribute, name, quote, value) => {
+    if (!/\.(?:css|js)(?:[?#]|$)/i.test(value)) return attribute;
+    const normalized = value.replace(/([?&])v=[^&#'"\s]*/i, "$1v=__CONTENT_HASH__");
+    return `${name}=${quote}${normalized}${quote}`;
+  });
+}
+
 function normalizedMain(fragment, qualityBlock) {
   let main = fragment.trim()
     .replace(/^<main\s+id=["']top["']>/i, '<main id="main-content">')
@@ -139,8 +147,10 @@ function build(source) {
 
 const source = fs.readFileSync(indexPath, "utf8");
 const next = build(source);
+const equivalentIgnoringAssetVersions =
+  normalizeAssetVersions(source) === normalizeAssetVersions(next);
 
-if (source === next) {
+if (source === next || (checkOnly && equivalentIgnoringAssetVersions)) {
   console.log("A statikus főoldali redesign shell naprakész.");
 } else if (checkOnly) {
   console.error("A statikus főoldali redesign shell eltér a fragmentektől. Futtasd: npm run home:shell:apply");

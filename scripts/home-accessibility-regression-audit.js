@@ -16,6 +16,7 @@ const header = read("fragments/home-redesign-v17-header.inc");
 const footer = read("fragments/home-redesign-v17-footer.inc");
 const core = read("js/home-redesign-core.js");
 const css = read("css/pages/index.css");
+const homeShellSync = read("scripts/sync-home-redesign-shell.js");
 
 expect(
   /id="developmentNotice"[^>]+aria-modal="true"[^>]+aria-labelledby="developmentNoticeTitle"[^>]+aria-describedby="developmentNoticeDescription developmentNoticeStatus"/.test(index),
@@ -70,6 +71,11 @@ expect(
 expect(
   css.includes(".development-notice__close:focus-visible") && css.includes("outline: 3px solid"),
   "A modal bezárógombjának látható fókuszjelzése van."
+);
+expect(
+  homeShellSync.includes("function normalizeAssetVersions") &&
+    homeShellSync.includes("equivalentIgnoringAssetVersions"),
+  "A főoldali shell-audit a tartalmi eltérést megfogja, de a build cache-hash eltérését nem jelzi hibának."
 );
 
 console.log(JSON.stringify({ checks: passed.length + issues.length, passed: passed.length, issues, pass: passed }, null, 2));
