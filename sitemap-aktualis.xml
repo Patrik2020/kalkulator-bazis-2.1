@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kalkulatorbazis.hu/aktualis</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-22</lastmod>
   </url>
   <url>
     <loc>https://kalkulatorbazis.hu/aktualis/ksh-inflacio-2026-augusztus</loc>
@@ -19,5 +19,9 @@
   <url>
     <loc>https://kalkulatorbazis.hu/aktualis/ksh-keresetek-2026-julius</loc>
     <lastmod>2026-09-16</lastmod>
+  </url>
+  <url>
+    <loc>https://kalkulatorbazis.hu/aktualis/dizeltamogatas-2026</loc>
+    <lastmod>2026-09-22</lastmod>
   </url>
 </urlset>
