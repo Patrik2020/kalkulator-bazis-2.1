@@ -47,10 +47,10 @@ const financeQualityCssPath = `${projectRoot}/css/pages/finance-quality-upgrades
 const constructionQualityCssPath = `${projectRoot}/css/pages/construction-quality-upgrades.css?v=3786bcf552b2`;
 const healthEverydayQualityCssPath = `${projectRoot}/css/pages/health-everyday-quality-upgrades.css?v=e10e7cbe585c`;
 const autoConverterQualityCssPath = `${projectRoot}/css/pages/auto-converter-quality-upgrades.css?v=52a3f32da1be`;
-const themeScriptPath = `${projectRoot}/js/theme.js?v=c9adbb2a57e2`;
+const themeScriptPath = `${projectRoot}/js/theme.js?v=9414b30c8574`;
 const pwaScriptPath = `${projectRoot}/js/pwa.js?v=fb055828c8f9`;
 const wiseBannerScriptPath = `${projectRoot}/js/wise-banner-enhancer.js?v=9c6dbaaa839b`;
-const accessibilityScriptPath = `${projectRoot}/js/site-accessibility.js?v=8135c9bdc65a`;
+const accessibilityScriptPath = `${projectRoot}/js/site-accessibility.js?v=79bb91554b93`;
 const calculatorPageScriptPath = `${projectRoot}/js/calculator-page.js?v=dacda57823cf`;
 const calculatorPolishScriptPath = `${projectRoot}/js/calculator-polish.js?v=96ed10d7ffb8`;
 const priorityUpgradeScriptPath = `${projectRoot}/js/priority-upgrades.js?v=c8db51dadcf2`;
@@ -61,8 +61,6 @@ const financeQualityScriptPath = `${projectRoot}/js/finance-quality-upgrades.js?
 const constructionQualityScriptPath = `${projectRoot}/js/construction-quality-upgrades.js?v=7c73bd22cd31`;
 const healthEverydayQualityScriptPath = `${projectRoot}/js/health-everyday-quality-upgrades.js?v=3691c106a5e7`;
 const autoConverterQualityScriptPath = `${projectRoot}/js/auto-converter-quality-upgrades.js?v=74a0aa0853ab`;
-const calculatorCssPath = `${projectRoot}/css/pages/calculator-suite.css?v=bd34d7987fdb`;
-const calculatorScriptPath = `${projectRoot}/js/calculator-suite.js?v=580d3a5f4460`;
 const normalizedPath = window.location.pathname.replace(/\/+$/, "");
 const currentPathPart = pathParts.at(-1) || "index.html";
 const currentSlug = currentPathPart.replace(/\.html?$/i, "").toLowerCase();
@@ -141,9 +139,25 @@ window.gtag("consent", "default", { analytics_storage: "denied", ad_storage: "de
 window.gtag("set", "ads_data_redaction", true);
 
 const appendElement = (tagName, attributes) => {
+  const resourceAttribute = tagName === "script" ? "src" : tagName === "link" ? "href" : null;
+  const resourceValue = resourceAttribute ? attributes[resourceAttribute] : null;
+
+  if (resourceValue) {
+    const targetPath = new URL(resourceValue, window.location.href).pathname;
+    const existing = [...document.querySelectorAll(`${tagName}[${resourceAttribute}]`)].find((node) => {
+      try {
+        return new URL(node.getAttribute(resourceAttribute), window.location.href).pathname === targetPath;
+      } catch (error) {
+        return false;
+      }
+    });
+    if (existing) return existing;
+  }
+
   const element = document.createElement(tagName);
   Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
   document.head.appendChild(element);
+  return element;
 };
 
 const hasMainStylesheet = () => [...document.querySelectorAll('link[rel~="stylesheet"][href]')].some((link) => {
@@ -162,37 +176,37 @@ const hasMainStylesheet = () => [...document.querySelectorAll('link[rel~="styles
 ].forEach((attributes) => appendElement("link", attributes));
 
 appendElement("link", { rel: "stylesheet", href: themeCssPath });
-appendElement("link", { rel: "stylesheet", href: `${accessibilityCssPath}?v=20260807-1` });
+appendElement("link", { rel: "stylesheet", href: accessibilityCssPath });
 if (wiseBannerPages.has(currentFile)) {
-  appendElement("link", { rel: "stylesheet", href: `${wiseBannerCssPath}?v=20260807-1` });
+  appendElement("link", { rel: "stylesheet", href: wiseBannerCssPath });
 }
 if (isCalculatorPage) {
-  appendElement("link", { rel: "stylesheet", href: `${calculatorPageCssPath}?v=20260807-1` });
-  appendElement("link", { rel: "stylesheet", href: `${calculatorPolishCssPath}?v=20260817-1` });
+  appendElement("link", { rel: "stylesheet", href: calculatorPageCssPath });
+  appendElement("link", { rel: "stylesheet", href: calculatorPolishCssPath });
 }
 if (priorityUpgradePages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: `${priorityUpgradeCssPath}?v=20260807-1` });
+  appendElement("link", { rel: "stylesheet", href: priorityUpgradeCssPath });
 }
 if (constructionUpgradePages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: `${constructionUpgradeCssPath}?v=20260807-1` });
+  appendElement("link", { rel: "stylesheet", href: constructionUpgradeCssPath });
 }
 if (everydayUpgradePages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: `${everydayUpgradeCssPath}?v=20260807-1` });
+  appendElement("link", { rel: "stylesheet", href: everydayUpgradeCssPath });
 }
 if (autoConverterUpgradePages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: `${autoConverterUpgradeCssPath}?v=20260807-1` });
+  appendElement("link", { rel: "stylesheet", href: autoConverterUpgradeCssPath });
 }
 if (financeQualityPages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: `${financeQualityCssPath}?v=20260814-1` });
+  appendElement("link", { rel: "stylesheet", href: financeQualityCssPath });
 }
 if (constructionQualityPages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: `${constructionQualityCssPath}?v=20260815-1` });
+  appendElement("link", { rel: "stylesheet", href: constructionQualityCssPath });
 }
 if (healthEverydayQualityPages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: `${healthEverydayQualityCssPath}?v=20260815-1` });
+  appendElement("link", { rel: "stylesheet", href: healthEverydayQualityCssPath });
 }
 if (autoConverterQualityPages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: `${autoConverterQualityCssPath}?v=20260815-1` });
+  appendElement("link", { rel: "stylesheet", href: autoConverterQualityCssPath });
 }
 
 if (!hasMainStylesheet()) {
@@ -200,48 +214,43 @@ if (!hasMainStylesheet()) {
   appendElement("link", { rel: "stylesheet", href: cookieCssPath });
 }
 
-if (isHomePage) {
-  appendElement("link", { rel: "stylesheet", href: `${calculatorCssPath}?v=20260703-2` });
-  appendElement("script", { src: `${calculatorScriptPath}?v=20260703-2`, defer: "" });
-}
-
 appendElement("script", { src: themeScriptPath, defer: "" });
 appendElement("script", { src: pwaScriptPath, defer: "" });
-appendElement("script", { src: `${accessibilityScriptPath}?v=20260807-1`, defer: "" });
+appendElement("script", { src: accessibilityScriptPath, defer: "" });
 if (isCalculatorPage) {
   document.documentElement.classList.add("kb-calculator-document");
   window.setTimeout(() => {
     document.documentElement.classList.add("kb-calculator-ready");
   }, 3000);
-  appendElement("script", { src: `${calculatorPageScriptPath}?v=20260807-1`, defer: "" });
-  appendElement("script", { src: `${calculatorPolishScriptPath}?v=20260817-1`, defer: "" });
+  appendElement("script", { src: calculatorPageScriptPath, defer: "" });
+  appendElement("script", { src: calculatorPolishScriptPath, defer: "" });
 }
 if (wiseBannerPages.has(currentFile)) {
-  appendElement("script", { src: `${wiseBannerScriptPath}?v=20260807-1`, defer: "" });
+  appendElement("script", { src: wiseBannerScriptPath, defer: "" });
 }
 if (priorityUpgradePages.has(currentSlug)) {
-  appendElement("script", { src: `${priorityUpgradeScriptPath}?v=20260807-1`, defer: "" });
+  appendElement("script", { src: priorityUpgradeScriptPath, defer: "" });
 }
 if (constructionUpgradePages.has(currentSlug)) {
-  appendElement("script", { src: `${constructionUpgradeScriptPath}?v=20260807-1`, defer: "" });
+  appendElement("script", { src: constructionUpgradeScriptPath, defer: "" });
 }
 if (everydayUpgradePages.has(currentSlug)) {
-  appendElement("script", { src: `${everydayUpgradeScriptPath}?v=20260807-1`, defer: "" });
+  appendElement("script", { src: everydayUpgradeScriptPath, defer: "" });
 }
 if (autoConverterUpgradePages.has(currentSlug)) {
-  appendElement("script", { src: `${autoConverterUpgradeScriptPath}?v=20260807-1`, defer: "" });
+  appendElement("script", { src: autoConverterUpgradeScriptPath, defer: "" });
 }
 if (financeQualityPages.has(currentSlug)) {
-  appendElement("script", { src: `${financeQualityScriptPath}?v=20260814-1`, defer: "" });
+  appendElement("script", { src: financeQualityScriptPath, defer: "" });
 }
 if (constructionQualityPages.has(currentSlug)) {
-  appendElement("script", { src: `${constructionQualityScriptPath}?v=20260815-1`, defer: "" });
+  appendElement("script", { src: constructionQualityScriptPath, defer: "" });
 }
 if (healthEverydayQualityPages.has(currentSlug)) {
-  appendElement("script", { src: `${healthEverydayQualityScriptPath}?v=20260815-1`, defer: "" });
+  appendElement("script", { src: healthEverydayQualityScriptPath, defer: "" });
 }
 if (autoConverterQualityPages.has(currentSlug)) {
-  appendElement("script", { src: `${autoConverterQualityScriptPath}?v=20260815-1`, defer: "" });
+  appendElement("script", { src: autoConverterQualityScriptPath, defer: "" });
 }
 
 [

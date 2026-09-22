@@ -1,11 +1,14 @@
 (()=>{
 'use strict';
 if(!document.body?.classList.contains('home-page'))return;
-if(document.querySelector('script[data-kb-home-redesign-v17]'))return;
+if(window.KB_HOME_IA_LOADED)return;
+window.KB_HOME_IA_LOADED=true;
+if(document.querySelector('script[data-kb-home-current]'))return;
 const root=String(window.KB_PROJECT_ROOT||'').replace(/\/$/,'');
+const homeCurrentAsset='js/home-current.js?v=433537400e48';
 const script=document.createElement('script');
-script.src=`${root}/js/home-current.js?v=20260920-3`.replace(/\/{2,}/g,'/');
+script.src=`${root}/${homeCurrentAsset}`.replace(/\/{2,}/g,'/');
 script.async=false;
-script.dataset.kbHomeRedesignV17='';
+script.dataset.kbHomeCurrent='';
 document.body.appendChild(script);
 })();

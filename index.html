@@ -35,16 +35,17 @@
   <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
 
   <link rel="stylesheet" href="css/style.css?v=32f9d976dc8a" />
-  <link rel="stylesheet" href="css/pages/index.css?v=bdf7c17e9361" />
-<script src="js/static-first-fallbacks.js?v=f6399e238190"></script>
-<script src="js/global-head.js?v=d114ff492281"></script>
+  <link rel="stylesheet" href="css/pages/index.css?v=8105551707cd" />
+  <link rel="stylesheet" href="css/pages/home-redesign-v17.css?v=fbd98d5331ef" data-home-redesign-v17 />
+<script src="js/static-first-fallbacks.js?v=79952e4c154e"></script>
+<script src="js/global-head.js?v=19cfccfeabe1"></script>
 
 <!-- KB_STATIC:structured-data:START -->
 <script id="kb-structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://kalkulatorbazis.hu/#organization","name":"Kalkulátor Bázis","url":"https://kalkulatorbazis.hu/","logo":"https://kalkulatorbazis.hu/favicon/web-app-manifest-512x512.png"},{"@type":"WebSite","@id":"https://kalkulatorbazis.hu/#website","name":"Kalkulátor Bázis","url":"https://kalkulatorbazis.hu/","publisher":{"@id":"https://kalkulatorbazis.hu/#organization"},"inLanguage":"hu-HU","potentialAction":{"@type":"SearchAction","target":"https://kalkulatorbazis.hu/?kereses={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"CollectionPage","@id":"https://kalkulatorbazis.hu/#webpage","url":"https://kalkulatorbazis.hu/","name":"Kalkulátor Bázis | Ingyenes online kalkulátorportál magyarul","description":"Ingyenes magyar online kalkulátorportál pénzügyi, autós, építőipari, egészség, átváltó és mindennapi számításokhoz, magyarázatokkal és GYIK-kel.","isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"},"inLanguage":"hu-HU"},{"@type":"ItemList","@id":"https://kalkulatorbazis.hu/#featured-calculators","name":"Kiemelt kalkulátorok","itemListElement":[{"@type":"ListItem","position":1,"url":"https://kalkulatorbazis.hu/kalkulatorok/netto-brutto-kalkulator","name":"Nettó - bruttó kalkulátor"},{"@type":"ListItem","position":2,"url":"https://kalkulatorbazis.hu/kalkulatorok/osztalek-kalkulator","name":"Osztalék kalkulátor"},{"@type":"ListItem","position":3,"url":"https://kalkulatorbazis.hu/kalkulatorok/etf-kalkulator","name":"ETF kalkulátor"},{"@type":"ListItem","position":4,"url":"https://kalkulatorbazis.hu/kalkulatorok/fizetesi-hatarido-kalkulator","name":"Fizetési határidő kalkulátor"},{"@type":"ListItem","position":5,"url":"https://kalkulatorbazis.hu/kalkulatorok/szamla-teljesites-kalkulator","name":"Számla teljesítés kalkulátor"},{"@type":"ListItem","position":6,"url":"https://kalkulatorbazis.hu/kalkulatorok/auto-kalkulator","name":"Autós út- és hatótáv kalkulátor"},{"@type":"ListItem","position":7,"url":"https://kalkulatorbazis.hu/kalkulatorok/mertekegyseg-atvalto-kalkulator","name":"Mértékegység átváltó"}]},{"@type":"FAQPage","@id":"https://kalkulatorbazis.hu/#gyik","mainEntity":[{"@type":"Question","name":"Ingyenesek a kalkulátorok?","acceptedAnswer":{"@type":"Answer","text":"Igen, minden kalkulátor regisztráció és előfizetés nélkül használható."}},{"@type":"Question","name":"Elmenti az oldal a beírt adataimat?","acceptedAnswer":{"@type":"Answer","text":"A legtöbb számítás a böngészőben fut. Az API-t használó kalkulátoroknál kizárólag a számításhoz szükséges mezőértékek kerülhetnek a Kalkulátor Bázis API-jához; ezeket nem használjuk profilalkotásra vagy hirdetési célra. Részletek az adatvédelmi tájékoztatóban."}},{"@type":"Question","name":"Mennyire tekinthető pontosnak az eredmény?","acceptedAnswer":{"@type":"Answer","text":"A képlet és a megadott adatok alapján pontos, de a valós helyzet további feltételeket tartalmazhat. Minden kalkulátor külön jelzi a fontos korlátokat."}},{"@type":"Question","name":"Ékezet nélkül is működik a kereső?","acceptedAnswer":{"@type":"Answer","text":"Igen. A „hitel”, „epitoanyag” vagy „uzemanyag” típusú kereséseket is felismeri."}}]}]}</script>
 <!-- KB_STATIC:structured-data:END -->
 </head>
 
-<body class="home-page">
+<body class="home-page home-redesign-v17" data-home-redesign-static="17">
 <div class="development-notice" id="developmentNotice" role="dialog" aria-modal="true" aria-labelledby="developmentNoticeTitle" aria-describedby="developmentNoticeDescription developmentNoticeStatus">
   <div class="development-notice__panel">
     <div aria-hidden="true" class="development-notice__icon">🛠️</div>
@@ -112,7 +113,9 @@
 <!-- KB_STATIC:skip-link:END -->
 
 
-  <header class="kb-header container" id="header">
+  <!-- KB_HOME_SHELL:header:START -->
+<div class="kb-header-wrap">
+<header class="kb-header container" id="header">
 <a aria-label="Kalkulátor Bázis főoldal" class="logo" href="#top">
 <span aria-hidden="true" class="logo-mark"></span>
 <span class="logo-text">Kalkulátor Bázis</span>
@@ -129,370 +132,133 @@
 <button type="button" aria-controls="homePrimaryNav" aria-expanded="false" aria-label="Menü megnyitása" class="icon-btn menu-btn">☰</button>
 </div>
 </header>
+</div>
+<div class="language-law-banner" hidden id="languageLawBanner" role="status"><div class="container"><strong id="languageLawTitle"></strong><span id="languageLawText"></span></div></div>
+<!-- KB_HOME_SHELL:header:END -->
 
-  <main id="main-content">
-    <section class="home-hero" aria-labelledby="homeHeroTitle">
-      <div class="home-hero-decoration" aria-hidden="true">
-        <span class="home-orb home-orb-one"></span>
-        <span class="home-orb home-orb-two"></span>
-        <span class="home-math-symbol home-math-symbol-one">%</span>
-        <span class="home-math-symbol home-math-symbol-two">+</span>
-        <span class="home-math-symbol home-math-symbol-three">÷</span>
-      </div>
-
-      <div class="container home-hero-layout">
-        <div class="home-hero-copy">
-          <span class="home-eyebrow">
-            <span class="home-eyebrow-dot" aria-hidden="true"></span>
-            Gyors, ingyenes, magyar
-          </span>
-
-          <h1 id="homeHeroTitle">Ingyenes online kalkulátorok<br /> <span>egy helyen</span></h1>
-          <p class="home-hero-lead">Magyar nyelvű kalkulátorok és döntési segédletek mindennapi, pénzügyi, otthoni, autós, egészség- és mértékegység-számításokhoz, érthető módszertannal és forrásokkal.</p>
-
-          <div class="search-box home-search">
-            <label for="calculatorSearch">Mire szeretnél számolni?</label>
-            <div class="home-search-control">
-              <span class="home-search-icon" aria-hidden="true"></span>
-              <input
-                type="search"
-                id="calculatorSearch"
-                placeholder="Például: nettó bér, festék, BMI"
-                autocomplete="off"
-                role="combobox"
-                aria-autocomplete="list"
-                aria-controls="calculatorSearchResults"
-                aria-expanded="false"
-              />
-            </div>
-            <!-- A találatok dinamikus ARIA-combobox listája. -->
-            <!-- [html-validate-disable-next prefer-native-element] -->
-            <div class="search-results" id="calculatorSearchResults" role="listbox" aria-live="polite"></div>
-          </div>
-
-          <nav class="home-quick-links" aria-label="Népszerű kalkulátorok gyors elérése">
-            <span>Népszerű:</span>
-            <a href="kalkulatorok/netto-brutto-kalkulator">Nettó–bruttó</a>
-            <a href="kalkulatorok/afa-kalkulator">ÁFA</a>
-            <a href="kalkulatorok/szazalek-kalkulator">Százalék</a>
-            <a href="kalkulatorok/bmi-kalkulator">BMI</a>
-            <a href="kalkulatorok/deviza-atvalto-kalkulator">Deviza</a>
-          </nav>
-
-          <div class="home-hero-actions">
-            <a class="home-button home-button-primary button" href="#popularTitle">Legnépszerűbb kalkulátorok</a>
-            <a class="home-button home-button-secondary button" href="#categoriesTitle">Kategóriák</a>
-          </div>
-        </div>
-
-        <div class="home-hero-visual" aria-hidden="true">
-          <span class="visual-glow"></span>
-
-          <div class="visual-note visual-note-top">
-            <span class="visual-note-icon">✓</span>
-            <span><small>Azonnali eredmény</small><strong>Regisztráció nélkül</strong></span>
-          </div>
-
-          <div class="visual-calculator">
-            <div class="visual-calculator-top">
-              <span class="visual-logo-mark"></span>
-              <span class="visual-calculator-dots"><i></i><i></i><i></i></span>
-            </div>
-            <div class="visual-display">
-              <small>Számítás eredménye</small>
-              <strong>12 450 Ft</strong>
-            </div>
-            <div class="visual-keypad">
-              <span>7</span><span>8</span><span>9</span><span class="visual-key-accent">÷</span>
-              <span>4</span><span>5</span><span>6</span><span class="visual-key-accent">×</span>
-              <span>1</span><span>2</span><span>3</span><span class="visual-key-accent">−</span>
-              <span>0</span><span>,</span><span class="visual-key-primary">=</span><span class="visual-key-accent">+</span>
-            </div>
-          </div>
-
-          <div class="visual-note visual-note-bottom">
-            <span class="visual-chart" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-            <span><small>Átlátható</small><strong>Érthető magyarázatok</strong></span>
-          </div>
-
-          <span class="visual-floating-symbol visual-floating-percent">%</span>
-          <span class="visual-floating-symbol visual-floating-plus">+</span>
-        </div>
-      </div>
-
-      <ul class="container home-trust-strip">
-        <li class="home-trust-item"><span aria-hidden="true">✓</span><p><strong>Ingyenes használat</strong><small>Nincs előfizetés</small></p></li>
-        <li class="home-trust-item"><span aria-hidden="true">⌁</span><p><strong>Magyar fejlesztés</strong><small>Hazai felhasználóknak</small></p></li>
-        <li class="home-trust-item"><span aria-hidden="true">◇</span><p><strong>Regisztráció nélkül</strong><small>Azonnal használható</small></p></li>
-        <li class="home-trust-item"><span aria-hidden="true">↗</span><p><strong>Folyamatos ellenőrzés</strong><small>Forrásokkal és hibajavítással</small></p></li>
-      </ul>
-    </section>
-
-    <div class="container home-sections">
-      <section class="learning-highlight" aria-labelledby="chatgptPluginTitle">
-        <div class="learning-mark" aria-hidden="true"></div>
-        <div>
-          <span class="section-label">Újdonság · ChatGPT</span>
-          <h2 id="chatgptPluginTitle">A Kalkulátor Bázis már ChatGPT-bővítményként is elérhető</h2>
-          <p>A 2026-os nettó–bruttó számításokat a saját Kalkulátor Bázis Salary API végzi, így a számítások közvetlenül ChatGPT-ből is használhatók.</p>
-        </div>
-        <a class="highlight-link" href="kalkulatorok/netto-brutto-kalkulator">Nettó–bruttó kalkulátor</a>
-      </section>
-
-      <section class="home-section" aria-labelledby="categoriesTitle">
-        <div class="section-intro">
-          <div>
-            <span class="section-label">Gyors választás</span>
-            <h2 id="categoriesTitle">Milyen témában számolnál?</h2>
-          </div>
-          <p>Válassz egy élethelyzetet, és megmutatjuk az ahhoz tartozó kalkulátorokat.</p>
-        </div>
-
-        <div class="category-grid home-category-grid" data-render="home-categories">
-          <a href="mindennapi" class="card card-link card-general">
-            <h3>Mindennapi kalkulátorok</h3>
-            <p>Vásárlás, közös költségek, egyszerű matematika, munka és dátumok jól elkülönített csoportokban.</p>
-          </a>
-
-          <a href="penzugyi" class="card card-link card-finance">
-            <h3>Pénzügyi kalkulátorok</h3>
-            <p>Jövedelem, háztartási keret, hitelek, megtakarítás és befektetés átlátható témacsoportokban.</p>
-          </a>
-
-          <a href="epitoipari" class="card card-link card-building">
-            <h3>Otthon és felújítás kalkulátorok</h3>
-            <p>Anyagigény, burkolás, felületképzés és szerkezeti becslések felújításhoz vagy építkezéshez.</p>
-          </a>
-
-          <a href="auto" class="card card-link card-auto">
-            <h3>Autó és közlekedés kalkulátorok</h3>
-            <p>Utazás, üzemanyag, fenntartási költség, műszaki összehasonlítás és környezeti becslések.</p>
-          </a>
-
-          <a href="egeszseg" class="card card-link card-health">
-            <h3>Egészség és sport kalkulátorok</h3>
-            <p>Testösszetétel, táplálkozás, energiaigény, edzés és regeneráció óvatos értelmezéssel.</p>
-          </a>
-
-          <a href="atvaltok" class="card card-link card-general">
-            <h3>Átváltók és mértékegységek</h3>
-            <p>Egy közös mértékegység-átváltó 11 kategóriához, plusz külön élő devizaeszköz.</p>
-          </a>
-        </div>
-      </section>
-
-      <section class="home-section popular" aria-labelledby="popularTitle">
-        <div class="section-intro">
-          <div>
-            <span class="section-label">Gyakori számítások</span>
-            <h2 id="popularTitle">Népszerű kalkulátorok</h2>
-          </div>
-          <a class="text-link" href="kalkulatorok">Teljes lista</a>
-        </div>
-
-        <div class="category-grid popular-grid" data-render="popular-calculators">
-          <a class="card card-link calculator-card card-finance" href="kalkulatorok/netto-brutto-kalkulator">
-            <h3>Nettó - bruttó kalkulátor</h3>
-            <p>Fizetés nettó vagy bruttó összegének kiszámítása.</p>
-          </a>
-
-          <a class="card card-link calculator-card card-finance" href="kalkulatorok/osztalek-kalkulator">
-            <h3>Osztalék kalkulátor</h3>
-            <p>Nettó osztalék, céljövedelemhez szükséges tőke és újrabefektetés becslése.</p>
-          </a>
-
-          <a class="card card-link calculator-card card-finance" href="kalkulatorok/etf-kalkulator">
-            <h3>ETF kalkulátor</h3>
-            <p>ETF befektetés várható növekedésének becslése.</p>
-          </a>
-
-          <a class="card card-link calculator-card card-finance" href="kalkulatorok/fizetesi-hatarido-kalkulator">
-            <h3>Fizetési határidő kalkulátor</h3>
-            <p>Fizetési határidő kiszámítása számlázáshoz.</p>
-          </a>
-
-          <a class="card card-link calculator-card card-finance" href="kalkulatorok/szamla-teljesites-kalkulator">
-            <h3>Számla teljesítés kalkulátor</h3>
-            <p>Számla teljesítési dátumának kiszámítása.</p>
-          </a>
-
-          <a class="card card-link calculator-card card-auto" href="kalkulatorok/auto-kalkulator">
-            <h3>Autós kalkulátor</h3>
-            <p>Utazási és autós költségek kiszámítása.</p>
-          </a>
-        </div>
-      </section>
-
-      <section class="home-section new-tools" aria-labelledby="newTitle">
-        <div class="section-intro">
-          <div>
-            <span class="section-label">Újdonságok</span>
-            <h2 id="newTitle">Frissen kiemelt eszközök</h2>
-          </div>
-          <p>Olyan kalkulátorok, amelyeknél a döntési helyzet, a módszertan vagy a gyakorlati értelmezés különösen sokat számít.</p>
-        </div>
-
-        <div class="category-grid new-grid">
-          <a class="card card-link calculator-card card-finance" href="kalkulatorok/osztalek-kalkulator">
-            <h3>Osztalék kalkulátor</h3>
-            <p>Bruttó és nettó osztalékbevétel, céljövedelemhez szükséges tőke és újrabefektetési becslés.</p>
-          </a>
-
-          <a class="card card-link calculator-card card-finance" href="kalkulatorok/etf-kalkulator">
-            <h3>ETF kalkulátor</h3>
-            <p>Rendszeres befizetés, költség, infláció és célösszeg vizsgálata hosszabb időtávon.</p>
-          </a>
-
-          <a class="card card-link calculator-card card-building" href="kalkulatorok/tetocserep-kalkulator">
-            <h3>Tetőcserép kalkulátor</h3>
-            <p>Darabszám, ráhagyás és tetőfelület becslése kivitelezés előtti anyagtervezéshez.</p>
-          </a>
-        </div>
-      </section>
-
-      <section class="learning-highlight" aria-labelledby="learningTitle">
-        <div class="learning-mark" aria-hidden="true"></div>
-        <div>
-          <span class="section-label">Pénzügyi alapozó</span>
-          <h2 id="learningTitle">Előbb legyen biztos alap, utána jöhet a befektetés</h2>
-          <p>A bevétel, kiadás, vésztartalék, hitel és infláció összefüggéseit az alapoktól vesszük végig, túlzó ígéretek nélkül.</p>
-        </div>
-        <a class="highlight-link" href="landing-pages/penzugyi-tudatossag/penzugyi-tudatossag">Megnézem az útmutatót</a>
-      </section>
-
-      <section class="method-foundation" aria-labelledby="methodTitle">
-        <div>
-          <span class="section-label">A számításaink alapjai</span>
-          <h2 id="methodTitle">Nem csak eredményt mutatunk, hanem értelmezést is adunk</h2>
-        </div>
-        <div class="method-foundation-copy">
-          <p>A Kalkulátor Bázis célja, hogy a számítások ne elszigetelt számként jelenjenek meg. Egy jó kalkulátor akkor hasznos, ha a felhasználó érti, milyen adatból indul, milyen képletet vagy becslési logikát használ, hogyan kerekít, és milyen korlátok mellett érdemes az eredményt kezelni.</p>
-          <p>Pénzügyi témáknál különösen fontos, hogy a kalkulátor ne ígérjen biztos eredményt. Hitel, infláció, befektetés vagy adózás esetén a hivatalos szabály, banki feltétel, aktuális díj és személyes helyzet módosíthatja a végeredményt. Egészségügyi kalkulátoroknál az eredmény tájékoztatás, nem diagnózis. Építőipari becsléseknél a gyártói kiadósság, a vágási veszteség és a helyszíni adottság döntő lehet.</p>
-          <p>Ezért az oldalakon módszertani magyarázatot, példákat, gyakori hibákat, kapcsolódó kalkulátorokat és forrásokat építünk be. Ahol hibát vagy elavult adatot találsz, jelezheted nekünk; a visszajelzés a minőségbiztosítás része.</p>
-          <a class="primary-link" href="miert-bizhatsz-bennunk">Miért bízhatsz bennünk?</a>
-        </div>
-      </section>
-
-      <section class="trust-band" aria-label="A Kalkulátor Bázis használatáról">
-        <ul>
-          <li><strong>Ingyenes</strong><span>Nincs regisztráció</span></li>
-          <li><strong>Mobilbarát</strong><span>Telefonon is kényelmes</span></li>
-          <li><strong>Magyar</strong><span>Érthető magyarázatok</span></li>
-          <li><strong>Gyors</strong><span>Helyi számítás és szükség esetén API</span></li>
-        </ul>
-        <p>Az eredmények tájékoztató becslések; hivatalos vagy egészségügyi döntéshez ellenőrzés szükséges.</p>
-      </section>
-
-      <section class="about-home" aria-labelledby="aboutTitle">
-        <div>
-          <span class="section-label">A portálról</span>
-          <h2 id="aboutTitle">Számok, amelyek segítenek dönteni</h2>
-        </div>
-        <div>
-          <p>A Kalkulátor Bázis a gyakran előkerülő számításokat teszi gyorsan elérhetővé. Nem csak eredményt mutat: az egyes oldalak elmagyarázzák, mit jelent a kapott érték, milyen feltételezésből indul, és mikor érdemes más forrást vagy szakembert bevonni.</p>
-          <p>A számítás a saját adataiddal indul. Hitel előtt havi terhet, festés előtt anyagmennyiséget, utazás előtt költséget, életmódváltásnál pedig tájékozódási pontot kaphatsz.</p>
-        </div>
-      </section>
-
-      <section class="home-faq" aria-labelledby="faqTitle">
-        <span class="section-label">Rövid válaszok</span>
-        <h2 id="faqTitle">Amit első használat előtt érdemes tudni</h2>
-        <div class="faq-list" data-accordion="single">
-          <details><summary>Ingyenesek a kalkulátorok?</summary><p>Igen, minden kalkulátor regisztráció és előfizetés nélkül használható.</p></details>
-          <details><summary>Elmenti az oldal a beírt adataimat?</summary><p>A legtöbb számítás a böngészőben fut. Az API-t használó kalkulátoroknál kizárólag a számításhoz szükséges mezőértékek kerülhetnek a Kalkulátor Bázis API-jához; ezeket nem használjuk profilalkotásra vagy hirdetési célra. Részletek az adatvédelmi tájékoztatóban.</p></details>
-          <details><summary>Mennyire tekinthető pontosnak az eredmény?</summary><p>A képlet és a megadott adatok alapján pontos, de a valós helyzet további feltételeket tartalmazhat. Minden kalkulátor külön jelzi a fontos korlátokat.</p></details>
-          <details><summary>Ékezet nélkül is működik a kereső?</summary><p>Igen. A „hitel”, „epitoanyag” vagy „uzemanyag” típusú kereséseket is felismeri.</p></details>
-        </div>
-      </section>
-
-      <section data-render="wise-banner"></section>
-      <section class="ad-section" data-render="ad-slot"></section>
-    </div>
-
+  <!-- KB_HOME_SHELL:main:START -->
+<main id="main-content">
+<section class="hero" id="top">
+<div aria-hidden="true" class="season-scene">
+<span class="season-orb"></span>
+<span class="season-horizon"></span>
+<span class="season-detail"></span>
+<span class="season-veil"></span>
+<span class="season-foreground"></span>
+</div>
+<span class="season-particle p1" data-particle=""></span><span class="season-particle p2" data-particle=""></span><span class="season-particle p3" data-particle=""></span><span class="season-particle p4" data-particle=""></span><span class="season-particle p5" data-particle=""></span><span class="season-particle p6" data-particle=""></span><span class="season-particle p7" data-particle=""></span><span class="season-particle p8" data-particle=""></span><span class="season-particle p9" data-particle=""></span><span class="season-particle p10" data-particle=""></span><span class="season-particle p11" data-particle=""></span><span class="season-particle p12" data-particle=""></span>
+<div class="container hero-grid">
+<div class="hero-copy">
+<span class="eyebrow"><span class="eyebrow-dot"></span><span data-i18n="eyebrow">Magyar kalkulátorok · érthetően</span></span>
+<h1><span data-i18n="heroTitle1">Számolj egyszerűbben.</span><span class="accent" data-i18n="heroTitle2">Dönts magabiztosabban.</span></h1>
+<p class="hero-lead" data-i18n="heroLead">Gyors, ingyenes kalkulátorok pénzügyekhez, otthonhoz, autózáshoz, egészséghez és a mindennapokhoz — átlátható módszertannal és forrásokkal.</p>
+<div class="hero-search">
+<div class="hero-search-row search-box"><span class="search-icon">⌕</span>
+<!-- A dinamikus kereső találatai hivatkozásokat és leírást is tartalmaznak, ezért nem modellezhetők natív selecttel. -->
+<!-- [html-validate-disable prefer-native-element] -->
+<input aria-autocomplete="list" aria-controls="calculatorSearchResults" aria-expanded="false" autocomplete="off" data-i18n-placeholder="searchPlaceholder" id="calculatorSearch" placeholder="Mit szeretnél kiszámolni?" role="combobox" type="search"/>
+<button class="search-submit" data-i18n="searchButton" id="heroSearchSubmit" type="button">Keresés</button><div aria-live="polite" class="search-results hero-search-results" id="calculatorSearchResults" role="listbox"></div>
+<!-- [html-validate-enable prefer-native-element] -->
+</div>
+<div class="search-hints"><span data-i18n="popularLabel">Népszerű:</span><a data-i18n="hintSalary" href="kalkulatorok/netto-brutto-kalkulator">Nettó–bruttó</a><a data-i18n="hintVat" href="kalkulatorok/afa-kalkulator">ÁFA</a><a data-i18n="hintPercent" href="kalkulatorok/szazalek-kalkulator">Százalék</a><a href="kalkulatorok/bmi-kalkulator">BMI</a><a data-i18n="hintCurrency" href="kalkulatorok/deviza-atvalto-kalkulator">Deviza</a></div>
+</div>
+<div class="hero-proof"><span><i class="check">✓</i><span data-i18n="proofNoReg">Regisztráció nélkül</span></span><span><i class="check">✓</i><span data-i18n="proofHungarian">Magyar fejlesztés</span></span><span><i class="check">✓</i><span data-i18n="proofSources">Forrásokkal</span></span></div>
+</div>
+<div class="hero-visual">
+<div class="glow"></div>
+<div class="metric metric-one"><small data-i18n="metricCurrency">Deviza</small><strong>381,42 €</strong></div>
+<div class="metric metric-two"><small data-i18n="metricEtf">ETF példa</small><strong>+8,7%</strong></div>
+<div class="metric metric-three"><small data-i18n="metricVat">ÁFA</small><strong>27%</strong></div>
+<div class="demo-card salary-card salary-live-card" id="heroSalaryWidget">
+<div class="card-top"><span data-i18n="salaryCardTitle">2026 · Nettó–bruttó</span><span class="api-chip">Salary API</span></div>
+<div class="salary-try" data-i18n="salaryTry">Próbáld ki ↓</div>
+<div class="jurisdiction-note compact" data-jurisdiction-note="" hidden></div>
+<div aria-label="Számítás iránya" class="salary-direction" role="group">
+<button aria-pressed="true" class="salary-direction-btn active" data-salary-direction="gross-to-net" type="button"><span data-i18n="salaryGrossToNet">Bruttó → Nettó</span></button>
+<button aria-pressed="false" class="salary-direction-btn" data-salary-direction="net-to-gross" type="button"><span data-i18n="salaryNetToGross">Nettó → Bruttó</span></button>
+</div>
+<div class="salary-mini-form" id="heroSalaryForm">
+<label class="salary-mini-label" data-i18n="salaryInputGross" for="heroSalaryAmount" id="heroSalaryInputLabel">Bruttó munkabér</label>
+<div class="salary-input-shell"><input aria-describedby="heroSalaryNote" autocomplete="off" id="heroSalaryAmount" inputmode="numeric" type="text" value="650 000"/><span>Ft</span></div>
+</div>
+<div aria-atomic="true" aria-live="polite" class="salary-result">
+<span class="salary-result-label" data-i18n="salaryResultNet" id="heroSalaryResultLabel">Becsült nettó</span>
+<strong class="salary-result-value" id="heroSalaryResult">432 250 Ft</strong>
+</div>
+<div class="salary-widget-footer"><span id="heroSalaryApiStatus"><i class="pulse"></i><span data-i18n="salaryApiReady">Salary API kész</span></span><span data-i18n="salaryNoAllowances" id="heroSalaryNote">Kedvezmény nélkül</span></div>
+</div>
+</div>
+</div>
+</section>
+<div class="chat-strip-wrap container reveal">
+<div class="chat-strip"><div class="chat-icon">AI</div><div class="chat-copy"><b data-i18n="chatStripTitle">Most már ChatGPT-ben is elérhető</b><span data-i18n="chatStripText">A Kalkulátor Bázis nettó–bruttó számításai a saját Salary API-nkon keresztül.</span></div><a class="chat-link" href="#api"><span data-i18n="showMe">Mutasd</span> →</a></div>
+</div>
+<section class="section" id="popular">
+<div class="container">
+<div class="section-head reveal"><div><span class="section-kicker" data-i18n="popularKicker">Gyors kezdés</span><h2 data-i18n="popularTitle">Amit most a legtöbben használnak</h2></div><p data-i18n="popularText">A legfontosabb számítások azonnal elérhetők, a többi pedig kategóriákba rendezve vár.</p></div>
+<div class="popular-grid">
+<a class="calc-card reveal" href="https://kalkulatorbazis.hu/kalkulatorok/netto-brutto-kalkulator"><span class="tag" data-i18n="popularSalaryTag">Pénzügy</span><h3 data-i18n="popularSalaryTitle">Nettó–bruttó kalkulátor</h3><p data-i18n="popularSalaryText">2026-os magyar munkabér számítás kedvezményekkel.</p><span class="go"><span data-i18n="calculate">Számolok</span> →</span><span class="mini-viz"><svg viewBox="0 0 150 100"><path d="M5 82 C25 70,35 74,50 58 S82 55,95 36 S125 32,145 15" fill="none" stroke="var(--brand)" stroke-linecap="round" stroke-width="5"></path><path d="M5 84 C25 72,35 76,50 60 S82 57,95 38 S125 34,145 17 L145 100 L5 100Z" fill="rgba(37,99,235,.08)"></path></svg></span></a>
+<a class="calc-card reveal" href="https://kalkulatorbazis.hu/kalkulatorok/szazalek-kalkulator"><span class="tag" data-i18n="popularPercentTag">Mindennapi</span><h3 data-i18n="popularPercentTitle">Százalék kalkulátor</h3><p data-i18n="popularPercentText">Gyors százalékszámítás hétköznapi helyzetekhez.</p><span class="go"><span data-i18n="calculate">Számolok</span> →</span><span class="mini-viz"><svg viewBox="0 0 150 100"><circle cx="85" cy="55" fill="none" r="34" stroke="#e2e8f0" stroke-width="12"></circle><circle cx="85" cy="55" fill="none" r="34" stroke="var(--season)" stroke-dasharray="140 214" stroke-width="12" transform="rotate(-90 85 55)"></circle></svg></span></a>
+<a class="calc-card reveal" href="https://kalkulatorbazis.hu/kalkulatorok/afa-kalkulator"><span class="tag" data-i18n="popularVatTag">Pénzügy</span><h3 data-i18n="popularVatTitle">ÁFA kalkulátor</h3><p data-i18n="popularVatText">Nettó, bruttó és áfatartalom gyors átváltása.</p><span class="go"><span data-i18n="calculate">Számolok</span> →</span><span class="mini-viz"><svg viewBox="0 0 150 100"><rect fill="#cbd5e1" height="30" rx="6" width="18" x="30" y="58"></rect><rect fill="var(--brand-2)" height="50" rx="6" width="18" x="58" y="38"></rect><rect fill="var(--brand)" height="68" rx="6" width="18" x="86" y="20"></rect></svg></span></a>
+</div>
+</div>
+</section>
+<section class="section alt categories-v3" id="categories">
+<div class="container">
+<div class="section-head reveal categories-head-minimal"><div><span class="section-kicker" data-i18n="categoriesKicker">Kategóriák</span><h2 data-i18n="categoriesTitle">Válassz témakört.</h2></div></div>
+<div class="category-grid-v3">
+<a class="category-tile category-finance reveal" href="https://kalkulatorbazis.hu/penzugyi"><div class="tile-meta"><i>↗</i></div><span class="section-kicker" data-i18n="catFinanceKicker">Pénzügy</span><h3 data-i18n="catFinanceTitle">Pénzügyi kalkulátorok</h3><div class="jurisdiction-note card-note" data-jurisdiction-note="" hidden></div><p data-i18n="catFinanceText">Fizetés, hitel, megtakarítás, befektetés és háztartási számítások.</p><div class="tile-meta-line" data-i18n="catFinanceMeta">Fizetés · Hitel · Befektetés</div></a>
+<a class="category-tile category-home reveal" href="https://kalkulatorbazis.hu/epitoipari"><div class="tile-meta"><i>↗</i></div><span class="section-kicker" data-i18n="catHomeKicker">Otthon &amp; felújítás</span><h3 data-i18n="catHomeTitle">Otthon és építkezés</h3><p data-i18n="catHomeText">Anyagigény, burkolás, festés, beton és felújítási becslések.</p><div class="tile-meta-line" data-i18n="catHomeMeta">Festék · Burkolat · Anyagigény</div></a>
+<a class="category-tile category-auto reveal" href="https://kalkulatorbazis.hu/auto"><div class="tile-meta"><i>↗</i></div><span class="section-kicker" data-i18n="catAutoKicker">Autó &amp; közlekedés</span><h3 data-i18n="catAutoTitle">Autós kalkulátorok</h3><p data-i18n="catAutoText">Üzemanyag, fogyasztás, úti költség, hatótáv és műszaki összehasonlítások.</p><div class="tile-meta-line" data-i18n="catAutoMeta">Üzemanyag · Fogyasztás · Hatótáv</div></a>
+<a class="category-tile category-health reveal" href="https://kalkulatorbazis.hu/egeszseg"><div class="tile-meta"><i>↗</i></div><span class="section-kicker" data-i18n="catHealthKicker">Egészség &amp; sport</span><h3 data-i18n="catHealthTitle">Egészség és sport</h3><p data-i18n="catHealthText">BMI, energiaigény, testösszetétel, táplálkozás és edzéshez kapcsolódó becslések.</p><div class="tile-meta-line" data-i18n="catHealthMeta">BMI · Kalória · Sport</div></a>
+<a class="category-tile category-everyday reveal" href="https://kalkulatorbazis.hu/mindennapi"><div class="tile-meta"><i>↗</i></div><span class="section-kicker" data-i18n="catEverydayKicker">Mindennapok</span><h3 data-i18n="catEverydayTitle">Mindennapi számítások</h3><p data-i18n="catEverydayText">Árak, kedvezmények, dátumok, munkaidő és a gyakori hétköznapi matematika.</p><div class="tile-meta-line" data-i18n="catEverydayMeta">Kedvezmény · Dátum · Munkaidő</div></a>
+<a class="category-tile category-convert reveal" href="https://kalkulatorbazis.hu/atvaltok"><div class="tile-meta"><i>↗</i></div><span class="section-kicker" data-i18n="catConvertKicker">Átváltók</span><h3 data-i18n="catConvertTitle">Mértékegység-átváltók</h3><p data-i18n="catConvertText">Deviza, hosszúság, tömeg, térfogat és más mértékegységek gyors átváltása.</p><div class="tile-meta-line" data-i18n="catConvertMeta">Deviza · Hossz · Tömeg</div></a>
+</div>
+</div>
+</section>
+<section class="section" id="news"><div class="container"><div class="section-head reveal"><div><span class="section-kicker" data-i18n="currentKicker">Aktuális</span><h2 data-i18n="currentTitle">Legutóbbi frissítések</h2></div></div><div class="news-grid"><article class="news-main reveal"><span class="news-date" data-i18n="newsDate">Frissítés · 2026</span><h3 data-i18n="newsMainTitle">A számítások akkor jók, ha a szabályok változását is követik.</h3><p data-i18n="newsMainText">Az aktuális rovat célja, hogy a képletek, szabályok és módszertan ne csak egyszer legyenek jók, hanem akkor is, amikor változik a háttér.</p></article><div class="news-list-wrap reveal"><div class="news-list"><a class="news-item" href="https://kalkulatorbazis.hu/aktualis/friss-szamitasi-szabalyok-es-modszertani-ellenorzesek"><time>09.18.</time><b data-i18n="news1">Friss számítási szabályok és módszertani ellenőrzések</b></a><a class="news-item" href="https://kalkulatorbazis.hu/aktualis/uj-funkciok-a-penzugyi-kalkulatoroknal"><time>09.11.</time><b data-i18n="news2">Új funkciók a pénzügyi kalkulátoroknál</b></a><a class="news-item" href="https://kalkulatorbazis.hu/aktualis/forrasok-es-atlathatosag-mitol-megbizhato-egy-kalkulator"><time>09.04.</time><b data-i18n="news3">Források és átláthatóság: mitől megbízható egy kalkulátor?</b></a></div><a class="news-more" href="https://kalkulatorbazis.hu/aktualis"><span data-i18n="newsMore">További aktuális cikkek és részletes magyarázatok</span> <i>→</i></a></div></div></div></section>
+<section class="section api-section api-section-v5" id="api"><div class="container api-layout api-layout-v5"><div class="api-copy api-copy-v5 reveal"><span class="section-kicker" data-i18n="apiKicker">Kalkulátor Bázis × ChatGPT</span><h2 data-i18n="apiTitle">A számítás már túlmutat a weboldalon.</h2><p data-i18n="apiText">A Salary API lehetővé teszi, hogy a Kalkulátor Bázis számításai közvetlenül ChatGPT-ben is használhatók legyenek. Ezt itt egy jól látható, termékszerű bemutatóként mutatjuk meg.</p><a class="api-primary-link" href="https://kalkulatorbazis.hu/kalkulatorok/netto-brutto-kalkulator"><span data-i18n="apiLink">Nettó–bruttó kalkulátor</span> <i>→</i></a><div class="api-badges"><span>Salary API</span><span data-i18n="apiBadgeRules">2026-os szabályok</span><span data-i18n="apiBadgeInstant">Azonnali eredmény</span></div></div><div class="api-stage reveal"><div class="jurisdiction-note api-law-note" data-jurisdiction-note="" hidden></div><div class="api-stage-top"><div class="chat-question" data-i18n="apiQuestion">Mennyi 650 000 Ft bruttónak a nettója 2026-ban, kedvezmény nélkül?</div></div><div class="api-stage-grid"><div class="api-answer-card"><div class="bot-label">Kalkulátor Bázis Salary API</div><div class="answer answer-v5" id="animatedAnswer">432 250 Ft</div><div class="answer-sub" data-i18n="apiAnswerSub">becsült nettó munkabér</div><div class="answer-meta"><span><i class="pulse"></i><span data-i18n="apiActive">API kapcsolat aktív</span></span><span data-i18n="apiResponse">Válaszidő: &lt;1 mp</span></div></div><div class="api-side-card"><div class="side-label" data-i18n="apiWhy">Miért jó ez?</div><ul><li data-i18n="apiBenefit1">ugyanaz a számítási logika, mint a weboldalon</li><li data-i18n="apiBenefit2">közvetlenül használható ChatGPT-ben is</li><li data-i18n="apiBenefit3">jól látható válasz és forrásjelzés</li></ul><a href="https://kalkulatorbazis.hu/kalkulatorok/netto-brutto-kalkulator"><span data-i18n="viewCalculator">Megnézem a kalkulátort</span> →</a></div></div></div></div></section>
+<section class="section" id="trust"><div class="container"><div class="section-head reveal"><div><span class="section-kicker" data-i18n="trustKicker">Bizalom</span><h2 data-i18n="trustTitle">Miért Kalkulátor Bázis?</h2></div><p data-i18n="trustText">Nem csak az eredmény számít. Az is, hogy érthető legyen, honnan jött.</p></div><div class="trust-grid"><article class="trust-card reveal"><span class="trust-icon">HU</span><strong data-i18n="trustCard1Title">Magyar fejlesztés</strong><p data-i18n="trustCard1Text">Hazai felhasználókra és élethelyzetekre építve.</p></article><article class="trust-card reveal"><span class="trust-icon">✓</span><strong data-i18n="trustCard2Title">Ellenőrzött számítások</strong><p data-i18n="trustCard2Text">Tesztek, módszertan és folyamatos hibajavítás.</p></article><article class="trust-card reveal"><span class="trust-icon">↗</span><strong data-i18n="trustCard3Title">Forrásokkal</strong><p data-i18n="trustCard3Text">A fontos szabályok mögött ellenőrizhető források állnak.</p></article><article class="trust-card reveal"><span class="trust-icon">0</span><strong data-i18n="trustCard4Title">Regisztráció nélkül</strong><p data-i18n="trustCard4Text">A legtöbb eszköz azonnal használható.</p></article></div></div></section>
 
 <!-- KB_STATIC:quality-final:START -->
 <!-- KB_STATIC:quality-final:END -->
 </main>
+<!-- KB_HOME_SHELL:main:END -->
 
-  <div id="footer"><div class="footer-container kb-footer">
-  <section class="footer-cta" aria-labelledby="footerCtaTitle">
-    <div class="footer-cta-copy">
-      <span class="footer-eyebrow">Segíts fejleszteni a Kalkulátor Bázist</span>
-      <h2 id="footerCtaTitle">Nem találtad meg a keresett számítást vagy döntési helyzetet?</h2>
-      <p>Írd meg, mire lenne szükséged. A jó ötleteket felvesszük a fejlesztési listára.</p>
-    </div>
-    <a class="footer-cta-button" href="./kapcsolat?tema=uj-kalkulator">Ötletet küldök</a>
-  </section>
-
-  <div class="footer-main">
-    <section class="footer-brand" aria-labelledby="footerBrandTitle">
-      <a href="./" class="footer-logo" id="footerBrandTitle">
-        <span class="footer-logo-mark" aria-hidden="true"></span>
-        <span>Kalkulátor Bázis</span>
-      </a>
-      <p class="footer-brand-copy">
-        Ingyenes, magyar nyelvű online kalkulátorok és rendezett döntési útvonalak
-        pénzügyi, egészségügyi, építőipari, autós és mindennapi helyzetekhez.
-      </p>
-      <ul class="footer-trust-list">
-        <li>Regisztráció nélkül használható</li>
-        <li>Közérthető módszertan és források</li>
-        <li>Mobilon is kényelmesen működik</li>
-      </ul>
-      <a class="footer-mail" href="mailto:kalkulatorbazis@gmail.com">kalkulatorbazis@gmail.com</a>
-    </section>
-
-    <nav class="footer-col" aria-label="Kalkulátorkategóriák">
-      <h2>Kalkulátorok</h2>
-      <a href="./penzugyi">Pénzügyi</a>
-      <a href="./egeszseg">Egészség</a>
-      <a href="./epitoipari">Otthon &amp; felújítás</a>
-      <a href="./auto">Autó &amp; közlekedés</a>
-      <a href="./mindennapi">Mindennapok</a>
-      <a href="./atvaltok">Átváltók</a>
-      <a class="footer-link-emphasis" href="./kalkulatorok">Összes kalkulátor</a>
-    </nav>
-
-    <nav class="footer-col" aria-label="Döntési és tudástári útvonalak">
-      <h2>Útvonalak</h2>
-      <a class="footer-link-emphasis" href="./dontesek">Döntések</a>
-      <a class="footer-link-emphasis" href="./osszehasonlitas">Összehasonlítás</a>
-      <a href="./aktualis">Aktuális változások</a>
-      <a href="./elethelyzetek">Élethelyzetek</a>
-      <a href="./landing-pages/penzugyi-tudatossag/penzugyi-tudatossag">Pénzügyi tudatosság</a>
-    </nav>
-
-    <nav class="footer-col" aria-label="Információ és bizalom">
-      <h2>Információ</h2>
-      <a href="./rolunk">Rólunk</a>
-      <a href="./szamitasi-modszertan">Számítási módszertan</a>
-      <a href="./miert-bizhatsz-bennunk">Miért bízhatsz bennünk?</a>
-      <a href="./atlathatosag-es-minoseg">Átláthatóság és minőség</a>
-      <a href="./kapcsolat">Kapcsolat és hibabejelentés</a>
-      <button class="footer-link-button" type="button" data-cookie-settings="">Sütibeállítások</button>
-    </nav>
-  </div>
-
-  <nav class="footer-legal" aria-label="Jogi hivatkozások">
-    <a href="./impresszum">Impresszum</a>
-    <a href="./adatvedelem">Adatkezelés</a>
-    <a href="./felhasznalasi-feltetelek">Felhasználási feltételek</a>
-    <a href="./cookie">Sütik</a>
-    <a href="./jogi-nyilatkozat">Jogi nyilatkozat</a>
-    <a href="./landing-pages/wise/wise">Partnerinformáció</a>
-  </nav>
-
-  <div class="footer-bottom">
-    <p>© 2026 Kalkulátor Bázis</p>
-    <p>Az eredmények tájékoztató becslések; fontos döntés előtt ellenőrizd az aktuális hivatalos vagy szakmai forrást.</p>
-  </div>
+  <!-- KB_HOME_SHELL:footer:START -->
+<footer>
+<div class="container footer-grid footer-grid-v3">
+<div class="footer-brand"><a class="logo" href="#top"><span class="logo-mark"></span><span class="logo-text">Kalkulátor Bázis</span></a><p data-i18n="footerBrandText">Ingyenes magyar kalkulátorok, közérthető számításokkal, ellenőrizhető forrásokkal és átlátható módszertannal.</p></div>
+<div class="footer-col"><b data-i18n="footerCalculators">Kalkulátorok</b><a data-i18n="footerFinance" href="https://kalkulatorbazis.hu/penzugyi">Pénzügy</a><a data-i18n="footerHome" href="https://kalkulatorbazis.hu/epitoipari">Otthon &amp; felújítás</a><a data-i18n="footerAuto" href="https://kalkulatorbazis.hu/auto">Autó &amp; közlekedés</a><a data-i18n="footerHealth" href="https://kalkulatorbazis.hu/egeszseg">Egészség &amp; sport</a><a data-i18n="footerEveryday" href="https://kalkulatorbazis.hu/mindennapi">Mindennapok</a><a data-i18n="footerConvert" href="https://kalkulatorbazis.hu/atvaltok">Átváltók</a></div>
+<div class="footer-col"><b data-i18n="footerKnowledge">Tudástár</b><a data-i18n="footerUpdates" href="https://kalkulatorbazis.hu/aktualis">Aktuális</a><a data-i18n="footerLife" href="https://kalkulatorbazis.hu/elethelyzetek">Élethelyzetek</a><a data-i18n="footerAwareness" href="https://kalkulatorbazis.hu/landing-pages/penzugyi-tudatossag/penzugyi-tudatossag">Pénzügyi tudatosság</a><a data-i18n="footerMethod" href="https://kalkulatorbazis.hu/szamitasi-modszertan">Számítási módszertan</a><a data-i18n="footerTrust" href="https://kalkulatorbazis.hu/miert-bizhatsz-bennunk">Miért bízhatsz bennünk?</a><a data-i18n="footerTransparency" href="https://kalkulatorbazis.hu/atlathatosag-es-minoseg">Átláthatóság és minőség</a></div>
+<div class="footer-col"><b data-i18n="footerSite">Oldal</b><a data-i18n="footerAbout" href="https://kalkulatorbazis.hu/rolunk">Rólunk</a><a data-i18n="footerContact" href="https://kalkulatorbazis.hu/kapcsolat">Kapcsolat</a><a data-i18n="footerDecisions" href="https://kalkulatorbazis.hu/dontesek">Döntések</a><a data-i18n="footerCompare" href="https://kalkulatorbazis.hu/osszehasonlitas">Összehasonlítás</a></div>
+<div class="footer-col footer-legal"><b data-i18n="footerLegal">Jogi és partner</b><a data-i18n="footerImprint" href="https://kalkulatorbazis.hu/impresszum">Impresszum</a><a data-i18n="footerPrivacy" href="https://kalkulatorbazis.hu/adatvedelem">Adatkezelési tájékoztató</a><a data-i18n="footerTerms" href="https://kalkulatorbazis.hu/felhasznalasi-feltetelek">Felhasználási feltételek</a><a data-i18n="footerCookies" href="https://kalkulatorbazis.hu/cookie">Sütikezelési tájékoztató</a><a data-i18n="footerDisclaimer" href="https://kalkulatorbazis.hu/jogi-nyilatkozat">Jogi nyilatkozat</a><a data-i18n="footerPartners" href="https://kalkulatorbazis.hu/landing-pages/wise/wise">Partnerinformációk</a></div>
 </div>
+<div class="container footer-bottom"><span>© 2026 Kalkulátor Bázis</span><span data-i18n="footerBottom">Magyar fejlesztés · Regisztráció nélkül használható</span></div>
+</footer>
+<div aria-label="Nyelvválasztó" class="lang-pop" hidden id="langPop" role="group"><b data-i18n="languageMenuTitle">Nyelv</b><div class="lang-options"><button type="button" class="active" data-lang="hu">Magyar</button><button type="button" data-lang="en">English</button><button type="button" data-lang="de">Deutsch</button></div></div>
+<div class="kb-help-backdrop" id="kbHelpBackdrop" hidden></div>
+<button aria-controls="kbHelpPanel" aria-expanded="false" aria-label="Segítség megnyitása" class="kb-help-launcher" id="kbHelpLauncher" type="button">
+<span aria-hidden="true" class="kb-help-launcher__icon">?</span><span class="kb-help-launcher__label" id="kbHelpLauncherLabel">Segítség</span>
+</button>
+<aside aria-labelledby="kbHelpTitle" aria-modal="true" class="kb-help-panel" id="kbHelpPanel" role="dialog" hidden>
+<div class="kb-help-panel__header"><div><h2 id="kbHelpTitle">Miben segíthetünk?</h2><p id="kbHelpSubtitle">Gyors segítség, hibabejelentés vagy javaslatküldés.</p></div><button aria-label="Bezárás" class="kb-help-close" id="kbHelpClose" type="button">×</button></div>
+<div class="kb-help-panel__body">
+<section class="kb-help-view" data-help-view="menu"><div class="kb-help-actions"><button class="kb-help-action" data-help-open="search" id="kbHelpFind" type="button">🔎 Kalkulátort keresek</button><button class="kb-help-action" data-help-open="question" id="kbHelpQuestion" type="button">💬 Kérdésem van a működésről</button><button class="kb-help-action" data-help-open="bug" id="kbHelpBug" type="button">🐞 Hibát találtam</button><button class="kb-help-action" data-help-open="suggestion" id="kbHelpSuggestion" type="button">💡 Javaslatot küldenék</button></div></section>
+<section class="kb-help-view" data-help-view="search" hidden><button class="kb-help-back" type="button">← <span data-help-back="">Vissza</span></button><div class="kb-help-links"><a href="https://kalkulatorbazis.hu/kalkulatorok">Összes kalkulátor megnyitása</a><a href="https://kalkulatorbazis.hu/penzugyi">Pénzügyi kalkulátorok</a><a href="https://kalkulatorbazis.hu/auto">Autós kalkulátorok</a><a href="https://kalkulatorbazis.hu/egeszseg">Egészség kalkulátorok</a><a href="https://kalkulatorbazis.hu/epitoipari">Építőipari kalkulátorok</a><a href="https://kalkulatorbazis.hu/atvaltok">Átváltók</a></div></section>
+<section class="kb-help-view" data-help-view="question" hidden><button class="kb-help-back" type="button">← <span data-help-back="">Vissza</span></button><p id="kbHelpQuestionText">A működéssel kapcsolatos kérdésedet elküldheted, és e-mailben válaszolunk.</p><button class="kb-help-action" data-help-open="question-form" id="kbHelpQuestionSend" type="button">Kérdés elküldése</button></section>
+<section class="kb-help-view" data-help-view="question-form" hidden><button class="kb-help-back" type="button">← <span data-help-back="">Vissza</span></button><form class="kb-help-form" data-help-form="" data-type="Kérdés"><label id="kbHelpQuestionLabel">Írd le a kérdésed<textarea maxlength="2000" name="description" required=""></textarea></label><label><span id="kbHelpEmailLabel">E-mail-cím a válaszhoz (nem kötelező)</span><input autocomplete="email" maxlength="200" name="email" type="email"/></label><label class="kb-help-honeypot">Weboldal<input autocomplete="off" name="website" tabindex="-1" type="text"/></label><label><span><input name="consent" required="" type="checkbox"/> <span id="kbHelpConsent">Hozzájárulok, hogy a bejelentés adatait a kivizsgálás és válaszadás céljából kezeljék.</span></span></label><button class="kb-help-submit" id="kbHelpSubmitQ" type="submit">Beküldés</button><p aria-live="polite" class="kb-help-status" data-help-status="" hidden role="status"></p></form></section>
+<section class="kb-help-view" data-help-view="bug" hidden><button class="kb-help-back" type="button">← <span data-help-back="">Vissza</span></button><form class="kb-help-form" data-help-form="" data-type="Hibabejelentés"><label id="kbHelpBugLabel">Mi történt?<textarea maxlength="2000" name="description" required=""></textarea></label><label id="kbHelpExpectedLabel">Mit vártál helyette?<textarea maxlength="1000" name="expected"></textarea></label><label><span id="kbHelpInputLabel">Milyen adatokat adtál meg? Ne írj be érzékeny személyes vagy pénzügyi adatot.</span><textarea maxlength="1000" name="inputData"></textarea></label><label><span id="kbHelpEmailLabel2">E-mail-cím a válaszhoz (nem kötelező)</span><input autocomplete="email" maxlength="200" name="email" type="email"/></label><label class="kb-help-honeypot">Weboldal<input autocomplete="off" name="website" tabindex="-1" type="text"/></label><label><span><input name="consent" required="" type="checkbox"/> <span id="kbHelpConsent2">Hozzájárulok, hogy a bejelentés adatait a kivizsgálás és válaszadás céljából kezeljék.</span></span></label><button class="kb-help-submit" id="kbHelpSubmitB" type="submit">Beküldés</button><p aria-live="polite" class="kb-help-status" data-help-status="" hidden role="status"></p></form></section>
+<section class="kb-help-view" data-help-view="suggestion" hidden><button class="kb-help-back" type="button">← <span data-help-back="">Vissza</span></button><form class="kb-help-form" data-help-form="" data-type="Javaslat"><label id="kbHelpSuggestionLabel">Mit változtatnál vagy milyen kalkulátort látnál szívesen?<textarea maxlength="2000" name="description" required=""></textarea></label><label><span id="kbHelpEmailLabel3">E-mail-cím a válaszhoz (nem kötelező)</span><input autocomplete="email" maxlength="200" name="email" type="email"/></label><label class="kb-help-honeypot">Weboldal<input autocomplete="off" name="website" tabindex="-1" type="text"/></label><label><span><input name="consent" required="" type="checkbox"/> <span id="kbHelpConsent3">Hozzájárulok, hogy a bejelentés adatait a kivizsgálás és válaszadás céljából kezeljék.</span></span></label><button class="kb-help-submit" id="kbHelpSubmitS" type="submit">Beküldés</button><p aria-live="polite" class="kb-help-status" data-help-status="" hidden role="status"></p></form></section>
 </div>
+</aside>
+<div aria-label="Évszak előnézet" class="season-pop" hidden id="seasonPop" role="group"><b data-i18n="seasonPreview">Évszak előnézet</b><div class="season-options"><button type="button" data-season="spring"><span class="option-swatch spring"></span><span data-season-text="spring">Tavasz</span></button><button type="button" data-season="summer"><span class="option-swatch summer"></span><span data-season-text="summer">Nyár</span></button><button type="button" class="active" data-season="autumn"><span class="option-swatch autumn"></span><span data-season-text="autumn">Ősz</span></button><button type="button" data-season="winter"><span class="option-swatch winter"></span><span data-season-text="winter">Tél</span></button></div><button type="button" class="season-auto" data-i18n="seasonAuto" id="seasonAuto">Automatikus évszak</button></div>
+<!-- KB_HOME_SHELL:footer:END -->
 
-  <script src="js/site-data.js?v=3542e6c302df"></script>
-  <script src="js/utils.js?v=b75c268846d0"></script>
-  <script src="js/site-ui.js?v=4c8885477a10"></script>
+  <script src="js/site-data.js?v=44dde45bf6c8"></script>
+  <script src="js/utils.js?v=1d15b0a8d924"></script>
+  <script src="js/site-ui.js?v=7239ae51f9fb"></script>
   <script src="js/cookie.js?v=8a6d0bffa1e2" defer></script>
-  <script src="js/help-widget.js?v=5c8cba8dc163" defer></script>
+  <script src="js/help-widget.js?v=d208136a3435" defer></script>
 </body>
 </html>

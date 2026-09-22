@@ -110,6 +110,7 @@ const groupByCalculator = {
   "kalkulatorok/oraber-kalkulator.html": "munka-jovedelem",
   "kalkulatorok/szazalek-kalkulator.html": "matematika",
   "kalkulatorok/atlag-kalkulator.html": "matematika",
+  "kalkulatorok/multifunkcios-szamologep.html": "matematika",
   "kalkulatorok/arany-kalkulator.html": "matematika",
   "kalkulatorok/eletkor-kalkulator.html": "ido-datum",
   "kalkulatorok/datum-kulonbseg-kalkulator.html": "ido-datum",

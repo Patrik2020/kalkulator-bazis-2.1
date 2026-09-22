@@ -1,18 +1,18 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-21",
+  "generatedAt": "2026-09-22",
   "pages": {
     "": {
-      "hash": "53b104da038208e69266147cf9d879031dc03e22a86cdec7f7e6ca730c9631ba",
-      "lastmod": "2026-09-21"
+      "hash": "492f8248be3d9e3630a4c6ff77474bdafd89dcf354376175c549432e633d7acb",
+      "lastmod": "2026-09-22"
     },
     "penzugyi.html": {
       "hash": "7fdec0868055dc0265c5a9692a28d3329753364adbcf519aa34f077c56a3abab",
       "lastmod": "2026-07-15"
     },
     "mindennapi.html": {
-      "hash": "1914394335e7ab64d4c90de2a0829bd13f07166c3519d599d97083819de68667",
-      "lastmod": "2026-09-19"
+      "hash": "0116857edab1ea5537245bbca3da6a047bc625887d72bdd69b97d6372f3ed9d2",
+      "lastmod": "2026-09-22"
     },
     "egeszseg.html": {
       "hash": "8eedf6dc4d04354e339b9f0dcf44df51a946d86673b16fd08f01426d0d81bfe3",
@@ -31,12 +31,8 @@
       "lastmod": "2026-09-18"
     },
     "kalkulatorok.html": {
-      "hash": "b8ba0b1906407a5697097d811b4198bdd9819ebfd7fbd364699d64f577855485",
-      "lastmod": "2026-09-19"
-    },
-    "kalkulatorok/multifunkcios-szamologep.html": {
-      "hash": "c4d38f1c26c681db1304e863f23329fc05b12c236595f66cd99ee892a26c0784",
-      "lastmod": "2026-09-14"
+      "hash": "f53c44343bfc709b41a21e94a18c128fc2e00f66eecbb7a84d2e4047f58ee67d",
+      "lastmod": "2026-09-22"
     },
     "dontesek.html": {
       "hash": "2044db026003669aeb85ae1167ce3fb272a5081727b783a8deaf2cbef77b7abf",
@@ -329,6 +325,10 @@
     "kalkulatorok/atlag-kalkulator.html": {
       "hash": "46328cad8ff24deaf81273605a179539fb76509237c1b1f93492b2d0de513522",
       "lastmod": "2026-09-19"
+    },
+    "kalkulatorok/multifunkcios-szamologep.html": {
+      "hash": "c4d38f1c26c681db1304e863f23329fc05b12c236595f66cd99ee892a26c0784",
+      "lastmod": "2026-09-14"
     },
     "kalkulatorok/egysegar-kalkulator.html": {
       "hash": "b62d2483e8c44c1fa3d21fec763fd3cf830847ab87cbfad4eec8b9478f062c63",

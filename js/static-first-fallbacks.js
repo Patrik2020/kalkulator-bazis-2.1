@@ -134,23 +134,9 @@
     window.addEventListener("pageshow", queueCleanup);
   };
 
-  const startHomeRedesign = () => {
-    if (!document.body?.classList.contains("home-page")) return;
-    if (document.querySelector('script[data-kb-home-ia]')) return;
-
-    const base = String(window.KB_PROJECT_ROOT || "").replace(/\/$/, "");
-    const script = document.createElement("script");
-    script.src = `${base}/js/home-ia.js?v=20260921-1`.replace(/^\/$/, "./");
-    script.async = false;
-    script.dataset.kbHomeIa = "";
-    document.body.appendChild(script);
-  };
-
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", start, { once: true });
-    document.addEventListener("DOMContentLoaded", startHomeRedesign, { once: true });
   } else {
     start();
-    startHomeRedesign();
   }
 })();

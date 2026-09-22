@@ -642,6 +642,14 @@
       keywords: "átlag számtani súlyozott mértani medián jegyátlag növekedési tényező",
     },
     {
+      title: "Multifunkciós számológép",
+      url: "kalkulatorok/multifunkcios-szamologep.html",
+      category: "mindennapi",
+      group: "matematika",
+      description: "Alapműveletek, százalék, hatványozás, gyökvonás, logaritmus és trigonometria egy felületen.",
+      keywords: "tudományos multifunkciós számológép matematika hatvány gyök logaritmus trigonometria",
+    },
+    {
       title: "Egységár kalkulátor",
       url: "kalkulatorok/egysegar-kalkulator.html",
       category: "mindennapi",
@@ -856,6 +864,7 @@
       "kalkulatorok/szazalek-kalkulator.html",
       "kalkulatorok/arany-kalkulator.html",
       "kalkulatorok/atlag-kalkulator.html",
+      "kalkulatorok/multifunkcios-szamologep.html",
       "kalkulatorok/ar-kedvezmeny-kalkulator.html",
       "kalkulatorok/egysegar-kalkulator.html",
     ],

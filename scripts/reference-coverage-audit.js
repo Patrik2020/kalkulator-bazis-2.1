@@ -23,8 +23,8 @@ assert.strictEqual(
   calculators.length,
   "A referenciaaudit duplikált kalkulátor-URL-t talált a registryben."
 );
-assert.strictEqual(registry.size, 101, "A referenciaaudit pontosan 101 registry-kalkulátort vár Phase 2-ben.");
-assert.strictEqual(publicCalculators.length, 88, "A referenciaaudit pontosan 88 nyilvános kalkulátort vár Phase 2 Batch 2 után.");
+assert.strictEqual(registry.size, 102, "A referenciaaudit pontosan 102 registry-kalkulátort vár.");
+assert.strictEqual(publicCalculators.length, 89, "A referenciaaudit pontosan 89 nyilvános kalkulátort vár.");
 assert.strictEqual(retiredCalculators.length, 13, "A referenciaaudit pontosan 13 kivezetett kalkulátort vár Phase 2 Batch 2 után.");
 
 const seen = new Map();

@@ -15,6 +15,7 @@ const utils = read("js/utils.js");
 const helpWidget = read("js/help-widget.js");
 const homeIa = read("js/home-ia.js");
 const homeCurrent = read("js/home-current.js");
+const theme = read("js/theme.js");
 const accessibility = read("js/site-accessibility.js");
 const staticFallbacks = read("js/static-first-fallbacks.js");
 const retention = read("js/retention-cta.js");
@@ -26,7 +27,11 @@ expect(
   "A help widget nem indít második főoldali bootstrapot."
 );
 expect(
-  homeIa.includes("home-current.js") && homeIa.includes("dataset.kbHomeRedesignV17"),
+  theme.includes('script[data-kb-home-ia]') &&
+    homeIa.includes("home-current.js") &&
+    homeIa.includes("KB_HOME_IA_LOADED") &&
+    homeIa.includes('script[data-kb-home-current]') &&
+    !staticFallbacks.includes("home-ia.js"),
   "A főoldali bootstrap egyetlen, őrzött belépési ponton maradt."
 );
 expect(

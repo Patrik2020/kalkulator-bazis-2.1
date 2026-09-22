@@ -63,7 +63,7 @@ for (const page of retired) {
 
 const publicCount = calculators.filter((calculator) => calculator.hidden !== true).length;
 const retiredCount = calculators.filter((calculator) => calculator.hidden === true).length;
-if (publicCount !== 88 || retiredCount !== 13) {
+if (publicCount !== 89 || retiredCount !== 13) {
   failures.push(`életciklus darabszám eltérés: ${publicCount} nyilvános + ${retiredCount} kivezetett`);
 }
 
@@ -76,4 +76,4 @@ if (failures.length) {
 console.log("AdSense Phase 2 Batch 2 audit OK.");
 console.log("- 3 átlagoldal → 1 Átlag kalkulátor központ");
 console.log("- 2 régi URL: 301 + noindex/canonical fallback + AdSense-kizárás");
-console.log("- registry: 88 nyilvános + 13 kivezetett kalkulátor");
+console.log("- registry: 89 nyilvános + 13 kivezetett kalkulátor");

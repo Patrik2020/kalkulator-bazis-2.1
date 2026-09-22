@@ -245,7 +245,7 @@ async function main() {
             `(() => {
               const main = document.querySelector('main');
               const h1s = [...document.querySelectorAll('h1')];
-              const shell = document.querySelector('.card-calculator, #kalkulator');
+              const shell = document.querySelector('.card-calculator, #kalkulator, [data-calculator]');
               const isActuallyVisible = (el) => {
                 if (!el) return false;
                 const style = getComputedStyle(el);
