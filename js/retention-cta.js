@@ -426,6 +426,11 @@
   };
 
   const loadComponent = async () => {
+    const existing = [...document.querySelectorAll("[data-retention-cta]")];
+    const canonical = existing.shift();
+    existing.forEach((node) => node.remove());
+    if (canonical) return canonical;
+
     const response = await fetch(`${getBasePath()}${componentPath}`, { credentials: "same-origin" });
     if (!response.ok) throw new Error("A megtartó CTA komponens nem tölthető be.");
 

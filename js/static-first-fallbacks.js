@@ -99,15 +99,18 @@
     canonicalizeStaticExportUi();
   };
 
-  const removeTransientStaticEnhancements = () => {
+  const prepareTransientStaticEnhancements = () => {
     if (isStaticExport) {
       canonicalizeStaticExportUi();
       return;
     }
 
-    // On a real page load, remove the materialized retention copy before
-    // retention-cta.js initializes its fresh, event-bound component.
-    document.querySelectorAll("[data-retention-cta]").forEach((node) => node.remove());
+    // Keep the materialized component as a resilient, hidden fallback. The
+    // runtime module reuses and binds it instead of creating a second copy.
+    const retentionNodes = [...document.querySelectorAll("[data-retention-cta]")];
+    const canonical = retentionNodes.shift();
+    retentionNodes.forEach((node) => node.remove());
+    if (canonical && !canonical.hasAttribute("hidden")) canonical.setAttribute("hidden", "");
   };
 
   const queueCleanup = () => {
@@ -117,7 +120,7 @@
   };
 
   const start = () => {
-    removeTransientStaticEnhancements();
+    prepareTransientStaticEnhancements();
     cleanup();
 
     const observer = new MutationObserver(queueCleanup);

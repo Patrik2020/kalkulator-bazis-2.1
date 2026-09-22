@@ -1,6 +1,8 @@
 (()=>{
 'use strict';
 if(!document.body.classList.contains('home-page'))return;
+if(window.KB_HOME_CURRENT_LOADING)return;
+window.KB_HOME_CURRENT_LOADING=true;
 const root=document.documentElement,base=String(window.KB_PROJECT_ROOT||'').replace(/\/$/,'');
 const url=p=>`${base}/${String(p).replace(/^\//,'')}`.replace(/^\/$/,'./');
 try{localStorage.removeItem('kalkulatorbazis-theme')}catch(_){ }
@@ -28,7 +30,8 @@ Promise.all([fetchText('fragments/home-redesign-v17-header.inc'),fetchText('frag
  const hero=redesignedMain?.querySelector('.hero');
  if(hero)hero.id='top';
  preserveStaticQualityMarkers(redesignedMain);
- for(const src of ['js/home-redesign-i18n-hu.js?v=e16382283760','js/home-redesign-i18n-en.js?v=2afb10ea4b0e','js/home-redesign-i18n-de.js?v=c7098ff2d797','js/home-redesign-help-i18n-hu.js?v=c61429bad988','js/home-redesign-help-i18n-en.js?v=1258bd945bfa','js/home-redesign-help-i18n-de.js?v=dbfccc2f4617','js/home-redesign-core.js?v=c8e141c68d35','js/home-redesign-salary.js?v=fd35f381190f','js/home-redesign-help.js?v=4d095d1ef6b1'])await load(`${src}?v=20260921-1`);
+ for(const src of ['js/home-redesign-i18n-hu.js?v=e16382283760','js/home-redesign-i18n-en.js?v=2afb10ea4b0e','js/home-redesign-i18n-de.js?v=c7098ff2d797','js/home-redesign-help-i18n-hu.js?v=c61429bad988','js/home-redesign-help-i18n-en.js?v=1258bd945bfa','js/home-redesign-help-i18n-de.js?v=dbfccc2f4617','js/home-redesign-core.js?v=c8e141c68d35','js/home-redesign-salary.js?v=fd35f381190f','js/home-redesign-help.js?v=4d095d1ef6b1'])await load(src);
+ window.KB_HOME_CURRENT_READY=true;
  document.dispatchEvent(new CustomEvent('kb:home-redesign-ready'));
-}).catch(err=>{console.error('Kalkulátor Bázis homepage redesign could not initialize.',err);document.body.classList.remove('home-redesign-v17')});
+}).catch(err=>{window.KB_HOME_CURRENT_LOADING=false;console.error('Kalkulátor Bázis homepage redesign could not initialize.',err);document.body.classList.remove('home-redesign-v17')});
 })();

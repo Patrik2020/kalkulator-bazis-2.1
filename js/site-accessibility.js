@@ -71,20 +71,8 @@
     }
   };
 
-  const loadExpansionDataModule = () => {
-    const projectRoot = window.KB_PROJECT_ROOT || "";
-    if (document.querySelector('script[data-calculator-expansion="01"]')) return;
-
-    const script = document.createElement("script");
-    script.src = `${projectRoot}/js/expansion-batch-01-data.js?v=1ec41e199816`;
-    script.defer = true;
-    script.dataset.calculatorExpansion = "01";
-    document.head.appendChild(script);
-  };
-
   loadFinalQualityModule();
   loadCompatibilityModule();
-  loadExpansionDataModule();
 
   const resultSelectors = [
     ".result-box",

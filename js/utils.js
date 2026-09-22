@@ -155,11 +155,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const isCalculatorPage = window.location.pathname
     .toLowerCase()
     .includes("/kalkulatorok/");
+  const isHomePage = document.body.classList.contains("home-page");
 
   const base = isCalculatorPage ? "../" : "./";
 
-  loadComponent("header", base + "components/header.html");
-  loadComponent("footer", base + "components/footer.html");
+  // The homepage owns its v17 header and footer. Loading the legacy shared
+  // components here made the two shells replace each other during startup.
+  if (!isHomePage) {
+    loadComponent("header", base + "components/header.html");
+    loadComponent("footer", base + "components/footer.html");
+  }
   ensureCookieBanner(base, () => loadSiteScripts(base));
   hardenExternalLinks(document);
   normalizeInternalPublicLinks(document);
