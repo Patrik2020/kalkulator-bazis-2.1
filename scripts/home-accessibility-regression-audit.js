@@ -78,6 +78,10 @@ expect(
     materializer.includes("footer && !preserveAuthoredHomeShell"),
   "A statikus materializáló nem írja vissza a főoldal runtime fejléc- vagy láblécállapotát a szerzői shellbe."
 );
+expect(
+  !/\brequired\s*=\s*(["'])\s*\1/i.test(footer),
+  "A főoldali footer-fragment boolean required attribútumai kanonikusak, ezért a statikus normalizáló nem teszi instabillá a shellt."
+);
 
 console.log(JSON.stringify({ checks: passed.length + issues.length, passed: passed.length, issues, pass: passed }, null, 2));
 if (issues.length) process.exitCode = 1;
