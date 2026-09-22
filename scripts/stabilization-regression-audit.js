@@ -15,6 +15,8 @@ const utils = read("js/utils.js");
 const helpWidget = read("js/help-widget.js");
 const homeIa = read("js/home-ia.js");
 const homeCurrent = read("js/home-current.js");
+const homeCore = read("js/home-redesign-core.js");
+const homeHelp = read("js/home-redesign-help.js");
 const theme = read("js/theme.js");
 const accessibility = read("js/site-accessibility.js");
 const staticFallbacks = read("js/static-first-fallbacks.js");
@@ -27,6 +29,12 @@ expect(
   "A help widget nem indít második főoldali bootstrapot."
 );
 expect(
+  helpWidget.includes('document.getElementById("kbHelpLauncher")') &&
+    helpWidget.includes("css/components/help-widget.css") &&
+    helpWidget.includes("KB_HELP_WIDGET_LOADED"),
+  "A közös help widget nem duplikálja a főoldali példányt, és saját stílusát egyszer tölti be."
+);
+expect(
   theme.includes('script[data-kb-home-ia]') &&
     homeIa.includes("home-current.js") &&
     homeIa.includes("KB_HOME_IA_LOADED") &&
@@ -37,6 +45,19 @@ expect(
 expect(
   homeCurrent.includes("KB_HOME_CURRENT_LOADING") && homeCurrent.includes("KB_HOME_CURRENT_READY"),
   "A főoldali inicializálás idempotens állapotjelzőket használ."
+);
+expect(
+  !homeCurrent.includes('localStorage.removeItem("kalkulatorbazis-theme")') &&
+    homeCore.includes("localStorage.setItem(themeStorageKey,next)") &&
+    theme.includes('document.getElementById("themeBtn")'),
+  "A főoldali témaválasztás egyetlen vezérlővel, tartós beállítással működik."
+);
+expect(
+    homeHelp.includes("panel.inert=true") &&
+    homeHelp.includes("aria-hidden") &&
+    homeHelp.includes("lastFocus") &&
+    homeHelp.includes("event.key!=='Tab'"),
+  "A főoldali súgó dialógus fókuszcsapdát, állapotjelzést és fókusz-visszaadást használ."
 );
 expect(
   /if \(!isHomePage\)\s*\{\s*loadComponent\("header"[\s\S]*loadComponent\("footer"/.test(utils),

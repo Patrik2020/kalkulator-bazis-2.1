@@ -135,12 +135,22 @@ const run = async () => {
   const target = await targetResponse.json();
   const client = await createClient(target.webSocketDebuggerUrl);
   const consoleErrors = [];
+  const localQaOrigin = /^https?:\/\/(?:127\.0\.0\.1|localhost)(?::\d+)?$/i.test(origin);
+  const isExpectedLocalSalaryApiNoise = (entry) =>
+    localQaOrigin &&
+    /api\.kalkulatorbazis\.hu\/api\/v1\/calculators\/salary\/(?:gross-to-net|net-to-gross)/i.test(
+      `${entry.url || ""} ${entry.text || ""}`
+    );
 
   client.on("Runtime.exceptionThrown", ({ exceptionDetails }) => {
     consoleErrors.push(exceptionDetails.exception?.description || exceptionDetails.text || "Ismeretlen JavaScript-kivétel");
   });
   client.on("Log.entryAdded", ({ entry }) => {
-    if (["error", "warning"].includes(entry.level) && !/google|doubleclick|adsbygoogle|api\.frankfurter\.dev/i.test(entry.url || entry.text)) {
+    if (
+      ["error", "warning"].includes(entry.level) &&
+      !/google|doubleclick|adsbygoogle|api\.frankfurter\.dev/i.test(entry.url || entry.text) &&
+      !isExpectedLocalSalaryApiNoise(entry)
+    ) {
       consoleErrors.push(`${entry.level}: ${entry.url || "(nincs URL)"} - ${entry.text}`);
     }
   });
@@ -823,17 +833,11 @@ const run = async () => {
   await navigate("/");
 
   const interactions = await evaluate(`(async () => {
-    const menuButton = document.getElementById('menuToggle');
+    const menuButton = document.querySelector('.menu-btn');
     menuButton?.click();
     const menuOpened = menuButton?.getAttribute('aria-expanded');
     (document.activeElement || document).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
     const menuClosed = menuButton?.getAttribute('aria-expanded');
-    const details = [...document.querySelectorAll('.faq-list details')];
-    details[0]?.querySelector('summary')?.click();
-    await new Promise((resolve) => setTimeout(resolve, 10));
-    details[1]?.querySelector('summary')?.click();
-    await new Promise((resolve) => setTimeout(resolve, 10));
-    const openFaqCount = details.filter((item) => item.open).length;
     const cookieBanner = document.getElementById('cookie-banner');
     const cookieHiddenInitially = cookieBanner ? getComputedStyle(cookieBanner).display === 'none' : false;
     document.querySelector('[data-cookie-settings]')?.click();
@@ -844,25 +848,39 @@ const run = async () => {
     await new Promise((resolve) => setTimeout(resolve, 30));
     const cookieHiddenAfterEscape = cookieBanner ? getComputedStyle(cookieBanner).display === 'none' : false;
     const cookieStored = JSON.parse(localStorage.getItem('kbCookieConsent') || 'null');
-    const launcher = document.querySelector('.kb-help-launcher');
+    const launcher = document.getElementById('kbHelpLauncher') || document.querySelector('.kb-help-launcher');
     launcher?.click();
     await new Promise((resolve) => setTimeout(resolve, 30));
-    const helpPanel = document.querySelector('.kb-help-panel');
+    const helpPanel = document.getElementById('kbHelpPanel') || document.querySelector('.kb-help-panel');
     const helpOpened = helpPanel?.dataset.open === 'true' && helpPanel?.getAttribute('aria-hidden') === 'false';
     const helpFocusInside = helpPanel?.contains(document.activeElement) || false;
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
     await new Promise((resolve) => setTimeout(resolve, 30));
     const helpClosed = helpPanel?.dataset.open === 'false' && helpPanel?.getAttribute('aria-hidden') === 'true';
     const helpFocusRestored = document.activeElement === launcher;
-    const activeHomeLinks = document.querySelectorAll('#menu [aria-current="page"]').length;
-    return { menuOpened, menuClosed, openFaqCount, cookieHiddenInitially, cookieVisibleAfterOpen, settingsVisible, cookieHiddenAfterEscape, cookieStored, helpOpened, helpFocusInside, helpClosed, helpFocusRestored, activeHomeLinks };
+    const invalidHomeNavTargets = [...document.querySelectorAll('#homePrimaryNav a[href^="#"]')]
+      .map((link) => link.hash.slice(1))
+      .filter((id) => !id || !document.getElementById(decodeURIComponent(id)));
+    const themeControlCount = document.querySelectorAll('#themeBtn, .theme-toggle').length;
+    const helpControlCount = document.querySelectorAll('#kbHelpLauncher, .kb-help-launcher').length;
+    return { menuOpened, menuClosed, cookieHiddenInitially, cookieVisibleAfterOpen, settingsVisible, cookieHiddenAfterEscape, cookieStored, helpOpened, helpFocusInside, helpClosed, helpFocusRestored, invalidHomeNavTargets, themeControlCount, helpControlCount };
   })()`);
+
+  await navigate(toExtensionlessHref("/kalkulatorok/netto-brutto-kalkulator.html"));
+  Object.assign(interactions, await evaluate(`(async () => {
+    const details = [...document.querySelectorAll('.faq-list > details')];
+    details[0]?.querySelector('summary')?.click();
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    details[1]?.querySelector('summary')?.click();
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    return { faqCount: details.length, openFaqCount: details.filter((item) => item.open).length };
+  })()`));
 
   await navigate("/");
   await evaluate(`localStorage.setItem('kalkulatorbazis-theme', 'light')`);
   await navigate("/");
   const theme = await evaluate(`(async () => {
-    const button = document.querySelector('.theme-toggle');
+    const button = document.getElementById('themeBtn') || document.querySelector('.theme-toggle');
     const initial = document.documentElement.dataset.theme;
     button?.focus();
     const focusVisible = document.activeElement === button;
@@ -876,7 +894,7 @@ const run = async () => {
   })()`);
   await navigate("/");
   theme.persistedAfterNavigation = await evaluate(`document.documentElement.dataset.theme`);
-  theme.toggleCount = await evaluate(`document.querySelectorAll('.theme-toggle').length`);
+  theme.toggleCount = await evaluate(`document.querySelectorAll('#themeBtn, .theme-toggle').length`);
   theme.trustedSite = await evaluate(`(() => {
     const nodes = [...document.querySelectorAll('[class*="trustedsite" i], [id*="trustedsite" i], iframe[src*="trustedsite" i], script[src*="trustedsite" i]')];
     return { present: nodes.length > 0, count: nodes.length };
@@ -913,7 +931,7 @@ const run = async () => {
     footerLink: !![...document.querySelectorAll('#footer a, footer a, .legal-footer a')].find((link) => link.getAttribute('href')?.includes('atlathatosag-es-minoseg')),
     mailto: !!document.querySelector('a[href^="mailto:kalkulatorbazis@gmail.com"]'),
     breadcrumb: !!document.querySelector('.breadcrumb'),
-    toggleCount: document.querySelectorAll('.theme-toggle').length
+      toggleCount: document.querySelectorAll('#themeBtn, .theme-toggle').length
   }))()`);
   const transparencyScreenshot = await client.send("Page.captureScreenshot", { format: "png", fromSurface: true });
   fs.writeFileSync(path.join(screenshotDirectory, "atlathatosag-dark-390.png"), Buffer.from(transparencyScreenshot.data, "base64"));
@@ -924,7 +942,7 @@ const run = async () => {
     mediaMatches: matchMedia('print').matches,
     bodyBackground: getComputedStyle(document.body).backgroundColor,
     bodyColor: getComputedStyle(document.body).color,
-    toggleDisplay: getComputedStyle(document.querySelector('.theme-toggle')).display
+    toggleRendered: (document.getElementById('themeBtn') || document.querySelector('.theme-toggle'))?.getClientRects().length > 0
   }))()`);
   await client.send("Emulation.setEmulatedMedia", { media: "screen", features: [] });
 
@@ -996,13 +1014,15 @@ const run = async () => {
   const interactionFailures = [
     [interactions.menuOpened === "true", "A mobilmenü nem nyílt ki."],
     [interactions.menuClosed === "false", "A mobilmenü nem zárult be Escape-re."],
-    [interactions.openFaqCount === 1, "A GYIK harmonika egyszerre több elemet hagyott nyitva."],
+    [interactions.faqCount >= 2 && interactions.openFaqCount === 1, "A kalkulátoroldali GYIK harmonika egyszerre több elemet hagyott nyitva."],
     [interactions.cookieHiddenInitially, "A mentett döntés ellenére megjelent a sütipanel."],
     [interactions.cookieVisibleAfterOpen && interactions.settingsVisible, "A sütibeállítások nem nyíltak meg."],
     [interactions.cookieHiddenAfterEscape, "A sütibeállítások nem zárultak be Escape-re."],
     [interactions.helpOpened && interactions.helpFocusInside, "A súgó nem nyílt meg megfelelő fókuszkezeléssel."],
     [interactions.helpClosed && interactions.helpFocusRestored, "A súgó bezárásakor nem állt vissza a fókusz."],
-    [interactions.activeHomeLinks === 1, "A fejléc aktív navigációs állapota hibás."],
+    [interactions.invalidHomeNavTargets.length === 0, "A főoldali fejléc egyik hivatkozása hiányzó szakaszra mutat."],
+    [interactions.themeControlCount === 1, "A főoldalon nem pontosan egy témaváltó jelent meg."],
+    [interactions.helpControlCount === 1, "A főoldalon nem pontosan egy súgóindító jelent meg."],
   ].filter(([passed]) => !passed).map(([, message]) => message);
 
   const calculatorFailures = calculators.filter((item) => {
@@ -1018,7 +1038,7 @@ const run = async () => {
     [theme.calculatorReliability?.breadcrumbCount === 1, "A kalkulátoroldalon nem pontosan egy morzsamenü jelent meg."],
     [theme.calculatorReliability?.pageMeta, "Hiányzik a kalkulátoroldal megbízhatósági sávja."],
     [theme.calculatorReliability?.resultStatus === "status" && theme.calculatorReliability?.resultLive === "polite", "Az eredménymező élő régiója hibás."],
-    [theme.print?.bodyBackground === "rgb(255, 255, 255)" && theme.print?.toggleDisplay === "none", "A nyomtatási téma hibás."],
+    [theme.print?.bodyBackground === "rgb(255, 255, 255)" && !theme.print?.toggleRendered, "A nyomtatási téma hibás."],
     [theme.systemDark === "dark", "A rendszer sötét témája nem érvényesült."],
   ].filter(([passed]) => !passed).map(([, message]) => message);
 

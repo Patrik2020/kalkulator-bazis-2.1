@@ -8,3 +8,6 @@ html[data-accessibility='on']{font-size:112%}html[data-accessibility='on'] :wher
 .salary-direction-btn,.lang-pop button,.season-options button,.season-auto{min-height:44px}.kb-help-close{width:44px;height:44px}.kb-help-back{display:inline-flex;align-items:center;min-height:44px;padding-inline:4px}
 @media(max-width:680px){.kb-header.container{gap:10px;padding-inline:10px}.kb-header .head-actions{gap:6px}.kb-header .logo-text{display:none}.access-btn,.lang-btn,.theme-btn,.season-btn{width:44px;min-width:44px;padding:0}}
 @media(max-width:375px){.season-btn{display:none}}
+@media(max-width:680px){.lang-btn>span[aria-hidden="true"]{display:none}}
+.footer-col .footer-link-button{display:flex;align-items:center;width:fit-content;min-height:44px;margin:0;padding:5px 0;border:0;background:transparent;color:var(--muted);font:inherit;font-size:.9rem;text-align:left;cursor:pointer}.footer-col .footer-link-button:hover,.footer-col .footer-link-button:focus-visible{color:var(--season-action)}
+html[data-theme='dark'] .footer-col .footer-link-button{color:#b7c4d6}html.kb-help-is-open{overflow:hidden}

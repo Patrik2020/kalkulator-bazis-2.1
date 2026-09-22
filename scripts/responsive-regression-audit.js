@@ -54,12 +54,15 @@ expect(
   "A fejlesztési modal rövid és keskeny viewporton is határolt és görgethető."
 );
 expect(
-  homeHeaderCss.includes("height:44px") && homeHeaderCss.includes(".icon-btn,.menu-btn{width:44px"),
+  homeHeaderCss.includes("height:44px") &&
+    homeHeaderCss.includes(".icon-btn,.menu-btn{width:44px") &&
+    homeHeaderCss.includes(".season-btn{min-width:44px}"),
   "A főoldali fejléc elsődleges vezérlői legalább 44×44 px-esek."
 );
 expect(
-  homeCss.includes("@media(max-width:680px){.kb-header.container{gap:10px") &&
+    homeCss.includes("@media(max-width:680px){.kb-header.container{gap:10px") &&
     homeCss.includes(".kb-header .logo-text{display:none}") &&
+    homeCss.includes('.lang-btn>span[aria-hidden="true"]{display:none}') &&
     homeCss.includes("@media(max-width:375px){.season-btn{display:none}}"),
   "A főoldali fejléc a legkisebb telefonokon bizonyítottan kompakt állapotra vált."
 );

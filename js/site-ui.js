@@ -96,15 +96,6 @@
     return Boolean(manager.hasConsent(category));
   };
 
-  const categorySearchAliases = {
-    penzugyi: "penz ber fizetes adozas megtakaritas befektetes hitel bank",
-    epitoipari: "epitoanyag epitkezes felujitas anyagszukseglet burkolas falazas",
-    egeszseg: "eletmod taplalkozas edzes testsuly szervezet",
-    mindennapi: "hetkoznapi vasarlas munka datum szamla haztartas",
-    auto: "jarmu utazas tankolas benzin dizel fenntartas",
-    atvaltok: "mertekegyseg valtas konverter fizika technika",
-  };
-
   const getCalculatorSearchText = (calculator) => {
     const category = getCategory(calculator.category);
 
@@ -115,7 +106,7 @@
         calculator.keywords,
         category ? category.title : "",
         category ? category.shortTitle : "",
-        categorySearchAliases[calculator.category] || "",
+        category ? category.searchAliases : "",
       ].join(" ")
     );
   };

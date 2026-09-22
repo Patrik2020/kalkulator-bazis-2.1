@@ -20,12 +20,6 @@
     "js/home-redesign-help.js?v=4d095d1ef6b1",
   ];
 
-  try {
-    localStorage.removeItem("kalkulatorbazis-theme");
-  } catch (error) {
-    // A főoldali téma az aktuális munkamenetben ettől még alkalmazható.
-  }
-
   const month = new Date().getMonth() + 1;
   root.lang = "hu";
   root.dataset.language = "hu";
@@ -36,7 +30,7 @@
       : month >= 9 && month <= 11
         ? "autumn"
         : "winter";
-  root.dataset.theme = window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  root.dataset.theme = root.dataset.theme === "dark" ? "dark" : "light";
   root.style.colorScheme = root.dataset.theme;
   document.body.classList.add("home-redesign-v17");
 

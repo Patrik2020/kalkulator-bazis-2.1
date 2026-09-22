@@ -15,6 +15,7 @@ const index = read("index.html");
 const header = read("fragments/home-redesign-v17-header.inc");
 const footer = read("fragments/home-redesign-v17-footer.inc");
 const core = read("js/home-redesign-core.js");
+const help = read("js/home-redesign-help.js");
 const css = read("css/pages/index.css");
 const materializer = read("scripts/materialize-static-first.js");
 
@@ -55,6 +56,13 @@ expect(
   "A bezárt popupok rejtettek a billentyűzet és a kisegítő technológiák elől."
 );
 expect(
+  footer.includes("data-cookie-settings") &&
+    footer.includes('id="kbHelpPanel" role="dialog" hidden') &&
+    help.includes("launcher.setAttribute('aria-expanded'") &&
+    help.includes("lastFocus"),
+  "A főoldali süti- és súgóvezérlők valódi, billentyűzettel kezelhető interakcióhoz kapcsolódnak."
+);
+expect(
   core.includes("function setPopupState") &&
     core.includes("function setMenuState") &&
     core.includes("e.key!=='Escape'") &&
@@ -67,6 +75,10 @@ expect(
     core.includes("e.key==='ArrowUp'") &&
     core.includes("e.key==='Escape'"),
   "A főoldali kereső nyílbillentyűkkel, Enterrel és Escape-pel kezelhető."
+);
+expect(
+  core.includes("category?.searchAliases") && core.includes("tokens.every"),
+  "A főoldali kereső a központi kategóriaaliasokat és több keresési tokent is kezeli."
 );
 expect(
   css.includes(".development-notice__close:focus-visible") && css.includes("outline: 3px solid"),

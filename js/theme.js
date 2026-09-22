@@ -102,11 +102,18 @@
 
   const updateButtons = (theme) => {
     const dark = theme === "dark";
-    document.querySelectorAll(".theme-toggle").forEach((button) => {
+    document.querySelectorAll(".theme-toggle, #themeBtn").forEach((button) => {
       const label = dark ? "Váltás világos módra" : "Váltás sötét módra";
       button.setAttribute("aria-label", label);
       button.setAttribute("title", label);
       button.setAttribute("aria-pressed", String(dark));
+      if (button.id === "themeBtn") {
+        const emoji = button.querySelector("#themeEmoji");
+        const text = button.querySelector("#themeLabel");
+        if (emoji) emoji.textContent = dark ? "☀" : "☾";
+        if (text) text.textContent = dark ? "Világos" : "Sötét";
+        return;
+      }
       button.innerHTML = `
         <span class="theme-toggle-icon" aria-hidden="true">${dark ? "☀" : "☾"}</span>
         <span class="theme-toggle-text">${dark ? "Világos" : "Sötét"}</span>
@@ -141,6 +148,11 @@
   };
 
   const ensureToggle = () => {
+    if (document.getElementById("themeBtn")) {
+      updateButtons(root.dataset.theme || "light");
+      return;
+    }
+
     if (document.querySelector(".theme-toggle")) {
       updateButtons(root.dataset.theme || "light");
       return;
