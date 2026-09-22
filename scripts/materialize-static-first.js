@@ -251,12 +251,17 @@ function replaceStructuredData(source, rendered) {
 
 function mergeRenderedPage(pagePath, originalSource, rendered) {
   let source = originalSource;
+  const preserveAuthoredHomeShell = pagePath === "index.html";
 
   const header = findElement(rendered, { id: "header" });
-  if (header) source = replaceElement(source, { id: "header" }, header.html);
+  if (header && !preserveAuthoredHomeShell) {
+    source = replaceElement(source, { id: "header" }, header.html);
+  }
 
   const footer = findElement(rendered, { id: "footer" });
-  if (footer) source = replaceElement(source, { id: "footer" }, footer.html);
+  if (footer && !preserveAuthoredHomeShell) {
+    source = replaceElement(source, { id: "footer" }, footer.html);
+  }
 
   const card = findElement(rendered, { className: "card-calculator" });
   const authoredCard = findElement(source, { className: "card-calculator" });
