@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-21",
+  "generatedAt": "2026-09-22",
   "pages": {
     "": {
       "hash": "53b104da038208e69266147cf9d879031dc03e22a86cdec7f7e6ca730c9631ba",
@@ -91,8 +91,12 @@
       "lastmod": "2026-08-21"
     },
     "aktualis.html": {
-      "hash": "43f270d8d3d639b53a50f497286e5a251f0d4a22f7d63b41781640d3e34bb390",
-      "lastmod": "2026-09-16"
+      "hash": "5838ded3944c314feca2b6506c8a39b45d0566046121841089a4155160696038",
+      "lastmod": "2026-09-22"
+    },
+    "aktualis/dizeltamogatas-2026.html": {
+      "hash": "8daefc866cfe7209c37bdb9f99f719f5538e83bbfb0ad6986685511552a8d771",
+      "lastmod": "2026-09-22"
     },
     "aktualis/ksh-inflacio-2026-augusztus.html": {
       "hash": "131396f9436fb905079219bfb63eee7d3bf0c032d97b299de7a13d7c0572104a",
@@ -183,12 +187,12 @@
       "lastmod": "2026-09-16"
     },
     "kalkulatorok/fizetesi-hatarido-kalkulator.html": {
-      "hash": "047af4d501d99d724885e2f69ebb18e0e99af313ea93787e0539ab45c9451586",
-      "lastmod": "2026-09-21"
+      "hash": "67a4f86831153999474c0d44add3e1516eab2bb4955f4c25e9c02e5fa2698fa6",
+      "lastmod": "2026-09-22"
     },
     "kalkulatorok/szamla-teljesites-kalkulator.html": {
-      "hash": "81e841e4a5ed6be8129437b4f305e1481d71195c075f717f14257a2f23183fe5",
-      "lastmod": "2026-09-21"
+      "hash": "a89b35d698ea09a7e9f029e89cc6803c3a8574d67f962cc2636ac36f3f7219ef",
+      "lastmod": "2026-09-22"
     },
     "kalkulatorok/beton-kalkulator.html": {
       "hash": "6af9c3f5c77e45a1a154b021b623cf62661e16e4417787d792adab91ba443b57",
@@ -275,8 +279,8 @@
       "lastmod": "2026-09-16"
     },
     "kalkulatorok/terhessegi-kalkulator.html": {
-      "hash": "b00c2689f385410370a2722f289406071344d5d9599e3698de859063d64b896f",
-      "lastmod": "2026-09-21"
+      "hash": "81294c3de1455dc3977dc354f28309023071fba664bdcf128a04687a88784807",
+      "lastmod": "2026-09-22"
     },
     "kalkulatorok/idealis-testsuly-kalkulator.html": {
       "hash": "4174527f4279d577043cbd100d561a82b787388fb9051d5166b1669fea2c191e",
