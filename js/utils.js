@@ -243,7 +243,7 @@ function loadSiteScripts(base) {
   const loadUi = () => {
     document.dispatchEvent(new CustomEvent("kb:site-data-loaded"));
     markActiveNavigation(document.getElementById("header"));
-    loadScriptOnce(base + "js/site-ui.js?v=7239ae51f9fb");
+    loadScriptOnce(base + "js/site-ui.js?v=3a4776d74b51");
     if (window.location.pathname.toLowerCase().includes("/kalkulatorok/")) {
       loadScriptOnce(base + "js/retention-cta.js?v=496cd32a5705");
     }
@@ -266,7 +266,7 @@ function loadSiteScripts(base) {
     return;
   }
 
-  loadScriptOnce(base + "js/site-data.js?v=44dde45bf6c8", loadExpansionData);
+  loadScriptOnce(base + "js/site-data.js?v=35f4273bd188", loadExpansionData);
 }
 
 function loadComponent(id, path) {
