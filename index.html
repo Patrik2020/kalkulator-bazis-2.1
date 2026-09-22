@@ -34,11 +34,11 @@
   <meta name="twitter:description" content="Ingyenes magyar online kalkulátorportál pénzügyi, autós, építőipari, egészség, átváltó és mindennapi számításokhoz, magyarázatokkal és GYIK-kel." />
   <meta name="twitter:image" content="https://kalkulatorbazis.hu/images/kalkulator-bazis-og.jpg" />
 
-  <link rel="stylesheet" href="css/style.css?v=32f9d976dc8a" />
-  <link rel="stylesheet" href="css/pages/index.css?v=8105551707cd" />
-  <link rel="stylesheet" href="css/pages/home-redesign-v17.css?v=fbd98d5331ef" data-home-redesign-v17 />
+  <link rel="stylesheet" href="css/style.css?v=95143f0c371d" />
+  <link rel="stylesheet" href="css/pages/index.css?v=9ca2a059294b" />
+  <link rel="stylesheet" href="css/pages/home-redesign-v17.css?v=00de6652c59d" data-home-redesign-v17 />
 <script src="js/static-first-fallbacks.js?v=79952e4c154e"></script>
-<script src="js/global-head.js?v=19cfccfeabe1"></script>
+<script src="js/global-head.js?v=23fbbf3ead52"></script>
 
 <!-- KB_STATIC:structured-data:START -->
 <script id="kb-structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://kalkulatorbazis.hu/#organization","name":"Kalkulátor Bázis","url":"https://kalkulatorbazis.hu/","logo":"https://kalkulatorbazis.hu/favicon/web-app-manifest-512x512.png"},{"@type":"WebSite","@id":"https://kalkulatorbazis.hu/#website","name":"Kalkulátor Bázis","url":"https://kalkulatorbazis.hu/","publisher":{"@id":"https://kalkulatorbazis.hu/#organization"},"inLanguage":"hu-HU","potentialAction":{"@type":"SearchAction","target":"https://kalkulatorbazis.hu/?kereses={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"CollectionPage","@id":"https://kalkulatorbazis.hu/#webpage","url":"https://kalkulatorbazis.hu/","name":"Kalkulátor Bázis | Ingyenes online kalkulátorportál magyarul","description":"Ingyenes magyar online kalkulátorportál pénzügyi, autós, építőipari, egészség, átváltó és mindennapi számításokhoz, magyarázatokkal és GYIK-kel.","isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"},"inLanguage":"hu-HU"},{"@type":"ItemList","@id":"https://kalkulatorbazis.hu/#featured-calculators","name":"Kiemelt kalkulátorok","itemListElement":[{"@type":"ListItem","position":1,"url":"https://kalkulatorbazis.hu/kalkulatorok/netto-brutto-kalkulator","name":"Nettó - bruttó kalkulátor"},{"@type":"ListItem","position":2,"url":"https://kalkulatorbazis.hu/kalkulatorok/osztalek-kalkulator","name":"Osztalék kalkulátor"},{"@type":"ListItem","position":3,"url":"https://kalkulatorbazis.hu/kalkulatorok/etf-kalkulator","name":"ETF kalkulátor"},{"@type":"ListItem","position":4,"url":"https://kalkulatorbazis.hu/kalkulatorok/fizetesi-hatarido-kalkulator","name":"Fizetési határidő kalkulátor"},{"@type":"ListItem","position":5,"url":"https://kalkulatorbazis.hu/kalkulatorok/szamla-teljesites-kalkulator","name":"Számla teljesítés kalkulátor"},{"@type":"ListItem","position":6,"url":"https://kalkulatorbazis.hu/kalkulatorok/auto-kalkulator","name":"Autós út- és hatótáv kalkulátor"},{"@type":"ListItem","position":7,"url":"https://kalkulatorbazis.hu/kalkulatorok/mertekegyseg-atvalto-kalkulator","name":"Mértékegység átváltó"}]},{"@type":"FAQPage","@id":"https://kalkulatorbazis.hu/#gyik","mainEntity":[{"@type":"Question","name":"Ingyenesek a kalkulátorok?","acceptedAnswer":{"@type":"Answer","text":"Igen, minden kalkulátor regisztráció és előfizetés nélkül használható."}},{"@type":"Question","name":"Elmenti az oldal a beírt adataimat?","acceptedAnswer":{"@type":"Answer","text":"A legtöbb számítás a böngészőben fut. Az API-t használó kalkulátoroknál kizárólag a számításhoz szükséges mezőértékek kerülhetnek a Kalkulátor Bázis API-jához; ezeket nem használjuk profilalkotásra vagy hirdetési célra. Részletek az adatvédelmi tájékoztatóban."}},{"@type":"Question","name":"Mennyire tekinthető pontosnak az eredmény?","acceptedAnswer":{"@type":"Answer","text":"A képlet és a megadott adatok alapján pontos, de a valós helyzet további feltételeket tartalmazhat. Minden kalkulátor külön jelzi a fontos korlátokat."}},{"@type":"Question","name":"Ékezet nélkül is működik a kereső?","acceptedAnswer":{"@type":"Answer","text":"Igen. A „hitel”, „epitoanyag” vagy „uzemanyag” típusú kereséseket is felismeri."}}]}]}</script>
@@ -77,6 +77,7 @@
     setBackgroundInert(false);
     document.removeEventListener('keydown',handleKeydown);
     notice.remove();
+    document.dispatchEvent(new CustomEvent('kb:development-notice-dismissed'));
     if(previousFocus&&previousFocus!==document.body&&previousFocus.isConnected&&typeof previousFocus.focus==='function')previousFocus.focus();
     else document.querySelector('.kb-skip-link')?.focus();
   }
@@ -256,9 +257,9 @@
 <!-- KB_HOME_SHELL:footer:END -->
 
   <script src="js/site-data.js?v=44dde45bf6c8"></script>
-  <script src="js/utils.js?v=1d15b0a8d924"></script>
+  <script src="js/utils.js?v=e2fd65ece935"></script>
   <script src="js/site-ui.js?v=7239ae51f9fb"></script>
-  <script src="js/cookie.js?v=8a6d0bffa1e2" defer></script>
+  <script src="js/cookie.js?v=289ed0b19140" defer></script>
   <script src="js/help-widget.js?v=d208136a3435" defer></script>
 </body>
 </html>

@@ -5,7 +5,7 @@ if(window.KB_HOME_IA_LOADED)return;
 window.KB_HOME_IA_LOADED=true;
 if(document.querySelector('script[data-kb-home-current]'))return;
 const root=String(window.KB_PROJECT_ROOT||'').replace(/\/$/,'');
-const homeCurrentAsset='js/home-current.js?v=433537400e48';
+const homeCurrentAsset='js/home-current.js?v=2b424d12b300';
 const script=document.createElement('script');
 script.src=`${root}/${homeCurrentAsset}`.replace(/\/{2,}/g,'/');
 script.async=false;

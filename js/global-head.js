@@ -34,10 +34,10 @@ const projectRoot = scriptProjectRoot ?? (fallbackRootParts.length ? `/${fallbac
 const basePath = `${projectRoot}/favicon`;
 const themeCssPath = `${projectRoot}/css/theme.css?v=0f4a295ac440`;
 const footerCssPath = `${projectRoot}/css/layout/footer.css?v=d541ea459cfd`;
-const cookieCssPath = `${projectRoot}/css/components/cookie.css?v=f2f8742f64ed`;
+const cookieCssPath = `${projectRoot}/css/components/cookie.css?v=79a991c76b80`;
 const accessibilityCssPath = `${projectRoot}/css/components/accessibility.css?v=73abeeb0ad97`;
 const wiseBannerCssPath = `${projectRoot}/css/components/wise-banner-enhancer.css?v=ee35ab04eee1`;
-const calculatorPageCssPath = `${projectRoot}/css/pages/calculator-page-v2.css?v=6221842794e1`;
+const calculatorPageCssPath = `${projectRoot}/css/pages/calculator-page-v2.css?v=e346a61da75f`;
 const calculatorPolishCssPath = `${projectRoot}/css/pages/calculator-polish.css?v=5698a292be49`;
 const priorityUpgradeCssPath = `${projectRoot}/css/pages/priority-upgrades.css?v=81c0bc5b23c0`;
 const constructionUpgradeCssPath = `${projectRoot}/css/pages/construction-upgrades.css?v=f4b8bb01934f`;
@@ -47,7 +47,7 @@ const financeQualityCssPath = `${projectRoot}/css/pages/finance-quality-upgrades
 const constructionQualityCssPath = `${projectRoot}/css/pages/construction-quality-upgrades.css?v=3786bcf552b2`;
 const healthEverydayQualityCssPath = `${projectRoot}/css/pages/health-everyday-quality-upgrades.css?v=e10e7cbe585c`;
 const autoConverterQualityCssPath = `${projectRoot}/css/pages/auto-converter-quality-upgrades.css?v=52a3f32da1be`;
-const themeScriptPath = `${projectRoot}/js/theme.js?v=9414b30c8574`;
+const themeScriptPath = `${projectRoot}/js/theme.js?v=3f999fde1fb4`;
 const pwaScriptPath = `${projectRoot}/js/pwa.js?v=fb055828c8f9`;
 const wiseBannerScriptPath = `${projectRoot}/js/wise-banner-enhancer.js?v=9c6dbaaa839b`;
 const accessibilityScriptPath = `${projectRoot}/js/site-accessibility.js?v=79bb91554b93`;

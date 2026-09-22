@@ -47,7 +47,7 @@
   if (!document.querySelector("link[data-home-redesign-v17]")) {
     const link = document.createElement("link");
     link.rel = "stylesheet";
-    link.href = url("css/pages/home-redesign-v17.css?v=fbd98d5331ef");
+    link.href = url("css/pages/home-redesign-v17.css?v=00de6652c59d");
     link.dataset.homeRedesignV17 = "";
     document.head.appendChild(link);
   }

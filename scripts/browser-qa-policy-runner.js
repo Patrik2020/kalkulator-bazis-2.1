@@ -114,6 +114,7 @@ if (!fs.existsSync(resultsPath)) {
 const result = JSON.parse(fs.readFileSync(resultsPath, "utf8"));
 const nonPolicyFailures = {
   layoutFailures: result.layoutFailures || [],
+  developmentNoticeFailures: result.developmentNoticeFailures || [],
   interactionFailures: result.interactionFailures || [],
   calculatorFailures: result.calculatorFailures || [],
   themeFailures: result.themeFailures || [],

@@ -49,7 +49,7 @@ jobs:
 
   browser:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     steps:
       - name: Checkout
@@ -92,11 +92,19 @@ jobs:
       - name: Verify decision and comparison switchers
         run: node scripts/decision-switcher-browser-audit.js
 
-      - name: Smoke-test every calculator on mobile and desktop
+      - name: Smoke-test every calculator on responsive risk viewports
         run: npm run test:browser:all-calculators
 
-      - name: Run mobile and desktop browser QA
+      - name: Run full responsive browser QA
         run: npm run test:browser:ui
+
+      - name: Upload responsive screenshots and results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: responsive-browser-qa
+          path: /tmp/kb-browser-qa
+          if-no-files-found: warn
 
       - name: Stop local static server
         if: always()

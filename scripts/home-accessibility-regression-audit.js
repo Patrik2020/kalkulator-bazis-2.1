@@ -34,6 +34,11 @@ expect(
   "A modal kezdeti fókuszt és fókusz-visszaadást kezel."
 );
 expect(
+  index.includes("kb:development-notice-dismissed") &&
+    read("js/cookie.js").includes('"kb:development-notice-dismissed"'),
+  "A fejlesztési modal bezárása után, külön lépésben nyílhat meg az első sütimodal."
+);
+expect(
   header.includes('id="homePrimaryNav"') &&
     header.includes('aria-controls="homePrimaryNav"') &&
     header.includes('aria-label="Menü megnyitása"'),

@@ -9,7 +9,7 @@
   const seasonalMotifCssAsset = "css/seasonal-autumn-motifs.css?v=5859aa36e632";
   const seasonalGlobalCssAsset = "css/seasonal-autumn-global.css?v=86603e3e382b";
   const seasonalScriptAsset = "js/seasonal-theme.js?v=b4dad1e9d097";
-  const homeIaScriptAsset = "js/home-ia.js?v=4fffebe843a6";
+  const homeIaScriptAsset = "js/home-ia.js?v=5f6cebd0c2e6";
   const currentImpactCssAsset = "css/pages/current-impact.css?v=2d495ca7efb7";
   const currentImpactScriptAsset = "js/current-impact.js?v=7926006eea55";
 
