@@ -45,13 +45,13 @@
 </head>
 
 <body class="home-page">
-<div id="developmentNotice" role="dialog" aria-modal="true" aria-labelledby="developmentNoticeTitle" style="position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(15,23,42,.62);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);">
-  <div style="width:min(560px,100%);background:#fff;color:#273244;border-radius:22px;padding:30px 28px;box-shadow:0 24px 80px rgba(0,0,0,.32);text-align:center;font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
-    <div aria-hidden="true" style="font-size:38px;margin-bottom:8px;">🛠️</div>
-    <h2 id="developmentNoticeTitle" style="margin:0 0 14px;font-size:clamp(24px,4vw,32px);line-height:1.15;">A Kalkulátor Bázis jelenleg fejlesztés alatt áll</h2>
-    <p style="margin:0 auto 12px;max-width:470px;font-size:18px;line-height:1.6;color:#4b5563;">A főoldal új megjelenésén dolgozunk, ezért átmenetileg előfordulhatnak hiányzó képek vagy szokatlan vizuális elemek.</p>
-    <p style="margin:0 auto 24px;max-width:470px;font-size:18px;line-height:1.6;color:#374151;"><strong>A kalkulátorok és a számítások ettől függetlenül működnek.</strong></p>
-    <button type="button" id="developmentNoticeClose" style="border:0;border-radius:14px;padding:14px 22px;background:#2563eb;color:#fff;font:700 16px/1 system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;cursor:pointer;">Elolvastam, megértettem</button>
+<div class="development-notice" id="developmentNotice" role="dialog" aria-modal="true" aria-labelledby="developmentNoticeTitle" aria-describedby="developmentNoticeDescription developmentNoticeStatus">
+  <div class="development-notice__panel">
+    <div aria-hidden="true" class="development-notice__icon">🛠️</div>
+    <h2 class="development-notice__title" id="developmentNoticeTitle">A Kalkulátor Bázis jelenleg fejlesztés alatt áll</h2>
+    <p class="development-notice__description" id="developmentNoticeDescription">A főoldal új megjelenésén dolgozunk, ezért átmenetileg előfordulhatnak hiányzó képek vagy szokatlan vizuális elemek.</p>
+    <p class="development-notice__status" id="developmentNoticeStatus"><strong>A kalkulátorok és a számítások ettől függetlenül működnek.</strong></p>
+    <button class="development-notice__close" type="button" id="developmentNoticeClose">Elolvastam, megértettem</button>
   </div>
 </div>
 <script>
@@ -59,11 +59,52 @@
   var notice=document.getElementById('developmentNotice');
   var close=document.getElementById('developmentNoticeClose');
   if(!notice||!close)return;
-  if(sessionStorage.getItem('kb-development-notice-seen')==='1'){notice.remove();return;}
-  close.addEventListener('click',function(){
-    sessionStorage.setItem('kb-development-notice-seen','1');
+  var noticeSeen=false;
+  try{noticeSeen=sessionStorage.getItem('kb-development-notice-seen')==='1';}catch(error){}
+  if(noticeSeen){notice.remove();return;}
+  var previousFocus=document.activeElement;
+  var siblings=[];
+  var dismissed=false;
+  var focusable='a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+  function setBackgroundInert(value){
+    siblings.forEach(function(element){element.inert=value;});
+  }
+  function dismiss(){
+    if(dismissed)return;
+    dismissed=true;
+    try{sessionStorage.setItem('kb-development-notice-seen','1');}catch(error){}
+    setBackgroundInert(false);
+    document.removeEventListener('keydown',handleKeydown);
     notice.remove();
-  });
+    if(previousFocus&&previousFocus!==document.body&&previousFocus.isConnected&&typeof previousFocus.focus==='function')previousFocus.focus();
+    else document.querySelector('.kb-skip-link')?.focus();
+  }
+  function handleKeydown(event){
+    if(event.key==='Escape'){
+      event.preventDefault();
+      dismiss();
+      return;
+    }
+    if(event.key!=='Tab')return;
+    var items=notice.querySelectorAll(focusable);
+    if(!items.length){event.preventDefault();close.focus();return;}
+    var first=items[0];
+    var last=items[items.length-1];
+    if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+    else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+  }
+  close.addEventListener('click',dismiss);
+  function activate(){
+    if(dismissed)return;
+    siblings=Array.prototype.filter.call(document.body.children,function(element){
+      return element!==notice&&element.tagName!=='SCRIPT';
+    });
+    setBackgroundInert(true);
+    document.addEventListener('keydown',handleKeydown);
+    window.requestAnimationFrame(function(){close.focus({preventScroll:true});});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',activate,{once:true});
+  else activate();
 })();
 </script>
 <!-- KB_STATIC:skip-link:START -->
@@ -76,16 +117,16 @@
 <span aria-hidden="true" class="logo-mark"></span>
 <span class="logo-text">Kalkulátor Bázis</span>
 </a>
-<nav aria-label="Fő navigáció" class="nav">
+<nav aria-label="Fő navigáció" class="nav" id="homePrimaryNav">
 <a data-i18n="navCalculators" href="#popular">Kalkulátorok</a><a data-i18n="navCategories" href="#categories">Kategóriák</a><a data-i18n="navCurrent" href="#news">Aktuális</a><a href="#api">ChatGPT / API</a><a data-i18n="navTrust" href="#trust">Miért bízhatsz bennünk?</a>
 </nav>
 <div class="head-actions">
 <a aria-label="Keresés" class="icon-btn" data-i18n-aria="searchAria" href="#calculatorSearch">⌕</a>
 <button type="button" aria-pressed="false" class="access-btn" data-i18n-title="accessTitle" id="accessBtn" title="Akadálymentes nézet"><span aria-hidden="true">Aa</span><span class="control-label" data-i18n="accessLabel">Akadálymentes</span></button>
-<button type="button" aria-expanded="false" class="lang-btn" data-i18n-title="languageTitle" id="langBtn" title="Nyelv"><span aria-hidden="true">🌐</span><span id="langLabel">HU</span></button>
+<button type="button" aria-controls="langPop" aria-expanded="false" aria-haspopup="true" class="lang-btn" data-i18n-title="languageTitle" id="langBtn" title="Nyelv"><span aria-hidden="true">🌐</span><span id="langLabel">HU</span></button>
 <button type="button" aria-pressed="false" class="theme-btn" id="themeBtn" title="Sötét mód"><span id="themeEmoji">☾</span><span class="theme-label" id="themeLabel">Sötét</span></button>
-<button type="button" aria-expanded="false" class="season-btn" id="seasonBtn"><span aria-hidden="true" class="season-swatch" id="seasonEmoji"></span><span id="seasonLabel">Ősz</span></button>
-<button type="button" aria-label="Menü" class="icon-btn menu-btn">☰</button>
+<button type="button" aria-controls="seasonPop" aria-expanded="false" aria-haspopup="true" class="season-btn" id="seasonBtn"><span aria-hidden="true" class="season-swatch" id="seasonEmoji"></span><span id="seasonLabel">Ősz</span></button>
+<button type="button" aria-controls="homePrimaryNav" aria-expanded="false" aria-label="Menü megnyitása" class="icon-btn menu-btn">☰</button>
 </div>
 </header>
 
