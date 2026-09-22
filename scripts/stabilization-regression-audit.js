@@ -56,6 +56,7 @@ expect(
     homeHelp.includes("panel.inert=true") &&
     homeHelp.includes("aria-hidden") &&
     homeHelp.includes("lastFocus") &&
+    homeHelp.includes("preventScroll:true") &&
     homeHelp.includes("event.key!=='Tab'"),
   "A főoldali súgó dialógus fókuszcsapdát, állapotjelzést és fókusz-visszaadást használ."
 );
