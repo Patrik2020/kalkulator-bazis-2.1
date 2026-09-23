@@ -1,0 +1,82 @@
+name: Fix V17 HTML accessibility
+
+on:
+  push:
+    paths:
+      - '.home-redesign/FIX_HTML'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Repair V17 HTML semantics
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          files = [
+              Path('fragments/home-redesign-v17-header.inc'),
+              Path('fragments/home-redesign-v17-main.inc'),
+              Path('fragments/home-redesign-v17-footer.inc'),
+              Path('index.html'),
+          ]
+          for p in files:
+              s = p.read_text(encoding='utf-8')
+              s = s.replace(' hidden=""', ' hidden')
+              if p.name in {'home-redesign-v17-main.inc', 'index.html'}:
+                  s = s.replace(' role="combobox"', '')
+                  old = '<div class="salary-input-shell"><input aria-describedby="heroSalaryNote" autocomplete="off" id="heroSalaryAmount" inputmode="numeric" type="text" value="650 000"/><span>Ft</span></div>'
+                  new = old + '\n<button class="search-submit salary-mini-submit" data-i18n="calculate" type="submit">Számolás</button>'
+                  if 'class="search-submit salary-mini-submit"' not in s:
+                      if old not in s:
+                          raise SystemExit(f'{p}: salary input anchor not found')
+                      s = s.replace(old, new, 1)
+              p.write_text(s, encoding='utf-8')
+
+          js = Path('js/home-redesign-salary.js')
+          s = js.read_text(encoding='utf-8')
+          old = "form?.addEventListener('submit',e=>e.preventDefault());"
+          new = "form?.addEventListener('submit',e=>{e.preventDefault();calculate()});"
+          if old in s:
+              s = s.replace(old, new, 1)
+          elif new not in s:
+              raise SystemExit('salary submit handler anchor not found')
+          js.write_text(s, encoding='utf-8')
+          PY
+
+      - name: Validate repaired homepage
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check js/home-redesign-salary.js
+          npx html-validate index.html
+          node scripts/static-first-audit.js
+
+      - name: Commit V17 HTML repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .home-redesign
+          rm -f .github/workflows/fix-home-v17-html.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Fix V17 homepage HTML and salary submit semantics"
+          git push origin HEAD:${{ github.ref_name }}
