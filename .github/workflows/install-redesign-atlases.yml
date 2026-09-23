@@ -24,10 +24,10 @@ jobs:
           mkdir -p images/redesign
           cat .asset-upload/category-*.b64 | base64 --decode > images/redesign/category-atlas.avif
           cat .asset-upload/season-*.b64 | base64 --decode > images/redesign/season-atlas.avif
-          echo "1a89acc0bc3a080b04726959d998a364f9d554254f42a0f3bad3ec25b4511551  images/redesign/category-atlas.avif" | sha256sum -c -
-          echo "399745a63b9760ad1ace18ae2c672c0d80f6c5e46aacae3288a0525a19f9d77a  images/redesign/season-atlas.avif" | sha256sum -c -
-          test "$(wc -c < images/redesign/category-atlas.avif)" -eq 206830
-          test "$(wc -c < images/redesign/season-atlas.avif)" -eq 319207
+          echo "d774105ea1c011926986ab3b56c424ab3089532c47640aa00bcbf87afa098074  images/redesign/category-atlas.avif" | sha256sum -c -
+          echo "6a6b54ac632eb46d8517d0115b91dad432147755f3c411575522801ba7a0f8a8  images/redesign/season-atlas.avif" | sha256sum -c -
+          test "$(wc -c < images/redesign/category-atlas.avif)" -eq 138265
+          test "$(wc -c < images/redesign/season-atlas.avif)" -eq 210171
           python - <<'PY'
           from pathlib import Path
           p = Path('css/pages/home-redesign-assets.css')
