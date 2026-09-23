@@ -54,6 +54,16 @@
 
   const loadHomeInformationArchitecture = () => {
     if (!document.body?.classList.contains("home-page")) return;
+
+    // The production V17 homepage is already fully materialized. Loading the
+    // legacy home-ia/home-current assembler again causes an unnecessary second
+    // DOM replacement and creates races with the shared component loader.
+    const hasMaterializedHome =
+      document.body.classList.contains("home-redesign-v17") &&
+      document.querySelector(".kb-header-wrap > #header.kb-header") &&
+      document.querySelector("main .hero");
+    if (hasMaterializedHome) return;
+
     if (document.querySelector('script[data-kb-home-ia="script"]')) return;
 
     const script = document.createElement("script");
