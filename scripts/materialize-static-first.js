@@ -251,12 +251,17 @@ function replaceStructuredData(source, rendered) {
 
 function mergeRenderedPage(pagePath, originalSource, rendered) {
   let source = originalSource;
+  const preserveAuthoredHomeShell = pagePath === "index.html";
 
   const header = findElement(rendered, { id: "header" });
-  if (header) source = replaceElement(source, { id: "header" }, header.html);
+  if (header && !preserveAuthoredHomeShell) {
+    source = replaceElement(source, { id: "header" }, header.html);
+  }
 
   const footer = findElement(rendered, { id: "footer" });
-  if (footer) source = replaceElement(source, { id: "footer" }, footer.html);
+  if (footer && !preserveAuthoredHomeShell) {
+    source = replaceElement(source, { id: "footer" }, footer.html);
+  }
 
   const card = findElement(rendered, { className: "card-calculator" });
   const authoredCard = findElement(source, { className: "card-calculator" });
@@ -404,6 +409,21 @@ function chromeDump(chrome, pagePath) {
   }
 }
 
+function chromeDumpWithRetry(chrome, pagePath, maxAttempts = 2) {
+  let lastError;
+  for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+    try {
+      return chromeDump(chrome, pagePath);
+    } catch (error) {
+      lastError = error;
+      if (attempt < maxAttempts) {
+        console.warn(`Chrome render újrapróbálás (${attempt + 1}/${maxAttempts}): ${pagePath}`);
+      }
+    }
+  }
+  throw lastError;
+}
+
 async function waitForServer() {
   let lastError;
   for (let attempt = 0; attempt < 60; attempt += 1) {
@@ -438,7 +458,7 @@ async function main() {
       try {
         const absolute = path.join(root, pagePath);
         const original = fs.readFileSync(absolute, "utf8");
-        const rendered = chromeDump(chrome, pagePath);
+        const rendered = chromeDumpWithRetry(chrome, pagePath);
         const merged = mergeRenderedPage(pagePath, original, rendered);
 
         if (merged !== original) {

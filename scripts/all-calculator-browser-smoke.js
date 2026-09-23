@@ -4,14 +4,12 @@ const os = require("os");
 const path = require("path");
 const { spawn } = require("child_process");
 const { suites } = require("./reference-test-manifest");
+const { calculatorSmokeViewports } = require("./responsive-viewports");
 const { publicPathToSourceFile } = require("./url-paths");
 
 const root = path.resolve(__dirname, "..");
 const pages = [...new Set(Object.values(suites).flat())].sort();
-const viewports = [
-  { name: "mobile", width: 390, height: 844, deviceScaleFactor: 1, mobile: true },
-  { name: "desktop", width: 1440, height: 900, deviceScaleFactor: 1, mobile: false },
-];
+const viewports = calculatorSmokeViewports;
 
 const chromeCandidates = [
   process.env.CHROME_PATH,
@@ -211,7 +209,7 @@ async function main() {
       await client.send("Emulation.setDeviceMetricsOverride", {
         width: viewport.width,
         height: viewport.height,
-        deviceScaleFactor: viewport.deviceScaleFactor,
+        deviceScaleFactor: 1,
         mobile: viewport.mobile,
         screenWidth: viewport.width,
         screenHeight: viewport.height,
@@ -245,7 +243,7 @@ async function main() {
             `(() => {
               const main = document.querySelector('main');
               const h1s = [...document.querySelectorAll('h1')];
-              const shell = document.querySelector('.card-calculator, #kalkulator');
+              const shell = document.querySelector('.card-calculator, #kalkulator, [data-calculator]');
               const isActuallyVisible = (el) => {
                 if (!el) return false;
                 const style = getComputedStyle(el);
@@ -260,6 +258,33 @@ async function main() {
               };
               const controls = [...document.querySelectorAll('main input, main select, main textarea, main button')]
                 .filter((el) => !el.hidden && isActuallyVisible(el));
+              const describe = (el) => {
+                const rect = el.getBoundingClientRect();
+                return {
+                  tag: el.tagName.toLowerCase(),
+                  id: el.id,
+                  className: typeof el.className === 'string' ? el.className : '',
+                  left: Math.round(rect.left),
+                  right: Math.round(rect.right),
+                  width: Math.round(rect.width),
+                  height: Math.round(rect.height),
+                };
+              };
+              const controlBoundsOffenders = controls
+                .filter((el) => {
+                  const rect = el.getBoundingClientRect();
+                  return rect.left < -1 || rect.right > document.documentElement.clientWidth + 1;
+                })
+                .slice(0, 6)
+                .map(describe);
+              const smallTapTargets = controls
+                .filter((el) => !['checkbox', 'radio', 'hidden'].includes((el.type || '').toLowerCase()))
+                .filter((el) => {
+                  const rect = el.getBoundingClientRect();
+                  return rect.width < 43.5 || rect.height < 43.5;
+                })
+                .slice(0, 6)
+                .map(describe);
               const ids = [...document.querySelectorAll('[id]')].map((el) => el.id).filter(Boolean);
               const duplicateIds = [...new Set(ids.filter((id, index) => ids.indexOf(id) !== index))];
               const overflow = Math.max(
@@ -278,8 +303,10 @@ async function main() {
                 h1: h1s[0]?.textContent?.trim() || '',
                 shellVisible,
                 controlCount: controls.length,
+                controlBoundsOffenders,
                 duplicateIds,
                 overflow,
+                smallTapTargets,
                 badVisibleText,
               };
             })()`
@@ -291,8 +318,10 @@ async function main() {
           if (!audit.title) pageFailures.push("üres <title>");
           if (!audit.shellVisible) pageFailures.push("a kalkulátor blokk nem látható");
           if (audit.controlCount === 0) pageFailures.push("nincs látható vezérlő");
+          if (audit.controlBoundsOffenders.length) pageFailures.push(`kilógó vezérlő: ${JSON.stringify(audit.controlBoundsOffenders)}`);
           if (audit.duplicateIds.length) pageFailures.push(`duplikált id: ${audit.duplicateIds.join(", ")}`);
           if (audit.overflow > 2) pageFailures.push(`vízszintes overflow: ${audit.overflow}px`);
+          if (audit.smallTapTargets.length) pageFailures.push(`44 px alatti vezérlő: ${JSON.stringify(audit.smallTapTargets)}`);
           if (audit.badVisibleText) pageFailures.push("NaN/Infinity/undefined/null látható a kalkulátorban");
           if (consoleErrors.length > errorsBefore) pageFailures.push("runtime/console hiba");
 

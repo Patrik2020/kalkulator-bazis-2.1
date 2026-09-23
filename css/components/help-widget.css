@@ -128,10 +128,10 @@ html.kb-help-is-open {
   flex: 0 0 auto;
   display: grid !important;
   place-items: center;
-  width: 38px !important;
-  min-width: 38px !important;
-  height: 38px !important;
-  min-height: 38px !important;
+  width: 44px !important;
+  min-width: 44px !important;
+  height: 44px !important;
+  min-height: 44px !important;
   margin: 0 !important;
   padding: 0 !important;
   border: 1px solid var(--border, #d8e0ea);
@@ -183,11 +183,12 @@ html.kb-help-is-open {
 }
 
 .kb-help-back {
+  align-items: center;
   display: inline-flex !important;
   width: auto !important;
-  min-height: 0 !important;
+  min-height: 44px !important;
   margin: 0 0 14px !important;
-  padding: 0 !important;
+  padding: 0 4px !important;
   border: 0;
   background: transparent;
   color: var(--primary, #0b66f2);

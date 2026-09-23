@@ -777,7 +777,16 @@
       updateGoogleConsent(defaultCategories);
       updateConsentControlledAssets(defaultCategories);
       syncAdSense();
-      openModal();
+      const developmentNotice = document.getElementById("developmentNotice");
+      if (developmentNotice) {
+        document.addEventListener(
+          "kb:development-notice-dismissed",
+          () => openModal(),
+          { once: true }
+        );
+      } else {
+        openModal();
+      }
     }
 
     dispatchConsentEvent("kb:consent-ready");

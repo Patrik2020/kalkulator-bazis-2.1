@@ -9,7 +9,7 @@
   const seasonalMotifCssAsset = "css/seasonal-autumn-motifs.css?v=5859aa36e632";
   const seasonalGlobalCssAsset = "css/seasonal-autumn-global.css?v=86603e3e382b";
   const seasonalScriptAsset = "js/seasonal-theme.js?v=b4dad1e9d097";
-  const homeIaScriptAsset = "js/home-ia.js?v=90212f694e8c";
+  const homeIaScriptAsset = "js/home-ia.js?v=97cdc198280e";
   const currentImpactCssAsset = "css/pages/current-impact.css?v=2d495ca7efb7";
   const currentImpactScriptAsset = "js/current-impact.js?v=7926006eea55";
 
@@ -54,12 +54,12 @@
 
   const loadHomeInformationArchitecture = () => {
     if (!document.body?.classList.contains("home-page")) return;
-    if (document.querySelector('script[data-kb-home-ia="script"]')) return;
+    if (document.querySelector("script[data-kb-home-ia]")) return;
 
     const script = document.createElement("script");
     script.src = projectAssetUrl(homeIaScriptAsset);
     script.async = false;
-    script.dataset.kbHomeIa = "script";
+    script.dataset.kbHomeIa = "";
     document.body.appendChild(script);
   };
 
@@ -84,7 +84,7 @@
     }
   };
 
-  loadSeasonalTheme();
+  if (!document.body?.classList.contains("home-page")) loadSeasonalTheme();
 
   const readStoredTheme = () => {
     try {
@@ -102,11 +102,18 @@
 
   const updateButtons = (theme) => {
     const dark = theme === "dark";
-    document.querySelectorAll(".theme-toggle").forEach((button) => {
+    document.querySelectorAll(".theme-toggle, #themeBtn").forEach((button) => {
       const label = dark ? "Váltás világos módra" : "Váltás sötét módra";
       button.setAttribute("aria-label", label);
       button.setAttribute("title", label);
       button.setAttribute("aria-pressed", String(dark));
+      if (button.id === "themeBtn") {
+        const emoji = button.querySelector("#themeEmoji");
+        const text = button.querySelector("#themeLabel");
+        if (emoji) emoji.textContent = dark ? "☀" : "☾";
+        if (text) text.textContent = dark ? "Világos" : "Sötét";
+        return;
+      }
       button.innerHTML = `
         <span class="theme-toggle-icon" aria-hidden="true">${dark ? "☀" : "☾"}</span>
         <span class="theme-toggle-text">${dark ? "Világos" : "Sötét"}</span>
@@ -141,6 +148,11 @@
   };
 
   const ensureToggle = () => {
+    if (document.getElementById("themeBtn")) {
+      updateButtons(root.dataset.theme || "light");
+      return;
+    }
+
     if (document.querySelector(".theme-toggle")) {
       updateButtons(root.dataset.theme || "light");
       return;

@@ -155,11 +155,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const isCalculatorPage = window.location.pathname
     .toLowerCase()
     .includes("/kalkulatorok/");
+  const isHomePage = document.body.classList.contains("home-page");
 
   const base = isCalculatorPage ? "../" : "./";
 
-  loadComponent("header", base + "components/header.html");
-  loadComponent("footer", base + "components/footer.html");
+  // The homepage owns its v17 header and footer. Loading the legacy shared
+  // components here made the two shells replace each other during startup.
+  if (!isHomePage) {
+    loadComponent("header", base + "components/header.html");
+    loadComponent("footer", base + "components/footer.html");
+  }
   ensureCookieBanner(base, () => loadSiteScripts(base));
   hardenExternalLinks(document);
   normalizeInternalPublicLinks(document);
@@ -180,7 +185,7 @@ function ensureCookieBanner(base, onReady) {
     return;
   }
 
-  loadScriptOnce(base + "js/cookie.js?v=8a6d0bffa1e2", () => {
+  loadScriptOnce(base + "js/cookie.js?v=289ed0b19140", () => {
     if (onReady) onReady();
   });
 }
@@ -238,9 +243,9 @@ function loadSiteScripts(base) {
   const loadUi = () => {
     document.dispatchEvent(new CustomEvent("kb:site-data-loaded"));
     markActiveNavigation(document.getElementById("header"));
-    loadScriptOnce(base + "js/site-ui.js?v=4c8885477a10");
+    loadScriptOnce(base + "js/site-ui.js?v=3a4776d74b51");
     if (window.location.pathname.toLowerCase().includes("/kalkulatorok/")) {
-      loadScriptOnce(base + "js/retention-cta.js?v=de234f7c946e");
+      loadScriptOnce(base + "js/retention-cta.js?v=496cd32a5705");
     }
   };
 
@@ -261,7 +266,7 @@ function loadSiteScripts(base) {
     return;
   }
 
-  loadScriptOnce(base + "js/site-data.js?v=3542e6c302df", loadExpansionData);
+  loadScriptOnce(base + "js/site-data.js?v=35f4273bd188", loadExpansionData);
 }
 
 function loadComponent(id, path) {

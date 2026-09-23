@@ -126,7 +126,7 @@ html.kb-calculator-document main > .hero > p:last-child {
 }
 
 .kb-page-meta__links a {
-  min-height: 36px;
+  min-height: 44px;
   padding: 8px 11px;
   border: 1px solid var(--border);
   border-radius: 9px;

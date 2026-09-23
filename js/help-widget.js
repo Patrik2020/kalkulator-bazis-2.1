@@ -17,6 +17,27 @@
     return depth > 1 ? "../".repeat(depth - 1) : "";
   };
 
+  // A főoldali redesign saját, lokalizált widgetet hidratál. Ne hozzunk létre
+  // mellette egy második, azonos célú vezérlőt.
+  if (document.getElementById("kbHelpLauncher") && document.getElementById("kbHelpPanel")) return;
+  if (window.KB_HELP_WIDGET_LOADED) return;
+  window.KB_HELP_WIDGET_LOADED = true;
+
+  const hasWidgetStyles = [...document.querySelectorAll('link[rel~="stylesheet"][href]')].some((link) => {
+    try {
+      return new URL(link.href, location.href).pathname.endsWith("/css/components/help-widget.css");
+    } catch (error) {
+      return false;
+    }
+  });
+  if (!hasWidgetStyles) {
+    const stylesheet = document.createElement("link");
+    stylesheet.rel = "stylesheet";
+    stylesheet.href = `${rootPath()}css/components/help-widget.css`;
+    stylesheet.dataset.kbHelpWidgetStyle = "";
+    document.head.appendChild(stylesheet);
+  }
+
   const widget = document.createElement("div");
   widget.innerHTML = `
     <div class="kb-help-backdrop" data-kb-backdrop aria-hidden="true"></div>
@@ -231,10 +252,3 @@
     });
   });
 })();
-
-if (document.body.classList.contains("home-page")) {
-  const currentScript = document.createElement("script");
-  currentScript.src = "js/home-current.js?v=819798c91022";
-  currentScript.defer = true;
-  document.body.appendChild(currentScript);
-}

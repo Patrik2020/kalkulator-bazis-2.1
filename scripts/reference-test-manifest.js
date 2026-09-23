@@ -80,11 +80,14 @@ const expansionPages = [1, 2, 3, 4, 5].flatMap((batch) =>
   require(`../js/expansion-batch-0${batch}-data.js`).map((calculator) => calculator.url)
 );
 
+const scientificPages = ["kalkulatorok/multifunkcios-szamologep.html"];
+
 const suites = {
   "simple-math": simpleMathPages,
   currency: ["kalkulatorok/deviza-atvalto-kalkulator.html"],
   expansion: expansionPages,
   "browser-reference": browserReferencePages,
+  scientific: scientificPages,
 };
 
 module.exports = { browserReferencePages, suites };

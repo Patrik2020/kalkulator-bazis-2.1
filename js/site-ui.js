@@ -96,15 +96,6 @@
     return Boolean(manager.hasConsent(category));
   };
 
-  const categorySearchAliases = {
-    penzugyi: "penz ber fizetes adozas megtakaritas befektetes hitel bank",
-    epitoipari: "epitoanyag epitkezes felujitas anyagszukseglet burkolas falazas",
-    egeszseg: "eletmod taplalkozas edzes testsuly szervezet",
-    mindennapi: "hetkoznapi vasarlas munka datum szamla haztartas",
-    auto: "jarmu utazas tankolas benzin dizel fenntartas",
-    atvaltok: "mertekegyseg valtas konverter fizika technika",
-  };
-
   const getCalculatorSearchText = (calculator) => {
     const category = getCategory(calculator.category);
 
@@ -115,7 +106,7 @@
         calculator.keywords,
         category ? category.title : "",
         category ? category.shortTitle : "",
-        categorySearchAliases[calculator.category] || "",
+        category ? category.searchAliases : "",
       ].join(" ")
     );
   };
@@ -514,13 +505,13 @@
     const popularGrid = document.querySelector("[data-render='popular-calculators']");
     const basePath = getBasePath();
 
-    if (categoryGrid && !categoryGrid.querySelector(":scope > a")) {
+    if (categoryGrid) {
       categoryGrid.innerHTML = data.categories
         .map((category) => categoryCard(category, basePath))
         .join("");
     }
 
-    if (popularGrid && !popularGrid.querySelector(":scope > a")) {
+    if (popularGrid) {
       popularGrid.innerHTML = data.calculators
         .filter((calculator) => calculator.popular && !calculator.hidden)
         .map((calculator) => calculatorCard(calculator, basePath))
@@ -549,7 +540,7 @@
       `;
     }
 
-    if (grid && !grid.querySelector(":scope > .calculator-card")) {
+    if (grid) {
       grid.innerHTML = data.calculators
         .filter((calculator) => calculator.category === categoryId && !calculator.hidden)
         .map((calculator) => calculatorCard(calculator, basePath, 2))
@@ -978,6 +969,25 @@
     document.addEventListener("kb:consent-updated", refreshConsentControlledUi);
     document.addEventListener("kb:adsense-ready", refreshConsentControlledUi);
   };
+
+  let dataRefreshQueued = false;
+  const refreshDataDrivenUi = () => {
+    if (dataRefreshQueued) return;
+    dataRefreshQueued = true;
+    queueMicrotask(() => {
+      dataRefreshQueued = false;
+      renderHomePage();
+      renderCategoryPage();
+      renderBreadcrumb();
+      renderRelatedCalculators();
+      renderReliabilityNote();
+      renderCalculatorPageExtras();
+      renderStructuredData();
+    });
+  };
+
+  document.addEventListener("kb:site-data-loaded", refreshDataDrivenUi);
+  document.addEventListener("kb:site-data-expanded", refreshDataDrivenUi);
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);

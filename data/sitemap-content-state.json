@@ -1,18 +1,18 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-21",
+  "generatedAt": "2026-09-23",
   "pages": {
     "": {
-      "hash": "53b104da038208e69266147cf9d879031dc03e22a86cdec7f7e6ca730c9631ba",
-      "lastmod": "2026-09-21"
+      "hash": "fcd494d50ea05d1c5a9ffd78becd6528a740f68583eb91479c6302bf1150559a",
+      "lastmod": "2026-09-22"
     },
     "penzugyi.html": {
       "hash": "7fdec0868055dc0265c5a9692a28d3329753364adbcf519aa34f077c56a3abab",
       "lastmod": "2026-07-15"
     },
     "mindennapi.html": {
-      "hash": "1914394335e7ab64d4c90de2a0829bd13f07166c3519d599d97083819de68667",
-      "lastmod": "2026-09-19"
+      "hash": "0116857edab1ea5537245bbca3da6a047bc625887d72bdd69b97d6372f3ed9d2",
+      "lastmod": "2026-09-22"
     },
     "egeszseg.html": {
       "hash": "8eedf6dc4d04354e339b9f0dcf44df51a946d86673b16fd08f01426d0d81bfe3",
@@ -31,12 +31,8 @@
       "lastmod": "2026-09-18"
     },
     "kalkulatorok.html": {
-      "hash": "b8ba0b1906407a5697097d811b4198bdd9819ebfd7fbd364699d64f577855485",
-      "lastmod": "2026-09-19"
-    },
-    "kalkulatorok/multifunkcios-szamologep.html": {
-      "hash": "c4d38f1c26c681db1304e863f23329fc05b12c236595f66cd99ee892a26c0784",
-      "lastmod": "2026-09-14"
+      "hash": "f53c44343bfc709b41a21e94a18c128fc2e00f66eecbb7a84d2e4047f58ee67d",
+      "lastmod": "2026-09-22"
     },
     "dontesek.html": {
       "hash": "2044db026003669aeb85ae1167ce3fb272a5081727b783a8deaf2cbef77b7abf",
@@ -91,8 +87,12 @@
       "lastmod": "2026-08-21"
     },
     "aktualis.html": {
-      "hash": "43f270d8d3d639b53a50f497286e5a251f0d4a22f7d63b41781640d3e34bb390",
-      "lastmod": "2026-09-16"
+      "hash": "5838ded3944c314feca2b6506c8a39b45d0566046121841089a4155160696038",
+      "lastmod": "2026-09-22"
+    },
+    "aktualis/dizeltamogatas-2026.html": {
+      "hash": "8daefc866cfe7209c37bdb9f99f719f5538e83bbfb0ad6986685511552a8d771",
+      "lastmod": "2026-09-22"
     },
     "aktualis/ksh-inflacio-2026-augusztus.html": {
       "hash": "131396f9436fb905079219bfb63eee7d3bf0c032d97b299de7a13d7c0572104a",
@@ -183,12 +183,12 @@
       "lastmod": "2026-09-16"
     },
     "kalkulatorok/fizetesi-hatarido-kalkulator.html": {
-      "hash": "047af4d501d99d724885e2f69ebb18e0e99af313ea93787e0539ab45c9451586",
-      "lastmod": "2026-09-21"
+      "hash": "f590835d9c40e284514697580f0449f94e14c2985427da5b457339cd6b326b93",
+      "lastmod": "2026-09-23"
     },
     "kalkulatorok/szamla-teljesites-kalkulator.html": {
-      "hash": "81e841e4a5ed6be8129437b4f305e1481d71195c075f717f14257a2f23183fe5",
-      "lastmod": "2026-09-21"
+      "hash": "6b787f0e257bbabe73a47dbc47cfdd09d5a5a02648d132b2a95e08b915c10a1c",
+      "lastmod": "2026-09-23"
     },
     "kalkulatorok/beton-kalkulator.html": {
       "hash": "6af9c3f5c77e45a1a154b021b623cf62661e16e4417787d792adab91ba443b57",
@@ -227,8 +227,8 @@
       "lastmod": "2026-07-01"
     },
     "kalkulatorok/mertekegyseg-atvalto-kalkulator.html": {
-      "hash": "6fe0fbf0a89f558706671627b1eb50d8e27e373af34877bd5f45a8062d3de4c5",
-      "lastmod": "2026-09-18"
+      "hash": "f363c955f407d8505c54f993a4345e563ee86b98edf6da33d17eb43703146be1",
+      "lastmod": "2026-09-22"
     },
     "kalkulatorok/deviza-atvalto-kalkulator.html": {
       "hash": "bba6824cfc5c22f8494210e3c11af57d39d8c2c94f20b02aa769fab841715296",
@@ -275,8 +275,8 @@
       "lastmod": "2026-09-16"
     },
     "kalkulatorok/terhessegi-kalkulator.html": {
-      "hash": "b00c2689f385410370a2722f289406071344d5d9599e3698de859063d64b896f",
-      "lastmod": "2026-09-21"
+      "hash": "208580b37216d009d9da289e600d5af3203f7959ffa2cdb85bf798b8c0084690",
+      "lastmod": "2026-09-23"
     },
     "kalkulatorok/idealis-testsuly-kalkulator.html": {
       "hash": "4174527f4279d577043cbd100d561a82b787388fb9051d5166b1669fea2c191e",
@@ -329,6 +329,10 @@
     "kalkulatorok/atlag-kalkulator.html": {
       "hash": "46328cad8ff24deaf81273605a179539fb76509237c1b1f93492b2d0de513522",
       "lastmod": "2026-09-19"
+    },
+    "kalkulatorok/multifunkcios-szamologep.html": {
+      "hash": "c4d38f1c26c681db1304e863f23329fc05b12c236595f66cd99ee892a26c0784",
+      "lastmod": "2026-09-14"
     },
     "kalkulatorok/egysegar-kalkulator.html": {
       "hash": "b62d2483e8c44c1fa3d21fec763fd3cf830847ab87cbfad4eec8b9478f062c63",

@@ -2,6 +2,7 @@ const fs = require("fs");
 const os = require("os");
 const path = require("path");
 const { spawn } = require("child_process");
+const { fullSiteViewports } = require("./responsive-viewports");
 const { toExtensionlessHref } = require("./url-paths");
 
 const chromeCandidates = [
@@ -134,12 +135,22 @@ const run = async () => {
   const target = await targetResponse.json();
   const client = await createClient(target.webSocketDebuggerUrl);
   const consoleErrors = [];
+  const localQaOrigin = /^https?:\/\/(?:127\.0\.0\.1|localhost)(?::\d+)?$/i.test(origin);
+  const isExpectedLocalSalaryApiNoise = (entry) =>
+    localQaOrigin &&
+    /api\.kalkulatorbazis\.hu\/api\/v1\/calculators\/salary\/(?:gross-to-net|net-to-gross)/i.test(
+      `${entry.url || ""} ${entry.text || ""}`
+    );
 
   client.on("Runtime.exceptionThrown", ({ exceptionDetails }) => {
     consoleErrors.push(exceptionDetails.exception?.description || exceptionDetails.text || "Ismeretlen JavaScript-kivétel");
   });
   client.on("Log.entryAdded", ({ entry }) => {
-    if (["error", "warning"].includes(entry.level) && !/google|doubleclick|adsbygoogle|api\.frankfurter\.dev/i.test(entry.url || entry.text)) {
+    if (
+      ["error", "warning"].includes(entry.level) &&
+      !/google|doubleclick|adsbygoogle|api\.frankfurter\.dev/i.test(entry.url || entry.text) &&
+      !isExpectedLocalSalaryApiNoise(entry)
+    ) {
       consoleErrors.push(`${entry.level}: ${entry.url || "(nincs URL)"} - ${entry.text}`);
     }
   });
@@ -170,12 +181,12 @@ const run = async () => {
     return result.result.value;
   };
 
-  const setViewport = async (width, height) => {
+  const setViewport = async (width, height, mobile = width < 768) => {
     await client.send("Emulation.setDeviceMetricsOverride", {
       width,
       height,
       deviceScaleFactor: 1,
-      mobile: width < 768,
+      mobile,
       screenWidth: width,
       screenHeight: height
     });
@@ -191,10 +202,30 @@ const run = async () => {
   const layoutExpression = `(() => {
     const root = document.documentElement;
     const width = root.clientWidth;
-    const offenders = [...document.body.querySelectorAll('*')].filter((element) => {
+    const height = root.clientHeight;
+    const isRendered = (element) => {
+      if (!element || element.hidden || element.getAttribute('aria-hidden') === 'true') return false;
       const style = getComputedStyle(element);
-      if (style.display === 'none' || style.visibility === 'hidden') return false;
-      if (style.position === 'fixed' || element.getAttribute('aria-hidden') === 'true') return false;
+      const rect = element.getBoundingClientRect();
+      return style.display !== 'none' && style.visibility !== 'hidden' && rect.width > 1 && rect.height > 1;
+    };
+    const isVisible = (element) => isRendered(element) && Number(getComputedStyle(element).opacity) !== 0;
+    const describe = (element) => {
+      const rect = element.getBoundingClientRect();
+      return {
+        tag: element.tagName.toLowerCase(),
+        id: element.id,
+        className: typeof element.className === 'string' ? element.className : '',
+        left: Math.round(rect.left),
+        right: Math.round(rect.right),
+        top: Math.round(rect.top),
+        bottom: Math.round(rect.bottom),
+        width: Math.round(rect.width),
+        height: Math.round(rect.height)
+      };
+    };
+    const offenders = [...document.body.querySelectorAll('*')].filter((element) => {
+      if (!isRendered(element)) return false;
       let ancestor = element.parentElement;
       while (ancestor && ancestor !== document.body) {
         const ancestorStyle = getComputedStyle(ancestor);
@@ -203,20 +234,76 @@ const run = async () => {
       }
       const rect = element.getBoundingClientRect();
       return rect.width > 1 && (rect.right > width + 1 || rect.left < -1);
-    }).slice(0, 8).map((element) => ({
-      tag: element.tagName.toLowerCase(),
-      id: element.id,
-      className: typeof element.className === 'string' ? element.className : '',
-      left: Math.round(element.getBoundingClientRect().left),
-      right: Math.round(element.getBoundingClientRect().right),
-      width: Math.round(element.getBoundingClientRect().width)
-    }));
+    }).slice(0, 8).map(describe);
+    const boundedSelectors = [
+      '.kb-header',
+      '.development-notice__panel',
+      '.cookie-modal',
+      '.kb-help-panel',
+      '.lang-pop:not([hidden])',
+      '.season-pop:not([hidden])',
+      '.nav.mobile-open'
+    ];
+    const boundedOffenders = [...document.querySelectorAll(boundedSelectors.join(','))]
+      .filter(isVisible)
+      .filter((element) => {
+        const rect = element.getBoundingClientRect();
+        return rect.left < -1 || rect.right > width + 1 || rect.top < -1 || rect.bottom > height + 1;
+      })
+      .map(describe);
+    const header = document.querySelector('.kb-header');
+    const headerChildren = header ? [...header.children].filter(isVisible) : [];
+    const headerOverlaps = [];
+    for (let firstIndex = 0; firstIndex < headerChildren.length; firstIndex += 1) {
+      for (let secondIndex = firstIndex + 1; secondIndex < headerChildren.length; secondIndex += 1) {
+        const first = headerChildren[firstIndex].getBoundingClientRect();
+        const second = headerChildren[secondIndex].getBoundingClientRect();
+        const overlapsHorizontally = first.left < second.right - 1 && first.right > second.left + 1;
+        const overlapsVertically = first.top < second.bottom - 1 && first.bottom > second.top + 1;
+        if (overlapsHorizontally && overlapsVertically) {
+          headerOverlaps.push([describe(headerChildren[firstIndex]), describe(headerChildren[secondIndex])]);
+        }
+      }
+    }
+    const clippedButtons = [...document.querySelectorAll([
+      '.kb-header button',
+      '.salary-direction-btn',
+      '.development-notice__close',
+      '.lang-pop button',
+      '.season-pop button'
+    ].join(','))]
+      .filter(isVisible)
+      .filter((element) => element.scrollWidth > element.clientWidth + 1 || element.scrollHeight > element.clientHeight + 1)
+      .map(describe);
+    const tapTargetOffenders = [...document.querySelectorAll([
+      '.kb-header button',
+      '.kb-help-launcher',
+      '.kb-help-close',
+      '.kb-help-action',
+      '.kb-help-back',
+      '.kb-help-submit',
+      '.salary-direction-btn',
+      '.development-notice__close',
+      '.lang-pop button',
+      '.season-pop button'
+    ].join(','))]
+      .filter(isVisible)
+      .filter((element) => {
+        const rect = element.getBoundingClientRect();
+        return rect.width < 43.5 || rect.height < 43.5;
+      })
+      .map(describe);
     return {
       title: document.title,
       h1: document.querySelectorAll('h1').length,
       clientWidth: width,
+      clientHeight: height,
       scrollWidth: root.scrollWidth,
-      offenders
+      offenders,
+      boundedOffenders,
+      clippedButtons,
+      headerOverlaps,
+      tapTargetOffenders
     };
   })()`;
 
@@ -242,15 +329,7 @@ const run = async () => {
     "/landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html",
     "/landing-pages/wise/wise.html"
   ].map(toExtensionlessHref);
-  const viewports = [
-    [320, 720],
-    [390, 844],
-    [768, 900],
-    [1024, 900],
-    [1050, 900],
-    [1280, 960],
-    [1440, 1000]
-  ];
+  const viewports = fullSiteViewports;
   const layouts = [];
   const consentVersion = "2026-08-12.v3";
   const consentRecord = (categories, overrides = {}) => {
@@ -289,6 +368,66 @@ const run = async () => {
         latestConsentCommand: (window.dataLayer || []).filter((item) => item && item[0] === 'consent').slice(-1)[0] || null
       };
     })()`);
+
+  await setViewport(568, 320, true);
+  await navigate("/");
+  const developmentNoticeInitial = await evaluate(`(async () => {
+    const deadline = Date.now() + 2500;
+    while (!window.KB_CONSENT_MANAGER?.isReady && Date.now() < deadline) {
+      await new Promise((resolve) => setTimeout(resolve, 25));
+    }
+    const notice = document.getElementById('developmentNotice');
+    const panel = notice?.querySelector('.development-notice__panel');
+    const cookie = document.getElementById('cookie-banner');
+    const rect = panel?.getBoundingClientRect();
+    return {
+      present: !!notice,
+      focusInside: !!notice?.contains(document.activeElement),
+      panelWithinViewport: !!rect && rect.left >= -1 && rect.right <= innerWidth + 1 && rect.top >= -1 && rect.bottom <= innerHeight + 1,
+      panelScrollable: !!panel && panel.scrollHeight > panel.clientHeight && ['auto', 'scroll'].includes(getComputedStyle(panel).overflowY),
+      cookieVisibleWhileNotice: !!cookie && getComputedStyle(cookie).display !== 'none' && cookie.getAttribute('aria-hidden') !== 'true'
+    };
+  })()`);
+  const developmentScreenshot = await client.send("Page.captureScreenshot", { format: "png", fromSurface: true });
+  fs.writeFileSync(
+    path.join(screenshotDirectory, "development-notice-phone-landscape.png"),
+    Buffer.from(developmentScreenshot.data, "base64")
+  );
+  const developmentNoticeTransition = await evaluate(`(async () => {
+    document.getElementById('developmentNoticeClose')?.click();
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    const cookie = document.getElementById('cookie-banner');
+    const cookieVisibleAfterDismiss = !!cookie && getComputedStyle(cookie).display !== 'none' && cookie.getAttribute('aria-hidden') !== 'true';
+    const cookieFocusInside = !!cookie?.contains(document.activeElement);
+    const dismissedRemoved = !document.getElementById('developmentNotice');
+    const sessionStored = sessionStorage.getItem('kb-development-notice-seen') === '1';
+    document.getElementById('cookieNecessaryOnly')?.click();
+    await new Promise((resolve) => setTimeout(resolve, 220));
+    return { cookieFocusInside, cookieVisibleAfterDismiss, dismissedRemoved, sessionStored };
+  })()`);
+  await navigate("/");
+  const developmentNoticePersisted = await evaluate(`(() => ({
+    absentAfterNavigation: !document.getElementById('developmentNotice'),
+    cookieHiddenAfterDecision: (() => {
+      const cookie = document.getElementById('cookie-banner');
+      return !!cookie && (getComputedStyle(cookie).display === 'none' || cookie.getAttribute('aria-hidden') === 'true');
+    })()
+  }))()`);
+  const developmentNotice = {
+    ...developmentNoticeInitial,
+    ...developmentNoticeTransition,
+    ...developmentNoticePersisted
+  };
+  const developmentNoticeFailures = [
+    [developmentNotice.present, "A fejlesztési modal nem jelent meg az első munkamenetben."],
+    [developmentNotice.focusInside, "A fejlesztési modal nem kapta meg a fókuszt."],
+    [developmentNotice.panelWithinViewport, "A fejlesztési modal kilóg a 568×320-as fekvő telefon viewportból."],
+    [!developmentNotice.cookieVisibleWhileNotice, "A fejlesztési és a sütimodal egyszerre látható."],
+    [developmentNotice.dismissedRemoved && developmentNotice.sessionStored, "A fejlesztési modal bezárása vagy session állapota hibás."],
+    [developmentNotice.cookieVisibleAfterDismiss && developmentNotice.cookieFocusInside, "A sütimodal nem szabályosan veszi át a fókuszt a fejlesztési modal után."],
+    [developmentNotice.absentAfterNavigation, "A fejlesztési modal ugyanabban a munkamenetben újra megjelent."],
+    [developmentNotice.cookieHiddenAfterDecision, "A mentett sütidöntés után nyitva maradt a sütimodal."]
+  ].filter(([passed]) => !passed).map(([, message]) => message);
 
   const consentCases = [
     {
@@ -551,16 +690,17 @@ const run = async () => {
 
   await evaluate(`localStorage.setItem('kbCookieConsent', ${JSON.stringify(consentRecord({ analytics: false, ads: false }))}); localStorage.setItem('cookieConsent', 'declined');`);
 
-  for (const [width, height] of viewports) {
-    await setViewport(width, height);
+  for (const viewport of viewports) {
+    const { height, mobile, name, width } = viewport;
+    await setViewport(width, height, mobile);
     for (const pagePath of pages) {
       await navigate(pagePath);
       const layout = await evaluate(layoutExpression);
-      layouts.push({ page: pagePath, width, ...layout });
+      layouts.push({ page: pagePath, viewport: name, width, height, ...layout });
 
       if (pagePath === "/") {
         const screenshot = await client.send("Page.captureScreenshot", { format: "png", fromSurface: true });
-        fs.writeFileSync(path.join(screenshotDirectory, `index-${width}.png`), Buffer.from(screenshot.data, "base64"));
+        fs.writeFileSync(path.join(screenshotDirectory, `index-${name}.png`), Buffer.from(screenshot.data, "base64"));
       }
 
       if (
@@ -605,7 +745,10 @@ const run = async () => {
       await new Promise((resolve) => setTimeout(resolve, 30));
       return [...document.querySelectorAll('.search-result strong')].map((item) => item.textContent.trim());
     };
+    const accented = await run('építőanyag');
     const accentless = await run('epitoanyag');
+    const partial = await run('szaz');
+    const multipleWords = await run('hitel torleszto');
     const ranked = await run('etf');
     const empty = await run('nincsilyenkereses123');
     const emptyText = document.querySelector('.search-empty')?.textContent.trim() || '';
@@ -613,30 +756,88 @@ const run = async () => {
     input.dispatchEvent(new Event('input', { bubbles: true }));
     input.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
     const active = input.getAttribute('aria-activedescendant');
-    let enterTarget = '';
-    document.getElementById('calculatorSearchResults').addEventListener('click', (event) => {
-      const link = event.target.closest('a');
-      if (!link) return;
-      event.preventDefault();
-      enterTarget = link.getAttribute('href');
-    }, { once: true, capture: true });
-    input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
-    await new Promise((resolve) => setTimeout(resolve, 10));
-    return { accentless, ranked, empty, emptyText, active, enterTarget, expanded: input.getAttribute('aria-expanded') };
+    const expectedEnterTarget = document.getElementById(active)?.getAttribute('href') || '';
+    input.focus();
+    return { accented, accentless, partial, multipleWords, ranked, empty, emptyText, active, expectedEnterTarget, expanded: input.getAttribute('aria-expanded') };
   })()`);
 
+  search.expectedEnterPath = new URL(search.expectedEnterTarget, `${origin}/`).pathname;
+  const enterLoaded = client.once("Page.loadEventFired", 12000).catch(() => null);
+  try {
+    await client.send("Input.dispatchKeyEvent", {
+      type: "keyDown",
+      key: "Enter",
+      code: "Enter",
+      windowsVirtualKeyCode: 13,
+      nativeVirtualKeyCode: 13
+    });
+  } catch (error) {
+    if (!/Inspected target navigated or closed|Target closed/i.test(error.message)) throw error;
+    search.enterDispatchWarning = error.message;
+  }
+  search.enterLoaded = Boolean(await enterLoaded);
+  await sleep(350);
+  search.enterPath = await evaluate(`window.location.pathname`);
+
+  await navigate("/");
+  const clickSetup = await evaluate(`(async () => {
+    const input = document.getElementById('calculatorSearch');
+    input.value = 'afa';
+    input.dispatchEvent(new Event('input', { bubbles: true }));
+    await new Promise((resolve) => setTimeout(resolve, 30));
+    const link = document.querySelector('.search-result');
+    link?.scrollIntoView({ block: 'center' });
+    const rect = link?.getBoundingClientRect();
+    return {
+      expectedTarget: link?.getAttribute('href') || '',
+      x: rect ? rect.left + rect.width / 2 : 0,
+      y: rect ? rect.top + rect.height / 2 : 0
+    };
+  })()`);
+  search.expectedClickPath = new URL(clickSetup.expectedTarget, `${origin}/`).pathname;
+  const clickLoaded = client.once("Page.loadEventFired", 12000).catch(() => null);
+  await client.send("Input.dispatchMouseEvent", {
+    type: "mousePressed",
+    x: clickSetup.x,
+    y: clickSetup.y,
+    button: "left",
+    clickCount: 1
+  });
+  try {
+    await client.send("Input.dispatchMouseEvent", {
+      type: "mouseReleased",
+      x: clickSetup.x,
+      y: clickSetup.y,
+      button: "left",
+      clickCount: 1
+    });
+  } catch (error) {
+    if (!/Inspected target navigated or closed|Target closed/i.test(error.message)) throw error;
+    search.clickDispatchWarning = error.message;
+  }
+  search.clickLoaded = Boolean(await clickLoaded);
+  await sleep(350);
+  search.clickPath = await evaluate(`window.location.pathname`);
+
+  const searchFailures = [
+    [search.accented.length > 0 && search.accentless.length > 0, "A főoldali kereső ékezetes vagy ékezet nélküli keresése nem ad találatot."],
+    [search.partial.length > 0, "A főoldali kereső részleges kifejezésre nem ad találatot."],
+    [search.multipleWords.length > 0, "A főoldali kereső több szavas kifejezésre nem ad találatot."],
+    [search.ranked[0]?.toLowerCase().includes("etf"), "A főoldali kereső pontos ETF-találata nem került előre."],
+    [search.empty.length === 0 && search.emptyText.length > 0, "A főoldali kereső nincs-találat állapota hibás."],
+    [Boolean(search.active) && search.expanded === "true", "A főoldali kereső billentyűzetes aktív találata vagy aria-expanded állapota hibás."],
+    [search.enterLoaded && search.enterPath === search.expectedEnterPath, "A főoldali kereső Enter-navigációja hibás."],
+    [search.clickLoaded && search.clickPath === search.expectedClickPath, "A főoldali kereső kattintásos navigációja hibás."]
+  ].filter(([passed]) => !passed).map(([, message]) => message);
+
+  await navigate("/");
+
   const interactions = await evaluate(`(async () => {
-    const menuButton = document.getElementById('menuToggle');
+    const menuButton = document.querySelector('.menu-btn');
     menuButton?.click();
     const menuOpened = menuButton?.getAttribute('aria-expanded');
     (document.activeElement || document).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
     const menuClosed = menuButton?.getAttribute('aria-expanded');
-    const details = [...document.querySelectorAll('.faq-list details')];
-    details[0]?.querySelector('summary')?.click();
-    await new Promise((resolve) => setTimeout(resolve, 10));
-    details[1]?.querySelector('summary')?.click();
-    await new Promise((resolve) => setTimeout(resolve, 10));
-    const openFaqCount = details.filter((item) => item.open).length;
     const cookieBanner = document.getElementById('cookie-banner');
     const cookieHiddenInitially = cookieBanner ? getComputedStyle(cookieBanner).display === 'none' : false;
     document.querySelector('[data-cookie-settings]')?.click();
@@ -647,25 +848,44 @@ const run = async () => {
     await new Promise((resolve) => setTimeout(resolve, 30));
     const cookieHiddenAfterEscape = cookieBanner ? getComputedStyle(cookieBanner).display === 'none' : false;
     const cookieStored = JSON.parse(localStorage.getItem('kbCookieConsent') || 'null');
-    const launcher = document.querySelector('.kb-help-launcher');
+    const launcher = document.getElementById('kbHelpLauncher') || document.querySelector('.kb-help-launcher');
     launcher?.click();
     await new Promise((resolve) => setTimeout(resolve, 30));
-    const helpPanel = document.querySelector('.kb-help-panel');
+    const helpPanel = document.getElementById('kbHelpPanel') || document.querySelector('.kb-help-panel');
     const helpOpened = helpPanel?.dataset.open === 'true' && helpPanel?.getAttribute('aria-hidden') === 'false';
     const helpFocusInside = helpPanel?.contains(document.activeElement) || false;
+    const helpActiveElement = document.activeElement ? {
+      tag: document.activeElement.tagName.toLowerCase(),
+      id: document.activeElement.id || '',
+      className: typeof document.activeElement.className === 'string' ? document.activeElement.className : ''
+    } : null;
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
     await new Promise((resolve) => setTimeout(resolve, 30));
     const helpClosed = helpPanel?.dataset.open === 'false' && helpPanel?.getAttribute('aria-hidden') === 'true';
     const helpFocusRestored = document.activeElement === launcher;
-    const activeHomeLinks = document.querySelectorAll('#menu [aria-current="page"]').length;
-    return { menuOpened, menuClosed, openFaqCount, cookieHiddenInitially, cookieVisibleAfterOpen, settingsVisible, cookieHiddenAfterEscape, cookieStored, helpOpened, helpFocusInside, helpClosed, helpFocusRestored, activeHomeLinks };
+    const invalidHomeNavTargets = [...document.querySelectorAll('#homePrimaryNav a[href^="#"]')]
+      .map((link) => link.hash.slice(1))
+      .filter((id) => !id || !document.getElementById(decodeURIComponent(id)));
+    const themeControlCount = document.querySelectorAll('#themeBtn, .theme-toggle').length;
+    const helpControlCount = document.querySelectorAll('#kbHelpLauncher, .kb-help-launcher').length;
+    return { menuOpened, menuClosed, cookieHiddenInitially, cookieVisibleAfterOpen, settingsVisible, cookieHiddenAfterEscape, cookieStored, helpOpened, helpFocusInside, helpActiveElement, helpClosed, helpFocusRestored, invalidHomeNavTargets, themeControlCount, helpControlCount };
   })()`);
+
+  await navigate(toExtensionlessHref("/kalkulatorok/netto-brutto-kalkulator.html"));
+  Object.assign(interactions, await evaluate(`(async () => {
+    const details = [...document.querySelectorAll('.faq-list > details')];
+    details[0]?.querySelector('summary')?.click();
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    details[1]?.querySelector('summary')?.click();
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    return { faqCount: details.length, openFaqCount: details.filter((item) => item.open).length };
+  })()`));
 
   await navigate("/");
   await evaluate(`localStorage.setItem('kalkulatorbazis-theme', 'light')`);
   await navigate("/");
   const theme = await evaluate(`(async () => {
-    const button = document.querySelector('.theme-toggle');
+    const button = document.getElementById('themeBtn') || document.querySelector('.theme-toggle');
     const initial = document.documentElement.dataset.theme;
     button?.focus();
     const focusVisible = document.activeElement === button;
@@ -679,7 +899,7 @@ const run = async () => {
   })()`);
   await navigate("/");
   theme.persistedAfterNavigation = await evaluate(`document.documentElement.dataset.theme`);
-  theme.toggleCount = await evaluate(`document.querySelectorAll('.theme-toggle').length`);
+  theme.toggleCount = await evaluate(`document.querySelectorAll('#themeBtn, .theme-toggle').length`);
   theme.trustedSite = await evaluate(`(() => {
     const nodes = [...document.querySelectorAll('[class*="trustedsite" i], [id*="trustedsite" i], iframe[src*="trustedsite" i], script[src*="trustedsite" i]')];
     return { present: nodes.length > 0, count: nodes.length };
@@ -716,7 +936,7 @@ const run = async () => {
     footerLink: !![...document.querySelectorAll('#footer a, footer a, .legal-footer a')].find((link) => link.getAttribute('href')?.includes('atlathatosag-es-minoseg')),
     mailto: !!document.querySelector('a[href^="mailto:kalkulatorbazis@gmail.com"]'),
     breadcrumb: !!document.querySelector('.breadcrumb'),
-    toggleCount: document.querySelectorAll('.theme-toggle').length
+      toggleCount: document.querySelectorAll('#themeBtn, .theme-toggle').length
   }))()`);
   const transparencyScreenshot = await client.send("Page.captureScreenshot", { format: "png", fromSurface: true });
   fs.writeFileSync(path.join(screenshotDirectory, "atlathatosag-dark-390.png"), Buffer.from(transparencyScreenshot.data, "base64"));
@@ -727,7 +947,7 @@ const run = async () => {
     mediaMatches: matchMedia('print').matches,
     bodyBackground: getComputedStyle(document.body).backgroundColor,
     bodyColor: getComputedStyle(document.body).color,
-    toggleDisplay: getComputedStyle(document.querySelector('.theme-toggle')).display
+    toggleRendered: (document.getElementById('themeBtn') || document.querySelector('.theme-toggle'))?.getClientRects().length > 0
   }))()`);
   await client.send("Emulation.setEmulatedMedia", { media: "screen", features: [] });
 
@@ -799,13 +1019,15 @@ const run = async () => {
   const interactionFailures = [
     [interactions.menuOpened === "true", "A mobilmenü nem nyílt ki."],
     [interactions.menuClosed === "false", "A mobilmenü nem zárult be Escape-re."],
-    [interactions.openFaqCount === 1, "A GYIK harmonika egyszerre több elemet hagyott nyitva."],
+    [interactions.faqCount >= 2 && interactions.openFaqCount === 1, "A kalkulátoroldali GYIK harmonika egyszerre több elemet hagyott nyitva."],
     [interactions.cookieHiddenInitially, "A mentett döntés ellenére megjelent a sütipanel."],
     [interactions.cookieVisibleAfterOpen && interactions.settingsVisible, "A sütibeállítások nem nyíltak meg."],
     [interactions.cookieHiddenAfterEscape, "A sütibeállítások nem zárultak be Escape-re."],
     [interactions.helpOpened && interactions.helpFocusInside, "A súgó nem nyílt meg megfelelő fókuszkezeléssel."],
     [interactions.helpClosed && interactions.helpFocusRestored, "A súgó bezárásakor nem állt vissza a fókusz."],
-    [interactions.activeHomeLinks === 1, "A fejléc aktív navigációs állapota hibás."],
+    [interactions.invalidHomeNavTargets.length === 0, "A főoldali fejléc egyik hivatkozása hiányzó szakaszra mutat."],
+    [interactions.themeControlCount === 1, "A főoldalon nem pontosan egy témaváltó jelent meg."],
+    [interactions.helpControlCount === 1, "A főoldalon nem pontosan egy súgóindító jelent meg."],
   ].filter(([passed]) => !passed).map(([, message]) => message);
 
   const calculatorFailures = calculators.filter((item) => {
@@ -821,28 +1043,42 @@ const run = async () => {
     [theme.calculatorReliability?.breadcrumbCount === 1, "A kalkulátoroldalon nem pontosan egy morzsamenü jelent meg."],
     [theme.calculatorReliability?.pageMeta, "Hiányzik a kalkulátoroldal megbízhatósági sávja."],
     [theme.calculatorReliability?.resultStatus === "status" && theme.calculatorReliability?.resultLive === "polite", "Az eredménymező élő régiója hibás."],
-    [theme.print?.bodyBackground === "rgb(255, 255, 255)" && theme.print?.toggleDisplay === "none", "A nyomtatási téma hibás."],
+    [theme.print?.bodyBackground === "rgb(255, 255, 255)" && !theme.print?.toggleRendered, "A nyomtatási téma hibás."],
     [theme.systemDark === "dark", "A rendszer sötét témája nem érvényesült."],
   ].filter(([passed]) => !passed).map(([, message]) => message);
+
+  const hasLayoutFailure = (item) =>
+    item.scrollWidth > item.clientWidth ||
+    item.offenders.length > 0 ||
+    item.boundedOffenders.length > 0 ||
+    item.clippedButtons.length > 0 ||
+    item.headerOverlaps.length > 0 ||
+    item.tapTargetOffenders.length > 0;
 
   const result = {
     summary: {
       layoutChecks: layouts.length,
-      overflowFailures: layouts.filter((item) => item.scrollWidth > item.clientWidth || item.offenders.length).length,
+      viewportCount: viewports.length,
+      layoutFailures: layouts.filter(hasLayoutFailure).length,
       consoleErrors: consoleErrors.length,
+      developmentNoticeFailures: developmentNoticeFailures.length,
       consentMatrixFailures: consentMatrixFailures.length,
       categoryAdsConsentFailures: categoryAdsConsentFailures.length,
+      searchFailures: searchFailures.length,
       interactionFailures: interactionFailures.length,
       calculatorFailures: calculatorFailures.length,
       themeFailures: themeFailures.length
     },
-    layoutFailures: layouts.filter((item) => item.scrollWidth > item.clientWidth || item.offenders.length),
+    layoutFailures: layouts.filter(hasLayoutFailure),
+    developmentNotice,
+    developmentNoticeFailures,
     consentMatrix,
     consentMatrixFailures,
     categoryAdsConsentChecks,
     categoryAdsConsentFailures,
     cookieScenarios,
     search,
+    searchFailures,
     interactions,
     interactionFailures,
     theme,
@@ -866,8 +1102,10 @@ run()
     if (Object.entries(result.summary).some(([key, value]) => key.endsWith("Failures") && value > 0)) {
       console.error(JSON.stringify({
         layoutFailures: result.layoutFailures,
+        developmentNoticeFailures: result.developmentNoticeFailures,
         consentMatrixFailures: result.consentMatrixFailures,
         categoryAdsConsentFailures: result.categoryAdsConsentFailures,
+        searchFailures: result.searchFailures,
         interactionFailures: result.interactionFailures,
         calculatorFailures: result.calculatorFailures,
         themeFailures: result.themeFailures,

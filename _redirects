@@ -1,3 +1,10 @@
+# Legacy Wise legal/contact pages moved to the site-wide canonical pages.
+# Keep both historical URL forms so old links and search results resolve in one hop.
+/landing-pages/wise/cookie-tajekoztato /cookie 301
+/landing-pages/wise/cookie-tajekoztato.html /cookie 301
+/landing-pages/wise/kapcsolat /kapcsolat 301
+/landing-pages/wise/kapcsolat.html /kapcsolat 301
+
 # AdSense Phase 2 – consolidated measurement converters
 # Keep both extensionless and .html forms because historical links may use either.
 /kalkulatorok/hosszusag-atvalto-kalkulator /kalkulatorok/mertekegyseg-atvalto-kalkulator 301

@@ -116,7 +116,7 @@ body.cookie-modal-open {
   background: transparent;
   border-color: transparent;
   color: var(--primary, #0b66f2);
-  min-height: 42px;
+  min-height: 44px;
 }
 
 .cookie-button:hover,

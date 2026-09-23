@@ -7,10 +7,10 @@
 <meta content="Autós CO2-kibocsátás kalkulátor: becsüld meg egy út közvetlen és energiaellátási kibocsátását benzines, dízel, PHEV vagy elektromos hajtásnál." name="description"/>
 <link href="https://kalkulatorbazis.hu/kalkulatorok/co2-kibocsatas-kalkulator" rel="canonical"/>
 <title>Autós CO2-kibocsátás kalkulátor | Utazási becslés</title>
-<link href="../css/style.css?v=32f9d976dc8a" rel="stylesheet"/>
+<link href="../css/style.css?v=95143f0c371d" rel="stylesheet"/>
 <link href="../css/pages/simple-calculator.css?v=a76d204ce714" rel="stylesheet"/>
-<script src="../js/static-first-fallbacks.js?v=f6399e238190"></script>
-<script src="../js/global-head.js?v=d114ff492281"></script>
+<script src="../js/static-first-fallbacks.js?v=79952e4c154e"></script>
+<script src="../js/global-head.js?v=60725de66938"></script>
 <meta content="website" property="og:type"/>
 <meta content="Kalkulátor Bázis" property="og:site_name"/>
 <meta content="Autós CO2-kibocsátás kalkulátor | Utazási becslés" property="og:title"/>
@@ -101,8 +101,7 @@
 <h1>CO2 kibocsátás kalkulátor</h1>
 <p>Becsüld meg az autós utazás közvetlen és energiaellátási kibocsátását, külön PHEV- és elektromos számítási ággal.</p>
 </section>
-<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="ac-heading"><h2>Közvetlen és életciklusos CO₂-becslés</h2><p>A mezők tájékoztató tervezésre valók; hivatalos, gyártói vagy szolgáltatói adat esetén mindig azt használd.</p></div><form class="ac-grid"><label class="ac-field"><span>Hajtás</span><select required id="type" name="type"><option value="petrol">Benzin</option><option value="diesel">Dízel</option><option value="lpg">LPG</option><option value="hybrid">Hibrid</option><option value="phev">Plug-in hibrid</option><option value="ev">Elektromos</option></select></label><label class="ac-field"><span>Távolság (km)</span><input type="number" min="0.01" inputmode="decimal" required id="km" name="km" step="any"></label><label class="ac-field"><span>Fogyasztás (l/100 km, EV-nél kWh/100 km)</span><input type="number" min="0" inputmode="decimal" required id="cons" name="cons" step="any"><small>PHEV-nél ez a belső égésű ág fogyasztása; az elektromos ág külön mezőben van.</small></label><label class="ac-field"><span>Közvetlen tényező (kg CO₂/l)</span><input type="number" step="0.01" min="0" inputmode="decimal" required id="tailpipe" name="tailpipe"><small>Példa benzines érték. Más üzemanyagnál a tényezőt külön ellenőrizd; a hajtásválasztó nem írja át automatikusan.</small></label><label class="ac-field"><span>Üzemanyag-előállítási pótlék (kg CO₂e/l)</span><input type="number" step="0.01" min="0" inputmode="decimal" required id="upstream" name="upstream"><small>EV-nél nem használjuk; PHEV-nél csak a folyékony üzemanyag ágára vonatkozik.</small></label><label class="ac-field"><span>PHEV elektromos használati arány (%)</span><input type="number" min="0" max="100" inputmode="decimal" required id="electricShare" name="electricShare" step="any"></label><label class="ac-field"><span>PHEV elektromos fogyasztás (kWh/100 km)</span><input type="number" step="0.1" min="0" inputmode="decimal" required id="electricCons" name="electricCons"><small>Csak PHEV módban használjuk; az elektromosan megtett útszakasz fajlagos fogyasztása.</small></label><label class="ac-field"><span>Árammix (kg CO₂e/kWh)</span><input type="number" step="0.01" min="0" inputmode="decimal" required id="grid" name="grid"></label><label class="ac-field"><span>Hálózati többletfogyasztás töltés miatt (%)</span><input type="number" min="0" max="100" inputmode="decimal" required id="chargingLoss" name="chargingLoss" step="any"><small>10% azt jelenti, hogy 1 kWh akkumulátoroldali energia becsléséhez 1,10 kWh hálózati felvétellel számolunk.</small></label><button type="submit" class="ac-submit">Számítás</button><div class="ac-result" role="status" aria-live="polite" aria-atomic="true">Ellenőrizd a kötelező mezőket és az értékhatárokat.</div></form>
-<section
+<section class="card card-calculator kb-calculator-shell" id="kalkulator"><div class="ac-heading"><h2>Közvetlen és életciklusos CO₂-becslés</h2><p>A mezők tájékoztató tervezésre valók; hivatalos, gyártói vagy szolgáltatói adat esetén mindig azt használd.</p></div><form class="ac-grid"><label class="ac-field"><span>Hajtás</span><select required id="type" name="type"><option value="petrol">Benzin</option><option value="diesel">Dízel</option><option value="lpg">LPG</option><option value="hybrid">Hibrid</option><option value="phev">Plug-in hibrid</option><option value="ev">Elektromos</option></select></label><label class="ac-field"><span>Távolság (km)</span><input type="number" min="0.01" inputmode="decimal" required id="km" name="km" step="any"></label><label class="ac-field"><span>Fogyasztás (l/100 km, EV-nél kWh/100 km)</span><input type="number" min="0" inputmode="decimal" required id="cons" name="cons" step="any"><small>PHEV-nél ez a belső égésű ág fogyasztása; az elektromos ág külön mezőben van.</small></label><label class="ac-field"><span>Közvetlen tényező (kg CO₂/l)</span><input type="number" step="0.01" min="0" inputmode="decimal" required id="tailpipe" name="tailpipe"><small>Példa benzines érték. Más üzemanyagnál a tényezőt külön ellenőrizd; a hajtásválasztó nem írja át automatikusan.</small></label><label class="ac-field"><span>Üzemanyag-előállítási pótlék (kg CO₂e/l)</span><input type="number" step="0.01" min="0" inputmode="decimal" required id="upstream" name="upstream"><small>EV-nél nem használjuk; PHEV-nél csak a folyékony üzemanyag ágára vonatkozik.</small></label><label class="ac-field"><span>PHEV elektromos használati arány (%)</span><input type="number" min="0" max="100" inputmode="decimal" required id="electricShare" name="electricShare" step="any"></label><label class="ac-field"><span>PHEV elektromos fogyasztás (kWh/100 km)</span><input type="number" step="0.1" min="0" inputmode="decimal" required id="electricCons" name="electricCons"><small>Csak PHEV módban használjuk; az elektromosan megtett útszakasz fajlagos fogyasztása.</small></label><label class="ac-field"><span>Árammix (kg CO₂e/kWh)</span><input type="number" step="0.01" min="0" inputmode="decimal" required id="grid" name="grid"></label><label class="ac-field"><span>Hálózati többletfogyasztás töltés miatt (%)</span><input type="number" min="0" max="100" inputmode="decimal" required id="chargingLoss" name="chargingLoss" step="any"><small>10% azt jelenti, hogy 1 kWh akkumulátoroldali energia becsléséhez 1,10 kWh hálózati felvétellel számolunk.</small></label><button type="submit" class="ac-submit">Számítás</button><div class="ac-result" role="status" aria-live="polite" aria-atomic="true">Ellenőrizd a kötelező mezőket és az értékhatárokat.</div></form><section
   class="retention-cta"
   data-retention-cta="runtime"
   aria-labelledby="retentionCtaTitle"
@@ -169,8 +168,7 @@
   </div>
 
   <p class="retention-cta-status" data-retention-status role="status" aria-live="polite"></p>
-</section>
-</section>
+</section></section>
 <section class="adsense-content calculator-guide" data-quality-upgrade="2026-08-08">
 <h2>Mit számol ez a CO₂-kalkulátor?</h2>
 <p>A kalkulátor a megtett távolságból és a megadott fogyasztási/kibocsátási tényezőkből két külön eredményt készít: <strong>közvetlen használati kibocsátást</strong>, valamint egy energiaellátási tényezőkkel bővített becslést. Elektromos autónál a helyi közvetlen CO₂ nulla; PHEV-nél a folyékony üzemanyag és az elektromos ág külön fogyasztással számol.</p>
@@ -300,7 +298,7 @@
 </div>
 </div>
 <script defer src="../js/simple-calculators.js?v=86448e6f3303"></script>
-<script src="../js/utils.js?v=b75c268846d0"></script>
-<script src="../js/help-widget.js?v=5c8cba8dc163" defer></script>
+<script src="../js/utils.js?v=6c272ab1d33a"></script>
+<script src="../js/help-widget.js?v=3475aef10ae1" defer></script>
 </body>
 </html>
