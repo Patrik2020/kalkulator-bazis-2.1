@@ -8,7 +8,7 @@ const m=new Date().getMonth()+1;
 root.lang='hu';root.dataset.language='hu';root.dataset.season=m>=3&&m<=5?'spring':m>=6&&m<=8?'summer':m>=9&&m<=11?'autumn':'winter';root.dataset.theme=window.matchMedia?.('(prefers-color-scheme: dark)').matches?'dark':'light';root.style.colorScheme=root.dataset.theme;
 document.body.classList.add('home-redesign-v17');
 document.querySelectorAll('link[data-home-professional-style],link[data-kb-seasonal-theme],script[data-kb-home-ia]').forEach(n=>n.remove());
-if(!document.querySelector('link[data-home-redesign-v17]')){const l=document.createElement('link');l.rel='stylesheet';l.href=url('css/pages/home-redesign-v17.css?v=34d11568e275');l.dataset.homeRedesignV17='';document.head.appendChild(l)}
+if(!document.querySelector('link[data-home-redesign-v17]')){const l=document.createElement('link');l.rel='stylesheet';l.href=url('css/pages/home-redesign-v17.css?v=202740c9f655');l.dataset.homeRedesignV17='';document.head.appendChild(l)}
 const fetchText=async p=>{const r=await fetch(url(p),{cache:'no-cache'});if(!r.ok)throw new Error(`${p}: HTTP ${r.status}`);return r.text()};
 const replace=(selector,html)=>{const current=document.querySelector(selector);if(!current)return;const t=document.createElement('template');t.innerHTML=html.trim();current.replaceWith(t.content)};
 const load=src=>new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=url(src);s.onload=resolve;s.onerror=reject;document.body.appendChild(s)});
