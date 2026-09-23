@@ -11,6 +11,14 @@ document.querySelectorAll('link[data-home-professional-style],link[data-kb-seaso
 if(!document.querySelector('link[data-home-redesign-v17]')){const l=document.createElement('link');l.rel='stylesheet';l.href=url('css/pages/home-redesign-v17.css?v=34d11568e275');l.dataset.homeRedesignV17='';document.head.appendChild(l)}
 const fetchText=async p=>{const r=await fetch(url(p),{cache:'no-cache'});if(!r.ok)throw new Error(`${p}: HTTP ${r.status}`);return r.text()};
 const replace=(selector,html)=>{const current=document.querySelector(selector);if(!current)return;const t=document.createElement('template');t.innerHTML=html.trim();current.replaceWith(t.content)};
+const replaceHeader=html=>{
+ const current=document.querySelector('.kb-header-wrap')||document.querySelector('#header');
+ if(!current)return;
+ document.querySelector('#languageLawBanner')?.remove();
+ const t=document.createElement('template');
+ t.innerHTML=html.trim();
+ current.replaceWith(t.content);
+};
 const load=src=>new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=url(src);s.onload=resolve;s.onerror=reject;document.body.appendChild(s)});
 const preserveStaticQualityMarkers=main=>{
  if(!main||main.querySelector('[data-kb-static-quality-final-start]'))return;
@@ -22,7 +30,7 @@ const preserveStaticQualityMarkers=main=>{
 };
 Promise.all([fetchText('fragments/home-redesign-v17-header.inc'),fetchText('fragments/home-redesign-v17-main.inc'),fetchText('fragments/home-redesign-v17-footer.inc')]).then(async([header,main,footer])=>{
  document.querySelectorAll('.kb-help-launcher,.kb-help-panel,[data-kb-backdrop]').forEach(n=>n.remove());
- replace('#header',header);replace('main',main);replace('#footer',footer);
+ replaceHeader(header);replace('main',main);replace('#footer',footer);
  const redesignedMain=document.querySelector('main');
  if(redesignedMain)redesignedMain.id='main-content';
  const hero=redesignedMain?.querySelector('.hero');
