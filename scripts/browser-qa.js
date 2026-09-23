@@ -854,6 +854,11 @@ const run = async () => {
     const helpPanel = document.getElementById('kbHelpPanel') || document.querySelector('.kb-help-panel');
     const helpOpened = helpPanel?.dataset.open === 'true' && helpPanel?.getAttribute('aria-hidden') === 'false';
     const helpFocusInside = helpPanel?.contains(document.activeElement) || false;
+    const helpActiveElement = document.activeElement ? {
+      tag: document.activeElement.tagName.toLowerCase(),
+      id: document.activeElement.id || '',
+      className: typeof document.activeElement.className === 'string' ? document.activeElement.className : ''
+    } : null;
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
     await new Promise((resolve) => setTimeout(resolve, 30));
     const helpClosed = helpPanel?.dataset.open === 'false' && helpPanel?.getAttribute('aria-hidden') === 'true';
@@ -863,7 +868,7 @@ const run = async () => {
       .filter((id) => !id || !document.getElementById(decodeURIComponent(id)));
     const themeControlCount = document.querySelectorAll('#themeBtn, .theme-toggle').length;
     const helpControlCount = document.querySelectorAll('#kbHelpLauncher, .kb-help-launcher').length;
-    return { menuOpened, menuClosed, cookieHiddenInitially, cookieVisibleAfterOpen, settingsVisible, cookieHiddenAfterEscape, cookieStored, helpOpened, helpFocusInside, helpClosed, helpFocusRestored, invalidHomeNavTargets, themeControlCount, helpControlCount };
+    return { menuOpened, menuClosed, cookieHiddenInitially, cookieVisibleAfterOpen, settingsVisible, cookieHiddenAfterEscape, cookieStored, helpOpened, helpFocusInside, helpActiveElement, helpClosed, helpFocusRestored, invalidHomeNavTargets, themeControlCount, helpControlCount };
   })()`);
 
   await navigate(toExtensionlessHref("/kalkulatorok/netto-brutto-kalkulator.html"));
