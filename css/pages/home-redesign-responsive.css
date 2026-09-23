@@ -1,0 +1,215 @@
+/* Responsive safety layer for the V17 homepage redesign.
+   Loaded last so it can stabilize every production section without
+   rewriting the visual design layers above it. */
+
+html,body{max-width:100%;overflow-x:clip}
+img,svg,video,canvas{max-width:100%}
+button,input,select,textarea{max-width:100%}
+.hero-copy,.hero-visual,.chat-copy,.section-head>*,.category-tile,.news-main,.news-list-wrap,.api-copy-v5,.api-stage,.footer-grid-v3>*,.trust-card{min-width:0}
+.hero-search-row{position:relative}
+.hero-search-results{max-width:100%;overscroll-behavior:contain}
+.hero-search-results .search-result{min-width:0}
+.hero-search-results .search-result span{min-width:0}
+.hero-search-results .search-result span>*{overflow-wrap:anywhere}
+.nav.mobile-open{max-height:min(70dvh,560px);overflow:auto;overscroll-behavior:contain}
+
+@media (max-width:1180px){
+  .kb-header.container{gap:12px}
+  .kb-header .head-actions{gap:6px;margin-left:auto}
+  .hero{min-height:auto}
+  .hero-grid{padding-top:132px;padding-bottom:82px}
+  .salary-live-card{max-width:440px!important}
+  .api-layout-v5{align-items:start}
+}
+
+@media (max-width:1100px){
+  .kb-header-wrap{padding-inline:12px}
+  .kb-header.container{position:relative}
+  .kb-header .nav.mobile-open{left:8px;right:8px;top:calc(100% + 10px)}
+  .hero-grid{grid-template-columns:minmax(0,1fr)!important;gap:28px!important}
+  .hero-copy{max-width:820px}
+  .hero-visual{width:100%;min-height:0!important;display:flex;justify-content:flex-end}
+  .salary-live-card{position:relative!important;inset:auto!important;width:min(100%,520px)!important;max-width:none!important;margin:0!important}
+  .popular-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .category-grid-v3{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .news-grid,.api-layout-v5{grid-template-columns:minmax(0,1fr)!important}
+  .api-stage{width:100%}
+  .api-stage-grid{grid-template-columns:minmax(0,1fr)!important}
+  .trust-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .footer-grid-v3{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+
+@media (max-width:840px){
+  .kb-header-wrap{top:10px}
+  .kb-header.container{min-height:58px;padding:8px 10px 8px 12px;border-radius:18px}
+  .logo{gap:8px}
+  .logo-mark{width:31px;height:31px;flex-basis:31px}
+  .logo-text{font-size:.9rem}
+  .head-actions{gap:5px!important}
+  .access-btn,.lang-btn,.theme-btn,.season-btn,.menu-btn,.icon-btn{min-width:42px;min-height:42px}
+  .control-label,.theme-label,.season-btn>span:last-child{display:none!important}
+  .access-btn,.theme-btn,.season-btn{width:42px;padding:0!important}
+  .lang-btn{min-width:48px;padding-inline:8px!important}
+  .hero-grid{padding-top:112px;padding-bottom:66px}
+  .hero-copy h1{font-size:clamp(2.85rem,9.5vw,4.7rem)!important;line-height:1.02!important}
+  .hero-lead{font-size:1rem}
+  .hero-proof{gap:10px 14px}
+  .section{padding:72px 0}
+  .section-head{gap:18px;margin-bottom:26px}
+  .category-tile{min-height:350px}
+  .api-stage{padding:20px}
+  .chat-question{max-width:90%}
+  .language-law-banner{top:76px}
+  .lang-pop,.season-pop{top:78px}
+}
+
+@media (max-width:680px){
+  .container{width:min(calc(100% - 24px),var(--max))!important}
+  .kb-header-wrap{padding-inline:8px}
+  .kb-header.container{width:100%!important}
+  .icon-btn:not(.menu-btn){display:none!important}
+  .lang-btn{width:42px!important;min-width:42px!important;padding:0!important}
+  .lang-btn>span:first-child{display:none}
+  .kb-header .nav.mobile-open{left:0;right:0;border-radius:16px}
+
+  .hero{min-height:auto!important;background-position:62% center!important}
+  .hero-grid{padding-top:104px!important;padding-bottom:56px!important;gap:24px!important}
+  .hero-copy h1{font-size:clamp(2.55rem,12.5vw,3.9rem)!important;line-height:1.02!important;margin:14px 0 18px!important}
+  .hero-lead{margin-bottom:22px}
+  .hero-search-row{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:6px;padding:6px!important}
+  .search-icon{margin-left:8px}
+  .hero-search input{min-width:0;padding:10px 2px}
+  .search-submit{display:block!important;padding:11px 13px}
+  .search-hints{gap:7px;margin-top:12px}
+  .search-hints span{width:100%}
+  .search-hints a{padding:6px 9px}
+  .hero-proof{margin-top:20px}
+  .hero-visual{justify-content:stretch}
+  .salary-live-card{width:100%!important;padding:18px!important;border-radius:22px!important}
+  .salary-direction{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .salary-direction-btn{min-width:0;padding-inline:8px;font-size:.82rem}
+  .salary-input-shell{min-width:0}
+  .salary-result-value{overflow-wrap:anywhere}
+  .salary-widget-footer{flex-wrap:wrap;gap:6px 12px}
+
+  .chat-strip-wrap{margin-top:-12px}
+  .chat-strip{grid-template-columns:auto minmax(0,1fr)!important;gap:12px!important;padding:14px!important}
+  .chat-icon{width:42px;height:42px}
+  .chat-copy b,.chat-copy span{overflow-wrap:anywhere}
+  .chat-link{grid-column:2!important;justify-self:start;white-space:normal!important}
+
+  .section{padding:60px 0}
+  .section-head{display:block!important}
+  .section-head p{margin-top:10px!important}
+  .popular-grid,.category-grid-v3,.small-categories,.trust-grid,.footer-grid-v3{grid-template-columns:minmax(0,1fr)!important}
+  .calc-card{min-height:230px;padding:21px}
+  .calc-card .go{left:21px;bottom:19px}
+  .mini-viz{width:120px;right:-14px;opacity:.7}
+  .category-tile{min-height:330px;padding:22px;border-radius:24px}
+  .category-tile .tile-meta{top:16px;right:16px}
+  .tile-meta-line{margin-top:12px;padding-top:11px}
+
+  .news-grid{grid-template-columns:minmax(0,1fr)!important;gap:18px}
+  .news-main{padding:24px}
+  .news-list{padding:6px 16px;border-radius:22px}
+  .news-item{grid-template-columns:72px minmax(0,1fr)!important;gap:12px;padding:16px 2px}
+  .news-item>*{min-width:0;overflow-wrap:anywhere}
+  .news-more{width:100%;justify-content:center;text-align:center}
+
+  .api-copy-v5 h2{font-size:clamp(2.25rem,10vw,3.5rem)}
+  .api-badges{gap:7px}
+  .api-stage{padding:16px;border-radius:24px}
+  .chat-question{max-width:100%;padding:15px 16px;margin-left:0}
+  .api-stage-grid{gap:12px}
+  .api-answer-card,.api-side-card{padding:18px;border-radius:20px;min-width:0}
+  .answer-v5{font-size:clamp(1.9rem,9vw,2.8rem);overflow-wrap:anywhere}
+  .answer-meta{display:grid;gap:6px}
+  .api-side-card ul{padding-left:20px}
+
+  .footer-grid-v3{gap:24px!important}
+  .footer-bottom{display:grid!important;grid-template-columns:1fr;gap:8px!important;margin-top:28px}
+  .footer-legal{padding-left:0!important;border-left:0!important}
+
+  .language-law-banner .container{width:100%!important;padding:9px 12px!important;align-items:flex-start!important;flex-direction:column!important;gap:2px!important}
+  .language-law-banner strong{white-space:normal!important}
+  .lang-pop,.season-pop{left:12px!important;right:12px!important;width:auto!important;max-width:none!important}
+
+  .kb-help-launcher{right:12px!important;bottom:max(12px,env(safe-area-inset-bottom))!important;min-height:48px;padding:0 15px}
+  .kb-help-panel{left:0!important;right:0!important;bottom:0!important;width:100%!important;max-width:none!important;max-height:min(86dvh,calc(100dvh - 12px))!important;border-radius:22px 22px 0 0!important;padding-bottom:env(safe-area-inset-bottom)}
+  .kb-help-panel__body{padding-bottom:max(18px,env(safe-area-inset-bottom))}
+}
+
+@media (max-width:520px){
+  .kb-header.container{gap:7px}
+  .logo-text{font-size:.84rem}
+  .head-actions{gap:4px!important}
+  .access-btn,.lang-btn,.theme-btn,.season-btn,.menu-btn{width:40px!important;min-width:40px!important;height:40px!important;min-height:40px!important}
+  .hero{background-position:68% center!important}
+  .hero-grid{padding-top:96px!important}
+  .hero-search-row{grid-template-columns:auto minmax(0,1fr)}
+  .hero-search-row .search-submit{grid-column:1/-1;width:100%;min-height:44px}
+  .hero-search-results{top:calc(100% + 8px)}
+  .salary-direction{grid-template-columns:1fr}
+  .salary-direction-btn{min-height:42px}
+  .salary-result{padding:12px}
+  .section{padding:52px 0}
+  .section-head h2{font-size:clamp(1.85rem,10vw,2.65rem)}
+  .calc-card{min-height:220px}
+  .category-tile{min-height:300px;background-position:center}
+  .news-main{padding:20px}
+  .news-item{grid-template-columns:1fr!important;gap:4px}
+  .news-item time{font-size:.78rem}
+  .api-stage{padding:13px;border-radius:20px}
+  .api-answer-card,.api-side-card{padding:15px}
+  .api-primary-link{width:100%;justify-content:center;text-align:center}
+  .api-badges span{max-width:100%;white-space:normal}
+  .kb-help-launcher__label{display:none}
+  .kb-help-launcher{width:50px;padding:0!important;justify-content:center}
+}
+
+@media (max-width:400px){
+  .container{width:min(calc(100% - 18px),var(--max))!important}
+  .kb-header-wrap{padding-inline:6px}
+  .kb-header.container{padding-inline:8px}
+  .logo-text{display:none}
+  .head-actions{gap:3px!important}
+  .access-btn,.lang-btn,.theme-btn,.season-btn,.menu-btn{width:39px!important;min-width:39px!important}
+  .hero-copy h1{font-size:clamp(2.25rem,13vw,3rem)!important}
+  .hero-lead{font-size:.94rem}
+  .search-hints a{font-size:.79rem}
+  .hero-proof{display:grid;gap:8px}
+  .salary-live-card{padding:15px!important}
+  .salary-input-shell{padding-inline:10px}
+  .salary-result-value{font-size:1.7rem}
+  .chat-strip{grid-template-columns:38px minmax(0,1fr)!important;padding:12px!important}
+  .chat-icon{width:38px;height:38px;border-radius:12px}
+  .calc-card{padding:18px}
+  .calc-card .go{left:18px}
+  .mini-viz{width:105px;opacity:.55}
+  .category-tile{padding:19px;min-height:285px}
+  .category-tile h3{font-size:1.55rem}
+  .news-list{padding-inline:12px}
+  .api-copy-v5 h2{font-size:2.15rem}
+  .api-stage{margin-inline:-2px}
+  .kb-help-panel__header,.kb-help-panel__body{padding:15px}
+}
+
+@media (max-width:340px){
+  .access-btn{display:none!important}
+  .hero-search-row{grid-template-columns:minmax(0,1fr)}
+  .search-icon{display:none}
+  .hero-search input{padding-inline:9px}
+  .salary-live-card{border-radius:18px!important}
+  .category-tile{min-height:270px}
+}
+
+@media (max-height:520px) and (orientation:landscape){
+  .kb-header-wrap{top:6px}
+  .hero-grid{padding-top:82px!important;padding-bottom:36px!important}
+  .hero-copy h1{font-size:clamp(2.2rem,7vw,3.6rem)!important}
+  .kb-help-panel{max-height:92dvh!important}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .category-tile:hover,.calc-card:hover{transform:none!important}
+}
