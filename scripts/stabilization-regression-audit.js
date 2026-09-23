@@ -17,6 +17,7 @@ const homeIa = read("js/home-ia.js");
 const homeCurrent = read("js/home-current.js");
 const homeCore = read("js/home-redesign-core.js");
 const homeHelp = read("js/home-redesign-help.js");
+const materializer = read("scripts/materialize-static-first.js");
 const theme = read("js/theme.js");
 const accessibility = read("js/site-accessibility.js");
 const staticFallbacks = read("js/static-first-fallbacks.js");
@@ -73,6 +74,10 @@ expect(
 expect(
   utils.includes("expansion-batch-01-data.js") && utils.includes("expansion-batch-05-data.js"),
   "Az expansion 01–05 lánc a közös loaderben maradt."
+);
+expect(
+  materializer.includes("chromeDumpWithRetry") && materializer.includes("maxAttempts = 2"),
+  "A statikus materializáló egyszer újrapróbálja a véletlenszerű Chrome-render hibát."
 );
 expect(
   staticFallbacks.includes("prepareTransientStaticEnhancements") &&
