@@ -133,6 +133,18 @@
 
   const startHomeRedesign = () => {
     if (!document.body?.classList.contains("home-page")) return;
+
+    // The production homepage is already materialized with the V17 markup and
+    // its runtime scripts. Re-running home-ia/home-current after DOMContentLoaded
+    // replaces the existing header a second time and can nest .kb-header-wrap
+    // elements on reload. Only use the dynamic assembler as a legacy fallback
+    // when the materialized redesign is genuinely absent.
+    const hasMaterializedHome =
+      document.body.classList.contains("home-redesign-v17") &&
+      document.querySelector(".kb-header-wrap > #header.kb-header") &&
+      document.querySelector("main .hero");
+    if (hasMaterializedHome) return;
+
     if (document.querySelector('script[data-kb-home-ia]')) return;
 
     const base = String(window.KB_PROJECT_ROOT || "").replace(/\/$/, "");
