@@ -41,7 +41,11 @@ jobs:
               s = p.read_text(encoding='utf-8')
               s = s.replace(' hidden=""', ' hidden')
               if p.name in {'home-redesign-v17-main.inc', 'index.html'}:
+                  s = s.replace(' aria-autocomplete="list"', '')
+                  s = s.replace(' aria-controls="calculatorSearchResults"', '')
+                  s = s.replace(' aria-expanded="false"', '')
                   s = s.replace(' role="combobox"', '')
+                  s = s.replace(' role="listbox"', '')
                   old = '<div class="salary-input-shell"><input aria-describedby="heroSalaryNote" autocomplete="off" id="heroSalaryAmount" inputmode="numeric" type="text" value="650 000"/><span>Ft</span></div>'
                   new = old + '\n<button class="search-submit salary-mini-submit" data-i18n="calculate" type="submit">Számolás</button>'
                   if 'class="search-submit salary-mini-submit"' not in s:
