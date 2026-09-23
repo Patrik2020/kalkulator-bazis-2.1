@@ -65,6 +65,9 @@ function injectRetentionBlock(html) {
 }
 
 function placeRetentionAfterCalculator(html) {
+  // Remove both the existing block and the whitespace immediately surrounding it.
+  // The renderer may serialize that whitespace differently between passes, so the
+  // replacement below deliberately reconstructs one canonical separator.
   const withoutRetention = html.replace(retentionPattern, "");
   const closeIndex = findCalculatorSectionClose(withoutRetention);
   if (closeIndex < 0) return withoutRetention;
@@ -73,7 +76,9 @@ function placeRetentionAfterCalculator(html) {
   if (!closingTag) return withoutRetention;
 
   const insertAt = closeIndex + closingTag[0].length;
-  return `${withoutRetention.slice(0, insertAt)}\n${canonicalRetention}\n${withoutRetention.slice(insertAt)}`;
+  const before = withoutRetention.slice(0, insertAt).replace(/[ \t]+$/g, "");
+  const after = withoutRetention.slice(insertAt).replace(/^\s*/u, "");
+  return `${before}\n${canonicalRetention}\n${after}`;
 }
 
 function normalizeRetentionBlock(html, relativePath) {
