@@ -17,7 +17,7 @@ async function calculate(){clearTimeout(timer);const raw=input.value;if(!/\d/.te
 input.addEventListener('focus',()=>{const n=parse(input.value);if(Number.isFinite(n))input.value=String(Math.round(n))});
 input.addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(calculate,220)});
 input.addEventListener('blur',()=>{const n=parse(input.value);if(Number.isFinite(n))input.value=formatInput(n);calculate()});
-form?.addEventListener('submit',e=>e.preventDefault());
+form?.addEventListener('submit',e=>{e.preventDefault();calculate()});
 document.querySelectorAll('[data-salary-direction]').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.salaryDirection===direction)return;direction=b.dataset.salaryDirection;if(Number.isFinite(lastOutput))input.value=formatInput(lastOutput);labels();calculate()}));
 document.addEventListener('kb:language-changed',()=>{labels();const n=parse(input.value);if(Number.isFinite(n))input.value=formatInput(n);if(Number.isFinite(lastOutput))result.textContent=format(lastOutput)});
 labels();calculate();
