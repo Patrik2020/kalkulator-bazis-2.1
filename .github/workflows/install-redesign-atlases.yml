@@ -34,7 +34,6 @@ jobs:
           p.write_text(s)
           PY
           rm -rf .asset-upload
-          rm -f .github/workflows/install-redesign-atlases.yml
 
       - name: Commit installed assets
         shell: bash
