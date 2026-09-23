@@ -1,5 +1,19 @@
 (()=>{
 'use strict';
+
+// The materialized V17 homepage owns its header. utils.js normally replaces
+// #header with the shared legacy component on DOMContentLoaded; on the V17
+// homepage that would nest the old header inside the new shell and create a
+// load-order race with home-current.js. Keep the shared loader for every other
+// component/page, but make the V17 homepage header immutable to that loader.
+const sharedComponentLoader=window.loadComponent;
+if(typeof sharedComponentLoader==='function'){
+ window.loadComponent=function(id,path){
+  if(id==='header'&&document.body?.classList.contains('home-page')&&document.body.classList.contains('home-redesign-v17'))return;
+  return sharedComponentLoader(id,path);
+ };
+}
+
 const root=document.documentElement;
 const $=id=>document.getElementById(id);
 const dict=()=>window.KB_HOME_I18N?.[root.dataset.language]||window.KB_HOME_I18N?.hu||{};
