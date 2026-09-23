@@ -1,0 +1,128 @@
+name: Activate homepage redesign functions
+
+on:
+  push:
+    paths:
+      - '.home-redesign/READY'
+
+permissions:
+  contents: write
+
+jobs:
+  activate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+
+      - name: Assemble V17 homepage and wire interactions
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          index_path = Path('index.html')
+          original = index_path.read_text(encoding='utf-8')
+          head = original.split('</head>', 1)[0]
+
+          redesign_css = '  <link rel="stylesheet" href="css/pages/home-redesign-v17.css?v=20260923-functions-2" />\n'
+          if 'css/pages/home-redesign-v17.css' not in head:
+              head += '\n' + redesign_css
+
+          notice_match = re.search(r'(<div id="developmentNotice".*?</script>)', original, re.S)
+          notice = notice_match.group(1) if notice_match else ''
+
+          header = Path('fragments/home-redesign-v17-header.inc').read_text(encoding='utf-8').strip()
+          main = Path('fragments/home-redesign-v17-main.inc').read_text(encoding='utf-8').strip()
+          footer = Path('fragments/home-redesign-v17-footer.inc').read_text(encoding='utf-8').strip()
+
+          scripts = '''
+          <script src="js/site-data.js?v=3542e6c302df"></script>
+          <script src="js/utils.js?v=b75c268846d0"></script>
+          <script src="js/home-redesign-i18n-hu.js?v=20260923-functions-2"></script>
+          <script src="js/home-redesign-i18n-en.js?v=20260923-functions-2"></script>
+          <script src="js/home-redesign-i18n-de.js?v=20260923-functions-2"></script>
+          <script src="js/home-redesign-help-i18n-hu.js?v=20260923-functions-2"></script>
+          <script src="js/home-redesign-help-i18n-en.js?v=20260923-functions-2"></script>
+          <script src="js/home-redesign-help-i18n-de.js?v=20260923-functions-2"></script>
+          <script src="js/home-redesign-core.js?v=20260923-functions-2"></script>
+          <script src="js/home-redesign-salary.js?v=20260923-functions-2"></script>
+          <script src="js/home-redesign-help.js?v=20260923-functions-2"></script>
+          <script src="js/cookie.js?v=8a6d0bffa1e2" defer></script>
+          '''.strip()
+
+          body = f'''<body class="home-page home-redesign-v17">
+          <a class="kb-skip-link" href="#top">Ugrás a tartalomhoz</a>
+          {notice}
+          {header}
+          {main}
+          {footer}
+          {scripts}
+          </body>
+          </html>
+          '''
+          index_path.write_text(head + '</head>\n\n' + body, encoding='utf-8')
+
+          theme_path = Path('js/theme.js')
+          theme = theme_path.read_text(encoding='utf-8')
+          needle = '''  const ensureToggle = () => {\n    if (document.querySelector(".theme-toggle")) {'''
+          replacement = '''  const ensureToggle = () => {\n    if (document.getElementById("themeBtn")) return;\n    if (document.querySelector(".theme-toggle")) {'''
+          if 'document.getElementById("themeBtn")' not in theme:
+              if needle not in theme:
+                  raise SystemExit('theme.js ensureToggle anchor not found')
+              theme = theme.replace(needle, replacement, 1)
+          theme_path.write_text(theme, encoding='utf-8')
+          PY
+
+      - name: Validate homepage function wiring
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check js/home-redesign-core.js
+          node --check js/home-redesign-salary.js
+          node --check js/home-redesign-help.js
+          node --check js/theme.js
+          python - <<'PY'
+          from pathlib import Path
+          html = Path('index.html').read_text(encoding='utf-8')
+          required_ids = [
+              'header', 'accessBtn', 'langBtn', 'themeBtn', 'seasonBtn',
+              'langPop', 'seasonPop', 'calculatorSearch', 'calculatorSearchResults',
+              'heroSearchSubmit', 'heroSalaryWidget', 'heroSalaryAmount',
+              'heroSalaryResult', 'kbHelpLauncher', 'kbHelpPanel', 'kbHelpBackdrop'
+          ]
+          missing = [item for item in required_ids if f'id="{item}"' not in html]
+          if missing:
+              raise SystemExit('Missing required homepage controls: ' + ', '.join(missing))
+          required_assets = [
+              'home-redesign-v17.css', 'home-redesign-core.js',
+              'home-redesign-salary.js', 'home-redesign-help.js',
+              'home-redesign-i18n-hu.js', 'site-data.js'
+          ]
+          missing_assets = [item for item in required_assets if item not in html]
+          if missing_assets:
+              raise SystemExit('Missing required assets: ' + ', '.join(missing_assets))
+          if 'help-widget.js' in html:
+              raise SystemExit('Legacy help widget must not be loaded on the V17 homepage')
+          if html.count('id="themeBtn"') != 1:
+              raise SystemExit('Expected exactly one V17 theme button')
+          if html.count('id="kbHelpPanel"') != 1:
+              raise SystemExit('Expected exactly one help panel')
+          print('Homepage function wiring OK')
+          PY
+
+      - name: Commit activated homepage
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .home-redesign
+          rm -f .github/workflows/activate-home-redesign-functions.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Fix homepage redesign interactions and wiring"
+          git push origin HEAD:${{ github.ref_name }}
