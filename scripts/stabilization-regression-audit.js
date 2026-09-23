@@ -59,6 +59,7 @@ expect(
     homeHelp.includes("lastFocus") &&
     homeHelp.includes("preventScroll:true") &&
     homeHelp.includes("removeAttribute('inert')") &&
+    homeHelp.includes("document.addEventListener('focusin'") &&
     homeHelp.includes("event.key!=='Tab'"),
   "A főoldali súgó dialógus fókuszcsapdát, állapotjelzést és fókusz-visszaadást használ."
 );
