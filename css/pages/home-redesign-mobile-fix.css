@@ -1,0 +1,250 @@
+/* Mobile hardening for the V17 homepage.
+   Keep this file last in the V17 import chain. */
+
+/* The global site header stylesheet also targets #header. The V17 header
+   already lives inside a fixed wrapper, so a nested sticky header creates
+   unnecessary stacking/compositing work (especially in iOS Safari). */
+.home-redesign-v17 #header{
+  position:relative!important;
+  top:auto!important;
+  z-index:auto!important;
+}
+
+.home-redesign-v17 .hero-copy,
+.home-redesign-v17 .hero-copy h1,
+.home-redesign-v17 .hero-copy h1 span{
+  max-width:100%;
+  min-width:0;
+}
+
+@media (max-width:680px){
+  /* Stable, single-layer mobile header. Opaque surfaces intentionally avoid
+     iOS Safari backdrop-filter ghosting during reload/scroll. */
+  .home-redesign-v17 .kb-header-wrap{
+    top:8px!important;
+    padding-inline:8px!important;
+    background:transparent!important;
+  }
+  .home-redesign-v17 .kb-header.container{
+    display:flex!important;
+    grid-template-columns:none!important;
+    align-items:center!important;
+    width:100%!important;
+    min-height:56px!important;
+    padding:7px 8px!important;
+    gap:6px!important;
+    border:1px solid rgba(255,255,255,.12)!important;
+    border-radius:18px!important;
+    background:#111827!important;
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    box-shadow:0 8px 24px rgba(0,0,0,.20)!important;
+    isolation:isolate;
+  }
+  .home-redesign-v17 .kb-header.container::before,
+  .home-redesign-v17 .kb-header.container::after{
+    content:none!important;
+    display:none!important;
+  }
+  .home-redesign-v17 .kb-header .logo{
+    flex:0 0 auto!important;
+    min-width:0!important;
+    min-height:40px!important;
+    padding:0 4px!important;
+  }
+  .home-redesign-v17 .kb-header .logo-mark{
+    width:32px!important;
+    height:32px!important;
+    flex-basis:32px!important;
+  }
+  .home-redesign-v17 .kb-header .logo-text{
+    display:none!important;
+  }
+  .home-redesign-v17 .kb-header .nav{
+    display:none!important;
+  }
+  .home-redesign-v17 .kb-header .nav.mobile-open{
+    display:flex!important;
+    position:absolute!important;
+    top:calc(100% + 8px)!important;
+    left:0!important;
+    right:0!important;
+    z-index:120!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    gap:4px!important;
+    max-height:min(72dvh,560px)!important;
+    overflow:auto!important;
+    padding:10px!important;
+    border:1px solid rgba(255,255,255,.12)!important;
+    border-radius:16px!important;
+    background:#111827!important;
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    box-shadow:0 18px 44px rgba(0,0,0,.28)!important;
+  }
+  .home-redesign-v17 .kb-header .nav.mobile-open a{
+    min-height:44px!important;
+    display:flex!important;
+    align-items:center!important;
+    padding:10px 12px!important;
+    color:#f8fafc!important;
+    white-space:normal!important;
+  }
+  .home-redesign-v17 .kb-header .head-actions{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    flex:1 1 auto!important;
+    min-width:0!important;
+    margin-left:auto!important;
+    gap:5px!important;
+    background:transparent!important;
+  }
+  .home-redesign-v17 .kb-header .access-btn,
+  .home-redesign-v17 .kb-header .season-btn{
+    display:none!important;
+  }
+  .home-redesign-v17 .kb-header .icon-btn,
+  .home-redesign-v17 .kb-header .lang-btn,
+  .home-redesign-v17 .kb-header .theme-btn,
+  .home-redesign-v17 .kb-header .menu-btn{
+    display:grid!important;
+    place-items:center!important;
+    flex:0 0 40px!important;
+    width:40px!important;
+    min-width:40px!important;
+    height:40px!important;
+    min-height:40px!important;
+    padding:0!important;
+    border:1px solid rgba(255,255,255,.13)!important;
+    border-radius:12px!important;
+    background:#1f2937!important;
+    color:#fff!important;
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    box-shadow:none!important;
+  }
+  .home-redesign-v17 .kb-header .lang-btn{
+    display:flex!important;
+    font-size:.76rem!important;
+    font-weight:850!important;
+  }
+  .home-redesign-v17 .kb-header .lang-btn>span:first-child{
+    display:none!important;
+  }
+  .home-redesign-v17 .kb-header .theme-label,
+  .home-redesign-v17 .kb-header .control-label{
+    display:none!important;
+  }
+
+  .home-redesign-v17 .hero-grid{
+    padding-top:88px!important;
+    padding-bottom:52px!important;
+  }
+  .home-redesign-v17 .eyebrow{
+    max-width:100%;
+    white-space:normal!important;
+    line-height:1.35!important;
+    letter-spacing:.055em!important;
+    font-size:.72rem!important;
+  }
+  .home-redesign-v17 .hero-copy h1{
+    font-size:clamp(2.35rem,10.8vw,3.15rem)!important;
+    line-height:1.04!important;
+    letter-spacing:-.05em!important;
+    margin:14px 0 18px!important;
+    overflow:visible!important;
+  }
+  .home-redesign-v17 .hero-copy h1 .accent{
+    margin-top:.12em!important;
+  }
+  .home-redesign-v17 .hero-lead{
+    max-width:38rem!important;
+    font-size:.98rem!important;
+    line-height:1.62!important;
+    margin-bottom:22px!important;
+  }
+
+  .home-redesign-v17 .hero-search{
+    max-width:100%!important;
+  }
+  .home-redesign-v17 .hero-search-row{
+    width:100%!important;
+    max-width:100%!important;
+    grid-template-columns:auto minmax(0,1fr)!important;
+    gap:6px!important;
+    padding:6px!important;
+    overflow:visible!important;
+  }
+  .home-redesign-v17 .hero-search input{
+    width:100%!important;
+    min-width:0!important;
+    padding:10px 6px!important;
+    font-size:.96rem!important;
+  }
+  .home-redesign-v17 .hero-search-row .search-submit{
+    grid-column:1/-1!important;
+    width:100%!important;
+    min-height:46px!important;
+    padding:11px 14px!important;
+  }
+  .home-redesign-v17 .search-hints{
+    max-width:100%!important;
+    gap:7px!important;
+    margin-top:12px!important;
+  }
+}
+
+@media (max-width:520px){
+  .home-redesign-v17 .hero-copy h1{
+    font-size:clamp(2rem,10vw,2.7rem)!important;
+    line-height:1.045!important;
+  }
+  .home-redesign-v17 .hero-copy h1 span{
+    overflow-wrap:normal!important;
+    word-break:normal!important;
+  }
+  .home-redesign-v17 .hero-lead{
+    font-size:.95rem!important;
+  }
+  .home-redesign-v17 .hero-search-results{
+    top:calc(100% + 8px)!important;
+  }
+}
+
+@media (max-width:400px){
+  .home-redesign-v17 .kb-header.container{
+    padding-inline:7px!important;
+    gap:4px!important;
+  }
+  .home-redesign-v17 .kb-header .icon-btn,
+  .home-redesign-v17 .kb-header .lang-btn,
+  .home-redesign-v17 .kb-header .theme-btn,
+  .home-redesign-v17 .kb-header .menu-btn{
+    flex-basis:39px!important;
+    width:39px!important;
+    min-width:39px!important;
+    height:39px!important;
+    min-height:39px!important;
+  }
+  .home-redesign-v17 .hero-grid{
+    padding-top:82px!important;
+  }
+  .home-redesign-v17 .hero-copy h1{
+    font-size:clamp(1.95rem,10vw,2.45rem)!important;
+    letter-spacing:-.045em!important;
+  }
+  .home-redesign-v17 .eyebrow{
+    font-size:.68rem!important;
+  }
+}
+
+@media (max-width:350px){
+  .home-redesign-v17 .kb-header .lang-btn{
+    display:none!important;
+  }
+  .home-redesign-v17 .hero-copy h1{
+    font-size:clamp(1.9rem,9.8vw,2.2rem)!important;
+  }
+}

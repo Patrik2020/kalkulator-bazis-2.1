@@ -7,7 +7,8 @@ const root = path.resolve(__dirname, "..");
 // This is intentionally part of the editorial transform so newly merged/current
 // content cannot reintroduce an overlong <title> during materialization.
 const titleFixes = {
-  "ksh-keresetek-2026-julius.html": "KSH keresetek 2026. július: bruttó átlag 745 500 Ft | Kalkulátor Bázis"
+  "ksh-keresetek-2026-julius.html": "KSH keresetek 2026. július: bruttó átlag 745 500 Ft | Kalkulátor Bázis",
+  "mnb-alapkamat-inflacios-cel-2026-szeptember.html": "MNB: 5,50% alapkamat, 2028-tól 2,5% inflációs cél | Kalkulátor Bázis"
 };
 
 for (const [fileName, title] of Object.entries(titleFixes)) {
