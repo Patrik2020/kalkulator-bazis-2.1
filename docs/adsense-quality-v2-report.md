@@ -51,7 +51,7 @@ A 404, kapcsolat, impresszum, adatvédelem, cookie, jogi/felhasználási, redire
 
 ## Sitemap és consent
 
-- Domináns lastmod: **2026-09-16**, 46/124 URL (37.1%).
+- Domináns lastmod: **2026-09-16**, 45/124 URL (36.3%).
 - Google/IAB CMP-kódjel: **található**.
 
 ## Figyelmeztetések

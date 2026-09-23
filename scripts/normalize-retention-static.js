@@ -7,6 +7,7 @@ const htmlFiles = [];
 const canonicalRetention = fs
   .readFileSync(path.join(root, "components", "retention-cta.html"), "utf8")
   .trim();
+const retentionPattern = /<section\b(?=[^>]*\bclass\s*=\s*["'][^"']*\bretention-cta\b[^"']*["'])[^>]*>[\s\S]*?<\/section>/gi;
 
 function walk(directory) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
@@ -63,13 +64,32 @@ function injectRetentionBlock(html) {
   return html;
 }
 
-function normalizeRetentionBlock(html, relativePath) {
-  let normalized = html.replace(
-    /<section\b(?=[^>]*\bclass\s*=\s*["'][^"']*\bretention-cta\b[^"']*["'])[^>]*>[\s\S]*?<\/section>/gi,
-    canonicalRetention
-  );
+function placeRetentionAfterCalculator(html) {
+  // Remove both the existing block and the whitespace immediately surrounding it.
+  // The renderer may serialize that whitespace differently between passes, so the
+  // replacement below deliberately reconstructs one canonical separator.
+  const withoutRetention = html.replace(retentionPattern, "");
+  const closeIndex = findCalculatorSectionClose(withoutRetention);
+  if (closeIndex < 0) return withoutRetention;
 
-  if (isCalculatorPage(relativePath) && !hasRetentionBlock(normalized)) {
+  const closingTag = /^<\/section\s*>/i.exec(withoutRetention.slice(closeIndex));
+  if (!closingTag) return withoutRetention;
+
+  const insertAt = closeIndex + closingTag[0].length;
+  const before = withoutRetention.slice(0, insertAt).replace(/[ \t]+$/g, "");
+  const after = withoutRetention.slice(insertAt).replace(/^\s*/u, "");
+  return `${before}\n${canonicalRetention}\n${after}`;
+}
+
+function normalizeRetentionBlock(html, relativePath) {
+  let normalized = html.replace(retentionPattern, canonicalRetention);
+
+  // This legacy calculator has a renderer that materializes its calculator shell.
+  // Keeping the retention CTA inside that shell makes consecutive static builds
+  // alternate between two DOM serializations. Keep it as a stable sibling instead.
+  if (relativePath === path.join("kalkulatorok", "rezsi-megosztas-kalkulator.html")) {
+    normalized = placeRetentionAfterCalculator(normalized);
+  } else if (isCalculatorPage(relativePath) && !hasRetentionBlock(normalized)) {
     normalized = injectRetentionBlock(normalized);
   }
 

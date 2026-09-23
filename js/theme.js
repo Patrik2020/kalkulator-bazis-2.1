@@ -141,6 +141,7 @@
   };
 
   const ensureToggle = () => {
+    if (document.getElementById("themeBtn")) return;
     if (document.querySelector(".theme-toggle")) {
       updateButtons(root.dataset.theme || "light");
       return;
