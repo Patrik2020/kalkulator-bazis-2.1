@@ -17,6 +17,35 @@
   min-width:0;
 }
 
+/* Language picker contrast must not inherit light/active text from unrelated
+   button states. Keep the selected language readable in both themes. */
+.home-redesign-v17 .lang-pop{
+  color:#111827!important;
+}
+.home-redesign-v17 .lang-pop b,
+.home-redesign-v17 .lang-pop button,
+.home-redesign-v17 .lang-pop button.active{
+  color:#111827!important;
+  opacity:1!important;
+}
+.home-redesign-v17 .lang-pop button.active{
+  background:#e7eef6!important;
+}
+html[data-theme="dark"] .home-redesign-v17 .lang-pop{
+  background:#0f1b2a!important;
+  color:#f8fafc!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+}
+html[data-theme="dark"] .home-redesign-v17 .lang-pop b,
+html[data-theme="dark"] .home-redesign-v17 .lang-pop button,
+html[data-theme="dark"] .home-redesign-v17 .lang-pop button.active{
+  color:#f8fafc!important;
+}
+html[data-theme="dark"] .home-redesign-v17 .lang-pop button:hover,
+html[data-theme="dark"] .home-redesign-v17 .lang-pop button.active{
+  background:#1e293b!important;
+}
+
 @media (max-width:680px){
   /* Stable, single-layer mobile header. Opaque surfaces intentionally avoid
      iOS Safari backdrop-filter ghosting during reload/scroll. */
