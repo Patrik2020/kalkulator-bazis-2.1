@@ -17,7 +17,7 @@
     "js/home-redesign-help-i18n-de.js?v=dbfccc2f4617",
     "js/home-redesign-core.js?v=057eb4f37a53",
     "js/home-redesign-salary.js?v=94d69eb1d46d",
-    "js/home-redesign-help.js?v=29a7c67959bd",
+    "js/home-redesign-help.js?v=da196881f978",
   ];
 
   const month = new Date().getMonth() + 1;

@@ -47,7 +47,7 @@ const financeQualityCssPath = `${projectRoot}/css/pages/finance-quality-upgrades
 const constructionQualityCssPath = `${projectRoot}/css/pages/construction-quality-upgrades.css?v=3786bcf552b2`;
 const healthEverydayQualityCssPath = `${projectRoot}/css/pages/health-everyday-quality-upgrades.css?v=e10e7cbe585c`;
 const autoConverterQualityCssPath = `${projectRoot}/css/pages/auto-converter-quality-upgrades.css?v=52a3f32da1be`;
-const themeScriptPath = `${projectRoot}/js/theme.js?v=ad422c4ce4d5`;
+const themeScriptPath = `${projectRoot}/js/theme.js?v=b0dd1804004e`;
 const pwaScriptPath = `${projectRoot}/js/pwa.js?v=fb055828c8f9`;
 const wiseBannerScriptPath = `${projectRoot}/js/wise-banner-enhancer.js?v=9c6dbaaa839b`;
 const accessibilityScriptPath = `${projectRoot}/js/site-accessibility.js?v=79bb91554b93`;
