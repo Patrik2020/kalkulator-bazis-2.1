@@ -82,10 +82,11 @@ jobs:
 
       - name: Run mobile and desktop browser QA
         env:
-          # Keep the long-lived CDP QA isolated on a fresh runner. The full
-          # 202-render smoke test runs in a separate job below so it cannot
-          # leave Chrome renderer state or memory pressure behind.
-          CHROME_EXTRA_ARGS: --disable-dev-shm-usage
+          # Keep the long-lived CDP QA isolated on a fresh runner and prevent
+          # Chrome 153 from retaining a large navigation history/renderer set.
+          # The assertions remain unchanged; only browser resource handling is
+          # made deterministic for the hosted runner.
+          CHROME_EXTRA_ARGS: --disable-dev-shm-usage --disable-features=BackForwardCache,Prerender2 --renderer-process-limit=2
         run: npm run test:browser:ui
 
       - name: Stop local static server
