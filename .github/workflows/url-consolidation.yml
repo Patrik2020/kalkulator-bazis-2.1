@@ -1,0 +1,72 @@
+name: URL consolidation
+
+on:
+  pull_request:
+    paths:
+      - "sitemap.xml"
+      - "_redirects"
+      - "scripts/url-paths.js"
+      - "scripts/extensionless-url-audit.js"
+      - "scripts/generate-cloudflare-bulk-redirects.js"
+      - ".github/workflows/url-consolidation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate canonical and legacy redirects
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+
+      - name: Audit extensionless URLs
+        run: node scripts/extensionless-url-audit.js
+
+      - name: Generate Cloudflare redirect CSV
+        run: node scripts/generate-cloudflare-bulk-redirects.js --output /tmp/cloudflare-bulk-redirects.csv
+
+      - name: Validate generated redirect CSV
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test -s /tmp/cloudflare-bulk-redirects.csv
+
+          node <<'NODE'
+          const fs = require('fs');
+          const rows = fs.readFileSync('/tmp/cloudflare-bulk-redirects.csv', 'utf8')
+            .trim()
+            .split(/\r?\n/)
+            .filter(Boolean);
+
+          if (!rows.length) throw new Error('A generált redirect CSV üres.');
+
+          const sources = new Set();
+          for (const row of rows) {
+            const columns = row.split(',');
+            if (columns.length !== 7) throw new Error(`Hibás CSV-oszlopszám: ${row}`);
+            const [source, target, status, preserveQuery, includeSubdomains, subpathMatching, preservePathSuffix] = columns;
+
+            if (sources.has(source)) throw new Error(`Duplikált redirect source: ${source}`);
+            sources.add(source);
+
+            if (status !== '301') throw new Error(`Nem 301-es redirect: ${row}`);
+            if (preserveQuery !== 'TRUE') throw new Error(`A query string nincs megőrizve: ${row}`);
+            if (includeSubdomains !== 'FALSE' || subpathMatching !== 'FALSE' || preservePathSuffix !== 'FALSE') {
+              throw new Error(`Nem várt Cloudflare match-beállítás: ${row}`);
+            }
+            if (/\.html(?:$|[?#])/.test(target)) throw new Error(`.html cél maradt a redirect-listában: ${target}`);
+          }
+
+          console.log(`URL consolidation audit OK: ${rows.length} Cloudflare redirect.`);
+          NODE
