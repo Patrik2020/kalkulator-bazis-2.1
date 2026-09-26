@@ -177,7 +177,6 @@
   const resultCandidates = (card) => [
     ...card.querySelectorAll(".result-box, .result, output, [id*='result'], [class*='result']"),
   ];
-
   const hasMeaningfulResult = (card, baseline) => {
     const candidates = resultCandidates(card);
     return candidates.some((node) => {
@@ -285,7 +284,7 @@
       meta.innerHTML = `
         <span><strong>Helyben számol</strong><small>A bevitt kalkulátoradatok a böngészőben maradnak</small></span>
         <span><strong>Független magyar oldal</strong><small>Közérthető, praktikus online kalkulátorok</small></span>
-        <span><strong>Technikailag frissítve</strong><small><time datetime="2026-08-07">2026. augusztus 7.</time></small></span>
+        <span><strong>Automatikusan ellenőrzött</strong><small>HTML-, számítási és böngészős minőségkapuk</small></span>
         <span class="kb-page-meta__links">
           <a href="${href("/szamitasi-modszertan.html")}">Módszertan</a>
           <a href="${href("/kapcsolat.html?tema=hiba")}">Hibát jelzek</a>
