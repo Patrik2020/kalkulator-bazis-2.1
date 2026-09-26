@@ -22,7 +22,7 @@ A generátor két forrást használ:
 1. `sitemap.xml` – az aktuális kanonikus oldalakhoz létrehozza a történelmi `.html` → extensionless 301-et.
 2. `_redirects` – a megszüntetett vagy összevont oldalak már rögzített 301-es szabályait közvetlenül a végleges célra viszi át.
 
-Ez elkerüli a redirect chain-eket, és csökkenti annak kockázatát, hogy egy új kalkulátor URL-je kimaradjon a takarításból.
+Ez elkerüli a redirect chain-eket, és csökkenti annak kockázatát, hogy egy új kalkulátor URL-je kimaradjon a takarításból. Új indexelhető oldal hozzáadása után előbb az `npm run sitemap`, majd a redirect-generátor fusson; így az új oldal történelmi `.html` változata automatikusan bekerül a Cloudflare-listába is.
 
 ## CSV generálása
 
