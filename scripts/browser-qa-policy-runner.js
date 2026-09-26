@@ -5,6 +5,7 @@ const { spawnSync } = require("child_process");
 
 const root = path.resolve(__dirname, "..");
 const browserQaPath = path.join(__dirname, "browser-qa.js");
+const cdpDiagnosticsPath = path.join(__dirname, "cdp-diagnostics-preload.js");
 const resultsPath = path.join(os.tmpdir(), "kb-browser-qa", "results.json");
 const cookiePath = path.join(root, "js", "cookie.js");
 
@@ -67,7 +68,7 @@ function fail(message, details) {
 
 function runBrowserQa() {
   if (fs.existsSync(resultsPath)) fs.rmSync(resultsPath, { force: true });
-  return spawnSync(process.execPath, [browserQaPath], {
+  return spawnSync(process.execPath, ["--require", cdpDiagnosticsPath, browserQaPath], {
     cwd: root,
     env: process.env,
     encoding: "utf8",
