@@ -51,7 +51,7 @@ const themeScriptPath = `${projectRoot}/js/theme.js?v=0f4e0c522e48`;
 const pwaScriptPath = `${projectRoot}/js/pwa.js?v=fb055828c8f9`;
 const wiseBannerScriptPath = `${projectRoot}/js/wise-banner-enhancer.js?v=9c6dbaaa839b`;
 const accessibilityScriptPath = `${projectRoot}/js/site-accessibility.js?v=8135c9bdc65a`;
-const calculatorPageScriptPath = `${projectRoot}/js/calculator-page.js?v=dacda57823cf`;
+const calculatorPageScriptPath = `${projectRoot}/js/calculator-page.js?v=4d5d99919a87`;
 const calculatorPolishScriptPath = `${projectRoot}/js/calculator-polish.js?v=96ed10d7ffb8`;
 const priorityUpgradeScriptPath = `${projectRoot}/js/priority-upgrades.js?v=c8db51dadcf2`;
 const constructionUpgradeScriptPath = `${projectRoot}/js/construction-upgrades.js?v=c6795aa64ca5`;
