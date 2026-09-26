@@ -67,6 +67,62 @@ jobs:
       - name: Verify Chrome is available
         run: google-chrome --version
 
+      - name: Start local static server
+        run: |
+          node scripts/local-static-server.js > /tmp/kb-static-server.log 2>&1 &
+          echo "KB_STATIC_SERVER_PID=$!" >> "$GITHUB_ENV"
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/kb-static-server.log
+          exit 1
+
+      - name: Run mobile and desktop browser QA
+        env:
+          # Chrome 153 becomes unstable after a very long single-target CDP
+          # navigation sequence. Keep every original viewport, but execute the
+          # layout matrix in three shorter target lifetimes. Every shard still
+          # runs the consent, interaction, theme and calculator assertions.
+          CHROME_EXTRA_ARGS: --disable-dev-shm-usage --disable-features=BackForwardCache,Prerender2 --renderer-process-limit=2
+          KB_BROWSER_QA_PATH: scripts/browser-qa-shard.js
+        run: |
+          echo "Browser QA shard 1/3: compact viewports"
+          KB_QA_VIEWPORTS='[[320,720],[390,844],[768,900]]' npm run test:browser:ui
+          echo "Browser QA shard 2/3: standard viewports"
+          KB_QA_VIEWPORTS='[[1024,900],[1050,900]]' npm run test:browser:ui
+          echo "Browser QA shard 3/3: wide viewports"
+          KB_QA_VIEWPORTS='[[1280,960],[1440,1000]]' npm run test:browser:ui
+
+      - name: Stop local static server
+        if: always()
+        run: |
+          if [ -n "${KB_STATIC_SERVER_PID:-}" ]; then
+            kill "$KB_STATIC_SERVER_PID" || true
+          fi
+
+  browser-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install validation dependencies
+        run: npm ci
+
+      - name: Verify Chrome is available
+        run: google-chrome --version
+
       - name: Run 30 calculator reference cases
         run: |
           if npm run test:reference:browser; then
@@ -94,13 +150,6 @@ jobs:
 
       - name: Smoke-test every calculator on mobile and desktop
         run: npm run test:browser:all-calculators
-
-      - name: Run mobile and desktop browser QA
-        env:
-          # Hosted runners can terminate long-lived renderer targets when Chrome
-          # exhausts /dev/shm. Keep the QA on disk-backed shared memory instead.
-          CHROME_EXTRA_ARGS: --disable-dev-shm-usage
-        run: npm run test:browser:ui
 
       - name: Stop local static server
         if: always()
