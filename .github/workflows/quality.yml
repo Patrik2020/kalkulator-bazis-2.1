@@ -82,12 +82,19 @@ jobs:
 
       - name: Run mobile and desktop browser QA
         env:
-          # Keep the long-lived CDP QA isolated on a fresh runner and prevent
-          # Chrome 153 from retaining a large navigation history/renderer set.
-          # The assertions remain unchanged; only browser resource handling is
-          # made deterministic for the hosted runner.
+          # Chrome 153 becomes unstable after a very long single-target CDP
+          # navigation sequence. Keep every original viewport, but execute the
+          # layout matrix in three shorter target lifetimes. Every shard still
+          # runs the consent, interaction, theme and calculator assertions.
           CHROME_EXTRA_ARGS: --disable-dev-shm-usage --disable-features=BackForwardCache,Prerender2 --renderer-process-limit=2
-        run: npm run test:browser:ui
+          KB_BROWSER_QA_PATH: scripts/browser-qa-shard.js
+        run: |
+          echo "Browser QA shard 1/3: compact viewports"
+          KB_QA_VIEWPORTS='[[320,720],[390,844],[768,900]]' npm run test:browser:ui
+          echo "Browser QA shard 2/3: standard viewports"
+          KB_QA_VIEWPORTS='[[1024,900],[1050,900]]' npm run test:browser:ui
+          echo "Browser QA shard 3/3: wide viewports"
+          KB_QA_VIEWPORTS='[[1280,960],[1440,1000]]' npm run test:browser:ui
 
       - name: Stop local static server
         if: always()
