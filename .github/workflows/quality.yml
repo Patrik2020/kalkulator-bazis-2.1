@@ -67,6 +67,54 @@ jobs:
       - name: Verify Chrome is available
         run: google-chrome --version
 
+      - name: Start local static server
+        run: |
+          node scripts/local-static-server.js > /tmp/kb-static-server.log 2>&1 &
+          echo "KB_STATIC_SERVER_PID=$!" >> "$GITHUB_ENV"
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/kb-static-server.log
+          exit 1
+
+      - name: Run mobile and desktop browser QA
+        env:
+          # Keep the long-lived CDP QA isolated on a fresh runner. The full
+          # 202-render smoke test runs in a separate job below so it cannot
+          # leave Chrome renderer state or memory pressure behind.
+          CHROME_EXTRA_ARGS: --disable-dev-shm-usage
+        run: npm run test:browser:ui
+
+      - name: Stop local static server
+        if: always()
+        run: |
+          if [ -n "${KB_STATIC_SERVER_PID:-}" ]; then
+            kill "$KB_STATIC_SERVER_PID" || true
+          fi
+
+  browser-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install validation dependencies
+        run: npm ci
+
+      - name: Verify Chrome is available
+        run: google-chrome --version
+
       - name: Run 30 calculator reference cases
         run: |
           if npm run test:reference:browser; then
@@ -94,13 +142,6 @@ jobs:
 
       - name: Smoke-test every calculator on mobile and desktop
         run: npm run test:browser:all-calculators
-
-      - name: Run mobile and desktop browser QA
-        env:
-          # Hosted runners can terminate long-lived renderer targets when Chrome
-          # exhausts /dev/shm. Keep the QA on disk-backed shared memory instead.
-          CHROME_EXTRA_ARGS: --disable-dev-shm-usage
-        run: npm run test:browser:ui
 
       - name: Stop local static server
         if: always()
