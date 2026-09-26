@@ -37,10 +37,28 @@ if (!viewportBlock.test(source)) {
   throw new Error("Nem található a browser-qa.js viewports blokkja.");
 }
 
-const transformed = source.replace(
+let transformed = source.replace(
   viewportBlock,
   `  const viewports = ${JSON.stringify(viewports)};`
 );
+
+transformed = transformed
+  .replace(
+    "const { resolve, reject } = pending.get(message.id);",
+    "const { resolve, reject, method } = pending.get(message.id);"
+  )
+  .replace(
+    "if (message.error) reject(new Error(message.error.message));",
+    "if (message.error) reject(new Error(`[CDP ${method}] ${message.error.message}`));"
+  )
+  .replace(
+    "return new Promise((resolve, reject) => pending.set(id, { resolve, reject }));",
+    "return new Promise((resolve, reject) => pending.set(id, { resolve, reject, method }));"
+  )
+  .replace(
+    'await client.send("Page.navigate", { url: `${origin}${pagePath}` });',
+    'console.log(`Browser QA navigate: ${pagePath}`);\n    await client.send("Page.navigate", { url: `${origin}${pagePath}` });'
+  );
 
 console.log(`Browser QA shard viewportok: ${JSON.stringify(viewports)}`);
 
