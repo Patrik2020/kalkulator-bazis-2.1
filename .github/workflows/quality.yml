@@ -96,6 +96,10 @@ jobs:
         run: npm run test:browser:all-calculators
 
       - name: Run mobile and desktop browser QA
+        env:
+          # Hosted runners can terminate long-lived renderer targets when Chrome
+          # exhausts /dev/shm. Keep the QA on disk-backed shared memory instead.
+          CHROME_EXTRA_ARGS: --disable-dev-shm-usage
         run: npm run test:browser:ui
 
       - name: Stop local static server
