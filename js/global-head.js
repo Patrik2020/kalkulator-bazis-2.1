@@ -162,37 +162,37 @@ const hasMainStylesheet = () => [...document.querySelectorAll('link[rel~="styles
 ].forEach((attributes) => appendElement("link", attributes));
 
 appendElement("link", { rel: "stylesheet", href: themeCssPath });
-appendElement("link", { rel: "stylesheet", href: `${accessibilityCssPath}?v=20260807-1` });
+appendElement("link", { rel: "stylesheet", href: accessibilityCssPath });
 if (wiseBannerPages.has(currentFile)) {
-  appendElement("link", { rel: "stylesheet", href: `${wiseBannerCssPath}?v=20260807-1` });
+  appendElement("link", { rel: "stylesheet", href: wiseBannerCssPath });
 }
 if (isCalculatorPage) {
-  appendElement("link", { rel: "stylesheet", href: `${calculatorPageCssPath}?v=20260807-1` });
-  appendElement("link", { rel: "stylesheet", href: `${calculatorPolishCssPath}?v=20260817-1` });
+  appendElement("link", { rel: "stylesheet", href: calculatorPageCssPath });
+  appendElement("link", { rel: "stylesheet", href: calculatorPolishCssPath });
 }
 if (priorityUpgradePages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: `${priorityUpgradeCssPath}?v=20260807-1` });
+  appendElement("link", { rel: "stylesheet", href: priorityUpgradeCssPath });
 }
 if (constructionUpgradePages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: `${constructionUpgradeCssPath}?v=20260807-1` });
+  appendElement("link", { rel: "stylesheet", href: constructionUpgradeCssPath });
 }
 if (everydayUpgradePages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: `${everydayUpgradeCssPath}?v=20260807-1` });
+  appendElement("link", { rel: "stylesheet", href: everydayUpgradeCssPath });
 }
 if (autoConverterUpgradePages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: `${autoConverterUpgradeCssPath}?v=20260807-1` });
+  appendElement("link", { rel: "stylesheet", href: autoConverterUpgradeCssPath });
 }
 if (financeQualityPages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: `${financeQualityCssPath}?v=20260814-1` });
+  appendElement("link", { rel: "stylesheet", href: financeQualityCssPath });
 }
 if (constructionQualityPages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: `${constructionQualityCssPath}?v=20260815-1` });
+  appendElement("link", { rel: "stylesheet", href: constructionQualityCssPath });
 }
 if (healthEverydayQualityPages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: `${healthEverydayQualityCssPath}?v=20260815-1` });
+  appendElement("link", { rel: "stylesheet", href: healthEverydayQualityCssPath });
 }
 if (autoConverterQualityPages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: `${autoConverterQualityCssPath}?v=20260815-1` });
+  appendElement("link", { rel: "stylesheet", href: autoConverterQualityCssPath });
 }
 
 if (!hasMainStylesheet()) {
@@ -201,47 +201,47 @@ if (!hasMainStylesheet()) {
 }
 
 if (isHomePage) {
-  appendElement("link", { rel: "stylesheet", href: `${calculatorCssPath}?v=20260703-2` });
-  appendElement("script", { src: `${calculatorScriptPath}?v=20260703-2`, defer: "" });
+  appendElement("link", { rel: "stylesheet", href: calculatorCssPath });
+  appendElement("script", { src: calculatorScriptPath, defer: "" });
 }
 
 appendElement("script", { src: themeScriptPath, defer: "" });
 appendElement("script", { src: pwaScriptPath, defer: "" });
-appendElement("script", { src: `${accessibilityScriptPath}?v=20260807-1`, defer: "" });
+appendElement("script", { src: accessibilityScriptPath, defer: "" });
 if (isCalculatorPage) {
   document.documentElement.classList.add("kb-calculator-document");
   window.setTimeout(() => {
     document.documentElement.classList.add("kb-calculator-ready");
   }, 3000);
-  appendElement("script", { src: `${calculatorPageScriptPath}?v=20260807-1`, defer: "" });
-  appendElement("script", { src: `${calculatorPolishScriptPath}?v=20260817-1`, defer: "" });
+  appendElement("script", { src: calculatorPageScriptPath, defer: "" });
+  appendElement("script", { src: calculatorPolishScriptPath, defer: "" });
 }
 if (wiseBannerPages.has(currentFile)) {
-  appendElement("script", { src: `${wiseBannerScriptPath}?v=20260807-1`, defer: "" });
+  appendElement("script", { src: wiseBannerScriptPath, defer: "" });
 }
 if (priorityUpgradePages.has(currentSlug)) {
-  appendElement("script", { src: `${priorityUpgradeScriptPath}?v=20260807-1`, defer: "" });
+  appendElement("script", { src: priorityUpgradeScriptPath, defer: "" });
 }
 if (constructionUpgradePages.has(currentSlug)) {
-  appendElement("script", { src: `${constructionUpgradeScriptPath}?v=20260807-1`, defer: "" });
+  appendElement("script", { src: constructionUpgradeScriptPath, defer: "" });
 }
 if (everydayUpgradePages.has(currentSlug)) {
-  appendElement("script", { src: `${everydayUpgradeScriptPath}?v=20260807-1`, defer: "" });
+  appendElement("script", { src: everydayUpgradeScriptPath, defer: "" });
 }
 if (autoConverterUpgradePages.has(currentSlug)) {
-  appendElement("script", { src: `${autoConverterUpgradeScriptPath}?v=20260807-1`, defer: "" });
+  appendElement("script", { src: autoConverterUpgradeScriptPath, defer: "" });
 }
 if (financeQualityPages.has(currentSlug)) {
-  appendElement("script", { src: `${financeQualityScriptPath}?v=20260814-1`, defer: "" });
+  appendElement("script", { src: financeQualityScriptPath, defer: "" });
 }
 if (constructionQualityPages.has(currentSlug)) {
-  appendElement("script", { src: `${constructionQualityScriptPath}?v=20260815-1`, defer: "" });
+  appendElement("script", { src: constructionQualityScriptPath, defer: "" });
 }
 if (healthEverydayQualityPages.has(currentSlug)) {
-  appendElement("script", { src: `${healthEverydayQualityScriptPath}?v=20260815-1`, defer: "" });
+  appendElement("script", { src: healthEverydayQualityScriptPath, defer: "" });
 }
 if (autoConverterQualityPages.has(currentSlug)) {
-  appendElement("script", { src: `${autoConverterQualityScriptPath}?v=20260815-1`, defer: "" });
+  appendElement("script", { src: autoConverterQualityScriptPath, defer: "" });
 }
 
 [
