@@ -42,10 +42,8 @@ jobs:
       - name: Run final calculator inventory gate
         run: node scripts/final-fullsite-audit.js
 
-      - name: Verify generated sitemap URL set is current
-        run: |
-          npm run sitemap
-          git diff --exit-code -I '<lastmod>.*</lastmod>' -- sitemap.xml
+      - name: Verify sitemap URL coverage
+        run: node scripts/quality-3-audit.js
 
   browser:
     runs-on: ubuntu-latest
