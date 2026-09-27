@@ -32,6 +32,29 @@ const reliabilityNote = `<p class="reliability-note">
       specifikációt, tűrést és gyártói adatlapot is ellenőrizd.
     </p>`;
 
+const timeIntentBlock = `<!-- KB_PHASE2:time-intent:START -->
+<section class="converter-intent-block" data-converter-intent="time">
+  <h2>Idő átváltás: óra, perc, másodperc és nap</h2>
+  <p>
+    Az <strong>Idő</strong> kategóriában másodpercet, percet, órát, napot és hetet válthatsz át,
+    valamint átlagos hónap- és évhosszal is számolhatsz. Gyakori példák: 1 óra = 60 perc,
+    1 óra = 3600 másodperc, 1 nap = 24 óra és 1 hét = 168 óra.
+  </p>
+  <ul>
+    <li>1 perc = 60 másodperc</li>
+    <li>1 óra = 60 perc = 3600 másodperc</li>
+    <li>1 nap = 24 óra = 1440 perc = 86 400 másodperc</li>
+    <li>1 hét = 7 nap = 168 óra</li>
+  </ul>
+  <p>
+    A hónap és az év nem állandó hosszúságú naptári egység. Az átváltó ezért ezeknél
+    <strong>átlagos hónappal (30,436875 nap)</strong> és <strong>átlagos évvel (365,2425 nap)</strong>
+    számol. Konkrét dátumok, határidők vagy naptári hónapok közötti különbséghez dátum- vagy
+    munkanap-kalkulátort használj.
+  </p>
+</section>
+<!-- KB_PHASE2:time-intent:END -->`;
+
 const hubFaq = {
   "@type": "FAQPage",
   "@id": `${canonical}#gyik`,
@@ -42,6 +65,22 @@ const hubFaq = {
       acceptedAnswer: {
         "@type": "Answer",
         text: "Ugyanazt a feladatot egy felületen végzi el, kevesebb ismétlődő tartalommal és gyorsabb kategóriaváltással.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "1 óra hány perc és másodperc?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "1 óra pontosan 60 perc, vagyis 3600 másodperc.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Átváltható a hónap és az év órára vagy napra?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Becsült időtartamként igen: az átváltó átlagos hónappal (30,436875 nap) és átlagos évvel (365,2425 nap) számol. Konkrét naptári dátumhoz külön dátumszámítás szükséges.",
       },
     },
     {
@@ -136,6 +175,24 @@ function ensureHubFaqSchema(html) {
   return html.replace(scriptPattern, replacement);
 }
 
+function ensureTimeIntentBlock(html) {
+  const blockPattern = /<!--\s*KB_PHASE2:time-intent:START\s*-->[\s\S]*?<!--\s*KB_PHASE2:time-intent:END\s*-->/i;
+  if (blockPattern.test(html)) return html.replace(blockPattern, timeIntentBlock);
+
+  const insertionPoint = /<h2>Pontosság és kerekítés<\/h2>/i;
+  if (!insertionPoint.test(html)) {
+    throw new Error("Hiányzó 'Pontosság és kerekítés' szakasz az új mértékegység-központban.");
+  }
+  return html.replace(insertionPoint, `${timeIntentBlock}\n\n    <h2>Pontosság és kerekítés</h2>`);
+}
+
+function ensureTimeCategoryCopy(html) {
+  return html.replace(
+    /<tr><td>Idő<\/td><td>ms, s, perc, óra, nap, hét<\/td><\/tr>/i,
+    "<tr><td>Idő</td><td>ms, s, perc, óra, nap, hét, átlagos hónap és átlagos év</td></tr>"
+  );
+}
+
 const transform = (html) => {
   if (/<meta\s+name=["']robots["']/i.test(html)) {
     html = html.replace(
@@ -189,6 +246,8 @@ const transformHub = (html) => {
     html = html.replace(calculationNote[0], `${calculationNote[0]}\n\n    ${reliabilityNote}`);
   }
 
+  html = ensureTimeCategoryCopy(html);
+  html = ensureTimeIntentBlock(html);
   return ensureHubFaqSchema(html);
 };
 
