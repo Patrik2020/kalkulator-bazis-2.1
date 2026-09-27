@@ -68,7 +68,9 @@
         min: ["Perc", 60],
         h: ["Óra", 3600],
         d: ["Nap", 86400],
-        w: ["Hét", 604800]
+        w: ["Hét", 604800],
+        month: ["Átlagos hónap (30,436875 nap)", 2629746],
+        year: ["Átlagos év (365,2425 nap)", 31556952]
       },
       defaults: ["h", "min"]
     },
