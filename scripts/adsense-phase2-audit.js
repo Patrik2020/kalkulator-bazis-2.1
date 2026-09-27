@@ -65,10 +65,11 @@ for (const slug of slugs) {
 
 const redirects = read("_redirects");
 for (const slug of slugs) {
-  const extensionlessRule = `/kalkulatorok/${slug} /kalkulatorok/mertekegyseg-atvalto-kalkulator 301`;
-  const htmlRule = `/kalkulatorok/${slug}.html /kalkulatorok/mertekegyseg-atvalto-kalkulator 301`;
-  if (!redirects.includes(extensionlessRule)) failures.push(`_redirects: hiányzó 301 szabály ${slug}`);
-  if (!redirects.includes(htmlRule)) failures.push(`_redirects: hiányzó .html 301 szabály ${slug}`);
+  const target = "\\/kalkulatorok\\/mertekegyseg-atvalto-kalkulator(?:#[A-Za-z0-9_-]+)?";
+  const extensionlessRule = new RegExp(`^/kalkulatorok/${slug}\\s+${target}\\s+301$`, "m");
+  const htmlRule = new RegExp(`^/kalkulatorok/${slug}\\.html\\s+${target}\\s+301$`, "m");
+  if (!extensionlessRule.test(redirects)) failures.push(`_redirects: hiányzó 301 szabály ${slug}`);
+  if (!htmlRule.test(redirects)) failures.push(`_redirects: hiányzó .html 301 szabály ${slug}`);
 }
 
 const cookie = read("js/cookie.js");

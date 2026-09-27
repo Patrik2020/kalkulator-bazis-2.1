@@ -45,6 +45,13 @@ const overrides = {
     heroLead:
       "Válts gyorsan négyzetméter, hektár, ár, négyzetkilométer és más területmértékek között.",
   },
+  "kalkulatorok/mertekegyseg-atvalto-kalkulator.html": {
+    title: "Mértékegység átváltó | Idő, hosszúság, tömeg és sebesség",
+    description:
+      "Mértékegység átváltó 11 kategóriához: idő (másodperc, perc, óra, nap), hosszúság, tömeg, sebesség, hőmérséklet és további egységek.",
+    h1: "Mértékegység átváltó – idő, hosszúság, tömeg és más egységek",
+    heroLead: "Egy eszköz, nem tizenegy külön oldal",
+  },
   "kalkulatorok/gumi-meret-kalkulator.html": {
     title: "Gumiméret váltó kalkulátor – váltóméret és kerékátmérő",
     description:
