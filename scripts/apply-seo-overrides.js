@@ -21,6 +21,14 @@ const overrides = {
     heroLead:
       "Számold ki naptári vagy munkanapokkal, mikor jár le a megadott határidő.",
   },
+  "kalkulatorok/datum-hozzaadas-kivonas-kalkulator.html": {
+    title: "Határidő számítás – dátum hozzáadás és kivonás kalkulátor",
+    description:
+      "Határidő számítás naptári napokkal: adj hozzá vagy vonj ki napokat egy dátumból, és lásd a cél dátumot. Általános dátum- és határidőtervezéshez.",
+    h1: "Határidő számítás – dátum hozzáadás és kivonás",
+    heroLead:
+      "Adj hozzá vagy vonj ki naptári napokat egy dátumból, és számold ki gyorsan a cél dátumot.",
+  },
   "kalkulatorok/szamla-teljesites-kalkulator.html": {
     title: "Teljesítési dátum kalkulátor | Számla és folyamatos teljesítés",
     description:
@@ -95,6 +103,7 @@ const internalLinkBoosts = {
   ],
   "kalkulatorok/fizetesi-hatarido-kalkulator.html": [
     { href: "munkanap-kalkulator", label: "Munkanap kalkulátor" },
+    { href: "datum-hozzaadas-kivonas-kalkulator", label: "Általános határidő számítás" },
   ],
   "kalkulatorok/auto-kalkulator.html": [
     { href: "ev-toltesi-koltseg-kalkulator", label: "EV töltési költség kalkulátor" },
