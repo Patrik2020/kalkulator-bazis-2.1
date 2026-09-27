@@ -49,6 +49,22 @@ for (const slug of slugs) {
   }
 }
 
+const hubHtml = read(hubFile);
+if (!hubHtml.includes("KB_P3:time-intent:START")) failures.push("az új központból hiányzik a P3 idő-átváltási blokk");
+for (const expected of [
+  "Idő átváltás: óra, perc, másodperc és nap",
+  "1 óra = 60 perc",
+  "1 óra = 3600 másodperc",
+  "24 óra = 1440 perc",
+  "168 óra = 7 nap",
+  "Hány perc 1 óra?",
+  "Hány másodperc 1 óra?",
+]) {
+  if (!hubHtml.includes(expected)) failures.push(`P3 idő-intent hiányzik a központból: ${expected}`);
+}
+if (!hubHtml.includes('"name":"Hány perc 1 óra?"')) failures.push("a P3 idő FAQ nincs a strukturált adatokban");
+if (!hubHtml.includes('"name":"Hány másodperc 1 óra?"')) failures.push("a P3 másodperc FAQ nincs a strukturált adatokban");
+
 const sitemap = read("sitemap.xml");
 if (!sitemap.includes("/kalkulatorok/mertekegyseg-atvalto-kalkulator")) failures.push("az új központ hiányzik a sitemapből");
 for (const slug of slugs) {
@@ -85,4 +101,5 @@ if (failures.length) {
 console.log("AdSense Phase 2 consolidation audit OK.");
 console.log(`- kivezetett önálló konverterek: ${slugs.length}`);
 console.log("- új központ: indexelhető, sitemapben és katalógusban");
+console.log("- P3: idő-átváltási keresési intent + látható/strukturált FAQ védve");
 console.log("- régi konverterek: Cloudflare 301 + noindex/canonical fallback + AdSense-kizárás");
