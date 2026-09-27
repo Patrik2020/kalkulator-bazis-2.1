@@ -115,4 +115,13 @@ const timeHtml = read("kalkulatorok/ido-atvalto-kalkulator.html");
 assert.ok(timeHtml.includes("30,436875 nap"), "Az átlagos hónaphossz feltételezése nincs dokumentálva");
 assert.ok(timeHtml.includes("365,2425 nap"), "Az átlagos évhossz feltételezése nincs dokumentálva");
 
-console.log("Converter domain audit OK: faktorok, round-trip párok, hőmérséklet-határok, nyomás és decimális/bináris egységek.");
+// A Phase 2 közös átváltó őrizze meg az időoldal funkcióját és keresési szándékát.
+const hubSource = read("js/atvaltok/mertekegyseg-kozpont.js");
+assert.ok(hubSource.includes('month: ["Átlagos hónap (30,436875 nap)", 2629746]'), "A közös átváltóból hiányzik az átlagos hónap faktor");
+assert.ok(hubSource.includes('year: ["Átlagos év (365,2425 nap)", 31556952]'), "A közös átváltóból hiányzik az átlagos év faktor");
+assert.ok(hubSource.includes('"#ido": "time"'), "A közös átváltóból hiányzik a #ido kategória-előválasztás");
+const redirects = read("_redirects");
+assert.match(redirects, /^\/kalkulatorok\/ido-atvalto-kalkulator\s+\/kalkulatorok\/mertekegyseg-atvalto-kalkulator#ido\s+301$/m, "Az időátváltó extensionless 301 nem őrzi meg az idő-szándékot");
+assert.match(redirects, /^\/kalkulatorok\/ido-atvalto-kalkulator\.html\s+\/kalkulatorok\/mertekegyseg-atvalto-kalkulator#ido\s+301$/m, "Az időátváltó .html 301 nem őrzi meg az idő-szándékot");
+
+console.log("Converter domain audit OK: faktorok, round-trip párok, hőmérséklet-határok, nyomás, idő-intent és decimális/bináris egységek.");
