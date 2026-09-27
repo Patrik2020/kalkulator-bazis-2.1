@@ -10,6 +10,7 @@ const retentionTemplate = fs
 const port = Number(process.env.KB_STATIC_PORT || 4173);
 const origin = `http://127.0.0.1:${port}`;
 const dryRun = process.argv.includes("--check");
+const verbose = process.argv.includes("--verbose");
 const liveApiCalculatorPages = new Set([
   "kalkulatorok/deviza-atvalto-kalkulator.html",
 ]);
