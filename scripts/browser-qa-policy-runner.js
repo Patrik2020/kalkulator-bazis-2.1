@@ -4,7 +4,9 @@ const path = require("path");
 const { spawnSync } = require("child_process");
 
 const root = path.resolve(__dirname, "..");
-const browserQaPath = path.join(__dirname, "browser-qa.js");
+const browserQaPath = process.env.KB_BROWSER_QA_PATH
+  ? path.resolve(root, process.env.KB_BROWSER_QA_PATH)
+  : path.join(__dirname, "browser-qa.js");
 const resultsPath = path.join(os.tmpdir(), "kb-browser-qa", "results.json");
 const cookiePath = path.join(root, "js", "cookie.js");
 

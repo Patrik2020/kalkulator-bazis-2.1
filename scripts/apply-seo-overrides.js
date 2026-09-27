@@ -5,6 +5,14 @@ const root = path.resolve(__dirname, "..");
 const checkOnly = process.argv.includes("--check");
 
 const overrides = {
+  "kalkulatorok/netto-brutto-kalkulator.html": {
+    title: "Nettó–bruttó kalkulátor 2026 | Bruttó és nettó fizetés",
+    description:
+      "Nettó–bruttó kalkulátor 2026: számold ki a bruttó fizetés nettóját vagy a kívánt nettóhoz szükséges bruttót. Kedvezmények és munkáltatói költség.",
+    h1: "Nettó–bruttó kalkulátor 2026",
+    heroLead:
+      "Számold ki a 2026-os szabályok alapján a bruttó fizetés nettóját vagy a kívánt nettóhoz szükséges bruttót, kedvezményekkel és munkáltatói költséggel.",
+  },
   "kalkulatorok/fizetesi-hatarido-kalkulator.html": {
     title: "Határidő számítás és fizetési határidő kalkulátor 2026",
     description:
