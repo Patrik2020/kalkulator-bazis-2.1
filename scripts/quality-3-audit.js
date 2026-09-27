@@ -35,8 +35,15 @@ const first = (value, pattern) => value.match(pattern)?.[1]?.trim() || "";
 const count = (value, pattern) => [...value.matchAll(pattern)].length;
 const canonicalFor = (name) => publicUrlForSource(name);
 
-const sitemapXml = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
-const sitemapUrls = new Set([...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim()));
+const sitemapFiles = fs.readdirSync(root)
+  .filter((name) => /^sitemap(?:-[a-z0-9-]+)?\.xml$/i.test(name))
+  .sort();
+const sitemapUrls = new Set(
+  sitemapFiles.flatMap((name) => {
+    const xml = fs.readFileSync(path.join(root, name), "utf8");
+    return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1].trim());
+  })
+);
 
 const qualitySources = [
   "js/finance-quality-upgrades.js",
@@ -189,7 +196,7 @@ console.log("====================================");
 console.log(`HTML oldalak: ${records.length}`);
 console.log(`Indexelhető oldalak: ${indexable.length}`);
 console.log(`Kalkulátoroldalak: ${calculatorRecords.length}`);
-console.log(`Sitemap URL-ek: ${sitemapUrls.size}`);
+console.log(`Sitemap URL-ek: ${sitemapUrls.size} (${sitemapFiles.join(", ")})`);
 console.log(`Figyelmeztetések: ${warnings.length}`);
 console.log(`Blokkoló hibák: ${hardErrors.length}`);
 
