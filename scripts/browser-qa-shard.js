@@ -31,7 +31,7 @@ if (
 }
 
 const source = fs.readFileSync(browserQaPath, "utf8");
-const viewportBlock = /  const viewports = \[[\s\S]*?\n {2}\];/;
+const viewportBlock = / {2}const viewports = \[[\s\S]*?\n {2}\];/;
 
 if (!viewportBlock.test(source)) {
   throw new Error("Nem található a browser-qa.js viewports blokkja.");
