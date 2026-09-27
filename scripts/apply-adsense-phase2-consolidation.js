@@ -32,6 +32,29 @@ const reliabilityNote = `<p class="reliability-note">
       specifikációt, tűrést és gyártói adatlapot is ellenőrizd.
     </p>`;
 
+const timeSeoSection = `<!-- KB_P3:time-intent:START -->
+<section class="article" id="ido-atvaltas">
+  <h2>Idő átváltás: óra, perc, másodperc és nap</h2>
+  <p>
+    Az idő kategóriában órát, percet, másodpercet, napot, hetet, hónapot és évet is átválthatsz.
+    Gyakori példák: 1 óra = 60 perc, 1 óra = 3600 másodperc, 24 óra = 1440 perc,
+    1 nap = 86 400 másodperc és 168 óra = 7 nap.
+  </p>
+  <p>
+    Ha például azt szeretnéd megtudni, hogy 90 perc hány óra, válaszd az <strong>Idő</strong>
+    kategóriát, add meg a 90 értéket, majd állítsd a kiinduló egységet percre, a célegységet órára.
+  </p>
+  <div class="info-box">
+    <strong>Gyors időátváltási példák:</strong>
+    120 perc = 2 óra · 48 óra = 2 nap · 600 másodperc = 10 perc · 1000 óra ≈ 41,67 nap.
+  </div>
+  <h3>Hány perc 1 óra?</h3>
+  <p>1 óra pontosan 60 perc.</p>
+  <h3>Hány másodperc 1 óra?</h3>
+  <p>1 óra pontosan 3600 másodperc.</p>
+</section>
+<!-- KB_P3:time-intent:END -->`;
+
 const hubFaq = {
   "@type": "FAQPage",
   "@id": `${canonical}#gyik`,
@@ -58,6 +81,22 @@ const hubFaq = {
       acceptedAnswer: {
         "@type": "Answer",
         text: "Mert a Celsius, Fahrenheit és Kelvin skálák nullpontja eltér, ezért eltolást is alkalmazni kell.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Hány perc 1 óra?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "1 óra pontosan 60 perc.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Hány másodperc 1 óra?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "1 óra pontosan 3600 másodperc.",
       },
     },
   ],
@@ -136,6 +175,13 @@ function ensureHubFaqSchema(html) {
   return html.replace(scriptPattern, replacement);
 }
 
+function ensureHubTimeSection(html) {
+  const blockPattern = /<!--\s*KB_P3:time-intent:START\s*-->[\s\S]*?<!--\s*KB_P3:time-intent:END\s*-->/i;
+  if (blockPattern.test(html)) return html.replace(blockPattern, timeSeoSection);
+  if (!/<\/main>/i.test(html)) throw new Error("Hiányzó </main> az új mértékegység-központban.");
+  return html.replace(/<\/main>/i, `${timeSeoSection}\n</main>`);
+}
+
 const transform = (html) => {
   if (/<meta\s+name=["']robots["']/i.test(html)) {
     html = html.replace(
@@ -165,9 +211,6 @@ const transform = (html) => {
     html = html.replace(hero[0], `${hero[0]}\n${notice}`);
   }
 
-  // A buildlánc WebPage node-ot vár a #kb-structured-data blokkban. A
-  // kivezetett/noindex oldal ezért a célközpont minimális sémavázát tartja
-  // meg; a régi kalkulátor- és GYIK-entitások nem maradnak benne.
   html = setRetiredHubStructuredData(html);
 
   return html;
@@ -189,6 +232,7 @@ const transformHub = (html) => {
     html = html.replace(calculationNote[0], `${calculationNote[0]}\n\n    ${reliabilityNote}`);
   }
 
+  html = ensureHubTimeSection(html);
   return ensureHubFaqSchema(html);
 };
 
@@ -210,5 +254,5 @@ const hubChanged = hubAfter !== hubBefore;
 if (hubChanged) fs.writeFileSync(hubFile, hubAfter, "utf8");
 
 console.log(
-  `Phase 2 converter retirement: ${changed}/${slugs.length} oldal frissítve; központ trust/schema: ${hubChanged ? "frissítve" : "rendben"}.`
+  `Phase 2 converter retirement: ${changed}/${slugs.length} oldal frissítve; központ trust/schema/P3: ${hubChanged ? "frissítve" : "rendben"}.`
 );
