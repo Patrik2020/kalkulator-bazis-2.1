@@ -1,0 +1,99 @@
+name: Bootstrap global head module split
+
+on:
+  push:
+    branches:
+      - chore/clean-code-1-2-global-head
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v7
+        with:
+          ref: chore/clean-code-1-2-global-head
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Insert config script before global-head bootstrap
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const path = require('path');
+          const root = process.cwd();
+          const skip = new Set(['.git', 'node_modules']);
+          let changed = 0;
+
+          function walk(directory) {
+            for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+              if (entry.isDirectory() && skip.has(entry.name)) continue;
+              const absolute = path.join(directory, entry.name);
+              if (entry.isDirectory()) walk(absolute);
+              else if (entry.name.endsWith('.html')) transform(absolute);
+            }
+          }
+
+          function transform(file) {
+            const before = fs.readFileSync(file, 'utf8');
+            if (/js\/global-head-config\.js(?:\?|["'])/i.test(before)) return;
+            const pattern = /<script\b[^>]*\bsrc=(["'])([^"']*?)js\/global-head\.js(?:\?[^"']*)?\1[^>]*><\/script>/i;
+            const match = before.match(pattern);
+            if (!match) return;
+            const configTag = `<script src="${match[2]}js/global-head-config.js"></script>`;
+            const after = before.replace(pattern, `${configTag}\n${match[0]}`);
+            fs.writeFileSync(file, after);
+            changed += 1;
+          }
+
+          walk(root);
+          console.log(`global-head config script inserted into ${changed} HTML files.`);
+          NODE
+
+      - name: Wire global head contract into quality
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+          pkg.scripts['quality:head-config'] = 'node scripts/global-head-contract-audit.js';
+          if (!pkg.scripts.quality.includes('npm run quality:head-config')) {
+            pkg.scripts.quality = pkg.scripts.quality.replace(
+              'npm run quality:assets && ',
+              'npm run quality:assets && npm run quality:head-config && '
+            );
+          }
+          fs.writeFileSync('package.json', `${JSON.stringify(pkg, null, 2)}\n`);
+          NODE
+
+      - name: Apply content-hash asset versions
+        run: node scripts/cache-bust-assets.js
+
+      - name: Run focused refactor gates
+        run: |
+          npm run lint:js
+          npm run quality:assets
+          npm run quality:head-config
+          npm run static:check
+
+      - name: Commit generated integration changes
+        run: |
+          if git diff --quiet; then
+            echo "No generated changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "refactor: integrate global head config across pages"
+          git push origin HEAD:chore/clean-code-1-2-global-head
