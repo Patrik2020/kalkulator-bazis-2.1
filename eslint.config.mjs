@@ -1,5 +1,6 @@
 import globals from "globals";
 
+// Clean Code 1.1 baseline: correctness hibák és valóban használatlan kód blokkolják a CI-t.
 const correctnessRules = {
   "constructor-super": "error",
   "for-direction": "error",
