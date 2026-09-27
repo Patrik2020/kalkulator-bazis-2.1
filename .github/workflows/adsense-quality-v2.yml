@@ -8,7 +8,12 @@ on:
     paths:
       - "**/*.html"
       - "js/**"
-      - "scripts/**"
+      - "scripts/apply-adsense-*.js"
+      - "scripts/adsense-*.js"
+      - "scripts/apply-construction-manufacturer-first-v2.js"
+      - "scripts/apply-average-hub-*.js"
+      - "scripts/sitemap-lastmod-v2-audit.js"
+      - "scripts/generate-sitemap.js"
       - "sitemap.xml"
       - "data/sitemap-content-state.json"
       - ".github/workflows/adsense-quality-v2.yml"
@@ -18,6 +23,9 @@ permissions:
 
 jobs:
   audit:
+    # A generated materialization commit should not repeat the same expensive
+    # AdSense transformation/audit pass that already ran for the human change.
+    if: github.event_name != 'pull_request' || github.actor != 'github-actions[bot]'
     name: AdSense Quality v2 gate
     runs-on: ubuntu-latest
     timeout-minutes: 10
