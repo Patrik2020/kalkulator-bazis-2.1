@@ -69,8 +69,10 @@ jobs:
 
           edit('scripts/materialize-static-first.js', (s) => {
             const lines = s.split('\n');
-            const verbose = lines.findIndex((line) => line.startsWith('const verbose = '));
-            if (verbose >= 0) lines.splice(verbose, 1);
+            const dryRun = lines.findIndex((line) => line.startsWith('const dryRun = '));
+            if (!lines.some((line) => line.startsWith('const verbose = ')) && dryRun >= 0) {
+              lines.splice(dryRun + 1, 0, 'const verbose = process.argv.includes("--verbose");');
+            }
             const log = lines.findIndex((line) => line.startsWith('function log('));
             if (log >= 0) {
               let end = log;
@@ -80,10 +82,16 @@ jobs:
             return lines.join('\n');
           });
 
-          edit('scripts/apply-adsense-eligibility-v2.js', (s) => s.replace(
-            /  const syncAdSense = \\(\\) => \\{\\[sS\\]\\*\\?\\n  \\};\\n\\n  const persistConsent/,
-            ' {2}const syncAdSense = \\(\\) => \\{[\\s\\S]*?\\n {2}\\};\\n\\n {2}const persistConsent'
-          ));
+          edit('scripts/apply-adsense-eligibility-v2.js', (s) => {
+            const lines = s.split('\n');
+            const index = lines.findIndex((line) => line.includes('const syncPattern ='));
+            if (index >= 0) {
+              lines[index] = lines[index]
+                .replace('/  const syncAdSense', '/ {2}const syncAdSense')
+                .replace('\\n  \\};\\n\\n  const persistConsent', '\\n {2}\\};\\n\\n {2}const persistConsent');
+            }
+            return lines.join('\n');
+          });
 
           edit('scripts/apply-category-taxonomy.js', (s) => s.replace(
             'const categoryPattern = /const categories = \\[[\\s\\S]*?\\n  \\];\\n\\n  const calculators = \\[/;',
