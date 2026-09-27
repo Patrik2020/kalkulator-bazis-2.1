@@ -34,4 +34,14 @@ assert.ok(!kilometer.includes("havi autóköltség ÷ havi megtett kilométer"),
 assert.ok(!kilometer.includes("Az éves becsült értékvesztést oszd tizenkettővel"), "Régi havi értékvesztés FAQ bent maradt");
 assert.ok(kilometer.includes('datetime="2026-08-26"'), "Kilométerdíj felülvizsgálati dátuma nem frissült");
 
-console.log("Auto content consistency audit OK: értékvesztés, éves autóköltség és kilométerdíj szövege követi a tényleges runtime-modellt.");
+const consumption = transformed("kalkulatorok/auto-fogyasztas-kalkulator.html");
+assert.ok(consumption.includes("KB_P4:auto-fuel-query:START"), "P4 átlagfogyasztás query-blokk hiányzik");
+assert.ok(consumption.includes("Átlagfogyasztás kiszámítása: képlet és gyors példák"), "P4 query-driven alcím hiányzik");
+assert.ok(consumption.includes("Átlagfogyasztás = tankolt liter ÷ megtett kilométer × 100."), "P4 átlagfogyasztás képlet hiányzik");
+assert.ok(consumption.includes("35 liter és 500 km esetén 7,00 l/100 km"), "P4 gyors példák hiányoznak");
+assert.ok(consumption.includes("<summary>Hogyan számolom ki az autó átlagfogyasztását?</summary>"), "P4 átlagfogyasztás FAQ nem látható");
+assert.ok(consumption.includes("<summary>Mennyi üzemanyagot fogyaszt az autó 100 km-en?</summary>"), "P4 100 km-es FAQ nem látható");
+assert.ok(consumption.includes('"name":"Hogyan számolom ki az autó átlagfogyasztását?"'), "P4 átlagfogyasztás FAQ nincs a strukturált adatban");
+assert.ok(consumption.includes('"name":"Mennyi üzemanyagot fogyaszt az autó 100 km-en?"'), "P4 100 km-es FAQ nincs a strukturált adatban");
+
+console.log("Auto content consistency audit OK: értékvesztés, éves autóköltség, kilométerdíj és P4 autó-fogyasztás tartalom konzisztens és védett.");
