@@ -84,7 +84,7 @@ if (!cookie.includes("KB_ADSENSE_ELIGIBILITY_V2")) {
 // exists, the TCF-aware syncAdSense block is already installed and must not be
 // wrapped a second time on later materialization/preview passes.
 if (!cookie.includes("const setAdSenseRequestReady = () =>")) {
-  const syncPattern = /  const syncAdSense = \(\) => \{[\s\S]*?\n  \};\n\n  const persistConsent/;
+  const syncPattern = / {2}const syncAdSense = \(\) => \{[\s\S]*?\n {2}\};\n\n {2}const persistConsent/;
   const syncReplacement = `  // KB_ADSENSE_SYNC_V2
   const setAdSenseRequestReady = () => {
     if (!window.KB_ADSENSE_ELIGIBLE || window.KB_ADSENSE_CAN_REQUEST) return;
