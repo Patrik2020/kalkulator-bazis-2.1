@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "js/priority-upgrades.js"
+      - "js/global-head-config.js"
       - "js/global-head.js"
       - "css/pages/priority-upgrades.css"
       - "kalkulatorok/**"
@@ -26,6 +27,7 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check js/priority-upgrades.js
+          node --check js/global-head-config.js
           node --check js/global-head.js
       - name: Check required files and calculator handlers
         run: |
@@ -33,3 +35,5 @@ jobs:
           grep -q 'hitelkepesseg-kalkulator.html' js/priority-upgrades.js
           grep -q 'terhessegi-kalkulator.html' js/priority-upgrades.js
           grep -q 'feherje-szukseglet-kalkulator.html' js/priority-upgrades.js
+          grep -q 'priority-upgrades.css' js/global-head-config.js
+          grep -q 'priority-upgrades.js' js/global-head-config.js
