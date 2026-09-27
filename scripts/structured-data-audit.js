@@ -34,6 +34,21 @@ function findElement(html, className) {
   return null;
 }
 
+function findElements(html, className) {
+  const elements = [];
+  let remaining = html;
+
+  while (remaining) {
+    const element = findElement(remaining, className);
+    if (!element) break;
+    elements.push(element);
+    const index = remaining.indexOf(element);
+    remaining = remaining.slice(index + element.length);
+  }
+
+  return elements;
+}
+
 function decodeEntities(value) {
   return value
     .replace(/&nbsp;/gi, " ")
@@ -158,10 +173,10 @@ for (const page of pages) {
     }
   }
 
-  const faqList = findElement(html, "faq-list");
-  const visibleQuestions = faqList
-    ? [...faqList.matchAll(/<summary\b[^>]*>([\s\S]*?)<\/summary>/gi)].map((match) => normalizeText(match[1]))
-    : [];
+  const faqLists = findElements(html, "faq-list");
+  const visibleQuestions = faqLists.flatMap((faqList) =>
+    [...faqList.matchAll(/<summary\b[^>]*>([\s\S]*?)<\/summary>/gi)].map((match) => normalizeText(match[1]))
+  );
   const schemaQuestions = Array.isArray(faqPages[0]?.mainEntity)
     ? faqPages[0].mainEntity.map((question) => normalizeText(question?.name))
     : [];
