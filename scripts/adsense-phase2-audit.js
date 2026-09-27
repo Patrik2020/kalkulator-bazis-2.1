@@ -19,6 +19,7 @@ const hubCanonical = "https://kalkulatorbazis.hu/kalkulatorok/mertekegyseg-atval
 const read = (rel) => fs.readFileSync(path.join(root, rel), "utf8");
 const failures = [];
 
+// P3 regression guard: keep the proven time-conversion search intent on the canonical hub.
 if (!fs.existsSync(path.join(root, hubFile))) failures.push("hiányzik az új mértékegység-átváltó központ");
 if (!fs.existsSync(path.join(root, "js/atvaltok/mertekegyseg-kozpont.js"))) failures.push("hiányzik az új átváltó motor");
 
