@@ -52,6 +52,16 @@ const timeIntentBlock = `<!-- KB_PHASE2:time-intent:START -->
     számol. Konkrét dátumok, határidők vagy naptári hónapok közötti különbséghez dátum- vagy
     munkanap-kalkulátort használj.
   </p>
+  <div class="faq-list" data-accordion="single">
+    <details>
+      <summary>1 óra hány perc és másodperc?</summary>
+      <p>1 óra pontosan 60 perc, vagyis 3600 másodperc.</p>
+    </details>
+    <details>
+      <summary>Átváltható a hónap és az év órára vagy napra?</summary>
+      <p>Becsült időtartamként igen: az átváltó átlagos hónappal (30,436875 nap) és átlagos évvel (365,2425 nap) számol. Konkrét naptári dátumhoz külön dátumszámítás szükséges.</p>
+    </details>
+  </div>
 </section>
 <!-- KB_PHASE2:time-intent:END -->`;
 
@@ -188,7 +198,7 @@ function ensureTimeIntentBlock(html) {
 
 function ensureTimeCategoryCopy(html) {
   return html.replace(
-    /<tr><td>Idő<\/td><td>ms, s, perc, óra, nap, hét<\/td><\/tr>/i,
+    /<tr><td>Idő<\/td><td>ms, s, perc, óra, nap, hét(?:, átlagos hónap és átlagos év)?<\/td><\/tr>/i,
     "<tr><td>Idő</td><td>ms, s, perc, óra, nap, hét, átlagos hónap és átlagos év</td></tr>"
   );
 }
