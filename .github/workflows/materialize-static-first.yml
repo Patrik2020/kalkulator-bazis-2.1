@@ -169,6 +169,9 @@ jobs:
       - name: Audit crawler-visible source HTML
         run: npm run static:check
 
+      - name: Run final calculator inventory gate
+        run: node scripts/final-fullsite-audit.js
+
       - name: Audit canonical URL policy
         run: npm run quality:urls
 
