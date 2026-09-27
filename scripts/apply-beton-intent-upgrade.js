@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
+// P7 GSC intent: strengthen concrete volume searches without changing calculator math or canonical SEO metadata.
 const root = path.resolve(__dirname, "..");
 const target = path.join(root, "kalkulatorok", "beton-kalkulator.html");
 const checkOnly = process.argv.includes("--check");
