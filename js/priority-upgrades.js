@@ -3,7 +3,6 @@
 
   const pathPart = (location.pathname.split("/").pop() || "index.html").toLowerCase();
   const page = /\.html?$/i.test(pathPart) ? pathPart : `${pathPart}.html`;
-  const root = window.KB_PROJECT_ROOT || "";
   const money = (value) => Number.isFinite(value)
     ? new Intl.NumberFormat("hu-HU", { maximumFractionDigits: 0 }).format(Math.round(value)) + " Ft"
     : "–";
@@ -17,8 +16,6 @@
     const value = Number(normalized);
     return Number.isFinite(value) ? value : fallback;
   };
-  const checkedValue = (container, name, fallback = "") =>
-    container.querySelector(`input[name="${name}"]:checked`)?.value || fallback;
   const selectValue = (container, id, fallback = "") => container.querySelector(`#${id}`)?.value || fallback;
   const payment = (principal, annualRate, years) => {
     const months = Math.max(1, Math.round(years * 12));
