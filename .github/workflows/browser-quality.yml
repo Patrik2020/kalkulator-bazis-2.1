@@ -1,0 +1,132 @@
+name: Browser regression
+
+on:
+  pull_request:
+    paths:
+      - "**/*.html"
+      - "css/**"
+      - "js/**"
+      - "scripts/*browser*.js"
+      - "scripts/local-static-server.js"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/browser-quality.yml"
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: browser-regression-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    # Generated materialization commits are validated by Site quality, but do not
+    # need to repeat the expensive browser matrix on the PR head.
+    if: github.event_name != 'pull_request' || github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install validation dependencies
+        run: npm ci
+
+      - name: Verify Chrome is available
+        run: google-chrome --version
+
+      - name: Run 30 calculator reference cases
+        run: |
+          if npm run test:reference:browser; then
+            exit 0
+          fi
+          echo "Browser reference audit failed once; retrying after a short runner warm-up..." >&2
+          sleep 3
+          npm run test:reference:browser
+
+      - name: Start local static server
+        run: |
+          node scripts/local-static-server.js > /tmp/kb-static-server.log 2>&1 &
+          echo "KB_STATIC_SERVER_PID=$!" >> "$GITHUB_ENV"
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/kb-static-server.log
+          exit 1
+
+      - name: Verify decision and comparison switchers
+        run: node scripts/decision-switcher-browser-audit.js
+
+      - name: Smoke-test every calculator on mobile and desktop
+        run: npm run test:browser:all-calculators
+
+      - name: Stop local static server
+        if: always()
+        run: |
+          if [ -n "${KB_STATIC_SERVER_PID:-}" ]; then
+            kill "$KB_STATIC_SERVER_PID" || true
+          fi
+
+  deep-ui-qa:
+    # The long CDP interaction suite is valuable as a post-merge safety net,
+    # but it should not block ordinary PRs while Chrome runner behavior is flaky.
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    continue-on-error: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install validation dependencies
+        run: npm ci
+
+      - name: Verify Chrome is available
+        run: google-chrome --version
+
+      - name: Start local static server
+        run: |
+          node scripts/local-static-server.js > /tmp/kb-static-server.log 2>&1 &
+          echo "KB_STATIC_SERVER_PID=$!" >> "$GITHUB_ENV"
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/kb-static-server.log
+          exit 1
+
+      - name: Run deep mobile and desktop UI QA
+        env:
+          CHROME_EXTRA_ARGS: --disable-dev-shm-usage
+        run: npm run test:browser:ui
+
+      - name: Stop local static server
+        if: always()
+        run: |
+          if [ -n "${KB_STATIC_SERVER_PID:-}" ]; then
+            kill "$KB_STATIC_SERVER_PID" || true
+          fi

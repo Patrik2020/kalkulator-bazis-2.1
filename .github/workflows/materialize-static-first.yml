@@ -3,6 +3,23 @@ name: Materialize static-first HTML
 on:
   workflow_dispatch:
   pull_request:
+    paths:
+      - "**/*.html"
+      - "css/**"
+      - "js/**"
+      - "data/**"
+      - "scripts/apply-*.js"
+      - "scripts/materialize-static-first.js"
+      - "scripts/normalize-static-html.js"
+      - "scripts/normalize-a11y-html.js"
+      - "scripts/normalize-retention-static.js"
+      - "scripts/cache-bust-assets.js"
+      - "scripts/generate-sitemap.js"
+      - "scripts/quarantine-legacy-category-generator.js"
+      - "scripts/url-paths.js"
+      - "package.json"
+      - "package-lock.json"
+      - ".github/workflows/materialize-static-first.yml"
   push:
     branches:
       - adsense-quality-v2
@@ -96,7 +113,7 @@ jobs:
       - name: Normalize final static output
         run: npm run static:normalize
 
-      - name: Re-apply AdSense editorial transforms after materialization
+      - name: Re-apply editorial transforms after materialization
         run: |
           node scripts/apply-adsense-domain-method-copy-v2.js
           node scripts/apply-construction-manufacturer-first-v2.js
@@ -155,29 +172,19 @@ jobs:
             "${RUNNER_TEMP}/static-stable-pass.diff" \
             "${RUNNER_TEMP}/static-verification-pass.diff"
 
+      # Full JavaScript/calculator/AdSense validation runs in dedicated workflows.
+      # Keep only generated-output integrity checks here before the bot commits.
       - name: Audit crawler-visible source HTML
         run: npm run static:check
 
-      - name: Validate HTML, JavaScript and calculator logic
-        run: npm run quality
+      - name: Run final calculator inventory gate
+        run: node scripts/final-fullsite-audit.js
 
-      - name: Validate AdSense runtime policy
-        run: node scripts/adsense-runtime-policy-audit.js
-
-      - name: Validate Phase 2 consolidation
-        run: node scripts/adsense-phase2-audit.js
-
-      - name: Validate Phase 2 Batch 2 consolidation
-        run: node scripts/adsense-phase2-batch2-audit.js
+      - name: Audit canonical URL policy
+        run: npm run quality:urls
 
       - name: Validate content-aware sitemap lastmod
         run: node scripts/sitemap-lastmod-v2-audit.js
-
-      - name: Enforce AdSense Quality v2 gate
-        run: node scripts/adsense-quality-v2-audit.js --report --gate
-
-      - name: Run final calculator inventory gate
-        run: node scripts/final-fullsite-audit.js
 
       - name: Verify generated sitemap is idempotent
         shell: bash
