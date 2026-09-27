@@ -44,11 +44,18 @@ assert.deepStrictEqual(extra, [], `Ismeretlen tesztmanifest URL-ek: ${extra.join
 const packageJson = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8"));
 assert.match(packageJson.scripts.quality, /test:reference:coverage/, "A lefedettségi audit nincs a kötelező quality scriptben.");
 assert.ok(packageJson.scripts["test:reference:browser"], "Hiányzik a böngészős referencia npm script.");
-const qualityWorkflow = fs.readFileSync(path.join(root, ".github", "workflows", "quality.yml"), "utf8");
+
+const workflowDirectory = path.join(root, ".github", "workflows");
+const referenceWorkflowSources = ["quality.yml", "browser-quality.yml"]
+  .map((fileName) => path.join(workflowDirectory, fileName))
+  .filter((filePath) => fs.existsSync(filePath))
+  .map((filePath) => fs.readFileSync(filePath, "utf8"))
+  .join("\n");
+
 assert.match(
-  qualityWorkflow,
+  referenceWorkflowSources,
   /npm run test:reference:browser/,
-  "A böngészős referenciaaudit nincs bekötve a GitHub Actions quality workflow-ba."
+  "A böngészős referenciaaudit nincs bekötve egyik GitHub Actions quality/browser workflow-ba sem."
 );
 
 console.log(
