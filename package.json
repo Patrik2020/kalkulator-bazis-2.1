@@ -92,6 +92,8 @@
     "test:expansion:05": "node scripts/expansion-batch-05-audit.js"
   },
   "devDependencies": {
+    "eslint": "10.11.0",
+    "globals": "17.12.0",
     "html-validate": "11.6.2"
   }
 }
