@@ -51,6 +51,20 @@ const correctnessRules = {
   ],
 };
 
+const projectBrowserGlobals = {
+  // Több régebbi kalkulátor klasszikus <script> fájlként tölti be a utils.js
+  // segédfüggvényeit. Ezek valódi, szándékos, readonly projektglobálisok.
+  format: "readonly",
+  formatInputNumber: "readonly",
+  goBack: "readonly",
+  parseNumber: "readonly",
+  showLinks: "readonly",
+
+  // Néhány kalkulátormodul böngészőben fut, de CommonJS exportot is biztosít
+  // a Node-alapú teszteknek. A module objektum ezért csak feature-detection után él.
+  module: "readonly",
+};
+
 export default [
   {
     ignores: [
@@ -63,7 +77,10 @@ export default [
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "script",
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        ...projectBrowserGlobals,
+      },
     },
     linterOptions: {
       reportUnusedDisableDirectives: "error",
