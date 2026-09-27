@@ -1,0 +1,112 @@
+name: Bootstrap rebased ESLint cleanup
+
+on:
+  push:
+    branches:
+      - chore/clean-code-1-1-eslint-rebased
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v7
+        with:
+          ref: chore/clean-code-1-1-eslint-rebased
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install pinned ESLint dependencies
+        run: npm install --save-dev --save-exact eslint@10.11.0 globals@17.12.0
+
+      - name: Wire ESLint into quality scripts
+        run: |
+          npm pkg set 'scripts.lint:js:syntax=node scripts/check-js-syntax.js'
+          npm pkg set 'scripts.lint:js=npm run lint:js:syntax && eslint "js/**/*.js" "scripts/**/*.js" "worker/src/**/*.js"'
+
+      - name: Remove dead declarations and normalize regexes
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          function edit(file, transform) {
+            const before = fs.readFileSync(file, 'utf8');
+            const after = transform(before);
+            if (after !== before) fs.writeFileSync(file, after);
+          }
+
+          edit('js/auto-converter-quality-upgrades.js', (s) => s
+            .replace(/^  const root = .*;\n/m, '')
+            .replace(/^  const df = .*;\n/m, '')
+            .replace(/^  const link = .*;\n/m, '')
+            .replace(/^  const select = .*;\n/m, ''));
+
+          edit('js/health-everyday-quality-upgrades.js', (s) => {
+            const lines = s.split('\n');
+            const start = lines.findIndex((line) => line.startsWith('  const esc = (value) =>'));
+            if (start < 0) return s;
+            let end = start;
+            while (end < lines.length && !lines[end].includes('&#039;"')) end += 1;
+            if (end < lines.length) lines.splice(start, end - start + 1);
+            return lines.join('\n');
+          });
+
+          edit('js/priority-upgrades.js', (s) => {
+            const lines = s.split('\n');
+            const root = lines.findIndex((line) => line.startsWith('  const root = '));
+            if (root >= 0) lines.splice(root, 1);
+            const checked = lines.findIndex((line) => line.startsWith('  const checkedValue = '));
+            if (checked >= 0) lines.splice(checked, 2);
+            return lines.join('\n');
+          });
+
+          edit('scripts/materialize-static-first.js', (s) => {
+            const lines = s.split('\n');
+            const verbose = lines.findIndex((line) => line.startsWith('const verbose = '));
+            if (verbose >= 0) lines.splice(verbose, 1);
+            const log = lines.findIndex((line) => line.startsWith('function log('));
+            if (log >= 0) {
+              let end = log;
+              while (end < lines.length && lines[end] !== '}') end += 1;
+              if (end < lines.length) lines.splice(log, end - log + 1);
+            }
+            return lines.join('\n');
+          });
+
+          edit('scripts/apply-adsense-eligibility-v2.js', (s) => s.replace(
+            /  const syncAdSense = \\(\\) => \\{\\[sS\\]\\*\\?\\n  \\};\\n\\n  const persistConsent/,
+            ' {2}const syncAdSense = \\(\\) => \\{[\\s\\S]*?\\n {2}\\};\\n\\n {2}const persistConsent'
+          ));
+
+          edit('scripts/apply-category-taxonomy.js', (s) => s.replace(
+            'const categoryPattern = /const categories = \\[[\\s\\S]*?\\n  \\];\\n\\n  const calculators = \\[/;',
+            'const categoryPattern = /const categories = \\[[\\s\\S]*?\\n {2}\\];\\n\\n {2}const calculators = \\[/;'
+          ));
+
+          edit('scripts/browser-qa-shard.js', (s) => s.replace(
+            'const viewportBlock = /  const viewports = \\[[\\s\\S]*?\\n  \\];/;',
+            'const viewportBlock = / {2}const viewports = \\[[\\s\\S]*?\\n {2}\\];/;'
+          ));
+          NODE
+
+      - name: Commit generated setup
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package.json package-lock.json js/auto-converter-quality-upgrades.js js/health-everyday-quality-upgrades.js js/priority-upgrades.js scripts/materialize-static-first.js scripts/apply-adsense-eligibility-v2.js scripts/apply-category-taxonomy.js scripts/browser-qa-shard.js
+          if git diff --cached --quiet; then
+            echo "Nothing to commit."
+          else
+            git commit -m "chore: enforce warning-free ESLint baseline"
+            git push origin HEAD:chore/clean-code-1-1-eslint-rebased
+          fi
+
+      - name: Run strict ESLint baseline
+        run: npm run lint:js
