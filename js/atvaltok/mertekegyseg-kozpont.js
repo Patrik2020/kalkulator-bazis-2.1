@@ -144,6 +144,20 @@
   };
   if (!Object.values(els).every(Boolean)) return;
 
+  const hashGroups = {
+    "#hosszusag": "length",
+    "#terulet": "area",
+    "#terfogat": "volume",
+    "#tomeg": "mass",
+    "#homerseklet": "temperature",
+    "#ido": "time",
+    "#sebesseg": "speed",
+    "#adatmeret": "data",
+    "#energia": "energy",
+    "#nyomas": "pressure",
+    "#teljesitmeny": "power"
+  };
+
   const format = (value) => {
     if (!Number.isFinite(value)) return "—";
     const abs = Math.abs(value);
@@ -166,19 +180,6 @@
     if (unit === "c") return value - 273.15;
     if (unit === "f") return (value - 273.15) * 9 / 5 + 32;
     return value;
-  };
-
-  const populateUnits = () => {
-    const group = groups[els.type.value];
-    const options = Object.entries(group.units)
-      .map(([key, [label]]) => `<option value="${key}">${label}</option>`)
-      .join("");
-    els.from.innerHTML = options;
-    els.to.innerHTML = options;
-    const [fromDefault, toDefault] = group.defaults;
-    els.from.value = fromDefault;
-    els.to.value = toDefault;
-    calculate();
   };
 
   const calculate = () => {
@@ -209,9 +210,32 @@
     els.result.textContent = `${format(input)} ${fromLabel} = ${format(output)} ${toLabel}`;
   };
 
+  const populateUnits = () => {
+    const group = groups[els.type.value];
+    const options = Object.entries(group.units)
+      .map(([key, [label]]) => `<option value="${key}">${label}</option>`)
+      .join("");
+    els.from.innerHTML = options;
+    els.to.innerHTML = options;
+    const [fromDefault, toDefault] = group.defaults;
+    els.from.value = fromDefault;
+    els.to.value = toDefault;
+    calculate();
+  };
+
+  const selectHashGroup = () => {
+    const groupKey = hashGroups[window.location.hash.toLowerCase()];
+    if (!groupKey || !groups[groupKey]) return false;
+    els.type.value = groupKey;
+    populateUnits();
+    return true;
+  };
+
   els.type.addEventListener("change", populateUnits);
   els.value.addEventListener("input", calculate);
   els.from.addEventListener("change", calculate);
   els.to.addEventListener("change", calculate);
-  populateUnits();
+  window.addEventListener("hashchange", selectHashGroup);
+
+  if (!selectHashGroup()) populateUnits();
 })();
