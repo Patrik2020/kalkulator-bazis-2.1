@@ -52,18 +52,19 @@ const timeIntentBlock = `<!-- KB_PHASE2:time-intent:START -->
     számol. Konkrét dátumok, határidők vagy naptári hónapok közötti különbséghez dátum- vagy
     munkanap-kalkulátort használj.
   </p>
-  <div class="faq-list" data-accordion="single">
-    <details>
-      <summary>1 óra hány perc és másodperc?</summary>
-      <p>1 óra pontosan 60 perc, vagyis 3600 másodperc.</p>
-    </details>
-    <details>
-      <summary>Átváltható a hónap és az év órára vagy napra?</summary>
-      <p>Becsült időtartamként igen: az átváltó átlagos hónappal (30,436875 nap) és átlagos évvel (365,2425 nap) számol. Konkrét naptári dátumhoz külön dátumszámítás szükséges.</p>
-    </details>
-  </div>
 </section>
 <!-- KB_PHASE2:time-intent:END -->`;
+
+const timeFaqBlock = `<!-- KB_PHASE2:time-faq:START -->
+      <details>
+        <summary>1 óra hány perc és másodperc?</summary>
+        <p>1 óra pontosan 60 perc, vagyis 3600 másodperc.</p>
+      </details>
+      <details>
+        <summary>Átváltható a hónap és az év órára vagy napra?</summary>
+        <p>Becsült időtartamként igen: az átváltó átlagos hónappal (30,436875 nap) és átlagos évvel (365,2425 nap) számol. Konkrét naptári dátumhoz külön dátumszámítás szükséges.</p>
+      </details>
+<!-- KB_PHASE2:time-faq:END -->`;
 
 const hubFaq = {
   "@type": "FAQPage",
@@ -75,22 +76,6 @@ const hubFaq = {
       acceptedAnswer: {
         "@type": "Answer",
         text: "Ugyanazt a feladatot egy felületen végzi el, kevesebb ismétlődő tartalommal és gyorsabb kategóriaváltással.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "1 óra hány perc és másodperc?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "1 óra pontosan 60 perc, vagyis 3600 másodperc.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Átváltható a hónap és az év órára vagy napra?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Becsült időtartamként igen: az átváltó átlagos hónappal (30,436875 nap) és átlagos évvel (365,2425 nap) számol. Konkrét naptári dátumhoz külön dátumszámítás szükséges.",
       },
     },
     {
@@ -107,6 +92,22 @@ const hubFaq = {
       acceptedAnswer: {
         "@type": "Answer",
         text: "Mert a Celsius, Fahrenheit és Kelvin skálák nullpontja eltér, ezért eltolást is alkalmazni kell.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "1 óra hány perc és másodperc?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "1 óra pontosan 60 perc, vagyis 3600 másodperc.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Átváltható a hónap és az év órára vagy napra?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Becsült időtartamként igen: az átváltó átlagos hónappal (30,436875 nap) és átlagos évvel (365,2425 nap) számol. Konkrét naptári dátumhoz külön dátumszámítás szükséges.",
       },
     },
   ],
@@ -196,6 +197,24 @@ function ensureTimeIntentBlock(html) {
   return html.replace(insertionPoint, `${timeIntentBlock}\n\n    <h2>Pontosság és kerekítés</h2>`);
 }
 
+function ensureTimeFaqEntries(html) {
+  const markerPattern = /<!--\s*KB_PHASE2:time-faq:START\s*-->[\s\S]*?<!--\s*KB_PHASE2:time-faq:END\s*-->/gi;
+  html = html.replace(markerPattern, "");
+
+  const gyikIndex = html.search(/<h2>GYIK<\/h2>/i);
+  if (gyikIndex < 0) throw new Error("Hiányzó GYIK szakasz az új mértékegység-központban.");
+
+  const beforeGyik = html.slice(0, gyikIndex);
+  const gyikTail = html.slice(gyikIndex);
+  const listPattern = /(<div\b[^>]*\bclass\s*=\s*(["'])[^"']*\bfaq-list\b[^"']*\2[^>]*>)([\s\S]*?)(<\/div>)/i;
+  const match = gyikTail.match(listPattern);
+  if (!match) throw new Error("Hiányzó fő .faq-list az új mértékegység-központ GYIK szakaszában.");
+
+  const body = match[3].trimEnd();
+  const replacement = `${match[1]}${body}\n${timeFaqBlock}\n    ${match[4]}`;
+  return beforeGyik + gyikTail.replace(listPattern, replacement);
+}
+
 function ensureTimeCategoryCopy(html) {
   return html.replace(
     /<tr><td>Idő<\/td><td>ms, s, perc, óra, nap, hét(?:, átlagos hónap és átlagos év)?<\/td><\/tr>/i,
@@ -258,6 +277,7 @@ const transformHub = (html) => {
 
   html = ensureTimeCategoryCopy(html);
   html = ensureTimeIntentBlock(html);
+  html = ensureTimeFaqEntries(html);
   return ensureHubFaqSchema(html);
 };
 
