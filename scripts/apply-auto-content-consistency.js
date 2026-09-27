@@ -102,6 +102,46 @@ const transforms = {
       "kilométerdíj felülvizsgálati dátum");
     return out;
   },
+
+  "kalkulatorok/auto-fogyasztas-kalkulator.html": (source) => {
+    let out = source;
+    const oldCalculation = '<h3>Hogyan működik a számítás?</h3>\n      <p>A képlet: tankolt liter ÷ megtett kilométer × 100. A pontosabb méréshez nullázd a napi kilométer-számlálót, majd lehetőleg tele tanktól tele tankig mérj.</p>\n      <div class="example-box"><h3>Konkrét példaszámítás</h3><p>Ha 42 litert tankoltál, és 650 km-t mentél, akkor a fogyasztás 42 ÷ 650 × 100 = 6,46 liter/100 km.</p></div>';
+    const queryCalculation = '<!-- KB_P4:auto-fuel-query:START -->\n      <h3>Átlagfogyasztás kiszámítása: képlet és gyors példák</h3>\n      <p>Az autó átlagfogyasztásának kiszámításához két adat kell: a tankolt üzemanyag literben és az ugyanazzal az üzemanyaggal megtett távolság kilométerben. Az üzemanyag-fogyasztás kalkulátor ugyanezt a számítást végzi el automatikusan.</p>\n      <p><strong>Átlagfogyasztás = tankolt liter ÷ megtett kilométer × 100.</strong> A pontosabb méréshez nullázd a napi kilométer-számlálót, majd lehetőleg tele tanktól tele tankig mérj.</p>\n      <div class="example-box"><h3>Gyors példák</h3><p>35 liter és 500 km esetén 7,00 l/100 km; 42 liter és 650 km esetén 6,46 l/100 km; 50 liter és 800 km esetén 6,25 l/100 km az átlagfogyasztás.</p></div>\n      <!-- KB_P4:auto-fuel-query:END -->';
+    if (/<!--\s*KB_P4:auto-fuel-query:START\s*-->[\s\S]*?<!--\s*KB_P4:auto-fuel-query:END\s*-->/.test(out)) {
+      out = out.replace(/<!--\s*KB_P4:auto-fuel-query:START\s*-->[\s\S]*?<!--\s*KB_P4:auto-fuel-query:END\s*-->/, queryCalculation);
+    } else {
+      out = replaceExact(out, oldCalculation, queryCalculation, "P4 átlagfogyasztás query-blokk");
+    }
+
+    const faqAnchor = '<details><summary>Mi növelheti a fogyasztást?</summary><p>Gyors tempó, hideg motor, rövid utak, klíma, tetőcsomagtartó, alacsony guminyomás és nagy terhelés.</p></details>';
+    const faqExtended = `${faqAnchor}\n        <details><summary>Hogyan számolom ki az autó átlagfogyasztását?</summary><p>Oszd el a tankolt litert a megtett kilométerrel, majd szorozd meg százzal. Például 42 liter és 650 km esetén 6,46 l/100 km az átlagfogyasztás.</p></details>\n        <details><summary>Mennyi üzemanyagot fogyaszt az autó 100 km-en?</summary><p>A l/100 km eredmény közvetlenül ezt mutatja meg. Például 6,5 l/100 km azt jelenti, hogy az autó átlagosan 6,5 liter üzemanyagot használ 100 kilométeren.</p></details>`;
+    if (!out.includes("Hogyan számolom ki az autó átlagfogyasztását?")) {
+      out = replaceExact(out, faqAnchor, faqExtended, "P4 látható FAQ");
+    }
+
+    const scriptPattern = /<script\b([^>]*)\bid=(["'])kb-structured-data\2([^>]*)>([\s\S]*?)<\/script>/i;
+    const match = out.match(scriptPattern);
+    if (!match) throw new Error("P4: hiányzó #kb-structured-data az autó fogyasztás oldalon");
+    let data;
+    try { data = JSON.parse(match[4]); }
+    catch (error) { throw new Error(`P4: hibás JSON-LD (${error.message})`); }
+    const nodes = Array.isArray(data["@graph"]) ? data["@graph"] : [];
+    const faq = nodes.find((node) => node?.["@type"] === "FAQPage");
+    if (!faq || !Array.isArray(faq.mainEntity)) throw new Error("P4: hiányzó FAQPage séma");
+    const additions = [
+      ["Hogyan számolom ki az autó átlagfogyasztását?", "Oszd el a tankolt litert a megtett kilométerrel, majd szorozd meg százzal. Például 42 liter és 650 km esetén 6,46 l/100 km az átlagfogyasztás."],
+      ["Mennyi üzemanyagot fogyaszt az autó 100 km-en?", "A l/100 km eredmény közvetlenül ezt mutatja meg. Például 6,5 l/100 km azt jelenti, hogy az autó átlagosan 6,5 liter üzemanyagot használ 100 kilométeren."],
+    ];
+    for (const [name, text] of additions) {
+      const existing = faq.mainEntity.find((item) => item?.name === name);
+      const node = { "@type": "Question", name, acceptedAnswer: { "@type": "Answer", text } };
+      if (existing) Object.assign(existing, node);
+      else faq.mainEntity.push(node);
+    }
+    const replacement = `<script${match[1]}id="kb-structured-data"${match[3]}>${JSON.stringify(data)}</script>`;
+    out = out.replace(scriptPattern, replacement);
+    return out;
+  },
 };
 
 function run() {
