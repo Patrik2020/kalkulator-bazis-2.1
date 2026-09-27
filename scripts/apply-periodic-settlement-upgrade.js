@@ -7,7 +7,7 @@ const checkOnly = process.argv.includes("--check");
 
 const section = `
 <section class="card card-calculator" id="periodic-settlement-calculator" data-quality-upgrade="2026-08-25">
-  <h2>Időszakos elszámolás teljesítési időpontja – Áfa tv. 58. §</h2>
+  <h2>Folyamatos teljesítés kalkulátor – időszakos elszámolás, Áfa tv. 58. §</h2>
   <p>Add meg az elszámolási időszak utolsó napját, a számla kibocsátását és a fizetési esedékességet. A kalkulátor a tipikus, Áfa tv. 58. § (1) és (1a) szerinti belföldi eset teljesítési időpontját számolja.</p>
   <div class="calc-grid">
     <div>
@@ -34,7 +34,11 @@ const section = `
 `;
 
 function apply(source) {
-  if (source.includes('id="periodic-settlement-calculator"')) return source;
+  const managedSection = /<section\b(?=[^>]*\bid=(['"])periodic-settlement-calculator\1)[^>]*>[\s\S]*?<\/section>/i;
+  if (managedSection.test(source)) {
+    return source.replace(managedSection, section.trim());
+  }
+
   const anchor = /<section\b[^>]*class=(['"])[^'"]*\barticle\b[^'"]*\bcalculator-guide\b[^'"]*\1/i;
   if (!anchor.test(source)) {
     throw new Error("Nem található a számla teljesítés útmutató szakasza a periódikus kalkulátor beszúrásához.");

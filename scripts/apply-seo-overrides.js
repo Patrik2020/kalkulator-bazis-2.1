@@ -30,12 +30,12 @@ const overrides = {
       "Adj hozzá vagy vonj ki naptári napokat egy dátumból, és számold ki gyorsan a cél dátumot.",
   },
   "kalkulatorok/szamla-teljesites-kalkulator.html": {
-    title: "Teljesítési dátum kalkulátor | Számla és folyamatos teljesítés",
+    title: "Teljesítési dátum és folyamatos teljesítés kalkulátor",
     description:
-      "Teljesítési dátum kalkulátor számlákhoz: lásd át a teljesítés, a fizetési határidő és a folyamatos vagy időszakos teljesítés fontos áfaszabályait.",
-    h1: "Számla teljesítési dátum kalkulátor",
+      "Teljesítési dátum és folyamatos teljesítés kalkulátor számlákhoz: számold ki az időszakos elszámolás tipikus teljesítési időpontját az Áfa tv. 58. § szerint.",
+    h1: "Teljesítési dátum és folyamatos teljesítés kalkulátor",
     heroLead:
-      "Tekintsd át a számla teljesítési dátumát, a fizetési határidőt és a különleges teljesítési szabályok korlátait.",
+      "Tekintsd át a számla teljesítési dátumát, és számold ki a folyamatos vagy időszakos elszámolás tipikus Áfa tv. 58. § szerinti esetét.",
   },
   "kalkulatorok/beton-kalkulator.html": {
     title: "Beton kalkulátor – köbméter (m³) és anyagszükséglet számítás",
