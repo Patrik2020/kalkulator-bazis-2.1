@@ -53,14 +53,14 @@ const wiseBannerScriptPath = `${projectRoot}/js/wise-banner-enhancer.js?v=9c6dba
 const accessibilityScriptPath = `${projectRoot}/js/site-accessibility.js?v=8135c9bdc65a`;
 const calculatorPageScriptPath = `${projectRoot}/js/calculator-page.js?v=4d5d99919a87`;
 const calculatorPolishScriptPath = `${projectRoot}/js/calculator-polish.js?v=96ed10d7ffb8`;
-const priorityUpgradeScriptPath = `${projectRoot}/js/priority-upgrades.js?v=c8db51dadcf2`;
+const priorityUpgradeScriptPath = `${projectRoot}/js/priority-upgrades.js?v=74f2d1b8d30b`;
 const constructionUpgradeScriptPath = `${projectRoot}/js/construction-upgrades.js?v=c6795aa64ca5`;
 const everydayUpgradeScriptPath = `${projectRoot}/js/everyday-upgrades.js?v=8daec853d9e1`;
 const autoConverterUpgradeScriptPath = `${projectRoot}/js/auto-converter-upgrades.js?v=5972f20bd8cd`;
 const financeQualityScriptPath = `${projectRoot}/js/finance-quality-upgrades.js?v=7207b5e874b7`;
 const constructionQualityScriptPath = `${projectRoot}/js/construction-quality-upgrades.js?v=7c73bd22cd31`;
-const healthEverydayQualityScriptPath = `${projectRoot}/js/health-everyday-quality-upgrades.js?v=3691c106a5e7`;
-const autoConverterQualityScriptPath = `${projectRoot}/js/auto-converter-quality-upgrades.js?v=74a0aa0853ab`;
+const healthEverydayQualityScriptPath = `${projectRoot}/js/health-everyday-quality-upgrades.js?v=9265101ffff7`;
+const autoConverterQualityScriptPath = `${projectRoot}/js/auto-converter-quality-upgrades.js?v=66e0bafb80ac`;
 const calculatorCssPath = `${projectRoot}/css/pages/calculator-suite.css?v=bd34d7987fdb`;
 const calculatorScriptPath = `${projectRoot}/js/calculator-suite.js?v=580d3a5f4460`;
 const normalizedPath = window.location.pathname.replace(/\/+$/, "");
