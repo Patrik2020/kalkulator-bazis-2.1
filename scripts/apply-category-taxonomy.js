@@ -92,7 +92,7 @@ function categoriesSource() {
 
 function updateSiteData() {
   let source = fs.readFileSync(dataPath, "utf8");
-  const categoryPattern = /const categories = \[[\s\S]*?\n  \];\n\n  const calculators = \[/;
+  const categoryPattern = /const categories = \[[\s\S]*?\n {2}\];\n\n {2}const calculators = \[/;
 
   if (!categoryPattern.test(source)) {
     throw new Error("A site-data.js kategória blokkja nem található.");
