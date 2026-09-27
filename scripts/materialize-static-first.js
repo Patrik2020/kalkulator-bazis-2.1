@@ -10,7 +10,6 @@ const retentionTemplate = fs
 const port = Number(process.env.KB_STATIC_PORT || 4173);
 const origin = `http://127.0.0.1:${port}`;
 const dryRun = process.argv.includes("--check");
-const verbose = process.argv.includes("--verbose");
 const liveApiCalculatorPages = new Set([
   "kalkulatorok/deviza-atvalto-kalkulator.html",
 ]);
@@ -18,9 +17,6 @@ const liveApiCalculatorPages = new Set([
 const BLOCK_START = (key) => `<!-- KB_STATIC:${key}:START -->`;
 const BLOCK_END = (key) => `<!-- KB_STATIC:${key}:END -->`;
 
-function log(...args) {
-  if (verbose) console.log(...args);
-}
 
 function findChrome() {
   const candidates = [

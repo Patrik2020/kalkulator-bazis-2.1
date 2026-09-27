@@ -2,7 +2,6 @@
   'use strict';
 
   const slug = (window.location.pathname.split('/').pop() || 'index.html').replace(/\.html?$/i, '').toLowerCase();
-  const root = window.KB_PROJECT_ROOT || '';
   const supported = new Set([
     'auto','atvaltok',
     'auto-kalkulator','uzemanyag-koltseg-kalkulator','auto-fogyasztas-kalkulator','hatotav-kalkulator',
@@ -18,7 +17,6 @@
   if (!main || document.querySelector('[data-auto-converter-quality="2026-08"]')) return;
 
   const nf = new Intl.NumberFormat('hu-HU', { maximumFractionDigits: 0 });
-  const df = new Intl.NumberFormat('hu-HU', { maximumFractionDigits: 2 });
   const parse = (value) => {
     const parsed = Number(String(value ?? '').replace(/\s/g, '').replace(',', '.').replace(/[^0-9.-]/g, ''));
     return Number.isFinite(parsed) ? parsed : 0;
@@ -27,7 +25,6 @@
   const number = (value, digits = 2) => Number.isFinite(value)
     ? new Intl.NumberFormat('hu-HU', { maximumFractionDigits: digits }).format(value)
     : '–';
-  const link = (href, label) => `<a href="${href}">${label}</a>`;
 
   const section = (className, html) => {
     const node = document.createElement('section');
@@ -42,7 +39,6 @@
   const note = (title, body) => `<div class="acq-note"><strong>${title}</strong><p>${body}</p></div>`;
   const metrics = (items) => `<div class="acq-metrics">${items.map(([label, value, key]) => `<div><span>${label}</span><strong${key ? ` data-acq="${key}"` : ''}>${value}</strong></div>`).join('')}</div>`;
   const input = (label, key, value, extra = '') => `<label>${label}<input data-acq-input="${key}" value="${value}" inputmode="decimal" ${extra}></label>`;
-  const select = (label, key, options) => `<label>${label}<select data-acq-input="${key}">${options.map(([v,t])=>`<option value="${v}">${t}</option>`).join('')}</select></label>`;
   const bind = (node, fn) => {
     node.querySelectorAll('[data-acq-input]').forEach((el) => {
       el.addEventListener('input', fn);

@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "node scripts/local-static-server.js",
     "lint:html": "html-validate '**/*.html'",
-    "lint:js": "node scripts/check-js-syntax.js",
+    "lint:js": "npm run lint:js:syntax && eslint \"js/**/*.js\" \"scripts/**/*.js\" \"worker/src/**/*.js\"",
     "test:math": "node scripts/math-audit.js",
     "test:invariants": "node scripts/property-invariants-audit.js",
     "test:calculator-suite": "node scripts/calculator-suite-audit.js",
@@ -89,9 +89,12 @@
     "test:expansion:02": "node scripts/expansion-batch-02-audit.js",
     "test:expansion:03": "node scripts/expansion-batch-03-audit.js",
     "test:expansion:04": "node scripts/expansion-batch-04-audit.js",
-    "test:expansion:05": "node scripts/expansion-batch-05-audit.js"
+    "test:expansion:05": "node scripts/expansion-batch-05-audit.js",
+    "lint:js:syntax": "node scripts/check-js-syntax.js"
   },
   "devDependencies": {
+    "eslint": "10.11.0",
+    "globals": "17.12.0",
     "html-validate": "11.6.2"
   }
 }
