@@ -3,6 +3,14 @@ const fromUnit = document.getElementById("fromUnit");
 const toUnit = document.getElementById("toUnit");
 const result = document.getElementById("result");
 
+if (typeof document.querySelector === "function") {
+    const retiredConverterLink = document.querySelector(".phase2-retired-converter a");
+    if (retiredConverterLink) {
+        retiredConverterLink.href = "mertekegyseg-atvalto-kalkulator#terulet";
+        retiredConverterLink.textContent = "Nyisd meg közvetlenül a Terület átváltást.";
+    }
+}
+
 const factors = {
     mm2: 0.000001,
     cm2: 0.0001,
