@@ -6,6 +6,14 @@ function invalidTemperature(resultElement, message = "A megadott hőmérséklet 
     resultElement.textContent = message;
 }
 
+if (typeof document.querySelector === "function") {
+    const retiredConverterLink = document.querySelector(".phase2-retired-converter a");
+    if (retiredConverterLink) {
+        retiredConverterLink.href = "mertekegyseg-atvalto-kalkulator#homerseklet";
+        retiredConverterLink.textContent = "Nyisd meg közvetlenül a Hőmérséklet átváltást.";
+    }
+}
+
 // Celsius ↔ Fahrenheit
 let cfMode = "CtoF";
 const cfInput = document.getElementById("cfInput");
