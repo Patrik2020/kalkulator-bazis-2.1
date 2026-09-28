@@ -66,7 +66,7 @@ const appendScripts = (paths = []) => {
   paths.forEach((assetPath) => appendElement("script", { src: resolveAsset(assetPath), defer: "" }));
 };
 
-const appendDomReadyScripts = (paths = []) => {
+const appendParsedDomScripts = (paths = []) => {
   paths.forEach((assetPath) => {
     const script = document.createElement("script");
     script.src = resolveAsset(assetPath);
@@ -129,16 +129,21 @@ if (isCalculatorPage) {
   appendScripts(headConfig.calculatorPage.scripts);
 }
 
-const loadDomReadyFeatures = () => {
-  fileFeatures.forEach((feature) => appendDomReadyScripts(feature.scripts));
-  slugFeatures.forEach((feature) => appendDomReadyScripts(feature.scripts));
-  if (isHomePage) appendDomReadyScripts(headConfig.home.scriptsAfterFeatures);
+const loadParsedDomFeatures = () => {
+  fileFeatures.forEach((feature) => appendParsedDomScripts(feature.scripts));
+  slugFeatures.forEach((feature) => appendParsedDomScripts(feature.scripts));
+  if (isHomePage) appendParsedDomScripts(headConfig.home.scriptsAfterFeatures);
 };
 
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", loadDomReadyFeatures, { once: true });
+  const onReadyStateChange = () => {
+    if (document.readyState === "loading") return;
+    document.removeEventListener("readystatechange", onReadyStateChange);
+    loadParsedDomFeatures();
+  };
+  document.addEventListener("readystatechange", onReadyStateChange);
 } else {
-  loadDomReadyFeatures();
+  loadParsedDomFeatures();
 }
 
 [
