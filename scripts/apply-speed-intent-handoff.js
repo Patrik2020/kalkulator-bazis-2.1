@@ -82,12 +82,13 @@ if (checkOnly) {
     process.exit(1);
   }
   console.log("P10 sebesség-intent blokk rendben.");
-  process.exit(0);
-}
-
-if (after !== before) {
+} else if (after !== before) {
   fs.writeFileSync(hubFile, after, "utf8");
   console.log("P10 sebesség-intent blokk frissítve.");
 } else {
   console.log("P10 sebesség-intent blokk már naprakész.");
 }
+
+// Egyetlen converter-intent build hookot tartunk fenn, hogy ne szaporítsuk
+// a globális npm/CI lépéseket minden új konszolidációs intenthez.
+require("./apply-volume-intent-handoff.js");

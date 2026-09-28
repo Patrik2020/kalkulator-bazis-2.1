@@ -46,6 +46,12 @@ function getUnitLabel(unit) {
     return labels[unit];
 }
 
+const retiredConverterLink = document.querySelector(".phase2-retired-converter a");
+if (retiredConverterLink) {
+    retiredConverterLink.href = "mertekegyseg-atvalto-kalkulator#terfogat";
+    retiredConverterLink.textContent = "Nyisd meg közvetlenül a Térfogat átváltást.";
+}
+
 inputValue.addEventListener("input", convertVolume);
 fromUnit.addEventListener("change", convertVolume);
 toUnit.addEventListener("change", convertVolume);
