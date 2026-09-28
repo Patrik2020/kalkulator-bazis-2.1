@@ -93,3 +93,4 @@ if (checkOnly) {
 // a globális npm/CI lépéseket minden új konszolidációs intenthez.
 require("./apply-volume-intent-handoff.js");
 require("./apply-temperature-intent-handoff.js");
+require("./apply-data-size-intent-handoff.js");
