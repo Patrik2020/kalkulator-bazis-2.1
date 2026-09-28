@@ -83,3 +83,5 @@ if (after !== before) {
 } else {
   console.log("P13 adatméret-intent blokk már naprakész.");
 }
+
+require("./apply-area-intent-handoff.js");
