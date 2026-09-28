@@ -4,6 +4,14 @@
   const toUnit = document.getElementById("toUnit");
   const result = document.getElementById("result");
 
+  if (typeof document.querySelector === "function") {
+    const retiredConverterLink = document.querySelector(".phase2-retired-converter a");
+    if (retiredConverterLink) {
+      retiredConverterLink.href = "mertekegyseg-atvalto-kalkulator#adatmeret";
+      retiredConverterLink.textContent = "Nyisd meg közvetlenül az Adatméret átváltást.";
+    }
+  }
+
   // Az új adatméret-kártyát az auto-converter-upgrades.js kezeli. A régi
   // vezérlők csak korábbi vagy gyorsítótárazott HTML-változatokban lehetnek jelen.
   if (!inputValue || !fromUnit || !toUnit || !result) return;
