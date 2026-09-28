@@ -20,10 +20,12 @@
       units: {
         cm2: ["Négyzetcentiméter (cm²)", 0.0001],
         m2: ["Négyzetméter (m²)", 1],
+        a: ["Ár (a)", 100],
         ha: ["Hektár (ha)", 10000],
         km2: ["Négyzetkilométer (km²)", 1000000],
         acre: ["Acre", 4046.8564224],
-        ft2: ["Négyzetláb (ft²)", 0.09290304]
+        ft2: ["Négyzetláb (ft²)", 0.09290304],
+        in2: ["Négyzethüvelyk (in²)", 0.00064516]
       },
       defaults: ["m2", "ha"]
     },
