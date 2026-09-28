@@ -17,13 +17,23 @@ const slugs = [
 ];
 
 const canonical = "https://kalkulatorbazis.hu/kalkulatorok/mertekegyseg-atvalto-kalkulator";
-const notice = `<!-- KB_PHASE2:converter-retired:START -->
+const genericNotice = `<!-- KB_PHASE2:converter-retired:START -->
 <section class="info-box phase2-retired-converter">
   <strong>Ez az önálló átváltó kivezetés alatt van.</strong>
   A mértékegység-átváltásokat egy közös, 11 kategóriás eszközbe vontuk össze.
   <a href="mertekegyseg-atvalto-kalkulator">Nyisd meg a Mértékegység átváltó központot.</a>
 </section>
 <!-- KB_PHASE2:converter-retired:END -->`;
+
+const timeNotice = `<!-- KB_PHASE2:converter-retired:START -->
+<section class="info-box phase2-retired-converter">
+  <strong>Az időátváltó a közös Mértékegység átváltóba költözött.</strong>
+  Az óra, perc, másodperc, nap, hét, átlagos hónap és átlagos év átváltását ugyanott éred el.
+  <a href="mertekegyseg-atvalto-kalkulator#ido">Nyisd meg közvetlenül az Idő átváltást.</a>
+</section>
+<!-- KB_PHASE2:converter-retired:END -->`;
+
+const noticeFor = (slug) => slug === "ido-atvalto-kalkulator" ? timeNotice : genericNotice;
 
 const reliabilityNote = `<p class="reliability-note">
       <strong>Megbízhatósági megjegyzés:</strong>
@@ -33,12 +43,12 @@ const reliabilityNote = `<p class="reliability-note">
     </p>`;
 
 const timeIntentBlock = `<!-- KB_PHASE2:time-intent:START -->
-<section class="converter-intent-block" data-converter-intent="time">
-  <h2>Idő átváltás: óra, perc, másodperc és nap</h2>
+<section id="ido" class="converter-intent-block" data-converter-intent="time">
+  <h2>Idő átváltás: óra, perc, másodperc és nap kalkulátor</h2>
   <p>
     Az <strong>Idő</strong> kategóriában másodpercet, percet, órát, napot és hetet válthatsz át,
-    valamint átlagos hónap- és évhosszal is számolhatsz. Gyakori példák: 1 óra = 60 perc,
-    1 óra = 3600 másodperc, 1 nap = 24 óra és 1 hét = 168 óra.
+    valamint átlagos hónap- és évhosszal is számolhatsz. Az átváltó például megmutatja,
+    hogy 90 perc hány óra, 120 óra hány nap, vagy 1 nap hány perc és másodperc.
   </p>
   <ul>
     <li>1 perc = 60 másodperc</li>
@@ -46,6 +56,35 @@ const timeIntentBlock = `<!-- KB_PHASE2:time-intent:START -->
     <li>1 nap = 24 óra = 1440 perc = 86 400 másodperc</li>
     <li>1 hét = 7 nap = 168 óra</li>
   </ul>
+
+  <h3>Gyakori perc → óra átváltások</h3>
+  <table>
+    <thead><tr><th>Perc</th><th>Óra</th></tr></thead>
+    <tbody>
+      <tr><td>30 perc</td><td>0,5 óra</td></tr>
+      <tr><td>60 perc</td><td>1 óra</td></tr>
+      <tr><td>90 perc</td><td>1,5 óra</td></tr>
+      <tr><td>120 perc</td><td>2 óra</td></tr>
+      <tr><td>150 perc</td><td>2,5 óra</td></tr>
+      <tr><td>180 perc</td><td>3 óra</td></tr>
+      <tr><td>240 perc</td><td>4 óra</td></tr>
+      <tr><td>300 perc</td><td>5 óra</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Gyakori óra → nap átváltások</h3>
+  <table>
+    <thead><tr><th>Óra</th><th>Nap</th></tr></thead>
+    <tbody>
+      <tr><td>24 óra</td><td>1 nap</td></tr>
+      <tr><td>48 óra</td><td>2 nap</td></tr>
+      <tr><td>72 óra</td><td>3 nap</td></tr>
+      <tr><td>120 óra</td><td>5 nap</td></tr>
+      <tr><td>168 óra</td><td>7 nap</td></tr>
+      <tr><td>240 óra</td><td>10 nap</td></tr>
+    </tbody>
+  </table>
+
   <p>
     A hónap és az év nem állandó hosszúságú naptári egység. Az átváltó ezért ezeknél
     <strong>átlagos hónappal (30,436875 nap)</strong> és <strong>átlagos évvel (365,2425 nap)</strong>
@@ -59,6 +98,18 @@ const timeFaqBlock = `<!-- KB_PHASE2:time-faq:START -->
       <details>
         <summary>1 óra hány perc és másodperc?</summary>
         <p>1 óra pontosan 60 perc, vagyis 3600 másodperc.</p>
+      </details>
+      <details>
+        <summary>90 perc hány óra?</summary>
+        <p>90 perc = 1,5 óra, vagyis 1 óra 30 perc.</p>
+      </details>
+      <details>
+        <summary>120 óra hány nap?</summary>
+        <p>120 óra = 5 nap.</p>
+      </details>
+      <details>
+        <summary>1 nap hány perc és másodperc?</summary>
+        <p>1 nap = 1440 perc = 86 400 másodperc.</p>
       </details>
       <details>
         <summary>Átváltható a hónap és az év órára vagy napra?</summary>
@@ -100,6 +151,30 @@ const hubFaq = {
       acceptedAnswer: {
         "@type": "Answer",
         text: "1 óra pontosan 60 perc, vagyis 3600 másodperc.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "90 perc hány óra?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "90 perc = 1,5 óra, vagyis 1 óra 30 perc.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "120 óra hány nap?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "120 óra = 5 nap.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "1 nap hány perc és másodperc?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "1 nap = 1440 perc = 86 400 másodperc.",
       },
     },
     {
@@ -222,7 +297,7 @@ function ensureTimeCategoryCopy(html) {
   );
 }
 
-const transform = (html) => {
+const transform = (html, slug) => {
   if (/<meta\s+name=["']robots["']/i.test(html)) {
     html = html.replace(
       /<meta\s+name=["']robots["'][^>]*>/i,
@@ -245,7 +320,11 @@ const transform = (html) => {
     `<meta property="og:url" content="${canonical}" />`
   );
 
-  if (!html.includes("KB_PHASE2:converter-retired:START")) {
+  const notice = noticeFor(slug);
+  const noticePattern = /<!--\s*KB_PHASE2:converter-retired:START\s*-->[\s\S]*?<!--\s*KB_PHASE2:converter-retired:END\s*-->/i;
+  if (noticePattern.test(html)) {
+    html = html.replace(noticePattern, notice);
+  } else {
     const hero = html.match(/<section\s+class=["'][^"']*hero[^"']*["'][^>]*>[\s\S]*?<\/section>/i);
     if (!hero) throw new Error("Hiányzó hero blokk a kivezetett átváltó oldalon.");
     html = html.replace(hero[0], `${hero[0]}\n${notice}`);
@@ -285,7 +364,7 @@ let changed = 0;
 for (const slug of slugs) {
   const file = path.join(root, "kalkulatorok", `${slug}.html`);
   const before = fs.readFileSync(file, "utf8");
-  const after = transform(before);
+  const after = transform(before, slug);
   if (after !== before) {
     fs.writeFileSync(file, after, "utf8");
     changed += 1;
