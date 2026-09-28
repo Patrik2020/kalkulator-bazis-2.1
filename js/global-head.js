@@ -63,6 +63,10 @@ const appendStyles = (paths = []) => {
 };
 
 const appendScripts = (paths = []) => {
+  paths.forEach((assetPath) => appendElement("script", { src: resolveAsset(assetPath), defer: "" }));
+};
+
+const appendDomReadyScripts = (paths = []) => {
   paths.forEach((assetPath) => {
     const script = document.createElement("script");
     script.src = resolveAsset(assetPath);
@@ -125,9 +129,17 @@ if (isCalculatorPage) {
   appendScripts(headConfig.calculatorPage.scripts);
 }
 
-fileFeatures.forEach((feature) => appendScripts(feature.scripts));
-slugFeatures.forEach((feature) => appendScripts(feature.scripts));
-if (isHomePage) appendScripts(headConfig.home.scriptsAfterFeatures);
+const loadDomReadyFeatures = () => {
+  fileFeatures.forEach((feature) => appendDomReadyScripts(feature.scripts));
+  slugFeatures.forEach((feature) => appendDomReadyScripts(feature.scripts));
+  if (isHomePage) appendDomReadyScripts(headConfig.home.scriptsAfterFeatures);
+};
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", loadDomReadyFeatures, { once: true });
+} else {
+  loadDomReadyFeatures();
+}
 
 [
   { name: "application-name", content: "Kalkulátor Bázis" },
