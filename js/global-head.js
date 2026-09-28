@@ -63,7 +63,12 @@ const appendStyles = (paths = []) => {
 };
 
 const appendScripts = (paths = []) => {
-  paths.forEach((assetPath) => appendElement("script", { src: resolveAsset(assetPath), defer: "" }));
+  paths.forEach((assetPath) => {
+    const script = document.createElement("script");
+    script.src = resolveAsset(assetPath);
+    script.async = false;
+    document.head.appendChild(script);
+  });
 };
 
 const hasMainStylesheet = () => [...document.querySelectorAll('link[rel~="stylesheet"][href]')].some((link) => {
