@@ -42,6 +42,12 @@ function getUnitLabel(unit) {
     return labels[unit];
 }
 
+const retiredConverterLink = document.querySelector(".phase2-retired-converter a");
+if (retiredConverterLink) {
+    retiredConverterLink.href = "mertekegyseg-atvalto-kalkulator#sebesseg";
+    retiredConverterLink.textContent = "Nyisd meg közvetlenül a Sebesség átváltást.";
+}
+
 inputValue.addEventListener("input", convertSpeed);
 fromUnit.addEventListener("change", convertSpeed);
 toUnit.addEventListener("change", convertSpeed);
