@@ -91,3 +91,5 @@ if (after !== before) {
 } else {
   console.log("P14 terület-intent blokk már naprakész.");
 }
+
+require("./apply-length-intent-handoff.js");
