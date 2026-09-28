@@ -101,48 +101,21 @@ function transformHub(html) {
   return html.replace(insertionPoint, `${finalIntentBlock}\n\n    <h2>Pontosság és kerekítés</h2>`);
 }
 
-const legacyTargets = [
-  ["energia-atvalto-kalkulator.html", "energia", "Energia"],
-  ["teljesitmeny-atvalto-kalkulator.html", "teljesitmeny", "Teljesítmény"],
-  ["nyomas-atvalto-kalkulator.html", "nyomas", "Nyomás"],
-];
+const before = fs.readFileSync(hubFile, "utf8");
+const after = transformHub(before);
 
-function transformLegacy(html, hash, label) {
-  const retiredPattern = /<!--\s*KB_PHASE2:converter-retired:START\s*-->[\s\S]*?<!--\s*KB_PHASE2:converter-retired:END\s*-->/i;
-  const match = html.match(retiredPattern);
-  if (!match) throw new Error(`Hiányzó Phase 2 kivezetési blokk: ${label}.`);
-
-  const updated = match[0].replace(
-    /<a href="[^"]+">[^<]*<\/a>/i,
-    `<a href="mertekegyseg-atvalto-kalkulator#${hash}">Nyisd meg közvetlenül a ${label} átváltást.</a>`
-  );
-  return html.replace(retiredPattern, updated);
-}
-
-function apply(file, transform, label) {
-  const before = fs.readFileSync(file, "utf8");
-  const after = transform(before);
-
-  if (checkOnly) {
-    if (after !== before) {
-      console.error(`${label} nincs materializálva vagy nem egyezik a forrással.`);
-      process.exitCode = 1;
-    }
-    return;
-  }
-
+if (checkOnly) {
   if (after !== before) {
-    fs.writeFileSync(file, after, "utf8");
-    console.log(`${label} frissítve.`);
-  } else {
-    console.log(`${label} már naprakész.`);
+    console.error("P16 végső átváltó intent blokkok nincsenek materializálva vagy nem egyeznek a forrással.");
+    process.exit(1);
   }
+  console.log("P16 végső átváltó intent blokkok rendben.");
+  process.exit(0);
 }
 
-apply(hubFile, transformHub, "P16 végső átváltó intent blokkok");
-for (const [filename, hash, label] of legacyTargets) {
-  const file = path.join(root, "kalkulatorok", filename);
-  apply(file, (html) => transformLegacy(html, hash, label), `P16 ${label} CTA`);
+if (after !== before) {
+  fs.writeFileSync(hubFile, after, "utf8");
+  console.log("P16 végső átváltó intent blokkok frissítve.");
+} else {
+  console.log("P16 végső átváltó intent blokkok már naprakészek.");
 }
-
-if (checkOnly && process.exitCode) process.exit(process.exitCode);
