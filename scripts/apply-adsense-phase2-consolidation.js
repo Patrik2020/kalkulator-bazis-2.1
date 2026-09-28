@@ -33,7 +33,19 @@ const timeNotice = `<!-- KB_PHASE2:converter-retired:START -->
 </section>
 <!-- KB_PHASE2:converter-retired:END -->`;
 
-const noticeFor = (slug) => slug === "ido-atvalto-kalkulator" ? timeNotice : genericNotice;
+const massNotice = `<!-- KB_PHASE2:converter-retired:START -->
+<section class="info-box phase2-retired-converter">
+  <strong>A tömegátváltó a közös Mértékegység átváltóba költözött.</strong>
+  A gramm, kilogramm, tonna, uncia és font átváltását ugyanott éred el.
+  <a href="mertekegyseg-atvalto-kalkulator#tomeg">Nyisd meg közvetlenül a Tömeg átváltást.</a>
+</section>
+<!-- KB_PHASE2:converter-retired:END -->`;
+
+const noticeFor = (slug) => {
+  if (slug === "ido-atvalto-kalkulator") return timeNotice;
+  if (slug === "tomeg-atvalto-kalkulator") return massNotice;
+  return genericNotice;
+};
 
 const reliabilityNote = `<p class="reliability-note">
       <strong>Megbízhatósági megjegyzés:</strong>
@@ -94,6 +106,47 @@ const timeIntentBlock = `<!-- KB_PHASE2:time-intent:START -->
 </section>
 <!-- KB_PHASE2:time-intent:END -->`;
 
+const massIntentBlock = `<!-- KB_PHASE2:mass-intent:START -->
+<section id="tomeg" class="converter-intent-block" data-converter-intent="mass">
+  <h2>Tömeg átváltás: gramm, kilogramm, tonna és font kalkulátor</h2>
+  <p>
+    A <strong>Tömeg</strong> kategóriában milligramm, gramm, kilogramm, tonna, uncia és font között válthatsz.
+    Az átváltó például megmutatja, hogy 1 tonna hány kilogramm, 1 kilogramm hány gramm,
+    vagy 1 font hány kilogramm és gramm.
+  </p>
+  <ul>
+    <li>1 kilogramm = 1000 gramm</li>
+    <li>1 tonna = 1000 kilogramm = 1 000 000 gramm</li>
+    <li>1 font (lb) = 0,45359237 kilogramm = 453,59237 gramm</li>
+    <li>1 uncia (oz) = 28,349523125 gramm</li>
+  </ul>
+
+  <h3>Gyakori tonna → kilogramm átváltások</h3>
+  <table>
+    <thead><tr><th>Tonna</th><th>Kilogramm</th></tr></thead>
+    <tbody>
+      <tr><td>1 tonna</td><td>1000 kg</td></tr>
+      <tr><td>2 tonna</td><td>2000 kg</td></tr>
+      <tr><td>5 tonna</td><td>5000 kg</td></tr>
+      <tr><td>10 tonna</td><td>10 000 kg</td></tr>
+      <tr><td>100 tonna</td><td>100 000 kg</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Gyakori kilogramm → gramm átváltások</h3>
+  <table>
+    <thead><tr><th>Kilogramm</th><th>Gramm</th></tr></thead>
+    <tbody>
+      <tr><td>0,1 kg</td><td>100 g</td></tr>
+      <tr><td>0,5 kg</td><td>500 g</td></tr>
+      <tr><td>1 kg</td><td>1000 g</td></tr>
+      <tr><td>2 kg</td><td>2000 g</td></tr>
+      <tr><td>5 kg</td><td>5000 g</td></tr>
+    </tbody>
+  </table>
+</section>
+<!-- KB_PHASE2:mass-intent:END -->`;
+
 const timeFaqBlock = `<!-- KB_PHASE2:time-faq:START -->
       <details>
         <summary>1 óra hány perc és másodperc?</summary>
@@ -116,6 +169,25 @@ const timeFaqBlock = `<!-- KB_PHASE2:time-faq:START -->
         <p>Becsült időtartamként igen: az átváltó átlagos hónappal (30,436875 nap) és átlagos évvel (365,2425 nap) számol. Konkrét naptári dátumhoz külön dátumszámítás szükséges.</p>
       </details>
 <!-- KB_PHASE2:time-faq:END -->`;
+
+const massFaqBlock = `<!-- KB_PHASE2:mass-faq:START -->
+      <details>
+        <summary>1 tonna hány kg?</summary>
+        <p>1 tonna pontosan 1000 kilogramm.</p>
+      </details>
+      <details>
+        <summary>1 kg hány gramm?</summary>
+        <p>1 kilogramm pontosan 1000 gramm.</p>
+      </details>
+      <details>
+        <summary>1 font hány gramm és kilogramm?</summary>
+        <p>1 font (lb) = 453,59237 gramm = 0,45359237 kilogramm.</p>
+      </details>
+      <details>
+        <summary>Hogyan váltok kilogrammról tonnára?</summary>
+        <p>A kilogrammban megadott értéket oszd el 1000-rel. Például 5000 kg = 5 tonna.</p>
+      </details>
+<!-- KB_PHASE2:mass-faq:END -->`;
 
 const hubFaq = {
   "@type": "FAQPage",
@@ -183,6 +255,38 @@ const hubFaq = {
       acceptedAnswer: {
         "@type": "Answer",
         text: "Becsült időtartamként igen: az átváltó átlagos hónappal (30,436875 nap) és átlagos évvel (365,2425 nap) számol. Konkrét naptári dátumhoz külön dátumszámítás szükséges.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "1 tonna hány kg?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "1 tonna pontosan 1000 kilogramm.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "1 kg hány gramm?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "1 kilogramm pontosan 1000 gramm.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "1 font hány gramm és kilogramm?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "1 font (lb) = 453,59237 gramm = 0,45359237 kilogramm.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "Hogyan váltok kilogrammról tonnára?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "A kilogrammban megadott értéket oszd el 1000-rel. Például 5000 kg = 5 tonna.",
       },
     },
   ],
@@ -272,6 +376,17 @@ function ensureTimeIntentBlock(html) {
   return html.replace(insertionPoint, `${timeIntentBlock}\n\n    <h2>Pontosság és kerekítés</h2>`);
 }
 
+function ensureMassIntentBlock(html) {
+  const blockPattern = /<!--\s*KB_PHASE2:mass-intent:START\s*-->[\s\S]*?<!--\s*KB_PHASE2:mass-intent:END\s*-->/i;
+  if (blockPattern.test(html)) return html.replace(blockPattern, massIntentBlock);
+
+  const insertionPoint = /<h2>Pontosság és kerekítés<\/h2>/i;
+  if (!insertionPoint.test(html)) {
+    throw new Error("Hiányzó 'Pontosság és kerekítés' szakasz az új mértékegység-központban.");
+  }
+  return html.replace(insertionPoint, `${massIntentBlock}\n\n    <h2>Pontosság és kerekítés</h2>`);
+}
+
 function ensureTimeFaqEntries(html) {
   const markerPattern = /<!--\s*KB_PHASE2:time-faq:START\s*-->[\s\S]*?<!--\s*KB_PHASE2:time-faq:END\s*-->/gi;
   html = html.replace(markerPattern, "");
@@ -287,6 +402,24 @@ function ensureTimeFaqEntries(html) {
 
   const body = match[3].trimEnd();
   const replacement = `${match[1]}${body}\n${timeFaqBlock}\n    ${match[4]}`;
+  return beforeGyik + gyikTail.replace(listPattern, replacement);
+}
+
+function ensureMassFaqEntries(html) {
+  const markerPattern = /<!--\s*KB_PHASE2:mass-faq:START\s*-->[\s\S]*?<!--\s*KB_PHASE2:mass-faq:END\s*-->/gi;
+  html = html.replace(markerPattern, "");
+
+  const gyikIndex = html.search(/<h2>GYIK<\/h2>/i);
+  if (gyikIndex < 0) throw new Error("Hiányzó GYIK szakasz az új mértékegység-központban.");
+
+  const beforeGyik = html.slice(0, gyikIndex);
+  const gyikTail = html.slice(gyikIndex);
+  const listPattern = /(<div\b[^>]*\bclass\s*=\s*(["'])[^"']*\bfaq-list\b[^"']*\2[^>]*>)([\s\S]*?)(<\/div>)/i;
+  const match = gyikTail.match(listPattern);
+  if (!match) throw new Error("Hiányzó fő .faq-list az új mértékegység-központ GYIK szakaszában.");
+
+  const body = match[3].trimEnd();
+  const replacement = `${match[1]}${body}\n${massFaqBlock}\n    ${match[4]}`;
   return beforeGyik + gyikTail.replace(listPattern, replacement);
 }
 
@@ -356,7 +489,9 @@ const transformHub = (html) => {
 
   html = ensureTimeCategoryCopy(html);
   html = ensureTimeIntentBlock(html);
+  html = ensureMassIntentBlock(html);
   html = ensureTimeFaqEntries(html);
+  html = ensureMassFaqEntries(html);
   return ensureHubFaqSchema(html);
 };
 
