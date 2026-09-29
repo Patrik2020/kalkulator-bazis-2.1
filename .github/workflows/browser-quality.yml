@@ -7,6 +7,7 @@ on:
       - "css/**"
       - "js/**"
       - "scripts/*browser*.js"
+      - "scripts/responsive-*.js"
       - "scripts/local-static-server.js"
       - "package.json"
       - "package-lock.json"
@@ -29,7 +30,7 @@ jobs:
     # need to repeat the expensive browser matrix on the PR head.
     if: github.event_name != 'pull_request' || github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
 
     steps:
       - name: Checkout
@@ -72,7 +73,7 @@ jobs:
       - name: Verify decision and comparison switchers
         run: node scripts/decision-switcher-browser-audit.js
 
-      - name: Smoke-test every calculator on mobile and desktop
+      - name: Smoke-test every calculator on responsive risk viewports
         run: npm run test:browser:all-calculators
 
       - name: Stop local static server
