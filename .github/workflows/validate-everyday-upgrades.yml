@@ -5,6 +5,7 @@ on:
     paths:
       - "js/everyday-upgrades.js"
       - "js/global-head.js"
+      - "js/global-head-config.js"
       - "css/pages/everyday-upgrades.css"
       - ".github/workflows/validate-everyday-upgrades.yml"
 
@@ -20,10 +21,11 @@ jobs:
         run: |
           node --check js/everyday-upgrades.js
           node --check js/global-head.js
+          node --check js/global-head-config.js
       - name: Required calculator handlers
         run: |
           for slug in atlag-kalkulator munkaido-kalkulator oraber-kalkulator egysegar-kalkulator rezsi-megosztas-kalkulator ar-kedvezmeny-kalkulator borravalo-kalkulator eletkor-kalkulator datum-kulonbseg-kalkulator; do
             grep -q "$slug" js/everyday-upgrades.js
           done
-          grep -q "everyday-upgrades.js" js/global-head.js
+          grep -q "everyday-upgrades.js" js/global-head-config.js
           test -f css/pages/everyday-upgrades.css

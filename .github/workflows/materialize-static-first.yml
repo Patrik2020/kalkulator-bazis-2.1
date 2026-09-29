@@ -101,6 +101,9 @@ jobs:
       - name: Apply AdSense audit policy normalization
         run: node scripts/apply-adsense-audit-policy-v2.js
 
+      - name: Materialize global head config include
+        run: node scripts/apply-global-head-config.js
+
       - name: Materialize public taxonomy
         run: npm run taxonomy:apply
 
@@ -136,6 +139,7 @@ jobs:
       - name: Stabilize newly materialized pages
         shell: bash
         run: |
+          node scripts/apply-global-head-config.js
           npm run static:build
           npm run static:normalize
           node scripts/apply-adsense-domain-method-copy-v2.js
@@ -154,6 +158,7 @@ jobs:
         shell: bash
         run: |
           git diff --binary > "${RUNNER_TEMP}/static-stable-pass.diff"
+          node scripts/apply-global-head-config.js
           npm run static:build
           npm run static:normalize
           node scripts/apply-adsense-domain-method-copy-v2.js

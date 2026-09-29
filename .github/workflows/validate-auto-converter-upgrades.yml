@@ -6,6 +6,7 @@ on:
       - "js/auto-converter-upgrades.js"
       - "js/atvaltok/deviza.js"
       - "js/global-head.js"
+      - "js/global-head-config.js"
       - "css/pages/auto-converter-upgrades.css"
       - "kalkulatorok/deviza-atvalto-kalkulator.html"
       - ".github/workflows/validate-auto-converter-upgrades.yml"
@@ -24,12 +25,13 @@ jobs:
           node --check js/auto-converter-upgrades.js
           node --check js/atvaltok/deviza.js
           node --check js/global-head.js
+          node --check js/global-head-config.js
       - name: Required handlers and files
         run: |
           for slug in eves-auto-koltseg-kalkulator auto-ertekvesztes-kalkulator kilometerdij-kalkulator co2-kibocsatas-kalkulator gumi-meret-kalkulator uzemanyag-koltseg-kalkulator adatmeret-atvalto-kalkulator energia-atvalto-kalkulator teljesitmeny-atvalto-kalkulator hosszusag-atvalto-kalkulator tomeg-atvalto-kalkulator terulet-atvalto-kalkulator terfogat-atvalto-kalkulator ido-atvalto-kalkulator sebesseg-atvalto-kalkulator; do
             grep -q "$slug" js/auto-converter-upgrades.js
           done
-          grep -q "auto-converter-upgrades.js" js/global-head.js
+          grep -q "auto-converter-upgrades.js" js/global-head-config.js
           test -f css/pages/auto-converter-upgrades.css
       - name: Live currency converter remains API-backed
         run: |

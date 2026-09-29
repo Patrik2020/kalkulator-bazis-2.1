@@ -6,6 +6,7 @@ on:
       - "js/construction-upgrades.js"
       - "css/pages/construction-upgrades.css"
       - "js/global-head.js"
+      - "js/global-head-config.js"
       - ".github/workflows/validate-construction-upgrades.yml"
   workflow_dispatch:
 
@@ -21,11 +22,12 @@ jobs:
         run: |
           node --check js/construction-upgrades.js
           node --check js/global-head.js
+          node --check js/global-head-config.js
       - name: Required planners and assets
         run: |
           for slug in gipszkarton-kalkulator tapeta-kalkulator vakolat-kalkulator hoszigeteles-kalkulator terkovezes-kalkulator tetocserep-kalkulator fuga-kalkulator padlo-burkolat-kalkulator; do
             grep -q "\"$slug\"" js/construction-upgrades.js
             test -f "kalkulatorok/$slug.html"
           done
-          grep -q "construction-upgrades.css" js/global-head.js
-          grep -q "construction-upgrades.js" js/global-head.js
+          grep -q "construction-upgrades.css" js/global-head-config.js
+          grep -q "construction-upgrades.js" js/global-head-config.js
