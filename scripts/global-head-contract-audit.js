@@ -70,7 +70,7 @@ const walk = (directory) => {
 walk(root);
 
 const configLinePattern = /^\s*<script\b[^>]*\bsrc=(['"])([^'"]*?)js\/global-head-config\.js(?:\?[^'"]*)?\1[^>]*>\s*<\/script>\s*$/i;
-const bootstrapLinePattern = /^\s*<script\b[^>]*\bsrc=(['"])([^'"]*?)js\/global-head\.js(?:\?[^'"]*)?\1[^>]*>\s*<\/script>\s*$/i;
+const bootstrapLinePattern = /^\s*<script\b[^>]*\bsrc=(['"])([^'"]*?)js\/global-head\.js(?:\?[^'"]*)?\1[^>]*>\s*<\/script>(?:\s*.*)?$/i;
 const fallbackLinePattern = /^\s*<script\b[^>]*\bsrc=(['"])[^'"]*?js\/static-first-fallbacks\.js(?:\?[^'"]*)?\1[^>]*>\s*<\/script>\s*$/i;
 let bootstrapPages = 0;
 
