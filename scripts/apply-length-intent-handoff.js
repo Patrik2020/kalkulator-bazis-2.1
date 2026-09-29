@@ -106,3 +106,5 @@ apply(hubFile, transformHub, "P15 hosszúság-intent blokk");
 apply(legacyFile, transformLegacy, "P15 hosszúság CTA");
 
 if (checkOnly && process.exitCode) process.exit(process.exitCode);
+
+require("./apply-final-converter-intents.js");
