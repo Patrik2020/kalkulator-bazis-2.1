@@ -195,13 +195,21 @@
         }).format(parsedDate);
     };
 
+    const publicSourceLabel = (source) => {
+        const label = String(source || "");
+        if (!label.includes("Frankfurter")) return label;
+        return label.startsWith("Kalkulátor Bázis API")
+            ? "Kalkulátor Bázis API"
+            : "Tartalék árfolyamforrás";
+    };
+
     const updateMetadata = (snapshot, { cached = false, refreshFailed = false } = {}) => {
         lastUpdate.textContent = formatDate(snapshot.date);
         if (rateSource) {
             const suffix = cached
                 ? refreshFailed ? " (mentett adat, a frissítés most nem sikerült)" : " (mentett adat)"
                 : "";
-            rateSource.textContent = `${snapshot.source}${suffix}`;
+            rateSource.textContent = `${publicSourceLabel(snapshot.source)}${suffix}`;
         }
     };
 
