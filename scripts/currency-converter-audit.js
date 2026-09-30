@@ -41,6 +41,13 @@ const makeRates = (huf = 400) => Object.fromEntries(
     .map((code, index) => [code, code === "HUF" ? huf : index + 1.25])
 );
 
+const makeRateRows = (rates, date = "2026-09-30") => Object.entries(rates).map(([quote, rate]) => ({
+  date,
+  base: "EUR",
+  quote,
+  rate,
+}));
+
 const jsonResponse = (body, status = 200) => ({
   ok: status >= 200 && status < 300,
   status,
@@ -103,53 +110,52 @@ const ecbCsv = (rates, date = "2026-07-02") => [
 
 async function main() {
   let calls = [];
-  const v2Rates = makeRates(400);
+  const apiRates = makeRates(400);
   const primary = await createHarness({
     fetchImplementation: async (url) => {
       calls.push(url);
-      return jsonResponse(Object.entries(v2Rates).map(([quote, rate]) => ({
-        date: "2026-07-01",
-        base: "EUR",
-        quote,
-        rate,
-      })));
+      return jsonResponse({
+        data: makeRateRows(apiRates),
+        meta: { source: "Frankfurter v2", provider: "blended" },
+      });
     },
   });
   setAmount(primary.elements, 400);
   assert.equal(primary.elements.result.textContent, "400 HUF = 1 EUR");
-  assert.match(calls[0], /api\.frankfurter\.dev\/v2\/rates/);
-  assert.equal(primary.elements.rateSource.textContent, "Frankfurter");
+  assert.match(calls[0], /kalkulator-bazis-currency-api\.onrender\.com\/api\/v1\/rates/);
+  assert.equal(primary.elements.rateSource.textContent, "Kalkulátor Bázis API · Frankfurter");
   assert.equal(primary.elements.retryRates.hidden, true);
   assert.ok(primary.storage.has(cacheKey), "A sikeres választ helyben menteni kell.");
 
   calls = [];
-  const ecbRates = makeRates(401);
-  const ecbFallback = await createHarness({
+  const frankfurterRates = makeRates(401);
+  const frankfurterFallback = await createHarness({
     fetchImplementation: async (url) => {
       calls.push(url);
-      if (url.includes("/v2/rates")) return jsonResponse({}, 503);
-      if (url.includes("data-api.ecb.europa.eu")) return textResponse(ecbCsv(ecbRates));
+      if (url.includes("kalkulator-bazis-currency-api.onrender.com")) return jsonResponse({}, 503);
+      if (url.includes("api.frankfurter.dev/v2/rates")) {
+        return jsonResponse(makeRateRows(frankfurterRates, "2026-07-01"));
+      }
       throw new Error("A harmadik forrást már nem szabad lekérni.");
     },
   });
-  setAmount(ecbFallback.elements, 401);
-  assert.equal(ecbFallback.elements.result.textContent, "401 HUF = 1 EUR");
-  assert.equal(ecbFallback.elements.rateSource.textContent, "Európai Központi Bank");
+  setAmount(frankfurterFallback.elements, 401);
+  assert.equal(frankfurterFallback.elements.result.textContent, "401 HUF = 1 EUR");
+  assert.equal(frankfurterFallback.elements.rateSource.textContent, "Frankfurter");
   assert.equal(calls.length, 2);
 
   calls = [];
-  const v1Rates = makeRates(402);
-  const v1Fallback = await createHarness({
+  const ecbRates = makeRates(402);
+  const ecbFallback = await createHarness({
     fetchImplementation: async (url) => {
       calls.push(url);
-      if (url.includes("/v1/latest")) {
-        return jsonResponse({ base: "EUR", date: "2026-07-03", rates: v1Rates });
-      }
+      if (url.includes("data-api.ecb.europa.eu")) return textResponse(ecbCsv(ecbRates));
       return jsonResponse({}, 503);
     },
   });
-  setAmount(v1Fallback.elements, 402);
-  assert.equal(v1Fallback.elements.result.textContent, "402 HUF = 1 EUR");
+  setAmount(ecbFallback.elements, 402);
+  assert.equal(ecbFallback.elements.result.textContent, "402 HUF = 1 EUR");
+  assert.equal(ecbFallback.elements.rateSource.textContent, "Európai Központi Bank");
   assert.equal(calls.length, 3);
 
   const cachedRates = makeRates(403);
@@ -162,7 +168,7 @@ async function main() {
         version: 1,
         rates: { EUR: 1, ...cachedRates },
         date: "2026-07-04",
-        source: "Európai Központi Bank",
+        source: "Kalkulátor Bázis API · Frankfurter",
         savedAt: Date.now(),
       }),
     },
