@@ -27,20 +27,20 @@
       styles: [
         "css/pages/calculator-page-v2.css?v=6221842794e1",
         "css/pages/calculator-polish.css?v=5698a292be49",
-        "css/components/wise-banner-enhancer.css?v=0533180d9ef3",
+        "css/components/wise-banner-enhancer.css?v=0f8447843606",
       ],
       scripts: [
         "js/calculator-page.js?v=4d5d99919a87",
         "js/calculator-polish.js?v=96ed10d7ffb8",
-        "js/wise-banner-enhancer.js?v=0d34d85e5e66",
+        "js/wise-banner-enhancer.js?v=316b344410f7",
       ],
     }),
     features: Object.freeze([
       fileFeature(
         "wise-banner",
         ["index.html", "penzugyi.html", "atvaltok.html", "wise.html"],
-        ["css/components/wise-banner-enhancer.css?v=0533180d9ef3"],
-        ["js/wise-banner-enhancer.js?v=0d34d85e5e66"]
+        ["css/components/wise-banner-enhancer.css?v=0f8447843606"],
+        ["js/wise-banner-enhancer.js?v=316b344410f7"]
       ),
       slugFeature(
         "priority-upgrade",
