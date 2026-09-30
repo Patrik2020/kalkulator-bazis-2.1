@@ -25,6 +25,12 @@
 
     const sources = [
         {
+            name: "Kalkulátor Bázis API",
+            url: `https://kalkulator-bazis-currency-api.onrender.com/api/v1/rates?base=EUR&quotes=${quoteCurrencies.join(",")}`,
+            timeout: 3000,
+            parse: async (response) => parseKalkulatorBazisApi(await response.json()),
+        },
+        {
             name: "Frankfurter",
             url: `https://api.frankfurter.dev/v2/rates?base=EUR&quotes=${quoteCurrencies.join(",")}`,
             parse: async (response) => parseFrankfurterV2(await response.json()),
@@ -33,11 +39,6 @@
             name: "Európai Központi Bank",
             url: `https://data-api.ecb.europa.eu/service/data/EXR/D.${quoteCurrencies.join("+")}.EUR.SP00.A?lastNObservations=1&format=csvdata`,
             parse: async (response) => parseEcbCsv(await response.text()),
-        },
-        {
-            name: "Frankfurter",
-            url: `https://api.frankfurter.dev/v1/latest?base=EUR&symbols=${quoteCurrencies.join(",")}`,
-            parse: async (response) => parseFrankfurterV1(await response.json()),
         },
     ];
 
@@ -68,14 +69,14 @@
         };
     };
 
-    function parseFrankfurterV2(data) {
-        if (!Array.isArray(data)) {
-            throw new Error("A Frankfurter v2 válasza nem lista.");
+    function rowsToSnapshot(rows, source) {
+        if (!Array.isArray(rows)) {
+            throw new Error(`${source} válasza nem lista.`);
         }
 
         const nextRates = {};
         const dates = [];
-        data.forEach((row) => {
+        rows.forEach((row) => {
             if (row?.base !== "EUR" || !quoteCurrencies.includes(row.quote)) return;
             nextRates[row.quote] = row.rate;
             if (/^\d{4}-\d{2}-\d{2}$/.test(String(row.date || ""))) dates.push(row.date);
@@ -84,20 +85,19 @@
         return normalizeSnapshot({
             nextRates,
             date: dates.sort()[0],
-            source: "Frankfurter",
+            source,
         });
     }
 
-    function parseFrankfurterV1(data) {
-        if (!data || data.base !== "EUR" || !data.rates) {
-            throw new Error("A Frankfurter v1 válasza hiányos.");
+    function parseKalkulatorBazisApi(payload) {
+        if (!payload || !Array.isArray(payload.data)) {
+            throw new Error("A Kalkulátor Bázis API válasza hiányos.");
         }
+        return rowsToSnapshot(payload.data, "Kalkulátor Bázis API · Frankfurter");
+    }
 
-        return normalizeSnapshot({
-            nextRates: data.rates,
-            date: data.date,
-            source: "Frankfurter",
-        });
+    function parseFrankfurterV2(data) {
+        return rowsToSnapshot(data, "Frankfurter");
     }
 
     const parseCsvRow = (line) => {
@@ -214,7 +214,7 @@
 
     async function fetchSnapshot(source) {
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), requestTimeout);
+        const timeout = setTimeout(() => controller.abort(), source.timeout ?? requestTimeout);
 
         try {
             const response = await fetch(source.url, {
