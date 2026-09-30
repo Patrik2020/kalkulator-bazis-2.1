@@ -1,3 +1,11 @@
+.wise-banner-slot--contextual {
+  margin: 1.35rem 0 1.75rem;
+}
+
+.wise-banner-slot--contextual:empty {
+  display: none;
+}
+
 .wise-banner--enhanced {
   position: relative;
   overflow: hidden;
