@@ -123,7 +123,8 @@ async function main() {
   setAmount(primary.elements, 400);
   assert.equal(primary.elements.result.textContent, "400 HUF = 1 EUR");
   assert.match(calls[0], /kalkulator-bazis-currency-api\.onrender\.com\/api\/v1\/rates/);
-  assert.equal(primary.elements.rateSource.textContent, "Kalkulátor Bázis API · Frankfurter");
+  assert.equal(primary.elements.rateSource.textContent, "Kalkulátor Bázis API");
+  assert.doesNotMatch(primary.elements.rateSource.textContent, /Frankfurter/);
   assert.equal(primary.elements.retryRates.hidden, true);
   assert.ok(primary.storage.has(cacheKey), "A sikeres választ helyben menteni kell.");
 
@@ -141,7 +142,8 @@ async function main() {
   });
   setAmount(frankfurterFallback.elements, 401);
   assert.equal(frankfurterFallback.elements.result.textContent, "401 HUF = 1 EUR");
-  assert.equal(frankfurterFallback.elements.rateSource.textContent, "Frankfurter");
+  assert.equal(frankfurterFallback.elements.rateSource.textContent, "Tartalék árfolyamforrás");
+  assert.doesNotMatch(frankfurterFallback.elements.rateSource.textContent, /Frankfurter/);
   assert.equal(calls.length, 2);
 
   calls = [];
@@ -175,7 +177,9 @@ async function main() {
   });
   setAmount(cachedFallback.elements, 403);
   assert.equal(cachedFallback.elements.result.textContent, "403 HUF = 1 EUR");
+  assert.match(cachedFallback.elements.rateSource.textContent, /Kalkulátor Bázis API/);
   assert.match(cachedFallback.elements.rateSource.textContent, /mentett adat/);
+  assert.doesNotMatch(cachedFallback.elements.rateSource.textContent, /Frankfurter/);
   assert.equal(cachedFallback.elements.retryRates.hidden, false);
   assert.equal(cachedFallback.elements.retryRates.disabled, false);
 
