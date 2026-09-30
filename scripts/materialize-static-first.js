@@ -193,6 +193,20 @@ function qualityFallback(fragment, type, originalAttribute) {
   return stripGeneratedHeadingIds(result);
 }
 
+function renderedQualityFallback(rendered, type, liveAttribute, liveValue) {
+  const liveMatcher = { attr: liveAttribute };
+  if (liveValue !== undefined) liveMatcher.value = liveValue;
+
+  const live = findElement(rendered, liveMatcher);
+  if (live) return qualityFallback(live.html, type, liveAttribute);
+
+  const fallback = findElement(rendered, {
+    attr: "data-static-quality-fallback",
+    value: type,
+  });
+  return fallback ? stripGeneratedHeadingIds(fallback.html) : null;
+}
+
 function runtimeFallback(fragment, type) {
   if (!fragment) return null;
   let result = addAttributeToOpeningTag(fragment, "data-static-runtime-fallback", type);
@@ -290,39 +304,34 @@ function mergeRenderedPage(pagePath, originalSource, rendered) {
   const siteFinal = findElement(rendered, { attr: "data-quality-final", value: "2026-08" });
   source = upsertStaticBlock(source, "quality-final", siteFinal?.html || null);
 
-  const finance = findElement(rendered, { attr: "data-finance-quality", value: "2026-08" });
   source = upsertStaticBlock(
     source,
     "quality-finance",
-    qualityFallback(finance?.html || null, "finance", "data-finance-quality")
+    renderedQualityFallback(rendered, "finance", "data-finance-quality", "2026-08")
   );
 
-  const construction = findElement(rendered, { attr: "data-construction-quality", value: "2026-08" });
   source = upsertStaticBlock(
     source,
     "quality-construction",
-    qualityFallback(construction?.html || null, "construction", "data-construction-quality")
+    renderedQualityFallback(rendered, "construction", "data-construction-quality", "2026-08")
   );
 
-  const lifestyle = findElement(rendered, { attr: "data-lifestyle-quality", value: "2026-08" });
   source = upsertStaticBlock(
     source,
     "quality-lifestyle",
-    qualityFallback(lifestyle?.html || null, "lifestyle", "data-lifestyle-quality")
+    renderedQualityFallback(rendered, "lifestyle", "data-lifestyle-quality", "2026-08")
   );
 
-  const auto = findElement(rendered, { attr: "data-auto-converter-quality", value: "2026-08" });
   source = upsertStaticBlock(
     source,
     "quality-auto",
-    qualityFallback(auto?.html || null, "auto", "data-auto-converter-quality")
+    renderedQualityFallback(rendered, "auto", "data-auto-converter-quality", "2026-08")
   );
 
-  const priority = findElement(rendered, { attr: "data-priority-upgrade" });
   source = upsertStaticBlock(
     source,
     "priority-upgrade",
-    qualityFallback(priority?.html || null, "priority", "data-priority-upgrade")
+    renderedQualityFallback(rendered, "priority", "data-priority-upgrade")
   );
 
   const constructionMethod = findElement(rendered, { className: "construction-methodology" });

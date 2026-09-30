@@ -15,6 +15,11 @@ try {
 document.documentElement.dataset.theme = initialTheme;
 document.documentElement.style.colorScheme = initialTheme;
 
+const headConfig = window.KB_GLOBAL_HEAD_CONFIG;
+if (!headConfig) {
+  throw new Error("A global-head-config.js nem töltődött be a global-head.js előtt.");
+}
+
 const pathParts = window.location.pathname.split("/").filter(Boolean);
 const sectionIndex = ["kalkulatorok", "landing-pages"].reduce((found, section) => {
   const index = pathParts.indexOf(section);
@@ -32,37 +37,6 @@ try {
 }
 const projectRoot = scriptProjectRoot ?? (fallbackRootParts.length ? `/${fallbackRootParts.join("/")}` : "");
 const basePath = `${projectRoot}/favicon`;
-const themeCssPath = `${projectRoot}/css/theme.css?v=0f4a295ac440`;
-const footerCssPath = `${projectRoot}/css/layout/footer.css?v=d541ea459cfd`;
-const cookieCssPath = `${projectRoot}/css/components/cookie.css?v=f2f8742f64ed`;
-const accessibilityCssPath = `${projectRoot}/css/components/accessibility.css?v=73abeeb0ad97`;
-const wiseBannerCssPath = `${projectRoot}/css/components/wise-banner-enhancer.css?v=ee35ab04eee1`;
-const calculatorPageCssPath = `${projectRoot}/css/pages/calculator-page-v2.css?v=6221842794e1`;
-const calculatorPolishCssPath = `${projectRoot}/css/pages/calculator-polish.css?v=5698a292be49`;
-const priorityUpgradeCssPath = `${projectRoot}/css/pages/priority-upgrades.css?v=81c0bc5b23c0`;
-const constructionUpgradeCssPath = `${projectRoot}/css/pages/construction-upgrades.css?v=f4b8bb01934f`;
-const everydayUpgradeCssPath = `${projectRoot}/css/pages/everyday-upgrades.css?v=5cf41f414575`;
-const autoConverterUpgradeCssPath = `${projectRoot}/css/pages/auto-converter-upgrades.css?v=151e8b88ae68`;
-const financeQualityCssPath = `${projectRoot}/css/pages/finance-quality-upgrades.css?v=1a287df3a970`;
-const constructionQualityCssPath = `${projectRoot}/css/pages/construction-quality-upgrades.css?v=3786bcf552b2`;
-const healthEverydayQualityCssPath = `${projectRoot}/css/pages/health-everyday-quality-upgrades.css?v=e10e7cbe585c`;
-const autoConverterQualityCssPath = `${projectRoot}/css/pages/auto-converter-quality-upgrades.css?v=52a3f32da1be`;
-const themeScriptPath = `${projectRoot}/js/theme.js?v=0f4e0c522e48`;
-const pwaScriptPath = `${projectRoot}/js/pwa.js?v=fb055828c8f9`;
-const wiseBannerScriptPath = `${projectRoot}/js/wise-banner-enhancer.js?v=9c6dbaaa839b`;
-const accessibilityScriptPath = `${projectRoot}/js/site-accessibility.js?v=8135c9bdc65a`;
-const calculatorPageScriptPath = `${projectRoot}/js/calculator-page.js?v=4d5d99919a87`;
-const calculatorPolishScriptPath = `${projectRoot}/js/calculator-polish.js?v=96ed10d7ffb8`;
-const priorityUpgradeScriptPath = `${projectRoot}/js/priority-upgrades.js?v=74f2d1b8d30b`;
-const constructionUpgradeScriptPath = `${projectRoot}/js/construction-upgrades.js?v=c6795aa64ca5`;
-const everydayUpgradeScriptPath = `${projectRoot}/js/everyday-upgrades.js?v=8daec853d9e1`;
-const autoConverterUpgradeScriptPath = `${projectRoot}/js/auto-converter-upgrades.js?v=5972f20bd8cd`;
-const financeQualityScriptPath = `${projectRoot}/js/finance-quality-upgrades.js?v=7207b5e874b7`;
-const constructionQualityScriptPath = `${projectRoot}/js/construction-quality-upgrades.js?v=7c73bd22cd31`;
-const healthEverydayQualityScriptPath = `${projectRoot}/js/health-everyday-quality-upgrades.js?v=9265101ffff7`;
-const autoConverterQualityScriptPath = `${projectRoot}/js/auto-converter-quality-upgrades.js?v=66e0bafb80ac`;
-const calculatorCssPath = `${projectRoot}/css/pages/calculator-suite.css?v=bd34d7987fdb`;
-const calculatorScriptPath = `${projectRoot}/js/calculator-suite.js?v=580d3a5f4460`;
 const normalizedPath = window.location.pathname.replace(/\/+$/, "");
 const currentPathPart = pathParts.at(-1) || "index.html";
 const currentSlug = currentPathPart.replace(/\.html?$/i, "").toLowerCase();
@@ -73,72 +47,10 @@ const isHomePage =
   normalizedPath === `${projectRoot}/` ||
   normalizedPath === `${projectRoot}/index.html`;
 
-const priorityUpgradePages = new Set([
-  "hitelkepesseg-kalkulator", "lakas-hitel-onero-kalkulator", "hitel-torleszto-kalkulator",
-  "milliomos-kalkulator", "inflacio-kalkulator", "kamatos-kamat-kalkulator",
-  "havi-koltsegvetes-kalkulator", "fizetesi-hatarido-kalkulator", "szamla-teljesites-kalkulator",
-  "afa-kalkulator", "terhessegi-kalkulator", "pulzus-zona-kalkulator", "vizfogyasztas-kalkulator",
-  "testzsir-kalkulator", "derek-csipo-kalkulator", "alvasciklus-kalkulator",
-  "idealis-testsuly-kalkulator", "bmi-kalkulator", "kaloria-kalkulator", "bmr-kalkulator",
-  "makro-kalkulator", "feherje-szukseglet-kalkulator",
-]);
-const constructionUpgradePages = new Set([
-  "gipszkarton-kalkulator", "tapeta-kalkulator", "vakolat-kalkulator", "hoszigeteles-kalkulator",
-  "terkovezes-kalkulator", "tetocserep-kalkulator", "fuga-kalkulator", "padlo-burkolat-kalkulator",
-]);
-const everydayUpgradePages = new Set([
-  "atlag-kalkulator", "munkaido-kalkulator", "oraber-kalkulator", "egysegar-kalkulator",
-  "rezsi-megosztas-kalkulator", "ar-kedvezmeny-kalkulator", "borravalo-kalkulator",
-  "eletkor-kalkulator", "datum-kulonbseg-kalkulator",
-]);
-const autoConverterUpgradePages = new Set([
-  "eves-auto-koltseg-kalkulator", "auto-ertekvesztes-kalkulator", "kilometerdij-kalkulator",
-  "co2-kibocsatas-kalkulator", "gumi-meret-kalkulator", "uzemanyag-koltseg-kalkulator",
-  "adatmeret-atvalto-kalkulator", "energia-atvalto-kalkulator",
-  "teljesitmeny-atvalto-kalkulator", "hosszusag-atvalto-kalkulator", "tomeg-atvalto-kalkulator",
-  "terulet-atvalto-kalkulator", "terfogat-atvalto-kalkulator", "ido-atvalto-kalkulator",
-  "sebesseg-atvalto-kalkulator",
-]);
-const financeQualityPages = new Set([
-  "penzugyi",
-  "netto-brutto-kalkulator", "hitel-torleszto-kalkulator", "hitelkepesseg-kalkulator",
-  "lakas-hitel-onero-kalkulator", "osztalek-kalkulator", "etf-kalkulator",
-  "milliomos-kalkulator", "inflacio-kalkulator", "kamatos-kamat-kalkulator",
-  "havi-koltsegvetes-kalkulator", "fizetesi-hatarido-kalkulator", "szamla-teljesites-kalkulator",
-]);
-const constructionQualityPages = new Set([
-  "epitoipari", "beton-kalkulator", "csempe-kalkulator", "festek-kalkulator", "tegla-kalkulator",
-  "gipszkarton-kalkulator", "tapeta-kalkulator", "vakolat-kalkulator", "hoszigeteles-kalkulator",
-  "terkovezes-kalkulator", "tetocserep-kalkulator", "fuga-kalkulator", "padlo-burkolat-kalkulator",
-]);
-const healthEverydayQualityPages = new Set([
-  "egeszseg", "mindennapi",
-  "bmi-kalkulator", "kaloria-kalkulator", "vizfogyasztas-kalkulator",
-  "pulzus-zona-kalkulator", "terhessegi-kalkulator", "idealis-testsuly-kalkulator",
-  "testzsir-kalkulator", "makro-kalkulator", "alvasciklus-kalkulator",
-  "bmr-kalkulator", "derek-csipo-kalkulator", "feherje-szukseglet-kalkulator",
-  "szazalek-kalkulator", "afa-kalkulator", "ar-kedvezmeny-kalkulator",
-  "borravalo-kalkulator", "munkaido-kalkulator", "eletkor-kalkulator",
-  "datum-kulonbseg-kalkulator", "atlag-kalkulator", "egysegar-kalkulator",
-  "rezsi-megosztas-kalkulator", "oraber-kalkulator", "arany-kalkulator",
-]);
-const autoConverterQualityPages = new Set([
-  "auto", "atvaltok",
-  "auto-kalkulator", "uzemanyag-koltseg-kalkulator", "auto-fogyasztas-kalkulator", "hatotav-kalkulator",
-  "eves-auto-koltseg-kalkulator", "auto-ertekvesztes-kalkulator", "kilometerdij-kalkulator", "co2-kibocsatas-kalkulator",
-  "tankolas-kalkulator", "gumi-meret-kalkulator", "autopalyadij-kalkulator", "utazasi-ido-kalkulator",
-  "homerseklet-atvalto-kalkulator", "hosszusag-atvalto-kalkulator", "tomeg-atvalto-kalkulator", "terulet-atvalto-kalkulator",
-  "terfogat-atvalto-kalkulator", "ido-atvalto-kalkulator", "sebesseg-atvalto-kalkulator", "adatmeret-atvalto-kalkulator",
-  "deviza-atvalto-kalkulator", "energia-atvalto-kalkulator", "nyomas-atvalto-kalkulator", "teljesitmeny-atvalto-kalkulator",
-]);
-const wiseBannerPages = new Set(["index.html", "penzugyi.html", "atvaltok.html", "wise.html"]);
-
-window.KB_PROJECT_ROOT = projectRoot;
-window.dataLayer = window.dataLayer || [];
-window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
-
-window.gtag("consent", "default", { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", functionality_storage: "granted", security_storage: "granted" });
-window.gtag("set", "ads_data_redaction", true);
+const resolveAsset = (assetPath) => {
+  if (/^(?:[a-z]+:|\/\/|#)/i.test(assetPath)) return assetPath;
+  return `${projectRoot}/${assetPath.replace(/^\/+/, "")}`;
+};
 
 const appendElement = (tagName, attributes) => {
   const element = document.createElement(tagName);
@@ -146,11 +58,48 @@ const appendElement = (tagName, attributes) => {
   document.head.appendChild(element);
 };
 
+const appendStyles = (paths = []) => {
+  paths.forEach((assetPath) => appendElement("link", { rel: "stylesheet", href: resolveAsset(assetPath) }));
+};
+
+const appendScripts = (paths = []) => {
+  paths.forEach((assetPath) => appendElement("script", { src: resolveAsset(assetPath), defer: "" }));
+};
+
+const appendParsedDomScripts = (paths = []) => {
+  paths.forEach((assetPath) => {
+    const script = document.createElement("script");
+    script.src = resolveAsset(assetPath);
+    script.async = false;
+    document.head.appendChild(script);
+  });
+};
+
 const hasMainStylesheet = () => [...document.querySelectorAll('link[rel~="stylesheet"][href]')].some((link) => {
   const rawHref = link.getAttribute("href") || "";
   const resolvedHref = link.href || "";
   return /(^|\/)css\/style\.css(?:[?#].*)?$/i.test(rawHref) || /\/css\/style\.css(?:[?#].*)?$/i.test(resolvedHref);
 });
+
+const activeFeatures = headConfig.features.filter((feature) => {
+  const currentValue = feature.match === "file" ? currentFile : currentSlug;
+  return feature.pages.includes(currentValue);
+});
+const fileFeatures = activeFeatures.filter((feature) => feature.match === "file");
+const slugFeatures = activeFeatures.filter((feature) => feature.match !== "file");
+
+window.KB_PROJECT_ROOT = projectRoot;
+window.dataLayer = window.dataLayer || [];
+window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+window.gtag("consent", "default", {
+  analytics_storage: "denied",
+  ad_storage: "denied",
+  ad_user_data: "denied",
+  ad_personalization: "denied",
+  functionality_storage: "granted",
+  security_storage: "granted",
+});
+window.gtag("set", "ads_data_redaction", true);
 
 [
   { rel: "icon", type: "image/png", href: `${basePath}/favicon-16x16.png`, sizes: "16x16" },
@@ -161,87 +110,40 @@ const hasMainStylesheet = () => [...document.querySelectorAll('link[rel~="styles
   { rel: "manifest", href: `${projectRoot}/manifest.webmanifest` },
 ].forEach((attributes) => appendElement("link", attributes));
 
-appendElement("link", { rel: "stylesheet", href: themeCssPath });
-appendElement("link", { rel: "stylesheet", href: accessibilityCssPath });
-if (wiseBannerPages.has(currentFile)) {
-  appendElement("link", { rel: "stylesheet", href: wiseBannerCssPath });
-}
-if (isCalculatorPage) {
-  appendElement("link", { rel: "stylesheet", href: calculatorPageCssPath });
-  appendElement("link", { rel: "stylesheet", href: calculatorPolishCssPath });
-}
-if (priorityUpgradePages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: priorityUpgradeCssPath });
-}
-if (constructionUpgradePages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: constructionUpgradeCssPath });
-}
-if (everydayUpgradePages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: everydayUpgradeCssPath });
-}
-if (autoConverterUpgradePages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: autoConverterUpgradeCssPath });
-}
-if (financeQualityPages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: financeQualityCssPath });
-}
-if (constructionQualityPages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: constructionQualityCssPath });
-}
-if (healthEverydayQualityPages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: healthEverydayQualityCssPath });
-}
-if (autoConverterQualityPages.has(currentSlug)) {
-  appendElement("link", { rel: "stylesheet", href: autoConverterQualityCssPath });
-}
+appendStyles(headConfig.base.styles);
+fileFeatures.forEach((feature) => appendStyles(feature.styles));
+if (isCalculatorPage) appendStyles(headConfig.calculatorPage.styles);
+slugFeatures.forEach((feature) => appendStyles(feature.styles));
 
-if (!hasMainStylesheet()) {
-  appendElement("link", { rel: "stylesheet", href: footerCssPath });
-  appendElement("link", { rel: "stylesheet", href: cookieCssPath });
-}
+if (!hasMainStylesheet()) appendStyles(headConfig.base.fallbackStyles);
+if (isHomePage) appendStyles(headConfig.home.styles);
 
-if (isHomePage) {
-  appendElement("link", { rel: "stylesheet", href: calculatorCssPath });
-  appendElement("script", { src: calculatorScriptPath, defer: "" });
-}
+if (isHomePage) appendScripts(headConfig.home.scriptsBeforeBase);
+appendScripts(headConfig.base.scripts);
 
-appendElement("script", { src: themeScriptPath, defer: "" });
-appendElement("script", { src: pwaScriptPath, defer: "" });
-appendElement("script", { src: accessibilityScriptPath, defer: "" });
 if (isCalculatorPage) {
   document.documentElement.classList.add("kb-calculator-document");
   window.setTimeout(() => {
     document.documentElement.classList.add("kb-calculator-ready");
   }, 3000);
-  appendElement("script", { src: calculatorPageScriptPath, defer: "" });
-  appendElement("script", { src: calculatorPolishScriptPath, defer: "" });
+  appendScripts(headConfig.calculatorPage.scripts);
 }
-if (wiseBannerPages.has(currentFile)) {
-  appendElement("script", { src: wiseBannerScriptPath, defer: "" });
-}
-if (priorityUpgradePages.has(currentSlug)) {
-  appendElement("script", { src: priorityUpgradeScriptPath, defer: "" });
-}
-if (constructionUpgradePages.has(currentSlug)) {
-  appendElement("script", { src: constructionUpgradeScriptPath, defer: "" });
-}
-if (everydayUpgradePages.has(currentSlug)) {
-  appendElement("script", { src: everydayUpgradeScriptPath, defer: "" });
-}
-if (autoConverterUpgradePages.has(currentSlug)) {
-  appendElement("script", { src: autoConverterUpgradeScriptPath, defer: "" });
-}
-if (financeQualityPages.has(currentSlug)) {
-  appendElement("script", { src: financeQualityScriptPath, defer: "" });
-}
-if (constructionQualityPages.has(currentSlug)) {
-  appendElement("script", { src: constructionQualityScriptPath, defer: "" });
-}
-if (healthEverydayQualityPages.has(currentSlug)) {
-  appendElement("script", { src: healthEverydayQualityScriptPath, defer: "" });
-}
-if (autoConverterQualityPages.has(currentSlug)) {
-  appendElement("script", { src: autoConverterQualityScriptPath, defer: "" });
+
+const loadParsedDomFeatures = () => {
+  fileFeatures.forEach((feature) => appendParsedDomScripts(feature.scripts));
+  slugFeatures.forEach((feature) => appendParsedDomScripts(feature.scripts));
+  if (isHomePage) appendParsedDomScripts(headConfig.home.scriptsAfterFeatures);
+};
+
+if (document.readyState === "loading") {
+  const onReadyStateChange = () => {
+    if (document.readyState === "loading") return;
+    document.removeEventListener("readystatechange", onReadyStateChange);
+    loadParsedDomFeatures();
+  };
+  document.addEventListener("readystatechange", onReadyStateChange);
+} else {
+  loadParsedDomFeatures();
 }
 
 [
@@ -251,50 +153,3 @@ if (autoConverterQualityPages.has(currentSlug)) {
   { name: "theme-color", content: initialTheme === "dark" ? "#111827" : "#ffffff" },
   { "http-equiv": "Content-Security-Policy", content: "object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests" },
 ].forEach((attributes) => appendElement("meta", attributes));
-
-
-// KB_CHATGPT_PLUGIN_HOME_FALLBACK
-(() => {
-  const ensureChatgptPluginAnnouncement = () => {
-    if (!isHomePage || document.getElementById("chatgptPluginTitle")) return;
-
-    const homeSections = document.querySelector(".home-sections");
-    if (!homeSections) return;
-
-    const section = document.createElement("section");
-    section.className = "learning-highlight";
-    section.setAttribute("aria-labelledby", "chatgptPluginTitle");
-
-    const mark = document.createElement("div");
-    mark.className = "learning-mark";
-    mark.setAttribute("aria-hidden", "true");
-
-    const content = document.createElement("div");
-    const label = document.createElement("span");
-    label.className = "section-label";
-    label.textContent = "Újdonság · ChatGPT";
-
-    const title = document.createElement("h2");
-    title.id = "chatgptPluginTitle";
-    title.textContent = "A Kalkulátor Bázis már ChatGPT-bővítményként is elérhető";
-
-    const description = document.createElement("p");
-    description.textContent = "A 2026-os nettó–bruttó számításokat a saját Kalkulátor Bázis Salary API végzi, így a számítások közvetlenül ChatGPT-ből is használhatók.";
-
-    content.append(label, title, description);
-
-    const link = document.createElement("a");
-    link.className = "highlight-link";
-    link.href = `${projectRoot}/kalkulatorok/netto-brutto-kalkulator`;
-    link.textContent = "Nettó–bruttó kalkulátor";
-
-    section.append(mark, content, link);
-    homeSections.prepend(section);
-  };
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", ensureChatgptPluginAnnouncement, { once: true });
-  } else {
-    ensureChatgptPluginAnnouncement();
-  }
-})();
