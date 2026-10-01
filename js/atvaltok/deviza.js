@@ -22,12 +22,13 @@
     const cacheKey = "kb-currency-rates-v2";
     const cacheMaxAge = 7 * 24 * 60 * 60 * 1000;
     const requestTimeout = 6500;
+    const primaryApiTimeout = 10000;
 
     const sources = [
         {
             name: "Kalkulátor Bázis API",
             url: `https://kalkulator-bazis-currency-api.onrender.com/api/v1/rates?base=EUR&quotes=${quoteCurrencies.join(",")}`,
-            timeout: 3000,
+            timeout: primaryApiTimeout,
             parse: async (response) => parseKalkulatorBazisApi(await response.json()),
         },
         {
