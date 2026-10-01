@@ -46,6 +46,8 @@ const makeRateRows = (rates, date = "2026-09-30") => Object.entries(rates).map((
   base: "EUR",
   quote,
   rate,
+  status: "reference",
+  provider: "MNB",
 }));
 
 const jsonResponse = (body, status = 200) => ({
@@ -116,7 +118,11 @@ async function main() {
       calls.push(url);
       return jsonResponse({
         data: makeRateRows(apiRates),
-        meta: { source: "Frankfurter v2", provider: "blended" },
+        meta: {
+          source: "Kalkulátor Bázis Currency Engine",
+          provider: "MNB",
+          status: "reference",
+        },
       });
     },
   });
@@ -124,41 +130,24 @@ async function main() {
   assert.equal(primary.elements.result.textContent, "400 HUF = 1 EUR");
   assert.match(calls[0], /kalkulator-bazis-currency-api\.onrender\.com\/api\/v1\/rates/);
   assert.equal(primary.elements.rateSource.textContent, "Kalkulátor Bázis API");
-  assert.doesNotMatch(primary.elements.rateSource.textContent, /Frankfurter/);
   assert.equal(primary.elements.retryRates.hidden, true);
   assert.ok(primary.storage.has(cacheKey), "A sikeres választ helyben menteni kell.");
-
-  calls = [];
-  const frankfurterRates = makeRates(401);
-  const frankfurterFallback = await createHarness({
-    fetchImplementation: async (url) => {
-      calls.push(url);
-      if (url.includes("kalkulator-bazis-currency-api.onrender.com")) return jsonResponse({}, 503);
-      if (url.includes("api.frankfurter.dev/v2/rates")) {
-        return jsonResponse(makeRateRows(frankfurterRates, "2026-07-01"));
-      }
-      throw new Error("A harmadik forrást már nem szabad lekérni.");
-    },
-  });
-  setAmount(frankfurterFallback.elements, 401);
-  assert.equal(frankfurterFallback.elements.result.textContent, "401 HUF = 1 EUR");
-  assert.equal(frankfurterFallback.elements.rateSource.textContent, "Tartalék árfolyamforrás");
-  assert.doesNotMatch(frankfurterFallback.elements.rateSource.textContent, /Frankfurter/);
-  assert.equal(calls.length, 2);
 
   calls = [];
   const ecbRates = makeRates(402);
   const ecbFallback = await createHarness({
     fetchImplementation: async (url) => {
       calls.push(url);
+      if (url.includes("kalkulator-bazis-currency-api.onrender.com")) return jsonResponse({}, 503);
       if (url.includes("data-api.ecb.europa.eu")) return textResponse(ecbCsv(ecbRates));
-      return jsonResponse({}, 503);
+      throw new Error("Ismeretlen tartalék árfolyamforrás.");
     },
   });
   setAmount(ecbFallback.elements, 402);
   assert.equal(ecbFallback.elements.result.textContent, "402 HUF = 1 EUR");
   assert.equal(ecbFallback.elements.rateSource.textContent, "Európai Központi Bank");
-  assert.equal(calls.length, 3);
+  assert.equal(calls.length, 2);
+  assert.ok(calls.every((url) => !String(url).includes("frankfurter")), "A frontend nem hívhat Frankfurter végpontot.");
 
   const cachedRates = makeRates(403);
   const cachedFallback = await createHarness({
@@ -191,7 +180,8 @@ async function main() {
   assert.match(unavailable.elements.result.textContent, /Nem sikerült betölteni/);
   assert.equal(unavailable.elements.retryRates.hidden, false);
 
-  console.log("Currency converter tests: 5/5 passed");
+  assert.doesNotMatch(source, /api\.frankfurter\.dev/i, "A frontend forráskódjában sem maradhat Frankfurter API URL.");
+  console.log("Currency converter tests: 4/4 passed");
 }
 
 main().catch((error) => {

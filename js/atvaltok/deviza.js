@@ -32,11 +32,6 @@
             parse: async (response) => parseKalkulatorBazisApi(await response.json()),
         },
         {
-            name: "Frankfurter",
-            url: `https://api.frankfurter.dev/v2/rates?base=EUR&quotes=${quoteCurrencies.join(",")}`,
-            parse: async (response) => parseFrankfurterV2(await response.json()),
-        },
-        {
             name: "Európai Központi Bank",
             url: `https://data-api.ecb.europa.eu/service/data/EXR/D.${quoteCurrencies.join("+")}.EUR.SP00.A?lastNObservations=1&format=csvdata`,
             parse: async (response) => parseEcbCsv(await response.text()),
@@ -94,11 +89,7 @@
         if (!payload || !Array.isArray(payload.data)) {
             throw new Error("A Kalkulátor Bázis API válasza hiányos.");
         }
-        return rowsToSnapshot(payload.data, "Kalkulátor Bázis API · Frankfurter");
-    }
-
-    function parseFrankfurterV2(data) {
-        return rowsToSnapshot(data, "Frankfurter");
+        return rowsToSnapshot(payload.data, "Kalkulátor Bázis API");
     }
 
     const parseCsvRow = (line) => {
@@ -196,6 +187,7 @@
         }).format(parsedDate);
     };
 
+    // Legacy cache-cleanup: old snapshots can still contain the former provider name.
     const publicSourceLabel = (source) => {
         const label = String(source || "");
         if (!label.includes("Frankfurter")) return label;
