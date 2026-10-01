@@ -1,4 +1,4 @@
-const KB_SW_VERSION = "build-4a219d6af9dc";
+const KB_SW_VERSION = "build-f4391bcbdc1e";
 const KB_CACHE_PREFIX = "kalkulatorbazis-static";
 const KB_STATIC_CACHE = `${KB_CACHE_PREFIX}-${KB_SW_VERSION}`;
 const KB_CORE_ASSETS = [
