@@ -109,6 +109,16 @@
   margin-bottom: 1rem;
 }
 
+html[data-theme="dark"] .page-deviza .info-box {
+  background: var(--surface-warning, #342816);
+  color: var(--text, #f8fafc);
+  border-left-color: #60a5fa;
+}
+
+html[data-theme="dark"] .page-deviza .info-box strong {
+  color: inherit;
+}
+
 /* Táblázat */
 
 .conversion-table {
