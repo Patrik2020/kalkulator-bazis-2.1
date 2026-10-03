@@ -157,19 +157,10 @@
           <span class="wise-banner-disclosure">Partnerlink. Az aktuális díjakat és feltételeket a Wise oldalán ellenőrizd.</span>
         `;
 
-        link.addEventListener("click", () => {
-          if (typeof window.KB_TRACK_EVENT === "function") {
-            window.KB_TRACK_EVENT("wise_partner_click", {
-              promo_variant: selected.key,
-              promo_location: isCalculatorPage
-                ? "calculator-after-result"
-                : index === 0
-                  ? "primary"
-                  : "secondary",
-              page_path: window.location.pathname,
-            });
-          }
-        });
+        link.dataset.wiseVariant = selected.key;
+        link.dataset.wiseLocation = isCalculatorPage
+          ? "calculator-after-result"
+          : index === 0 ? "primary" : "secondary";
       }
     });
 
@@ -208,3 +199,4 @@
     init();
   }
 })();
+

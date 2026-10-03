@@ -719,7 +719,6 @@
     document.addEventListener("click", (event) => {
       const calculatorLink = event.target.closest(".calculator-card");
       const categoryLink = event.target.closest("[data-render='home-categories'] a, nav a");
-      const wiseLink = event.target.closest(".wise-banner, .wise-btn");
 
       if (calculatorLink) {
         trackEvent("calculator_click", {
@@ -735,11 +734,7 @@
         });
       }
 
-      if (wiseLink) {
-        trackEvent("wise_click", {
-          link_url: wiseLink.getAttribute("href"),
-        });
-      }
+
     });
 
     const calculator = document.querySelector(".card-calculator");
@@ -985,3 +980,4 @@
     init();
   }
 })();
+

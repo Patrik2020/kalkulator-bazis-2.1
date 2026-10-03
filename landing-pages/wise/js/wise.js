@@ -162,9 +162,11 @@
       text.textContent = item.text;
       link.textContent = `${item.cta} →`;
       link.dataset.wiseUse = key;
+      link.dataset.wiseLocation = "use_selector";
+      window.KB_WISE_PARTNER?.prepareLink(link);
 
-      if (shouldTrack && typeof window.KB_TRACK_EVENT === "function") {
-        window.KB_TRACK_EVENT("wise_use_case_select", {
+      if (shouldTrack && typeof window.KB_WISE_PARTNER?.track === "function") {
+        window.KB_WISE_PARTNER.track("wise_use_case_select", {
           use_case: key,
           page_path: window.location.pathname,
         });
@@ -175,29 +177,8 @@
       button.addEventListener("click", () => select(button.dataset.wiseUse));
     });
 
-    link.addEventListener("click", () => {
-      if (typeof window.KB_TRACK_EVENT === "function") {
-        window.KB_TRACK_EVENT("wise_partner_click", {
-          use_case: link.dataset.wiseUse || "transfer",
-          promo_location: "use_selector",
-          page_path: window.location.pathname,
-        });
-      }
-    });
-
     select("transfer", false);
   }
 
-  document.querySelectorAll('a[href*="wise.prf.hn"]').forEach((link) => {
-    if (link.hasAttribute("data-wise-tracked")) return;
-    link.setAttribute("data-wise-tracked", "true");
-    link.addEventListener("click", () => {
-      if (typeof window.KB_TRACK_EVENT === "function") {
-        window.KB_TRACK_EVENT("wise_partner_click", {
-          promo_location: link.closest(".hero") ? "hero" : link.closest(".cta-section") ? "final_cta" : "landing",
-          page_path: window.location.pathname,
-        });
-      }
-    });
-  });
 })();
+
