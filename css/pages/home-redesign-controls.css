@@ -9,6 +9,11 @@
  display:block;max-width:100%;padding-right:.08em;
  overflow-wrap:anywhere!important;word-break:normal!important;
 }
+/* Extend the gradient paint box below the baseline for g, j, p, q and y. */
+.home-redesign-v17 .hero-copy h1 .accent{
+ padding-bottom:.2em;
+ margin-bottom:-.2em;
+}
 .home-redesign-v17 :is(.lang-pop,.season-pop){
  width:min(260px,calc(100vw - 24px))!important;
  overflow:auto;z-index:140;
