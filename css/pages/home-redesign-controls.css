@@ -1,0 +1,61 @@
+/* Scope homepage controls so shared calculator button colors cannot leak in. */
+.home-redesign-v17 .hero-copy{container-type:inline-size}
+.home-redesign-v17 .hero-copy h1{
+ font-size:clamp(1.8rem,10.5cqw,5.25rem)!important;
+ line-height:1.1!important;letter-spacing:-.045em!important;
+ overflow:visible!important;
+}
+.home-redesign-v17 .hero-copy h1 span{
+ display:block;max-width:100%;padding-right:.08em;
+ overflow-wrap:anywhere!important;word-break:normal!important;
+}
+.home-redesign-v17 :is(.lang-pop,.season-pop){
+ width:min(260px,calc(100vw - 24px))!important;
+ overflow:auto;z-index:140;
+ background:#fff!important;color:#111827!important;
+}
+.home-redesign-v17 :is(.lang-pop,.season-pop)[hidden]{display:none!important}
+.home-redesign-v17 :is(.lang-pop,.season-pop) b{color:inherit!important}
+.home-redesign-v17 :is(.lang-options button,.season-options button,.season-auto){
+ background:#f8fafc!important;color:#334155!important;
+ border:1px solid #cbd5e1!important;box-shadow:none!important;
+ opacity:1!important;transform:none;
+ transition:background .18s,border-color .18s;
+}
+.home-redesign-v17 :is(.lang-options button,.season-options button,.season-auto):hover{
+ background:#e2e8f0!important;border-color:#94a3b8!important;
+}
+.home-redesign-v17 :is(.lang-options button,.season-options button).active{
+ background:#dbeafe!important;color:#1e40af!important;
+ border-color:#2563eb!important;box-shadow:inset 0 0 0 1px #2563eb!important;
+}
+.home-redesign-v17 .salary-direction-btn{
+ background:transparent!important;color:#fff!important;
+ border:1px solid transparent!important;box-shadow:none!important;
+}
+.home-redesign-v17 .salary-direction-btn:hover{background:rgba(255,255,255,.14)!important}
+.home-redesign-v17 .salary-direction-btn.active{
+ background:rgba(255,255,255,.25)!important;
+ border-color:rgba(255,255,255,.65)!important;
+ box-shadow:inset 0 -3px 0 var(--hero-accent)!important;
+}
+.home-redesign-v17 .head-actions :is(button,.icon-btn):hover{
+ background:rgba(255,255,255,.18)!important;border-color:rgba(255,255,255,.4)!important;
+}
+.home-redesign-v17 .head-actions button:is([aria-expanded="true"],[aria-pressed="true"]){
+ background:rgba(255,255,255,.24)!important;border-color:var(--hero-accent)!important;
+}
+html[data-theme="dark"] .home-redesign-v17 :is(.lang-pop,.season-pop){
+ background:#0f1b2a!important;color:#f8fafc!important;
+}
+html[data-theme="dark"] .home-redesign-v17 :is(.lang-options button,.season-options button,.season-auto){
+ background:#162334!important;color:#e2e8f0!important;border-color:#475569!important;
+}
+html[data-theme="dark"] .home-redesign-v17 :is(.lang-options button,.season-options button,.season-auto):hover{
+ background:#293b52!important;border-color:#94a3b8!important;
+}
+html[data-theme="dark"] .home-redesign-v17 :is(.lang-options button,.season-options button).active{
+ background:#1e3a5f!important;color:#fff!important;border-color:#60a5fa!important;
+ box-shadow:inset 0 0 0 1px #60a5fa!important;
+}
+
