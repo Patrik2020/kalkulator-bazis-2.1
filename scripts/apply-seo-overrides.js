@@ -14,12 +14,12 @@ const overrides = {
       "Számold ki a 2026-os szabályok alapján a bruttó fizetés nettóját vagy a kívánt nettóhoz szükséges bruttót, kedvezményekkel és munkáltatói költséggel.",
   },
   "kalkulatorok/fizetesi-hatarido-kalkulator.html": {
-    title: "Határidő számítás és fizetési határidő kalkulátor 2026",
+    title: "Fizetési határidő kalkulátor 2026 – naptári és munkanap",
     description:
-      "Határidő számítás naptári vagy munkanapokkal. Fizetési határidő kalkulátor 2026-os munkarenddel, számlákhoz és szerződéses határidők tervezéséhez.",
-    h1: "Határidő számítás és fizetési határidő kalkulátor",
+      "Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján.",
+    h1: "Fizetési határidő kalkulátor 2026",
     heroLead:
-      "Számold ki naptári vagy munkanapokkal, mikor jár le a megadott határidő.",
+      "Számold ki számla vagy szerződés fizetési határidejét naptári vagy munkanapokkal a 2026-os magyar munkarend szerint.",
   },
   "kalkulatorok/datum-hozzaadas-kivonas-kalkulator.html": {
     title: "Határidő számítás – dátum hozzáadás és kivonás kalkulátor",
