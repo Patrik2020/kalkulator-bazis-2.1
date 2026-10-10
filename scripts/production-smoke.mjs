@@ -22,8 +22,12 @@ for (const path of PATHS) {
     });
     const body = await response.text();
     const html = /<html[\s>]/i.test(body) && /<body[\s>]/i.test(body);
-    const ok = response.ok && html && body.length > 500;
-    console.log(`${ok ? 'PASS' : 'FAIL'} ${url.pathname} HTTP ${response.status} (${body.length} bytes)`);
+    const contentType = response.headers.get('content-type') || '';
+    const htmlType = /(?:^|\s|;)text\/html(?:\s*;|\s*$)/i.test(contentType);
+    const finalUrl = new URL(response.url);
+    const sameOrigin = finalUrl.origin === url.origin;
+    const ok = response.ok && htmlType && sameOrigin && html && body.length > 500;
+    console.log(`${ok ? 'PASS' : 'FAIL'} ${url.pathname} HTTP ${response.status} (${body.length} bytes, content-type: ${contentType || 'missing'}, final: ${finalUrl.pathname}${sameOrigin ? '' : ' [external origin]'})`);
     if (!ok) failures++;
   } catch (error) {
     failures++;
