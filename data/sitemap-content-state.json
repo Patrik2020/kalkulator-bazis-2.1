@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-03",
+  "generatedAt": "2026-10-10",
   "pages": {
     "": {
       "hash": "8022702ecaa002444e3be87b61fe811b8c921c3581313c1f82caa4683e95a601",
@@ -199,12 +199,12 @@
       "lastmod": "2026-09-16"
     },
     "kalkulatorok/fizetesi-hatarido-kalkulator.html": {
-      "hash": "153054bc39c4aa8466d64238ba0afb69147dc090ea9410d9dacf397912e774d7",
-      "lastmod": "2026-10-03"
+      "hash": "61aa9451c9af3174cd9075f11fa263ec7607fa3017d742decaede9ec228c75e6",
+      "lastmod": "2026-10-10"
     },
     "kalkulatorok/szamla-teljesites-kalkulator.html": {
-      "hash": "9a48b8b97cb9b4d44e9bc741551335b7d575795f1ca566c23b18b41a82011322",
-      "lastmod": "2026-10-03"
+      "hash": "6c08dc5fff8bfca57e312c81010cf650d7620fc736dc4bdeb1ce5de49eec2099",
+      "lastmod": "2026-10-10"
     },
     "kalkulatorok/beton-kalkulator.html": {
       "hash": "c43a24d82e9a275b0362fa99ad0185b2f358169545c643bc360eee71817840e3",
@@ -291,8 +291,8 @@
       "lastmod": "2026-09-16"
     },
     "kalkulatorok/terhessegi-kalkulator.html": {
-      "hash": "74c870b44c0a6b22c4e46748ea1f63e39f6270b8f03ea41047c3fc9be5d1d7fe",
-      "lastmod": "2026-10-03"
+      "hash": "7950a93f40f005c01eeacde39f92abc4dd0896704841300232577bbb562a8bef",
+      "lastmod": "2026-10-10"
     },
     "kalkulatorok/idealis-testsuly-kalkulator.html": {
       "hash": "4174527f4279d577043cbd100d561a82b787388fb9051d5166b1669fea2c191e",
@@ -427,8 +427,8 @@
       "lastmod": "2026-08-21"
     },
     "kalkulatorok/datum-hozzaadas-kivonas-kalkulator.html": {
-      "hash": "cdda1a8394d5bf1536534f80909119fd70fb6144d734d372741dc43ac54b3229",
-      "lastmod": "2026-09-27"
+      "hash": "b41516a03f059f5d9a9e027f554e3866f5ba1bac6cc987f5e330f23509376b23",
+      "lastmod": "2026-10-10"
     },
     "kalkulatorok/aljzatkiegyenlito-kalkulator.html": {
       "hash": "add4b30e249872cec39c35003ed150c90bfe9d67d372d4126dba383c2e856734",
