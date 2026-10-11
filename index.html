@@ -53,27 +53,6 @@
 <!-- KB_STATIC:skip-link:END -->
 
 
-<div id="developmentNotice" role="dialog" aria-modal="true" aria-labelledby="developmentNoticeTitle">
-  <div>
-    <div aria-hidden="true">🛠️</div>
-    <h2 id="developmentNoticeTitle">A Kalkulátor Bázis jelenleg fejlesztés alatt áll</h2>
-    <p>A főoldal új megjelenésén dolgozunk, ezért átmenetileg előfordulhatnak hiányzó képek vagy szokatlan vizuális elemek.</p>
-    <p><strong>A kalkulátorok és a számítások ettől függetlenül működnek.</strong></p>
-    <button type="button" id="developmentNoticeClose">Elolvastam, megértettem</button>
-  </div>
-</div>
-<script>
-(function(){
-  var notice=document.getElementById('developmentNotice');
-  var close=document.getElementById('developmentNoticeClose');
-  if(!notice||!close)return;
-  if(sessionStorage.getItem('kb-development-notice-seen')==='1'){notice.remove();return;}
-  close.addEventListener('click',function(){
-    sessionStorage.setItem('kb-development-notice-seen','1');
-    notice.remove();
-  });
-})();
-</script>
 <div class="kb-header-wrap">
 <header class="kb-header container" id="header">
 <a aria-label="Kalkulátor Bázis főoldal" class="logo" href="#top">
