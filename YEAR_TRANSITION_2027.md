@@ -40,3 +40,11 @@ Elsődleges forrás szükséges: Magyar Közlöny, NAV, kormany.hu, jogszabályt
 - **Érintett kliensfájlok:** `js/penzugyi/netto-brutto.js`, `js/penzugyi/netto-brutto-shadow.js`.
 - **Előkészítés:** a szabály bekerült a `data/years/2027.json` központi 2027-es szabályadatba.
 - **Integrációs megjegyzés:** a nettó–bruttó üzleti számítás jelenleg API-only módban fut. A tényleges számítási logika aktiválását az API 2027-es szabálykezelésével együtt kell elvégezni; a 2026-os éles viselkedést ezen az ágon sem írjuk felül idő előtt.
+
+### 2026-10-11 — Alanyi adómentesség értékhatára 2027-ben
+- **Hatálybalépés:** 2027-01-01.
+- **Változás:** Az alanyi adómentesség éves bevételi értékhatára 20 millió Ft-ról 22 millió Ft-ra emelkedik.
+- **Jogalap:** 2025. évi LXXXIV. törvény.
+- **Hivatalos forrás:** https://njt.hu/ (2025. évi LXXXIV. törvény).
+- **Érintett kalkulátor:** `kalkulatorok/afa-kalkulator.html` (tájékoztató szöveg; az áfakulcs számítása nem változik).
+- **Integráció:** 2027-es adatként előkészítve; 2026-os számítás változatlan.
