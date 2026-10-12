@@ -703,12 +703,22 @@ const run = async () => {
     const helpPanel = document.querySelector('.kb-help-panel');
     const helpOpened = helpPanel?.dataset.open === 'true' && helpPanel?.getAttribute('aria-hidden') === 'false';
     const helpFocusInside = helpPanel?.contains(document.activeElement) || false;
+    const helpFocusDetails = {
+      activeId: document.activeElement?.id || '',
+      activeTag: document.activeElement?.tagName || '',
+      activeClass: String(document.activeElement?.className || ''),
+      closeId: helpPanel?.querySelector('.kb-help-close')?.id || '',
+      closeVisible: !!helpPanel?.querySelector('.kb-help-close')?.getClientRects().length,
+      panelVisible: !!helpPanel?.getClientRects().length,
+      panelCount: document.querySelectorAll('.kb-help-panel').length,
+      launcherCount: document.querySelectorAll('.kb-help-launcher').length,
+    };
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
     await new Promise((resolve) => setTimeout(resolve, 30));
     const helpClosed = helpPanel?.dataset.open === 'false' && helpPanel?.getAttribute('aria-hidden') === 'true';
     const helpFocusRestored = document.activeElement === launcher;
     const activeHomeLinks = document.querySelectorAll('#menu [aria-current="page"], .nav [aria-current="page"]').length;
-    return { menuOpened, menuClosed, openFaqCount, faqPresent, cookieHiddenInitially, cookieVisibleAfterOpen, settingsVisible, cookieHiddenAfterEscape, cookieStored, helpOpened, helpFocusInside, helpClosed, helpFocusRestored, activeHomeLinks };
+    return { menuOpened, menuClosed, openFaqCount, faqPresent, cookieHiddenInitially, cookieVisibleAfterOpen, settingsVisible, cookieHiddenAfterEscape, cookieStored, helpOpened, helpFocusInside, helpFocusDetails, helpClosed, helpFocusRestored, activeHomeLinks };
   })()`);
 
   await navigate("/");
