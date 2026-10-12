@@ -644,6 +644,7 @@ const run = async () => {
 
   await setViewport(390, 844);
   await navigate("/");
+  console.log("Browser QA: layout matrix complete; testing homepage search");
   const search = await evaluate(`(async () => {
     const input = document.getElementById('calculatorSearch');
     const run = async (query) => {
@@ -666,12 +667,13 @@ const run = async () => {
       if (!link) return;
       event.preventDefault();
       enterTarget = link.getAttribute('href');
-    }, { once: true, capture: true });
+    }, { capture: true });
     input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
     await new Promise((resolve) => setTimeout(resolve, 10));
     return { accentless, ranked, empty, emptyText, active, enterTarget, expanded: input.getAttribute('aria-expanded') };
   })()`);
 
+  console.log("Browser QA: homepage search complete; testing interactions");
   const interactions = await evaluate(`(async () => {
     const menuButton = document.getElementById('menuToggle');
     menuButton?.click();
@@ -711,6 +713,7 @@ const run = async () => {
   await navigate("/");
   await evaluate(`localStorage.setItem('kalkulatorbazis-theme', 'light')`);
   await navigate("/");
+  console.log("Browser QA: interactions complete; testing theme");
   const theme = await evaluate(`(async () => {
     const button = document.querySelector('.theme-toggle');
     const initial = document.documentElement.dataset.theme;
