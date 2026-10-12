@@ -718,8 +718,6 @@ const run = async () => {
       panelCount: document.querySelectorAll('.kb-help-panel').length,
       launcherCount: document.querySelectorAll('.kb-help-launcher').length,
     };
-    helpCloseButton?.focus({ preventScroll: true });
-    helpFocusDetails.manualFocusProbeSucceeded = !!helpPanel?.contains(document.activeElement);
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
     await new Promise((resolve) => setTimeout(resolve, 30));
     const helpClosed = helpPanel?.dataset.open === 'false' && helpPanel?.getAttribute('aria-hidden') === 'true';
