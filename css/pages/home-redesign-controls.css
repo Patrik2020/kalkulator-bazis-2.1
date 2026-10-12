@@ -64,3 +64,10 @@ html[data-theme="dark"] .home-redesign-v17 :is(.lang-options button,.season-opti
  box-shadow:inset 0 0 0 1px #60a5fa!important;
 }
 
+
+/* The homepage's generic transition shorthand delays visibility on the shared
+   help panel. Make an opened dialog immediately visible and focusable. */
+.kb-help-panel[data-open="true"] {
+  visibility: visible !important;
+  transition: opacity .22s ease, transform .22s ease;
+}
