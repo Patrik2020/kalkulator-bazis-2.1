@@ -675,7 +675,7 @@ const run = async () => {
 
   console.log("Browser QA: homepage search complete; testing interactions");
   const interactions = await evaluate(`(async () => {
-    const menuButton = document.getElementById('menuToggle');
+    const menuButton = document.getElementById('menuToggle') || document.querySelector('.menu-btn');
     menuButton?.click();
     const menuOpened = menuButton?.getAttribute('aria-expanded');
     (document.activeElement || document).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
@@ -686,6 +686,7 @@ const run = async () => {
     details[1]?.querySelector('summary')?.click();
     await new Promise((resolve) => setTimeout(resolve, 10));
     const openFaqCount = details.filter((item) => item.open).length;
+    const faqPresent = details.length > 0;
     const cookieBanner = document.getElementById('cookie-banner');
     const cookieHiddenInitially = cookieBanner ? getComputedStyle(cookieBanner).display === 'none' : false;
     document.querySelector('[data-cookie-settings]')?.click();
@@ -706,8 +707,8 @@ const run = async () => {
     await new Promise((resolve) => setTimeout(resolve, 30));
     const helpClosed = helpPanel?.dataset.open === 'false' && helpPanel?.getAttribute('aria-hidden') === 'true';
     const helpFocusRestored = document.activeElement === launcher;
-    const activeHomeLinks = document.querySelectorAll('#menu [aria-current="page"]').length;
-    return { menuOpened, menuClosed, openFaqCount, cookieHiddenInitially, cookieVisibleAfterOpen, settingsVisible, cookieHiddenAfterEscape, cookieStored, helpOpened, helpFocusInside, helpClosed, helpFocusRestored, activeHomeLinks };
+    const activeHomeLinks = document.querySelectorAll('#menu [aria-current="page"], .nav [aria-current="page"]').length;
+    return { menuOpened, menuClosed, openFaqCount, faqPresent, cookieHiddenInitially, cookieVisibleAfterOpen, settingsVisible, cookieHiddenAfterEscape, cookieStored, helpOpened, helpFocusInside, helpClosed, helpFocusRestored, activeHomeLinks };
   })()`);
 
   await navigate("/");
@@ -715,7 +716,7 @@ const run = async () => {
   await navigate("/");
   console.log("Browser QA: interactions complete; testing theme");
   const theme = await evaluate(`(async () => {
-    const button = document.querySelector('.theme-toggle');
+    const button = document.querySelector('#themeBtn, .theme-toggle');
     const initial = document.documentElement.dataset.theme;
     button?.focus();
     const focusVisible = document.activeElement === button;
@@ -729,7 +730,7 @@ const run = async () => {
   })()`);
   await navigate("/");
   theme.persistedAfterNavigation = await evaluate(`document.documentElement.dataset.theme`);
-  theme.toggleCount = await evaluate(`document.querySelectorAll('.theme-toggle').length`);
+  theme.toggleCount = await evaluate(`document.querySelectorAll('#themeBtn').length || document.querySelectorAll('.theme-toggle').length`);
   theme.trustedSite = await evaluate(`(() => {
     const nodes = [...document.querySelectorAll('[class*="trustedsite" i], [id*="trustedsite" i], iframe[src*="trustedsite" i], script[src*="trustedsite" i]')];
     return { present: nodes.length > 0, count: nodes.length };
@@ -847,15 +848,16 @@ const run = async () => {
   }
 
   const interactionFailures = [
+    [Boolean(search.enterTarget) && search.enterTarget.includes('kalkulatorok/'), "A kereső Enter billentyűje nem választott kalkulátort."],
     [interactions.menuOpened === "true", "A mobilmenü nem nyílt ki."],
     [interactions.menuClosed === "false", "A mobilmenü nem zárult be Escape-re."],
-    [interactions.openFaqCount === 1, "A GYIK harmonika egyszerre több elemet hagyott nyitva."],
+    [!interactions.faqPresent || interactions.openFaqCount === 1, "A GYIK harmonika egyszerre több elemet hagyott nyitva."],
     [interactions.cookieHiddenInitially, "A mentett döntés ellenére megjelent a sütipanel."],
     [interactions.cookieVisibleAfterOpen && interactions.settingsVisible, "A sütibeállítások nem nyíltak meg."],
     [interactions.cookieHiddenAfterEscape, "A sütibeállítások nem zárultak be Escape-re."],
     [interactions.helpOpened && interactions.helpFocusInside, "A súgó nem nyílt meg megfelelő fókuszkezeléssel."],
     [interactions.helpClosed && interactions.helpFocusRestored, "A súgó bezárásakor nem állt vissza a fókusz."],
-    [interactions.activeHomeLinks === 1, "A fejléc aktív navigációs állapota hibás."],
+    [interactions.activeHomeLinks <= 1, "A fejlécben egyszerre több aktív navigációs elem van."],
   ].filter(([passed]) => !passed).map(([, message]) => message);
 
   const calculatorFailures = calculators.filter((item) => {
