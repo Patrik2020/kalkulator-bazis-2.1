@@ -63,16 +63,16 @@ const processHandle = spawn(
 
 const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 const waitForDebugger = async () => {
-  for (let attempt = 0; attempt < 50; attempt += 1) {
+  for (let attempt = 0; attempt < 100; attempt += 1) {
     try {
       const response = await fetch(`http://127.0.0.1:${port}/json/version`);
       if (response.ok) return;
     } catch (error) {
       // Chrome még indul.
     }
-    await sleep(100);
+    await sleep(200);
   }
-  throw new Error("A headless böngésző nem indult el időben.");
+  throw new Error("A headless böngésző nem indult el 20 másodpercen belül.");
 };
 
 const createClient = async (webSocketUrl) => {
@@ -128,42 +128,69 @@ const createClient = async (webSocketUrl) => {
 
 const run = async () => {
   await waitForDebugger();
-  const targetResponse = await fetch(`http://127.0.0.1:${port}/json/new?${encodeURIComponent(`${origin}/`)}`, {
-    method: "PUT"
-  });
-  const target = await targetResponse.json();
-  const client = await createClient(target.webSocketDebuggerUrl);
   const consoleErrors = [];
+  let client;
+  let currentViewport = null;
+  let lastPagePath = "/";
+  let navigationCount = 0;
 
-  client.on("Runtime.exceptionThrown", ({ exceptionDetails }) => {
-    consoleErrors.push(exceptionDetails.exception?.description || exceptionDetails.text || "Ismeretlen JavaScript-kivétel");
-  });
-  client.on("Log.entryAdded", ({ entry }) => {
-    if (["error", "warning"].includes(entry.level) && !/google|doubleclick|adsbygoogle|api\.frankfurter\.dev/i.test(entry.url || entry.text)) {
-      consoleErrors.push(`${entry.level}: ${entry.url || "(nincs URL)"} - ${entry.text}`);
+  const connectPage = async () => {
+    const targetResponse = await fetch(
+      `http://127.0.0.1:${port}/json/new?${encodeURIComponent(`${origin}/`)}`,
+      { method: "PUT" }
+    );
+    if (!targetResponse.ok) {
+      throw new Error(`Nem sikerült Chrome CDP céloldalt nyitni: HTTP ${targetResponse.status}`);
     }
-  });
+    const target = await targetResponse.json();
+    const connected = await createClient(target.webSocketDebuggerUrl);
 
-  await client.send("Page.enable");
-  await client.send("Runtime.enable");
-  await client.send("Log.enable");
-  await client.send("Network.enable");
-  await client.send("Network.setBlockedURLs", {
-    urls: [
-      "*pagead2.googlesyndication.com/*",
-      "*googlesyndication.com/*",
-      "*doubleclick.net/*",
-      "*google-analytics.com/*",
-      "*googletagmanager.com/*"
-    ]
-  });
+    connected.on("Runtime.exceptionThrown", ({ exceptionDetails }) => {
+      consoleErrors.push(exceptionDetails.exception?.description || exceptionDetails.text || "Ismeretlen JavaScript-kivétel");
+    });
+    connected.on("Log.entryAdded", ({ entry }) => {
+      if (["error", "warning"].includes(entry.level) && !/google|doubleclick|adsbygoogle|api\\.frankfurter\\.dev/i.test(entry.url || entry.text)) {
+        consoleErrors.push(`${entry.level}: ${entry.url || "(nincs URL)"} - ${entry.text}`);
+      }
+    });
+
+    await connected.send("Page.enable");
+    await connected.send("Runtime.enable");
+    await connected.send("Log.enable");
+    await connected.send("Network.enable");
+    await connected.send("Network.setBlockedURLs", {
+      urls: [
+        "*pagead2.googlesyndication.com/*",
+        "*googlesyndication.com/*",
+        "*doubleclick.net/*",
+        "*google-analytics.com/*",
+        "*googletagmanager.com/*"
+      ]
+    });
+    if (currentViewport) {
+      await connected.send("Emulation.setDeviceMetricsOverride", {
+        ...currentViewport,
+        deviceScaleFactor: 1,
+        mobile: currentViewport.width < 768,
+        screenWidth: currentViewport.width,
+        screenHeight: currentViewport.height
+      });
+    }
+    client = connected;
+  };
+  await connectPage();
 
   const evaluate = async (expression) => {
-    const result = await client.send("Runtime.evaluate", {
-      expression,
-      awaitPromise: true,
-      returnByValue: true
-    });
+    let result;
+    try {
+      result = await client.send("Runtime.evaluate", {
+        expression,
+        awaitPromise: true,
+        returnByValue: true
+      });
+    } catch (error) {
+      throw new Error(`Chrome evaluate hiba a ${lastPagePath} oldalon (${currentViewport?.width || "?"}px): ${error.message}`, { cause: error });
+    }
     if (result.exceptionDetails) {
       throw new Error(result.exceptionDetails.exception?.description || result.exceptionDetails.text);
     }
@@ -171,6 +198,7 @@ const run = async () => {
   };
 
   const setViewport = async (width, height) => {
+    currentViewport = { width, height };
     await client.send("Emulation.setDeviceMetricsOverride", {
       width,
       height,
@@ -182,10 +210,29 @@ const run = async () => {
   };
 
   const navigate = async (pagePath) => {
-    const loaded = client.once("Page.loadEventFired", 12000).catch(() => null);
-    await client.send("Page.navigate", { url: `${origin}${pagePath}` });
-    await loaded;
-    await sleep(350);
+    lastPagePath = pagePath;
+    navigationCount += 1;
+    if (navigationCount % 10 === 0) {
+      console.log(`Browser QA: navigation ${navigationCount}, ${pagePath}, ${currentViewport?.width || "?"}px`);
+    }
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      try {
+        const loaded = client.once("Page.loadEventFired", 12000).catch(() => null);
+        const result = await client.send("Page.navigate", { url: `${origin}${pagePath}` });
+        if (result?.errorText) throw new Error(result.errorText);
+        await loaded;
+        await sleep(350);
+        return;
+      } catch (error) {
+        const targetLost = /Inspected target navigated or closed|Target closed|WebSocket.*(?:closed|disconnect)/i.test(error.message);
+        if (!targetLost || attempt !== 0) {
+          throw new Error(`Chrome navigation hiba a ${pagePath} oldalon (${currentViewport?.width || "?"}px): ${error.message}`, { cause: error });
+        }
+        console.warn(`Browser QA: CDP oldal elveszett (${pagePath}); új tab és egy célzott navigációs próbálkozás.`);
+        client.close();
+        await connectPage();
+      }
+    }
   };
 
   const layoutExpression = `(() => {
