@@ -132,7 +132,7 @@ const nonPolicyFailures = {
 };
 
 if (Object.values(nonPolicyFailures).some((items) => items.length > 0)) {
-  fail("Browser QA: valódi, nem AdSense-policy jellegű hiba maradt.", nonPolicyFailures);
+  fail("Browser QA: valódi, nem AdSense-policy jellegű hiba maradt.", { ...nonPolicyFailures, interactions: result.interactions, theme: result.theme });
   return;
 }
 
