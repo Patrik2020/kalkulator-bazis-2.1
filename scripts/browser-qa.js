@@ -703,7 +703,12 @@ const run = async () => {
     const helpPanel = document.querySelector('.kb-help-panel');
     const helpOpened = helpPanel?.dataset.open === 'true' && helpPanel?.getAttribute('aria-hidden') === 'false';
     const helpFocusInside = helpPanel?.contains(document.activeElement) || false;
+    const helpCloseButton = helpPanel?.querySelector('.kb-help-close');
     const helpFocusDetails = {
+      computedPanelVisibility: helpPanel ? getComputedStyle(helpPanel).visibility : '',
+      computedCloseVisibility: helpCloseButton ? getComputedStyle(helpCloseButton).visibility : '',
+      panelHidden: !!helpPanel?.hidden,
+      closeDisabled: !!helpCloseButton?.disabled,
       activeId: document.activeElement?.id || '',
       activeTag: document.activeElement?.tagName || '',
       activeClass: String(document.activeElement?.className || ''),
@@ -713,6 +718,8 @@ const run = async () => {
       panelCount: document.querySelectorAll('.kb-help-panel').length,
       launcherCount: document.querySelectorAll('.kb-help-launcher').length,
     };
+    helpCloseButton?.focus({ preventScroll: true });
+    helpFocusDetails.manualFocusProbeSucceeded = !!helpPanel?.contains(document.activeElement);
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
     await new Promise((resolve) => setTimeout(resolve, 30));
     const helpClosed = helpPanel?.dataset.open === 'false' && helpPanel?.getAttribute('aria-hidden') === 'true';
