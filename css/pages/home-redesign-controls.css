@@ -71,3 +71,12 @@ html[data-theme="dark"] .home-redesign-v17 :is(.lang-options button,.season-opti
   visibility: visible !important;
   transition: opacity .22s ease, transform .22s ease;
 }
+
+/* V17's own help widget must override the shared closed-panel visibility.
+   Without this explicit state, the open dialog cannot receive keyboard focus. */
+body.home-redesign-v17 .kb-help-panel[data-open="true"] {
+  visibility: visible !important;
+}
+body.home-redesign-v17 .kb-help-panel:not([data-open="true"]) {
+  visibility: hidden !important;
+}
