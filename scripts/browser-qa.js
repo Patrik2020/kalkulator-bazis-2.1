@@ -149,7 +149,7 @@ const run = async () => {
       consoleErrors.push(exceptionDetails.exception?.description || exceptionDetails.text || "Ismeretlen JavaScript-kivétel");
     });
     connected.on("Log.entryAdded", ({ entry }) => {
-      if (["error", "warning"].includes(entry.level) && !/google|doubleclick|adsbygoogle|api\\.frankfurter\\.dev/i.test(entry.url || entry.text)) {
+      if (["error", "warning"].includes(entry.level) && !/google|doubleclick|adsbygoogle|api\.frankfurter\.dev/i.test(entry.url || entry.text)) {
         consoleErrors.push(`${entry.level}: ${entry.url || "(nincs URL)"} - ${entry.text}`);
       }
     });
