@@ -114,12 +114,21 @@ if (!fs.existsSync(resultsPath)) {
 }
 
 const result = JSON.parse(fs.readFileSync(resultsPath, "utf8"));
+// Local browser QA cannot call production APIs that only allow the public site
+// origin. Keep unexpected errors blocking, but ignore exactly these known CORS
+// messages when the browser is served from the local regression-test origin.
+const localQaOrigin = process.env.KB_QA_ORIGIN || "http://127.0.0.1:4173";
+const isExpectedLocalApiCors = (message) =>
+  /^http:\/\/127\.0\.0\.1:4173\/?$/.test(localQaOrigin) &&
+  /(?:api\.kalkulatorbazis\.hu|kalkulator-bazis-currency-api\.onrender\.com)/.test(message) &&
+  /(?:CORS policy|net::ERR_FAILED)/.test(message);
+
 const nonPolicyFailures = {
   layoutFailures: result.layoutFailures || [],
   interactionFailures: result.interactionFailures || [],
   calculatorFailures: result.calculatorFailures || [],
   themeFailures: result.themeFailures || [],
-  consoleErrors: result.consoleErrors || [],
+  consoleErrors: (result.consoleErrors || []).filter((message) => !isExpectedLocalApiCors(message)),
 };
 
 if (Object.values(nonPolicyFailures).some((items) => items.length > 0)) {
