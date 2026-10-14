@@ -8,7 +8,9 @@ const path = require("node:path");
 const ROOT = path.resolve(__dirname, "..");
 const HASH_LENGTH = 12;
 const MAX_DYNAMIC_PASSES = 8;
-const SKIP_DIRS = new Set([".git", "node_modules"]);
+// Build-only scripts and test helpers are not public website assets. Their
+// edits must never invalidate the visitor-facing service worker cache.
+const SKIP_DIRS = new Set([".git", "node_modules", "scripts", "worker", "tests"]);
 const SERVICE_WORKER_FILE = path.join(ROOT, "sw.js");
 
 const hashCache = new Map();

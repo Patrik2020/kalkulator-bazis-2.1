@@ -139,7 +139,7 @@ const gitPageDate = (pageFile) => {
 };
 
 const state = loadState();
-const nextState = { version: 1, generatedAt: currentDate, pages: {} };
+const nextState = { version: 1, generatedAt: state.generatedAt || currentDate, pages: {} };
 
 const getLastModified = (url) => {
   const pageFile = url || "index.html";
@@ -164,6 +164,16 @@ const getLastModified = (url) => {
 const body = urls
   .map((url) => `    <url>\n        <loc>${publicUrlForSource(url)}</loc>\n        <lastmod>${getLastModified(url)}</lastmod>\n    </url>`)
   .join("\n\n");
+
+// A scheduled rebuild must not change generatedAt just because the day changed.
+// Only a changed URL inventory or changed meaningful page content updates it.
+const previousPages = state.pages || {};
+const pagesChanged = Object.keys(previousPages).length !== Object.keys(nextState.pages).length ||
+  Object.entries(nextState.pages).some(([url, entry]) =>
+    previousPages[url]?.hash !== entry.hash || previousPages[url]?.lastmod !== entry.lastmod);
+if (pagesChanged || !/^\\d{4}-\\d{2}-\\d{2}$/.test(state.generatedAt || "")) {
+  nextState.generatedAt = currentDate;
+}
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n\n${body}\n\n</urlset>\n`;
 
