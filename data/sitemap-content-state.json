@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-11",
+  "generatedAt": "2026-10-14",
   "pages": {
     "": {
-      "hash": "8022702ecaa002444e3be87b61fe811b8c921c3581313c1f82caa4683e95a601",
-      "lastmod": "2026-09-23"
+      "hash": "fbaaaed2dd8eb3a03f3b03590f5885e035f9d30d3e2902489fe1e9f30b85862a",
+      "lastmod": "2026-10-14"
     },
     "penzugyi.html": {
-      "hash": "7fdec0868055dc0265c5a9692a28d3329753364adbcf519aa34f077c56a3abab",
-      "lastmod": "2026-07-15"
+      "hash": "f23f48975327dd3d7964848506c249bccd696999ea2319d768f485db0b7308c9",
+      "lastmod": "2026-10-14"
     },
     "mindennapi.html": {
       "hash": "1914394335e7ab64d4c90de2a0829bd13f07166c3519d599d97083819de68667",
@@ -23,8 +23,8 @@
       "lastmod": "2026-07-15"
     },
     "epitoipari.html": {
-      "hash": "fa54a1c6e81584546a33bbf7751b96efabcd92407c2b5024bc17f416088516c2",
-      "lastmod": "2026-07-15"
+      "hash": "bf8ec6151b7a65239559378f01b3a7f5ce001569f244b73bbdad49e24184f864",
+      "lastmod": "2026-10-14"
     },
     "atvaltok.html": {
       "hash": "65d02e3e48d8e55bd6e36e3385a9e839b9130c77fa7418486fa42af933214e50",
@@ -163,8 +163,8 @@
       "lastmod": "2026-09-14"
     },
     "kalkulatorok/netto-brutto-kalkulator.html": {
-      "hash": "b9aa84687d038f0f833f1dfbd87a5a5e661a4650a2e3a3ad397582f3bea0cd47",
-      "lastmod": "2026-09-26"
+      "hash": "dae5c786579dcc0101d1140912ccef05a6ba52f275ecf30da46b704d3b823ce0",
+      "lastmod": "2026-10-14"
     },
     "kalkulatorok/hitel-torleszto-kalkulator.html": {
       "hash": "4e4ab87ccf24f8ff818a4440c9cd4537f44f61539ae3ffc53fe30e7ff64c0c6b",
@@ -183,8 +183,8 @@
       "lastmod": "2026-09-16"
     },
     "kalkulatorok/etf-kalkulator.html": {
-      "hash": "e0dc097508faff5604659f1bc3ae81f5b8e8e68f3810f2d5e7313bb2a5c75824",
-      "lastmod": "2026-09-16"
+      "hash": "dd280fb47823bb561137a29693cb5ea33107c4c7f9809dcba6784e93cbb583eb",
+      "lastmod": "2026-10-14"
     },
     "kalkulatorok/milliomos-kalkulator.html": {
       "hash": "fc0f4bad2ae15c5ffad869a0683bb4c731d64742ca7b025e61d99dc67cbb7805",
@@ -203,16 +203,16 @@
       "lastmod": "2026-09-16"
     },
     "kalkulatorok/fizetesi-hatarido-kalkulator.html": {
-      "hash": "828363eab55335dafd561f2d17ea10c5ffbfce05b28037a58bd724207e91219f",
-      "lastmod": "2026-10-11"
+      "hash": "697ab9164151ada0d96096d39499c1065077970c3c6ce4f82ae2f7e076ac905b",
+      "lastmod": "2026-10-14"
     },
     "kalkulatorok/szamla-teljesites-kalkulator.html": {
-      "hash": "4d18c047eb3e12b68fe40005e3b0200c1231041ee0f0d19e457a8e17f193107e",
-      "lastmod": "2026-10-11"
+      "hash": "ee3b6e916cb9492178ce7dfe0b3295f9797536d266461e3126bcf56bf99345aa",
+      "lastmod": "2026-10-14"
     },
     "kalkulatorok/beton-kalkulator.html": {
-      "hash": "c43a24d82e9a275b0362fa99ad0185b2f358169545c643bc360eee71817840e3",
-      "lastmod": "2026-09-27"
+      "hash": "56be46b9cf36127bfa322c9dfa4c58ed70d696ad6f032da09a1f4b02dfad87be",
+      "lastmod": "2026-10-14"
     },
     "kalkulatorok/csempe-kalkulator.html": {
       "hash": "df6f96cd58f5cbfb1d15387199f61406358516383e50847e3ebe2ee793bc753a",
@@ -223,8 +223,8 @@
       "lastmod": "2026-09-14"
     },
     "kalkulatorok/tegla-kalkulator.html": {
-      "hash": "593a404c46e6e4c0c2ea2263c39205c8950ba6d6f80b697449d6c8580c89dc24",
-      "lastmod": "2026-09-14"
+      "hash": "cbb6c2198ba1104de6f9d76a227a8aae00cde3d459f033c8cc0e63ea5799acfa",
+      "lastmod": "2026-10-14"
     },
     "kalkulatorok/bmi-kalkulator.html": {
       "hash": "79715167cf8ee5a41db8b4e68e5b33e6e54126eb45dee22b08a68292afd4554d",
@@ -239,8 +239,8 @@
       "lastmod": "2026-09-14"
     },
     "kalkulatorok/afa-kalkulator.html": {
-      "hash": "25f952892e6e7631d6989599c624a7e1c0f69e3c0756e1783cf97c6ce033b174",
-      "lastmod": "2026-09-14"
+      "hash": "df1f80281c763a0371b14b8f46a21cd0982e5f8e07b117deda2092204f32aee9",
+      "lastmod": "2026-10-14"
     },
     "kalkulatorok/auto-kalkulator.html": {
       "hash": "3a7b8523621ee755dee60cb9e9f6018976b3b0b2d6e04ed36f56e4d5833ba318",
@@ -295,8 +295,8 @@
       "lastmod": "2026-09-16"
     },
     "kalkulatorok/terhessegi-kalkulator.html": {
-      "hash": "8dae4b90ac535b4d7629bdd8aec7f6c84da740f7b4674f69bd71a22960b49018",
-      "lastmod": "2026-10-11"
+      "hash": "51a8467be0c5d0725e8b9a07214830e75bb5b2a2e082ec458f2602d50f6bbca7",
+      "lastmod": "2026-10-14"
     },
     "kalkulatorok/idealis-testsuly-kalkulator.html": {
       "hash": "4174527f4279d577043cbd100d561a82b787388fb9051d5166b1669fea2c191e",
@@ -371,8 +371,8 @@
       "lastmod": "2026-09-16"
     },
     "kalkulatorok/auto-fogyasztas-kalkulator.html": {
-      "hash": "71705c96cc156e9c0b611f5cf209d51477e555c7ffdaa895da50915eea6f1fe1",
-      "lastmod": "2026-09-27"
+      "hash": "45c2af2fea809d81967f25e0e578687e4406c5300c74b5d80c58c1135fb73cec",
+      "lastmod": "2026-10-14"
     },
     "kalkulatorok/hatotav-kalkulator.html": {
       "hash": "3a267ae035573f00583d5a5ce5330f7eeba418c200125a2abd62b494478e628f",
