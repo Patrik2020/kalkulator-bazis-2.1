@@ -9,6 +9,9 @@ on:
       - "css/pages/everyday-upgrades.css"
       - ".github/workflows/validate-everyday-upgrades.yml"
 
+permissions:
+  contents: read
+
 jobs:
   validate:
     runs-on: ubuntu-latest

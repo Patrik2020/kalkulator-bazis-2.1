@@ -11,6 +11,9 @@ on:
       - "kalkulatorok/deviza-atvalto-kalkulator.html"
       - ".github/workflows/validate-auto-converter-upgrades.yml"
 
+permissions:
+  contents: read
+
 jobs:
   validate:
     if: github.actor != 'github-actions[bot]'

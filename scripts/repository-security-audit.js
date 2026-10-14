@@ -35,6 +35,9 @@ for (const filename of files) {
     errors.push(`Possible credential in tracked file: ${normalized}`);
   }
   if (normalized.startsWith(".github/workflows/")) {
+    if (/^\s{2}pull_request\s*:/m.test(content) && !/^permissions:\s*\n\s{2}contents:\s*read\s*$/m.test(content)) {
+      errors.push(`Missing read-only workflow permissions in ${normalized}`);
+    }
     for (const action of content.matchAll(/^\s*-?\s*uses:\s*([^\s#]+)/gm)) {
       const source = action[1];
       if (!/^[^/]+\/[^@]+@[0-9a-f]{40}$/.test(source) && !source.startsWith("./")) {
