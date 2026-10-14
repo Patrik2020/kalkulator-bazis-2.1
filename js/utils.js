@@ -554,7 +554,7 @@ if (document.readyState === "loading") {
       wrapper.appendChild(link);
       footer.appendChild(wrapper);
     }
-    if (/\\/kapcsolat(?:\\.html)?\\/?$/.test(window.location.pathname)) {
+    if (window.location.pathname.replace(/\/$/, "").endsWith("/kapcsolat") || window.location.pathname.replace(/\/$/, "").endsWith("/kapcsolat.html")) {
       const main = document.querySelector("main");
       if (main && !main.querySelector(".kb-facebook-contact")) {
         const section = document.createElement("section");
