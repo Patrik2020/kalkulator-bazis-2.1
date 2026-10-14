@@ -25,7 +25,7 @@ on:
       - adsense-quality-v2
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: static-first-${{ github.ref }}
@@ -33,16 +33,15 @@ concurrency:
 
 jobs:
   materialize:
-    if: github.actor != 'github-actions[bot]' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
     steps:
-      - name: Checkout source branch
+      - name: Checkout tested commit (never mutate PR branch)
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           fetch-depth: 0
-          ref: ${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v7
@@ -203,16 +202,27 @@ jobs:
       - name: Check whitespace errors
         run: git diff --check
 
-      - name: Commit materialized HTML
+      # PR validation must never commit to or push an author's branch. The
+      # same checked-out SHA is tested by every job, with no surprise bot commits.
+      - name: Verify committed generated output matches source
         shell: bash
         run: |
-          if git diff --quiet; then
-            echo "Static HTML is already current."
-            exit 0
+          set -euo pipefail
+          git diff --check
+          git diff --binary > "${RUNNER_TEMP}/static-first-drift.patch"
+          if [[ -s "${RUNNER_TEMP}/static-first-drift.patch" ]]; then
+            echo "::error title=Stale generated output::The checked-in static files differ from the deterministic generator. Generate locally, review the diff, and commit only intended changes. This workflow will not push to a PR."
+            git diff --stat
+            git diff --name-only
+            exit 1
           fi
+          echo "Generated output matches the source; no surprise changes."
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add --all
-          git commit -m "build: materialize static-first HTML"
-          git push origin HEAD:${{ github.event_name == 'pull_request' && github.event.pull_request.head.ref || github.ref_name }}
+      - name: Upload drift patch for inspection
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: static-first-drift
+          path: ${{ runner.temp }}/static-first-drift.patch
+          if-no-files-found: ignore
+          retention-days: 7
