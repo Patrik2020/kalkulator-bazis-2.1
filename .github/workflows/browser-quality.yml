@@ -84,12 +84,11 @@ jobs:
           fi
 
   deep-ui-qa:
-    # The long CDP interaction suite is valuable as a post-merge safety net,
-    # but it should not block ordinary PRs while Chrome runner behavior is flaky.
-    if: github.event_name != 'pull_request'
+    # Run on main and opt-in QA PRs; keep other PRs fast.
+    # A failed deep suite must not be hidden behind a successful workflow badge.
+    if: github.event_name != 'pull_request' || contains(github.event.pull_request.title, '[deep-ui-qa]')
     runs-on: ubuntu-latest
     timeout-minutes: 20
-    continue-on-error: true
 
     steps:
       - name: Checkout

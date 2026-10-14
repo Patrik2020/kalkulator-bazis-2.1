@@ -44,7 +44,7 @@
 <script id="kb-structured-data" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://kalkulatorbazis.hu/#organization","name":"Kalkulátor Bázis","url":"https://kalkulatorbazis.hu/","logo":"https://kalkulatorbazis.hu/favicon/web-app-manifest-512x512.png"},{"@type":"WebSite","@id":"https://kalkulatorbazis.hu/#website","name":"Kalkulátor Bázis","url":"https://kalkulatorbazis.hu/","publisher":{"@id":"https://kalkulatorbazis.hu/#organization"},"inLanguage":"hu-HU","potentialAction":{"@type":"SearchAction","target":"https://kalkulatorbazis.hu/?kereses={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"CollectionPage","@id":"https://kalkulatorbazis.hu/#webpage","url":"https://kalkulatorbazis.hu/","name":"Kalkulátor Bázis | Ingyenes online kalkulátorportál magyarul","description":"Ingyenes magyar online kalkulátorportál pénzügyi, autós, építőipari, egészség, átváltó és mindennapi számításokhoz, magyarázatokkal és GYIK-kel.","isPartOf":{"@id":"https://kalkulatorbazis.hu/#website"},"inLanguage":"hu-HU"},{"@type":"ItemList","@id":"https://kalkulatorbazis.hu/#featured-calculators","name":"Kiemelt kalkulátorok","itemListElement":[{"@type":"ListItem","position":1,"url":"https://kalkulatorbazis.hu/kalkulatorok/netto-brutto-kalkulator","name":"Nettó - bruttó kalkulátor"},{"@type":"ListItem","position":2,"url":"https://kalkulatorbazis.hu/kalkulatorok/osztalek-kalkulator","name":"Osztalék kalkulátor"},{"@type":"ListItem","position":3,"url":"https://kalkulatorbazis.hu/kalkulatorok/etf-kalkulator","name":"ETF kalkulátor"},{"@type":"ListItem","position":4,"url":"https://kalkulatorbazis.hu/kalkulatorok/fizetesi-hatarido-kalkulator","name":"Fizetési határidő kalkulátor"},{"@type":"ListItem","position":5,"url":"https://kalkulatorbazis.hu/kalkulatorok/szamla-teljesites-kalkulator","name":"Számla teljesítés kalkulátor"},{"@type":"ListItem","position":6,"url":"https://kalkulatorbazis.hu/kalkulatorok/auto-kalkulator","name":"Autós út- és hatótáv kalkulátor"},{"@type":"ListItem","position":7,"url":"https://kalkulatorbazis.hu/kalkulatorok/mertekegyseg-atvalto-kalkulator","name":"Mértékegység átváltó"}]}]}</script>
 <!-- KB_STATIC:structured-data:END -->
 
-  <link rel="stylesheet" href="css/pages/home-redesign-v17.css?v=3882a7d91bd1" />
+  <link rel="stylesheet" href="css/pages/home-redesign-v17.css?v=b609ce172196" />
 <style id="kb-facebook-follow-style">.kb-facebook-follow{padding:1.25rem 0 2rem}.kb-facebook-follow-inner{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.5rem 1.75rem;border:1px solid rgba(58,127,224,.24);border-radius:20px;background:linear-gradient(120deg,rgba(27,94,175,.1),rgba(56,145,228,.04));box-shadow:0 8px 28px rgba(8,37,83,.06)}.kb-facebook-follow-copy{max-width:650px}.kb-facebook-follow-kicker{display:block;font-size:.78rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:#286cc4}.kb-facebook-follow h2{font-size:clamp(1.2rem,2.2vw,1.65rem);line-height:1.25;margin:.35rem 0 .5rem}.kb-facebook-follow p{margin:0;line-height:1.6}.kb-facebook-follow-link{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;flex-shrink:0;padding:.9rem 1.2rem;border-radius:12px;background:#1877f2;color:#fff!important;font-weight:700;text-decoration:none!important;transition:background .2s,transform .2s}.kb-facebook-follow-link:hover,.kb-facebook-follow-link:focus-visible{background:#125cbd;transform:translateY(-2px)}@media(max-width:700px){.kb-facebook-follow-inner{flex-direction:column;align-items:stretch;padding:1.2rem}.kb-facebook-follow-link{width:100%}}</style>
 </head>
 
@@ -60,7 +60,7 @@
 <span aria-hidden="true" class="logo-mark"></span>
 <span class="logo-text">Kalkulátor Bázis</span>
 </a>
-<nav aria-label="Fő navigáció" class="nav">
+<nav aria-label="Fő navigáció" class="nav" id="primaryNav">
 <a data-i18n="navCalculators" href="#popular">Kalkulátorok</a><a data-i18n="navCategories" href="#categories">Kategóriák</a><a data-i18n="navCurrent" href="#news">Aktuális</a><a href="#api">ChatGPT / API</a><a data-i18n="navTrust" href="#trust">Miért bízhatsz bennünk?</a>
 </nav>
 <div class="head-actions">
@@ -69,7 +69,7 @@
 <button type="button" aria-expanded="false" class="lang-btn" data-i18n-title="languageTitle" id="langBtn" title="Nyelv" aria-controls="langPop"><span aria-hidden="true">🌐</span><span id="langLabel">HU</span></button>
 <button type="button" aria-pressed="false" class="theme-btn" id="themeBtn" title="Sötét mód"><span id="themeEmoji">☾</span><span class="theme-label" id="themeLabel">Sötét</span></button>
 <button type="button" aria-expanded="false" class="season-btn" id="seasonBtn" aria-controls="seasonPop"><span aria-hidden="true" class="season-swatch" id="seasonEmoji"></span><span id="seasonLabel">Ősz</span></button>
-<button type="button" aria-label="Menü" class="icon-btn menu-btn">☰</button>
+<button type="button" aria-label="Menü" aria-controls="primaryNav" aria-expanded="false" class="icon-btn menu-btn">☰</button>
 </div>
 </header>
 </div>
@@ -168,7 +168,7 @@
 <div class="footer-col"><b data-i18n="footerCalculators">Kalkulátorok</b><a data-i18n="footerFinance" href="https://kalkulatorbazis.hu/penzugyi">Pénzügy</a><a data-i18n="footerHome" href="https://kalkulatorbazis.hu/epitoipari">Otthon &amp; felújítás</a><a data-i18n="footerAuto" href="https://kalkulatorbazis.hu/auto">Autó &amp; közlekedés</a><a data-i18n="footerHealth" href="https://kalkulatorbazis.hu/egeszseg">Egészség &amp; sport</a><a data-i18n="footerEveryday" href="https://kalkulatorbazis.hu/mindennapi">Mindennapok</a><a data-i18n="footerConvert" href="https://kalkulatorbazis.hu/atvaltok">Átváltók</a></div>
 <div class="footer-col"><b data-i18n="footerKnowledge">Tudástár</b><a data-i18n="footerUpdates" href="https://kalkulatorbazis.hu/aktualis">Aktuális</a><a data-i18n="footerLife" href="https://kalkulatorbazis.hu/elethelyzetek">Élethelyzetek</a><a data-i18n="footerAwareness" href="https://kalkulatorbazis.hu/landing-pages/penzugyi-tudatossag/penzugyi-tudatossag">Pénzügyi tudatosság</a><a data-i18n="footerMethod" href="https://kalkulatorbazis.hu/szamitasi-modszertan">Számítási módszertan</a><a data-i18n="footerTrust" href="https://kalkulatorbazis.hu/miert-bizhatsz-bennunk">Miért bízhatsz bennünk?</a><a data-i18n="footerTransparency" href="https://kalkulatorbazis.hu/atlathatosag-es-minoseg">Átláthatóság és minőség</a></div>
 <div class="footer-col"><b data-i18n="footerSite">Oldal</b><a data-i18n="footerAbout" href="https://kalkulatorbazis.hu/rolunk">Rólunk</a><a data-i18n="footerContact" href="https://kalkulatorbazis.hu/kapcsolat">Kapcsolat</a><a data-i18n="footerDecisions" href="https://kalkulatorbazis.hu/dontesek">Döntések</a><a data-i18n="footerCompare" href="https://kalkulatorbazis.hu/osszehasonlitas">Összehasonlítás</a></div>
-<div class="footer-col footer-legal"><b data-i18n="footerLegal">Jogi és partner</b><a data-i18n="footerImprint" href="https://kalkulatorbazis.hu/impresszum">Impresszum</a><a data-i18n="footerPrivacy" href="https://kalkulatorbazis.hu/adatvedelem">Adatkezelési tájékoztató</a><a data-i18n="footerTerms" href="https://kalkulatorbazis.hu/felhasznalasi-feltetelek">Felhasználási feltételek</a><a data-i18n="footerCookies" href="https://kalkulatorbazis.hu/cookie">Sütikezelési tájékoztató</a><a data-i18n="footerDisclaimer" href="https://kalkulatorbazis.hu/jogi-nyilatkozat">Jogi nyilatkozat</a><a data-i18n="footerPartners" href="https://kalkulatorbazis.hu/landing-pages/wise/wise">Partnerinformációk</a></div>
+<div class="footer-col footer-legal"><b data-i18n="footerLegal">Jogi és partner</b><a data-i18n="footerImprint" href="https://kalkulatorbazis.hu/impresszum">Impresszum</a><a data-i18n="footerPrivacy" href="https://kalkulatorbazis.hu/adatvedelem">Adatkezelési tájékoztató</a><a data-i18n="footerTerms" href="https://kalkulatorbazis.hu/felhasznalasi-feltetelek">Felhasználási feltételek</a><a data-i18n="footerCookies" href="https://kalkulatorbazis.hu/cookie">Sütikezelési tájékoztató</a><a data-cookie-settings href="#cookie-settings">Sütibeállítások megnyitása</a><a data-i18n="footerDisclaimer" href="https://kalkulatorbazis.hu/jogi-nyilatkozat">Jogi nyilatkozat</a><a data-i18n="footerPartners" href="https://kalkulatorbazis.hu/landing-pages/wise/wise">Partnerinformációk</a></div>
 </div>
 <div class="container footer-bottom"><span>© 2026 Kalkulátor Bázis</span><span data-i18n="footerBottom">Magyar fejlesztés · Regisztráció nélkül használható</span></div>
 </footer>
@@ -197,9 +197,9 @@
 <script src="js/home-redesign-help-i18n-hu.js?v=c61429bad988"></script>
 <script src="js/home-redesign-help-i18n-en.js?v=1258bd945bfa"></script>
 <script src="js/home-redesign-help-i18n-de.js?v=dbfccc2f4617"></script>
-<script src="js/home-redesign-core.js?v=93ab5d6c36b7"></script>
+<script src="js/home-redesign-core.js?v=4b9d34a6aebb"></script>
 <script src="js/home-redesign-salary.js?v=2d9d1a3111cd"></script>
-<script src="js/home-redesign-help.js?v=4d095d1ef6b1"></script>
+<script src="js/home-redesign-help.js?v=c048547eac0b"></script>
 <script src="js/cookie.js?v=8a6d0bffa1e2" defer></script>
 </body>
 </html>

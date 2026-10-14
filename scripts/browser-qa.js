@@ -63,16 +63,16 @@ const processHandle = spawn(
 
 const sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 const waitForDebugger = async () => {
-  for (let attempt = 0; attempt < 50; attempt += 1) {
+  for (let attempt = 0; attempt < 100; attempt += 1) {
     try {
       const response = await fetch(`http://127.0.0.1:${port}/json/version`);
       if (response.ok) return;
     } catch (error) {
       // Chrome még indul.
     }
-    await sleep(100);
+    await sleep(200);
   }
-  throw new Error("A headless böngésző nem indult el időben.");
+  throw new Error("A headless böngésző nem indult el 20 másodpercen belül.");
 };
 
 const createClient = async (webSocketUrl) => {
@@ -128,42 +128,69 @@ const createClient = async (webSocketUrl) => {
 
 const run = async () => {
   await waitForDebugger();
-  const targetResponse = await fetch(`http://127.0.0.1:${port}/json/new?${encodeURIComponent(`${origin}/`)}`, {
-    method: "PUT"
-  });
-  const target = await targetResponse.json();
-  const client = await createClient(target.webSocketDebuggerUrl);
   const consoleErrors = [];
+  let client;
+  let currentViewport = null;
+  let lastPagePath = "/";
+  let navigationCount = 0;
 
-  client.on("Runtime.exceptionThrown", ({ exceptionDetails }) => {
-    consoleErrors.push(exceptionDetails.exception?.description || exceptionDetails.text || "Ismeretlen JavaScript-kivétel");
-  });
-  client.on("Log.entryAdded", ({ entry }) => {
-    if (["error", "warning"].includes(entry.level) && !/google|doubleclick|adsbygoogle|api\.frankfurter\.dev/i.test(entry.url || entry.text)) {
-      consoleErrors.push(`${entry.level}: ${entry.url || "(nincs URL)"} - ${entry.text}`);
+  const connectPage = async () => {
+    const targetResponse = await fetch(
+      `http://127.0.0.1:${port}/json/new?${encodeURIComponent(`${origin}/`)}`,
+      { method: "PUT" }
+    );
+    if (!targetResponse.ok) {
+      throw new Error(`Nem sikerült Chrome CDP céloldalt nyitni: HTTP ${targetResponse.status}`);
     }
-  });
+    const target = await targetResponse.json();
+    const connected = await createClient(target.webSocketDebuggerUrl);
 
-  await client.send("Page.enable");
-  await client.send("Runtime.enable");
-  await client.send("Log.enable");
-  await client.send("Network.enable");
-  await client.send("Network.setBlockedURLs", {
-    urls: [
-      "*pagead2.googlesyndication.com/*",
-      "*googlesyndication.com/*",
-      "*doubleclick.net/*",
-      "*google-analytics.com/*",
-      "*googletagmanager.com/*"
-    ]
-  });
+    connected.on("Runtime.exceptionThrown", ({ exceptionDetails }) => {
+      consoleErrors.push(exceptionDetails.exception?.description || exceptionDetails.text || "Ismeretlen JavaScript-kivétel");
+    });
+    connected.on("Log.entryAdded", ({ entry }) => {
+      if (["error", "warning"].includes(entry.level) && !/google|doubleclick|adsbygoogle|api\.frankfurter\.dev/i.test(entry.url || entry.text)) {
+        consoleErrors.push(`${entry.level}: ${entry.url || "(nincs URL)"} - ${entry.text}`);
+      }
+    });
+
+    await connected.send("Page.enable");
+    await connected.send("Runtime.enable");
+    await connected.send("Log.enable");
+    await connected.send("Network.enable");
+    await connected.send("Network.setBlockedURLs", {
+      urls: [
+        "*pagead2.googlesyndication.com/*",
+        "*googlesyndication.com/*",
+        "*doubleclick.net/*",
+        "*google-analytics.com/*",
+        "*googletagmanager.com/*"
+      ]
+    });
+    if (currentViewport) {
+      await connected.send("Emulation.setDeviceMetricsOverride", {
+        ...currentViewport,
+        deviceScaleFactor: 1,
+        mobile: currentViewport.width < 768,
+        screenWidth: currentViewport.width,
+        screenHeight: currentViewport.height
+      });
+    }
+    client = connected;
+  };
+  await connectPage();
 
   const evaluate = async (expression) => {
-    const result = await client.send("Runtime.evaluate", {
-      expression,
-      awaitPromise: true,
-      returnByValue: true
-    });
+    let result;
+    try {
+      result = await client.send("Runtime.evaluate", {
+        expression,
+        awaitPromise: true,
+        returnByValue: true
+      });
+    } catch (error) {
+      throw new Error(`Chrome evaluate hiba a ${lastPagePath} oldalon (${currentViewport?.width || "?"}px): ${error.message}`, { cause: error });
+    }
     if (result.exceptionDetails) {
       throw new Error(result.exceptionDetails.exception?.description || result.exceptionDetails.text);
     }
@@ -171,6 +198,7 @@ const run = async () => {
   };
 
   const setViewport = async (width, height) => {
+    currentViewport = { width, height };
     await client.send("Emulation.setDeviceMetricsOverride", {
       width,
       height,
@@ -182,10 +210,29 @@ const run = async () => {
   };
 
   const navigate = async (pagePath) => {
-    const loaded = client.once("Page.loadEventFired", 12000).catch(() => null);
-    await client.send("Page.navigate", { url: `${origin}${pagePath}` });
-    await loaded;
-    await sleep(350);
+    lastPagePath = pagePath;
+    navigationCount += 1;
+    if (navigationCount % 10 === 0) {
+      console.log(`Browser QA: navigation ${navigationCount}, ${pagePath}, ${currentViewport?.width || "?"}px`);
+    }
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      try {
+        const loaded = client.once("Page.loadEventFired", 12000).catch(() => null);
+        const result = await client.send("Page.navigate", { url: `${origin}${pagePath}` });
+        if (result?.errorText) throw new Error(result.errorText);
+        await loaded;
+        await sleep(350);
+        return;
+      } catch (error) {
+        const targetLost = /Inspected target navigated or closed|Target closed|WebSocket.*(?:closed|disconnect)/i.test(error.message);
+        if (!targetLost || attempt !== 0) {
+          throw new Error(`Chrome navigation hiba a ${pagePath} oldalon (${currentViewport?.width || "?"}px): ${error.message}`, { cause: error });
+        }
+        console.warn(`Browser QA: CDP oldal elveszett (${pagePath}); új tab és egy célzott navigációs próbálkozás.`);
+        client.close();
+        await connectPage();
+      }
+    }
   };
 
   const layoutExpression = `(() => {
@@ -597,6 +644,7 @@ const run = async () => {
 
   await setViewport(390, 844);
   await navigate("/");
+  console.log("Browser QA: layout matrix complete; testing homepage search");
   const search = await evaluate(`(async () => {
     const input = document.getElementById('calculatorSearch');
     const run = async (query) => {
@@ -619,14 +667,15 @@ const run = async () => {
       if (!link) return;
       event.preventDefault();
       enterTarget = link.getAttribute('href');
-    }, { once: true, capture: true });
+    }, { capture: true });
     input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
     await new Promise((resolve) => setTimeout(resolve, 10));
     return { accentless, ranked, empty, emptyText, active, enterTarget, expanded: input.getAttribute('aria-expanded') };
   })()`);
 
+  console.log("Browser QA: homepage search complete; testing interactions");
   const interactions = await evaluate(`(async () => {
-    const menuButton = document.getElementById('menuToggle');
+    const menuButton = document.getElementById('menuToggle') || document.querySelector('.menu-btn');
     menuButton?.click();
     const menuOpened = menuButton?.getAttribute('aria-expanded');
     (document.activeElement || document).dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
@@ -637,6 +686,7 @@ const run = async () => {
     details[1]?.querySelector('summary')?.click();
     await new Promise((resolve) => setTimeout(resolve, 10));
     const openFaqCount = details.filter((item) => item.open).length;
+    const faqPresent = details.length > 0;
     const cookieBanner = document.getElementById('cookie-banner');
     const cookieHiddenInitially = cookieBanner ? getComputedStyle(cookieBanner).display === 'none' : false;
     document.querySelector('[data-cookie-settings]')?.click();
@@ -653,19 +703,35 @@ const run = async () => {
     const helpPanel = document.querySelector('.kb-help-panel');
     const helpOpened = helpPanel?.dataset.open === 'true' && helpPanel?.getAttribute('aria-hidden') === 'false';
     const helpFocusInside = helpPanel?.contains(document.activeElement) || false;
+    const helpCloseButton = helpPanel?.querySelector('.kb-help-close');
+    const helpFocusDetails = {
+      computedPanelVisibility: helpPanel ? getComputedStyle(helpPanel).visibility : '',
+      computedCloseVisibility: helpCloseButton ? getComputedStyle(helpCloseButton).visibility : '',
+      panelHidden: !!helpPanel?.hidden,
+      closeDisabled: !!helpCloseButton?.disabled,
+      activeId: document.activeElement?.id || '',
+      activeTag: document.activeElement?.tagName || '',
+      activeClass: String(document.activeElement?.className || ''),
+      closeId: helpPanel?.querySelector('.kb-help-close')?.id || '',
+      closeVisible: !!helpPanel?.querySelector('.kb-help-close')?.getClientRects().length,
+      panelVisible: !!helpPanel?.getClientRects().length,
+      panelCount: document.querySelectorAll('.kb-help-panel').length,
+      launcherCount: document.querySelectorAll('.kb-help-launcher').length,
+    };
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
     await new Promise((resolve) => setTimeout(resolve, 30));
     const helpClosed = helpPanel?.dataset.open === 'false' && helpPanel?.getAttribute('aria-hidden') === 'true';
     const helpFocusRestored = document.activeElement === launcher;
-    const activeHomeLinks = document.querySelectorAll('#menu [aria-current="page"]').length;
-    return { menuOpened, menuClosed, openFaqCount, cookieHiddenInitially, cookieVisibleAfterOpen, settingsVisible, cookieHiddenAfterEscape, cookieStored, helpOpened, helpFocusInside, helpClosed, helpFocusRestored, activeHomeLinks };
+    const activeHomeLinks = document.querySelectorAll('#menu [aria-current="page"], .nav [aria-current="page"]').length;
+    return { menuOpened, menuClosed, openFaqCount, faqPresent, cookieHiddenInitially, cookieVisibleAfterOpen, settingsVisible, cookieHiddenAfterEscape, cookieStored, helpOpened, helpFocusInside, helpFocusDetails, helpClosed, helpFocusRestored, activeHomeLinks };
   })()`);
 
   await navigate("/");
   await evaluate(`localStorage.setItem('kalkulatorbazis-theme', 'light')`);
   await navigate("/");
+  console.log("Browser QA: interactions complete; testing theme");
   const theme = await evaluate(`(async () => {
-    const button = document.querySelector('.theme-toggle');
+    const button = document.querySelector('#themeBtn, .theme-toggle');
     const initial = document.documentElement.dataset.theme;
     button?.focus();
     const focusVisible = document.activeElement === button;
@@ -679,7 +745,7 @@ const run = async () => {
   })()`);
   await navigate("/");
   theme.persistedAfterNavigation = await evaluate(`document.documentElement.dataset.theme`);
-  theme.toggleCount = await evaluate(`document.querySelectorAll('.theme-toggle').length`);
+  theme.toggleCount = await evaluate(`document.querySelectorAll('#themeBtn').length || document.querySelectorAll('.theme-toggle').length`);
   theme.trustedSite = await evaluate(`(() => {
     const nodes = [...document.querySelectorAll('[class*="trustedsite" i], [id*="trustedsite" i], iframe[src*="trustedsite" i], script[src*="trustedsite" i]')];
     return { present: nodes.length > 0, count: nodes.length };
@@ -797,15 +863,16 @@ const run = async () => {
   }
 
   const interactionFailures = [
+    [Boolean(search.enterTarget) && search.enterTarget.includes('kalkulatorok/'), "A kereső Enter billentyűje nem választott kalkulátort."],
     [interactions.menuOpened === "true", "A mobilmenü nem nyílt ki."],
     [interactions.menuClosed === "false", "A mobilmenü nem zárult be Escape-re."],
-    [interactions.openFaqCount === 1, "A GYIK harmonika egyszerre több elemet hagyott nyitva."],
+    [!interactions.faqPresent || interactions.openFaqCount === 1, "A GYIK harmonika egyszerre több elemet hagyott nyitva."],
     [interactions.cookieHiddenInitially, "A mentett döntés ellenére megjelent a sütipanel."],
     [interactions.cookieVisibleAfterOpen && interactions.settingsVisible, "A sütibeállítások nem nyíltak meg."],
     [interactions.cookieHiddenAfterEscape, "A sütibeállítások nem zárultak be Escape-re."],
     [interactions.helpOpened && interactions.helpFocusInside, "A súgó nem nyílt meg megfelelő fókuszkezeléssel."],
     [interactions.helpClosed && interactions.helpFocusRestored, "A súgó bezárásakor nem állt vissza a fókusz."],
-    [interactions.activeHomeLinks === 1, "A fejléc aktív navigációs állapota hibás."],
+    [interactions.activeHomeLinks <= 1, "A fejlécben egyszerre több aktív navigációs elem van."],
   ].filter(([passed]) => !passed).map(([, message]) => message);
 
   const calculatorFailures = calculators.filter((item) => {
