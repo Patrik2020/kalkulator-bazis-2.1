@@ -14,7 +14,7 @@ nem pushol. Ha `Stale generated output` hibát ad, a fejlesztő a
 `static-first-drift` artifactot ellenőrizheti, vagy helyben futtathatja
 a workflow transzformációit, és **csak a szándékolt diffet** commitolhatja.
 A sitemap `generatedAt` mezője csak tartalmi változáskor módosul.
-A service-worker és az asset cache-verziója content hash alapján változik.
+A service-worker és az asset cache-verziója content hash alapján változik.\nA belső `scripts/`, `worker/` és `tests/` könyvtárak nem számítanak\nnyilvános weboldal-assetnek, ezért nem generálnak felesleges PWA-cache váltást.
 A generálási műveletek ne fussanak automatikusan éles `main` ágra pusholva.
 
 ## Kötelező GitHub ruleset – tulajdonosi teendő
