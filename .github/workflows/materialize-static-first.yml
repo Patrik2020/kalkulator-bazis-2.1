@@ -210,7 +210,8 @@ jobs:
           set -euo pipefail
           git diff --check
           git diff --binary > "${RUNNER_TEMP}/static-first-drift.patch"
-          untracked="$(git ls-files --others --exclude-standard)"\n          if [[ -s "${RUNNER_TEMP}/static-first-drift.patch" || -n "$untracked" ]]; then
+          untracked="$(git ls-files --others --exclude-standard)"
+          if [[ -s "${RUNNER_TEMP}/static-first-drift.patch" || -n "$untracked" ]]; then
             echo "::error title=Stale generated output::The checked-in static files differ from the deterministic generator. Generate locally, review the diff, and commit only intended changes. This workflow will not push to a PR."
             git diff --stat
             git status --short --untracked-files=all
