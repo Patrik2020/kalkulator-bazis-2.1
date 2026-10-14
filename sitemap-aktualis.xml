@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kalkulatorbazis.hu/aktualis</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-10-14</lastmod>
   </url>
   <url>
     <loc>https://kalkulatorbazis.hu/aktualis/ksh-inflacio-2026-augusztus</loc>
@@ -38,4 +38,5 @@
   </url>
   <url><loc>https://kalkulatorbazis.hu/aktualis/ksh-inflacio-2026-szeptember</loc><lastmod>2026-10-11</lastmod></url>
   <url><loc>https://kalkulatorbazis.hu/aktualis/ksh-uzemanyagarak-2026-szeptember</loc><lastmod>2026-10-13</lastmod></url>
+  <url><loc>https://kalkulatorbazis.hu/aktualis/ksh-keresetek-eloszlasa-2026-i-felev</loc><lastmod>2026-10-14</lastmod></url>
 </urlset>
