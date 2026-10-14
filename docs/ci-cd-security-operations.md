@@ -23,7 +23,7 @@ A `Protect main` ruleset jelenleg nem követel meg zöld CI-t, és az
 elfogadott PR-review-k száma nulla. A GitHub
 `Settings → Rules → Rulesets → Protect main` felületén javasolt:
 
-- Required status checks: `Site quality / validate`,
+- Required status checks: `Site quality gate`,
   `Repository security baseline / Dependency and repository security`.
   A pontos neveket a legfrissebb sikeres Actions-futásokból kell kiválasztani.
 - Require branches to be up to date before merging, vagy merge queue,
@@ -56,7 +56,7 @@ a fenti adminisztratív változtatást nem tudja automatikusan élesíteni.
 - A jelenlegi CSP alapvédelmet ad, de még nem tiltja teljes körűen a
   külső vagy inline scripteket. Ennek szigorítása a GA4, AdSense, Wise,
   cookie-hozzájárulás és számológépek tesztelése után, stagingben történjen.
-- GitHub Actions hivatkozásokat ellenőrzött commit SHA-hoz érdemes rögzíteni.
+- GitHub Actions hivatkozásokat ellenőrzött commit SHA-hoz rögzítettük;\n  a repository security gate tiltja a változó külső action-refeket.
 - Dependabot npm + GitHub Actions frissítések hetente; a security-baseline
   magas/kritikus npm audit problémánál piros státuszt ad.
 - Cloudflare hozzáférésekre MFA/passkey, legszűkebb tokenjog, elkülönített

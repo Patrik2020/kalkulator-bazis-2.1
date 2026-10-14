@@ -35,6 +35,12 @@ for (const filename of files) {
     errors.push(`Possible credential in tracked file: ${normalized}`);
   }
   if (normalized.startsWith(".github/workflows/")) {
+    for (const action of content.matchAll(/^\s*-?\s*uses:\s*([^\s#]+)/gm)) {
+      const source = action[1];
+      if (!/^[^/]+\/[^@]+@[0-9a-f]{40}$/.test(source) && !source.startsWith("./")) {
+        errors.push(`Unpinned external GitHub Action in ${normalized}: ${source.split("@")[0]}`);
+      }
+    }
     if (/^\s{0,2}pull_request_target\s*:/m.test(content)) {
       errors.push(`Unsafe pull_request_target workflow: ${normalized}`);
     }
