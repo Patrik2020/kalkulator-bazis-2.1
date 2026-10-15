@@ -1,3 +1,29 @@
+const kbLanguageStorageKey = "kalkulatorbazis-language";
+const kbSupportedLanguages = new Set(["hu", "en", "de"]);
+const readSiteLanguage = () => {
+  try {
+    const stored = localStorage.getItem(kbLanguageStorageKey);
+    return kbSupportedLanguages.has(stored) ? stored : "hu";
+  } catch (_) {
+    return "hu";
+  }
+};
+window.KB_SITE_LANGUAGE = {
+  get: readSiteLanguage,
+  set(language) {
+    if (!kbSupportedLanguages.has(language)) return false;
+    try {
+      localStorage.setItem(kbLanguageStorageKey, language);
+    } catch (_) {
+      return false;
+    }
+    return true;
+  },
+  supported: ["hu", "en", "de"],
+};
+// A preference is not a translation: leave <html lang="hu"> intact on untranslated pages.
+document.documentElement.dataset.kbPreferredLanguage = readSiteLanguage();
+
 const themeStorageKey = "kalkulatorbazis-theme";
 let initialTheme = "light";
 
