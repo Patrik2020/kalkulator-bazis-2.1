@@ -49,7 +49,7 @@ jobs:
       - name: Apply page-specific domain methodology
         run: node scripts/apply-adsense-domain-method-copy-v2.js
 
-      - name: Apply transparent YMYL trust metadata
+      - name: Remove legacy YMYL ownership boilerplate
         run: node scripts/apply-adsense-ymyl-trust-v2.js
 
       - name: Apply primary YMYL source notes

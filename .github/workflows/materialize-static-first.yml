@@ -73,7 +73,7 @@ jobs:
       - name: Preserve construction manufacturer-first safety rule
         run: node scripts/apply-construction-manufacturer-first-v2.js
 
-      - name: Apply transparent YMYL trust metadata
+      - name: Remove legacy YMYL ownership boilerplate
         run: node scripts/apply-adsense-ymyl-trust-v2.js
 
       - name: Apply primary YMYL source notes

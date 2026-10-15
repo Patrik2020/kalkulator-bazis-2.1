@@ -146,9 +146,8 @@ const benignSharedPatterns = [
 const isBenignSharedBlock = (text) => benignSharedPatterns.some((pattern) => pattern.test(text));
 
 const extractBlocks = (mainHtml) => {
-  // The following sections are intentionally standardized trust/safety UI.
-  // They remain visible to users and are still checked by the YMYL/runtime gates,
-  // but they must not inflate page-content boilerplate ratios.
+  // Legacy YMYL ownership blocks are stripped by the materialization step. Keep
+  // the exclusion here so an outdated generated page cannot distort the report.
   const editorialHtml = mainHtml
     .replace(/<!-- KB_ADSENSE:ymyl-trust:START -->[\s\S]*?<!-- KB_ADSENSE:ymyl-trust:END -->/g, " ")
     .replace(/<!-- KB_STATIC:reliability:START -->[\s\S]*?<!-- KB_STATIC:reliability:END -->/g, " ");
@@ -204,7 +203,6 @@ const records = htmlFiles.map((file) => {
   const contentText = contentBlocks.map((block) => block.text).join(" ") || text;
   const wordCount = text ? text.split(/\s+/).filter(Boolean).length : 0;
   const genericHits = genericPatterns.filter(([, pattern]) => pattern.test(contentText)).map(([label]) => label);
-  const who = /Kovács Patrik|Szerkesztette|Készítette|Fejlesztette|Üzemeltető/i.test(text);
   const how = /módszertan|hogyan számol|képlet|számítás menete|kerekítés|forrás|teszt|ellenőrz/i.test(text);
   const why = /mikor hasznos|mire használ|mire jó|célja|nem helyettesít|korlát|mire figyelj/i.test(text);
   const sourceSignal = externalSources.length > 0 || /NAV|MNB|KSH|WHO|NJT|jogszabály|hivatalos forrás|forrás:/i.test(text);
@@ -224,7 +222,6 @@ const records = htmlFiles.map((file) => {
     tokens: tokenSet(contentText),
     genericHits,
     ymyl,
-    who,
     how,
     why,
     sourceSignal,
@@ -293,8 +290,10 @@ for (let i = 0; i < calculatorRecords.length; i += 1) {
 similarPairs.sort((a, b) => b.score - a.score);
 
 const ymylFailures = records.filter(
-  (record) => record.ymyl && record.type === "kalkulátor" && !record.isNoindex && !record.redirect && (!record.who || !record.how || !record.why || !record.sourceSignal)
+  (record) => record.ymyl && record.type === "kalkulátor" && !record.isNoindex && !record.redirect && (!record.how || !record.why || !record.sourceSignal)
 );
+const impressumText = exists("impresszum.html") ? stripHtml(read("impresszum.html")) : "";
+const operatorIdentityOk = /Kovács Patrik/i.test(impressumText) && /üzemeltető/i.test(impressumText);
 const genericPages = records.filter((record) => !record.isNoindex && !record.redirect && record.genericHits.length > 0);
 const highBoilerplatePages = calculatorRecords.filter((record) => (record.boilerplateRatio || 0) >= 0.18);
 const dangerousSimilarityPairs = similarPairs.filter((pair) => pair.score >= 0.68);
@@ -325,7 +324,8 @@ if (duplicateDescriptions.length) critical.push(`${duplicateDescriptions.length}
 if (genericPages.length) critical.push(`${genericPages.length} generikus/sablonos szövegjeleket tartalmazó oldal`);
 if (highBoilerplatePages.length) critical.push(`${highBoilerplatePages.length} magas tartalmi boilerplate-arányú kalkulátor`);
 if (dangerousSimilarityPairs.length) critical.push(`${dangerousSimilarityPairs.length} veszélyesen hasonló kalkulátorpár`);
-if (ymylFailures.length) critical.push(`${ymylFailures.length} hiányos Who/How/Why/forrás YMYL-kalkulátor`);
+if (ymylFailures.length) critical.push(`${ymylFailures.length} hiányos How/Why/forrás YMYL-kalkulátor`);
+if (!operatorIdentityOk) critical.push("Hiányos központi üzemeltetői azonosítás az Impresszumban");
 if (directAdSensePages.length) critical.push(`${directAdSensePages.length} közvetlen AdSense-scriptet tartalmazó oldal`);
 if (redirectIndexingProblems.length) critical.push(`${redirectIndexingProblems.length} indexelhető redirect oldal`);
 
@@ -381,12 +381,11 @@ else benignRepeatedBlocks.slice(0, 15).forEach((entry) => {
 });
 lines.push("");
 
-lines.push("## YMYL Who / How / Why / forrás hiányok");
+lines.push("## YMYL How / Why / forrás hiányok");
 lines.push("");
 if (!ymylFailures.length) lines.push("- Minden vizsgált YMYL-kalkulátor teljesíti a minimumot.");
 else ymylFailures.forEach((record) => {
   const missing = [];
-  if (!record.who) missing.push("Who");
   if (!record.how) missing.push("How");
   if (!record.why) missing.push("Why");
   if (!record.sourceSignal) missing.push("forrás");
