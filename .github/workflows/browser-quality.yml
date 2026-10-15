@@ -1,11 +1,15 @@
 name: Browser regression
 
 on:
+  # Browser matrix is reserved for calculators, navigation and shared UI logic.
+  # Publishing an article or updating a sitemap must not trigger it.
   pull_request:
     paths:
-      - "**/*.html"
-      - "css/**"
+      - "kalkulatorok/**"
       - "js/**"
+      - "css/**"
+      - "index.html"
+      - "kategoriak/**"
       - "scripts/*browser*.js"
       - "scripts/responsive-*.js"
       - "scripts/local-static-server.js"
