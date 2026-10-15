@@ -12,8 +12,8 @@
   const nextStepJourneys = {
     "netto-brutto-kalkulator": {
       eyebrow: "Az eredmény után",
-      title: "Most tedd kontextusba a nettó fizetésed",
-      description: "A nettó összeg önmagában még nem mutatja meg, mennyi mozgástered marad. A következő lépés lehet a havi keret vagy a hitelteher ellenőrzése.",
+      title: "Mennyi marad a fizetésedből hó végére?",
+      description: "Írd össze a havi kiadásaidat a költségvetés-kalkulátorban. Ha hitelt tervezel, a becsült törlesztési keretet is megnézheted.",
       actions: [
         ["Havi költségvetés", "/kalkulatorok/havi-koltsegvetes-kalkulator.html", "Nézd meg, mennyi maradhat kiadások és megtakarítás után."],
         ["Hitelképesség", "/kalkulatorok/hitelkepesseg-kalkulator.html", "Becsüld meg, mekkora törlesztés férhet bele a jövedelmedbe."],
