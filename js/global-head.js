@@ -22,7 +22,9 @@ window.KB_SITE_LANGUAGE = {
   supported: ["hu", "en", "de"],
 };
 // A preference is not a translation: leave <html lang="hu"> intact on untranslated pages.
-document.documentElement.dataset.kbPreferredLanguage = readSiteLanguage();
+if (!new URLSearchParams(window.location.search).has("__kb_static_export")) {
+  document.documentElement.dataset.kbPreferredLanguage = readSiteLanguage();
+}
 
 const themeStorageKey = "kalkulatorbazis-theme";
 let initialTheme = "light";
