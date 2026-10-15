@@ -1,8 +1,8 @@
 # AdSense Quality v2 riport
 
-- HTML oldalak: **142**
+- HTML oldalak: **146**
 - Kalkulátoroldalak: **89**
-- Kezdeti AdSense-eligible oldalak: **107**
+- Kezdeti AdSense-eligible oldalak: **111**
 - Kritikus kategóriák: **0**
 - Figyelmeztetések: **0**
 
@@ -36,7 +36,7 @@
 - **4 oldal** – A túl nagy kalóriadeficit ronthatja a teljesítményt, regenerációt és tápanyagellátást.
 - **4 oldal** – Gyártói/rendszeradat ellenőrzése szükséges. Írd át a példaértékeket a kiválasztott termék vagy rendszer adatai szerint, majd állítsd az ellenőrző mezőt Igenre. Addig nem készítünk …
 
-## YMYL Who / How / Why / forrás hiányok
+## YMYL How / Why / forrás hiányok
 
 - Minden vizsgált YMYL-kalkulátor teljesíti a minimumot.
 
@@ -51,7 +51,7 @@ A 404, kapcsolat, impresszum, adatvédelem, cookie, jogi/felhasználási, redire
 
 ## Sitemap és consent
 
-- Domináns lastmod: **2026-09-16**, 45/126 URL (35.7%).
+- Domináns lastmod: **2026-10-15**, 35/130 URL (26.9%).
 - Google/IAB CMP-kódjel: **található**.
 
 ## Figyelmeztetések
