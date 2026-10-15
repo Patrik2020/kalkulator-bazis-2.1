@@ -173,6 +173,64 @@ footer.kb-footer-host {
   overflow-wrap: anywhere;
 }
 
+
+/* Facebook: compact, accessible footer action on desktop and mobile. */
+.kb-facebook-footer {
+  margin-top: 10px;
+}
+
+.kb-facebook-footer > a {
+  align-items: center;
+  background: color-mix(in srgb, var(--primary, #0b66f2) 7%, var(--surface, #ffffff));
+  border: 1px solid color-mix(in srgb, var(--primary, #0b66f2) 22%, var(--border, #e5e7eb));
+  border-radius: 12px;
+  color: var(--primary, #0b66f2);
+  display: inline-flex;
+  font-size: 0.9rem;
+  font-weight: 750;
+  gap: 10px;
+  line-height: 1.25;
+  min-height: 44px;
+  max-width: 100%;
+  padding: 7px 14px 7px 8px;
+  text-decoration: none;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.kb-facebook-footer > a > span[aria-hidden="true"] {
+  align-items: center;
+  background: #1877f2;
+  border-radius: 9px;
+  color: #fff;
+  display: inline-flex;
+  flex: 0 0 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  height: 30px;
+  justify-content: center;
+  line-height: 1;
+  padding-top: 5px;
+  width: 30px;
+}
+
+.kb-facebook-footer > a:hover {
+  background: color-mix(in srgb, var(--primary, #0b66f2) 13%, var(--surface, #ffffff));
+  border-color: var(--primary, #0b66f2);
+  transform: translateY(-1px);
+}
+
+.kb-facebook-footer > a:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--primary, #0b66f2) 38%, transparent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kb-facebook-footer > a {
+    transition: none;
+  }
+}
+
 .footer-col h2 {
   color: var(--text, #111827);
   font-size: 0.93rem;
