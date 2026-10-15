@@ -55,8 +55,8 @@
       "lastmod": "2026-07-01"
     },
     "kapcsolat.html": {
-      "hash": "29437935c04bb6844bafc0b469690d28c3bfafb57d8bf2bffdd0edc596cbc8e7",
-      "lastmod": "2026-10-14"
+      "hash": "4be1d8a21e88323bc017e6b26c669db1e73f6c1cddeb9a38ed59401547834922",
+      "lastmod": "2026-07-01"
     },
     "adatvedelem.html": {
       "hash": "d8cc2ca6938118417a8a5cccee0fdb59f06f8cf3df94d3b4e3e0b599a77d4812",
@@ -91,8 +91,8 @@
       "lastmod": "2026-08-21"
     },
     "aktualis.html": {
-      "hash": "87bd883cc0897982814ba2c1cb689b26f693100ac6ceb87c5abdf5f71385c6de",
-      "lastmod": "2026-10-13"
+      "hash": "c14c34ac485b9b780b56964c65f77ae2f655870f81da2bdd77f8d68d7215df92",
+      "lastmod": "2026-10-14"
     },
     "aktualis/allampapir-kamatok-2026-szeptember.html": {
       "hash": "7796f4dd3dc33afc0b1ae17f4f9a31431e9103099f0ccefa2f01fa1da48f7d09",
@@ -113,6 +113,10 @@
     "aktualis/ksh-keresetek-2026-julius.html": {
       "hash": "0872160abd6c5ce5f94460e897db784f3989b8f84b2ff9a515a5dba99053a3b4",
       "lastmod": "2026-09-16"
+    },
+    "aktualis/ksh-keresetek-eloszlasa-2026-i-felev.html": {
+      "hash": "1c21a5ac54d5a6e08166199a6d48e6c5c0acd6e094a9ef91955a344ed0ce088d",
+      "lastmod": "2026-10-14"
     },
     "aktualis/ksh-uzemanyagarak-2026-augusztus.html": {
       "hash": "a1a3ff4668d31424af88d65bd29396a60a2e858144c2576905b1bc08345a0544",
