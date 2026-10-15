@@ -2,14 +2,13 @@ name: Materialize static-first HTML
 
 on:
   workflow_dispatch:
+  # A full 132-page Chrome rebuild is for generator/runtime changes, not news articles.
+  # Editorial HTML, sitemap and ordinary content changes are validated by Site quality.
   pull_request:
     paths:
-      - "**/*.html"
-      - "css/**"
-      - "js/**"
-      - "data/**"
       - "scripts/apply-*.js"
       - "scripts/materialize-static-first.js"
+      - "scripts/chrome-render-retry.js"
       - "scripts/normalize-static-html.js"
       - "scripts/normalize-a11y-html.js"
       - "scripts/normalize-retention-static.js"
@@ -17,9 +16,13 @@ on:
       - "scripts/generate-sitemap.js"
       - "scripts/quarantine-legacy-category-generator.js"
       - "scripts/url-paths.js"
+      - "js/global-head.js"
+      - "js/global-head-config.js"
+      - "js/static-first-fallbacks.js"
+      - "css/layout/**"
+      - "components/**"
       - "package.json"
       - "package-lock.json"
-      - ".github/workflows/materialize-static-first.yml"
   push:
     branches:
       - adsense-quality-v2

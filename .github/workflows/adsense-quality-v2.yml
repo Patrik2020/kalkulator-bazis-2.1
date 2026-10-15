@@ -4,19 +4,20 @@ on:
   push:
     branches:
       - adsense-quality-v2
+  # Editorial HTML and sitemap updates are not AdSense policy changes.
+  # Run the expensive AdSense audit for monetization and template changes only.
   pull_request:
     paths:
-      - "**/*.html"
-      - "js/**"
       - "scripts/apply-adsense-*.js"
       - "scripts/adsense-*.js"
       - "scripts/apply-construction-manufacturer-first-v2.js"
       - "scripts/apply-average-hub-*.js"
-      - "scripts/sitemap-lastmod-v2-audit.js"
-      - "scripts/generate-sitemap.js"
-      - "sitemap.xml"
-      - "data/sitemap-content-state.json"
-      - ".github/workflows/adsense-quality-v2.yml"
+      - "js/adsense*.js"
+      - "js/consent*.js"
+      - "js/cookie*.js"
+      - "css/adsense*.css"
+      - "components/adsense*"
+  workflow_dispatch:
 
 permissions:
   contents: read
