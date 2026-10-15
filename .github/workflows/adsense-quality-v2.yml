@@ -17,7 +17,6 @@ on:
       - "js/cookie*.js"
       - "css/adsense*.css"
       - "components/adsense*"
-      - ".github/workflows/adsense-quality-v2.yml"
   workflow_dispatch:
 
 permissions:
