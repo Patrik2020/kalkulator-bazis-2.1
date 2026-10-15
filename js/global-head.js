@@ -186,7 +186,7 @@ if (document.readyState === "loading") {
  * P2: a shared language preference is selectable on internal pages too.
  * Do not claim translated calculator content: full page translations follow in P3.
  */
-if (!isHomePage) {
+if (!isHomePage && !new URLSearchParams(window.location.search).has("__kb_static_export")) {
   const languageNames = { hu: "Magyar", en: "English", de: "Deutsch" };
   const labels = {
     hu: { picker: "Oldal nyelve", notice: "" },
