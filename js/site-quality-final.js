@@ -19,15 +19,15 @@
   const renderers = {
     "index.html": () => `
       <p class="sqf-kicker">Hogyan használd az oldalt?</p>
-      <h2>A jó számítás nem az eredménynél ér véget</h2>
-      <p>A Kalkulátor Bázis főoldaláról érdemes kérdésből indulni: mit szeretnél eldönteni, melyik adat bizonytalan, és mi változtatná meg a döntésedet? A kalkulátor eredménye ezután ellenőrzési pont, nem önmagában álló válasz.</p>
+      <h2>Egy adat változik? Számold újra.</h2>
+      <p>Egy magasabb üzemanyagár vagy egy másik bruttó bér rögtön más eredményt ad. Próbálj ki több értéket, és nézd meg, mekkora különbséget jelent a saját tervedben.</p>
       ${flow([
-        ["Kérdés", "Fogalmazd meg, mire keresel választ: havi teher, anyagmennyiség, idő, arány vagy becslés."],
-        ["Bemenet", "Ellenőrizd a mértékegységet, időszakot, árat, százalékot és az esetleges alapfeltételezést."],
-        ["Eredmény", "Nézd meg a magyarázatot, a kerekítést, a korlátot és azt, mit nem tartalmaz a számítás."],
+        ["Kérdés", "Válaszd ki, mire keresel választ: fizetésre, útiköltségre, anyagigényre vagy más összegre."],
+        ["Bemenet", "Használd a saját adataidat. A liter, a kilométer és az időszak is számít."],
+        ["Eredmény", "Olvasd el az eredmény melletti megjegyzést: ebből derül ki, milyen tételekkel számoltunk."],
         ["Döntés", "Nagy összegnél, egészségügyi, jogi vagy műszaki kockázatnál ellenőrizd hivatalos vagy szakmai forrásból is."]
       ])}
-      <div class="sqf-note"><strong>Minőségi útvonal:</strong> ${link(`${root}/miert-bizhatsz-bennunk.html`, "bizalmi elvek")} · ${link(`${root}/szamitasi-modszertan.html`, "számítási módszertan")} · ${link(`${root}/elethelyzetek.html`, "élethelyzetek")}</div>`,
+      <div class="sqf-note"><strong>A számítások háttere:</strong> ${link(`${root}/miert-bizhatsz-bennunk.html`, "bizalmi elvek")} · ${link(`${root}/szamitasi-modszertan.html`, "számítási módszertan")} · ${link(`${root}/elethelyzetek.html`, "élethelyzetek")}</div>`,
 
     "kalkulatorok.html": () => `
       <p class="sqf-kicker">Kalkulátorválasztó</p>

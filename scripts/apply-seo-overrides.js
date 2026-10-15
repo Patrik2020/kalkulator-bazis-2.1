@@ -11,7 +11,7 @@ const overrides = {
       "Nettó–bruttó kalkulátor 2026: számold ki a bruttó fizetés nettóját vagy a kívánt nettóhoz szükséges bruttót. Kedvezmények és munkáltatói költség.",
     h1: "Nettó–bruttó kalkulátor 2026",
     heroLead:
-      "Számold ki a 2026-os szabályok alapján a bruttó fizetés nettóját vagy a kívánt nettóhoz szükséges bruttót, kedvezményekkel és munkáltatói költséggel.",
+      "Új állásajánlatot kaptál, vagy fizetésemelésre készülsz? Add meg a havi bruttó béredet, és nézd meg a becsült nettót. Ha a kézhez kapott összegből indulnál ki, válaszd a Nettóból bruttó módot.",
   },
   "kalkulatorok/fizetesi-hatarido-kalkulator.html": {
     title: "Fizetési határidő kalkulátor 2026 – naptári és munkanap",

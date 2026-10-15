@@ -16,7 +16,7 @@
         "js/theme.js?v=0f4e0c522e48",
         "js/pwa.js?v=fb055828c8f9",
         "js/wise-partner.js?v=8b8b0efca236",
-        "js/site-accessibility.js?v=8135c9bdc65a",
+        "js/site-accessibility.js?v=ab9b5783c5ec",
       ],
     }),
     home: Object.freeze({
@@ -31,7 +31,7 @@
         "css/components/wise-banner-enhancer.css?v=0f8447843606",
       ],
       scripts: [
-        "js/calculator-page.js?v=4d5d99919a87",
+        "js/calculator-page.js?v=45e7010ce804",
         "js/calculator-polish.js?v=96ed10d7ffb8",
         "js/wise-banner-enhancer.js?v=233abb185f4e",
       ],

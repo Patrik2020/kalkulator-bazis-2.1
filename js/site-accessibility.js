@@ -44,7 +44,7 @@
 
     if (!document.querySelector('script[data-site-quality-final]')) {
       const script = document.createElement("script");
-      script.src = `${projectRoot}/js/site-quality-final.js?v=7ac95441e6e3`;
+      script.src = `${projectRoot}/js/site-quality-final.js?v=4e9a550a3360`;
       script.defer = true;
       script.dataset.siteQualityFinal = "script";
       document.head.appendChild(script);

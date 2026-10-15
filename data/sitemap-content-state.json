@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-14",
+  "generatedAt": "2026-10-15",
   "pages": {
     "": {
-      "hash": "f7d5864612aca7402f02b4eea0cb23a47f4460f00ce2f3e2a9ef14887342a06f",
-      "lastmod": "2026-10-14"
+      "hash": "994095875f874a687c1868c6837a820daf1d3b123f46f6cb1f386c6357316f20",
+      "lastmod": "2026-10-15"
     },
     "penzugyi.html": {
       "hash": "f23f48975327dd3d7964848506c249bccd696999ea2319d768f485db0b7308c9",
@@ -171,8 +171,8 @@
       "lastmod": "2026-09-14"
     },
     "kalkulatorok/netto-brutto-kalkulator.html": {
-      "hash": "dae5c786579dcc0101d1140912ccef05a6ba52f275ecf30da46b704d3b823ce0",
-      "lastmod": "2026-10-13"
+      "hash": "2df41b046f23a04adc816f3ab8e639990a67b5952ae03c8c04ad61a88dd22843",
+      "lastmod": "2026-10-15"
     },
     "kalkulatorok/hitel-torleszto-kalkulator.html": {
       "hash": "4e4ab87ccf24f8ff818a4440c9cd4537f44f61539ae3ffc53fe30e7ff64c0c6b",
@@ -211,12 +211,12 @@
       "lastmod": "2026-09-16"
     },
     "kalkulatorok/fizetesi-hatarido-kalkulator.html": {
-      "hash": "697ab9164151ada0d96096d39499c1065077970c3c6ce4f82ae2f7e076ac905b",
-      "lastmod": "2026-10-14"
+      "hash": "7b6d83fd5311d42bb79a858ee2c8228d5ce32f072c8bb3efea832715fafa6ebb",
+      "lastmod": "2026-10-15"
     },
     "kalkulatorok/szamla-teljesites-kalkulator.html": {
-      "hash": "ee3b6e916cb9492178ce7dfe0b3295f9797536d266461e3126bcf56bf99345aa",
-      "lastmod": "2026-10-14"
+      "hash": "2443f06c407d166d745a1aa9fc9785cf7e39bbd348384a16794ee8164227dfe0",
+      "lastmod": "2026-10-15"
     },
     "kalkulatorok/beton-kalkulator.html": {
       "hash": "56be46b9cf36127bfa322c9dfa4c58ed70d696ad6f032da09a1f4b02dfad87be",
@@ -259,8 +259,8 @@
       "lastmod": "2026-09-28"
     },
     "kalkulatorok/deviza-atvalto-kalkulator.html": {
-      "hash": "bba6824cfc5c22f8494210e3c11af57d39d8c2c94f20b02aa769fab841715296",
-      "lastmod": "2026-09-14"
+      "hash": "8ebf782ed9619d29a64bf976cd158241f2d0c0feed233e4581dd139b28ff0630",
+      "lastmod": "2026-10-15"
     },
     "kalkulatorok/padlo-burkolat-kalkulator.html": {
       "hash": "f7fe1151318da7d5c17b53b3bfd26ab0ca3c0d25aee5a16f3fe6f29ffb219578",
@@ -303,8 +303,8 @@
       "lastmod": "2026-09-16"
     },
     "kalkulatorok/terhessegi-kalkulator.html": {
-      "hash": "51a8467be0c5d0725e8b9a07214830e75bb5b2a2e082ec458f2602d50f6bbca7",
-      "lastmod": "2026-10-14"
+      "hash": "f040f50b3b1acc0688ff86dad6e6b0f8c60be2a745da7d52c32e5f37f6fcfc17",
+      "lastmod": "2026-10-15"
     },
     "kalkulatorok/idealis-testsuly-kalkulator.html": {
       "hash": "4174527f4279d577043cbd100d561a82b787388fb9051d5166b1669fea2c191e",
