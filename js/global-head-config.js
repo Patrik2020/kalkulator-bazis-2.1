@@ -9,7 +9,7 @@
         "css/components/accessibility.css?v=73abeeb0ad97",
       ],
       fallbackStyles: [
-        "css/layout/footer.css?v=d541ea459cfd",
+        "css/layout/footer.css?v=5f6c711baec3",
         "css/components/cookie.css?v=f2f8742f64ed",
       ],
       scripts: [
