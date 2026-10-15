@@ -33,7 +33,8 @@ const ymylSlugs = [
 // A korábbi blokk minden érintett kalkulátoron megismételte az üzemeltető nevét,
 // a személyes felelősséget és a belső fejlesztési folyamatot. Ezek nem segítik a
 // látogatót az eredmény értelmezésében; az azonosítás helye az Impresszum.
-const trustPattern = /\n?<!-- KB_ADSENSE:ymyl-trust:START -->[\s\S]*?<!-- KB_ADSENSE:ymyl-trust:END -->\n?/;
+const trustPattern = /\n*<!-- KB_ADSENSE:ymyl-trust:START -->[\s\S]*?<!-- KB_ADSENSE:ymyl-trust:END -->\n*/;
+const legacyGapPattern = /\n{4,}(?=<!-- KB_(?:STATIC:reliability|ADSENSE:primary-sources):START -->)/;
 
 let removedTrustBlocks = 0;
 
@@ -43,9 +44,10 @@ for (const slug of ymylSlugs) {
   let html = fs.readFileSync(file, "utf8");
 
   if (trustPattern.test(html)) {
-    html = html.replace(trustPattern, "\n");
+    html = html.replace(trustPattern, "\n\n\n");
     removedTrustBlocks += 1;
   }
+  html = html.replace(legacyGapPattern, "\n\n\n");
 
   fs.writeFileSync(file, html, "utf8");
 }
