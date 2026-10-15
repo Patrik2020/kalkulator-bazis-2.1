@@ -10,6 +10,8 @@ on:
       - "data/**"
       - "scripts/apply-*.js"
       - "scripts/materialize-static-first.js"
+      - "scripts/chrome-render-retry.js"
+      - "scripts/chrome-render-retry.test.js"
       - "scripts/normalize-static-html.js"
       - "scripts/normalize-a11y-html.js"
       - "scripts/normalize-retention-static.js"
@@ -51,6 +53,9 @@ jobs:
 
       - name: Install validation dependencies
         run: npm ci
+
+      - name: Test transient Chrome failure handling
+        run: node --test scripts/chrome-render-retry.test.js
 
       - name: Verify Chrome is available
         shell: bash
@@ -218,6 +223,11 @@ jobs:
             exit 1
           fi
           echo "Generated output matches the source; no surprise changes."
+
+      - name: Capture build drift even when an earlier step fails
+        if: failure()
+        shell: bash
+        run: git diff --binary > "${RUNNER_TEMP}/static-first-drift.patch"
 
       - name: Upload drift patch for inspection
         if: failure()
