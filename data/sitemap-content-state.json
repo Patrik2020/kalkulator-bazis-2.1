@@ -91,8 +91,8 @@
       "lastmod": "2026-08-21"
     },
     "aktualis.html": {
-      "hash": "c14c34ac485b9b780b56964c65f77ae2f655870f81da2bdd77f8d68d7215df92",
-      "lastmod": "2026-10-14"
+      "hash": "aa2142e19fab8c4bd5c4b95a148853de3f94163fad6a9cceb910dce9079d25db",
+      "lastmod": "2026-10-15"
     },
     "aktualis/allampapir-kamatok-2026-szeptember.html": {
       "hash": "7796f4dd3dc33afc0b1ae17f4f9a31431e9103099f0ccefa2f01fa1da48f7d09",
@@ -521,6 +521,10 @@
     "kalkulatorok/vizfogyasztas-koltseg-kalkulator.html": {
       "hash": "5ba77b197951f66c96a4e0abd6df6abd6ca40616ef1ba37354209ac44710cf77",
       "lastmod": "2026-08-21"
+    },
+    "aktualis/nav-unios-kezelesi-dij-2026-november.html": {
+      "hash": "7074cabc0c97a04713fcf084a1c638deb332ed94ae8fcca5a7325b3e0685a219",
+      "lastmod": "2026-10-15"
     }
   }
 }
