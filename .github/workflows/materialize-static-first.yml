@@ -23,7 +23,6 @@ on:
       - "components/**"
       - "package.json"
       - "package-lock.json"
-      - ".github/workflows/materialize-static-first.yml"
   push:
     branches:
       - adsense-quality-v2
