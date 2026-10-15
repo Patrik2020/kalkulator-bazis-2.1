@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const { spawn, execFileSync } = require("child_process");
+const { withTransientChromeRetry } = require("./chrome-render-retry");
 const { publicPathToSourceFile, sourceFileToPublicPath } = require("./url-paths");
 
 const root = path.resolve(__dirname, "..");
@@ -370,44 +371,62 @@ function chromeDump(chrome, pagePath) {
     .map(encodeURIComponent)
     .join("/");
   const url = `${origin}${publicPath}?__kb_static_export=1`;
-  const profile = path.join(process.env.RUNNER_TEMP || process.env.TMPDIR || "/tmp", `kb-static-chrome-${process.pid}`);
+  const timeoutMs = 45_000;
 
-  const args = [
-    "--headless=new",
-    "--no-sandbox",
-    "--disable-gpu",
-    "--disable-dev-shm-usage",
-    "--disable-background-networking",
-    "--disable-component-update",
-    "--disable-default-apps",
-    "--disable-extensions",
-    "--disable-sync",
-    "--metrics-recording-only",
-    "--no-first-run",
-    "--no-default-browser-check",
-    `--user-data-dir=${profile}`,
-    "--virtual-time-budget=3200",
-    "--dump-dom",
-    url,
-  ];
+  return withTransientChromeRetry(
+    () => {
+      // A unique profile for each attempt prevents a timed-out Chrome process
+      // from poisoning subsequent pages through a shared profile lock.
+      const profile = fs.mkdtempSync(
+        path.join(process.env.RUNNER_TEMP || process.env.TMPDIR || "/tmp", "kb-static-chrome-")
+      );
+      const args = [
+        "--headless=new",
+        "--no-sandbox",
+        "--disable-gpu",
+        "--disable-dev-shm-usage",
+        "--disable-background-networking",
+        "--disable-component-update",
+        "--disable-default-apps",
+        "--disable-extensions",
+        "--disable-sync",
+        "--metrics-recording-only",
+        "--no-first-run",
+        "--no-default-browser-check",
+        `--user-data-dir=${profile}`,
+        "--virtual-time-budget=3200",
+        "--dump-dom",
+        url,
+      ];
 
-  try {
-    return execFileSync(chrome, args, {
-      cwd: root,
-      encoding: "utf8",
-      maxBuffer: 32 * 1024 * 1024,
-      timeout: 30_000,
-      killSignal: "SIGKILL",
-      stdio: ["ignore", "pipe", "pipe"],
-    });
-  } catch (error) {
-    const stderr = error.stderr ? String(error.stderr).slice(-3000) : "";
-    const timedOut = error.signal === "SIGKILL" || error.code === "ETIMEDOUT";
-    const reason = timedOut
-      ? "Chrome render timeout (30 s)"
-      : stderr || error.message;
-    throw new Error(`Chrome render hiba (${pagePath}): ${reason}`);
-  }
+      try {
+        return execFileSync(chrome, args, {
+          cwd: root,
+          encoding: "utf8",
+          maxBuffer: 32 * 1024 * 1024,
+          timeout: timeoutMs,
+          killSignal: "SIGKILL",
+          stdio: ["ignore", "pipe", "pipe"],
+        });
+      } catch (error) {
+        const stderr = error.stderr ? String(error.stderr).slice(-3000) : "";
+        const timedOut = error.signal === "SIGKILL" || error.code === "ETIMEDOUT";
+        const reason = timedOut
+          ? `Chrome render timeout (${timeoutMs / 1000} s)`
+          : stderr || error.message;
+        const failure = new Error(`Chrome render hiba (${pagePath}): ${reason}`);
+        failure.transientChromeTimeout = timedOut;
+        throw failure;
+      } finally {
+        fs.rmSync(profile, { recursive: true, force: true, maxRetries: 2 });
+      }
+    },
+    {
+      attempts: 2,
+      isTransient: (error) => error.transientChromeTimeout === true,
+      warn: (message) => console.warn(message),
+    }
+  );
 }
 
 async function waitForServer() {
