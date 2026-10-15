@@ -15,7 +15,6 @@ on:
       - "scripts/local-static-server.js"
       - "package.json"
       - "package-lock.json"
-      - ".github/workflows/browser-quality.yml"
   push:
     branches:
       - main
