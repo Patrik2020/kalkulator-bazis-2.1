@@ -34,6 +34,9 @@ jobs:
       - name: Install validation dependencies
         run: npm ci
 
+      - name: Test Chrome timeout retry safety
+        run: node --test scripts/chrome-render-retry.test.js
+
       - name: Validate responsive viewport contract
         run: node scripts/responsive-contract-audit.js
 
