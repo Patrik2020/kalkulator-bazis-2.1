@@ -18,6 +18,19 @@
       "legalBasis": "2025. évi LXXXIV. törvény",
       "affectedCalculator": "kalkulatorok/afa-kalkulator.html",
       "integrationStatus": "staged"
+    },
+    "newHousingVatScenarios": {
+      "effectiveFrom": "2027-01-01",
+      "standardRatePercent": 27,
+      "conditionalReducedRatePercent": 5,
+      "scenarios": [
+        "standard",
+        "transitional-reduced",
+        "eligible-rust-zone"
+      ],
+      "affectedCalculator": "kalkulatorok/afa-kalkulator.html",
+      "integrationStatus": "staged-optional",
+      "note": "A választás csak matematikai forgatókönyv, a jogosultságot a kalkulátor nem ellenőrzi. A kedvezményes kulcs átmeneti feltételekhez vagy külön jogcímhez kötött."
     }
   }
 }
