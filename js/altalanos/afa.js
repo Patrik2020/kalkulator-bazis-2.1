@@ -90,6 +90,37 @@
   // =========================
   // EVENTEK
   // =========================
+  // 2027-es lakóingatlan-forgatókönyvek: kizárólag választott kulcsot állítunk,
+  // a jogszabályi jogosultságot nem vélelmezzük.
+  const housingScenario = document.getElementById("housingVatScenario2027");
+  const housingNote = document.getElementById("housingVatScenarioNote2027");
+  if (housingScenario) {
+    const descriptions = {
+      manual: "A kiválasztott lehetőség számítási forgatókönyv, nem automatikus jogosultságvizsgálat. Az alkalmazandó kulcsot a konkrét ügylet és a hatályos jogszabály alapján ellenőrizni kell.",
+      "housing-standard": "27%-os számítás: amikor az adott ügyletre nem alkalmazható az 5%-os kedvezmény.",
+      "housing-transition": "5%-os átmeneti számítás: csak akkor válaszd, ha az adott ügylet a jogszabályi átmeneti feltételeknek megfelel.",
+      "housing-rust": "5%-os rozsdaövezeti számítás: csak jogszabály szerint jogosult, kijelölt területet és ügyletet érintő esetben."
+    };
+    housingScenario.addEventListener("change", () => {
+      const scenario = housingScenario.value;
+      if (scenario !== "manual") vatInput.value = scenario === "housing-standard" ? "27" : "5";
+      if (housingNote) housingNote.textContent = descriptions[scenario] || descriptions.manual;
+      calculate();
+    });
+    vatInput.addEventListener("input", () => {
+      if (housingScenario.value !== "manual") {
+        housingScenario.value = "manual";
+        if (housingNote) housingNote.textContent = descriptions.manual;
+      }
+    });
+    document.querySelectorAll("[data-vat-value]").forEach((button) => {
+      button.addEventListener("click", () => {
+        housingScenario.value = "manual";
+        if (housingNote) housingNote.textContent = descriptions.manual;
+      });
+    });
+  }
+
   amountInput.addEventListener("input", calculate);
   vatInput.addEventListener("input", calculate);
 
