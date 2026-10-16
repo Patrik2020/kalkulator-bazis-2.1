@@ -48,3 +48,12 @@ Elsődleges forrás szükséges: Magyar Közlöny, NAV, kormany.hu, jogszabályt
 - **Hivatalos forrás:** https://njt.hu/ (2025. évi LXXXIV. törvény).
 - **Érintett kalkulátor:** `kalkulatorok/afa-kalkulator.html` (tájékoztató szöveg; az áfakulcs számítása nem változik).
 - **Integráció:** 2027-es adatként előkészítve; 2026-os számítás változatlan.
+
+### 2026-10-16 — Új lakóingatlan 2027-es ÁFA-forgatókönyvei
+- **Hatály / vizsgált időszak:** 2027-01-01-től; az átmeneti rendelkezések külön feltételek mellett későbbi ügyletekre is vonatkozhatnak.
+- **Változás:** az ÁFA-kalkulátorban külön, opcionálisan választható 27%-os alapforgatókönyv, 5%-os átmeneti és 5%-os jogosult rozsdaövezeti forgatókönyv. Az általános, kézi áfakulcsválasztás változatlan.
+- **Jogszabályi háttér:** 2007. évi CXXVII. törvény (Áfa tv.), különösen az új lakóingatlanok kedvezményes adómértékére és az átmeneti rendelkezésekre vonatkozó szabályok.
+- **Hivatalos forrás:** https://njt.hu/jogszabaly/2007-127-00-00
+- **Érintett kalkulátor:** `kalkulatorok/afa-kalkulator.html`.
+- **Érintett fájlok:** `js/altalanos/afa.js`, `data/years/2027.json`.
+- **Korlát:** a választó nem végez jogi jogosultságvizsgálatot; a felhasználó ellenőrzi az alkalmazhatóságot. A `main` ág nem változott.
