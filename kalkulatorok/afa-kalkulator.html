@@ -123,6 +123,17 @@
         </div>
       </div>
 
+      <div class="card" id="housingVat2027" style="margin:1rem 0;padding:1rem;">
+        <label for="housingVatScenario2027"><strong>Új lakóingatlan – 2027-es ÁFA-forgatókönyv (választható)</strong></label>
+        <select id="housingVatScenario2027" style="width:100%;margin-top:.5rem;">
+          <option value="manual">Általános ÁFA-számítás (kézzel választott kulcs)</option>
+          <option value="housing-standard">Új lakóingatlan – 27%-os számítás</option>
+          <option value="housing-transition">Új lakóingatlan – átmeneti feltételekkel 5%-os számítás</option>
+          <option value="housing-rust">Jogosult rozsdaövezeti új lakás – 5%-os számítás</option>
+        </select>
+        <p id="housingVatScenarioNote2027" style="margin:.65rem 0 0;">A kiválasztott lehetőség számítási forgatókönyv, nem automatikus jogosultságvizsgálat. Az alkalmazandó kulcsot a konkrét ügylet és a hatályos jogszabály alapján ellenőrizni kell.</p>
+      </div>
+
       <div class="button-group">
         <button type="button" data-vat-value="5">5%</button>
         <button type="button" data-vat-value="18">18%</button>
