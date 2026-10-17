@@ -81,6 +81,7 @@ const informationalExact = new Set([
 ]);
 
 const adEligibleExact = new Set([
+  "index.html",
   "aktualis.html",
   "dontesek.html",
   "osszehasonlitas.html",

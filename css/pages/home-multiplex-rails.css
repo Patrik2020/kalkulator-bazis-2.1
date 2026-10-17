@@ -1,0 +1,44 @@
+/* The two manual Multiplex units belong only to the Facebook / quick-start band. */
+.home-ad-rail {
+  display: none;
+}
+
+@media (min-width: 1760px) {
+  .home-ad-band {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr) 220px;
+    align-items: start;
+    justify-content: center;
+    gap: 24px;
+    width: min(calc(100% - 40px), 1728px);
+    margin-inline: auto;
+  }
+
+  .home-ad-band__content {
+    min-width: 0;
+  }
+
+  .home-page .home-ad-band__content .container {
+    width: 100%;
+  }
+
+  .home-ad-rail:not([hidden]) {
+    display: block;
+    min-width: 0;
+    padding-top: 36px;
+  }
+
+  .home-ad-rail__label {
+    display: block;
+    margin-bottom: 8px;
+    color: #64748b;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .home-ad-rail .adsbygoogle {
+    width: 100%;
+  }
+}

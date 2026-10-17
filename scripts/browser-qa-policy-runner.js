@@ -47,12 +47,11 @@ function assertCurrentEligibilityPolicy() {
 
   const isEligible = (pathname) => {
     const normalized = pathname.replace(/^\/+|\/+$/g, "").toLowerCase();
-    if (!normalized) return false;
-    return exact.includes(normalized) || prefixes.some((prefix) => normalized.startsWith(prefix));
+    return !normalized || exact.includes(normalized) || prefixes.some((prefix) => normalized.startsWith(prefix));
   };
 
-  if (isEligible("/")) {
-    throw new Error("A browser QA policy-runner szerint a főoldal váratlanul AdSense-eligible lett.");
+  if (!isEligible("/") || !isEligible("/index")) {
+    throw new Error("A browser QA policy-runner szerint a főoldal AdSense-eligible beállítása hiányzik.");
   }
 
   const wronglyEligible = categoryPaths.filter((page) => isEligible(page));
@@ -192,5 +191,5 @@ for (const expected of ["legacy_accepted_migrates_once", "valid_ads_only"]) {
 }
 
 console.log(
-  "Browser QA OK: minden funkcionális/layout ellenőrzés zöld; a fő- és kategóriaoldalakon az AdSense loader hiánya az AdSense Gate v2 szándékos eligibility szabálya."
+  "Browser QA OK: minden funkcionális/layout ellenőrzés zöld; a kategóriaoldalakon az AdSense loader hiánya az AdSense Gate v2 szándékos eligibility szabálya."
 );
