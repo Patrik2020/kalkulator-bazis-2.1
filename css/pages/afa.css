@@ -90,3 +90,8 @@
 .page-afa .button-group button.active {
   background: #1d4ed8;
 }
+
+/* VAT 2027 scenario controls: styles extracted from inline HTML. */
+#housingVat2027 { margin: 1rem 0; padding: 1rem; }
+#housingVatScenario2027 { width: 100%; margin-top: .5rem; }
+#housingVatScenarioNote2027 { margin: .65rem 0 0; }
