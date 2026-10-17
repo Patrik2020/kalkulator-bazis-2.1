@@ -238,11 +238,11 @@ if (!isHomePage && !new URLSearchParams(window.location.search).has("__kb_static
   };
   const languageStyle = document.createElement("style");
   languageStyle.textContent = [
-    ".kb-language-control{display:inline-flex;align-items:center;max-width:100%}",
-    ".kb-language-control select{background:var(--surface,#fff);color:var(--text,#111827);border:1px solid var(--border,#cbd5e1);border-radius:10px;min-height:40px;padding:5px 7px;font:inherit;font-size:.82rem;max-width:105px}",
+    ".kb-language-control{display:inline-flex;align-items:center;min-width:0;max-width:100%;flex:0 1 auto}",
+    ".kb-language-control select{background:var(--surface,#fff);color:var(--text,#111827);border:1px solid var(--border,#cbd5e1);border-radius:10px;min-height:40px;padding:5px 7px;font:inherit;font-size:.82rem;width:84px;max-width:100%;min-width:0}",
     ".kb-language-control select:focus-visible{outline:3px solid var(--primary,#0b66f2);outline-offset:2px}",
     ".kb-language-notice{margin:12px auto;padding:10px 14px;max-width:1100px;border-inline-start:3px solid var(--primary,#0b66f2);background:var(--surface,#fff);color:var(--text,#111827);font-size:.875rem}",
-    "@media(max-width:420px){.kb-language-control select{max-width:83px;font-size:.75rem;padding-inline:3px}}",
+    "@media(max-width:420px){.kb-language-control select{width:65px;font-size:.7rem;padding-inline:1px}.header-actions{min-width:0}.kb-language-control{flex-shrink:1}}",
   ].join("");
   document.head.appendChild(languageStyle);
   document.addEventListener("kb:component-loaded", applySharedLanguageControls);
