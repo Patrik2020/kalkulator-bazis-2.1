@@ -181,3 +181,56 @@ if (document.readyState === "loading") {
   { name: "theme-color", content: initialTheme === "dark" ? "#111827" : "#ffffff" },
   { "http-equiv": "Content-Security-Policy", content: "object-src 'none'; base-uri 'none'; form-action 'self'; upgrade-insecure-requests" },
 ].forEach((attributes) => appendElement("meta", attributes));
+
+/* P2: compact sitewide language preference on inner pages.
+ * Do not change document.lang until the page content is translated.
+ * Keep runtime UI out of deterministic static export.
+ */
+if (!isHomePage && !new URLSearchParams(window.location.search).has("__kb_static_export")) {
+  const labels = {
+    hu: { name: "Nyelv", note: "" },
+    en: { name: "Language", note: "Calculator content is currently available in Hungarian. Your language preference has been saved." },
+    de: { name: "Sprache", note: "Der Rechnerinhalt ist derzeit auf Ungarisch verfügbar. Ihre Sprachauswahl wurde gespeichert." },
+  };
+  const mountLanguagePicker = () => {
+    const actions = document.querySelector(".header-actions");
+    if (!actions) return;
+    let select = actions.querySelector("[data-kb-site-language]");
+    if (!select) {
+      select = document.createElement("select");
+      select.dataset.kbSiteLanguage = "";
+      select.className = "kb-site-language-select";
+      for (const [code, name] of Object.entries({ hu: "HU", en: "EN", de: "DE" })) {
+        const option = document.createElement("option");
+        option.value = code;
+        option.textContent = name;
+        select.appendChild(option);
+      }
+      select.addEventListener("change", () => {
+        window.KB_SITE_LANGUAGE?.set(select.value);
+        document.documentElement.dataset.kbPreferredLanguage = select.value;
+        mountLanguagePicker();
+      });
+      actions.insertBefore(select, actions.querySelector(".menu-toggle") || null);
+    }
+    const language = window.KB_SITE_LANGUAGE?.get() || "hu";
+    select.value = language;
+    select.setAttribute("aria-label", labels[language].name);
+    let notice = document.querySelector("[data-kb-language-notice]");
+    if (!notice) {
+      notice = document.createElement("p");
+      notice.dataset.kbLanguageNotice = "";
+      notice.className = "kb-site-language-notice";
+      notice.setAttribute("role", "status");
+      document.querySelector("main")?.prepend(notice);
+    }
+    notice.textContent = labels[language].note;
+    notice.hidden = language === "hu";
+  };
+  const style = document.createElement("style");
+  style.textContent = ".kb-site-language-select{box-sizing:border-box;flex:0 0 49px;width:49px;min-width:0;max-width:49px;min-height:34px;padding:2px 0;border-radius:6px;border:1px solid #9ca3af;background:var(--surface,#fff);color:var(--text,#111827);font-size:12px}.kb-site-language-select:focus-visible{outline:2px solid #2563eb;outline-offset:2px}.kb-site-language-notice{max-width:1100px;margin:8px auto;padding:8px 12px;border-left:3px solid #2563eb;font-size:13px}.kb-site-language-notice[hidden]{display:none}";
+  document.head.appendChild(style);
+  document.addEventListener("kb:component-loaded", mountLanguagePicker);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", mountLanguagePicker, { once: true });
+  else mountLanguagePicker();
+}
