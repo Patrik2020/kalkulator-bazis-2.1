@@ -21,6 +21,7 @@ if (!cookie.includes("KB_ADSENSE_ELIGIBILITY_V2")) {
   // Privacy & Messaging / TCF remains the authority for AdSense consent in regions
   // where Google requires a certified CMP.
   const adsenseEligibleExact = new Set([
+    "index",
     "aktualis",
     "dontesek",
     "osszehasonlitas",
@@ -55,9 +56,9 @@ if (!cookie.includes("KB_ADSENSE_ELIGIBILITY_V2")) {
       .toLowerCase();
   const isAdSenseEligiblePath = () => {
     const current = normalizedPublisherPath();
-    if (!current || adsenseExcludedExact.has(current)) return false;
+    if (adsenseExcludedExact.has(current)) return false;
     if (adsenseExcludedPrefixes.some((prefix) => current.startsWith(prefix))) return false;
-    return adsenseEligibleExact.has(current) || adsenseEligiblePrefixes.some((prefix) => current.startsWith(prefix));
+    return current === "" || adsenseEligibleExact.has(current) || adsenseEligiblePrefixes.some((prefix) => current.startsWith(prefix));
   };
   window.KB_ADSENSE_ELIGIBLE = isAdSenseEligiblePath();
   window.KB_ADSENSE_CAN_REQUEST = false;
@@ -130,7 +131,7 @@ if (!cookie.includes("const setAdSenseRequestReady = () =>")) {
 
   const syncAdSense = () => {
     const queue = (window.adsbygoogle = window.adsbygoogle || []);
-    queue.pauseAdRequests = 1;
+    if (!window.KB_ADSENSE_CAN_REQUEST) queue.pauseAdRequests = 1;
 
     if (!window.KB_ADSENSE_ELIGIBLE) {
       window.KB_ADSENSE_CAN_REQUEST = false;
