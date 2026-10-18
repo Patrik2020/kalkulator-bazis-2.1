@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-15",
+  "generatedAt": "2026-10-18",
   "pages": {
     "": {
-      "hash": "994095875f874a687c1868c6837a820daf1d3b123f46f6cb1f386c6357316f20",
-      "lastmod": "2026-10-15"
+      "hash": "b72185c694a0bbe7661c88d16e1caf47d87e5d91ef7492a4ccd3981ffaa6906f",
+      "lastmod": "2026-10-18"
     },
     "penzugyi.html": {
       "hash": "1e11fa0b052e894329cd6bee91dccb8f01ee02e7704a458cb733aab39006c460",
@@ -59,12 +59,12 @@
       "lastmod": "2026-07-01"
     },
     "adatvedelem.html": {
-      "hash": "d8cc2ca6938118417a8a5cccee0fdb59f06f8cf3df94d3b4e3e0b599a77d4812",
-      "lastmod": "2026-09-14"
+      "hash": "61942d861bdc3f53a140365c9d1cc111a1ade78a8a3ea1856d1d76ccf53290b8",
+      "lastmod": "2026-10-18"
     },
     "cookie.html": {
-      "hash": "c158f94450205158a1368340db7a18760a7bc409801fdbaf0ead5f525ce5b9f7",
-      "lastmod": "2026-09-14"
+      "hash": "59984167171f3b1d2af69dd70564c3ee50ab28dc0537ef9b10037cee0682c2c4",
+      "lastmod": "2026-10-18"
     },
     "felhasznalasi-feltetelek.html": {
       "hash": "4611a3f167c1b699dbdb5922ef53d2d05178567955a8c9025c42873398e0ab74",
@@ -129,6 +129,10 @@
     "aktualis/mnb-alapkamat-inflacios-cel-2026-szeptember.html": {
       "hash": "7c8d23a063bdf40b205050817c75ee306bb7343016f0d9b9763c7d951257955d",
       "lastmod": "2026-09-23"
+    },
+    "aktualis/nav-unios-kezelesi-dij-2026-november.html": {
+      "hash": "7074cabc0c97a04713fcf084a1c638deb332ed94ae8fcca5a7325b3e0685a219",
+      "lastmod": "2026-10-15"
     },
     "aktualis/nav-uzemanyag-elszamolasi-arak-2026-oktober.html": {
       "hash": "570d897f709279de412cd772cadd3562cb98359deb191f9223bfc850dbf19f0e",
@@ -211,12 +215,12 @@
       "lastmod": "2026-10-15"
     },
     "kalkulatorok/fizetesi-hatarido-kalkulator.html": {
-      "hash": "725f5ef55ec85d5cb84f2f6813324874ac21bb706cc6f2c1e928f880f1f5bede",
-      "lastmod": "2026-10-15"
+      "hash": "a6496a37868bc951b6cb4e57a643f4b400a738ed5a21bdbad17fe66431b86df2",
+      "lastmod": "2026-10-18"
     },
     "kalkulatorok/szamla-teljesites-kalkulator.html": {
-      "hash": "c779bce0b9b4d23f56946f11a411110c2c6fd390878d56dc766e8c5e041e025c",
-      "lastmod": "2026-10-15"
+      "hash": "de6144e8ee621eb9f32ee3ec1bffa459ecf931a0afb7cb313af163dc25bbd35e",
+      "lastmod": "2026-10-18"
     },
     "kalkulatorok/beton-kalkulator.html": {
       "hash": "56be46b9cf36127bfa322c9dfa4c58ed70d696ad6f032da09a1f4b02dfad87be",
@@ -247,8 +251,8 @@
       "lastmod": "2026-09-14"
     },
     "kalkulatorok/afa-kalkulator.html": {
-      "hash": "df1f80281c763a0371b14b8f46a21cd0982e5f8e07b117deda2092204f32aee9",
-      "lastmod": "2026-10-13"
+      "hash": "cb72bb64d1d13a97120dc25b45eec1e783e19f397acd28a7acd6ffd26928fe27",
+      "lastmod": "2026-10-18"
     },
     "kalkulatorok/auto-kalkulator.html": {
       "hash": "3a7b8523621ee755dee60cb9e9f6018976b3b0b2d6e04ed36f56e4d5833ba318",
@@ -303,8 +307,8 @@
       "lastmod": "2026-10-15"
     },
     "kalkulatorok/terhessegi-kalkulator.html": {
-      "hash": "5ceead69c5328940319623e349e859c16fbf0bcd4a29a641234e0d388bcc482b",
-      "lastmod": "2026-10-15"
+      "hash": "f9e7b93cd3825658a0b0aecae804d1c33f030984b324d909fa286466433bda84",
+      "lastmod": "2026-10-18"
     },
     "kalkulatorok/idealis-testsuly-kalkulator.html": {
       "hash": "57715cc341b9cf70c8eb1643164f6c611c814c9e699bc0b82fde36281bccc7d6",
@@ -521,10 +525,6 @@
     "kalkulatorok/vizfogyasztas-koltseg-kalkulator.html": {
       "hash": "5ba77b197951f66c96a4e0abd6df6abd6ca40616ef1ba37354209ac44710cf77",
       "lastmod": "2026-08-21"
-    },
-    "aktualis/nav-unios-kezelesi-dij-2026-november.html": {
-      "hash": "7074cabc0c97a04713fcf084a1c638deb332ed94ae8fcca5a7325b3e0685a219",
-      "lastmod": "2026-10-15"
     }
   }
 }
