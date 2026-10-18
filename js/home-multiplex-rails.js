@@ -1,12 +1,15 @@
 (function () {
+  const initialize = () => {
   const rails = [...document.querySelectorAll("[data-home-multiplex-rail]")];
   if (rails.length !== 2) return;
+  if (window.KB_SITE_RUNTIME?.claimInitialization(rails[0], "home-multiplex-rails") === false) return;
 
   const wideViewport = window.matchMedia("(min-width: 1760px)");
   const renderRails = () => {
     if (!wideViewport.matches || window.KB_ADSENSE_ELIGIBLE !== true || window.KB_ADSENSE_CAN_REQUEST !== true) return;
 
     for (const rail of rails) {
+      if (!rail.isConnected) continue;
       if (rail.querySelector("ins.adsbygoogle")) continue;
 
       const label = document.createElement("span");
@@ -33,4 +36,7 @@
   } else {
     renderRails();
   }
+  };
+  if (window.KB_SITE_RUNTIME) window.KB_SITE_RUNTIME.registerHomeInitializer("home-multiplex-rails.js", initialize);
+  else initialize();
 })();

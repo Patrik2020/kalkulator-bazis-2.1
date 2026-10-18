@@ -187,7 +187,7 @@ function isMaterializedHome() {
 function loadHomeRedesign() {
   if (!document.body?.classList.contains("home-page") || isMaterializedHome()) return Promise.resolve(null);
   const base = String(window.KB_PROJECT_ROOT || "").replace(/\/$/, "");
-  return loadScriptOnce(`${base}/js/home-ia.js?v=e02ff8c3a7c3`);
+  return loadScriptOnce(`${base}/js/home-ia.js?v=26258c736dcc`);
 }
 
 // =========================
@@ -196,7 +196,9 @@ function loadHomeRedesign() {
 function initializeSite() {
   if (siteRuntimeState.sitePromise) return siteRuntimeState.sitePromise;
   siteRuntimeState.sitePromise = Promise.resolve().then(() => {
-    const base = window.location.pathname.toLowerCase().includes("/kalkulatorok/") ? "../" : "./";
+    const base = typeof window.KB_PROJECT_ROOT === "string"
+      ? `${window.KB_PROJECT_ROOT.replace(/\/$/, "")}/`
+      : window.location.pathname.toLowerCase().includes("/kalkulatorok/") ? "../" : "./";
     if (!siteRuntimeState.started) {
       siteRuntimeState.started = true;
       hardenExternalLinks(document);
@@ -266,7 +268,7 @@ function loadScriptOnce(src, onLoad) {
         resolve(script);
       }, { once: true });
       script.addEventListener("error", () => {
-        if (!existing) script.remove();
+        script.remove();
         reject(new Error("Nem sikerült betölteni: " + safeUrl.pathname));
       }, { once: true });
       if (!existing) {
@@ -310,7 +312,10 @@ function loadSiteScripts(base) {
 function initializeComponent(id, target, path) {
   const content = target.firstElementChild || target;
   if (!claimInitialization(content, "shared-component")) return;
-  normalizeRootLinks(target, path.includes("../") ? "../" : "./");
+  const base = typeof window.KB_PROJECT_ROOT === "string"
+    ? `${window.KB_PROJECT_ROOT.replace(/\/$/, "")}/`
+    : path.includes("../") ? "../" : "./";
+  normalizeRootLinks(target, base);
   normalizeInternalPublicLinks(target);
   hardenExternalLinks(target);
   if (id === "header") {

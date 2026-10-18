@@ -99,6 +99,16 @@ test("failed scripts reject, are removed, and can be retried", async () => {
   assert.equal(b.scripts.length, 2); b.scripts[1].dispatchEvent({ type: "load" }); await second;
 });
 
+test("a failed existing script is removed so a later request can retry it", async () => {
+  const b = browser();
+  const existing = new Element(); existing.src = "https://example.test/js/retry.js"; b.scripts.push(existing);
+  const first = b.runtime.loadScript("/js/retry.js");
+  existing.dispatchEvent({ type: "error" });
+  await assert.rejects(first, /Nem sikerült/); assert.ok(existing.removed);
+  const second = b.runtime.loadScript("/js/retry.js");
+  assert.equal(b.scripts.length, 2); b.scripts[1].dispatchEvent({ type: "load" }); await second;
+});
+
 test("external scripts and unapproved component paths never load", async () => {
   const b = browser();
   await assert.rejects(b.runtime.loadScript("https://other.test/code.js"), /Nem engedélyezett/);
@@ -237,4 +247,38 @@ test("repeated real homepage controller initialization preserves the shared load
   b.runtime.initializeHome(); vm.runInContext(read("js/home-redesign-core.js"), b.context); b.runtime.initializeHome();
   assert.equal(b.context.loadComponent, loader);
   assert.equal(count(b.document), documentCount); assert.equal(count(b.windowEvents), windowCount);
+});
+
+test("homepage ad rails initialize once, require consent, and ignore detached instances", () => {
+  const b = browser();
+  const rail = () => {
+    const element = new Element(); element.isConnected = true;
+    element.appendChild = (node) => { if (node.className === "adsbygoogle") element.selectors.set("ins.adsbygoogle", node); };
+    element.append = (...nodes) => nodes.forEach((node) => element.appendChild(node));
+    return element;
+  };
+  let rails = [rail(), rail()];
+  const query = b.document.querySelectorAll;
+  b.document.querySelectorAll = (selector) => selector === "[data-home-multiplex-rail]" ? rails : query(selector);
+  vm.runInContext(read("js/home-multiplex-rails.js"), b.context);
+  b.media.matches = true; b.document.dispatchEvent({ type: "kb:adsense-ready" });
+  assert.equal(b.context.adsbygoogle, undefined);
+  b.context.KB_ADSENSE_ELIGIBLE = true; b.context.KB_ADSENSE_CAN_REQUEST = true;
+  b.document.dispatchEvent({ type: "kb:adsense-ready" }); assert.equal(b.context.adsbygoogle.length, 2);
+  b.runtime.initializeHome(); vm.runInContext(read("js/home-multiplex-rails.js"), b.context);
+  b.document.dispatchEvent({ type: "kb:adsense-ready" }); assert.equal(b.context.adsbygoogle.length, 2);
+  assert.equal(b.document.listeners.get("kb:adsense-ready").length, 1);
+  rails.forEach((element) => { element.isConnected = false; }); rails = [rail(), rail()];
+  b.runtime.initializeHome(); b.document.dispatchEvent({ type: "kb:adsense-ready" });
+  assert.equal(b.context.adsbygoogle.length, 4);
+});
+
+test("nested article routes load shared assets from the project root", async () => {
+  const b = browser(); b.context.KB_PROJECT_ROOT = "";
+  b.context.location.pathname = "/aktualis/hir"; b.context.location.href = "https://example.test/aktualis/hir";
+  b.context.KB_DATA = {}; b.context.KB_SITE_UI_LOADED = true;
+  for (const batch of ["01", "02", "03", "04", "05"]) b.context[`KB_EXPANSION_BATCH_${batch}`] = [];
+  const pending = b.runtime.initialize(); await flush();
+  assert.equal(new URL(b.scripts[0].src).pathname, "/js/cookie.js");
+  b.context.KB_CONSENT_MANAGER = { isReady: true }; b.scripts[0].dispatchEvent({ type: "load" }); await pending;
 });
