@@ -43,6 +43,9 @@ jobs:
       - name: Test shared AdSense page policy
         run: node --test scripts/adsense-policy.test.js
 
+      - name: Test calculator scope isolation and collision detection
+        run: node --test scripts/calculator-scopes.test.js
+
       - name: Test content-hash asset versions and dependency propagation
         run: node --test scripts/asset-versions.test.js
 

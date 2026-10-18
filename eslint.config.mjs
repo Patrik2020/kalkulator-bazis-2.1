@@ -68,6 +68,7 @@ export default [
   {
     files: [
       "js/calculator-suite.js",
+      "js/simple-calculators.js",
       "js/epitoipari/beton.js",
       "js/expansion-batch-*-calculators.js",
       "js/expansion-batch-*-data.js",

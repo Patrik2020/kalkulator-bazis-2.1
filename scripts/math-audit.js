@@ -8,18 +8,19 @@ const assert = require("assert");
 
 const root = path.resolve(__dirname, "..");
 const sourcePath = path.join(root, "js", "simple-calculators.js");
-const source = `${fs.readFileSync(sourcePath, "utf8")}\nglobalThis.__CALCS__ = SIMPLE_CALCULATORS;`;
+const source = fs.readFileSync(sourcePath, "utf8");
 const sandbox = {
   console,
   Intl,
   Math,
   Date,
   window: {},
+  module: { exports: {} },
   document: { addEventListener() {} },
 };
 vm.createContext(sandbox);
 vm.runInContext(source, sandbox, { filename: sourcePath });
-const calcs = sandbox.__CALCS__;
+const calcs = sandbox.module.exports;
 const batch04 = require("../js/expansion-batch-04-calculators.js");
 
 const results = [];
