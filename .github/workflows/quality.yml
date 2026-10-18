@@ -37,6 +37,9 @@ jobs:
       - name: Test Chrome timeout retry safety
         run: node --test scripts/chrome-render-retry.test.js
 
+      - name: Test browser QA consent gate rejects regressions
+        run: node --test scripts/browser-qa-policy-runner.test.js
+
       - name: Validate responsive viewport contract
         run: node scripts/responsive-contract-audit.js
 
