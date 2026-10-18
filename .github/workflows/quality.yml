@@ -52,6 +52,9 @@ jobs:
       - name: Test content-hash asset versions and dependency propagation
         run: node --test scripts/asset-versions.test.js
 
+      - name: Test the single-pass static build contract
+        run: npm run test:build-pipeline
+
       - name: Validate responsive viewport contract
         run: node scripts/responsive-contract-audit.js
 

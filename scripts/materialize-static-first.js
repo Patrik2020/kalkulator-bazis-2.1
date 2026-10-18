@@ -2,7 +2,8 @@ const fs = require("fs");
 const path = require("path");
 const { spawn, execFileSync } = require("child_process");
 const { withTransientChromeRetry } = require("./chrome-render-retry");
-const { publicPathToSourceFile, sourceFileToPublicPath } = require("./url-paths");
+const { materializationPages } = require("./site-page-inventory");
+const { sourceFileToPublicPath } = require("./url-paths");
 
 const root = path.resolve(__dirname, "..");
 const retentionTemplate = fs
@@ -45,28 +46,6 @@ function findChrome() {
   throw new Error(
     "Nem található Chrome/Chromium. Állítsd be a CHROME_BIN környezeti változót, vagy futtasd GitHub Actions ubuntu-latest környezetben."
   );
-}
-
-function sitemapPages() {
-  const sitemap = fs.readFileSync(path.join(root, "sitemap.xml"), "utf8");
-  const pages = [];
-  const seen = new Set();
-
-  for (const match of sitemap.matchAll(/<loc>\s*([^<]+)\s*<\/loc>/gi)) {
-    const url = new URL(match[1].trim());
-    const relative = publicPathToSourceFile(url.pathname);
-
-    const filePath = path.join(root, relative);
-    if (!fs.existsSync(filePath) || seen.has(relative)) continue;
-    seen.add(relative);
-    pages.push(relative);
-  }
-
-  if (fs.existsSync(path.join(root, "404.html")) && !seen.has("404.html")) {
-    pages.push("404.html");
-  }
-
-  return pages;
 }
 
 function readAttribute(openTag, name) {
@@ -164,6 +143,9 @@ function upsertStaticBlock(source, key, fragment, placement = "main-end") {
 }
 
 function addAttributeToOpeningTag(fragment, name, value) {
+  const escaped = name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const openingTag = fragment.match(/^<[^>]+>/)?.[0] || "";
+  if (new RegExp(`\\s${escaped}(?:\\s*=|\\s|>)`, "i").test(openingTag)) return fragment;
   return fragment.replace(/^<([a-z][a-z0-9:-]*)\b/i, `<$1 ${name}="${value}"`);
 }
 
@@ -250,19 +232,20 @@ function ensureFallbackScript(source, pagePath) {
 }
 
 function replaceStructuredData(source, rendered) {
+  const existing = findElement(source, { tag: "script", id: "kb-structured-data" });
+  if (existing) return source;
+
   const structured = findElement(rendered, { tag: "script", id: "kb-structured-data" });
   if (!structured) return removeStaticBlock(source, "structured-data");
-
-  const existing = findElement(source, { tag: "script", id: "kb-structured-data" });
-  if (existing) {
-    return source.slice(0, existing.start) + structured.html + source.slice(existing.end);
-  }
 
   return upsertStaticBlock(source, "structured-data", structured.html, "head-end");
 }
 
 function mergeRenderedPage(pagePath, originalSource, rendered) {
   let source = originalSource;
+  const authoredAverageHub = /<main\b[^>]*\bdata-average-hub\s*=\s*(["'])true\1/i.test(
+    originalSource
+  );
 
   const header = findElement(rendered, { id: "header" });
   if (header) source = replaceElement(source, { id: "header" }, header.html);
@@ -276,7 +259,7 @@ function mergeRenderedPage(pagePath, originalSource, rendered) {
     // Live API values belong to browser state. The authored form and example
     // remain the crawler fallback; JavaScript replaces them after a successful
     // request without making a remote date, provider or result part of Git.
-    const stableCard = liveApiCalculatorPages.has(pagePath)
+    const stableCard = liveApiCalculatorPages.has(pagePath) || authoredAverageHub
       ? authoredCard.html
       : card.html;
     source = replaceElement(
@@ -298,63 +281,65 @@ function mergeRenderedPage(pagePath, originalSource, rendered) {
     ? sourceWithoutStaticReliability
     : upsertStaticBlock(sourceWithoutStaticReliability, "reliability", reliability?.html || null);
 
-  const related = findElement(rendered, { attr: "data-render", value: "related-calculators" });
-  const relatedHtml = related && /related-section/.test(related.html) ? related.html : null;
-  source = upsertStaticBlock(source, "related-calculators", relatedHtml);
+  if (!authoredAverageHub) {
+    const related = findElement(rendered, { attr: "data-render", value: "related-calculators" });
+    const relatedHtml = related && /related-section/.test(related.html) ? related.html : null;
+    source = upsertStaticBlock(source, "related-calculators", relatedHtml);
 
-  const siteFinal = findElement(rendered, { attr: "data-quality-final", value: "2026-08" });
-  source = upsertStaticBlock(source, "quality-final", siteFinal?.html || null);
+    const siteFinal = findElement(rendered, { attr: "data-quality-final", value: "2026-08" });
+    source = upsertStaticBlock(source, "quality-final", siteFinal?.html || null);
 
-  source = upsertStaticBlock(
-    source,
-    "quality-finance",
-    renderedQualityFallback(rendered, "finance", "data-finance-quality", "2026-08")
-  );
+    source = upsertStaticBlock(
+      source,
+      "quality-finance",
+      renderedQualityFallback(rendered, "finance", "data-finance-quality", "2026-08")
+    );
 
-  source = upsertStaticBlock(
-    source,
-    "quality-construction",
-    renderedQualityFallback(rendered, "construction", "data-construction-quality", "2026-08")
-  );
+    source = upsertStaticBlock(
+      source,
+      "quality-construction",
+      renderedQualityFallback(rendered, "construction", "data-construction-quality", "2026-08")
+    );
 
-  source = upsertStaticBlock(
-    source,
-    "quality-lifestyle",
-    renderedQualityFallback(rendered, "lifestyle", "data-lifestyle-quality", "2026-08")
-  );
+    source = upsertStaticBlock(
+      source,
+      "quality-lifestyle",
+      renderedQualityFallback(rendered, "lifestyle", "data-lifestyle-quality", "2026-08")
+    );
 
-  source = upsertStaticBlock(
-    source,
-    "quality-auto",
-    renderedQualityFallback(rendered, "auto", "data-auto-converter-quality", "2026-08")
-  );
+    source = upsertStaticBlock(
+      source,
+      "quality-auto",
+      renderedQualityFallback(rendered, "auto", "data-auto-converter-quality", "2026-08")
+    );
 
-  source = upsertStaticBlock(
-    source,
-    "priority-upgrade",
-    renderedQualityFallback(rendered, "priority", "data-priority-upgrade")
-  );
+    source = upsertStaticBlock(
+      source,
+      "priority-upgrade",
+      renderedQualityFallback(rendered, "priority", "data-priority-upgrade")
+    );
 
-  const constructionMethod = findElement(rendered, { className: "construction-methodology" });
-  source = upsertStaticBlock(
-    source,
-    "construction-methodology",
-    runtimeFallback(constructionMethod?.html || null, "construction-methodology")
-  );
+    const constructionMethod = findElement(rendered, { className: "construction-methodology" });
+    source = upsertStaticBlock(
+      source,
+      "construction-methodology",
+      runtimeFallback(constructionMethod?.html || null, "construction-methodology")
+    );
 
-  const everydayMethod = findElement(rendered, { className: "everyday-method" });
-  source = upsertStaticBlock(
-    source,
-    "everyday-method",
-    runtimeFallback(everydayMethod?.html || null, "everyday-method")
-  );
+    const everydayMethod = findElement(rendered, { className: "everyday-method" });
+    source = upsertStaticBlock(
+      source,
+      "everyday-method",
+      runtimeFallback(everydayMethod?.html || null, "everyday-method")
+    );
 
-  const autoNote = findElement(rendered, { className: "ac-note" });
-  source = upsertStaticBlock(
-    source,
-    "auto-converter-note",
-    runtimeFallback(autoNote?.html || null, "auto-converter-note")
-  );
+    const autoNote = findElement(rendered, { className: "ac-note" });
+    source = upsertStaticBlock(
+      source,
+      "auto-converter-note",
+      runtimeFallback(autoNote?.html || null, "auto-converter-note")
+    );
+  }
 
   source = replaceStructuredData(source, rendered);
   source = ensureMainId(source);
@@ -445,7 +430,7 @@ async function waitForServer() {
 
 async function main() {
   const chrome = findChrome();
-  const pages = sitemapPages();
+  const pages = materializationPages(root);
   const server = spawn(process.execPath, [path.join(root, "scripts/local-static-server.js")], {
     cwd: root,
     env: { ...process.env, PORT: String(port) },
@@ -491,7 +476,11 @@ async function main() {
   if (dryRun && changed > 0) process.exitCode = 2;
 }
 
-main().catch((error) => {
-  console.error(error.stack || error.message);
-  process.exitCode = 1;
-});
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(error.stack || error.message);
+    process.exitCode = 1;
+  });
+}
+
+module.exports = { addAttributeToOpeningTag, mergeRenderedPage, replaceStructuredData };

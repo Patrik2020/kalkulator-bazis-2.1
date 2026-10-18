@@ -8,6 +8,8 @@ on:
     paths:
       - "scripts/apply-*.js"
       - "scripts/materialize-static-first.js"
+      - "scripts/static-build-pipeline.js"
+      - "scripts/site-page-inventory.js"
       - "scripts/chrome-render-retry.js"
       - "scripts/normalize-static-html.js"
       - "scripts/normalize-a11y-html.js"
@@ -68,117 +70,11 @@ jobs:
             exit 1
           fi
 
-      - name: Apply AdSense template fingerprint cleanup
-        run: node scripts/apply-adsense-template-fingerprint-v2.js
-
-      - name: Apply page-specific domain methodology
-        run: node scripts/apply-adsense-domain-method-copy-v2.js
-
-      - name: Preserve construction manufacturer-first safety rule
-        run: node scripts/apply-construction-manufacturer-first-v2.js
-
-      - name: Remove legacy YMYL ownership boilerplate
-        run: node scripts/apply-adsense-ymyl-trust-v2.js
-
-      - name: Apply primary YMYL source notes
-        run: node scripts/apply-adsense-source-notes-v2.js
-
-      - name: Apply current-content editorial moat
-        run: node scripts/apply-adsense-current-moat-v2.js
-
-      - name: Apply Phase 2 converter consolidation
-        run: node scripts/apply-adsense-phase2-consolidation.js
-
-      - name: Apply Phase 2 Batch 2 average consolidation
-        run: node scripts/apply-adsense-phase2-batch2.js
-
-      - name: Apply average hub quality blocks
-        run: node scripts/apply-average-hub-quality-blocks.js
-
-      - name: Protect average hub from legacy renderer
-        run: node scripts/apply-average-hub-runtime-guard.js
-
-      - name: Apply AdSense eligibility and certified-CMP runtime gate
-        run: node scripts/apply-adsense-eligibility-v2.js
-
-      - name: Apply AdSense audit policy normalization
-        run: node scripts/apply-adsense-audit-policy-v2.js
-
-      - name: Materialize global head config include
-        run: node scripts/apply-global-head-config.js
-
-      - name: Materialize public taxonomy
-        run: npm run taxonomy:apply
-
-      - name: Generate sitemap for page discovery
-        run: npm run sitemap
-
-      - name: Materialize and normalize browser-rendered content
+      - name: Generate deterministic static output once
         run: npm run static:build
 
-      - name: Normalize final static output
-        run: npm run static:normalize
-
-      - name: Re-apply editorial transforms after materialization
-        run: |
-          node scripts/apply-adsense-domain-method-copy-v2.js
-          node scripts/apply-construction-manufacturer-first-v2.js
-          node scripts/apply-adsense-ymyl-trust-v2.js
-          node scripts/apply-adsense-source-notes-v2.js
-          node scripts/apply-adsense-current-moat-v2.js
-          node scripts/apply-adsense-phase2-consolidation.js
-          node scripts/apply-adsense-phase2-batch2.js
-          node scripts/apply-average-hub-quality-blocks.js
-
-      - name: Canonicalize static retention CTA state
-        run: node scripts/normalize-retention-static.js
-
-      - name: Apply content-hash asset versions
-        run: node scripts/cache-bust-assets.js
-
-      - name: Refresh sitemap after materialization
-        run: npm run sitemap
-
-      - name: Stabilize newly materialized pages
-        shell: bash
-        run: |
-          node scripts/apply-global-head-config.js
-          npm run static:build
-          npm run static:normalize
-          node scripts/apply-adsense-domain-method-copy-v2.js
-          node scripts/apply-construction-manufacturer-first-v2.js
-          node scripts/apply-adsense-ymyl-trust-v2.js
-          node scripts/apply-adsense-source-notes-v2.js
-          node scripts/apply-adsense-current-moat-v2.js
-          node scripts/apply-adsense-phase2-consolidation.js
-          node scripts/apply-adsense-phase2-batch2.js
-          node scripts/apply-average-hub-quality-blocks.js
-          node scripts/normalize-retention-static.js
-          node scripts/cache-bust-assets.js
-          npm run sitemap
-
-      - name: Verify static build is idempotent
-        shell: bash
-        run: |
-          git diff --binary > "${RUNNER_TEMP}/static-stable-pass.diff"
-          node scripts/apply-global-head-config.js
-          npm run static:build
-          npm run static:normalize
-          node scripts/apply-adsense-domain-method-copy-v2.js
-          node scripts/apply-construction-manufacturer-first-v2.js
-          node scripts/apply-adsense-ymyl-trust-v2.js
-          node scripts/apply-adsense-source-notes-v2.js
-          node scripts/apply-adsense-current-moat-v2.js
-          node scripts/apply-adsense-phase2-consolidation.js
-          node scripts/apply-adsense-phase2-batch2.js
-          node scripts/apply-average-hub-quality-blocks.js
-          node scripts/normalize-retention-static.js
-          node scripts/cache-bust-assets.js
-          npm run sitemap
-          git diff --binary > "${RUNNER_TEMP}/static-verification-pass.diff"
-          diff -u \
-            "${RUNNER_TEMP}/static-stable-pass.diff" \
-            "${RUNNER_TEMP}/static-verification-pass.diff"
+      - name: Verify the canonical build is idempotent
+        run: npm run static:verify
 
       # Full JavaScript/calculator/AdSense validation runs in dedicated workflows.
       # Keep only generated-output integrity checks here before the bot commits.
@@ -193,15 +89,6 @@ jobs:
 
       - name: Validate content-aware sitemap lastmod
         run: node scripts/sitemap-lastmod-v2-audit.js
-
-      - name: Verify generated sitemap is idempotent
-        shell: bash
-        run: |
-          cp sitemap.xml "${RUNNER_TEMP}/sitemap.xml"
-          cp data/sitemap-content-state.json "${RUNNER_TEMP}/sitemap-content-state.json"
-          npm run sitemap
-          diff -u "${RUNNER_TEMP}/sitemap.xml" sitemap.xml
-          diff -u "${RUNNER_TEMP}/sitemap-content-state.json" data/sitemap-content-state.json
 
       - name: Check whitespace errors
         run: git diff --check

@@ -1,85 +1,14 @@
 const fs = require("fs");
 const path = require("path");
-const vm = require("vm");
 const crypto = require("crypto");
 const { execFileSync } = require("child_process");
 const { publicUrlForSource } = require("./url-paths");
-const expansionCalculators = [
-  ...require("../js/expansion-batch-01-data.js"),
-  ...require("../js/expansion-batch-02-data.js"),
-  ...require("../js/expansion-batch-03-data.js"),
-  ...require("../js/expansion-batch-04-data.js"),
-  ...require("../js/expansion-batch-05-data.js"),
-];
+const { sitePageRoutes } = require("./site-page-inventory");
 
 const root = path.resolve(__dirname, "..");
 const stateDirectory = path.join(root, "data");
 const statePath = path.join(stateDirectory, "sitemap-content-state.json");
-const dataCode = fs.readFileSync(path.join(root, "js", "site-data.js"), "utf8");
-const context = { window: {} };
-
-vm.createContext(context);
-vm.runInContext(dataCode, context);
-
-const { categories, calculators } = context.window.KB_DATA;
-
-// Keep sitemap URL ordering independent from the visual/category navigation order.
-// Reordering cards on the site should not create a meaningless sitemap diff.
-const stableCategoryOrder = ["penzugyi", "mindennapi", "egeszseg", "auto", "epitoipari", "atvaltok"];
-const categoryById = new Map(categories.map((category) => [category.id, category]));
-const orderedCategoryUrls = [
-  ...stableCategoryOrder.map((id) => categoryById.get(id)?.url).filter(Boolean),
-  ...categories
-    .filter((category) => !stableCategoryOrder.includes(category.id))
-    .map((category) => category.url)
-    .sort((a, b) => a.localeCompare(b, "hu")),
-];
-
-const currentDirectory = path.join(root, "aktualis");
-const currentPages = fs.existsSync(currentDirectory)
-  ? fs.readdirSync(currentDirectory, { withFileTypes: true })
-      .filter((entry) => entry.isFile() && entry.name.endsWith(".html"))
-      .map((entry) => `aktualis/${entry.name}`)
-      .sort((a, b) => a.localeCompare(b, "hu"))
-  : [];
-
-const staticPages = [
-  "",
-  ...orderedCategoryUrls,
-  "kalkulatorok.html",
-  "kalkulatorok/multifunkcios-szamologep.html",
-  "dontesek.html",
-  "osszehasonlitas.html",
-  "rolunk.html",
-  "szamitasi-modszertan.html",
-  "kapcsolat.html",
-  "adatvedelem.html",
-  "cookie.html",
-  "felhasznalasi-feltetelek.html",
-  "jogi-nyilatkozat.html",
-  "atlathatosag-es-minoseg.html",
-  "miert-bizhatsz-bennunk.html",
-  "impresszum.html",
-  "elethelyzetek.html",
-  "aktualis.html",
-  ...currentPages,
-  "landing-pages/elethelyzetek/lakasvasarlas.html",
-  "landing-pages/elethelyzetek/autofenntartas.html",
-  "landing-pages/elethelyzetek/fizetes-munkaber.html",
-  "landing-pages/elethelyzetek/befektetes-kezdoknek.html",
-  "landing-pages/elethelyzetek/felujitas-tervezese.html",
-  "landing-pages/elethelyzetek/csaladi-koltsegvetes.html",
-  "landing-pages/wise/wise.html",
-  "landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html",
-];
-
-// Lifecycle-aware sitemap: every calculator marked hidden=true in the registry is
-// intentionally retired from the public/indexable surface. This scales across
-// Phase 2 batches without maintaining a second hard-coded retired URL list here.
-const calculatorPages = [...calculators, ...expansionCalculators]
-  .filter((calculator) => calculator.hidden !== true)
-  .map((calculator) => calculator.url);
-const urls = [...new Set([...staticPages, ...calculatorPages])];
+const urls = sitePageRoutes(root);
 const currentDate = new Date().toISOString().slice(0, 10);
 
 const loadState = () => {
