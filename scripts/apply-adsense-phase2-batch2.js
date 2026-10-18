@@ -1,7 +1,9 @@
 const fs = require("fs");
 const path = require("path");
+const { loadAdsensePolicy } = require("./adsense-policy");
 
 const root = path.resolve(__dirname, "..");
+const adsensePolicy = loadAdsensePolicy(root);
 const hubPath = "kalkulatorok/atlag-kalkulator.html";
 const hubCanonical = "https://kalkulatorbazis.hu/kalkulatorok/atlag-kalkulator";
 const retired = [
@@ -161,30 +163,11 @@ siteData = siteData.slice(0, hubStart) + hubBlock + siteData.slice(hubEnd);
 write("js/site-data.js", siteData);
 
 const retiredSlugs = retired.map((item) => item.page.replace(/\.html$/, ""));
-function addRuntimeExclusions(relative) {
-  let source = read(relative);
-  const anchor = "const adsenseExcludedExact = new Set([";
-  const index = source.indexOf(anchor);
-  if (index < 0) throw new Error(`Hiányzó AdSense exclude lista: ${relative}`);
-  const insertAt = index + anchor.length;
-  const missing = retiredSlugs.filter((slug) => !source.includes(`"${slug}"`));
-  if (missing.length) {
-    const lines = missing.map((slug) => `\n    "${slug}",`).join("");
-    source = source.slice(0, insertAt) + lines + source.slice(insertAt);
-    write(relative, source);
+for (const slug of retiredSlugs) {
+  if (!adsensePolicy.groups.excludedExact.retiredCalculators.includes(slug)) {
+    throw new Error(`A közös AdSense policyból hiányzik a kivezetett kalkulátor: ${slug}`);
   }
 }
-addRuntimeExclusions("js/cookie.js");
-addRuntimeExclusions("scripts/apply-adsense-eligibility-v2.js");
-
-let adsenseAudit = read("scripts/adsense-quality-v2-audit.js");
-for (const item of retired) {
-  if (adsenseAudit.includes(`"${item.page}"`)) continue;
-  const anchor = '  "kalkulatorok/teljesitmeny-atvalto-kalkulator.html"';
-  if (!adsenseAudit.includes(anchor)) throw new Error("Hiányzó Phase 2 retired audit anchor.");
-  adsenseAudit = adsenseAudit.replace(anchor, `${anchor},\n  "${item.page}"`);
-}
-write("scripts/adsense-quality-v2-audit.js", adsenseAudit);
 
 let redirects = read("_redirects").trimEnd();
 for (const item of retired) {

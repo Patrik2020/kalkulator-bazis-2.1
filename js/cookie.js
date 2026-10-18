@@ -10,50 +10,14 @@
   const adsId = "AW-18204925339";
   const adsenseClient = "ca-pub-2639795157074812";
 
-  // KB_ADSENSE_ELIGIBILITY_V2
-  // Publisher ads are intentionally limited to pages with clear standalone value.
+  // KB_ADSENSE_POLICY_V3
+  // Page eligibility has one source shared by runtime, generators and audits.
   // Privacy & Messaging / TCF remains the authority for AdSense consent in regions
   // where Google requires a certified CMP.
-  const adsenseEligibleExact = new Set([
-    "index",
-    "aktualis",
-    "dontesek",
-    "osszehasonlitas",
-    "elethelyzetek",
-    "landing-pages/penzugyi-tudatossag/penzugyi-tudatossag",
-  ]);
-  const adsenseEligiblePrefixes = ["kalkulatorok/", "aktualis/", "landing-pages/elethelyzetek/"];
-  const adsenseExcludedExact = new Set([
-    "kalkulatorok/sulyozott-atlag-kalkulator",
-    "kalkulatorok/mertani-atlag-kalkulator",
-    "404", "kapcsolat", "impresszum", "adatvedelem", "cookie",
-    "jogi-nyilatkozat", "felhasznalasi-feltetelek", "rolunk",
-    "atlathatosag-es-minoseg", "miert-bizhatsz-bennunk", "szamitasi-modszertan",
-    "kalkulatorok/hosszusag-atvalto-kalkulator",
-    "kalkulatorok/terulet-atvalto-kalkulator",
-    "kalkulatorok/terfogat-atvalto-kalkulator",
-    "kalkulatorok/tomeg-atvalto-kalkulator",
-    "kalkulatorok/homerseklet-atvalto-kalkulator",
-    "kalkulatorok/ido-atvalto-kalkulator",
-    "kalkulatorok/sebesseg-atvalto-kalkulator",
-    "kalkulatorok/adatmeret-atvalto-kalkulator",
-    "kalkulatorok/energia-atvalto-kalkulator",
-    "kalkulatorok/nyomas-atvalto-kalkulator",
-    "kalkulatorok/teljesitmeny-atvalto-kalkulator",
-  ]);
-  const adsenseExcludedPrefixes = ["landing-pages/wise/"];
-  const normalizedPublisherPath = () =>
-    decodeURIComponent(window.location.pathname || "/")
-      .replace(/\\/g, "/")
-      .replace(/^\/+|\/+$/g, "")
-      .replace(/\.html$/i, "")
-      .toLowerCase();
-  const isAdSenseEligiblePath = () => {
-    const current = normalizedPublisherPath();
-    if (adsenseExcludedExact.has(current)) return false;
-    if (adsenseExcludedPrefixes.some((prefix) => current.startsWith(prefix))) return false;
-    return current === "" || adsenseEligibleExact.has(current) || adsenseEligiblePrefixes.some((prefix) => current.startsWith(prefix));
-  };
+  const adsensePolicy = window.KB_GLOBAL_HEAD_CONFIG?.adsensePolicy;
+  const isAdSenseEligiblePath = () =>
+    Boolean(adsensePolicy && typeof adsensePolicy.isEligible === "function"
+      && adsensePolicy.isEligible(window.location.pathname));
   window.KB_ADSENSE_ELIGIBLE = isAdSenseEligiblePath();
   window.KB_ADSENSE_CAN_REQUEST = false;
   window.KB_ADSENSE_TCF_REQUIRED = true;

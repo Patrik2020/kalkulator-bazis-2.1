@@ -3,51 +3,22 @@ const os = require("os");
 const path = require("path");
 const { spawnSync } = require("child_process");
 const { requiredConsentCases, requiredTcfCases } = require("./browser-qa-consent");
+const { loadAdsensePolicy } = require("./adsense-policy");
 
 const root = path.resolve(__dirname, "..");
 const browserQaPath = process.env.KB_BROWSER_QA_PATH
   ? path.resolve(root, process.env.KB_BROWSER_QA_PATH)
   : path.join(__dirname, "browser-qa.js");
 const resultsPath = process.env.KB_BROWSER_QA_RESULTS_PATH || path.join(os.tmpdir(), "kb-browser-qa", "results.json");
-const cookiePath = path.join(root, "js", "cookie.js");
-
-const categoryPaths = [
-  "/penzugyi",
-  "/epitoipari",
-  "/egeszseg",
-  "/mindennapi",
-  "/auto",
-  "/atvaltok",
-];
-
-function extractStringArray(source, variableName) {
-  const expression = new RegExp(
-    `const\\s+${variableName}\\s*=\\s*new Set\\(\\[([\\s\\S]*?)\\]\\);`
-  );
-  const setMatch = source.match(expression);
-  const arrayExpression = new RegExp(
-    `const\\s+${variableName}\\s*=\\s*\\[([\\s\\S]*?)\\];`
-  );
-  const match = setMatch || source.match(arrayExpression);
-  if (!match) throw new Error(`Nem található AdSense policy-változó: ${variableName}`);
-  return [...match[1].matchAll(/["']([^"']+)["']/g)].map((item) => item[1]);
-}
+const adsensePolicy = loadAdsensePolicy(root);
+const categoryPaths = adsensePolicy.groups.excludedExact.categoryHubs.map((page) => `/${page}`);
 
 function assertCurrentEligibilityPolicy() {
-  const source = fs.readFileSync(cookiePath, "utf8");
-  const exact = extractStringArray(source, "adsenseEligibleExact");
-  const prefixes = extractStringArray(source, "adsenseEligiblePrefixes");
-
-  const isEligible = (pathname) => {
-    const normalized = pathname.replace(/^\/+|\/+$/g, "").toLowerCase();
-    return !normalized || exact.includes(normalized) || prefixes.some((prefix) => normalized.startsWith(prefix));
-  };
-
-  if (!isEligible("/") || !isEligible("/index")) {
+  if (!adsensePolicy.isEligible("/") || !adsensePolicy.isEligible("/index")) {
     throw new Error("A browser QA policy-runner szerint a főoldal AdSense-eligible beállítása hiányzik.");
   }
 
-  const wronglyEligible = categoryPaths.filter((page) => isEligible(page));
+  const wronglyEligible = categoryPaths.filter((page) => adsensePolicy.isEligible(page));
   if (wronglyEligible.length) {
     throw new Error(`Kategóriaoldal váratlanul AdSense-eligible: ${wronglyEligible.join(", ")}`);
   }

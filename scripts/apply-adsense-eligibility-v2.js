@@ -12,73 +12,44 @@ const replaceOnce = (source, pattern, replacement, label) => {
 
 let cookie = fs.readFileSync(cookiePath, "utf8");
 
-if (!cookie.includes("KB_ADSENSE_ELIGIBILITY_V2")) {
-  const anchor = '  const adsenseClient = "ca-pub-2639795157074812";';
-  const eligibility = `${anchor}
-
-  // KB_ADSENSE_ELIGIBILITY_V2
-  // Publisher ads are intentionally limited to pages with clear standalone value.
+const sharedEligibility = `  // KB_ADSENSE_POLICY_V3
+  // Page eligibility has one source shared by runtime, generators and audits.
   // Privacy & Messaging / TCF remains the authority for AdSense consent in regions
   // where Google requires a certified CMP.
-  const adsenseEligibleExact = new Set([
-    "aktualis",
-    "dontesek",
-    "osszehasonlitas",
-    "elethelyzetek",
-    "landing-pages/penzugyi-tudatossag/penzugyi-tudatossag",
-  ]);
-  const adsenseEligiblePrefixes = ["kalkulatorok/", "aktualis/", "landing-pages/elethelyzetek/"];
-  const adsenseExcludedExact = new Set([
-    "kalkulatorok/sulyozott-atlag-kalkulator",
-    "kalkulatorok/mertani-atlag-kalkulator",
-    "404", "kapcsolat", "impresszum", "adatvedelem", "cookie",
-    "jogi-nyilatkozat", "felhasznalasi-feltetelek", "rolunk",
-    "atlathatosag-es-minoseg", "miert-bizhatsz-bennunk", "szamitasi-modszertan",
-    "kalkulatorok/hosszusag-atvalto-kalkulator",
-    "kalkulatorok/terulet-atvalto-kalkulator",
-    "kalkulatorok/terfogat-atvalto-kalkulator",
-    "kalkulatorok/tomeg-atvalto-kalkulator",
-    "kalkulatorok/homerseklet-atvalto-kalkulator",
-    "kalkulatorok/ido-atvalto-kalkulator",
-    "kalkulatorok/sebesseg-atvalto-kalkulator",
-    "kalkulatorok/adatmeret-atvalto-kalkulator",
-    "kalkulatorok/energia-atvalto-kalkulator",
-    "kalkulatorok/nyomas-atvalto-kalkulator",
-    "kalkulatorok/teljesitmeny-atvalto-kalkulator",
-  ]);
-  const adsenseExcludedPrefixes = ["landing-pages/wise/"];
-  const normalizedPublisherPath = () =>
-    decodeURIComponent(window.location.pathname || "/")
-      .replace(/\\\\/g, "/")
-      .replace(/^\\/+|\\/+$/g, "")
-      .replace(/\\.html$/i, "")
-      .toLowerCase();
-  const isAdSenseEligiblePath = () => {
-    const current = normalizedPublisherPath();
-    if (!current || adsenseExcludedExact.has(current)) return false;
-    if (adsenseExcludedPrefixes.some((prefix) => current.startsWith(prefix))) return false;
-    return adsenseEligibleExact.has(current) || adsenseEligiblePrefixes.some((prefix) => current.startsWith(prefix));
-  };
+  const adsensePolicy = window.KB_GLOBAL_HEAD_CONFIG?.adsensePolicy;
+  const isAdSenseEligiblePath = () =>
+    Boolean(adsensePolicy && typeof adsensePolicy.isEligible === "function"
+      && adsensePolicy.isEligible(window.location.pathname));
   window.KB_ADSENSE_ELIGIBLE = isAdSenseEligiblePath();
   window.KB_ADSENSE_CAN_REQUEST = false;
   window.KB_ADSENSE_TCF_REQUIRED = true;`;
-  cookie = cookie.replace(anchor, eligibility);
 
-  cookie = cookie.replace(
-    "  window.adsbygoogle.requestNonPersonalizedAds = 1;\n",
-    ""
-  );
-
-  cookie = cookie.replace(
-    "            Az analitikai és hirdetési célú technológiákat csak a hozzájárulásod\n            alapján kapcsoljuk be. A választásodat később bármikor módosíthatod.",
-    "            Az analitikát és a partneri külső tartalmakat csak a hozzájárulásod alapján kapcsoljuk be.\n            A Google AdSense európai hozzájárulását külön, Google-minősített TCF üzenet kezeli, ahol ez szükséges."
-  );
-  cookie = cookie.replace("<h3>Hirdetés és marketing</h3>", "<h3>Partneri tartalom és marketing</h3>");
-  cookie = cookie.replace(
-    "              Ide tartozik a Google AdSense hirdetésbetöltés és a partneri\n              bannerek külső képeinek betöltése.",
-    "              Ez a beállítás a partneri bannerek és más külső marketingtartalmak betöltését kezeli.\n              A Google AdSense hozzájárulását az arra jogosult régiókban a Google TCF/CMP üzenete kezeli."
-  );
+if (!cookie.includes("KB_ADSENSE_POLICY_V3")) {
+  const legacyStart = cookie.indexOf("  // KB_ADSENSE_ELIGIBILITY_V2");
+  const runtimeFlag = "  window.KB_ADSENSE_ELIGIBLE = isAdSenseEligiblePath();";
+  if (legacyStart >= 0) {
+    const runtimeIndex = cookie.indexOf(runtimeFlag, legacyStart);
+    if (runtimeIndex < 0) throw new Error("A régi AdSense policy blokk vége nem található.");
+    cookie = cookie.slice(0, legacyStart)
+      + sharedEligibility
+      + cookie.slice(runtimeIndex + runtimeFlag.length);
+  } else {
+    const anchor = '  const adsenseClient = "ca-pub-2639795157074812";';
+    if (!cookie.includes(anchor)) throw new Error("Az AdSense client horgony nem található.");
+    cookie = cookie.replace(anchor, `${anchor}\n\n${sharedEligibility}`);
+  }
 }
+
+cookie = cookie.replace("  window.adsbygoogle.requestNonPersonalizedAds = 1;\n", "");
+cookie = cookie.replace(
+  "            Az analitikai és hirdetési célú technológiákat csak a hozzájárulásod\n            alapján kapcsoljuk be. A választásodat később bármikor módosíthatod.",
+  "            Az analitikát és a partneri külső tartalmakat csak a hozzájárulásod alapján kapcsoljuk be.\n            A Google AdSense európai hozzájárulását külön, Google-minősített TCF üzenet kezeli, ahol ez szükséges."
+);
+cookie = cookie.replace("<h3>Hirdetés és marketing</h3>", "<h3>Partneri tartalom és marketing</h3>");
+cookie = cookie.replace(
+  "              Ide tartozik a Google AdSense hirdetésbetöltés és a partneri\n              bannerek külső képeinek betöltése.",
+  "              Ez a beállítás a partneri bannerek és más külső marketingtartalmak betöltését kezeli.\n              A Google AdSense hozzájárulását az arra jogosult régiókban a Google TCF/CMP üzenete kezeli."
+);
 
 // The runtime replacement is deliberately idempotent. Once setAdSenseRequestReady
 // exists, the TCF-aware syncAdSense block is already installed and must not be
