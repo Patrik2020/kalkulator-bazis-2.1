@@ -5,8 +5,10 @@ const path = require("node:path");
 const { spawnSync } = require("node:child_process");
 const { test } = require("node:test");
 const { requiredConsentCases, requiredTcfCases, tcfCheckpointFailures } = require("./browser-qa-consent");
+const { loadAdsensePolicy } = require("./adsense-policy");
 
-const categoryPaths = ["/penzugyi", "/epitoipari", "/egeszseg", "/mindennapi", "/auto", "/atvaltok"];
+const adsensePolicy = loadAdsensePolicy(path.resolve(__dirname, ".."));
+const categoryPaths = adsensePolicy.groups.excludedExact.categoryHubs.map((page) => `/${page}`);
 const passingResult = () => ({
   layoutFailures: [], interactionFailures: [], calculatorFailures: [], themeFailures: [], consoleErrors: [],
   consentMatrixFailures: [], categoryAdsConsentFailures: [], tcfFailures: [],

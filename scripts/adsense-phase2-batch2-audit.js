@@ -1,8 +1,10 @@
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
+const { loadAdsensePolicy } = require("./adsense-policy");
 
 const root = path.resolve(__dirname, "..");
+const adsensePolicy = loadAdsensePolicy(root);
 const hub = "kalkulatorok/atlag-kalkulator.html";
 const hubCanonical = "https://kalkulatorbazis.hu/kalkulatorok/atlag-kalkulator";
 const retired = [
@@ -55,10 +57,9 @@ for (const page of retired) {
   if (!redirects.includes(`/${page} /kalkulatorok/atlag-kalkulator 301`)) failures.push(`${page}: hiányzik a .html 301`);
 }
 
-const cookie = read("js/cookie.js");
 for (const page of retired) {
   const slug = page.replace(/\.html$/, "");
-  if (!cookie.includes(`"${slug}"`)) failures.push(`${page}: hiányzik az AdSense runtime kizárás`);
+  if (adsensePolicy.isEligible(slug)) failures.push(`${page}: hiányzik az AdSense runtime kizárás`);
 }
 
 const publicCount = calculators.filter((calculator) => calculator.hidden !== true).length;

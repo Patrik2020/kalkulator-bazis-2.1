@@ -4,6 +4,9 @@ const path = require("path");
 const { spawn } = require("child_process");
 const { toExtensionlessHref } = require("./url-paths");
 const { adsenseProbeSource, tcfCheckpointFailures } = require("./browser-qa-consent");
+const { loadAdsensePolicy } = require("./adsense-policy");
+
+const adsensePolicy = loadAdsensePolicy(path.resolve(__dirname, ".."));
 
 const chromeCandidates = [
   process.env.KB_CHROME_PATH,
@@ -558,14 +561,8 @@ const run = async () => {
   await collectTcfCheckpoint('excluded_page', { eligible: false, canRequest: false, paused: 1, readyEvents: 0, pushes: 0, railSlots: 0, loaderCount: 0, tcfListeners: 0 });
   const tcfFailures = tcfChecks.flatMap(tcfCheckpointFailures);
 
-  const categoryAdsConsentPages = [
-    "/penzugyi.html",
-    "/epitoipari.html",
-    "/egeszseg.html",
-    "/mindennapi.html",
-    "/auto.html",
-    "/atvaltok.html"
-  ].map(toExtensionlessHref);
+  const categoryAdsConsentPages = adsensePolicy.groups.excludedExact.categoryHubs
+    .map((page) => toExtensionlessHref(`/${page}.html`));
   const categoryAdsConsentChecks = [];
 
   for (const pagePath of categoryAdsConsentPages) {

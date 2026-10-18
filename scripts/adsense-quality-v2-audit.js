@@ -1,12 +1,14 @@
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
+const { loadAdsensePolicy } = require("./adsense-policy");
 
 const root = path.resolve(__dirname, "..");
 const args = new Set(process.argv.slice(2));
 const shouldWriteReport = args.has("--report");
 const shouldGate = args.has("--gate");
 const reportPath = path.join(root, "docs", "adsense-quality-v2-report.md");
+const adsensePolicy = loadAdsensePolicy(root);
 
 const read = (rel) => fs.readFileSync(path.join(root, rel), "utf8");
 const exists = (rel) => fs.existsSync(path.join(root, rel));
@@ -80,38 +82,8 @@ const informationalExact = new Set([
   "404.html",
 ]);
 
-const adEligibleExact = new Set([
-  "index.html",
-  "aktualis.html",
-  "dontesek.html",
-  "osszehasonlitas.html",
-  "elethelyzetek.html",
-  "landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html",
-]);
-const adEligiblePrefixes = ["kalkulatorok/", "aktualis/", "landing-pages/elethelyzetek/"];
-const adExcludedPrefixes = ["landing-pages/wise/"];
-const phase2RetiredCalculators = new Set([
-  "kalkulatorok/hosszusag-atvalto-kalkulator.html",
-  "kalkulatorok/terulet-atvalto-kalkulator.html",
-  "kalkulatorok/terfogat-atvalto-kalkulator.html",
-  "kalkulatorok/tomeg-atvalto-kalkulator.html",
-  "kalkulatorok/homerseklet-atvalto-kalkulator.html",
-  "kalkulatorok/ido-atvalto-kalkulator.html",
-  "kalkulatorok/sebesseg-atvalto-kalkulator.html",
-  "kalkulatorok/adatmeret-atvalto-kalkulator.html",
-  "kalkulatorok/energia-atvalto-kalkulator.html",
-  "kalkulatorok/nyomas-atvalto-kalkulator.html",
-  "kalkulatorok/teljesitmeny-atvalto-kalkulator.html",
-  "kalkulatorok/mertani-atlag-kalkulator.html",
-  "kalkulatorok/sulyozott-atlag-kalkulator.html"
-]);
-
 const isRedirect = (html) => /<meta\b(?=[^>]*http-equiv=["']refresh["'])/i.test(html);
-const isAdEligible = (name, html) => {
-  if (informationalExact.has(name) || phase2RetiredCalculators.has(name) || isRedirect(html)) return false;
-  if (adExcludedPrefixes.some((prefix) => name.startsWith(prefix))) return false;
-  return adEligibleExact.has(name) || adEligiblePrefixes.some((prefix) => name.startsWith(prefix));
-};
+const isAdEligible = (name, html) => !isRedirect(html) && adsensePolicy.isEligible(name);
 
 const classify = (name, html) => {
   if (name === "404.html") return "hibaoldal";

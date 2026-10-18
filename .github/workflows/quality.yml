@@ -40,6 +40,9 @@ jobs:
       - name: Test browser QA consent gate rejects regressions
         run: node --test scripts/browser-qa-policy-runner.test.js
 
+      - name: Test shared AdSense page policy
+        run: node --test scripts/adsense-policy.test.js
+
       - name: Test content-hash asset versions and dependency propagation
         run: node --test scripts/asset-versions.test.js
 

@@ -2,7 +2,94 @@
   const slugFeature = (id, pages, styles, scripts) => ({ id, match: "slug", pages, styles, scripts });
   const fileFeature = (id, pages, styles, scripts) => ({ id, match: "file", pages, styles, scripts });
 
+  const freezeList = (items) => Object.freeze([...items]);
+  const adsenseGroups = Object.freeze({
+    eligibleExact: freezeList([
+      "",
+      "index",
+      "aktualis",
+      "dontesek",
+      "osszehasonlitas",
+      "elethelyzetek",
+      "landing-pages/penzugyi-tudatossag/penzugyi-tudatossag",
+    ]),
+    eligiblePrefixes: freezeList([
+      "kalkulatorok/",
+      "aktualis/",
+      "landing-pages/elethelyzetek/",
+    ]),
+    excludedExact: Object.freeze({
+      categoryHubs: freezeList([
+        "penzugyi",
+        "epitoipari",
+        "egeszseg",
+        "mindennapi",
+        "auto",
+        "atvaltok",
+      ]),
+      trustAndLegal: freezeList([
+        "404",
+        "kapcsolat",
+        "impresszum",
+        "adatvedelem",
+        "cookie",
+        "jogi-nyilatkozat",
+        "felhasznalasi-feltetelek",
+        "rolunk",
+        "atlathatosag-es-minoseg",
+        "miert-bizhatsz-bennunk",
+        "szamitasi-modszertan",
+      ]),
+      retiredCalculators: freezeList([
+        "kalkulatorok/sulyozott-atlag-kalkulator",
+        "kalkulatorok/mertani-atlag-kalkulator",
+        "kalkulatorok/hosszusag-atvalto-kalkulator",
+        "kalkulatorok/terulet-atvalto-kalkulator",
+        "kalkulatorok/terfogat-atvalto-kalkulator",
+        "kalkulatorok/tomeg-atvalto-kalkulator",
+        "kalkulatorok/homerseklet-atvalto-kalkulator",
+        "kalkulatorok/ido-atvalto-kalkulator",
+        "kalkulatorok/sebesseg-atvalto-kalkulator",
+        "kalkulatorok/adatmeret-atvalto-kalkulator",
+        "kalkulatorok/energia-atvalto-kalkulator",
+        "kalkulatorok/nyomas-atvalto-kalkulator",
+        "kalkulatorok/teljesitmeny-atvalto-kalkulator",
+      ]),
+    }),
+    excludedPrefixes: Object.freeze({
+      partnerPages: freezeList(["landing-pages/wise/"]),
+    }),
+  });
+  const adsenseExcludedExact = freezeList(Object.values(adsenseGroups.excludedExact).flat());
+  const adsenseExcludedPrefixes = freezeList(Object.values(adsenseGroups.excludedPrefixes).flat());
+  const normalizePublisherPath = (value) => {
+    try {
+      return decodeURIComponent(String(value || "/").split(/[?#]/, 1)[0])
+        .replace(/\\/g, "/")
+        .replace(/^\/+|\/+$/g, "")
+        .replace(/\.html$/i, "")
+        .toLowerCase();
+    } catch (error) {
+      return null;
+    }
+  };
+  const adsensePolicy = Object.freeze({
+    version: "2026-10-18.v1",
+    groups: adsenseGroups,
+    excludedExact: adsenseExcludedExact,
+    excludedPrefixes: adsenseExcludedPrefixes,
+    normalizePath: normalizePublisherPath,
+    isEligible(value) {
+      const current = normalizePublisherPath(value);
+      if (current === null || adsenseExcludedExact.includes(current)) return false;
+      if (adsenseExcludedPrefixes.some((prefix) => current.startsWith(prefix))) return false;
+      return adsenseGroups.eligibleExact.includes(current)
+        || adsenseGroups.eligiblePrefixes.some((prefix) => current.startsWith(prefix));
+    },
+  });
+
   window.KB_GLOBAL_HEAD_CONFIG = Object.freeze({
+    adsensePolicy,
     base: Object.freeze({
       styles: [
         "css/theme.css?v=0f4a295ac440",

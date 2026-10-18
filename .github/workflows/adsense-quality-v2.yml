@@ -15,6 +15,7 @@ on:
       - "js/adsense*.js"
       - "js/consent*.js"
       - "js/cookie*.js"
+      - "js/global-head-config.js"
       - "css/adsense*.css"
       - "components/adsense*"
   workflow_dispatch:
@@ -43,6 +44,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Test shared AdSense page policy
+        run: node --test scripts/adsense-policy.test.js
 
       - name: Apply template fingerprint cleanup
         run: node scripts/apply-adsense-template-fingerprint-v2.js

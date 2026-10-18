@@ -1,6 +1,8 @@
 const fs = require("fs");
 const path = require("path");
+const { loadAdsensePolicy } = require("./adsense-policy");
 const root = path.resolve(__dirname, "..");
+const adsensePolicy = loadAdsensePolicy(root);
 const slugs = [
   "hosszusag-atvalto-kalkulator",
   "terulet-atvalto-kalkulator",
@@ -72,9 +74,8 @@ for (const slug of slugs) {
   if (!htmlRule.test(redirects)) failures.push(`_redirects: hiányzó .html 301 szabály ${slug}`);
 }
 
-const cookie = read("js/cookie.js");
 for (const slug of slugs) {
-  if (!cookie.includes(`"kalkulatorok/${slug}"`)) failures.push(`cookie policy: hiányzó kizárás ${slug}`);
+  if (adsensePolicy.isEligible(`kalkulatorok/${slug}`)) failures.push(`AdSense policy: nincs kizárva ${slug}`);
 }
 
 if (failures.length) {
