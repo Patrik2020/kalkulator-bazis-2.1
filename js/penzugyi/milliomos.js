@@ -1,3 +1,4 @@
+(() => {
 function format(num) { return new Intl.NumberFormat("hu-HU").format(Math.round(num)); }
 function parseNumber(value) {
   const parsed = Number.parseFloat((value || "").replace(/\s/g, "").replace(",", "."));
@@ -75,3 +76,4 @@ formatInput(monthly);
 formatInput(goal);
 [initial, monthly, rate, goal].forEach((input) => input?.addEventListener("input", calc));
 calc();
+})();

@@ -24,10 +24,10 @@ function close(actual, expected, tolerance = 1e-9, label = "érték") {
 // A build-upgrade várható állapotát memóriában teszteljük: a teszt nem ír fájlt.
 const simplePath = "js/simple-calculators.js";
 const simpleSource = transforms[simplePath](read(simplePath));
-const sandbox = { console, Intl, Math, Date, window: {}, document: { addEventListener() {} } };
+const sandbox = { console, Intl, Math, Date, window: {}, module: { exports: {} }, document: { addEventListener() {} } };
 vm.createContext(sandbox);
-vm.runInContext(`${simpleSource}\nglobalThis.__CALCS__ = SIMPLE_CALCULATORS;`, sandbox, { filename: simplePath });
-const calcs = sandbox.__CALCS__;
+vm.runInContext(simpleSource, sandbox, { filename: simplePath });
+const calcs = sandbox.module.exports;
 const run = (id, values) => Object.fromEntries(calcs[id].compute(values));
 
 // Geometriai és csomagolási fallback modellek.

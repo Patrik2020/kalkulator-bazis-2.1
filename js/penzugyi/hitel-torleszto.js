@@ -1,3 +1,4 @@
+(() => {
 function format(num) {
   return new Intl.NumberFormat("hu-HU").format(Math.round(num));
 }
@@ -91,3 +92,4 @@ if (typeof document !== "undefined") {
   [amount, rate, years, thm].forEach((input) => input?.addEventListener("input", calcLoan));
   calcLoan();
 }
+})();

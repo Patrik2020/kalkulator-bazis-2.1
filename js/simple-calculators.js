@@ -1,3 +1,5 @@
+(() => {
+// Keep calculator helpers private: shared scripts cannot replace their bindings.
 const SIMPLE_CALCULATORS = {
   "padlo-burkolat-kalkulator": {
     fields: [
@@ -1130,4 +1132,11 @@ function initSimpleCalculator() {
   run();
 }
 
-document.addEventListener("DOMContentLoaded", initSimpleCalculator);
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = SIMPLE_CALCULATORS;
+}
+
+if (typeof document !== "undefined") {
+  document.addEventListener("DOMContentLoaded", initSimpleCalculator);
+}
+})();
