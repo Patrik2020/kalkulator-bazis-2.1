@@ -1,31 +1,22 @@
 (()=>{
 'use strict';
-
-// The materialized V17 homepage owns its header. utils.js normally replaces
-// #header with the shared legacy component on DOMContentLoaded; on the V17
-// homepage that would nest the old header inside the new shell and create a
-// load-order race with home-current.js. Keep the shared loader for every other
-// component/page, but make the V17 homepage header immutable to that loader.
-const sharedComponentLoader=window.loadComponent;
-if(typeof sharedComponentLoader==='function'){
- window.loadComponent=function(id,path){
-  if(id==='header'&&document.body?.classList.contains('home-page')&&document.body.classList.contains('home-redesign-v17'))return;
-  return sharedComponentLoader(id,path);
- };
-}
-
+const initialize=()=>{
 const root=document.documentElement;
 const $=id=>document.getElementById(id);
 const dict=()=>window.KB_HOME_I18N?.[root.dataset.language]||window.KB_HOME_I18N?.hu||{};
-const header=$('header'),seasonBtn=$('seasonBtn'),seasonPop=$('seasonPop'),seasonLabel=$('seasonLabel'),seasonAuto=$('seasonAuto');
+const homeHeader=$('header');
+if(window.KB_SITE_RUNTIME?.claimInitialization(homeHeader,'home-core')===false)return;
+const header=homeHeader,seasonBtn=$('seasonBtn'),seasonPop=$('seasonPop'),seasonLabel=$('seasonLabel'),seasonAuto=$('seasonAuto');
 const themeBtn=$('themeBtn'),themeEmoji=$('themeEmoji'),themeLabel=$('themeLabel');
 const accessBtn=$('accessBtn'),langBtn=$('langBtn'),langPop=$('langPop'),langLabel=$('langLabel');
 const lawBanner=$('languageLawBanner'),lawTitle=$('languageLawTitle'),lawText=$('languageLawText');
 const law={en:{title:'Important: Hungarian rules',text:'Financial and tax calculations on this site follow Hungarian legislation and Hungarian calculation rules. Changing the display language does not change the legal jurisdiction of a calculation.'},de:{title:'Wichtig: ungarische Regeln',text:'Finanz- und Steuerberechnungen auf dieser Website erfolgen nach ungarischem Recht und ungarischen Berechnungsregeln. Die gewählte Anzeigesprache ändert nicht die rechtliche Grundlage der Berechnung.'}};
 function seasonForNow(){const m=new Date().getMonth()+1;return m>=3&&m<=5?'spring':m>=6&&m<=8?'summer':m>=9&&m<=11?'autumn':'winter'}
 function setSeason(s){root.dataset.season=s;const d=dict();if(seasonLabel)seasonLabel.textContent=d[s]||s;document.querySelectorAll('[data-season]').forEach(b=>{const selected=b.dataset.season===s;b.classList.toggle('active',selected);b.setAttribute('aria-pressed',String(selected))});document.querySelectorAll('[data-season-text]').forEach(e=>e.textContent=d[e.dataset.seasonText]||e.dataset.seasonText)}
-function setTheme(t){const dark=t==='dark';root.dataset.theme=dark?'dark':'light';root.style.colorScheme=root.dataset.theme;if(themeEmoji)themeEmoji.textContent=dark?'☀':'☾';if(themeLabel)themeLabel.textContent=dark?(dict().themeLight||'Világos'):(dict().themeDark||'Sötét');if(themeBtn){themeBtn.setAttribute('aria-pressed',String(dark));themeBtn.title=dark?(dict().themeLightTitle||'Világos mód'):(dict().themeDarkTitle||'Sötét mód')}}
-const themeStorageKey='kalkulatorbazis-theme';const storedTheme=()=>{try{const value=localStorage.getItem(themeStorageKey);return value==='light'||value==='dark'?value:null}catch(_){return null}};let manualTheme=Boolean(storedTheme());const media=window.matchMedia?.('(prefers-color-scheme: dark)');themeBtn?.addEventListener('click',()=>{manualTheme=true;const next=root.dataset.theme==='dark'?'light':'dark';setTheme(next);try{localStorage.setItem(themeStorageKey,next)}catch(_){}});media?.addEventListener?.('change',e=>{if(!manualTheme)setTheme(e.matches?'dark':'light')});
+function renderTheme(t){const dark=t==='dark';if(themeEmoji)themeEmoji.textContent=dark?'☀':'☾';if(themeLabel)themeLabel.textContent=dark?(dict().themeLight||'Világos'):(dict().themeDark||'Sötét');if(themeBtn){themeBtn.setAttribute('aria-pressed',String(dark));themeBtn.title=dark?(dict().themeLightTitle||'Világos mód'):(dict().themeDarkTitle||'Sötét mód')}}
+function setTheme(t,persist=false){if(window.KB_THEME){window.KB_THEME.set(t,persist);return}root.dataset.theme=t==='dark'?'dark':'light';root.style.colorScheme=root.dataset.theme;if(persist){try{localStorage.setItem('kalkulatorbazis-theme',root.dataset.theme)}catch(_){}}renderTheme(root.dataset.theme)}
+document.addEventListener('kb:theme-changed',event=>renderTheme(event.detail.theme));
+themeBtn?.addEventListener('click',()=>setTheme(root.dataset.theme==='dark'?'light':'dark',true));
 function setAccessibility(on,persist=true){root.dataset.accessibility=on?'on':'off';accessBtn?.setAttribute('aria-pressed',String(on));if(accessBtn)accessBtn.title=on?(dict().accessNormalTitle||'Normál nézet'):(dict().accessTitle||'Akadálymentes nézet');if(persist){try{localStorage.setItem('kb-prototype-accessibility',on?'on':'off')}catch(_){}}}
 function applyLanguage(lang,persist=false){if(!window.KB_HOME_I18N?.[lang])lang='hu';if(persist){window.KB_SITE_LANGUAGE?.set(lang);root.dataset.kbPreferredLanguage=lang;}root.dataset.language=lang;root.lang=lang;const d=dict();if(langLabel)langLabel.textContent=lang.toUpperCase();document.querySelectorAll('[data-i18n]').forEach(e=>{const v=d[e.dataset.i18n];if(v!=null)e.textContent=v});document.querySelectorAll('[data-i18n-placeholder]').forEach(e=>{const v=d[e.dataset.i18nPlaceholder];if(v!=null)e.placeholder=v});document.querySelectorAll('[data-i18n-title]').forEach(e=>{const v=d[e.dataset.i18nTitle];if(v!=null)e.title=v});document.querySelectorAll('[data-i18n-aria]').forEach(e=>{const v=d[e.dataset.i18nAria];if(v!=null)e.setAttribute('aria-label',v)});document.querySelectorAll('[data-lang]').forEach(b=>{const selected=b.dataset.lang===lang;b.classList.toggle('active',selected);b.setAttribute('aria-pressed',String(selected))});if(lawBanner){lawBanner.hidden=lang==='hu';const c=law[lang];if(c){lawTitle.textContent=c.title;lawText.textContent=c.text}else{lawTitle.textContent='';lawText.textContent=''}}document.querySelectorAll('[data-jurisdiction-note]').forEach(n=>{const c=law[lang];n.hidden=lang==='hu';n.textContent=c?c.text:''});renderNewsLanguage(lang);setTheme(root.dataset.theme||'light');setSeason(root.dataset.season||seasonForNow());setAccessibility(root.dataset.accessibility==='on',false);document.dispatchEvent(new CustomEvent('kb:language-changed',{detail:{language:lang}}))}
 const pickers=[{button:seasonBtn,panel:seasonPop},{button:langBtn,panel:langPop}];
@@ -62,5 +53,7 @@ function norm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\
 function initSearch(){const input=$('calculatorSearch'),results=$('calculatorSearchResults'),button=$('heroSearchSubmit');if(!input||!results)return;const data=window.KB_DATA||{calculators:[],categories:[]};const cats=Object.fromEntries((data.categories||[]).map(c=>[c.id,c]));let matches=[];function close(){results.innerHTML='';results.classList.remove('is-visible');input.setAttribute('aria-expanded','false')}function render(){const q=norm(input.value.trim());if(q.length<2){close();return}matches=(data.calculators||[]).filter(c=>!c.hidden&&norm([c.title,c.description,c.keywords,cats[c.category]?.title].join(' ')).includes(q)).slice(0,10);results.innerHTML=matches.length?matches.map((c,i)=>`<a class="search-result" role="option" id="heroSearchResult${i}" href="${String(c.url||'').replace(/\.html$/,'')}"><span><strong>${c.title}</strong><small>${c.description||''}</small></span><em>${cats[c.category]?.shortTitle||'Kalkulátor'}</em></a>`).join(''):'<p class="search-empty">Nincs találat. Próbálj másik kifejezést.</p>';results.classList.add('is-visible');input.setAttribute('aria-expanded','true')}function openFirst(){const first=results.querySelector('.search-result');if(!first)return false;first.click();return true}input.addEventListener('input',render);input.addEventListener('keydown',e=>{if(e.key==='Enter'&&matches[0]){e.preventDefault();openFirst()}});button?.addEventListener('click',()=>{if(!openFirst()){input.focus();render()}});document.addEventListener('click',e=>{if(!e.target.closest('.hero-search'))close()})}
 let latestNews=[];function renderNewsLanguage(lang=root.dataset.language||'hu'){const list=document.querySelector('#news .news-list');if(!list||!latestNews.length)return;const d=dict();list.innerHTML=latestNews.map((item,i)=>`<a class="news-item" href="${item.href}"><time>${item.date}</time><b>${lang==='hu'?item.title:(d['news'+(i+1)]||item.title)}</b></a>`).join('')}
 async function refreshNews(){try{const r=await fetch('aktualis',{cache:'no-cache'});if(!r.ok)return;const doc=new DOMParser().parseFromString(await r.text(),'text/html');const cards=[...doc.querySelectorAll('[data-current-feed] .current-card')].slice(0,3);latestNews=cards.map(card=>{const a=card.querySelector('h2 a'),date=card.querySelector('time,.current-meta time,.current-meta>*');return a?{href:a.getAttribute('href')||'aktualis',date:date?.textContent?.trim()||'',title:a.textContent.trim()}:null}).filter(Boolean);renderNewsLanguage()}catch(_){}}
-try{root.dataset.accessibility=localStorage.getItem('kb-prototype-accessibility')==='on'?'on':'off'}catch(_){root.dataset.accessibility='off'}applyLanguage(window.KB_SITE_LANGUAGE?.get()||'hu');setSeason(seasonForNow());setTheme(storedTheme()||(media?.matches?'dark':'light'));initSearch();refreshNews();
+try{root.dataset.accessibility=localStorage.getItem('kb-prototype-accessibility')==='on'?'on':'off'}catch(_){root.dataset.accessibility='off'}applyLanguage(window.KB_SITE_LANGUAGE?.get()||'hu');setSeason(seasonForNow());setTheme(root.dataset.theme||'light');initSearch();refreshNews();
+};
+if(window.KB_SITE_RUNTIME)window.KB_SITE_RUNTIME.registerHomeInitializer('home-redesign-core.js',initialize);else initialize();
 })();

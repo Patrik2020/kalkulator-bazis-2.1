@@ -9,7 +9,6 @@
   const seasonalMotifCssAsset = "css/seasonal-autumn-motifs.css?v=5859aa36e632";
   const seasonalGlobalCssAsset = "css/seasonal-autumn-global.css?v=86603e3e382b";
   const seasonalScriptAsset = "js/seasonal-theme.js?v=b4dad1e9d097";
-  const homeIaScriptAsset = "js/home-ia.js?v=4dfcce562891";
   const currentImpactCssAsset = "css/pages/current-impact.css?v=2d495ca7efb7";
   const currentImpactScriptAsset = "js/current-impact.js?v=7926006eea55";
 
@@ -53,24 +52,7 @@
   };
 
   const loadHomeInformationArchitecture = () => {
-    if (!document.body?.classList.contains("home-page")) return;
-
-    // The production V17 homepage is already fully materialized. Loading the
-    // legacy home-ia/home-current assembler again causes an unnecessary second
-    // DOM replacement and creates races with the shared component loader.
-    const hasMaterializedHome =
-      document.body.classList.contains("home-redesign-v17") &&
-      document.querySelector(".kb-header-wrap > #header.kb-header") &&
-      document.querySelector("main .hero");
-    if (hasMaterializedHome) return;
-
-    if (document.querySelector('script[data-kb-home-ia="script"]')) return;
-
-    const script = document.createElement("script");
-    script.src = projectAssetUrl(homeIaScriptAsset);
-    script.async = false;
-    script.dataset.kbHomeIa = "script";
-    document.body.appendChild(script);
+    window.KB_SITE_RUNTIME?.loadHomeRedesign().catch((error) => console.error(error));
   };
 
   const loadCurrentImpact = () => {
@@ -149,6 +131,11 @@
     button.dataset.themeToggle = "";
     return button;
   };
+
+  window.KB_THEME = Object.freeze({
+    get: () => root.dataset.theme || "light",
+    set: (theme, persist = false) => applyTheme(theme, persist),
+  });
 
   const ensureToggle = () => {
     if (document.getElementById("themeBtn")) return;

@@ -100,7 +100,7 @@
         "css/components/cookie.css?v=f2f8742f64ed",
       ],
       scripts: [
-        "js/theme.js?v=6685a725d48d",
+        "js/theme.js?v=db2bf5b0dc70",
         "js/pwa.js?v=fb055828c8f9",
         "js/wise-partner.js?v=8b8b0efca236",
         "js/site-accessibility.js?v=ab9b5783c5ec",

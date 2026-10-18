@@ -1,8 +1,10 @@
 (()=>{
 'use strict';
+const initialize=()=>{
 const $=id=>document.getElementById(id),root=document.documentElement;
 const widget=$('heroSalaryWidget'),form=$('heroSalaryForm'),input=$('heroSalaryAmount'),inputLabel=$('heroSalaryInputLabel'),resultLabel=$('heroSalaryResultLabel'),result=$('heroSalaryResult'),status=$('heroSalaryApiStatus');
 if(!widget||!input||!result)return;
+if(window.KB_SITE_RUNTIME?.claimInitialization(widget,'home-redesign-salary.js')===false)return;
 const API='https://api.kalkulatorbazis.hu/api/v1/calculators/salary';
 let direction='gross-to-net',timer=0,request=0,lastOutput=432250;
 const locale=()=>root.dataset.language==='de'?'de-DE':root.dataset.language==='en'?'en-GB':'hu-HU';
@@ -21,4 +23,6 @@ form?.addEventListener('submit',e=>{e.preventDefault();calculate()});
 document.querySelectorAll('[data-salary-direction]').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.salaryDirection===direction)return;direction=b.dataset.salaryDirection;if(Number.isFinite(lastOutput))input.value=formatInput(lastOutput);labels();calculate()}));
 document.addEventListener('kb:language-changed',()=>{labels();const n=parse(input.value);if(Number.isFinite(n))input.value=formatInput(n);if(Number.isFinite(lastOutput))result.textContent=format(lastOutput)});
 labels();calculate();
+};
+if(window.KB_SITE_RUNTIME)window.KB_SITE_RUNTIME.registerHomeInitializer('home-redesign-salary.js',initialize);else initialize();
 })();
