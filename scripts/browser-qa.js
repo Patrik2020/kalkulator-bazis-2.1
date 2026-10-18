@@ -3,6 +3,7 @@ const os = require("os");
 const path = require("path");
 const { spawn } = require("child_process");
 const { toExtensionlessHref } = require("./url-paths");
+const { adsenseProbeSource, tcfCheckpointFailures } = require("./browser-qa-consent");
 
 const chromeCandidates = [
   process.env.KB_CHROME_PATH,
@@ -167,6 +168,7 @@ const run = async () => {
         "*googletagmanager.com/*"
       ]
     });
+    await connected.send("Page.addScriptToEvaluateOnNewDocument", { source: adsenseProbeSource });
     if (currentViewport) {
       await connected.send("Emulation.setDeviceMetricsOverride", {
         ...currentViewport,
@@ -332,6 +334,10 @@ const run = async () => {
         legacyRecord: localStorage.getItem('cookieConsent'),
         googleTagManagerScripts: scripts.filter((src) => src.includes('googletagmanager.com/gtag/js')).length,
         adsenseScripts: scripts.filter((src) => src.includes('pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')).length,
+        adsenseEligible: window.KB_ADSENSE_ELIGIBLE === true,
+        adsenseCanRequest: window.KB_ADSENSE_CAN_REQUEST === true,
+        adsensePaused: window.adsbygoogle?.pauseAdRequests,
+        adPushes: window.__kbAdsQaProbe?.state.requests.length,
         wiseCreativeImages: [...document.images].filter((image) => image.src.includes('wise-creative.prf.hn')).length,
         latestConsentCommand: (window.dataLayer || []).filter((item) => item && item[0] === 'consent').slice(-1)[0] || null
       };
@@ -445,16 +451,22 @@ const run = async () => {
       failures.push(`${item.name}: Google tag hozzájárulás nélkül betöltött`);
     }
 
-    if (item.expected.ads === false && (item.adsenseScripts > 0 || item.wiseCreativeImages > 0)) {
-      failures.push(`${item.name}: marketing/ads tartalom tiltott állapotban betöltött`);
+    if (item.expected.ads === false && item.wiseCreativeImages > 0) {
+      failures.push(`${item.name}: partneri külső kép tiltott állapotban betöltött`);
     }
 
     if (item.expected.analytics === true && item.googleTagManagerScripts === 0) {
       failures.push(`${item.name}: analytics engedélyezve, de nincs gtag script`);
     }
 
-    if (item.expected.ads === true && item.adsenseScripts === 0) {
-      failures.push(`${item.name}: ads engedélyezve, de nincs AdSense script`);
+    // The site-owned marketing setting controls partner assets, not Google's
+    // certified CMP. An eligible page may bootstrap the paused SDK while the
+    // request gate must remain closed until a successful TCF callback settles.
+    if (!item.adsenseEligible || item.adsenseScripts !== 1) {
+      failures.push(`${item.name}: a főoldali CMP bootstrap nem pontosan egyszer töltődött`);
+    }
+    if (item.adsenseCanRequest || item.adsensePaused !== 1 || item.adPushes !== 0) {
+      failures.push(`${item.name}: AdSense kéréskapu TCF-jelzés nélkül megnyílt`);
     }
 
     if (item.expected.legacyRemoved && item.legacyRecord !== null) {
@@ -471,6 +483,80 @@ const run = async () => {
 
     return failures;
   });
+
+  const tcfChecks = [];
+  const collectTcfCheckpoint = async (name, expected) => {
+    const observed = await evaluate(`(() => {
+      const probe = window.__kbAdsQaProbe;
+      return {
+        eligible: window.KB_ADSENSE_ELIGIBLE === true,
+        canRequest: window.KB_ADSENSE_CAN_REQUEST === true,
+        paused: window.adsbygoogle?.pauseAdRequests,
+        readyEvents: probe.state.readyEvents,
+        pushes: probe.state.requests.length,
+        prematureRequests: probe.state.requests.filter((item) => !item.eligible || !item.ready || item.paused !== 0).length,
+        railSlots: document.querySelectorAll('[data-home-multiplex-rail] ins.adsbygoogle').length,
+        loaderCount: [...document.scripts].filter((script) => script.src.includes('pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')).length,
+        managerAds: window.KB_CONSENT_MANAGER?.hasConsent('ads') === true,
+        tcfListeners: probe.state.callbacks.length
+      };
+    })()`);
+    tcfChecks.push({ name, expected, ...observed });
+  };
+  const installTcf = async () => {
+    await evaluate("window.__kbAdsQaProbe.installTcf()");
+    // The runtime polls every 250 ms when the CMP arrives after initialization.
+    await evaluate(`new Promise((resolve, reject) => {
+      const deadline = Date.now() + 2000;
+      const poll = () => {
+        if (window.__kbAdsQaProbe.state.callbacks.length) return resolve();
+        if (Date.now() > deadline) return reject(new Error('A TCF listener nem regisztrálódott'));
+        setTimeout(poll, 25);
+      };
+      poll();
+    })`);
+  };
+  const pendingTcf = { eligible: true, canRequest: false, paused: 1, readyEvents: 0, pushes: 0, railSlots: 0, loaderCount: 1 };
+  const readyTcf = { eligible: true, canRequest: true, paused: 0, readyEvents: 1, pushes: 2, railSlots: 2, loaderCount: 1, tcfListeners: 1 };
+
+  await setViewport(1920, 1080);
+  await evaluate(`localStorage.setItem('kbCookieConsent', ${JSON.stringify(consentRecord({ analytics: false, ads: true }))})`);
+  await navigate('/');
+  await collectTcfCheckpoint('missing_cmp', pendingTcf);
+  await installTcf();
+  await evaluate("window.__kbAdsQaProbe.emit({ gdprApplies: true, eventStatus: 'cmpuishown' })");
+  await collectTcfCheckpoint('cmp_ui_shown', { ...pendingTcf, tcfListeners: 1 });
+  await evaluate("window.__kbAdsQaProbe.emit({ gdprApplies: true, eventStatus: 'tcloaded' }, false)");
+  await collectTcfCheckpoint('failed_callback', pendingTcf);
+  await evaluate("window.__kbAdsQaProbe.emit({ gdprApplies: true, eventStatus: 'loading' })");
+  await collectTcfCheckpoint('pending_status', pendingTcf);
+  // This signal permits our SDK request path; Google remains responsible for
+  // interpreting the CMP's purpose/vendor choices and choosing eligible ads.
+  await evaluate("window.__kbAdsQaProbe.emit({ gdprApplies: true, eventStatus: 'tcloaded' })");
+  await collectTcfCheckpoint('settled_after_delay', { ...readyTcf, managerAds: true });
+  await evaluate("window.__kbAdsQaProbe.emit({ gdprApplies: true, eventStatus: 'useractioncomplete' })");
+  await collectTcfCheckpoint('repeated_settled_event', readyTcf);
+  await evaluate("document.dispatchEvent(new CustomEvent('kb:adsense-ready'))");
+  await collectTcfCheckpoint('repeated_ready_notification', { ...readyTcf, readyEvents: 2 });
+  await evaluate("window.KB_CONSENT_MANAGER.openSettings(); document.getElementById('cookieRevokeAll').click()");
+  await collectTcfCheckpoint('site_consent_revoked', { ...readyTcf, readyEvents: 2, managerAds: false });
+
+  for (const [name, signal, width] of [
+    ['user_action_complete', { gdprApplies: true, eventStatus: 'useractioncomplete' }, 1920],
+    ['outside_gdpr', { gdprApplies: false, eventStatus: 'cmpuishown' }, 1920],
+    ['mobile_no_rails', { gdprApplies: true, eventStatus: 'tcloaded' }, 390],
+  ]) {
+    await setViewport(width, 1080);
+    await navigate('/');
+    await installTcf();
+    await evaluate(`window.__kbAdsQaProbe.emit(${JSON.stringify(signal)})`);
+    await collectTcfCheckpoint(name, { ...readyTcf, pushes: width < 1760 ? 0 : 2, railSlots: width < 1760 ? 0 : 2 });
+  }
+
+  await navigate('/adatvedelem');
+  await evaluate("window.__kbAdsQaProbe.installTcf(); window.__kbAdsQaProbe.emit({ gdprApplies: false })");
+  await collectTcfCheckpoint('excluded_page', { eligible: false, canRequest: false, paused: 1, readyEvents: 0, pushes: 0, railSlots: 0, loaderCount: 0, tcfListeners: 0 });
+  const tcfFailures = tcfChecks.flatMap(tcfCheckpointFailures);
 
   const categoryAdsConsentPages = [
     "/penzugyi.html",
@@ -502,6 +588,10 @@ const run = async () => {
           managerReady: !!manager?.isReady,
           managerAds: !!manager?.hasConsent?.("ads"),
           adsenseScripts: [...document.scripts].filter((script) => script.src.includes("pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")).length,
+          adsenseEligible: window.KB_ADSENSE_ELIGIBLE === true,
+          adsenseCanRequest: window.KB_ADSENSE_CAN_REQUEST === true,
+          adsensePaused: window.adsbygoogle?.pauseAdRequests,
+          adPushes: window.__kbAdsQaProbe?.state.requests.length,
           adSlotCount: adTargets.length,
           placeholderCount: adTargets.filter((target) => target.dataset.adState === "placeholder").length,
           nonPlaceholderCount: adTargets.filter((target) => target.dataset.adState && target.dataset.adState !== "placeholder").length,
@@ -517,9 +607,10 @@ const run = async () => {
     if (!item.managerReady) failures.push(`${item.page}: consent manager nem állt készen`);
     if (!item.managerAds) failures.push(`${item.page}: ads hozzájárulás nem látszik validnak`);
     if (item.adSlotCount < 1) failures.push(`${item.page}: nincs ellenőrizhető AdSense slot`);
-    if (item.adsenseScripts < 1) failures.push(`${item.page}: visszatérő ads consent mellett nincs AdSense loader script`);
-    if (item.placeholderCount > 0) failures.push(`${item.page}: az AdSense slot placeholder állapotban maradt`);
-    if (item.nonPlaceholderCount < 1) failures.push(`${item.page}: az AdSense slot nem váltott aktív/pending állapotra`);
+    if (item.adsenseScripts !== 0 || item.adsenseEligible || item.adsenseCanRequest || item.adPushes !== 0 || item.adsensePaused !== 1) {
+      failures.push(`${item.page}: kizárt kategóriaoldalon AdSense betöltés vagy kérés történt`);
+    }
+    if (item.adStates.some((state) => state !== 'excluded')) failures.push(`${item.page}: a kizárt hirdetéshely állapota hibás`);
 
     return failures;
   });
@@ -899,6 +990,7 @@ const run = async () => {
       consoleErrors: consoleErrors.length,
       consentMatrixFailures: consentMatrixFailures.length,
       categoryAdsConsentFailures: categoryAdsConsentFailures.length,
+      tcfFailures: tcfFailures.length,
       interactionFailures: interactionFailures.length,
       calculatorFailures: calculatorFailures.length,
       themeFailures: themeFailures.length
@@ -908,6 +1000,8 @@ const run = async () => {
     consentMatrixFailures,
     categoryAdsConsentChecks,
     categoryAdsConsentFailures,
+    tcfChecks,
+    tcfFailures,
     cookieScenarios,
     search,
     interactions,
@@ -935,6 +1029,7 @@ run()
         layoutFailures: result.layoutFailures,
         consentMatrixFailures: result.consentMatrixFailures,
         categoryAdsConsentFailures: result.categoryAdsConsentFailures,
+        tcfFailures: result.tcfFailures,
         interactionFailures: result.interactionFailures,
         calculatorFailures: result.calculatorFailures,
         themeFailures: result.themeFailures,

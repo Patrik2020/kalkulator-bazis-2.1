@@ -2,12 +2,13 @@ const fs = require("fs");
 const os = require("os");
 const path = require("path");
 const { spawnSync } = require("child_process");
+const { requiredConsentCases, requiredTcfCases } = require("./browser-qa-consent");
 
 const root = path.resolve(__dirname, "..");
 const browserQaPath = process.env.KB_BROWSER_QA_PATH
   ? path.resolve(root, process.env.KB_BROWSER_QA_PATH)
   : path.join(__dirname, "browser-qa.js");
-const resultsPath = path.join(os.tmpdir(), "kb-browser-qa", "results.json");
+const resultsPath = process.env.KB_BROWSER_QA_RESULTS_PATH || path.join(os.tmpdir(), "kb-browser-qa", "results.json");
 const cookiePath = path.join(root, "js", "cookie.js");
 
 const categoryPaths = [
@@ -18,14 +19,6 @@ const categoryPaths = [
   "/auto",
   "/atvaltok",
 ];
-
-const expectedConsentPolicyFailures = new Set([
-  "legacy_accepted_migrates_once: ads engedélyezve, de nincs AdSense script",
-  "valid_ads_only: ads engedélyezve, de nincs AdSense script",
-]);
-
-const expectedCategoryPolicyFailure = (page) =>
-  `${page}: visszatérő ads consent mellett nincs AdSense loader script`;
 
 function extractStringArray(source, variableName) {
   const expression = new RegExp(
@@ -102,17 +95,22 @@ if (run.status !== 0 && !fs.existsSync(resultsPath) && isTransientTargetDisconne
   if (run.error) throw run.error;
 }
 
-if (run.status === 0) {
-  console.log("Browser QA OK: a teljes ellenőrzés policy-korrekció nélkül is zöld.");
-  process.exit(0);
-}
-
 if (!fs.existsSync(resultsPath)) {
-  fail("Browser QA hibával állt le, de nem készült results.json; a hibát nem lehet policy-eltérésként minősíteni.");
+  fail("Browser QA: nem készült results.json; eredmény nélkül a futás nem fogadható el.");
   return;
 }
 
 const result = JSON.parse(fs.readFileSync(resultsPath, "utf8"));
+const requiredArrays = [
+  "layoutFailures", "interactionFailures", "calculatorFailures", "themeFailures", "consoleErrors",
+  "consentMatrixFailures", "categoryAdsConsentFailures", "tcfFailures",
+  "consentMatrix", "categoryAdsConsentChecks", "tcfChecks",
+];
+const missingArrays = requiredArrays.filter((key) => !Array.isArray(result[key]));
+if (missingArrays.length) {
+  fail("Browser QA: hiányos vagy hibás szerkezetű eredmény.", missingArrays);
+  return;
+}
 // Local browser QA cannot call production APIs that only allow the public site
 // origin. Keep unexpected errors blocking, but ignore exactly these known CORS
 // messages when the browser is served from the local regression-test origin.
@@ -135,22 +133,14 @@ if (Object.values(nonPolicyFailures).some((items) => items.length > 0)) {
   return;
 }
 
-const consentFailures = result.consentMatrixFailures || [];
-const unexpectedConsentFailures = consentFailures.filter(
-  (failure) => !expectedConsentPolicyFailures.has(failure)
-);
-if (unexpectedConsentFailures.length) {
-  fail("Browser QA: váratlan consent-hiba maradt.", unexpectedConsentFailures);
+const consentFailures = [...result.consentMatrixFailures, ...result.tcfFailures];
+if (consentFailures.length) {
+  fail("Browser QA: consent/TCF ellenőrzési hiba maradt.", consentFailures);
   return;
 }
 
-const categoryFailures = result.categoryAdsConsentFailures || [];
-const allowedCategoryFailures = new Set(categoryPaths.map(expectedCategoryPolicyFailure));
-const unexpectedCategoryFailures = categoryFailures.filter(
-  (failure) => !allowedCategoryFailures.has(failure)
-);
-if (unexpectedCategoryFailures.length) {
-  fail("Browser QA: váratlan kategória/AdSense hiba maradt.", unexpectedCategoryFailures);
+if (result.categoryAdsConsentFailures.length) {
+  fail("Browser QA: kategória/AdSense ellenőrzési hiba maradt.", result.categoryAdsConsentFailures);
   return;
 }
 
@@ -169,6 +159,10 @@ const invalidCategoryChecks = categoryChecks.filter((item) =>
     item.managerReady !== true ||
     item.managerAds !== true ||
     item.adsenseScripts !== 0 ||
+    item.adsenseEligible !== false ||
+    item.adsenseCanRequest !== false ||
+    item.adsensePaused !== 1 ||
+    item.adPushes !== 0 ||
     item.adSlotCount < 1 ||
     item.placeholderCount > 0 ||
     item.nonPlaceholderCount < 1
@@ -182,14 +176,23 @@ if (invalidCategoryChecks.length) {
   return;
 }
 
-const consentCheckNames = new Set((result.consentMatrix || []).map((item) => item.name));
-for (const expected of ["legacy_accepted_migrates_once", "valid_ads_only"]) {
-  if (!consentCheckNames.has(expected)) {
-    fail(`Browser QA: hiányzik consent teszteset: ${expected}`);
+for (const [checks, expectedNames] of [
+  [result.consentMatrix, requiredConsentCases],
+  [result.tcfChecks, requiredTcfCases],
+]) {
+  const checkNames = new Set(checks.map((item) => item.name));
+  const missing = expectedNames.filter((name) => !checkNames.has(name));
+  if (missing.length) {
+    fail("Browser QA: hiányzó consent/TCF teszteset.", missing);
     return;
   }
 }
 
+if (run.status !== 0) {
+  fail("Browser QA: a böngészőfolyamat hibával állt le; a hibát nem írjuk felül policy-kivétellel.");
+  return;
+}
+
 console.log(
-  "Browser QA OK: minden funkcionális/layout ellenőrzés zöld; a kategóriaoldalakon az AdSense loader hiánya az AdSense Gate v2 szándékos eligibility szabálya."
+  "Browser QA OK: layout, működés, saját consent, TCF-kapuzás és kategória-kizárás zöld; nincs elfedett policy-hiba."
 );
