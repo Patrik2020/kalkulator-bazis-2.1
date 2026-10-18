@@ -81,10 +81,22 @@ const resolveAsset = (assetPath) => {
 };
 
 const appendElement = (tagName, attributes) => {
+  const assetUrl = attributes.src || (attributes.rel === "stylesheet" && attributes.href);
+  if (assetUrl && findAsset(tagName, assetUrl)) return;
   const element = document.createElement(tagName);
   Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
   document.head.appendChild(element);
 };
+
+function findAsset(tagName, assetPath) {
+  const attribute = tagName === "script" ? "src" : "href";
+  const target = new URL(assetPath, window.location.href);
+  return [...document.querySelectorAll(`${tagName}[${attribute}]`)].find((node) => {
+    const url = new URL(node.getAttribute(attribute), window.location.href);
+    return url.origin === target.origin && url.pathname === target.pathname
+      && (tagName === "script" || node.rel === "stylesheet");
+  });
+}
 
 const appendStyles = (paths = []) => {
   paths.forEach((assetPath) => appendElement("link", { rel: "stylesheet", href: resolveAsset(assetPath) }));
@@ -96,6 +108,7 @@ const appendScripts = (paths = []) => {
 
 const appendParsedDomScripts = (paths = []) => {
   paths.forEach((assetPath) => {
+    if (findAsset("script", resolveAsset(assetPath))) return;
     const script = document.createElement("script");
     script.src = resolveAsset(assetPath);
     script.async = false;

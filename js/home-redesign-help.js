@@ -1,7 +1,9 @@
 (()=>{
 'use strict';
+const initialize=()=>{
 const $=id=>document.getElementById(id),root=document.documentElement;
 const launcher=$('kbHelpLauncher'),panel=$('kbHelpPanel'),backdrop=$('kbHelpBackdrop'),close=$('kbHelpClose');if(!launcher||!panel)return;
+if(window.KB_SITE_RUNTIME?.claimInitialization(panel,'home-redesign-help.js')===false)return;
 const dict=()=>window.KB_HELP_I18N?.[root.dataset.language||'hu']||window.KB_HELP_I18N?.hu||{};
 function open(){panel.dataset.open='true';if(backdrop){backdrop.hidden=false;backdrop.setAttribute('data-open','true')}launcher.setAttribute('aria-expanded','true');panel.hidden=false;panel.setAttribute('aria-hidden','false');show('menu');requestAnimationFrame(()=>{if(panel.dataset.open==='true')(close||panel).focus({preventScroll:true})})}
 function shut(){const restore=panel.dataset.open==='true';panel.dataset.open='false';if(backdrop){backdrop.hidden=true;backdrop.setAttribute('data-open','false')}launcher.setAttribute('aria-expanded','false');panel.setAttribute('aria-hidden','true');panel.hidden=true;if(restore)launcher.focus()}
@@ -14,4 +16,6 @@ panel.querySelectorAll('[data-help-form]').forEach(f=>f.addEventListener('submit
 const setText=(id,key,d)=>{const el=$(id);if(el&&d[key]!=null)el.textContent=d[key]};
 function translate(){const d=dict();setText('kbHelpLauncherLabel','launcher',d);setText('kbHelpTitle','title',d);setText('kbHelpSubtitle','subtitle',d);setText('kbHelpFind','find',d);setText('kbHelpQuestion','question',d);setText('kbHelpBug','bug',d);setText('kbHelpSuggestion','suggestion',d);setText('kbHelpQuestionText','questionText',d);setText('kbHelpQuestionSend','questionSend',d);setText('kbHelpQuestionLabel','questionLabel',d);setText('kbHelpBugLabel','bugLabel',d);setText('kbHelpExpectedLabel','expected',d);setText('kbHelpInputLabel','input',d);setText('kbHelpSuggestionLabel','suggestionLabel',d);['kbHelpEmailLabel','kbHelpEmailLabel2','kbHelpEmailLabel3'].forEach(id=>setText(id,'email',d));['kbHelpConsent','kbHelpConsent2','kbHelpConsent3'].forEach(id=>setText(id,'consent',d));['kbHelpSubmitQ','kbHelpSubmitB','kbHelpSubmitS'].forEach(id=>setText(id,'submit',d));panel.querySelectorAll('[data-help-back]').forEach(el=>el.textContent=d.back||'Vissza');launcher.setAttribute('aria-label',d.launcher||'Segítség');close?.setAttribute('aria-label',root.dataset.language==='de'?'Schließen':root.dataset.language==='en'?'Close':'Bezárás')}
 document.addEventListener('kb:language-changed',translate);translate();show('menu');shut();
+};
+if(window.KB_SITE_RUNTIME)window.KB_SITE_RUNTIME.registerHomeInitializer('home-redesign-help.js',initialize);else initialize();
 })();

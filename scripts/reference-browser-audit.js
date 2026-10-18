@@ -154,6 +154,39 @@ const helpers = String.raw`
 
 const test = (page, name, body) => ({ page, name, expression: `(async () => {${helpers}${body}})()` });
 
+const componentLifecycleExpression = `(async () => {
+  const runtime = window.KB_SITE_RUNTIME;
+  if (!runtime) throw new Error('Hiányzó közös komponens-runtime');
+  await Promise.all([runtime.initialize(), runtime.initialize()]);
+  const original = window.__kbSourceComponents || {};
+  for (const id of ['header', 'footer']) {
+    if (original[id] && document.getElementById(id)?.firstElementChild !== original[id]) {
+      throw new Error('A kész HTML-komponens szükségtelenül lecserélődött: ' + id);
+    }
+  }
+  const menu = document.getElementById('menuToggle');
+  if (menu) {
+    menu.click();
+    if (menu.getAttribute('aria-expanded') !== 'true') throw new Error('A menü nem egyszer nyílt meg');
+    menu.click();
+    if (menu.getAttribute('aria-expanded') !== 'false') throw new Error('A menü nem egyszer csukódott be');
+  }
+  const theme = document.querySelector('.theme-toggle');
+  if (theme) {
+    const before = document.documentElement.dataset.theme;
+    theme.click();
+    if (document.documentElement.dataset.theme === before) throw new Error('A téma nem egyszer váltott');
+    theme.click();
+    if (document.documentElement.dataset.theme !== before) throw new Error('A téma nem állt vissza');
+    localStorage.removeItem('kalkulatorbazis-theme');
+  }
+  const paths = [...document.querySelectorAll('script[src]')]
+    .filter(script => new URL(script.src).origin === location.origin)
+    .map(script => new URL(script.src).pathname);
+  if (new Set(paths).size !== paths.length) throw new Error('Dupla helyi scriptbetöltés');
+  return true;
+})()`;
+
 const cases = [
   test("kalkulatorok/adatmeret-atvalto-kalkulator.html", "Adatméret átváltó", `
     const ready = await waitFor(() => window.KB_AUTO_CONVERTER_UPGRADE_READY === 'adatmeret-atvalto-kalkulator');
@@ -478,6 +511,10 @@ async function main() {
     });
     await client.send("Page.addScriptToEvaluateOnNewDocument", {
       source: `(() => {
+        document.addEventListener('DOMContentLoaded', () => {
+          window.__kbSourceComponents = Object.fromEntries(['header', 'footer'].map(id =>
+            [id, document.getElementById(id)?.firstElementChild || null]));
+        }, { once: true });
         const nativeFetch = window.fetch.bind(window);
         window.__salaryRequests = [];
         window.fetch = async (input, init = {}) => {
@@ -530,14 +567,15 @@ async function main() {
       await sleep(item.page.includes("osztalek") || item.page.includes("etf-") ? 800 : 450);
       try {
         const result = await evaluate(item.expression);
-        results.push({ page: item.page, name: item.name, ...result });
+        const componentLifecycle = await evaluate(componentLifecycleExpression);
+        results.push({ page: item.page, name: item.name, ...result, componentLifecycle });
       } catch (error) {
         results.push({ page: item.page, name: item.name, error: error.message });
       }
     }
 
     const failures = results.filter(
-      (result) => result.error || result.valid !== true || result.boundary !== true || result.invalid !== true
+      (result) => result.error || result.valid !== true || result.boundary !== true || result.invalid !== true || result.componentLifecycle !== true
     );
     if (consoleErrors.length || failures.length) {
       console.error(JSON.stringify({ failures, consoleErrors: [...new Set(consoleErrors)] }, null, 2));
@@ -546,7 +584,7 @@ async function main() {
     }
 
     console.log(
-      `Böngészős referencia-audit OK: ${results.length}/29 kalkulátor, helyes eredmény + határérték + hibás bevitel.`
+      `Böngészős referencia-audit OK: ${results.length} kalkulátor, helyes eredmény + határérték + hibás bevitel + komponens-életciklus.`
     );
   } finally {
     client?.close();
