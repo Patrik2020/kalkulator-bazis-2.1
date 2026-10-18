@@ -13,6 +13,7 @@ on:
       - "scripts/normalize-a11y-html.js"
       - "scripts/normalize-retention-static.js"
       - "scripts/cache-bust-assets.js"
+      - "scripts/asset-versions.js"
       - "scripts/generate-sitemap.js"
       - "scripts/quarantine-legacy-category-generator.js"
       - "scripts/url-paths.js"

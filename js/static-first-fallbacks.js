@@ -149,7 +149,7 @@
 
     const base = String(window.KB_PROJECT_ROOT || "").replace(/\/$/, "");
     const script = document.createElement("script");
-    script.src = `${base}/js/home-ia.js?v=20260921-1`.replace(/^\/$/, "./");
+    script.src = `${base}/js/home-ia.js?v=da0986c81a0b`.replace(/^\/$/, "./");
     script.async = false;
     script.dataset.kbHomeIa = "";
     document.body.appendChild(script);

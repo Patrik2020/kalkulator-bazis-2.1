@@ -9,11 +9,11 @@
         "css/components/accessibility.css?v=73abeeb0ad97",
       ],
       fallbackStyles: [
-        "css/layout/footer.css?v=d541ea459cfd",
+        "css/layout/footer.css?v=5f6c711baec3",
         "css/components/cookie.css?v=f2f8742f64ed",
       ],
       scripts: [
-        "js/theme.js?v=0f4e0c522e48",
+        "js/theme.js?v=bca95025dd3c",
         "js/pwa.js?v=fb055828c8f9",
         "js/wise-partner.js?v=8b8b0efca236",
         "js/site-accessibility.js?v=ab9b5783c5ec",

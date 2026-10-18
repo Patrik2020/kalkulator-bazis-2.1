@@ -1,6 +1,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
+const crypto = require('node:crypto');
 
 const root = path.resolve(__dirname, '..');
 const visualPath = path.join(root, 'css/pages/visual-refresh-2026.css');
@@ -76,7 +77,8 @@ for (const selector of requiredDarkSelectors) {
   if (!hardening.includes(selector)) errors.push(`Hiányzó dark kontrasztvédő szabály: ${selector}`);
 }
 
-if (!style.includes("@import url('./pages/dark-mode-hardening.css?v=20260823-1');")) {
+const hardeningVersion = crypto.createHash('sha256').update(fs.readFileSync(hardeningPath)).digest('hex').slice(0, 12);
+if (!style.includes(`@import url('./pages/dark-mode-hardening.css?v=${hardeningVersion}');`)) {
   errors.push('A dark-mode-hardening.css friss verziója nincs betöltve a globális style.css-ben.');
 }
 

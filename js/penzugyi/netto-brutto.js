@@ -75,6 +75,6 @@ clearResults();
 // API-only production mode: a böngésző csak a felületet kezeli.
 // A nettó–bruttó üzleti számítás kizárólag a Kalkulátor Bázis API-ban fut.
 const salaryApiClientScript = document.createElement("script");
-salaryApiClientScript.src = "../js/penzugyi/netto-brutto-shadow.js";
+salaryApiClientScript.src = "../js/penzugyi/netto-brutto-shadow.js?v=340e28054168";
 salaryApiClientScript.async = true;
 document.head.appendChild(salaryApiClientScript);
