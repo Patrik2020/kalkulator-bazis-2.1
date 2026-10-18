@@ -180,7 +180,7 @@ function ensureCookieBanner(base, onReady) {
     return;
   }
 
-  loadScriptOnce(base + "js/cookie.js?v=8a6d0bffa1e2", () => {
+  loadScriptOnce(base + "js/cookie.js?v=2d7cf5ad38c9", () => {
     if (onReady) onReady();
   });
 }
