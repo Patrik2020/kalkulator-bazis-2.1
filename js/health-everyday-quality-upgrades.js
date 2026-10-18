@@ -18,6 +18,7 @@
     "rezsi-megosztas-kalkulator", "oraber-kalkulator", "arany-kalkulator",
   ]);
   if (!supported.has(slug)) return;
+  if (slug === "atlag-kalkulator" && document.querySelector('[data-average-hub="true"]')) return;
 
   const main = document.querySelector("main");
   if (!main || document.querySelector('[data-lifestyle-quality="2026-08"]')) return;
