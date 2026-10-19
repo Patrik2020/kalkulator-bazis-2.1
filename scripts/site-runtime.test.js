@@ -233,6 +233,8 @@ test("the head registry deduplicates both base assets and repeated feature start
 test("homepage recovery fragments derive their advertising and dialogs from the canonical page", () => {
   const { homeFragments } = require("./sync-home-fragments");
   const fragments = homeFragments(read("index.html"));
+  assert.match(fragments.main, /<header class="hero" id="homeHero">/);
+  assert.match(fragments.main, /<\/header>\s*<div class="home-ad-band">/);
   assert.match(fragments.main, /home-ad-band/); assert.match(fragments.main, /facebook/i);
   assert.match(fragments.footer, /id="kbHelpPanel"/); assert.match(fragments.header, /id="themeBtn"/);
   assert.throws(() => homeFragments("<main>broken"));
