@@ -7,7 +7,7 @@ const base=String(window.KB_PROJECT_ROOT||'').replace(/\/$/,'');
 const url=p=>`${base}/${String(p).replace(/^\//,'')}`.replace(/^\/$/,'./');
 document.body.classList.add('home-redesign-v17');
 document.querySelectorAll('link[data-home-professional-style],link[data-kb-seasonal-theme],script[data-kb-home-ia]').forEach(n=>n.remove());
-if(!document.querySelector('link[data-home-redesign-v17]')){const l=document.createElement('link');l.rel='stylesheet';l.href=url('css/pages/home-redesign-v17.css?v=1df834a4ecab');l.dataset.homeRedesignV17='';document.head.appendChild(l)}
+if(!document.querySelector('link[data-home-redesign-v17]')){const l=document.createElement('link');l.rel='stylesheet';l.href=url('css/pages/home-redesign-v17.css?v=6ada244efb8e');l.dataset.homeRedesignV17='';document.head.appendChild(l)}
 const fetchText=async p=>{const r=await fetch(url(p),{cache:'no-cache'});if(!r.ok)throw new Error(`${p}: HTTP ${r.status}`);return r.text()};
 const replace=(selector,html)=>{const current=document.querySelector(selector);if(!current)return;const t=document.createElement('template');t.innerHTML=html.trim();current.replaceWith(t.content)};
 const replaceHeader=html=>{
@@ -35,7 +35,7 @@ Promise.all([fetchText('fragments/home-redesign-v17-header.inc'),fetchText('frag
  const hero=redesignedMain?.querySelector('.hero');
  if(hero)hero.id='top';
  preserveStaticQualityMarkers(redesignedMain);
- for(const src of ['js/home-redesign-i18n-hu.js?v=00531531f455','js/home-redesign-i18n-en.js?v=2afb10ea4b0e','js/home-redesign-i18n-de.js?v=c7098ff2d797','js/home-redesign-help-i18n-hu.js?v=c61429bad988','js/home-redesign-help-i18n-en.js?v=1258bd945bfa','js/home-redesign-help-i18n-de.js?v=dbfccc2f4617','js/home-redesign-core.js?v=b8c94750081c','js/home-redesign-salary.js?v=c701a9485aea','js/home-redesign-help.js?v=be1be25c964a','js/home-multiplex-rails.js?v=957ad23b24f9'])await load(src);
+ for(const src of ['js/home-redesign-i18n-hu.js?v=00531531f455','js/home-redesign-i18n-en.js?v=2afb10ea4b0e','js/home-redesign-i18n-de.js?v=c7098ff2d797','js/home-redesign-help-i18n-hu.js?v=c61429bad988','js/home-redesign-help-i18n-en.js?v=1258bd945bfa','js/home-redesign-help-i18n-de.js?v=dbfccc2f4617','js/home-redesign-core.js?v=b8c94750081c','js/home-redesign-salary.js?v=d9c8185e7089','js/home-redesign-help.js?v=be1be25c964a','js/home-multiplex-rails.js?v=957ad23b24f9'])await load(src);
  window.KB_SITE_RUNTIME?.initializeHome();
  document.dispatchEvent(new CustomEvent('kb:home-redesign-ready'));
 }).catch(err=>{console.error('Kalkulátor Bázis homepage redesign could not initialize.',err);document.body.classList.remove('home-redesign-v17')});

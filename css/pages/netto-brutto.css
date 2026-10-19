@@ -30,6 +30,34 @@
   gap: 14px;
 }
 
+.page-netto .tax-rate-choice {
+  grid-column: 1;
+  display: grid;
+  gap: 6px;
+}
+.page-netto .tax-rate-choice label {
+  font-weight: 700;
+}
+.page-netto .tax-rate-choice select {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-secondary);
+  color: var(--text);
+  font: inherit;
+}
+.page-netto .tax-rate-choice small {
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+.page-netto .tax-rate-choice select:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
 .page-netto .options-grid {
   display: grid;
   gap: 10px;
@@ -149,6 +177,7 @@
 
   .page-netto .mode-switch,
   .page-netto .calc-grid,
+  .page-netto .tax-rate-choice,
   .page-netto .options-grid,
   .page-netto .family-box,
   .page-netto .notice-box.compact-note,

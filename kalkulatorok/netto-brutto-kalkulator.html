@@ -9,7 +9,7 @@
 <title>Nettó–bruttó kalkulátor 2026 | Bruttó és nettó fizetés</title>
 
     <link rel="stylesheet" href="../css/style.css?v=c42439ee270f" />
-    <link rel="stylesheet" href="../css/pages/netto-brutto.css?v=b6871033b8bd" />
+    <link rel="stylesheet" href="../css/pages/netto-brutto.css?v=5adc67a16675" />
 <script src="../js/global-head-config.js?v=91fe76ae8c93"></script>
 <script src="../js/static-first-fallbacks.js?v=d9926f46e5af"></script>
 <script src="../js/global-head.js?v=abbec4f08eb1"></script>
@@ -145,6 +145,15 @@
           </div>
         </div>
 
+        <div class="tax-rate-choice">
+          <label for="salary-tax-rate">SZJA-kulcs</label>
+          <select id="salary-tax-rate" aria-describedby="salary-tax-rate-help">
+            <option value="15" selected>15% – 2026-os szabály</option>
+            <option value="9">9% – összehasonlítás</option>
+          </select>
+          <small id="salary-tax-rate-help">A 9%-os opció összehasonlító számítás. Nem a 2026-os hatályos SZJA-kulcs, és nem a végleges 2027-es szabálymodell.</small>
+        </div>
+
         <div class="options-grid">
           <label class="checkbox-row">
             <input type="checkbox" id="under25">
@@ -174,7 +183,7 @@
   <p id="family-guidance" class="family-guidance" role="status" aria-live="polite" hidden></p></div>
 
         <div class="notice-box compact-note">
-          A számítás a 2026-os, hagyományos munkabérre alkalmazott 15% SZJA-, 18,5% TB-járulék- és 13% munkáltatói szocho-kulccsal dolgozik.
+          A 2026-os alapértelmezett számítás 15% SZJA-, 18,5% TB-járulék- és 13% munkáltatói szocho-kulccsal dolgozik. A választható 9%-os SZJA külön összehasonlító forgatókönyv.
         </div>
 
         <div class="result-box" role="status" aria-live="polite" aria-atomic="true">
@@ -418,8 +427,8 @@
   </div>
 </div>
 </div>
-    <script src="../js/utils.js?v=e4dbd9c97103"></script>
-    <script src="../js/penzugyi/netto-brutto.js?v=7bb3fc035f3b" defer></script>
-    <script src="../js/help-widget.js?v=f3bbc45fc753" defer></script>
+    <script src="../js/utils.js?v=07eaa2e949c5"></script>
+    <script src="../js/penzugyi/netto-brutto.js?v=62128afde0c1" defer></script>
+    <script src="../js/help-widget.js?v=4c9755b9ae2d" defer></script>
 </body>
 </html>

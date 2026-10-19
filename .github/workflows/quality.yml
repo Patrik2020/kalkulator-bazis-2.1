@@ -55,6 +55,15 @@ jobs:
       - name: Test the single-pass static build contract
         run: npm run test:build-pipeline
 
+      - name: Verify selectable salary tax-rate wiring
+        run: node scripts/salary-rate-selector-audit.js
+
+      - name: Verify committed asset fingerprints
+        run: |
+          node scripts/cache-bust-assets.js
+          git diff --check
+          git diff --exit-code || { echo 'Generated asset fingerprints must be committed.'; exit 1; }
+
       - name: Validate responsive viewport contract
         run: node scripts/responsive-contract-audit.js
 
