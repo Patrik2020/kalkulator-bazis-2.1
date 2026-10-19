@@ -8,7 +8,7 @@
   if (!triggers.length) return;
 
   let dialog, image, surface, counter, opener, previousOverflow, previousPadding;
-  let scale = 1, x = 0, y = 0, lastTap = 0, lastFocus;
+  let scale = 1, x = 0, y = 0, lastTap = 0;
   const pointers = new Map();
   let gesture = null;
   const MIN = 1, MAX = 5;
