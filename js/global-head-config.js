@@ -75,6 +75,8 @@
   };
   const adsensePolicy = Object.freeze({
     version: "2026-10-18.v1",
+    placementMode: "manual",
+    maxSlots: 3,
     groups: adsenseGroups,
     excludedExact: adsenseExcludedExact,
     excludedPrefixes: adsenseExcludedPrefixes,
@@ -92,6 +94,7 @@
     adsensePolicy,
     base: Object.freeze({
       styles: [
+        "css/components/publisher-ads.css?v=bab75ceacea3",
         "css/theme.css?v=0f4a295ac440",
         "css/components/accessibility.css?v=73abeeb0ad97",
       ],
@@ -100,6 +103,7 @@
         "css/components/cookie.css?v=f2f8742f64ed",
       ],
       scripts: [
+        "js/publisher-ads.js?v=101737de80f7",
         "js/theme.js?v=db2bf5b0dc70",
         "js/pwa.js?v=fb055828c8f9",
         "js/wise-partner.js?v=8b8b0efca236",

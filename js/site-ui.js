@@ -200,6 +200,8 @@
   };
 
   const renderAdSlot = (target) => {
+    // The shared publisher controller owns all three placements in manual mode.
+    if (window.KB_GLOBAL_HEAD_CONFIG?.adsensePolicy?.placementMode === "manual") return;
     // KB_ADSENSE_SLOT_GUARD_V2
     if (!target || !data.adsense) return;
     if (window.KB_ADSENSE_ELIGIBLE === false) {
@@ -650,7 +652,8 @@
 
     if (!current || !main) return;
 
-    if (!document.querySelector("[data-render='calculator-ad-slot']")) {
+    if (window.KB_GLOBAL_HEAD_CONFIG?.adsensePolicy?.placementMode !== "manual"
+      && !document.querySelector("[data-render='calculator-ad-slot']")) {
       const adSection = document.createElement("section");
       adSection.className = "ad-section";
       adSection.dataset.render = "calculator-ad-slot";

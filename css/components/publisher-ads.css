@@ -1,0 +1,22 @@
+.kb-publisher-ad {
+  display: block;
+  box-sizing: border-box;
+  width: calc(100% - 32px);
+  max-width: 1100px;
+  min-height: 120px;
+  margin: 40px auto;
+  padding: 16px 0;
+  clear: both;
+  text-align: center;
+  grid-column: 1 / -1;
+}
+.kb-publisher-ad[hidden] { display: none; }
+.kb-publisher-ad__label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: .08em;
+  opacity: .65;
+}
+.kb-publisher-ad .adsbygoogle { display: block; width: 100%; }
