@@ -61,9 +61,6 @@ jobs:
       - name: Audit crawler-visible source HTML
         run: npm run static:check
 
-      - name: Diagnose generated asset fingerprint (temporary)
-        run: node scripts/cache-bust-assets.js
-
       - name: Validate HTML, JavaScript and calculator logic
         run: npm run quality
 
