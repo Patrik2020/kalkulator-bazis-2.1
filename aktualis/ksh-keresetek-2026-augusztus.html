@@ -61,6 +61,7 @@
 @media(max-width:760px){.kb-wage-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kb-wage-kpi{padding:14px 12px}.kb-wage-kpi strong{font-size:1.25rem}}
 @media(max-width:380px){.kb-wage-kpis{grid-template-columns:1fr 1fr;gap:8px}.kb-wage-kpi strong{font-size:1.08rem}}
 </style>
+  <link rel="stylesheet" href="../css/components/chart-lightbox.css?v=824f9354feab" />
 </head>
 
 <body class="current-page">
@@ -154,8 +155,8 @@
  <h2>Az átlag és a medián egyetlen ábrán</h2>
  <p>Az országos átlagot a magasabb bérek is felfelé húzzák. A medián ezzel szemben az az érték, amelynél a keresők fele többet, fele kevesebbet keres.</p>
  <figure class="kb-wage-figure">
-  <img src="../images/ksh-keresetek-2026-augusztus.svg" width="1200" height="680" loading="eager" decoding="async" alt="2026. augusztusi KSH-adatok: bruttó átlag 740 600 Ft, bruttó medián 611 400 Ft, nettó átlag 519 900 Ft, nettó medián 433 400 Ft. Négy összehasonlító vízszintes sáv." />
-  <figcaption>Átlag- és mediánkeresetek, 2026. augusztus. Forrás: KSH, teljes munkaidőben alkalmazásban állók. A grafikon a Kalkulátor Bázis saját szerkesztése.</figcaption>
+  <img data-kb-chart-zoom src="../images/ksh-keresetek-2026-augusztus.svg" width="1200" height="680" loading="eager" decoding="async" alt="2026. augusztusi KSH-adatok: bruttó átlag 740 600 Ft, bruttó medián 611 400 Ft, nettó átlag 519 900 Ft, nettó medián 433 400 Ft. Négy összehasonlító vízszintes sáv." />
+  <figcaption>Átlag- és mediánkeresetek, 2026. augusztus. Forrás: KSH, teljes munkaidőben alkalmazásban állók. A grafikon a Kalkulátor Bázis saját szerkesztése. <span class="kb-chart-zoom-prompt">Koppints a grafikonra a nagyításhoz.</span></figcaption>
  </figure>
  <div class="kb-wage-highlight"><strong>86 500 forint a nettó különbség.</strong> Ennyivel magasabb a nettó átlagkereset a nettó mediánnál. A két adat különböző statisztikai mutató, nem egy konkrét munkavállaló bérkülönbsége.</div>
  <h2>A négy kulcsadat – pontosan</h2>
@@ -257,5 +258,6 @@
   <script src="../js/utils.js?v=380e4310fcb6"></script>
   <script src="../js/site-ui.js?v=a4eae361fc48"></script>
   <script src="../js/cookie.js?v=406f40c6a5eb" defer></script>
+  <script src="../js/chart-lightbox.js?v=ce9dda5091cf" defer></script>
 </body>
 </html>
