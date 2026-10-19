@@ -3,8 +3,8 @@
   "generatedAt": "2026-10-19",
   "pages": {
     "": {
-      "hash": "b72185c694a0bbe7661c88d16e1caf47d87e5d91ef7492a4ccd3981ffaa6906f",
-      "lastmod": "2026-10-18"
+      "hash": "a80213cc156b26df141c9a3fcd8e4cb004d27e4dd2aa14cf5ef991e08155427b",
+      "lastmod": "2026-10-19"
     },
     "penzugyi.html": {
       "hash": "1e11fa0b052e894329cd6bee91dccb8f01ee02e7704a458cb733aab39006c460",
@@ -91,8 +91,8 @@
       "lastmod": "2026-08-21"
     },
     "aktualis.html": {
-      "hash": "aa2142e19fab8c4bd5c4b95a148853de3f94163fad6a9cceb910dce9079d25db",
-      "lastmod": "2026-10-15"
+      "hash": "df3674f818bb481ca6a5a2b24359a3c2a60168faa2fea21b3e9dbaf0cd7e2322",
+      "lastmod": "2026-10-19"
     },
     "aktualis/allampapir-kamatok-2026-szeptember.html": {
       "hash": "7796f4dd3dc33afc0b1ae17f4f9a31431e9103099f0ccefa2f01fa1da48f7d09",
@@ -109,6 +109,10 @@
     "aktualis/ksh-inflacio-2026-szeptember.html": {
       "hash": "fe5682b3073ad3526a54c9bba69cb18c3ee134ae9f8d5d4b7777178921b07724",
       "lastmod": "2026-10-11"
+    },
+    "aktualis/ksh-keresetek-2026-augusztus.html": {
+      "hash": "5fef9873f807bc7858895a75675996a39b4776f1b418b75a052f2fba756ad52b",
+      "lastmod": "2026-10-19"
     },
     "aktualis/ksh-keresetek-2026-julius.html": {
       "hash": "0872160abd6c5ce5f94460e897db784f3989b8f84b2ff9a515a5dba99053a3b4",
