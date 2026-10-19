@@ -145,6 +145,15 @@
           </div>
         </div>
 
+        <div class="tax-rate-choice">
+          <label for="salary-tax-rate">SZJA-kulcs</label>
+          <select id="salary-tax-rate" aria-describedby="salary-tax-rate-help">
+            <option value="15" selected>15% – 2026-os szabály</option>
+            <option value="9">9% – összehasonlítás</option>
+          </select>
+          <small id="salary-tax-rate-help">A 9%-os opció összehasonlító számítás. Nem a 2026-os hatályos SZJA-kulcs, és nem a végleges 2027-es szabálymodell.</small>
+        </div>
+
         <div class="options-grid">
           <label class="checkbox-row">
             <input type="checkbox" id="under25">
@@ -174,7 +183,7 @@
   <p id="family-guidance" class="family-guidance" role="status" aria-live="polite" hidden></p></div>
 
         <div class="notice-box compact-note">
-          A számítás a 2026-os, hagyományos munkabérre alkalmazott 15% SZJA-, 18,5% TB-járulék- és 13% munkáltatói szocho-kulccsal dolgozik.
+          A 2026-os alapértelmezett számítás 15% SZJA-, 18,5% TB-járulék- és 13% munkáltatói szocho-kulccsal dolgozik. A választható 9%-os SZJA külön összehasonlító forgatókönyv.
         </div>
 
         <div class="result-box" role="status" aria-live="polite" aria-atomic="true">

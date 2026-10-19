@@ -863,3 +863,9 @@ body.home-redesign-v17 .kb-help-panel[data-open="true"] {
 body.home-redesign-v17 .kb-help-panel:not([data-open="true"]) {
   visibility: hidden !important;
 }
+
+/* Salary API: accessible selectable 15% / 9% comparison. */
+.salary-live-card .salary-rate-select{width:100%;min-height:42px;padding:9px 12px;border:1.3px solid rgba(255,255,255,.35);border-radius:12px;color:#fff;background:#14243e;font:inherit;font-weight:750;cursor:pointer}
+.salary-live-card .salary-rate-select option{color:#14243e;background:#fff}
+.salary-live-card .salary-rate-select:focus-visible{outline:3px solid #ffbf47;outline-offset:2px}
+.salary-live-card .salary-rate-note{font-size:.7rem;line-height:1.4;color:rgba(255,255,255,.76)}

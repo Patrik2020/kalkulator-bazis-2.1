@@ -112,6 +112,12 @@
 <form class="salary-mini-form" id="heroSalaryForm">
 <label class="salary-mini-label" data-i18n="salaryInputGross" for="heroSalaryAmount" id="heroSalaryInputLabel">Bruttó munkabér</label>
 <div class="salary-input-shell"><input aria-describedby="heroSalaryNote" autocomplete="off" id="heroSalaryAmount" inputmode="numeric" type="text" value="650 000"/><span>Ft</span></div>
+<label class="salary-mini-label" for="heroSalaryTaxRate" id="heroSalaryTaxRateLabel">SZJA-kulcs</label>
+<select aria-describedby="heroSalaryRateNote" id="heroSalaryTaxRate" class="salary-rate-select">
+<option value="15" selected>15% – 2026-os szabály</option>
+<option value="9">9% – összehasonlítás</option>
+</select>
+<small id="heroSalaryRateNote" class="salary-rate-note">A 9% csak összehasonlító számítás, nem hatályos 2026-os adókulcs.</small>
 <button class="search-submit salary-mini-submit" data-i18n="calculate" type="submit">Számolás</button>
 </form>
 <div aria-atomic="true" aria-live="polite" class="salary-result">

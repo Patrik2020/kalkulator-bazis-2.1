@@ -125,6 +125,7 @@
     }
 
     const common = {
+      szjaRatePercent: Number(document.getElementById("salary-tax-rate")?.value) === 9 ? 9 : 15,
       under25: Boolean(document.getElementById("under25")?.checked),
       firstMarried: Boolean(document.getElementById("first-married")?.checked),
       motherBenefit: "none",
@@ -153,6 +154,10 @@
 
   function renderApiResult(job, data) {
     if (!data || !data.taxes || !data.benefits || !data.employer) return false;
+    const expectedRate = job.payload.szjaRatePercent;
+    const confirmedRate = data.taxes.szjaRatePercent;
+    if (confirmedRate !== undefined && confirmedRate !== expectedRate) return false;
+    if (expectedRate === 9 && confirmedRate !== 9) return false;
 
     resetResultState();
     setFamilyGuidance();
@@ -160,7 +165,7 @@
     resultGross.textContent = job.direction === "gross-to-net"
       ? `Bruttó fizetés: ${format(data.gross)} Ft`
       : `Becsült nettó: ${format(data.net)} Ft (cél: ${format(job.amount)} Ft)`;
-    resultSzja.textContent = `Fizetendő SZJA: ${format(data.taxes.szja)} Ft`;
+    resultSzja.textContent = `Fizetendő SZJA (${data.taxes.szjaRatePercent ?? job.payload.szjaRatePercent}%): ${format(data.taxes.szja)} Ft`;
     resultTb.textContent = `Fizetendő TB-járulék: ${format(data.taxes.tb)} Ft`;
 
     const family = data.benefits.family;
@@ -176,6 +181,7 @@
     resultEmployer.textContent = `Becsült teljes munkáltatói költség: ${format(data.employer.totalCost)} Ft`;
 
     const notes = Array.isArray(data.warnings) ? [...data.warnings] : [];
+    if (job.payload.szjaRatePercent === 9) notes.unshift("9%-os összehasonlító számítás – nem a hatályos 2026-os és nem a végleges 2027-es adószabály.");
     if (family?.unusedTaxEffect > 0) {
       notes.push(
         `A családi kedvezményből ezen a kereseten még ${format(family.unusedTaxEffect)} Ft nem érvényesíthető, mert az SZJA és a fizetendő TB-járulék már 0 Ft-ra csökkent. ` +
@@ -299,7 +305,7 @@
     timer = window.setTimeout(() => run(job, jobSequence), DEBOUNCE_MS);
   }
 
-  ["gross", "net-input", "under25", "first-married", "family-dependants", "family-eligible"].forEach((id) => {
+  ["gross", "net-input", "salary-tax-rate", "under25", "first-married", "family-dependants", "family-eligible"].forEach((id) => {
     const element = document.getElementById(id);
     element?.addEventListener("input", scheduleFromUi);
     element?.addEventListener("change", scheduleFromUi);
