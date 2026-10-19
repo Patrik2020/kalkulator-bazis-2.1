@@ -1,4 +1,6 @@
 (function () {
+  // Manual placements include the homepage; do not add two extra desktop units.
+  if (window.KB_GLOBAL_HEAD_CONFIG?.adsensePolicy?.placementMode === "manual") return;
   const initialize = () => {
   const rails = [...document.querySelectorAll("[data-home-multiplex-rail]")];
   if (rails.length !== 2) return;

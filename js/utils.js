@@ -187,7 +187,7 @@ function isMaterializedHome() {
 function loadHomeRedesign() {
   if (!document.body?.classList.contains("home-page") || isMaterializedHome()) return Promise.resolve(null);
   const base = String(window.KB_PROJECT_ROOT || "").replace(/\/$/, "");
-  return loadScriptOnce(`${base}/js/home-ia.js?v=26258c736dcc`);
+  return loadScriptOnce(`${base}/js/home-ia.js?v=70a090d267c1`);
 }
 
 // =========================
@@ -299,7 +299,7 @@ function loadSiteScripts(base) {
     ]) await loadScriptOnce(base + asset);
     document.dispatchEvent(new CustomEvent("kb:site-data-loaded"));
     markActiveNavigation(document.getElementById("header"));
-    await loadScriptOnce(base + "js/site-ui.js?v=a4eae361fc48");
+    await loadScriptOnce(base + "js/site-ui.js?v=d2d73c1ef408");
     if (window.location.pathname.toLowerCase().includes("/kalkulatorok/")) {
       await loadScriptOnce(base + "js/retention-cta.js?v=de234f7c946e");
     }
