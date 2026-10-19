@@ -17,7 +17,6 @@ on:
       - "scripts/cache-bust-assets.js"
       - "scripts/asset-versions.js"
       - "scripts/generate-sitemap.js"
-      - "scripts/quarantine-legacy-category-generator.js"
       - "scripts/url-paths.js"
       - "js/global-head.js"
       - "js/global-head-config.js"

@@ -14,7 +14,6 @@ const pipeline = Object.freeze([
     label: "Forrás- és tartalmi transzformációk",
     steps: Object.freeze([
       "apply-global-head-config.js",
-      "quarantine-legacy-category-generator.js",
       "apply-category-taxonomy.js",
       "apply-seo-overrides.js",
       "apply-speed-intent-handoff.js",
