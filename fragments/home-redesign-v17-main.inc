@@ -1,5 +1,5 @@
 <main id="top">
-<section class="hero">
+<header class="hero" id="homeHero">
 <div aria-hidden="true" class="season-scene">
 <span class="season-orb"></span>
 <span class="season-horizon"></span>
@@ -45,7 +45,7 @@
 </div>
 </div>
 </div>
-</section>
+</header>
 <div class="home-ad-band">
 <aside class="home-ad-rail" data-home-multiplex-rail="left" aria-label="Bal oldali hirdetés" hidden></aside>
 <div class="home-ad-band__content">

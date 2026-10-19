@@ -65,6 +65,10 @@ const railLinks = index.match(/css\/pages\/home-multiplex-rails\.css\?v=[a-f0-9]
 if (railLinks.length !== 1) {
   failures.push(`A Multiplex rail CSS-hivatkozások száma ${railLinks.length}, elvárt: 1.`);
 }
+const protectedHeroCount = (index.match(/<header\s+class="hero"\s+id="homeHero">/g) || []).length;
+if (protectedHeroCount !== 1) {
+  failures.push(`A strukturálisan védett főoldali hero jelölők száma ${protectedHeroCount}, elvárt: 1.`);
+}
 if (!/@media\s*\(min-width:\s*1760px\)/.test(rails)) {
   failures.push("A főoldali hirdetési rail 1760 px-es védelme hiányzik.");
 }
