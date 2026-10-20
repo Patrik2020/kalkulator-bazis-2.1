@@ -11,6 +11,9 @@ on:
       - "index.html"
       - "kategoriak/**"
       - "scripts/*browser*.js"
+      - "scripts/*adsense*.js"
+      - "scripts/*publisher-ads*.js"
+      - ".github/workflows/browser-quality.yml"
       - "scripts/responsive-*.js"
       - "scripts/local-static-server.js"
       - "package.json"
@@ -87,9 +90,10 @@ jobs:
           fi
 
   deep-ui-qa:
-    # Run on main and opt-in QA PRs; keep other PRs fast.
-    # A failed deep suite must not be hidden behind a successful workflow badge.
-    if: github.event_name != 'pull_request' || contains(github.event.pull_request.title, '[deep-ui-qa]')
+    # Run the deep browser suite BEFORE merge for every UI-related pull request.
+    # The workflow's path filter keeps unrelated documentation changes fast.
+    # A green smoke job must never conceal a skipped deep policy regression.
+    if: github.event_name != 'pull_request' || github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
