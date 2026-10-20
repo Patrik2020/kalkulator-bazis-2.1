@@ -17,7 +17,8 @@ const passingResult = () => ({
   categoryAdsConsentChecks: categoryPaths.map((page) => ({
     page, managerReady: true, managerAds: true,
     adsenseScripts: 0, adsenseEligible: false, adsenseCanRequest: false, adsensePaused: 1,
-    adPushes: 0, adSlotCount: 1, placeholderCount: 0, nonPlaceholderCount: 1,
+    adPushes: 0, adSlotCount: 1, adUnitCount: 0, publisherSlotCount: 0,
+    placeholderCount: 0, nonPlaceholderCount: 0, adStates: [""],
   })),
 });
 
@@ -68,6 +69,22 @@ test("rejects TCF bypass even when the browser process exits successfully", (t) 
 test("rejects requests from excluded category pages", (t) => {
   const result = passingResult();
   result.categoryAdsConsentChecks[0].adPushes = 1;
+  assert.notEqual(runFixture(t, result).status, 0);
+});
+
+test("manual excluded hubs may keep inert legacy containers, never actual ad units", (t) => {
+  const result = passingResult();
+  assert.equal(runFixture(t, result).status, 0);
+  result.categoryAdsConsentChecks[0].adUnitCount = 1;
+  assert.notEqual(runFixture(t, result).status, 0);
+  result.categoryAdsConsentChecks[0].adUnitCount = 0;
+  result.categoryAdsConsentChecks[0].publisherSlotCount = 1;
+  assert.notEqual(runFixture(t, result).status, 0);
+});
+
+test("excluded hubs reject active legacy ad states", (t) => {
+  const result = passingResult();
+  result.categoryAdsConsentChecks[0].adStates = ["pending"];
   assert.notEqual(runFixture(t, result).status, 0);
 });
 
