@@ -135,8 +135,12 @@ const invalidCategoryChecks = categoryChecks.filter((item) =>
     item.adsensePaused !== 1 ||
     item.adPushes !== 0 ||
     item.adSlotCount < 1 ||
+    item.adUnitCount !== 0 ||
+    item.publisherSlotCount !== 0 ||
     item.placeholderCount > 0 ||
-    item.nonPlaceholderCount < 1
+    (adsensePolicy.placementMode !== "manual" && item.nonPlaceholderCount < 1) ||
+    !Array.isArray(item.adStates) ||
+    item.adStates.some((state) => state !== "excluded" && !(adsensePolicy.placementMode === "manual" && state === ""))
   )
 );
 if (invalidCategoryChecks.length) {
