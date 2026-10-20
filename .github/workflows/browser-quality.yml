@@ -1,23 +1,8 @@
 name: Browser regression
 
 on:
-  # Browser matrix is reserved for calculators, navigation and shared UI logic.
-  # Publishing an article or updating a sitemap must not trigger it.
+  # Always run on PRs; a stable check is required even for editorial changes.
   pull_request:
-    paths:
-      - "kalkulatorok/**"
-      - "js/**"
-      - "css/**"
-      - "index.html"
-      - "kategoriak/**"
-      - "scripts/*browser*.js"
-      - "scripts/*adsense*.js"
-      - "scripts/*publisher-ads*.js"
-      - ".github/workflows/browser-quality.yml"
-      - "scripts/responsive-*.js"
-      - "scripts/local-static-server.js"
-      - "package.json"
-      - "package-lock.json"
   push:
     branches:
       - main
@@ -31,10 +16,38 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  changes:
+    name: Browser change scope
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      run_browser: ${{ steps.classify.outputs.run_browser }}
+    steps:
+      - name: Checkout PR with base and head history
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: "24"
+
+      - name: Test CI scope classification and gate contract
+        run: node --test scripts/ci-browser-scope.test.js scripts/ci-browser-gate.test.js
+
+      - name: Decide if deep browser matrix is required
+        id: classify
+        env:
+          KB_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          KB_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node scripts/ci-browser-scope.js
+
   smoke:
-    # Generated materialization commits are validated by Site quality, but do not
-    # need to repeat the expensive browser matrix on the PR head.
-    if: github.event_name != 'pull_request' || github.actor != 'github-actions[bot]'
+    # UI/runtime changes run the browser suite; editorial PRs skip its cost.
+    needs: changes
+    if: ${{ needs.changes.outputs.run_browser == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -90,10 +103,9 @@ jobs:
           fi
 
   deep-ui-qa:
-    # Run the deep browser suite BEFORE merge for every UI-related pull request.
-    # The workflow's path filter keeps unrelated documentation changes fast.
-    # A green smoke job must never conceal a skipped deep policy regression.
-    if: github.event_name != 'pull_request' || github.actor != 'github-actions[bot]'
+    # Run all required browser tests before merge, including bot authored PRs.
+    needs: changes
+    if: ${{ needs.changes.outputs.run_browser == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -137,3 +149,24 @@ jobs:
           if [ -n "${KB_STATIC_SERVER_PID:-}" ]; then
             kill "$KB_STATIC_SERVER_PID" || true
           fi
+  
+  gate:
+    name: Browser regression gate
+    # This stable status always exists, even if upstream jobs fail or skip.
+    if: ${{ always() }}
+    needs: [changes, smoke, deep-ui-qa]
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Checkout gate contract
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Verify browser obligations
+        env:
+          KB_CHANGES_RESULT: ${{ needs.changes.result }}
+          KB_RUN_BROWSER: ${{ needs.changes.outputs.run_browser }}
+          KB_SMOKE_RESULT: ${{ needs.smoke.result }}
+          KB_DEEP_RESULT: ${{ needs.deep-ui-qa.result }}
+        run: node scripts/ci-browser-gate.js
