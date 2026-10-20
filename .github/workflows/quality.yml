@@ -34,6 +34,9 @@ jobs:
       - name: Install validation dependencies
         run: npm ci
 
+      - name: Test stable CI browser scope and merge gate
+        run: node --test scripts/ci-browser-scope.test.js scripts/ci-browser-gate.test.js
+
       - name: Test Chrome timeout retry safety
         run: node --test scripts/chrome-render-retry.test.js
 
