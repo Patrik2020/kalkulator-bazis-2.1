@@ -499,6 +499,8 @@ const run = async () => {
         pushes: probe.state.requests.length,
         prematureRequests: probe.state.requests.filter((item) => !item.eligible || !item.ready || item.paused !== 0).length,
         railSlots: document.querySelectorAll('[data-home-multiplex-rail] ins.adsbygoogle').length,
+        publisherSlots: document.querySelectorAll('[data-kb-publisher-slot]').length,
+        publisherUnits: document.querySelectorAll('[data-kb-publisher-slot] ins.adsbygoogle').length,
         loaderCount: [...document.scripts].filter((script) => script.src.includes('pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')).length,
         managerAds: window.KB_CONSENT_MANAGER?.hasConsent('ads') === true,
         tcfListeners: probe.state.callbacks.length
@@ -519,8 +521,21 @@ const run = async () => {
       poll();
     })`);
   };
-  const pendingTcf = { eligible: true, canRequest: false, paused: 1, readyEvents: 0, pushes: 0, railSlots: 0, loaderCount: 1 };
-  const readyTcf = { eligible: true, canRequest: true, paused: 0, readyEvents: 1, pushes: 2, railSlots: 2, loaderCount: 1, tcfListeners: 1 };
+  // The manual publisher controller replaced the old two desktop Multiplex rails.
+  // Keep exact counts to detect duplicate requests, missing slots and TCF bypasses.
+  const manualAds = adsensePolicy.placementMode === "manual";
+  const expectedPublisherSlots = manualAds ? 3 : 0;
+  const expectedDesktopPushes = manualAds ? 3 : 2;
+  const pendingTcf = {
+    eligible: true, canRequest: false, paused: 1, readyEvents: 0, pushes: 0,
+    railSlots: 0, publisherSlots: expectedPublisherSlots, publisherUnits: 0, loaderCount: 1
+  };
+  const readyTcf = {
+    eligible: true, canRequest: true, paused: 0, readyEvents: 1,
+    pushes: expectedDesktopPushes, railSlots: manualAds ? 0 : 2,
+    publisherSlots: expectedPublisherSlots, publisherUnits: expectedPublisherSlots,
+    loaderCount: 1, tcfListeners: 1
+  };
 
   await setViewport(1920, 1080);
   await evaluate(`localStorage.setItem('kbCookieConsent', ${JSON.stringify(consentRecord({ analytics: false, ads: true }))})`);
@@ -553,12 +568,16 @@ const run = async () => {
     await navigate('/');
     await installTcf();
     await evaluate(`window.__kbAdsQaProbe.emit(${JSON.stringify(signal)})`);
-    await collectTcfCheckpoint(name, { ...readyTcf, pushes: width < 1760 ? 0 : 2, railSlots: width < 1760 ? 0 : 2 });
+    await collectTcfCheckpoint(name, {
+      ...readyTcf,
+      pushes: manualAds ? expectedDesktopPushes : (width < 1760 ? 0 : 2),
+      railSlots: manualAds || width < 1760 ? 0 : 2
+    });
   }
 
   await navigate('/adatvedelem');
   await evaluate("window.__kbAdsQaProbe.installTcf(); window.__kbAdsQaProbe.emit({ gdprApplies: false })");
-  await collectTcfCheckpoint('excluded_page', { eligible: false, canRequest: false, paused: 1, readyEvents: 0, pushes: 0, railSlots: 0, loaderCount: 0, tcfListeners: 0 });
+  await collectTcfCheckpoint('excluded_page', { eligible: false, canRequest: false, paused: 1, readyEvents: 0, pushes: 0, railSlots: 0, publisherSlots: 0, publisherUnits: 0, loaderCount: 0, tcfListeners: 0 });
   const tcfFailures = tcfChecks.flatMap(tcfCheckpointFailures);
 
   const categoryAdsConsentPages = adsensePolicy.groups.excludedExact.categoryHubs
@@ -590,6 +609,9 @@ const run = async () => {
           adsensePaused: window.adsbygoogle?.pauseAdRequests,
           adPushes: window.__kbAdsQaProbe?.state.requests.length,
           adSlotCount: adTargets.length,
+          // Manual mode leaves legacy ad-slot containers inert on excluded pages.
+          adUnitCount: document.querySelectorAll('ins.adsbygoogle').length,
+          publisherSlotCount: document.querySelectorAll('[data-kb-publisher-slot]').length,
           placeholderCount: adTargets.filter((target) => target.dataset.adState === "placeholder").length,
           nonPlaceholderCount: adTargets.filter((target) => target.dataset.adState && target.dataset.adState !== "placeholder").length,
           adStates
@@ -607,7 +629,12 @@ const run = async () => {
     if (item.adsenseScripts !== 0 || item.adsenseEligible || item.adsenseCanRequest || item.adPushes !== 0 || item.adsensePaused !== 1) {
       failures.push(`${item.page}: kizárt kategóriaoldalon AdSense betöltés vagy kérés történt`);
     }
-    if (item.adStates.some((state) => state !== 'excluded')) failures.push(`${item.page}: a kizárt hirdetéshely állapota hibás`);
+    if (item.adUnitCount !== 0 || item.publisherSlotCount !== 0) {
+      failures.push(`${item.page}: kizárt oldalon aktív hirdetési egység vagy kiadói hirdetéshely található`);
+    }
+    if (item.adStates.some((state) => state !== 'excluded' && !(manualAds && state === ''))) {
+      failures.push(`${item.page}: a kizárt hirdetéshely állapota hibás`);
+    }
 
     return failures;
   });
