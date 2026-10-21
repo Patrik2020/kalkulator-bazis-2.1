@@ -133,6 +133,7 @@
     }
 
     select.addEventListener("change", () => apply(select.value, true));
+    document.addEventListener("kb:page-ui-rendered", () => apply(select.value, false));
     apply(global.KB_SITE_LANGUAGE?.get() || "hu", false);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ready, { once: true });
