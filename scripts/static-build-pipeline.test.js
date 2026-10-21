@@ -26,7 +26,7 @@ test("every canonical build step is an existing, phase-appropriate script", () =
   for (const [index, phase] of pipeline.entries()) {
     assert.ok(phase.steps.length > 0, `empty build phase ${phase.id}`);
     for (const step of phase.steps) {
-      assert.match(step, /^[a-z0-9-]+\\.js$/);
+      assert.match(step, /^[a-z0-9-]+[.]js$/);
       const file = path.join(root, "scripts", step);
       assert.ok(fs.existsSync(file) && fs.statSync(file).isFile(), `missing build step: ${step}`);
       if (index === 0) assert.match(step, /^apply-/, `unexpected source-phase step: ${step}`);
