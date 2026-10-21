@@ -31,7 +31,16 @@
       select.appendChild(opt);
     });
     control.append(label, select);
-    header.insertBefore(control, header.querySelector(".theme-toggle") || header.querySelector(".menu-toggle"));
+    const nav = document.getElementById("menu");
+    const positionControl = () => {
+      if (global.matchMedia("(max-width: 690px)").matches && nav) {
+        nav.insertBefore(control, nav.firstChild);
+      } else {
+        header.insertBefore(control, header.querySelector(".theme-toggle") || header.querySelector(".menu-toggle"));
+      }
+    };
+    positionControl();
+    global.addEventListener("resize", positionControl);
     const notice = document.createElement("div");
     notice.id = "kbInnerLanguageNotice";
     notice.setAttribute("role", "status");
@@ -47,7 +56,7 @@
       ".kb-inner-language select:focus-visible{outline:3px solid #3985ef;outline-offset:2px}",
       ".kb-inner-language-notice{box-sizing:border-box;width:min(100% - 32px,1100px);margin:14px auto;padding:12px 15px;border:1px solid #8b94a8;border-radius:9px;font-size:.9rem;line-height:1.55}",
       ".kb-inner-language-notice[hidden]{display:none!important}",
-      "@media(max-width:690px){.kb-inner-language-caption{display:none}.kb-inner-language select{max-width:64px;padding:6px 3px}}"
+      "@media(max-width:690px){#menu>.kb-inner-language{display:flex;width:100%;box-sizing:border-box;padding:10px 16px}.kb-inner-language select{max-width:67px;padding:6px 3px}}"
     ].join("");
     document.head.appendChild(style);
 
