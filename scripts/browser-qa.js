@@ -757,6 +757,45 @@ const run = async () => {
     }
   }
 
+  // The normal layout matrix stops below the legacy advertising breakpoint.
+  // Check content width, not only viewport overflow: a collapsed 220px column
+  // can remain entirely inside the viewport while making every card unreadable.
+  await navigate("/");
+  for (const width of [390, 1440, 1759, 1760, 1920, 2560]) {
+    await setViewport(width, 1000);
+    const failures = await evaluate(`(() => {
+      const rails = [...document.querySelectorAll('[data-home-multiplex-rail]')];
+      const originalHidden = rails.map((rail) => rail.hidden);
+      const failures = [];
+      const states = ${width} >= 1760 ? ['hidden', 'both', 'left', 'right', 'hidden'] : ['hidden'];
+      try {
+        for (const state of states) {
+          rails.forEach((rail) => { rail.hidden = state !== 'both' && state !== rail.dataset.homeMultiplexRail; });
+          const content = document.querySelector('.home-ad-band__content').getBoundingClientRect();
+          const minimum = Math.min(${width} - 40, 1000);
+          if (content.width < minimum) failures.push(state + ': content width ' + content.width + ' < ' + minimum);
+          for (const selector of ['#facebook-follow-card .container', '.chat-strip-wrap', '#popular .container']) {
+            const rect = document.querySelector(selector).getBoundingClientRect();
+            if (rect.width < minimum || rect.left < -1 || rect.right > ${width} + 1) {
+              failures.push(state + ': collapsed or overflowing ' + selector + ' (' + rect.width + 'px)');
+            }
+          }
+          for (const rail of rails.filter((item) => !item.hidden)) {
+            const rect = rail.getBoundingClientRect();
+            if (rect.top > content.top + 1 || (rail.dataset.homeMultiplexRail === 'left' ? rect.right > content.left : rect.left < content.right)) {
+              failures.push(state + ': advertising rail overlaps or falls below content');
+            }
+          }
+        }
+      } finally {
+        rails.forEach((rail, index) => { rail.hidden = originalHidden[index]; });
+      }
+      return failures;
+    })()`);
+    if (failures.length) throw new Error(`Homepage advertising layout at ${width}px: ${failures.join('; ')}`);
+  }
+  console.log("Browser QA: homepage advertising layout passed at 390–2560px, hidden and visible rails");
+
   await setViewport(390, 844);
   await navigate("/");
   console.log("Browser QA: layout matrix complete; testing homepage search");
