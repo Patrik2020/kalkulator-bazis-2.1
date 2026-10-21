@@ -42,7 +42,7 @@ jobs:
           TARGET_SHA: ${{ github.sha }}
         run: node scripts/rollback-drill.js --target "$TARGET_SHA"
 
-      - name: End-to-end staging recovery: good, broken, revert, redeploy
+      - name: End-to-end staging recovery from broken to restored
         run: node --test scripts/staging-rollback-e2e.test.js
 
       - name: Upload source evidence (not proof of live verification)
