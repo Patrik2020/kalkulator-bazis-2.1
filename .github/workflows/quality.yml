@@ -53,6 +53,9 @@ jobs:
       - name: Verify salary form and dynamic output translations
         run: node --test scripts/netto-brutto-locale.test.js
 
+      - name: Verify localized VAT and percentage calculations without changing values
+        run: node --test scripts/vat-percent-locale.test.js
+
       - name: Verify honest internal language fallback translations
         run: node --test scripts/site-language-inner.test.js
 
