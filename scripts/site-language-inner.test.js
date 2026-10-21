@@ -35,3 +35,35 @@ test("module is safe in Node without a browser document", () => {
   assert.equal(typeof api.translate, "function");
   assert.equal(Object.keys(api.dictionary).length >= 50, true);
 });
+
+
+test("all six category landing pages and group descriptions are translated explicitly", () => {
+  const fs = require("node:fs");
+  const vm = require("node:vm");
+  const path = require("node:path");
+  const siteData = fs.readFileSync(path.join(__dirname, "../js/site-data.js"), "utf8");
+  const context = { window: {} };
+  vm.runInNewContext(siteData, context, { filename: "site-data.js", timeout: 4000 });
+  const categories = context.window.KB_DATA?.categories || [];
+  assert.equal(categories.length, 6);
+  for (const category of categories) {
+    const fields = [category.title, category.description, category.seo];
+    for (const group of category.groups) fields.push(group.title, group.description);
+    for (const text of fields) {
+      const en = api.translate(text, "en");
+      const de = api.translate(text, "de");
+      assert.ok(en && de, category.id + ": untranslated field " + text);
+      assert.notEqual(en, text);
+      assert.notEqual(de, text);
+    }
+    assert.ok(api.translate(category.title + " egy helyen", "en"));
+    assert.ok(api.translate(category.title + " egy helyen", "de"));
+  }
+});
+
+test("category translation remains exact and never overrides dynamic numeric results", () => {
+  assert.equal(api.translate("123 456 Ft", "en"), null);
+  assert.equal(api.translate("A felhasználó bevitele egyedi", "de"), null);
+  assert.equal(api.translate("Pénzügyi kalkulátorok", "en"), "Financial calculators");
+  assert.equal(api.translate("Szerkezet és szigetelés", "de"), "Konstruktion und Dämmung");
+});
