@@ -1,3 +1,4 @@
+/* global module */
 /* Language support for internal pages. This deliberately translates only covered
    text: the Hungarian source remains the canonical language for untranslated
    calculator logic, tax explanations and dynamic results. */
