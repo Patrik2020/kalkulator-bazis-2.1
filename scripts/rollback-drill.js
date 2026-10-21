@@ -34,6 +34,9 @@ function dryRunRollback({ root, target }) {
   const temp = fs.mkdtempSync(path.join(os.tmpdir(), "kb-rollback-drill-"));
   const worktree = path.join(temp, "checkout");
   let attached = false;
+  let result;
+  let rehearsalError = null;
+  let cleanupError = null;
   try {
     git(root, ["worktree", "add", "--detach", worktree, head]);
     attached = true;
@@ -44,14 +47,28 @@ function dryRunRollback({ root, target }) {
     git(worktree, ["diff", "--cached", "--check"]);
     const affected = git(worktree, ["diff", "--cached", "--name-only", "--"]).split(/\r?\n/).filter(Boolean);
     if (!affected.length) throw new Error("Rehearsed rollback produced no tracked changes");
-    return { sourceSha: head, revertedSha: target, affected, usedMainline: parents > 1 };
+    result = { sourceSha: head, revertedSha: target, affected, usedMainline: parents > 1 };
+  } catch (error) {
+    rehearsalError = error;
   } finally {
     if (attached) {
-      try { git(root, ["worktree", "remove", "--force", worktree]); }
-      catch (error) { throw new Error(`Unable to remove rehearsal worktree: ${error.message}`); }
+      try {
+        git(root, ["worktree", "remove", "--force", worktree]);
+      } catch (error) {
+        cleanupError = error;
+      }
     }
-    fs.rmSync(temp, { recursive: true, force: true });
+    try {
+      fs.rmSync(temp, { recursive: true, force: true });
+    } catch (error) {
+      cleanupError = cleanupError || error;
+    }
   }
+  if (cleanupError) {
+    throw new Error(`Rollback rehearsal cleanup failed: ${cleanupError.message}${rehearsalError ? `; original error: ${rehearsalError.message}` : ""}`);
+  }
+  if (rehearsalError) throw rehearsalError;
+  return result;
 }
 
 if (require.main === module) {
