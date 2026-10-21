@@ -10,6 +10,7 @@ on:
 
 permissions:
   contents: read
+  issues: write
 
 concurrency:
   group: production-smoke
@@ -27,11 +28,18 @@ jobs:
       - name: Probe Cloudflare reachability
         id: probe
         shell: bash
+        env:
+          KB_MONITOR_TOKEN: ${{ secrets.KB_MONITOR_TOKEN }}
         run: |
           set -euo pipefail
 
           headers_file="$(mktemp)"
           trap 'rm -f "$headers_file"' EXIT
+
+          monitor_header=()
+          if [[ -n "${KB_MONITOR_TOKEN:-}" ]]; then
+            monitor_header=(-H "X-KB-Monitor-Token: ${KB_MONITOR_TOKEN}")
+          fi
 
           set +e
           status="$(curl -sS \
@@ -45,6 +53,7 @@ jobs:
             -H 'Accept-Language: hu-HU,hu;q=0.9,en-US;q=0.7,en;q=0.6' \
             -H 'Cache-Control: no-cache' \
             -H 'Pragma: no-cache' \
+            "${monitor_header[@]}" \
             https://kalkulatorbazis.hu/)"
           curl_exit=$?
           set -e
@@ -100,7 +109,44 @@ jobs:
       - name: Verify live Kalkulátor Bázis
         env:
           KB_PRODUCTION_BASE_URL: https://kalkulatorbazis.hu
+          KB_MONITOR_TOKEN: ${{ secrets.KB_MONITOR_TOKEN }}
           KB_PRODUCTION_ATTEMPTS: "8"
           KB_PRODUCTION_RETRY_DELAY_MS: "15000"
           KB_PRODUCTION_REQUEST_TIMEOUT_MS: "15000"
         run: node scripts/production-smoke-audit.js
+
+  verdict:
+    name: Production verified status
+    # The previous workflow was green even when the real audit was skipped.
+    # A verified result now requires BOTH jobs to actually pass.
+    if: ${{ always() }}
+    needs: [reachability, production]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout status code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Classify actual live-verification coverage
+        id: classify
+        env:
+          KB_REACHABILITY_RESULT: ${{ needs.reachability.result }}
+          KB_CLOUDFLARE_BLOCKED: ${{ needs.reachability.outputs.blocked }}
+          KB_PRODUCTION_RESULT: ${{ needs.production.result }}
+        run: node scripts/production-monitor-verdict.js
+
+      - name: Create or resolve one deduplicated GitHub monitoring incident
+        env:
+          GH_TOKEN: ${{ github.token }}
+          KB_MONITOR_STATE: ${{ steps.classify.outputs.state }}
+        run: node scripts/production-monitor-incident.js
+
+      - name: Enforce real verification, never silently pass a skipped audit
+        if: ${{ steps.classify.outputs.state != 'verified' }}
+        env:
+          KB_MONITOR_STATE: ${{ steps.classify.outputs.state }}
+        run: |
+          echo "::error title=Production not verified::Result ${KB_MONITOR_STATE}: inspect the incident issue for Cloudflare blocking or a real production failure."
+          exit 1

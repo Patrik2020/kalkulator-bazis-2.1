@@ -44,6 +44,9 @@ jobs:
           GITHUB_SHA="$(git rev-parse HEAD)" node scripts/release-identity.js
           node scripts/rollback-drill.js --target "$(git rev-parse HEAD)"
 
+      - name: Test production monitoring classification and incident lifecycle
+        run: node --test scripts/production-monitor-verdict.test.js scripts/production-monitor-incident.test.js
+
       - name: Test stable CI browser scope and merge gate
         run: node --test scripts/ci-browser-scope.test.js scripts/ci-browser-gate.test.js
 

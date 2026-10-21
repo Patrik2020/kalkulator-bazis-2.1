@@ -31,6 +31,7 @@ const fetchResponse = async (path, options = {}) => {
         "cache-control": "no-cache",
         pragma: "no-cache",
         "upgrade-insecure-requests": "1",
+        ...(process.env.KB_MONITOR_TOKEN ? { "x-kb-monitor-token": process.env.KB_MONITOR_TOKEN } : {}),
       },
     });
   } finally {
