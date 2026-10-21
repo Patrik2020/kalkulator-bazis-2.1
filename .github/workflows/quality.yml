@@ -47,6 +47,9 @@ jobs:
       - name: Stage a broken release, revert through Git, and verify HTTP recovery
         run: node --test scripts/staging-rollback-e2e.test.js
 
+      - name: Verify honest internal language fallback translations
+        run: node --test scripts/site-language-inner.test.js
+
       - name: Test production monitoring classification and incident lifecycle
         run: node --test scripts/production-monitor-verdict.test.js scripts/production-monitor-incident.test.js
 
