@@ -47,6 +47,9 @@ jobs:
       - name: Stage a broken release, revert through Git, and verify HTTP recovery
         run: node --test scripts/staging-rollback-e2e.test.js
 
+      - name: Validate HU EN DE category hero and topic translations
+        run: node --test scripts/category-locale.test.js
+
       - name: Verify salary form and dynamic output translations
         run: node --test scripts/netto-brutto-locale.test.js
 
