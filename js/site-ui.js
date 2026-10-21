@@ -965,6 +965,8 @@
     bindSingleAccordions();
 
     window.KB_SITE_ENHANCEMENTS_READY = true;
+    // Late-rendered category cards should inherit the current language preference.
+    document.dispatchEvent(new CustomEvent("kb:page-ui-rendered"));
     if (
       document.documentElement.classList.contains("kb-calculator-document") &&
       window.KB_CALCULATOR_ENHANCEMENTS_READY
