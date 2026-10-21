@@ -55,6 +55,11 @@ jobs:
       - name: Test content-hash asset versions and dependency propagation
         run: node --test scripts/asset-versions.test.js
 
+      - name: Guard the cleaned source against duplicate browser assets
+        run: |
+          node --test scripts/source-hygiene-audit.test.js
+          node scripts/source-hygiene-audit.js
+
       - name: Test the single-pass static build contract
         run: npm run test:build-pipeline
 
