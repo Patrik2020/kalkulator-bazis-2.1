@@ -161,7 +161,7 @@ if (isHomePage) appendStyles(headConfig.home.styles);
 
 if (isHomePage) appendScripts(headConfig.home.scriptsBeforeBase);
 appendScripts(headConfig.base.scripts);
-if (!isHomePage) appendScripts(["js/site-language-inner.js?v=ff139ed3dcd7"]);
+if (!isHomePage) appendScripts(["js/site-language-inner.js?v=f41171b75c23"]);
 
 if (isCalculatorPage) {
   document.documentElement.classList.add("kb-calculator-document");

@@ -299,7 +299,7 @@ function loadSiteScripts(base) {
     ]) await loadScriptOnce(base + asset);
     document.dispatchEvent(new CustomEvent("kb:site-data-loaded"));
     markActiveNavigation(document.getElementById("header"));
-    await loadScriptOnce(base + "js/site-ui.js?v=d2d73c1ef408");
+    await loadScriptOnce(base + "js/site-ui.js?v=2055e3f67005");
     if (window.location.pathname.toLowerCase().includes("/kalkulatorok/")) {
       await loadScriptOnce(base + "js/retention-cta.js?v=de234f7c946e");
     }
