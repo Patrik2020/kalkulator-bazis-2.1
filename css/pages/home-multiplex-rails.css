@@ -4,7 +4,9 @@
 }
 
 @media (min-width: 1760px) {
-  .home-ad-band {
+  /* Hidden rails must not leave the content in a 220px advertising column.
+     Manual placements keep both legacy rails hidden, including before consent. */
+  .home-ad-band:has(> .home-ad-rail:not([hidden])) {
     display: grid;
     grid-template-columns: 220px minmax(0, 1fr) 220px;
     align-items: start;
@@ -16,10 +18,22 @@
 
   .home-ad-band__content {
     min-width: 0;
+    grid-column: 2;
+    grid-row: 1;
   }
 
-  .home-page .home-ad-band__content .container {
+  .home-page .home-ad-band:has(> .home-ad-rail:not([hidden])) .home-ad-band__content .container {
     width: 100%;
+  }
+
+  .home-ad-rail[data-home-multiplex-rail="left"] {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .home-ad-rail[data-home-multiplex-rail="right"] {
+    grid-column: 3;
+    grid-row: 1;
   }
 
   .home-ad-rail:not([hidden]) {
