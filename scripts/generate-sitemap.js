@@ -4,6 +4,7 @@ const crypto = require("crypto");
 const { execFileSync } = require("child_process");
 const { publicUrlForSource } = require("./url-paths");
 const { sitePageRoutes } = require("./site-page-inventory");
+const { stableGeneratedAt } = require("./sitemap-date-state");
 
 const root = path.resolve(__dirname, "..");
 const stateDirectory = path.join(root, "data");
@@ -100,9 +101,7 @@ const previousPages = state.pages || {};
 const pagesChanged = Object.keys(previousPages).length !== Object.keys(nextState.pages).length ||
   Object.entries(nextState.pages).some(([url, entry]) =>
     previousPages[url]?.hash !== entry.hash || previousPages[url]?.lastmod !== entry.lastmod);
-if (pagesChanged || !/^\\d{4}-\\d{2}-\\d{2}$/.test(state.generatedAt || "")) {
-  nextState.generatedAt = currentDate;
-}
+nextState.generatedAt = stableGeneratedAt({ previous: state.generatedAt, contentChanged: pagesChanged, today: currentDate });
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n\n${body}\n\n</urlset>\n`;
 
