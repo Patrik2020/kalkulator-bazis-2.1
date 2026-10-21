@@ -42,6 +42,9 @@ jobs:
           TARGET_SHA: ${{ github.sha }}
         run: node scripts/rollback-drill.js --target "$TARGET_SHA"
 
+      - name: End-to-end staging recovery: good, broken, revert, redeploy
+        run: node --test scripts/staging-rollback-e2e.test.js
+
       - name: Upload source evidence (not proof of live verification)
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         with:
