@@ -1,4 +1,5 @@
 const fs = require("fs").promises;
+const { serviceWorkerVersion, assertSameRelease } = require("./release-identity");
 
 const baseUrl = new URL(process.env.KB_PRODUCTION_BASE_URL || "https://kalkulatorbazis.hu");
 const attempts = Math.max(1, Number(process.env.KB_PRODUCTION_ATTEMPTS || 1));
@@ -93,6 +94,12 @@ const runAudit = async () => {
     fs.readFile("_redirects", "utf8"),
   ]);
 
+  // The current main source and the public service worker must be the same
+  // deployment; this also prevents a green run against the previous release.
+  const expectedVersion = serviceWorkerVersion(await fs.readFile("sw.js", "utf8"));
+  const { body: liveWorker } = await fetchText("/sw.js", { accept: "application/javascript,text/javascript,*/*" });
+  assertSameRelease({ expected: expectedVersion, actual: liveWorker });
+
   const pageChecks = [
     {
       path: "/",
@@ -173,6 +180,7 @@ const runAudit = async () => {
   }
 
   return {
+    releaseVersion: expectedVersion,
     pages: pageChecks.length,
     sitemapUrls: liveSitemapUrls.length,
     redirects: redirectRules.length,
@@ -186,7 +194,7 @@ async function main() {
     try {
       const result = await runAudit();
       console.log(
-        `Production smoke passed: ${result.pages} key pages, ${result.sitemapUrls} sitemap URLs, ${result.redirects} permanent redirects.`
+        `Production smoke passed for ${result.releaseVersion}: ${result.pages} key pages, ${result.sitemapUrls} sitemap URLs, ${result.redirects} permanent redirects.`
       );
       return;
     } catch (error) {

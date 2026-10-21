@@ -34,6 +34,16 @@ jobs:
       - name: Install validation dependencies
         run: npm ci
 
+      - name: Test release identity and isolated rollback safeguards
+        run: node --test scripts/release-identity.test.js scripts/rollback-drill.test.js
+
+      - name: Rehearse release fingerprint and rollback on checked-out source
+        env:
+          KB_RELEASE_MANIFEST_PATH: ${{ runner.temp }}/candidate-source.json
+        run: |
+          GITHUB_SHA="$(git rev-parse HEAD)" node scripts/release-identity.js
+          node scripts/rollback-drill.js --target "$(git rev-parse HEAD)"
+
       - name: Test stable CI browser scope and merge gate
         run: node --test scripts/ci-browser-scope.test.js scripts/ci-browser-gate.test.js
 

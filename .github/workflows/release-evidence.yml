@@ -1,0 +1,51 @@
+name: Release source evidence
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-evidence-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  record:
+    name: Release evidence and rollback rehearsal
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact candidate commit, full history
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: "24"
+
+      - name: Verify release identity and rollback drill contracts
+        run: node --test scripts/release-identity.test.js scripts/rollback-drill.test.js
+
+      - name: Record immutable source candidate fingerprint
+        env:
+          KB_RELEASE_MANIFEST_PATH: ${{ runner.temp }}/release-source-manifest.json
+        run: node scripts/release-identity.js
+
+      - name: Rehearse revert safely in a disposable worktree
+        env:
+          TARGET_SHA: ${{ github.sha }}
+        run: node scripts/rollback-drill.js --target "$TARGET_SHA"
+
+      - name: Upload source evidence (not proof of live verification)
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
+        with:
+          name: release-candidate-${{ github.sha }}
+          path: ${{ runner.temp }}/release-source-manifest.json
+          if-no-files-found: error
+          retention-days: 90
