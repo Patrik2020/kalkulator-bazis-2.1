@@ -68,6 +68,35 @@ visszavonását próbálja ki egy eldobható Git-worktree-ben. Nem módosítja
 a `main` ágat és nem telepít semmit. A release workflow minden push után
 lefuttatja. Ha konfliktusos vagy üres lenne a visszavonás, jelezzen hibát.
 
+## Teljes, elkülönített staging visszaállítási próba
+
+A `scripts/staging-rollback-e2e.test.js` tényleges, de **teljesen helyi,
+eldobható** Git és HTTP tesztkörnyezetet hoz létre egy GitHub Actions
+futtatón. A projekt **11 valódi, kritikus forrásfájljával** dolgozik.
+
+1. Egy külön Git repóban elmenti a változatlan forrást mint ismert jó
+   kiadást, majd HTTP-n publikálja a `127.0.0.1` címen és SHA-256
+   lenyomatokkal teljesen ellenőrzi.
+2. Elrontja az `index.html` oldalt és a `sw.js` verzióját, commitolja
+   és ténylegesen közzéteszi a helyi staging szerveren. A HTTP auditnak
+   el **kell buknia**.
+3. Egy `revert/staging-failure` ágban valódi `git revert` committal
+   visszaállítja a jó változat tartalmát. A publikus staging viszont
+   **továbbra is hibás**, amíg nincs új telepítés.
+4. A külön Git repó saját, szimulált `main` ágába beolvasztja a
+   visszavonást, **újratelepíti** a helyi HTTP staging oldalt, és
+   összeveti a 11 fájl tartalmát az eredeti ismert jó kiadáséval.
+5. Végül ellenőrzi, hogy a **valódi projekt `HEAD`-je és munkafái
+   változatlanok** maradtak.
+
+Ezt a teljes próbát a `Site quality gate` **PR-eken** és a
+`Release source evidence` workflow a `main` minden kiadásán
+ellenőrzi. **Nem állítjuk, hogy ez valódi GitHub Pages vagy Cloudflare
+staging-telepítés:** az önálló lokális HTTP szerver érdemi,
+forrás + Git revert + HTTP publikálási láncot tesztel, de a GitHub
+Pages telepítés, a Cloudflare és a kliensoldali cache önálló kockázat.
+Valódi távoli próbához külön tesztkörnyezet és DNS szükséges.
+
 ## Megjegyzés
 
 Cloudflare 403 esetén külső éles ellenőrzéshez külön megbízható monitorozási
