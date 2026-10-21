@@ -1,0 +1,41 @@
+name: Temporary retail locale asset sync
+
+on:
+  push:
+    branches:
+      - feature/i18n-discount-unit-average-p5-20261021
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout dedicated feature branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: feature/i18n-discount-unit-average-p5-20261021
+          persist-credentials: true
+      - name: Set up Node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: "24"
+          cache: npm
+      - name: Verify locale and generate official asset hashes
+        run: |
+          npm ci
+          node --test scripts/discount-unit-average-locale.test.js
+          node scripts/cache-bust-assets.js
+          git diff --check
+      - name: Commit generated hashes only to feature branch
+        run: |
+          if ! git diff --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -- '*.html' '*.js' '*.css' '*.inc' '*.webmanifest'
+            git diff --cached --check
+            git commit -m "build(i18n): synchronize discount unit-price average asset hashes"
+            git push origin HEAD:feature/i18n-discount-unit-average-p5-20261021
+          fi
