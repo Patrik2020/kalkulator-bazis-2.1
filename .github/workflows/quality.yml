@@ -76,6 +76,9 @@ jobs:
           node --test scripts/source-hygiene-audit.test.js
           node scripts/source-hygiene-audit.js
 
+      - name: Prevent daily date-dependent static output drift
+        run: node --test scripts/static-date-fallback.test.js scripts/sitemap-date-state.test.js
+
       - name: Test the single-pass static build contract
         run: npm run test:build-pipeline
 
