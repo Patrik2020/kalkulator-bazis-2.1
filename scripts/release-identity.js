@@ -7,7 +7,7 @@ const path = require("node:path");
 const REQUIRED_RELEASE_FILES = Object.freeze([
   "index.html", "sw.js", "CNAME", "robots.txt", "ads.txt", "sitemap.xml",
   "js/cookie.js", "js/publisher-ads.js", "js/global-head-config.js",
-  "js/site-runtime.js", "kalkulatorok/netto-brutto-kalkulator.html"
+  "js/site-ui.js", "kalkulatorok/netto-brutto-kalkulator.html"
 ]);
 
 function serviceWorkerVersion(source) {
