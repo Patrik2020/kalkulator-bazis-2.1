@@ -29,3 +29,7 @@ test("missing, invalid or failed detection always blocks the merge gate", () => 
     assert.ok(verdict({ ...good, runBrowser }));
   }
 });
+
+test("INTENTIONAL NEGATIVE PROBE: required CI checks must block this PR", () => {
+  assert.fail("EXPECTED TEST FAILURE – GitHub branch protection verification; never merge this PR");
+});
