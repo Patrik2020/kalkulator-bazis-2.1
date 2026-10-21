@@ -1,0 +1,41 @@
+name: Temporary category locale asset sync
+
+on:
+  push:
+    branches:
+      - feature/i18n-category-copy-hu-en-de-20261021
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout only dedicated category translation branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: feature/i18n-category-copy-hu-en-de-20261021
+          persist-credentials: true
+      - name: Node 24
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: "24"
+          cache: npm
+      - name: Rebuild canonical asset hashes and check translations
+        run: |
+          npm ci
+          node --test scripts/site-language-inner.test.js
+          node scripts/cache-bust-assets.js
+          git diff --check
+      - name: Commit only asset updates to translation feature branch
+        run: |
+          if ! git diff --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add -- '*.html' '*.js' '*.css' '*.inc' '*.webmanifest'
+            git diff --cached --check
+            git commit -m "build(i18n): synchronize cache versions for category translations"
+            git push origin HEAD:feature/i18n-category-copy-hu-en-de-20261021
+          fi
