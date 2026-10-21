@@ -34,6 +34,9 @@ jobs:
       - name: Install validation dependencies
         run: npm ci
 
+      - name: Test release identity and isolated rollback safeguards
+        run: node --test scripts/release-identity.test.js scripts/rollback-drill.test.js
+
       - name: Test stable CI browser scope and merge gate
         run: node --test scripts/ci-browser-scope.test.js scripts/ci-browser-gate.test.js
 
