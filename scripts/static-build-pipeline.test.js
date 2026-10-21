@@ -1,6 +1,7 @@
 "use strict";
 
 const assert = require("node:assert/strict");
+const fs = require("node:fs");
 const path = require("node:path");
 const { test } = require("node:test");
 const { addAttributeToOpeningTag, mergeRenderedPage } = require("./materialize-static-first");
@@ -16,6 +17,22 @@ test("the canonical build has one render and no repeated repair step", () => {
   assert.equal(flatSteps.at(-2), "cache-bust-assets.js");
   assert.equal(flatSteps.at(-1), "generate-sitemap.js");
   assert.ok(flatSteps.indexOf("materialize-static-first.js") < flatSteps.indexOf("normalize-static-html.js"));
+});
+
+test("every canonical build step is an existing, phase-appropriate script", () => {
+  const phaseById = Object.fromEntries(pipeline.map((phase) => [phase.id, phase.steps]));
+  assert.deepEqual(Object.keys(phaseById), ["source", "render", "finalize"]);
+  assert.deepEqual(phaseById.render, ["materialize-static-first.js"]);
+  for (const [index, phase] of pipeline.entries()) {
+    assert.ok(phase.steps.length > 0, `empty build phase ${phase.id}`);
+    for (const step of phase.steps) {
+      assert.match(step, /^[a-z0-9-]+[.]js$/);
+      const file = path.join(root, "scripts", step);
+      assert.ok(fs.existsSync(file) && fs.statSync(file).isFile(), `missing build step: ${step}`);
+      if (index === 0) assert.match(step, /^apply-/, `unexpected source-phase step: ${step}`);
+      if (index === 2) assert.doesNotMatch(step, /^apply-/, `source transform placed after render: ${step}`);
+    }
+  }
 });
 
 test("the sitemap and browser renderer share one page inventory", () => {
