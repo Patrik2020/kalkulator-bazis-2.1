@@ -4,6 +4,7 @@ const { spawn, execFileSync } = require("child_process");
 const { withTransientChromeRetry } = require("./chrome-render-retry");
 const { materializationPages } = require("./site-page-inventory");
 const { sourceFileToPublicPath } = require("./url-paths");
+const { stablePriorityDateFallback } = require("./static-date-fallback");
 
 const root = path.resolve(__dirname, "..");
 const retentionTemplate = fs
@@ -316,7 +317,7 @@ function mergeRenderedPage(pagePath, originalSource, rendered) {
     source = upsertStaticBlock(
       source,
       "priority-upgrade",
-      renderedQualityFallback(rendered, "priority", "data-priority-upgrade")
+      stablePriorityDateFallback(pagePath, renderedQualityFallback(rendered, "priority", "data-priority-upgrade"))
     );
 
     const constructionMethod = findElement(rendered, { className: "construction-methodology" });

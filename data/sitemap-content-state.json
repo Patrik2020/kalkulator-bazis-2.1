@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-19",
+  "generatedAt": "2026-10-21",
   "pages": {
     "": {
-      "hash": "a80213cc156b26df141c9a3fcd8e4cb004d27e4dd2aa14cf5ef991e08155427b",
+      "hash": "69e32989731a9ce641c258daf36a0a9454c6c3461c7d95d0302a2b4c86be9dbf",
       "lastmod": "2026-10-19"
     },
     "penzugyi.html": {
@@ -179,8 +179,8 @@
       "lastmod": "2026-09-14"
     },
     "kalkulatorok/netto-brutto-kalkulator.html": {
-      "hash": "cf34e6e97428557b6f802a5da098f62f30be0f2904f6bab3b0fd6c2955d84aca",
-      "lastmod": "2026-10-15"
+      "hash": "3832d36ac77abc413d592d9e048d2400e550faf131b1dc80e272e336bcc3de2c",
+      "lastmod": "2026-10-19"
     },
     "kalkulatorok/hitel-torleszto-kalkulator.html": {
       "hash": "5d1cb8433cf1184a7dff0f0ebef3515e4e097104bf55be6b4f2191f5243f97a6",
@@ -219,12 +219,12 @@
       "lastmod": "2026-10-15"
     },
     "kalkulatorok/fizetesi-hatarido-kalkulator.html": {
-      "hash": "ad62b116d2eb4a4aea8b069ae570038397a8c0eb4fb6c3539b9fd5435e13cbb7",
-      "lastmod": "2026-10-19"
+      "hash": "b830e559d9dfb7f8c8a2b6d60d9c223381debb93c738ef9fb9a11e333fed9f55",
+      "lastmod": "2026-10-21"
     },
     "kalkulatorok/szamla-teljesites-kalkulator.html": {
-      "hash": "4002a3296f936691224d8873d567172d81551cfa57f4d2f7c33fc2b49ace5019",
-      "lastmod": "2026-10-19"
+      "hash": "6a3b0c843a21c43a23169b88c89a6c67a7a19650e0e585142b73f3c2d36f4553",
+      "lastmod": "2026-10-21"
     },
     "kalkulatorok/beton-kalkulator.html": {
       "hash": "56be46b9cf36127bfa322c9dfa4c58ed70d696ad6f032da09a1f4b02dfad87be",
@@ -311,8 +311,8 @@
       "lastmod": "2026-10-15"
     },
     "kalkulatorok/terhessegi-kalkulator.html": {
-      "hash": "84cc05174d8be38f5e3cde8c8f9fc205a645e65aea5fce4ba48054f72ea37eb7",
-      "lastmod": "2026-10-19"
+      "hash": "7b084f60fcc63e572097287a98e8ae6339b1b15da39b3fe04c2356bea79d7389",
+      "lastmod": "2026-10-21"
     },
     "kalkulatorok/idealis-testsuly-kalkulator.html": {
       "hash": "57715cc341b9cf70c8eb1643164f6c611c814c9e699bc0b82fde36281bccc7d6",
