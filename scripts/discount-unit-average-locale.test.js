@@ -31,7 +31,7 @@ test("average calculator errors translate and values stay source-formatted", () 
 });
 
 test("dictionary entries are reviewed pairs and unknown text falls back to Hungarian", () => {
-  for (const dictionary of [api.shared, ...Object.values(api.dictionaries)]) {
+  for (const dictionary of [api.shared, api.content, ...Object.values(api.dictionaries)]) {
     for (const [source, pair] of Object.entries(dictionary)) {
       assert.ok(source.trim());
       assert.equal(pair.length, 2, source);
@@ -40,4 +40,15 @@ test("dictionary entries are reviewed pairs and unknown text falls back to Hunga
   }
   assert.equal(api.translate("atlag-kalkulator", "Részletes jogi szöveg", "de"), null);
   assert.equal(api.translate("not-a-calculator", "Számítás", "en"), null);
+});
+
+// Explanations and dynamic auxiliary units must follow repeated language changes.
+test("content lookup tolerates layout whitespace while preserving numbers", () => {
+  assert.equal(api.translate("atlag-kalkulator", "Példák", "en"), "Examples");
+  assert.equal(api.translate("atlag-kalkulator", "Példák", "de"), "Beispiele");
+  const source = Object.keys(api.content).find(s => s.startsWith("Tedd el"));
+  assert.equal(api.translate("atlag-kalkulator", source.replace(/ /g, "\n  "), "en"), api.content[source][0]);
+  assert.equal(api.translate("egysegar-kalkulator", "3,75 Ft/egység", "de"), "3,75 HUF/Einheit");
+  assert.equal(api.translate("egysegar-kalkulator", "3,75 Ft/egység", "en"), "3,75 HUF/unit");
+  assert.equal(api.translate("egysegar-kalkulator", "3,75 Ft/egység", "hu"), null);
 });
