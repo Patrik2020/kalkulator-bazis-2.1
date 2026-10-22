@@ -16,6 +16,9 @@
   let rendering = false;
 
   function updateNode(node) {
+    // Preserve option values used by the calculator. Options without an explicit
+    // value derive it from their label and must not be translated here.
+    if (node.parentElement?.tagName === "OPTION" && !node.parentElement.hasAttribute("value")) return;
     const value = node.nodeValue;
     const last = record.get(node);
     const source = last && last.rendered === value ? last.original : value;
@@ -41,11 +44,15 @@
     if (rendering) return;
     rendering = true;
     try {
+      // Product names are user data, even if they happen to match a UI phrase.
+      if (page === "egysegar-kalkulator") {
+        main.querySelectorAll("#kalkulator .everyday-result li strong").forEach((name) => name.setAttribute("translate", "no"));
+      }
       const nodes = [];
       const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
       while (walker.nextNode()) nodes.push(walker.currentNode);
       nodes.forEach((node) => {
-        if (!node.parentElement?.closest("script,style,textarea,pre,code,option,[contenteditable]")) updateNode(node);
+        if (!node.parentElement?.closest('script,style,textarea,pre,code,[contenteditable],[translate="no"]')) updateNode(node);
       });
     } finally {
       rendering = false;
