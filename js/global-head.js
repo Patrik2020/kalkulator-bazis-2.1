@@ -1,6 +1,8 @@
 const kbLanguageStorageKey = "kalkulatorbazis-language";
 const kbSupportedLanguages = new Set(["hu", "en", "de"]);
+let kbSessionLanguage = null;
 const readSiteLanguage = () => {
+  if (kbSessionLanguage) return kbSessionLanguage;
   try {
     const stored = localStorage.getItem(kbLanguageStorageKey);
     return kbSupportedLanguages.has(stored) ? stored : "hu";
@@ -12,10 +14,11 @@ window.KB_SITE_LANGUAGE = {
   get: readSiteLanguage,
   set(language) {
     if (!kbSupportedLanguages.has(language)) return false;
+    kbSessionLanguage = language;
     try {
       localStorage.setItem(kbLanguageStorageKey, language);
     } catch (_) {
-      return false;
+      // A blocked storage API must not disable language selection on this page.
     }
     return true;
   },
@@ -161,7 +164,8 @@ if (isHomePage) appendStyles(headConfig.home.styles);
 
 if (isHomePage) appendScripts(headConfig.home.scriptsBeforeBase);
 appendScripts(headConfig.base.scripts);
-if (!isHomePage) appendScripts(["js/site-language-inner.js?v=d794343480ec"]);
+appendScripts(["js/shared-ui-locale.js?v=8a6e5cf28329"]);
+if (!isHomePage) appendScripts(["js/site-language-inner.js?v=77d8ce498184"]);
 
 if (isCalculatorPage) {
   document.documentElement.classList.add("kb-calculator-document");

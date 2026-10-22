@@ -62,6 +62,9 @@ jobs:
       - name: Verify honest internal language fallback translations
         run: node --test scripts/site-language-inner.test.js
 
+      - name: Verify shared navigation help and consent translations
+        run: node --test scripts/shared-ui-locale.test.js
+
       - name: Test production monitoring classification and incident lifecycle
         run: node --test scripts/production-monitor-verdict.test.js scripts/production-monitor-incident.test.js
 
