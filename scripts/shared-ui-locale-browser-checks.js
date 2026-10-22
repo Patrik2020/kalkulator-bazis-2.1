@@ -18,7 +18,20 @@ async function checkSharedLocales({ navigate, evaluate, setViewport }) {
     await evaluate("document.querySelector('#kbHelpPanel textarea').value = 'Saját szöveg / My text / Mein Text'");
     await choose("en");
     assert.equal(await read(".kb-help-links a"), "Browse all calculators");
+    await evaluate(`(async () => {
+      document.getElementById('kbHelpLauncher').click();
+      document.querySelector('[data-help-open=question-form]').click();
+      const originalFetch = window.fetch;
+      window.fetch = (url, options) => String(url).startsWith('https://formspree.io/')
+        ? Promise.resolve({ok:false}) : originalFetch(url, options);
+      const form = document.querySelector('[data-help-form]');
+      form.querySelector('[name=consent]').checked=true;
+      form.requestSubmit();
+      ${settle}
+    })()`);
+    assert.equal(await read('[data-help-form] .kb-help-status'), "The message could not be sent.");
     await choose("de");
+    assert.equal(await read('[data-help-form] .kb-help-status'), "Die Nachricht konnte nicht gesendet werden.");
     assert.equal(await evaluate("document.querySelector('#kbHelpPanel textarea').value"), "Saját szöveg / My text / Mein Text");
     assert.equal(await evaluate("document.querySelectorAll('#kbHelpPanel textarea').length"), 5);
     assert.equal(await read(".kb-help-links a"), "Alle Rechner öffnen");
