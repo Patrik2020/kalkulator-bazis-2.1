@@ -76,6 +76,33 @@ async function checkRetailLocales({ navigate, evaluate, setViewport }) {
     assert.equal(await result("#kalkulator .everyday-result"), "Enter at least one product with a valid price and quantity.");
     assert.equal(await evaluate("document.querySelector('.kb-inner-language-notice').hidden"), false);
     assert.equal(await evaluate("document.documentElement.lang"), "hu");
+    // Check prose, delayed related cards and auxiliary results through real DOM
+    // updates. Returning to HU must restore every original paragraph exactly.
+    for (const [slug, english, german] of [
+      ["ar-kedvezmeny", "The calculator applies consecutive percentage discounts", "Der Rechner berücksichtigt aufeinanderfolgende prozentuale Rabatte"],
+      ["egysegar", "The unit price calculator helps", "Der Grundpreisrechner hilft"],
+      ["atlag", "An average alone does not describe", "Ein Mittelwert allein beschreibt"]
+    ]) {
+      await navigate("/kalkulatorok/" + slug + "-kalkulator");
+      await choose("hu");
+      const original = await result("main");
+      await choose("en");
+      assert.ok((await result("main")).includes(english));
+      await choose("de");
+      assert.ok((await result("main")).includes(german));
+      await choose("hu");
+      assert.equal(await result("main"), original, slug + ": complete Hungarian restoration");
+    }
+    await navigate("/kalkulatorok/egysegar-kalkulator");
+    await choose("en");
+    await edit({ '[data-up-price]': '3000', '[data-up-qty]': '1000', '[data-up-waste]': '20' });
+    assert.equal(await result("[data-up-effective]"), "3,75 HUF/unit");
+    await choose("de");
+    assert.equal(await result("[data-up-effective]"), "3,75 HUF/Einheit");
+    await choose("hu");
+    assert.equal(await result("[data-up-effective]"), "3,75 Ft/egység");
+    assert.equal(await evaluate("document.querySelector('[data-up-price]').value"), "3000");
+    await choose("en");
     await navigate("/");
     assert.equal(await evaluate("document.getElementById('langLabel').textContent"), "EN");
     await evaluate("document.querySelector('#langPop [data-lang=hu]').click()");
