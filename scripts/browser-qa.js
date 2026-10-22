@@ -5,6 +5,7 @@ const { spawn } = require("child_process");
 const { toExtensionlessHref } = require("./url-paths");
 const { adsenseProbeSource, tcfCheckpointFailures } = require("./browser-qa-consent");
 const { loadAdsensePolicy } = require("./adsense-policy");
+const { checkRetailLocales } = require("./retail-locale-browser-checks");
 
 const adsensePolicy = loadAdsensePolicy(path.resolve(__dirname, ".."));
 
@@ -795,6 +796,7 @@ const run = async () => {
     if (failures.length) throw new Error(`Homepage advertising layout at ${width}px: ${failures.join('; ')}`);
   }
   console.log("Browser QA: homepage advertising layout passed at 390–2560px, hidden and visible rails");
+  await checkRetailLocales({ navigate, evaluate, setViewport });
 
   await setViewport(390, 844);
   await navigate("/");
