@@ -63,8 +63,8 @@
     const originalNodes = new WeakMap();
     const translatedNodes = new Set();
     const originalAttributes = new WeakMap();
-    const selectors = "header#header, #header, #footer, main";
-    const blocked = 'script,style,textarea,code,pre,option,[contenteditable],[translate="no"],.kb-inner-language,.kb-inner-language-notice';
+    const selectors = "main";
+    const blocked = 'script,style,textarea,code,pre,option,[contenteditable],[translate="no"],.kb-page-meta,.kb-page-nav__label,.kb-page-nav__primary,.kb-inner-language,.kb-inner-language-notice';
     const knownNodes = () => document.querySelectorAll(selectors);
 
     function restore() {
