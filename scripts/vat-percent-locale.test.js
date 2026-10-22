@@ -32,7 +32,7 @@ test("percentage field labels and validation errors are correctly localized", ()
 });
 
 test("every translation is a nonblank EN/DE pair and unrelated legal text is not guessed", () => {
-  for (const dictionary of [...Object.values(api.dictionaries), api.shared]) {
+  for (const dictionary of [...Object.values(api.dictionaries), api.shared, api.content]) {
     for (const [source, pair] of Object.entries(dictionary)) {
       assert.ok(source.length);
       assert.equal(pair.length, 2);
