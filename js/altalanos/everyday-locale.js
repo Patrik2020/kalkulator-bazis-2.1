@@ -5,13 +5,14 @@
   if (typeof module === "object" && module.exports) module.exports = api;
   if (!root?.document || new URLSearchParams(root.location.search).has("__kb_static_export")) return;
   const document = root.document;
-  const main = document.querySelector("main[data-simple-calc]");
+  const main = document.querySelector("main[data-simple-calc], main[data-batch01-calc]");
   if (!main) return;
-  const page = main.dataset.simpleCalc;
+  const page = main.dataset.simpleCalc || main.dataset.batch01Calc;
   if (!api.pages.includes(page)) return;
 
   const record = new WeakMap();
   const langRecords = new WeakMap();
+  const attributeRecords = new WeakMap();
   let selected = "hu";
   let rendering = false;
 
@@ -53,6 +54,20 @@
       while (walker.nextNode()) nodes.push(walker.currentNode);
       nodes.forEach((node) => {
         if (!node.parentElement?.closest('script,style,textarea,pre,code,[contenteditable],[translate="no"]')) updateNode(node);
+      });
+      main.querySelectorAll('[aria-label],[placeholder],[title]').forEach((element) => {
+        if (element.closest('[contenteditable],[translate="no"]')) return;
+        let attributes = attributeRecords.get(element);
+        if (!attributes) { attributes = new Map(); attributeRecords.set(element, attributes); }
+        for (const name of ['aria-label', 'placeholder', 'title']) {
+          if (!element.hasAttribute(name)) continue;
+          const value = element.getAttribute(name), last = attributes.get(name);
+          const original = last && last.rendered === value ? last.original : value;
+          const translated = api.translate(page, original, selected);
+          const rendered = translated === null ? original : translated;
+          if (value !== rendered) element.setAttribute(name, rendered);
+          attributes.set(name, { original, rendered });
+        }
       });
     } finally {
       rendering = false;
@@ -269,8 +284,16 @@
       "Warum wird im arithmetischen Modus auch der Median angezeigt?"
     ]
   });
-  // Reviewed explanatory copy, scoped to the three calculators below.
+  // Reviewed explanatory copy, scoped to the supported everyday calculators.
   const content = Object.freeze({
+"Arány:": ["Ratio:", "Verhältnis:"],
+"Rész / egész:": ["Part / whole:", "Teil / Ganzes:"],
+"Rezsi megosztás kalkulátor": ["Utility bill splitting calculator", "Rechner zum Aufteilen von Nebenkosten"],
+"Oszd szét a közös költségeket lakótársak vagy családtagok között.": ["Split shared expenses among housemates or family members.", "Teile gemeinsame Kosten unter Mitbewohnern oder Familienmitgliedern auf."],
+"Hasonlítsd össze termékek egységárát kiszerelés alapján.": ["Compare product unit prices by package size.", "Vergleiche die Grundpreise von Produkten anhand der Packungsgröße."],
+"Havi költségvetés kalkulátor": ["Monthly budget calculator", "Monatlicher Budgetrechner"],
+"Tervezd meg a havi bevételeidet, kiadásaidat és megtakarítási arányodat.": ["Plan your monthly income, expenses and savings rate.", "Plane deine monatlichen Einnahmen, Ausgaben und Sparquote."],
+
     "Hasznos volt ez a kalkulátor?": [
         "Was this calculator useful?",
         "War dieser Rechner hilfreich?"
@@ -762,12 +785,539 @@
     "A linket a vágólapra másoltuk.": [
         "Link copied to clipboard.",
         "Link in die Zwischenablage kopiert."
+    ],
+    "Rész": [
+        "Part",
+        "Teil"
+    ],
+    "Egész": [
+        "Whole",
+        "Ganzes"
+    ],
+    "Eredmény:": [
+        "Result:",
+        "Ergebnis:"
+    ],
+    "Az értékek legyenek nagyobbak nullánál": [
+        "Values must be greater than zero",
+        "Die Werte müssen größer als null sein"
+    ],
+    "Egy rész aránya az egészhez képest": [
+        "A part as a proportion of the whole",
+        "Anteil eines Teils am Ganzen"
+    ],
+    "Az arány kalkulátor megmutatja, hogy egy rész az egész hány százaléka. Használható költségvetési tételek, teljesítményadatok, csoportlétszámok vagy bármilyen rész–egész kapcsolat gyors ellenőrzésére.": [
+        "The ratio calculator shows what percentage a part represents of the whole. Use it to check budget items, performance figures, group sizes or any other part-to-whole relationship.",
+        "Der Verhältnisrechner zeigt, wie viel Prozent ein Teil vom Ganzen ausmacht. Damit lassen sich Budgetposten, Leistungsdaten, Gruppengrößen und andere Teil-Ganzes-Verhältnisse schnell prüfen."
+    ],
+    "A nevezőként megadott egész legyen nagyobb nullánál. A rész lehet nagyobb az egésznél is; ilyenkor az eredmény 100% feletti, ami növekedést vagy többletet jelezhet.": [
+        "The whole used as the denominator must be greater than zero. The part can be larger than the whole; the result then exceeds 100%, which may indicate an increase or excess.",
+        "Das Ganze im Nenner muss größer als null sein. Der Teil kann größer als das Ganze sein; dann liegt das Ergebnis über 100 %, was auf eine Zunahme oder einen Überschuss hinweisen kann."
+    ],
+    "A képlet": [
+        "The formula",
+        "Die Formel"
+    ],
+    "Arány százalékban = rész / egész × 100": [
+        "Percentage share = part / whole × 100",
+        "Prozentanteil = Teil / Ganzes × 100"
+    ],
+    ". A kalkulátor a tört alakot is megjeleníti, hogy a bemeneti kapcsolat könnyen ellenőrizhető legyen.": [
+        ". The calculator also shows the fraction so you can easily check the relationship between the inputs.",
+        ". Der Rechner zeigt auch den Bruch an, damit du das Verhältnis der Eingaben leicht prüfen kannst."
+    ],
+    "Ha egy 40 fős csoportból 14 ember választ egy lehetőséget, az arány 14 / 40 × 100 = 35%.": [
+        "If 14 people in a group of 40 choose an option, the proportion is 14 / 40 × 100 = 35%.",
+        "Wählen 14 Personen einer Gruppe von 40 eine Option, beträgt der Anteil 14 / 40 × 100 = 35 %."
+    ],
+    "Arány és százalékpont": [
+        "Proportions and percentage points",
+        "Anteile und Prozentpunkte"
+    ],
+    "Ha egy mutató 35%-ról 40%-ra nő, az 5 százalékpontos növekedés, de relatívan körülbelül 14,3%-os emelkedés. A kalkulátor rész–egész arányt számol, nem két százalék különbségét.": [
+        "A rise from 35% to 40% is an increase of 5 percentage points, but a relative increase of about 14.3%. This calculator finds a part-to-whole proportion, not the difference between two percentages.",
+        "Ein Anstieg von 35 % auf 40 % entspricht 5 Prozentpunkten, relativ jedoch etwa 14,3 %. Dieser Rechner ermittelt den Anteil eines Teils am Ganzen, nicht die Differenz zwischen zwei Prozentangaben."
+    ],
+    "A részt és az egészet felcserélik.": [
+        "Swapping the part and the whole.",
+        "Teil und Ganzes vertauschen."
+    ],
+    "Nullát adnak meg egésznek.": [
+        "Entering zero as the whole.",
+        "Für das Ganze null eingeben."
+    ],
+    "A 0,35 értéket 0,35%-nak tekintik 35% helyett.": [
+        "Reading 0.35 as 0.35% instead of 35%.",
+        "Den Wert 0,35 als 0,35 % statt als 35 % verstehen."
+    ],
+    "Százalékot és százalékpontot összekevernek.": [
+        "Confusing percentages and percentage points.",
+        "Prozent und Prozentpunkte verwechseln."
+    ],
+    "Lehet az eredmény 100% felett?": [
+        "Can the result exceed 100%?",
+        "Kann das Ergebnis über 100 % liegen?"
+    ],
+    "Igen, ha a rész nagyobb a megadott egész értékénél.": [
+        "Yes, if the part is larger than the whole you entered.",
+        "Ja, wenn der Teil größer als das eingegebene Ganze ist."
+    ],
+    "Fordított arányt hogyan számoljak?": [
+        "How do I calculate the inverse ratio?",
+        "Wie berechne ich das umgekehrte Verhältnis?"
+    ],
+    "Cseréld fel a rész és egész mező értékét.": [
+        "Swap the values in the Part and Whole fields.",
+        "Vertausche die Werte in den Feldern Teil und Ganzes."
+    ],
+    "Áremelkedésre is jó?": [
+        "Can I use it for price increases?",
+        "Eignet sich der Rechner für Preiserhöhungen?"
+    ],
+    "Az új és régi ár arányát megadja, de a változás százalékához a százalékkalkulátor célszerűbb.": [
+        "It gives the ratio of the new price to the old price, but the percentage calculator is more suitable for finding the percentage change.",
+        "Er zeigt das Verhältnis des neuen zum alten Preis. Für die prozentuale Änderung eignet sich der Prozentrechner besser."
+    ],
+    "Tizedes számokat elfogad?": [
+        "Does it accept decimal numbers?",
+        "Akzeptiert der Rechner Dezimalzahlen?"
+    ],
+    "Igen, ponttal vagy vesszővel is megadhatók.": [
+        "Yes, you can use a decimal point or comma.",
+        "Ja, du kannst einen Dezimalpunkt oder ein Dezimalkomma verwenden."
+    ],
+    "Árkedvezmény": [
+        "Discount",
+        "Rabatt"
+    ],
+    "Arány skálázása": [
+        "Scaling a ratio",
+        "Verhältnis skalieren"
+    ],
+    "Rész–rész arányból készíts új mennyiséget": [
+        "Split a new total using a part-to-part ratio",
+        "Eine neue Gesamtmenge nach einem Teil-Teil-Verhältnis aufteilen"
+    ],
+    "A rész": [
+        "Part A",
+        "Teil A"
+    ],
+    "B rész": [
+        "Part B",
+        "Teil B"
+    ],
+    "Új teljes mennyiség": [
+        "New total quantity",
+        "Neue Gesamtmenge"
+    ],
+    "A új mennyisége": [
+        "New quantity of A",
+        "Neue Menge von A"
+    ],
+    "B új mennyisége": [
+        "New quantity of B",
+        "Neue Menge von B"
+    ],
+    "A részesedése a teljesből": [
+        "A's share of the total",
+        "Anteil von A an der Gesamtmenge"
+    ],
+    "A 2:3 arány öt összes részre osztja a teljes mennyiséget. Ez más kérdés, mint az, hogy A hány százaléka B-nek.": [
+        "A 2:3 ratio splits the total into five equal parts. This differs from asking what percentage A is of B.",
+        "Ein Verhältnis von 2:3 teilt die Gesamtmenge in fünf gleiche Teile. Das ist eine andere Frage als die, wie viel Prozent A von B ausmacht."
+    ],
+    "Százalékos változás": [
+        "Percentage change",
+        "Prozentuale Änderung"
+    ],
+    "Százalékos változás kalkulátor": [
+        "Percentage change calculator",
+        "Rechner für prozentuale Änderung"
+    ],
+    "Írd be a régi és az új értéket, és azonnal látod a növekedést vagy csökkenést.": [
+        "Enter the old and new values to see the increase or decrease immediately.",
+        "Gib den alten und den neuen Wert ein, um die Zu- oder Abnahme sofort zu sehen."
+    ],
+    "Régi érték": [
+        "Old value",
+        "Alter Wert"
+    ],
+    "Új érték": [
+        "New value",
+        "Neuer Wert"
+    ],
+    "Abszolút különbség:": [
+        "Absolute difference:",
+        "Absolute Differenz:"
+    ],
+    "Százalékos változás:": [
+        "Percentage change:",
+        "Prozentuale Änderung:"
+    ],
+    "Irány:": [
+        "Direction:",
+        "Richtung:"
+    ],
+    "növekedés": [
+        "increase",
+        "Zunahme"
+    ],
+    "Mit jelent a százalékos változás?": [
+        "What does percentage change mean?",
+        "Was bedeutet prozentuale Änderung?"
+    ],
+    "A százalékos változás azt mutatja meg, hogy egy új érték a korábbi értékhez képest mekkora relatív növekedést vagy csökkenést jelent. Hasznos árak, fizetések, fogyasztás, mérési eredmények, látogatottsági adatok vagy bármilyen pozitív kiinduló érték összehasonlításánál.": [
+        "Percentage change shows the relative increase or decrease of a new value compared with the previous value. It is useful for prices, pay, consumption, measurements, traffic figures and other comparisons with a positive starting value.",
+        "Die prozentuale Änderung zeigt die relative Zu- oder Abnahme eines neuen Werts gegenüber dem vorherigen Wert. Sie eignet sich für Preise, Gehälter, Verbrauch, Messwerte, Besucherzahlen und andere Vergleiche mit positivem Ausgangswert."
+    ],
+    "A kalkulátor külön megmutatja az": [
+        "The calculator separately shows the",
+        "Der Rechner zeigt getrennt die"
+    ],
+    "abszolút különbséget": [
+        "absolute difference",
+        "absolute Differenz"
+    ],
+    "és a": [
+        "and the",
+        "und die"
+    ],
+    "százalékos változást": [
+        "percentage change",
+        "prozentuale Änderung"
+    ],
+    ". Ez azért fontos, mert ugyanaz az abszolút eltérés egészen más jelentőségű lehet eltérő kiinduló értékek mellett.": [
+        ". The same absolute difference can have very different significance depending on the starting value.",
+        ". Dieselbe absolute Differenz kann je nach Ausgangswert eine ganz andere Bedeutung haben."
+    ],
+    "Százalékos változás = (új érték − régi érték) / régi érték × 100": [
+        "Percentage change = (new value − old value) / old value × 100",
+        "Prozentuale Änderung = (neuer Wert − alter Wert) / alter Wert × 100"
+    ],
+    ". A régi értéknek nagyobbnak kell lennie nullánál. Ha az eredmény pozitív, növekedés történt; ha negatív, csökkenés.": [
+        ". The old value must be greater than zero. A positive result means an increase; a negative result means a decrease.",
+        ". Der alte Wert muss größer als null sein. Ein positives Ergebnis bedeutet eine Zunahme, ein negatives eine Abnahme."
+    ],
+    "Egy termék ára 20 000 Ft-ról 23 000 Ft-ra nő. A különbség 3 000 Ft, a százalékos változás pedig 3 000 / 20 000 × 100 = 15%.": [
+        "A product's price rises from HUF 20 000 to HUF 23 000. The difference is HUF 3000 and the percentage change is 3000 / 20 000 × 100 = 15%.",
+        "Der Preis eines Produkts steigt von 20 000 HUF auf 23 000 HUF. Die Differenz beträgt 3000 HUF, die prozentuale Änderung 3000 / 20 000 × 100 = 15 %."
+    ],
+    "Százalék és százalékpont nem ugyanaz": [
+        "Percent and percentage points are different",
+        "Prozent und Prozentpunkte sind verschieden"
+    ],
+    "Ha egy arányszám 20%-ról 25%-ra változik, az 5": [
+        "A change from 20% to 25% is a 5",
+        "Eine Änderung von 20 % auf 25 % entspricht 5"
+    ],
+    "százalékpontos": [
+        "percentage point",
+        "Prozentpunkten"
+    ],
+    "emelkedés, miközben relatív értelemben 25%-os növekedés. Ez a kalkulátor két számérték relatív változását számolja, nem két százalékos arány százalékpont-különbségét.": [
+        "increase, but a relative increase of 25%. This calculator finds the relative change between two numbers, not the percentage-point difference between two proportions.",
+        "Zunahme, relativ jedoch 25 %. Dieser Rechner ermittelt die relative Änderung zweier Zahlen, nicht die Differenz zweier Prozentangaben in Prozentpunkten."
+    ],
+    "Mikor érdemes más eszközt használni?": [
+        "When should I use another tool?",
+        "Wann sollte ich einen anderen Rechner verwenden?"
+    ],
+    "Ha azt szeretnéd tudni, hogy egy rész az egésznek hány százaléka, használd az arány- vagy százalékkalkulátort. Ha akciós árat számolnál, az árkedvezmény kalkulátor közvetlenebb. Nulla kiinduló értéknél a relatív százalékos változás nem értelmezhető, mert nullával kellene osztani.": [
+        "To find what percentage a part represents of the whole, use the ratio or percentage calculator. For sale prices, the discount calculator is more direct. Relative percentage change is undefined when the starting value is zero, because the formula would divide by zero.",
+        "Um den Prozentanteil eines Teils am Ganzen zu bestimmen, nutze den Verhältnis- oder Prozentrechner. Für Angebotspreise ist der Rabattrechner direkter. Bei einem Ausgangswert von null ist die relative prozentuale Änderung nicht definiert, da die Formel durch null teilen würde."
+    ],
+    "Miért nem lehet a régi érték nulla?": [
+        "Why can't the old value be zero?",
+        "Warum darf der alte Wert nicht null sein?"
+    ],
+    "A képlet a régi értékkel oszt. Nulláról induló változásnak nincs véges, hagyományos százalékos növekedési értéke.": [
+        "The formula divides by the old value. A change starting from zero has no finite percentage increase under the usual formula.",
+        "Die Formel teilt durch den alten Wert. Für eine Änderung ausgehend von null gibt es nach der üblichen Formel keine endliche prozentuale Zunahme."
+    ],
+    "Csökkenésnél miért negatív a százalék?": [
+        "Why is the percentage negative for a decrease?",
+        "Warum ist der Prozentsatz bei einer Abnahme negativ?"
+    ],
+    "Mert az új érték kisebb a réginél, így az új és régi különbsége negatív.": [
+        "Because the new value is smaller than the old value, so their difference is negative.",
+        "Weil der neue Wert kleiner als der alte ist und ihre Differenz daher negativ ausfällt."
+    ],
+    "Az új érték lehet nulla?": [
+        "Can the new value be zero?",
+        "Darf der neue Wert null sein?"
+    ],
+    "Igen. Pozitív régi értékről nullára csökkenés pontosan −100%.": [
+        "Yes. Falling from a positive old value to zero is exactly −100%.",
+        "Ja. Ein Rückgang von einem positiven alten Wert auf null beträgt genau −100 %."
+    ],
+    "2026. augusztus 21.": [
+        "21 August 2026",
+        "21. August 2026"
+    ],
+    "A számítás a hagyományos relatív változás képletét használja pozitív kiinduló értékre. Százalékpont-változást külön kell értelmezni.": [
+        "The calculation uses the standard relative-change formula with a positive starting value. Changes in percentage points need to be interpreted separately.",
+        "Die Berechnung verwendet die übliche Formel für relative Änderungen mit positivem Ausgangswert. Änderungen in Prozentpunkten müssen gesondert betrachtet werden."
+    ],
+    "Hibát találtál? Jelezd.": [
+        "Found a mistake? Let us know.",
+        "Fehler gefunden? Sag uns Bescheid."
+    ],
+    "Borravaló kalkulátor": [
+        "Tip calculator",
+        "Trinkgeldrechner"
+    ],
+    "Oszd el a számlát és számold ki a borravalót több főre.": [
+        "Split the bill and calculate tips for a group.",
+        "Teile die Rechnung auf und berechne das Trinkgeld für eine Gruppe."
+    ],
+    "Borravaló-, szervizdíj- és számlamegosztó": [
+        "Tip, service charge and bill splitter",
+        "Rechner für Trinkgeld, Servicegebühr und Rechnungsteilung"
+    ],
+    "A szervizdíjat külön kezeli, és három személy eltérő fogyasztását is arányosan osztja.": [
+        "It treats the service charge separately and splits the total in proportion to three people's individual spending.",
+        "Der Rechner berücksichtigt die Servicegebühr getrennt und verteilt den Gesamtbetrag nach dem individuellen Verzehr von drei Personen."
+    ],
+    "Ételek/italok összege (Ft)": [
+        "Food and drink total (HUF)",
+        "Speisen und Getränke insgesamt (HUF)"
+    ],
+    "Szervizdíj (%)": [
+        "Service charge (%)",
+        "Servicegebühr (%)"
+    ],
+    "További borravaló (%)": [
+        "Additional tip (%)",
+        "Zusätzliches Trinkgeld (%)"
+    ],
+    "1. személy fogyasztása (Ft)": [
+        "Person 1's spending (HUF)",
+        "Verzehr von Person 1 (HUF)"
+    ],
+    "2. személy fogyasztása (Ft)": [
+        "Person 2's spending (HUF)",
+        "Verzehr von Person 2 (HUF)"
+    ],
+    "3. személy fogyasztása (Ft)": [
+        "Person 3's spending (HUF)",
+        "Verzehr von Person 3 (HUF)"
+    ],
+    "Borravaló és fejenkénti fizetendő összeg": [
+        "Tip and amount payable per person",
+        "Trinkgeld und Zahlbetrag pro Person"
+    ],
+    "A kalkulátor az étel- és italfogyasztás összegére szervizdíjat számol, majd az így növelt összegből határozza meg a további borravalót. A teljes fizetendőt a három megadott fogyasztási összeg arányában osztja el. Éttermi vagy közös rendelési elszámolásnál használható.": [
+        "The calculator adds the service charge to the food and drink total, then calculates the additional tip on that subtotal. It splits the final amount in proportion to the spending entered for three people. It is useful for restaurant bills and shared orders.",
+        "Der Rechner addiert die Servicegebühr zum Betrag für Speisen und Getränke und berechnet das zusätzliche Trinkgeld auf diese Zwischensumme. Den Endbetrag verteilt er nach dem angegebenen Verzehr von drei Personen. Das ist für Restaurantrechnungen und gemeinsame Bestellungen hilfreich."
+    ],
+    "Ellenőrizd, hogy a számla tartalmaz-e már szervizdíjat. A szervizdíj és a borravaló nem feltétlenül ugyanaz, de ha már van kötelező szolgáltatási díj, a további borravaló személyes döntés.": [
+        "Check whether the bill already includes a service charge. Service charges and tips are not necessarily the same; an additional tip is a personal choice when a mandatory service charge is already included.",
+        "Prüfe, ob die Rechnung bereits eine Servicegebühr enthält. Servicegebühr und Trinkgeld sind nicht zwangsläufig dasselbe. Ist bereits eine verpflichtende Servicegebühr enthalten, bleibt zusätzliches Trinkgeld eine persönliche Entscheidung."
+    ],
+    "További borravaló = (étel- és italfogyasztás + szervizdíj) × borravaló százaléka / 100": [
+        "Additional tip = (food and drink total + service charge) × tip percentage / 100",
+        "Zusätzliches Trinkgeld = (Speisen und Getränke + Servicegebühr) × Trinkgeldsatz / 100"
+    ],
+    ". A teljes fizetendő az étel- és italfogyasztás, a szervizdíj és a további borravaló összege. A fejenkénti rész a megadott fogyasztással arányos; azonos fogyasztási összegek esetén egyenlő.": [
+        ". The final total includes food and drinks, the service charge and the additional tip. Each person's share is proportional to their entered spending; equal spending produces equal shares.",
+        ". Der Endbetrag umfasst Speisen und Getränke, Servicegebühr und zusätzliches Trinkgeld. Der Anteil jeder Person richtet sich nach ihrem eingegebenen Verzehr; gleiche Beträge ergeben gleiche Anteile."
+    ],
+    "24 000 Ft étel- és italfogyasztás, 0% szervizdíj, 10% borravaló és három, egyenként 8 000 Ft-ot fogyasztó vendég esetén a borravaló 2 400 Ft, a teljes fizetendő 26 400 Ft, fejenként 8 800 Ft.": [
+        "For HUF 24 000 in food and drinks, a 0% service charge, a 10% tip and three people each spending HUF 8000, the tip is HUF 2400. The total is HUF 26 400, or HUF 8800 per person.",
+        "Bei 24 000 HUF für Speisen und Getränke, 0 % Servicegebühr, 10 % Trinkgeld und drei Personen mit jeweils 8000 HUF Verzehr beträgt das Trinkgeld 2400 HUF. Insgesamt sind 26 400 HUF zu zahlen, also 8800 HUF pro Person."
+    ],
+    "Egyenlő vagy fogyasztásarányos megosztás?": [
+        "Equal shares or shares based on spending?",
+        "Gleichmäßig oder nach Verzehr aufteilen?"
+    ],
+    "A kalkulátor a három megadott fogyasztási összeg arányában osztja el a teljes fizetendőt. Egyenlő megosztáshoz azonos fogyasztási összegeket adj meg; eltérő fogyasztáshoz személyenként a saját összeget.": [
+        "The calculator splits the final total in proportion to the three spending amounts. Enter equal amounts for equal shares, or individual spending amounts for proportional shares.",
+        "Der Rechner verteilt den Endbetrag im Verhältnis der drei Verzehrbeträge. Für gleiche Anteile gib gleiche Beträge ein; für eine proportionale Aufteilung den jeweiligen individuellen Verzehr."
+    ],
+    "A szervizdíjas végösszegre véletlenül még egyszer ugyanazt a százalékot számolják.": [
+        "Accidentally adding the same percentage again to a total that already includes a service charge.",
+        "Auf einen Betrag mit bereits enthaltener Servicegebühr versehentlich denselben Prozentsatz erneut aufschlagen."
+    ],
+    "A létszámba nem számítanak bele minden fizetőt.": [
+        "Leaving out one of the people who will pay.",
+        "Eine zahlende Person bei der Aufteilung vergessen."
+    ],
+    "A borravaló százalékát tizedesként adják meg, például 0,1-et 10 helyett.": [
+        "Entering the tip percentage as a decimal, such as 0.1 instead of 10.",
+        "Den Trinkgeldsatz als Dezimalzahl eingeben, etwa 0,1 statt 10."
+    ],
+    "Kártyás és készpénzes kerekítést nem egyeztetnek.": [
+        "Not agreeing on rounding for card and cash payments.",
+        "Die Rundung bei Karten- und Barzahlungen nicht abstimmen."
+    ],
+    "Szervizdíj mellett kell borravaló?": [
+        "Should I tip if there is a service charge?",
+        "Sollte ich bei einer Servicegebühr Trinkgeld geben?"
+    ],
+    "Nem kötelező; a helyi gyakorlat és elégedettség alapján dönthető el.": [
+        "It is optional; decide based on local practice and your satisfaction.",
+        "Es ist freiwillig; orientiere dich an den örtlichen Gepflogenheiten und deiner Zufriedenheit."
+    ],
+    "Fejenként eltérő összeget számol?": [
+        "Can it calculate different amounts per person?",
+        "Kann der Rechner unterschiedliche Beträge pro Person berechnen?"
+    ],
+    "Igen, a három megadott fogyasztási összeg arányában oszt.": [
+        "Yes. It splits the total in proportion to the spending entered for the three people.",
+        "Ja. Er verteilt den Gesamtbetrag nach dem eingegebenen Verzehr der drei Personen."
+    ],
+    "Hogyan kerekítsünk?": [
+        "How should we round the amounts?",
+        "Wie sollten wir die Beträge runden?"
+    ],
+    "Egyezzetek meg egész száz vagy ezer forintos összegben, a különbséget valaki vállalhatja.": [
+        "Agree on amounts rounded to whole hundreds or thousands of forints; one person can cover the difference.",
+        "Einigt euch auf auf volle hundert oder tausend Forint gerundete Beträge; eine Person kann die Differenz übernehmen."
+    ],
+    "Külföldön használható?": [
+        "Can I use it abroad?",
+        "Kann ich den Rechner im Ausland nutzen?"
+    ],
+    "Igen, a matematikához a pénznem nem számít, de a helyi borravalószokások eltérnek.": [
+        "Yes, the currency does not affect the maths, but local tipping customs vary.",
+        "Ja, die Währung beeinflusst die Rechnung nicht. Die örtlichen Trinkgeldgepflogenheiten unterscheiden sich jedoch."
+    ],
+    "Költségmegosztás": [
+        "Cost sharing",
+        "Kostenteilung"
+    ],
+    "Borravaló és szervizdíj": [
+        "Tips and service charges",
+        "Trinkgeld und Servicegebühren"
+    ],
+    "Előbb nézd meg, mi van már a számlán": [
+        "First check what the bill already includes",
+        "Prüfe zuerst, was die Rechnung bereits enthält"
+    ],
+    "Szervizdíj": [
+        "Service charge",
+        "Servicegebühr"
+    ],
+    "Ha a számla már tartalmaz felszolgálási díjat, az nem ugyanaz, mintha a végösszegre még automatikusan ugyanakkora borravalót számolnál.": [
+        "If the bill already includes a service charge, that does not mean you should automatically add the same percentage again as a tip.",
+        "Enthält die Rechnung bereits eine Servicegebühr, solltest du nicht automatisch denselben Prozentsatz nochmals als Trinkgeld hinzufügen."
+    ],
+    "Megosztás": [
+        "Splitting the bill",
+        "Rechnung aufteilen"
+    ],
+    "Több főnél döntsétek el, egyenlően vagy fogyasztás szerint osztotok. Ez a kalkulátor a három fogyasztási összeg arányában oszt; egyenlő megosztáshoz azonos összegeket adj meg.": [
+        "For a group, decide whether to split equally or by individual spending. This calculator splits by the three spending amounts; enter equal amounts for equal shares.",
+        "Entscheidet in der Gruppe, ob ihr gleichmäßig oder nach Verzehr aufteilt. Dieser Rechner verwendet die drei Verzehrbeträge; für gleiche Anteile gib gleiche Beträge ein."
+    ],
+    "Kerekítés": [
+        "Rounding",
+        "Rundung"
+    ],
+    "Készpénzes vagy egyszerűbb elszámolásnál a személyenkénti kerekítés miatt néhány forint eltérés keletkezhet.": [
+        "Rounding each person's share for cash payments or simpler settlement can create a difference of a few forints.",
+        "Beim Runden der einzelnen Anteile für Barzahlungen oder eine einfachere Abrechnung können einige Forint Differenz entstehen."
+    ],
+    "Gyakorlati sorrend:": [
+        "Practical steps:",
+        "Praktische Reihenfolge:"
+    ],
+    "számla ellenőrzése → szervizdíj ellenőrzése → kívánt plusz borravaló → megosztási szabály → kerekítés.": [
+        "check the bill → check the service charge → choose the additional tip → choose how to split → round the amounts.",
+        "Rechnung prüfen → Servicegebühr prüfen → zusätzliches Trinkgeld wählen → Aufteilung festlegen → Beträge runden."
+    ],
+    "Hogyan kezeli külön a szervizdíjat és a borravalót?": [
+        "How are service charges and tips handled separately?",
+        "Wie werden Servicegebühr und Trinkgeld getrennt berücksichtigt?"
+    ],
+    "A szervizdíjat az étel- és italfogyasztás összegére számolja, a további borravalót pedig a szervizdíjjal növelt összeg százalékaként. A végösszeget a három megadott fogyasztási összeg arányában osztja szét, ezért az eltérő fogyasztású vendégek nem automatikusan ugyanannyit fizetnek.": [
+        "The service charge is calculated on the food and drink total. The additional tip is a percentage of the amount including the service charge. The final bill is split in proportion to the three spending amounts, so guests with different spending do not automatically pay the same amount.",
+        "Die Servicegebühr wird auf den Betrag für Speisen und Getränke berechnet. Das zusätzliche Trinkgeld ist ein Prozentsatz des Betrags einschließlich Servicegebühr. Die Gesamtrechnung wird nach den drei Verzehrbeträgen aufgeteilt; Gäste mit unterschiedlichem Verzehr zahlen daher nicht automatisch gleich viel."
+    ],
+    "Arány": [
+        "Ratio",
+        "Verhältnis"
+    ],
+    "Rész / egész": [
+        "Part / whole",
+        "Teil / Ganzes"
+    ],
+    "Minden mezőben érvényes szám szerepeljen": [
+        "Enter a valid number in every field",
+        "Gib in jedem Feld eine gültige Zahl ein"
+    ],
+    "Az értékek nem lehetnek negatívak": [
+        "Values must not be negative",
+        "Die Werte dürfen nicht negativ sein"
+    ],
+    "Abszolút különbség": [
+        "Absolute difference",
+        "Absolute Differenz"
+    ],
+    "Irány": [
+        "Direction",
+        "Richtung"
+    ],
+    "csökkenés": [
+        "decrease",
+        "Abnahme"
+    ],
+    "nincs változás": [
+        "no change",
+        "keine Änderung"
+    ],
+    "Régi érték: adj meg érvényes számot.": [
+        "Old value: enter a valid number.",
+        "Alter Wert: Gib eine gültige Zahl ein."
+    ],
+    "Új érték: adj meg érvényes számot.": [
+        "New value: enter a valid number.",
+        "Neuer Wert: Gib eine gültige Zahl ein."
+    ],
+    "Régi érték: az érték legyen nagyobb nullánál.": [
+        "Old value: the value must be greater than zero.",
+        "Alter Wert: Der Wert muss größer als null sein."
+    ],
+    "Új érték: az érték nem lehet negatív.": [
+        "New value: the value must not be negative.",
+        "Neuer Wert: Der Wert darf nicht negativ sein."
+    ],
+    "Adj meg legalább egy fogyasztási összeget.": [
+        "Enter at least one person's spending amount.",
+        "Gib für mindestens eine Person einen Verzehrbetrag ein."
+    ],
+    "További borravaló": [
+        "Additional tip",
+        "Zusätzliches Trinkgeld"
+    ],
+    "Fizetendő összesen": [
+        "Total to pay",
+        "Gesamtbetrag"
+    ],
+    "1. személy fizet": [
+        "Person 1 pays",
+        "Person 1 zahlt"
+    ],
+    "2. személy fizet": [
+        "Person 2 pays",
+        "Person 2 zahlt"
+    ],
+    "3. személy fizet": [
+        "Person 3 pays",
+        "Person 3 zahlt"
+    ],
+    "Mentési, telepítési és megosztási műveletek": [
+        "Save, install and share actions",
+        "Aktionen zum Speichern, Installieren und Teilen"
     ]
 });
   const dictionaries = Object.freeze({
     "ar-kedvezmeny-kalkulator": discount,
     "egysegar-kalkulator": unit,
-    "atlag-kalkulator": average
+    "atlag-kalkulator": average,
+    "arany-kalkulator": Object.freeze({}),
+    "szazalekos-valtozas-kalkulator": Object.freeze({}),
+    "borravalo-kalkulator": Object.freeze({})
   });
   const pages = Object.freeze(Object.keys(dictionaries));
   const supported = Object.freeze(["hu", "en", "de"]);
