@@ -338,7 +338,7 @@
       <h2>Előbb nézd meg, mi van már a számlán</h2>
       ${cards([
         { title: "Szervizdíj", text: "Ha a számla már tartalmaz felszolgálási díjat, az nem ugyanaz, mintha a végösszegre még automatikusan ugyanakkora borravalót számolnál." },
-        { title: "Megosztás", text: "Több főnél döntsétek el, egyenlően vagy fogyasztás szerint osztotok; a kalkulátor csak a választott szabályt hajtja végre." },
+        { title: "Megosztás", text: "Több főnél döntsétek el, egyenlően vagy fogyasztás szerint osztotok. Ez a kalkulátor a három fogyasztási összeg arányában oszt; egyenlő megosztáshoz azonos összegeket adj meg." },
         { title: "Kerekítés", text: "Készpénzes vagy egyszerűbb elszámolásnál a személyenkénti kerekítés miatt néhány forint eltérés keletkezhet." },
       ])}
       <div class="lq-note"><strong>Gyakorlati sorrend:</strong> számla ellenőrzése → szervizdíj ellenőrzése → kívánt plusz borravaló → megosztási szabály → kerekítés.</div>

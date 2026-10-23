@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-21",
+  "generatedAt": "2026-10-23",
   "pages": {
     "": {
       "hash": "69e32989731a9ce641c258daf36a0a9454c6c3461c7d95d0302a2b4c86be9dbf",
@@ -343,12 +343,12 @@
       "lastmod": "2026-10-15"
     },
     "kalkulatorok/ar-kedvezmeny-kalkulator.html": {
-      "hash": "87cab4b6d4d73ac31afb003d253a363404d13c4271caa4d4b2470c66c64b1ab4",
-      "lastmod": "2026-09-16"
+      "hash": "9b9b9b2763bb192b1466c8ad2867242aa8824c389bfdef01f774c54e094d8867",
+      "lastmod": "2026-10-23"
     },
     "kalkulatorok/borravalo-kalkulator.html": {
-      "hash": "f20df65333b50e6180aeeae86e7bac4689a334cb5c8f3ae203f441343554923f",
-      "lastmod": "2026-09-16"
+      "hash": "1d94edf4894549c35ad620c2bb5175686e2e5b534357ab81acd35cdb44439423",
+      "lastmod": "2026-10-23"
     },
     "kalkulatorok/munkaido-kalkulator.html": {
       "hash": "bfedf0152594b141e70d46d858e25f606283f008afb41b74e1681e6a80706459",
@@ -367,8 +367,8 @@
       "lastmod": "2026-09-19"
     },
     "kalkulatorok/egysegar-kalkulator.html": {
-      "hash": "b62d2483e8c44c1fa3d21fec763fd3cf830847ab87cbfad4eec8b9478f062c63",
-      "lastmod": "2026-09-16"
+      "hash": "802a7c8f3fc3b46e7fc3cdc7d44c29b71a03b98f8ab74d16c65285d64cce6a01",
+      "lastmod": "2026-10-23"
     },
     "kalkulatorok/rezsi-megosztas-kalkulator.html": {
       "hash": "37bb2b703a595ad1657237b665d0c7a7713c64d91e7ecc9d48b64213ddb2fe8a",
@@ -379,8 +379,8 @@
       "lastmod": "2026-09-16"
     },
     "kalkulatorok/arany-kalkulator.html": {
-      "hash": "79ced2d01061c28bf2844fec3498a9de42e82b876a2a68c987d3eb4e60985ead",
-      "lastmod": "2026-07-01"
+      "hash": "6d31086ee3ed001b810ee04787061c530d12e61d296f4d4027d82efe01c78fc2",
+      "lastmod": "2026-10-23"
     },
     "kalkulatorok/uzemanyag-koltseg-kalkulator.html": {
       "hash": "e9ba5be762d4d363a8d34234dd26aed8f8b699cc28268a733c65fff88ef5f1ff",

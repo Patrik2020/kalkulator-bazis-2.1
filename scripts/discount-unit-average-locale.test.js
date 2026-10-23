@@ -1,10 +1,10 @@
 "use strict";
 const assert = require("node:assert/strict");
 const { test } = require("node:test");
-const api = require("../js/altalanos/discount-unit-average-locale");
+const api = require("../js/altalanos/everyday-locale");
 
-test("all three calculators translate form labels without changing input and prices", () => {
-  assert.deepEqual(api.pages, ["ar-kedvezmeny-kalkulator", "egysegar-kalkulator", "atlag-kalkulator"]);
+test("supported calculators translate form labels without changing input and prices", () => {
+  assert.deepEqual(api.pages, ["ar-kedvezmeny-kalkulator", "egysegar-kalkulator", "atlag-kalkulator", "arany-kalkulator", "szazalekos-valtozas-kalkulator", "borravalo-kalkulator"]);
   assert.equal(api.translate("ar-kedvezmeny-kalkulator", "Első kedvezmény (%)", "en"), "First discount (%)");
   assert.equal(api.translate("ar-kedvezmeny-kalkulator", "Végső ár", "de"), "Endpreis");
   assert.equal(api.translate("egysegar-kalkulator", "Egységre vetítés", "en"), "Comparison quantity");

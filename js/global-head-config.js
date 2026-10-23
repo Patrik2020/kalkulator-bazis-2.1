@@ -212,7 +212,7 @@
           "oraber-kalkulator", "arany-kalkulator",
         ],
         ["css/pages/health-everyday-quality-upgrades.css?v=e10e7cbe585c"],
-        ["js/health-everyday-quality-upgrades.js?v=b0d9e4d6ba93"]
+        ["js/health-everyday-quality-upgrades.js?v=1dcd09890123"]
       ),
       slugFeature(
         "auto-converter-quality",

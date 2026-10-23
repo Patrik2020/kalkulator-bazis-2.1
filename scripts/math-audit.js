@@ -59,7 +59,21 @@ pass("tetocserep-kalkulator", () => assert.equal(run("tetocserep-kalkulator", { 
 pass("fuga-kalkulator", () => approx(huNumber(run("fuga-kalkulator", { area: 10, tileLength: 300, tileWidth: 300, joint: 3, depth: 8, densityFactor: 1.6, bag: 5 })["Becsült fugázóanyag"]), 2.6, 0.06));
 pass("vizfogyasztas-kalkulator", () => approx(huNumber(run("vizfogyasztas-kalkulator", { weight: 70, activity: 500 })["Becsült napi folyadék"]), 2.95, 0.001));
 pass("pulzus-zona-kalkulator", () => assert.equal(run("pulzus-zona-kalkulator", { age: 40, rest: 60 })["Közepes relatív intenzitás – 40–59% pulzustartalék"], "108–131 bpm"));
-pass("terhessegi-kalkulator", () => assert.match(run("terhessegi-kalkulator", { lmpDate: "2026-01-01", cycleLength: 28 })["Várható szülési dátum"], /2026.*10.*8/));
+pass("terhessegi-kalkulator", () => {
+  // Keep this known due-date example within the supported gestational window,
+  // independently of the day CI runs. Restore the clock for other calculators.
+  sandbox.Date = class extends Date {
+    constructor(...args) {
+      super(...(args.length ? args : ["2026-06-01T12:00:00Z"]));
+    }
+    static now() { return Date.parse("2026-06-01T12:00:00Z"); }
+  };
+  try {
+    assert.match(run("terhessegi-kalkulator", { lmpDate: "2026-01-01", cycleLength: 28 })["Várható szülési dátum"], /2026.*10.*8/);
+  } finally {
+    sandbox.Date = Date;
+  }
+});
 pass("idealis-testsuly-kalkulator", () => approx(huNumber(run("idealis-testsuly-kalkulator", { height: 177.4, gender: 2 })["Történeti Devine-becslés"]), 72.6, 0.05));
 pass("testzsir-kalkulator", () => {
   const value = huNumber(run("testzsir-kalkulator", { gender: 2, waist: 90, neck: 40, hip: 0, height: 180 })["Becsült testzsír"]);

@@ -6,6 +6,7 @@ const { toExtensionlessHref } = require("./url-paths");
 const { adsenseProbeSource, tcfCheckpointFailures } = require("./browser-qa-consent");
 const { loadAdsensePolicy } = require("./adsense-policy");
 const { checkVatPercentLocales } = require("./vat-percent-locale-browser-checks");
+const { checkEverydayLocales } = require("./everyday-locale-browser-checks");
 const { checkRetailLocales } = require("./retail-locale-browser-checks");
 const { checkSharedLocales } = require("./shared-ui-locale-browser-checks");
 
@@ -800,6 +801,7 @@ const run = async () => {
   console.log("Browser QA: homepage advertising layout passed at 390–2560px, hidden and visible rails");
   await checkSharedLocales({ navigate, evaluate, setViewport });
   await checkRetailLocales({ navigate, evaluate, setViewport });
+  await checkEverydayLocales({ navigate, evaluate, setViewport });
   await checkVatPercentLocales({ navigate, evaluate, setViewport });
 
   await setViewport(390, 844);
