@@ -86,6 +86,9 @@
 })(typeof window === "undefined" ? null : window, function () {
   "use strict";
   const shared = Object.freeze({
+    "pl. 10 (%)": ["e.g. 10 (%)", "z. B. 10 (%)"],
+    "pl. 200": ["e.g. 200", "z. B. 200"],
+    "pl. 50": ["e.g. 50", "z. B. 50"],
     "Eredmény:": ["Result:", "Ergebnis:"],
     "Konkrét példaszámítás": ["Worked example", "Rechenbeispiel"],
     "Konkrét példák": ["Worked examples", "Rechenbeispiele"],
