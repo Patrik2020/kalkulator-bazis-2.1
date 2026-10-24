@@ -4,7 +4,7 @@ Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőr
 
 Aktív kalkulátor: **89**; részletes fordításon átesett: **8**; hátralévő: **81**.
 
-Kivezetett kalkulátor: **13**; egyéb oldal: **46**.
+Kivezetett kalkulátor: **13**; egyéb oldal: **49**.
 
 A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Nem jelent teljes SEO-fordítást vagy minden lehetséges interakció lefedését. A `partial` részleges fordítást, a `content-review` további tartalmi felmérést és fordítást jelent. A kivezetett oldalakhoz előbb tartalmi döntés szükséges.
 
@@ -14,6 +14,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | adatvedelem.html | other | content-review |
 | aktualis.html | other | content-review |
 | aktualis/allampapir-kamatok-2026-szeptember.html | other | content-review |
+| aktualis/csaladi-potlek-2027-duplazas-tervezete.html | other | content-review |
 | aktualis/dizeltamogatas-2026.html | other | content-review |
 | aktualis/ksh-inflacio-2026-augusztus.html | other | content-review |
 | aktualis/ksh-inflacio-2026-szeptember.html | other | content-review |
@@ -22,10 +23,12 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | aktualis/ksh-keresetek-eloszlasa-2026-i-felev.html | other | content-review |
 | aktualis/ksh-uzemanyagarak-2026-augusztus.html | other | content-review |
 | aktualis/ksh-uzemanyagarak-2026-szeptember.html | other | content-review |
+| aktualis/mnb-alapkamat-2026-oktober.html | other | content-review |
 | aktualis/mnb-alapkamat-inflacios-cel-2026-szeptember.html | other | content-review |
 | aktualis/nav-unios-kezelesi-dij-2026-november.html | other | content-review |
 | aktualis/nav-uzemanyag-elszamolasi-arak-2026-oktober.html | other | content-review |
 | aktualis/nav-uzemanyag-elszamolasi-arak-2026-szeptember.html | other | content-review |
+| aktualis/szja-2027-bejelentett-adocsokkentes.html | other | content-review |
 | atlathatosag-es-minoseg.html | other | content-review |
 | atvaltok.html | other | content-review |
 | auto.html | other | content-review |
