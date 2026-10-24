@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-23",
+  "generatedAt": "2026-10-24",
   "pages": {
     "": {
       "hash": "69e32989731a9ce641c258daf36a0a9454c6c3461c7d95d0302a2b4c86be9dbf",
@@ -91,12 +91,16 @@
       "lastmod": "2026-08-21"
     },
     "aktualis.html": {
-      "hash": "df3674f818bb481ca6a5a2b24359a3c2a60168faa2fea21b3e9dbaf0cd7e2322",
-      "lastmod": "2026-10-19"
+      "hash": "55d8565c2997abb7c0d271af9787018c04d1c14099d5577f1b62792b2fae6d78",
+      "lastmod": "2026-10-24"
     },
     "aktualis/allampapir-kamatok-2026-szeptember.html": {
       "hash": "7796f4dd3dc33afc0b1ae17f4f9a31431e9103099f0ccefa2f01fa1da48f7d09",
       "lastmod": "2026-09-26"
+    },
+    "aktualis/csaladi-potlek-2027-duplazas-tervezete.html": {
+      "hash": "abec3b8e5f724b1b8af4fff4cdf44f93b938a9ce290162f5c421dd323ee3a7ec",
+      "lastmod": "2026-10-24"
     },
     "aktualis/dizeltamogatas-2026.html": {
       "hash": "8daefc866cfe7209c37bdb9f99f719f5538e83bbfb0ad6986685511552a8d771",
@@ -130,6 +134,10 @@
       "hash": "632649d4649fdf8baef5ee21233e72292dd808bdf75371414d35716e3c0ccafc",
       "lastmod": "2026-10-13"
     },
+    "aktualis/mnb-alapkamat-2026-oktober.html": {
+      "hash": "6ef7b10ca0487726d1cbbd6ec1ef10862e35f2b4cfd5a84a8e8cbc3ff790030d",
+      "lastmod": "2026-10-24"
+    },
     "aktualis/mnb-alapkamat-inflacios-cel-2026-szeptember.html": {
       "hash": "7c8d23a063bdf40b205050817c75ee306bb7343016f0d9b9763c7d951257955d",
       "lastmod": "2026-09-23"
@@ -145,6 +153,10 @@
     "aktualis/nav-uzemanyag-elszamolasi-arak-2026-szeptember.html": {
       "hash": "cbdd095033b0a2cc62c873d14e780b2f716dbd31abcce75ac93ed64b38e6ce48",
       "lastmod": "2026-09-11"
+    },
+    "aktualis/szja-2027-bejelentett-adocsokkentes.html": {
+      "hash": "9cde998d905de4bb9acffde2c64945ba24df9106dff31536b632cc9bc07dcfa6",
+      "lastmod": "2026-10-24"
     },
     "landing-pages/elethelyzetek/lakasvasarlas.html": {
       "hash": "ba094e67c85a7facdbcb72fb28c2177441bb6eb080c6b6c8034d4b302b197160",
