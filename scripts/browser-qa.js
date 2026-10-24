@@ -9,6 +9,7 @@ const { checkVatPercentLocales } = require("./vat-percent-locale-browser-checks"
 const { checkEverydayLocales } = require("./everyday-locale-browser-checks");
 const { checkRetailLocales } = require("./retail-locale-browser-checks");
 const { checkSharedLocales } = require("./shared-ui-locale-browser-checks");
+const { checkLocalizationCoverage } = require("./localization-coverage-browser-checks");
 
 const adsensePolicy = loadAdsensePolicy(path.resolve(__dirname, ".."));
 
@@ -803,6 +804,7 @@ const run = async () => {
   await checkRetailLocales({ navigate, evaluate, setViewport });
   await checkEverydayLocales({ navigate, evaluate, setViewport });
   await checkVatPercentLocales({ navigate, evaluate, setViewport });
+  await checkLocalizationCoverage({ navigate, evaluate, setViewport });
 
   await setViewport(390, 844);
   await navigate("/");

@@ -50,6 +50,11 @@ jobs:
       - name: Validate HU EN DE category hero and topic translations
         run: node --test scripts/category-locale.test.js
 
+      - name: Guard localization inventory, wiring and terminology
+        run: |
+          node --test scripts/localization-foundation.test.js
+          node scripts/localization-inventory.js --check
+
       - name: Verify salary form and dynamic output translations
         run: node --test scripts/netto-brutto-locale.test.js
 
