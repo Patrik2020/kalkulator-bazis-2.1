@@ -2,7 +2,7 @@
 
 Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőrzi, hogy naprakész-e.
 
-Aktív kalkulátor: **89**; részletes fordításon átesett: **11**; hátralévő: **78**.
+Aktív kalkulátor: **89**; részletes fordításon átesett: **14**; hátralévő: **75**.
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **49**.
 
@@ -61,13 +61,13 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/co2-kibocsatas-kalkulator.html | auto | content-review |
 | kalkulatorok/csempe-kalkulator.html | epitoipari | content-review |
 | kalkulatorok/csemperagaszto-kalkulator.html | epitoipari | content-review |
-| kalkulatorok/datum-hozzaadas-kivonas-kalkulator.html | mindennapi | content-review |
-| kalkulatorok/datum-kulonbseg-kalkulator.html | mindennapi | content-review |
+| kalkulatorok/datum-hozzaadas-kivonas-kalkulator.html | mindennapi | detail-reviewed |
+| kalkulatorok/datum-kulonbseg-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/derek-csipo-kalkulator.html | egeszseg | content-review |
 | kalkulatorok/deviza-atvalto-kalkulator.html | atvaltok | content-review |
 | kalkulatorok/egysegar-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/egyszeri-max-1rm-kalkulator.html | egeszseg | content-review |
-| kalkulatorok/eletkor-kalkulator.html | mindennapi | content-review |
+| kalkulatorok/eletkor-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/energia-atvalto-kalkulator.html | atvaltok | retired-review |
 | kalkulatorok/etf-kalkulator.html | penzugyi | content-review |
 | kalkulatorok/ev-toltesi-koltseg-kalkulator.html | auto | content-review |

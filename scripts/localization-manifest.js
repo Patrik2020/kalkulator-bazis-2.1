@@ -5,7 +5,9 @@
 const detailPages = [
   ...["ar-kedvezmeny-kalkulator", "egysegar-kalkulator", "atlag-kalkulator",
     "arany-kalkulator", "szazalekos-valtozas-kalkulator", "borravalo-kalkulator",
-    "arres-kalkulator", "haszonkulcs-kalkulator", "fedezeti-pont-kalkulator"].map(slug => ({
+    "arres-kalkulator", "haszonkulcs-kalkulator", "fedezeti-pont-kalkulator",
+    "datum-hozzaadas-kivonas-kalkulator", "eletkor-kalkulator",
+    "datum-kulonbseg-kalkulator"].map(slug => ({
     path: `kalkulatorok/${slug}.html`,
     module: "js/altalanos/everyday-locale.js", key: slug
   })),

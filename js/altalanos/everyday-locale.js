@@ -5,9 +5,9 @@
   if (typeof module === "object" && module.exports) module.exports = api;
   if (!root?.document || new URLSearchParams(root.location.search).has("__kb_static_export")) return;
   const document = root.document;
-  const main = document.querySelector("main[data-simple-calc], main[data-batch01-calc], main[data-batch04-calc], main[data-batch05-calc]");
+  const main = document.querySelector("main[data-simple-calc], main[data-batch01-calc], main[data-batch02-calc], main[data-batch04-calc], main[data-batch05-calc]");
   if (!main) return;
-  const page = main.dataset.simpleCalc || main.dataset.batch01Calc || main.dataset.batch04Calc || main.dataset.batch05Calc;
+  const page = main.dataset.simpleCalc || main.dataset.batch01Calc || main.dataset.batch02Calc || main.dataset.batch04Calc || main.dataset.batch05Calc;
   if (!api.pages.includes(page)) return;
 
   const record = new WeakMap();
@@ -1480,6 +1480,231 @@
       "Ein einfaches Break-even-Modell für ein einzelnes Produkt. Es ersetzt weder eine detaillierte Kostenrechnung noch Buchhaltung oder Unternehmensplanung."
     ]
   });
+  const dateAdd = Object.freeze({
+    "Dátum hozzáadás/kivonás": ["Date addition/subtraction", "Datum addieren/subtrahieren"],
+    "Dátum különbség kalkulátor": ["Date difference calculator", "Datumsdifferenz-Rechner"],
+    "Életkor kalkulátor": ["Age calculator", "Altersrechner"],
+    "Határidő számítás – dátum hozzáadás és kivonás": ["Deadline date calculator – add or subtract calendar days", "Fristberechnung – Kalendertage zu einem Datum addieren oder davon abziehen"],
+    "Adj hozzá vagy vonj ki naptári napokat egy dátumból, és számold ki gyorsan a cél dátumot.": ["Add or subtract calendar days from a date to quickly find the target date.", "Addiere oder subtrahiere Kalendertage und ermittle schnell das Zieldatum."],
+    "Kiinduló dátum": ["Starting date", "Ausgangsdatum"],
+    "Napok száma": ["Number of days", "Anzahl der Tage"],
+    "Művelet": ["Operation", "Vorgang"],
+    "Hozzáadás": ["Add", "Addieren"],
+    "Kivonás": ["Subtract", "Subtrahieren"],
+    "Fizetési határidő kalkulátor": ["Payment deadline calculator", "Zahlungsfrist-Rechner"],
+    "Fizetési határidő kalkulátort": ["payment deadline calculator", "Zahlungsfrist-Rechner"],
+    "Eredmény:": ["Result:", "Ergebnis:"],
+    "Eredmény dátuma:": ["Resulting date:", "Ergebnisdatum:"],
+    "A hét napja:": ["Day of the week:", "Wochentag:"],
+    "Mire jó a dátum hozzáadás/kivonás?": ["What is date addition/subtraction useful for?", "Wofür ist das Addieren oder Subtrahieren von Tagen nützlich?"],
+    "Az eszköz egy megadott naptári dátumhoz egész napokat ad hozzá, vagy napokat von ki belőle. Hasznos lehet tervezési határidők, próbaidők, utazások, garanciális időpontok vagy egyszerű naptári ellenőrzések során.": [
+      "This tool adds whole days to or subtracts them from a calendar date. It can help with planning deadlines, probation periods, trips, warranty dates or simple calendar checks.",
+      "Dieses Werkzeug addiert ganze Tage zu einem Kalenderdatum oder zieht sie davon ab. Es kann bei Planungsfristen, Probezeiten, Reisen, Garantieterminen oder einfachen Kalenderprüfungen helfen."
+    ],
+    "A számítás naptári napokkal dolgozik, tehát a hétvégéket és ünnepnapokat is beleszámítja. Nem munkanap-kalkulátor, és jogszabály szerinti határidő-számításnál külön szabályok vonatkozhatnak a kezdőnapra, a lejárati napra és a munkaszüneti napokra.": [
+      "The calculation uses calendar days, including weekends and public holidays. It does not count working days. Statutory deadlines may have separate rules for the start date, due date and non-working days.",
+      "Die Berechnung verwendet Kalendertage einschließlich Wochenenden und Feiertagen. Sie zählt keine Arbeitstage. Für gesetzliche Fristen können besondere Regeln zum Anfangs- und Endtag sowie zu arbeitsfreien Tagen gelten."
+    ],
+    "Hogyan számol?": ["How is it calculated?", "Wie wird gerechnet?"],
+    "A dátumot időzónától független naptári értékként kezeli, majd a megadott egész napszámot hozzáadja vagy kivonja. Így az óraátállítás nem okoz egy nappal elcsúszó eredményt.": [
+      "The date is treated as a calendar value independent of time zones, then the specified whole number of days is added or subtracted. This prevents daylight-saving time changes from shifting the result by a day.",
+      "Das Datum wird als zeitzonenunabhängiger Kalenderwert behandelt. Anschließend werden die angegebenen ganzen Tage addiert oder subtrahiert. So verschiebt die Zeitumstellung das Ergebnis nicht um einen Tag."
+    ],
+    "2026. augusztus 21-hez 30 napot hozzáadva 2026. szeptember 20. adódik. Ugyanebből a dátumból 30 napot kivonva 2026. július 22. lenne az eredmény.": [
+      "Adding 30 days to 21 August 2026 gives 20 September 2026. Subtracting 30 days from the same date gives 22 July 2026.",
+      "Werden zum 21. August 2026 30 Tage addiert, ergibt sich der 20. September 2026. Werden vom selben Datum 30 Tage abgezogen, ergibt sich der 22. Juli 2026."
+    ],
+    "Mikor használj másik kalkulátort?": ["When should you use another calculator?", "Wann solltest du einen anderen Rechner verwenden?"],
+    "Ha két dátum közötti eltérést keresel, a Dátum különbség kalkulátor közvetlenebb. Fizetési határidőnél használd a": [
+      "For the difference between two dates, use the date difference calculator. For a payment deadline, use the", "Für den Abstand zwischen zwei Daten ist der Datumsdifferenz-Rechner besser geeignet. Bei Zahlungsfristen verwende den"
+    ],
+    ", mert az naptári és munkanapos számítást is kínál; hivatalos határidőnél pedig mindig ellenőrizd az alkalmazandó jogi szabályt.": [
+      ", which supports both calendar-day and working-day calculations. Always check the applicable legal rule for an official deadline.",
+      ", der sowohl Kalender- als auch Arbeitstage berechnet. Prüfe bei einer amtlichen Frist stets die geltende Rechtsvorschrift."
+    ],
+    "A hétvégék beleszámítanak?": ["Are weekends included?", "Werden Wochenenden mitgezählt?"],
+    "Igen. A kalkulátor naptári napokkal dolgozik, ezért a szombat, vasárnap és ünnepnap is egy-egy nap.": ["Yes. It uses calendar days, so Saturdays, Sundays and public holidays each count as one day.", "Ja. Der Rechner verwendet Kalendertage; Samstage, Sonntage und Feiertage zählen jeweils als ein Tag."],
+    "Lehet negatív napszámot írni?": ["Can I enter a negative number of days?", "Kann ich eine negative Tageszahl eingeben?"],
+    "A félreértések elkerülésére pozitív egész napszámot kér, az irányt pedig a Hozzáadás/Kivonás választóval állíthatod be.": [
+      "To avoid confusion, enter a positive whole number of days and choose the direction with the Add/Subtract control.",
+      "Um Missverständnisse zu vermeiden, gib eine positive ganze Tageszahl ein und wähle die Richtung über die Auswahl Addieren/Subtrahieren."
+    ],
+    "Hivatalos határidőhöz használható?": ["Can I use it for an official deadline?", "Kann ich ihn für eine amtliche Frist verwenden?"],
+    "Tájékozódásra igen, de hivatalos határidőnél az adott szabályozás kezdő- és lejárati napra vonatkozó előírásait külön ellenőrizni kell.": [
+      "It can be used for guidance, but for an official deadline you must separately check the rules for its start and due dates.",
+      "Zur Orientierung ja. Bei einer amtlichen Frist musst du jedoch die geltenden Vorschriften zum Fristbeginn und Fristende gesondert prüfen."
+    ],
+    "A kalkulátor naptári napokat ad hozzá vagy von ki; munkanap-, ünnepnap- és jogi határidőszabályokat nem alkalmaz automatikusan.": [
+      "The calculator adds or subtracts calendar days; it does not automatically apply working-day, public-holiday or statutory deadline rules.",
+      "Der Rechner addiert oder subtrahiert Kalendertage. Regeln zu Arbeitstagen, Feiertagen oder gesetzlichen Fristen werden nicht automatisch berücksichtigt."
+    ],
+    "Napok száma: az érték nem lehet negatív.": ["Number of days: the value must not be negative.", "Anzahl der Tage: Der Wert darf nicht negativ sein."],
+    "A napok száma egész szám legyen.": ["The number of days must be a whole number.", "Die Anzahl der Tage muss eine ganze Zahl sein."]
+  });
+  const age = Object.freeze({
+    "Életkor kalkulátor": ["Age calculator", "Altersrechner"],
+    "Idő átváltó": ["Time converter", "Zeitumrechner"],
+    "Idő átváltó kalkulátor": ["Time converter", "Zeitumrechner"],
+    "Dátum különbség kalkulátor": ["Date difference calculator", "Datumsdifferenz-Rechner"],
+    "datum kulonbseg": ["Date difference", "Datumsdifferenz"],
+    "eletkor": ["Age", "Alter"],
+    "Számold ki az életkort években, hónapokban és napokban.": ["Calculate age in years, months and days.", "Berechne das Alter in Jahren, Monaten und Tagen."],
+    "Pontos életkor és következő születésnap": ["Exact age and next birthday", "Genaues Alter und nächster Geburtstag"],
+    "Évek, hónapok, napok mellett teljes napot, hetet, hónapot és a következő születésnapig hátralévő időt is mutat.": [
+      "Along with years, months and days, it shows total days, weeks and months, plus the time remaining until the next birthday.",
+      "Neben Jahren, Monaten und Tagen zeigt der Rechner die Gesamtzahl der Tage, Wochen und Monate sowie die verbleibende Zeit bis zum nächsten Geburtstag."
+    ],
+    "Születési dátum": ["Date of birth", "Geburtsdatum"],
+    "Számítás dátuma": ["As-of date", "Stichtag"],
+    "Pontos életkor": ["Exact age", "Genaues Alter"],
+    "Eltelt teljes nap": ["Full days elapsed", "Vergangene volle Tage"],
+    "Eltelt teljes hét": ["Full weeks elapsed", "Vergangene volle Wochen"],
+    "Közelítő teljes hónap": ["Approximate full months", "Ungefähre volle Monate"],
+    "Következő születésnap": ["Next birthday", "Nächster Geburtstag"],
+    "Hátralévő napok": ["Days remaining", "Verbleibende Tage"],
+    "Pontos életkor évben, hónapban és napban": ["Exact age in years, months and days", "Genaues Alter in Jahren, Monaten und Tagen"],
+    "Az életkor kalkulátor a megadott születési dátum és a mai nap között eltelt időt számolja ki. Az eredmény teljes években, hónapokban és napokban jelenik meg, emellett az összes eltelt napot is megmutatja.": [
+      "The age calculator measures the time between the entered date of birth and the selected date. It shows complete years, months and days, as well as the total number of elapsed days.",
+      "Der Altersrechner ermittelt die Zeit zwischen dem eingegebenen Geburtsdatum und dem gewählten Stichtag. Er zeigt volle Jahre, Monate und Tage sowie die Gesamtzahl der vergangenen Tage."
+    ],
+    "Ez pontosabb, mint egyszerűen kivonni a születési évet az aktuális évből, mert figyelembe veszi, hogy az idei születésnap már elmúlt-e.": [
+      "This is more accurate than simply subtracting the birth year from the current year because it checks whether the birthday has already occurred this year.",
+      "Das ist genauer, als einfach das Geburtsjahr vom aktuellen Jahr abzuziehen, denn es wird berücksichtigt, ob der Geburtstag in diesem Jahr bereits war."
+    ],
+    "Hogyan működik?": ["How does it work?", "Wie funktioniert es?"],
+    "A program először a teljes éveket, majd a fennmaradó hónapokat és napokat számolja. Az összes nap a két dátum közötti naptári különbségből készül. Szökőévek miatt az eltelt napok száma nem egyszerűen életkor × 365.": [
+      "The calculator first counts complete years, then the remaining months and days. Total days come from the calendar difference between the dates. Because of leap years, elapsed days are not simply age × 365.",
+      "Der Rechner zählt zuerst die vollen Jahre und anschließend die verbleibenden Monate und Tage. Die Gesamtzahl der Tage ergibt sich aus dem Kalenderabstand zwischen den Daten. Wegen der Schaltjahre entspricht die Anzahl nicht einfach Alter × 365."
+    ],
+    "Ha valaki 2000. január 15-én született, a pontos életkora mindig az aktuális dátumtól függ. Január 14-én még eggyel kevesebb teljes évet töltött be, mint január 15-én.": [
+      "For someone born on 15 January 2000, exact age depends on the selected date. On 14 January, they have completed one fewer year than on 15 January.",
+      "Bei einer Geburt am 15. Januar 2000 hängt das genaue Alter vom gewählten Stichtag ab. Am 14. Januar ist ein weiteres Lebensjahr noch nicht vollendet, am 15. Januar schon."
+    ],
+    "Mire használható?": ["What is it useful for?", "Wofür ist der Rechner geeignet?"],
+    "Születésnapig hátralévő idő ellenőrzéséhez, életkori jogosultságok előzetes áttekintéséhez vagy egyszerű kíváncsiságból. Hivatalos ügyben mindig az adott jogszabály vagy intézmény életkorszámítási szabálya az irányadó.": [
+      "Use it to check the time until a birthday, get an initial view of age-based eligibility or satisfy your curiosity. For official matters, the applicable law or institution's age-counting rules always apply.",
+      "Der Rechner eignet sich, um die Zeit bis zum Geburtstag zu prüfen, altersabhängige Voraussetzungen grob einzuschätzen oder aus Neugier. In amtlichen Angelegenheiten gelten stets die Altersberechnungsregeln des jeweiligen Gesetzes oder der Institution."
+    ],
+    "Gyakori hibák": ["Common mistakes", "Häufige Fehler"],
+    "Jövőbeli dátumot adnak meg.": ["Entering a future date.", "Ein zukünftiges Datum eingeben."],
+    "Elírják a hónapot vagy a napot.": ["Mistyping the month or day.", "Monat oder Tag falsch eingeben."],
+    "Az összes napot 365-tel osztva várnak pontos éveket.": ["Expecting exact years by dividing total days by 365.", "Ein genaues Alter in Jahren erwarten, indem die Tage durch 365 geteilt werden."],
+    "Hivatalos korhatárnál figyelmen kívül hagyják a pontos határnapot.": ["Overlooking the exact cutoff date for an official age limit.", "Den genauen Stichtag einer amtlichen Altersgrenze übersehen."],
+    "Szökőnapon születetteknél működik?": ["Does it work for people born on leap day?", "Funktioniert der Rechner bei Geburt am Schalttag?"],
+    "Igen, a naptári dátumkezelés figyelembe veszi a szökőéveket.": ["Yes. Calendar date handling accounts for leap years.", "Ja. Die Kalenderberechnung berücksichtigt Schaltjahre."],
+    "Miért nem egyforma minden év napjainak száma?": ["Why do years have different numbers of days?", "Warum haben Jahre unterschiedlich viele Tage?"],
+    "A szökőévek 366 naposak.": ["Leap years have 366 days.", "Schaltjahre haben 366 Tage."],
+    "Hivatalos nyugdíjkorhatárhoz használható?": ["Can I use it to check the official retirement age?", "Kann ich damit das amtliche Rentenalter prüfen?"],
+    "Csak tájékoztatásra; hivatalos jogosultságnál a vonatkozó szabályt kell ellenőrizni.": ["For guidance only; check the applicable rules for official eligibility.", "Nur zur Orientierung. Für einen amtlichen Anspruch müssen die geltenden Regeln geprüft werden."],
+    "Megmutatja a következő születésnapot?": ["Does it show the next birthday?", "Zeigt der Rechner den nächsten Geburtstag?"],
+    "Jelenleg a pontos életkort és az eltelt napokat mutatja.": ["It currently shows exact age and elapsed days.", "Derzeit zeigt er das genaue Alter und die vergangenen Tage an."],
+    "Dátumkülönbség": ["Date difference", "Datumsdifferenz"],
+    "Terhességi kalkulátor": ["Pregnancy calculator", "Schwangerschaftsrechner"],
+    "Életkor – melyik pontosság kell?": ["Age – how precise does it need to be?", "Alter – welche Genauigkeit ist nötig?"],
+    "Más kérdés a „hány éves vagy?” és a „betöltötte-e már?”": ["“How old are you?” and “Have you reached that age yet?” are different questions.", "„Wie alt bist du?“ und „Ist das Alter schon erreicht?“ sind unterschiedliche Fragen."],
+    "Hétköznapi életkor": ["Age for everyday use", "Alter im Alltag"],
+    "Általában a betöltött teljes évek száma elég.": ["Usually, the number of completed years is enough.", "Meist reicht die Zahl der vollendeten Jahre."],
+    "Pontos időtartam": ["Exact duration", "Genaue Zeitspanne"],
+    "Évek–hónapok–napok bontásnál a hónapok eltérő hossza miatt naptári számítás kell.": ["A calendar-based calculation is needed for years, months and days because months have different lengths.", "Für die Aufteilung in Jahre, Monate und Tage ist wegen der unterschiedlichen Monatslängen eine Kalenderberechnung nötig."],
+    "Jogi vagy jogosultsági korhatár": ["Legal or eligibility age limit", "Gesetzliche Altersgrenze oder Anspruchsvoraussetzung"],
+    "Itt a konkrét szabály dönti el, melyik nap és milyen időpont számít; a kalkulátor önmagában nem jogi állásfoglalás.": [
+      "The specific rule determines which date and time count. The calculator alone is not a legal opinion.",
+      "Die konkrete Regel bestimmt, welcher Tag und Zeitpunkt maßgeblich sind. Der Rechner ist selbst keine Rechtsauskunft."
+    ],
+    "Február 29-i születésnap:": ["Birthday on 29 February:", "Geburtstag am 29. Februar:"],
+    "a naptári életkor matematikája és egy adott jogszabály szerinti korhatár-kezelés nem feltétlenül ugyanaz a kérdés.": [
+      "the calendar arithmetic for age and the treatment of an age limit under a specific law are not necessarily the same question.",
+      "Die kalendarische Altersberechnung und die Behandlung einer Altersgrenze nach einem bestimmten Gesetz sind nicht unbedingt dieselbe Frage."
+    ],
+    "Mit jelent a pontos életkor ebben a kalkulátorban?": ["What does exact age mean in this calculator?", "Was bedeutet genaues Alter in diesem Rechner?"],
+    "A megadott születési dátumtól a választott referencia-dátumig teljes éveket, majd teljes hónapokat és maradék napokat számol. Emellett külön mutatja az eltelt teljes napokat és heteket, valamint a következő születésnap dátumát és a hátralévő napokat; a teljes hónap érték csak közelítés.": [
+      "From the date of birth to the selected reference date, it counts complete years, then complete months and remaining days. It also shows elapsed days and weeks, the next birthday and days remaining; the total-month figure is an approximation.",
+      "Vom Geburtsdatum bis zum gewählten Stichtag zählt der Rechner volle Jahre, danach volle Monate und verbleibende Tage. Zusätzlich zeigt er vergangene Tage und Wochen, den nächsten Geburtstag und die verbleibenden Tage; die Gesamtmonate sind ein Näherungswert."
+    ],
+    "A születési dátum nem lehet későbbi.": ["The date of birth cannot be in the future.", "Das Geburtsdatum darf nicht in der Zukunft liegen."]
+  });
+  const dateDifference = Object.freeze({
+    "Dátum különbség kalkulátor": ["Date difference calculator", "Datumsdifferenz-Rechner"],
+    "Életkor kalkulátor": ["Age calculator", "Altersrechner"],
+    "Számold ki két dátum közötti napok számát egyszerűen.": ["Quickly calculate the number of days between two dates.", "Berechne schnell die Anzahl der Tage zwischen zwei Daten."],
+    "Dátumkülönbség-, munkanap- és dátumművelet-kalkulátor": ["Date difference, working-day and date arithmetic calculator", "Rechner für Datumsdifferenz, Arbeitstage und Datumsoperationen"],
+    "Két dátum között számol naptári napot, hétvégét és munkanapot, illetve napokat ad hozzá vagy von ki.": [
+      "Calculate calendar days, weekends and working days between two dates, or add and subtract days.",
+      "Berechnet Kalendertage, Wochenenden und Arbeitstage zwischen zwei Daten sowie das Addieren und Subtrahieren von Tagen."
+    ],
+    "Kezdő dátum": ["Start date", "Startdatum"],
+    "Záró dátum": ["End date", "Enddatum"],
+    "Hozzáadandó/levonandó nap": ["Days to add/subtract", "Zu addierende/abzuziehende Tage"],
+    "Dátumművelet típusa": ["Date operation type", "Art der Datumsoperation"],
+    "Naptári nap": ["Calendar day", "Kalendertag"],
+    "Munkanap": ["Working day", "Arbeitstag"],
+    "Számítás": ["Calculate", "Berechnen"],
+    "Két dátum között eltelt napok kiszámítása": ["Calculate the days between two dates", "Tage zwischen zwei Daten berechnen"],
+    "Különbség": ["Difference", "Differenz"],
+    "Intervallumba eső munkanap": ["Working days in range", "Arbeitstage im Zeitraum"],
+    "Hétvégi nap": ["Weekend days", "Wochenendtage"],
+    "Fix ünnepnap hétköznapon": ["Fixed public holidays on weekdays", "Feste Feiertage an Werktagen"],
+    "Dátumművelet eredménye": ["Date operation result", "Ergebnis der Datumsoperation"],
+    "A dátumkülönbség kalkulátor két kiválasztott naptári nap távolságát adja meg napokban. Az opcionális napi értékkel a napok száma megszorozható, így például napidíj, bérleti díj vagy késedelmi tétel egyszerű előzetes becslése készíthető.": [
+      "The date difference calculator gives the number of days between two selected calendar dates. An optional daily amount can be multiplied by the day count for a simple estimate of a per diem, rent or late charge.",
+      "Der Datumsdifferenz-Rechner gibt den Abstand zwischen zwei ausgewählten Kalenderdaten in Tagen an. Optional kann die Tagespauschale mit der Tageszahl multipliziert werden, etwa für eine einfache Schätzung von Tagegeld, Miete oder Verzugsgebühren."
+    ],
+    "A kalkulátor a két dátum abszolút különbségét számolja, ezért a sorrend nem számít. A kezdőnap és zárónap együttes, „mindkét nap beleszámít” típusú elszámolásnál a kapott értékhez adott esetben egy napot hozzá kell adni.": [
+      "The calculator returns the absolute difference, so the order of the dates does not matter. If a calculation includes both the start and end date, you may need to add one day.",
+      "Der Rechner gibt den absoluten Abstand an; die Reihenfolge der Daten ist daher unerheblich. Wenn sowohl Start- als auch Enddatum mitzählen, muss gegebenenfalls ein Tag addiert werden."
+    ],
+    "A számítás": ["The calculation", "Die Berechnung"],
+    "A program a dátumok közötti eltelt 24 órás naptári egységeket adja meg. A második eredmény:": [
+      "The calculator reports elapsed 24-hour calendar units between the dates. The second result is:",
+      "Der Rechner gibt die vergangenen 24-Stunden-Kalendertage zwischen den Daten an. Das zweite Ergebnis lautet:"
+    ],
+    "napkülönbség × napi érték": ["day difference × daily amount", "Tagesdifferenz × Tageswert"],
+    "Július 1. és július 11. között 10 nap különbség van. 8 000 Ft napi díj mellett a szorzott érték 80 000 Ft.": [
+      "There are 10 days between 1 July and 11 July. At a daily rate of HUF 8,000, the multiplied amount is HUF 80,000.",
+      "Zwischen dem 1. und 11. Juli liegen 10 Tage. Bei einem Tagessatz von 8.000 HUF ergibt sich ein multiplizierter Betrag von 80.000 HUF."
+    ],
+    "Üzleti és jogi határidők": ["Business and legal deadlines", "Geschäftliche und gesetzliche Fristen"],
+    "A naptári nap nem azonos a munkanappal. Ünnepnapok, hétvégék, teljesítési vagy kézbesítési szabályok miatt hivatalos határidőnél mindig a vonatkozó jogszabályt vagy szerződést kell követni.": [
+      "A calendar day is not the same as a working day. Public holidays, weekends and rules for performance or service can affect official deadlines, so follow the applicable law or contract.",
+      "Ein Kalendertag ist kein Arbeitstag. Feiertage, Wochenenden sowie Leistungs- oder Zustellungsregeln können amtliche Fristen beeinflussen. Maßgeblich sind daher das geltende Gesetz oder der Vertrag."
+    ],
+    "Naptári nap helyett munkanapot várnak.": ["Expecting working days instead of calendar days.", "Arbeitstage statt Kalendertage erwarten."],
+    "Mindkét szélső napot automatikusan beleszámítják.": ["Automatically including both boundary dates.", "Beide Grenzdaten automatisch mitzählen."],
+    "A napi értéket teljes összegként adják meg.": ["Entering a daily amount as the total amount.", "Einen Tageswert als Gesamtbetrag eingeben."],
+    "Időpontokat, órákat is pontosan szeretnének számolni, miközben a kalkulátor napokkal dolgozik.": ["Expecting exact times or hours from a calculator that works in days.", "Genaue Uhrzeiten oder Stunden erwarten, obwohl der Rechner mit Tagen arbeitet."],
+    "A kezdőnap beleszámít?": ["Is the start date included?", "Wird der Starttag mitgezählt?"],
+    "Az eredmény a dátumok különbsége. Ha mindkét napot elszámolod, gyakran egyet hozzá kell adni.": ["The result is the difference between the dates. If you count both dates, you often need to add one.", "Das Ergebnis ist der Abstand zwischen den Daten. Wenn beide Tage mitgezählt werden, muss oft ein Tag addiert werden."],
+    "Munkanapokat számol?": ["Does it count working days?", "Zählt der Rechner Arbeitstage?"],
+    "Nem, minden naptári napot figyelembe vesz.": ["No, it counts every calendar day.", "Nein, es werden alle Kalendertage berücksichtigt."],
+    "Lehet a záró dátum korábbi?": ["Can the end date be earlier?", "Kann das Enddatum früher liegen?"],
+    "Igen, a kalkulátor az abszolút különbséget mutatja.": ["Yes. The calculator shows the absolute difference.", "Ja. Der Rechner zeigt den absoluten Abstand an."],
+    "Késedelmi kamatot számol?": ["Does it calculate late interest?", "Berechnet der Rechner Verzugszinsen?"],
+    "Nem, csak egy napi értékkel szoroz; kamatszámításhoz külön képlet kell.": ["No. It only multiplies by a daily amount; interest requires a separate formula.", "Nein. Der Rechner multipliziert nur mit einem Tageswert; für Zinsen ist eine eigene Formel erforderlich."],
+    "Fizetési határidő": ["Payment deadline", "Zahlungsfrist"],
+    "Idő átváltó": ["Time converter", "Zeitumrechner"],
+    "Idő átváltó kalkulátor": ["Time converter", "Zeitumrechner"],
+    "Dátumtartomány – határnapok": ["Date range – boundary dates", "Datumsbereich – Grenzdaten"],
+    "Ugyanaz a két dátum többféle „napok száma” lehet": ["The same two dates can produce different day counts", "Dieselben zwei Daten können zu unterschiedlichen Tageszahlen führen"],
+    "Kezdőnap": ["Start date", "Starttag"],
+    "Zárónap": ["End date", "Endtag"],
+    "Mindkét határnap beleszámít": ["Include both boundary dates", "Beide Grenzdaten mitzählen"],
+    "Adj meg két dátumot.": ["Enter two dates.", "Gib zwei Daten ein."],
+    "Határidő, szabadság, szállás vagy jogi időszak esetén mindig ellenőrizd, hogy a szabály beleérti-e a kezdő- és zárónapot.": [
+      "For deadlines, leave, accommodation or legal periods, always check whether the rule includes the start and end dates.",
+      "Prüfe bei Fristen, Urlaub, Übernachtungen oder gesetzlichen Zeiträumen stets, ob Anfangs- und Enddatum mitzählen."
+    ],
+    "Mit számol a két dátum között?": ["What does it count between the dates?", "Was wird zwischen den Daten gezählt?"],
+    "A kalkulátor külön mutatja a naptári napkülönbséget, a hétvégi napokat és a munkanapokat, továbbá napokat tud hozzáadni vagy levonni egy dátumból. A munkanapos mód a beépített fix magyar ünnepnapokat kezeli; az évente változó munkanap-áthelyezéseket és minden speciális munkarendet külön ellenőrizni kell.": [
+      "The calculator separately shows the calendar-day difference, weekend days and working days, and can add or subtract days from a date. Working-day mode includes the built-in fixed Hungarian public holidays; annual working-day swaps and special work schedules must be checked separately.",
+      "Der Rechner zeigt die Differenz in Kalendertagen, Wochenenden und Arbeitstagen getrennt an und kann Tage zu einem Datum addieren oder davon abziehen. Der Arbeitstagsmodus berücksichtigt die fest eingebauten ungarischen Feiertage; jährliche Arbeitstagsverlegungen und besondere Arbeitszeitmodelle müssen gesondert geprüft werden."
+    ],
+    "A beírt értékek a böngésződben kerülnek feldolgozásra; a kalkulátor nem menti el őket saját szerverre.": [
+      "Your entries are processed in your browser; the calculator does not save them to its own server.",
+      "Deine Eingaben werden im Browser verarbeitet und nicht auf einem eigenen Server des Rechners gespeichert."
+    ],
+    "Utolsó módszertani ellenőrzés:": ["Last methodology review:", "Letzte methodische Prüfung:"],
+    "A születési dátum nem lehet későbbi.": ["The date of birth cannot be in the future.", "Das Geburtsdatum darf nicht in der Zukunft liegen."]
+  });
   const dictionaries = Object.freeze({
     "ar-kedvezmeny-kalkulator": discount,
     "egysegar-kalkulator": unit,
@@ -1489,10 +1714,46 @@
     "borravalo-kalkulator": Object.freeze({}),
     "arres-kalkulator": margin,
     "haszonkulcs-kalkulator": markup,
-    "fedezeti-pont-kalkulator": breakEven
+    "fedezeti-pont-kalkulator": breakEven,
+    "datum-hozzaadas-kivonas-kalkulator": dateAdd,
+    "eletkor-kalkulator": age,
+    "datum-kulonbseg-kalkulator": dateDifference
   });
   const pages = Object.freeze(Object.keys(dictionaries));
   const supported = Object.freeze(["hu", "en", "de"]);
+  const months = Object.freeze({
+    "január": 0, "február": 1, "március": 2, "április": 3, "május": 4, "június": 5,
+    "július": 6, "augusztus": 7, "szeptember": 8, "október": 9, "november": 10, "december": 11
+  });
+  const weekdays = Object.freeze(["hétfő", "kedd", "szerda", "csütörtök", "péntek", "szombat", "vasárnap"]);
+  function localizedDate(year, month, day, lang, options) {
+    const date = new Date(Date.UTC(year, month, day));
+    return new Intl.DateTimeFormat(lang === "en" ? "en-GB" : "de-DE", { timeZone: "UTC", ...options }).format(date);
+  }
+  function unitWord(amount, lang, unit) {
+    const singular = new Intl.PluralRules(lang).select(Number(amount.replace(/[\s,.]/gu, ""))) === "one";
+    const words = {
+      en: { day: ["day", "days"], week: ["week", "weeks"], month: ["month", "months"], year: ["year", "years"] },
+      de: { day: ["Tag", "Tage"], week: ["Woche", "Wochen"], month: ["Monat", "Monate"], year: ["Jahr", "Jahre"] }
+    };
+    return words[lang][unit][singular ? 0 : 1];
+  }
+  function translateDateValue(value, lang) {
+    const longDate = /^(\d{4})\.\s*([\p{L}]+)\s+(\d{1,2})\.?$/u.exec(value);
+    if (longDate && Object.prototype.hasOwnProperty.call(months, longDate[2].toLocaleLowerCase("hu-HU"))) {
+      return localizedDate(Number(longDate[1]), months[longDate[2].toLocaleLowerCase("hu-HU")], Number(longDate[3]), lang,
+        { day: "numeric", month: "long", year: "numeric" });
+    }
+    const numericDate = /^(\d{4})\.\s*(\d{1,2})\.\s*(\d{1,2})\.?$/u.exec(value);
+    if (numericDate) return localizedDate(Number(numericDate[1]), Number(numericDate[2]) - 1, Number(numericDate[3]), lang,
+      { day: "2-digit", month: "2-digit", year: "numeric" });
+    const weekdayIndex = weekdays.indexOf(value.toLocaleLowerCase("hu-HU"));
+    if (weekdayIndex >= 0) {
+      const date = new Date(Date.UTC(2024, 0, 1 + weekdayIndex));
+      return new Intl.DateTimeFormat(lang === "en" ? "en-GB" : "de-DE", { weekday: "long", timeZone: "UTC" }).format(date);
+    }
+    return null;
+  }
   function translate(page, value, lang) {
     if (!["en", "de"].includes(lang) || !dictionaries[page]) return null;
     const index = lang === "en" ? 0 : 1;
@@ -1501,6 +1762,23 @@
     if (Object.prototype.hasOwnProperty.call(shared, value)) return shared[value][index];
     const normalized = value.replace(/\s+/gu, " ").trim();
     if (Object.prototype.hasOwnProperty.call(content, normalized)) return content[normalized][index];
+    if (["datum-hozzaadas-kivonas-kalkulator", "eletkor-kalkulator", "datum-kulonbseg-kalkulator"].includes(page)) {
+      const date = translateDateValue(normalized, lang);
+      if (date) return date;
+      let match = /^(\d[\d\s.,]*)\s+nap$/u.exec(normalized);
+      if (match) return `${match[1]} ${unitWord(match[1], lang, "day")}`;
+      match = /^(\d[\d\s.,]*)\s+hét$/u.exec(normalized);
+      if (match) return `${match[1]} ${unitWord(match[1], lang, "week")}`;
+      match = /^(\d[\d\s.,]*)\s+hónap$/u.exec(normalized);
+      if (match) return `${match[1]} ${unitWord(match[1], lang, "month")}`;
+      match = /^(\d+)\s+év\s+(\d+)\s+hónap\s+(\d+)\s+nap$/u.exec(normalized);
+      if (match) return `${match[1]} ${unitWord(match[1], lang, "year")} ${match[2]} ${unitWord(match[2], lang, "month")} ${match[3]} ${unitWord(match[3], lang, "day")}`;
+      match = /^(\d+) nap a választott számítás szerint\.$/u.exec(normalized);
+      if (match) return lang === "en" ? `${match[1]} ${unitWord(match[1], lang, "day")} using the selected counting method.` : `${match[1]} ${unitWord(match[1], lang, "day")} nach der gewählten Zählweise.`;
+      match = /^A záródátum korábbi a kezdőnapnál \((\d+) nap eltérés\)\.$/u.exec(normalized);
+      if (match) return lang === "en" ? `The end date is earlier than the start date (difference: ${match[1]} ${unitWord(match[1], lang, "day")}).` : `Das Enddatum liegt vor dem Startdatum (Abstand: ${match[1]} ${unitWord(match[1], lang, "day")}).`;
+      if (normalized === "Adj meg érvényes dátumot.") return lang === "en" ? "Enter a valid date." : "Gib ein gültiges Datum ein.";
+    }
     if (page === "fedezeti-pont-kalkulator") {
       const quantity = /^(\d[\d\s.,]*)\s+db$/u.exec(normalized);
       if (quantity) return quantity[1] + (lang === "en" ? " units" : " Stück");
