@@ -163,7 +163,7 @@ async function checkEverydayLocales({ navigate, evaluate, setViewport }) {
       await choose(language);
       const translated = await result("#otResult");
       assert.ok(translated.includes(rate), translated);
-      assert.ok(translated.includes(language === "en" ? "4 500 Ft/hour" : "4 500 Ft/Stunde"), translated);
+      assert.ok(translated.includes(language === "en" ? "4500 Ft/hour" : "4500 Ft/Stunde"), translated);
       assert.ok(translated.includes("36 000 Ft"), translated);
       assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `overtime: overflow at ${width}`);
     }

@@ -15,5 +15,7 @@ test("working-hours, working-days and overtime copy and dynamic units are transl
   assert.equal(api.translate("tulora-kalkulator", "Túlóra óradíja:", "en"), "Overtime hourly rate:");
   assert.equal(api.translate("tulora-kalkulator", "4 500 Ft/óra", "en"), "4 500 Ft/hour");
   assert.equal(api.translate("tulora-kalkulator", "4 500 Ft/óra", "de"), "4 500 Ft/Stunde");
+  assert.equal(api.translate("tulora-kalkulator", "4500 Ft/óra", "en"), "4500 Ft/hour");
+  assert.equal(api.translate("tulora-kalkulator", "4500 Ft/óra", "de"), "4500 Ft/Stunde");
   assert.equal(api.translate("tulora-kalkulator", "Elszámolási szorzó: az érték legyen nagyobb nullánál.", "de"), "Der Abrechnungsfaktor muss größer als null sein.");
 });
