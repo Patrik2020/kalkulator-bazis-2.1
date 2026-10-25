@@ -37,7 +37,7 @@ async function checkMonthlyBudgetLocale({ navigate, evaluate, setViewport }) {
       await new Promise(requestAnimationFrame);
     })()`);
     assert.match(await read(".budget-reserve-lab"), /50\s*000 Ft/u);
-    assert.match(await read(".priority-results"), /900/u);
+    assert.match(await read(".priority-results"), /320\s*000/u);
     const inputs = await evaluate("[...document.querySelectorAll('main input')].map(input => input.value)");
     for (const [language, total, label] of [["en", "Total expenses including savings", "Monthly remainder"], ["de", "Gesamtausgaben einschließlich Ersparnis", "Monatlicher Überschuss"]]) {
       await choose(language);
