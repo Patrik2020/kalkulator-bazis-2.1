@@ -15,6 +15,7 @@ const { checkInvoiceDateLocales } = require("./invoice-date-locale-browser-check
 const { checkWealthGrowthLocales } = require("./wealth-growth-locale-browser-checks");
 const { checkInvestmentInflationLocales } = require("./investment-inflation-locale-browser-checks");
 const { checkCreditLocales } = require("./credit-locale-browser-checks");
+const { checkMortgageToolLocales } = require("./mortgage-tools-locale-browser-checks");
 
 const adsensePolicy = loadAdsensePolicy(path.resolve(__dirname, ".."));
 
@@ -815,6 +816,7 @@ const run = async () => {
   await checkWealthGrowthLocales({ navigate, evaluate, setViewport });
   await checkInvestmentInflationLocales({ navigate, evaluate, setViewport });
   await checkCreditLocales({ navigate, evaluate, setViewport });
+  await checkMortgageToolLocales({ navigate, evaluate, setViewport });
 
   await setViewport(390, 844);
   await navigate("/");
