@@ -88,6 +88,9 @@ jobs:
       - name: Check EN DE compound interest and millionaire goal translations
         run: node --test scripts/wealth-growth-locale.test.js
 
+      - name: Check EN DE ETF and inflation translations
+        run: node --test scripts/investment-inflation-locale.test.js
+
       - name: Verify localized VAT and percentage calculations without changing values
         run: node --test scripts/vat-percent-locale.test.js
 

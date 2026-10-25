@@ -2,7 +2,7 @@
 
 Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőrzi, hogy naprakész-e.
 
-Aktív kalkulátor: **89**; részletes fordításon átesett: **29**; hátralévő: **60**.
+Aktív kalkulátor: **89**; részletes fordításon átesett: **31**; hátralévő: **58**.
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **49**.
 
@@ -69,7 +69,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/egyszeri-max-1rm-kalkulator.html | egeszseg | content-review |
 | kalkulatorok/eletkor-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/energia-atvalto-kalkulator.html | atvaltok | retired-review |
-| kalkulatorok/etf-kalkulator.html | penzugyi | content-review |
+| kalkulatorok/etf-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/ev-toltesi-koltseg-kalkulator.html | auto | content-review |
 | kalkulatorok/eves-auto-koltseg-kalkulator.html | auto | content-review |
 | kalkulatorok/fedezeti-pont-kalkulator.html | mindennapi | detail-reviewed |
@@ -93,7 +93,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/hoszigeteles-kalkulator.html | epitoipari | content-review |
 | kalkulatorok/idealis-testsuly-kalkulator.html | egeszseg | content-review |
 | kalkulatorok/ido-atvalto-kalkulator.html | atvaltok | retired-review |
-| kalkulatorok/inflacio-kalkulator.html | penzugyi | content-review |
+| kalkulatorok/inflacio-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/kaloria-kalkulator.html | egeszseg | content-review |
 | kalkulatorok/kamatos-kamat-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/kerites-oszlop-kalkulator.html | epitoipari | content-review |
