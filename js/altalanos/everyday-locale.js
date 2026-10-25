@@ -5,9 +5,9 @@
   if (typeof module === "object" && module.exports) module.exports = api;
   if (!root?.document || new URLSearchParams(root.location.search).has("__kb_static_export")) return;
   const document = root.document;
-  const main = document.querySelector("main[data-simple-calc], main[data-batch01-calc], main[data-batch02-calc], main[data-batch04-calc], main[data-batch05-calc]");
+  const main = document.querySelector("main[data-simple-calc], main[data-batch01-calc], main[data-batch02-calc], main[data-batch03-calc], main[data-batch04-calc], main[data-batch05-calc]");
   if (!main) return;
-  const page = main.dataset.simpleCalc || main.dataset.batch01Calc || main.dataset.batch02Calc || main.dataset.batch04Calc || main.dataset.batch05Calc;
+  const page = main.dataset.simpleCalc || main.dataset.batch01Calc || main.dataset.batch02Calc || main.dataset.batch03Calc || main.dataset.batch04Calc || main.dataset.batch05Calc;
   if (!api.pages.includes(page)) return;
 
   const record = new WeakMap();
@@ -2061,6 +2061,64 @@
     "Adj meg legalább egy hozzávalót.": ["Enter at least one ingredient.", "Gib mindestens eine Zutat ein."],
     "A(z) 1. sor formátuma hibás.": ["Line 1 has an invalid format.", "Zeile 1 hat ein ungültiges Format."]
   });
+  const electricityCost = Object.freeze({
+    "Villanyfogyasztás költség kalkulátor": ["Electricity consumption cost calculator", "Rechner für Stromverbrauchskosten"],
+    "Villanyfogyasztás költség": ["Electricity consumption cost", "Stromverbrauchskosten"],
+    "Becsüld meg egy elektromos készülék energiafogyasztását és költségét teljesítmény, napi használati idő, időszak és kWh-ár alapján.": ["Estimate an appliance's energy use and cost from its power, daily usage, period and price per kWh.", "Schätze Stromverbrauch und Kosten eines Geräts anhand von Leistung, täglicher Nutzungsdauer, Zeitraum und Preis pro kWh."],
+    "Készülék teljesítménye (W)": ["Appliance power (W)", "Geräteleistung (W)"], "Használat naponta (óra)": ["Daily use (hours)", "Tägliche Nutzung (Stunden)"],
+    "Időszak (nap)": ["Period (days)", "Zeitraum (Tage)"], "Villamosenergia ára (Ft/kWh)": ["Electricity price (HUF/kWh)", "Strompreis (HUF/kWh)"],
+    "Napi fogyasztás": ["Daily consumption", "Täglicher Verbrauch"], "Napi fogyasztás:": ["Daily consumption:", "Täglicher Verbrauch:"],
+    "Időszak fogyasztása": ["Consumption for period", "Verbrauch im Zeitraum"], "Időszak fogyasztása:": ["Consumption for period:", "Verbrauch im Zeitraum:"],
+    "Napi becsült költség": ["Estimated daily cost", "Geschätzte Tageskosten"], "Napi becsült költség:": ["Estimated daily cost:", "Geschätzte Tageskosten:"],
+    "Időszak becsült költsége": ["Estimated cost for period", "Geschätzte Kosten im Zeitraum"], "Időszak becsült költsége:": ["Estimated cost for period:", "Geschätzte Kosten im Zeitraum:"],
+    "Hogyan számolható egy készülék villanyköltsége?": ["How can you estimate an appliance's electricity cost?", "Wie lassen sich die Stromkosten eines Geräts berechnen?"],
+    "A névleges teljesítményt wattból kilowattra kell átváltani, majd meg kell szorozni a használati idővel. Egy 1500 W-os készülék 2 órás működés mellett elméletileg 1,5 kW × 2 h = 3 kWh energiát használ naponta. A költséghez ezt kell megszorozni a tényleges Ft/kWh árral.": [
+      "Convert the rated power from watts to kilowatts, then multiply it by the usage time. A 1,500 W appliance running for 2 hours theoretically uses 1.5 kW × 2 h = 3 kWh per day. Multiply this by your actual price per kWh to estimate the cost.",
+      "Rechne die Nennleistung von Watt in Kilowatt um und multipliziere sie mit der Nutzungsdauer. Ein Gerät mit 1.500 W verbraucht bei zwei Stunden Betrieb theoretisch 1,5 kW × 2 h = 3 kWh pro Tag. Für die Kosten multiplizierst du diesen Wert mit deinem tatsächlichen Preis pro kWh."
+    ],
+    "A kalkulátor a napi fogyasztást, a teljes időszak fogyasztását, valamint a napi és összes becsült költséget is megmutatja.": ["The calculator shows daily consumption, total consumption for the period, and estimated daily and total costs.", "Der Rechner zeigt den Tagesverbrauch, den Gesamtverbrauch im Zeitraum sowie die geschätzten Tages- und Gesamtkosten."],
+    "Névleges teljesítmény és valós fogyasztás": ["Rated power and actual consumption", "Nennleistung und tatsächlicher Verbrauch"],
+    "Sok készülék nem folyamatosan működik a névleges teljesítményén. Termosztátos fűtőeszköz, hűtő, klíma vagy szabályozott motor esetén a tényleges átlagfogyasztás alacsonyabb vagy változó lehet. Pontosabb becsléshez konnektoros fogyasztásmérő vagy a készülék mért energiaadata használható.": [
+      "Many appliances do not run continuously at their rated power. For a thermostat-controlled heater, refrigerator, air conditioner or regulated motor, actual average consumption may be lower or vary. A plug-in energy meter or measured device data can provide a more accurate estimate.",
+      "Viele Geräte laufen nicht dauerhaft mit ihrer Nennleistung. Bei thermostatisch geregelten Heizgeräten, Kühlschränken, Klimaanlagen oder geregelten Motoren kann der tatsächliche Durchschnittsverbrauch niedriger sein oder schwanken. Ein Steckdosen-Energiekostenmessgerät oder gemessene Gerätedaten ermöglichen eine genauere Schätzung."
+    ],
+    "Példa": ["Example", "Beispiel"],
+    "1500 W teljesítmény, napi 2 óra használat és 30 nap esetén az elméleti fogyasztás 90 kWh. 70 Ft/kWh egységárral ez kb. 6300 Ft költséget jelent.": ["At 1,500 W, 2 hours of daily use and 30 days, theoretical consumption is 90 kWh. At HUF 70/kWh, that is an estimated cost of about HUF 6,300.", "Bei 1.500 W, zwei Stunden täglicher Nutzung und 30 Tagen beträgt der theoretische Verbrauch 90 kWh. Bei 70 HUF/kWh ergeben sich geschätzte Kosten von etwa 6.300 HUF."],
+    "Milyen árat adj meg?": ["Which price should I enter?", "Welchen Preis soll ich eingeben?"],
+    "A számládon vagy szolgáltatói tájékoztatóban szereplő, a saját fogyasztásodra érvényes egységárat használd. A kalkulátor nem ismeri automatikusan a tarifádat, kedvezményes sávodat, rendszerhasználati díjaidat vagy egyéb számlatételeidet.": ["Use the unit price shown on your bill or provider information that applies to your consumption. The calculator does not automatically know your tariff, discounted usage band, network fees or other bill items.", "Verwende den auf deiner Rechnung oder in den Anbieterinformationen genannten Preis, der für deinen Verbrauch gilt. Der Rechner kennt deinen Tarif, vergünstigte Verbrauchsstufen, Netzentgelte oder andere Rechnungspositionen nicht automatisch."],
+    "A 1500 W azt jelenti, hogy mindig ennyit fogyaszt?": ["Does 1,500 W mean it always uses that much?", "Bedeutet 1.500 W, dass das Gerät immer so viel verbraucht?"],
+    "Nem feltétlenül. Ez jellemzően névleges vagy maximális teljesítmény; szabályozott készülékek átlagos fogyasztása eltérhet.": ["Not necessarily. This is usually rated or maximum power; regulated appliances can have different average consumption.", "Nicht unbedingt. Dabei handelt es sich meist um Nenn- oder Höchstleistung; der Durchschnittsverbrauch geregelter Geräte kann abweichen."],
+    "A teljes villanyszámlát megkapom?": ["Will this give me my full electricity bill?", "Erhalte ich damit den Gesamtbetrag meiner Stromrechnung?"],
+    "Nem. Ez egy készülék energia-költség becslése, és nem tartalmaz minden fix vagy egyéb számlatételt.": ["No. It estimates the energy cost of one appliance and does not include every fixed or other bill item.", "Nein. Der Rechner schätzt die Energiekosten eines einzelnen Geräts und berücksichtigt nicht alle festen oder sonstigen Rechnungspositionen."],
+    "Több készüléket hogyan számoljak?": ["How do I calculate several appliances?", "Wie berechne ich mehrere Geräte?"],
+    "Számold ki őket külön, majd add össze az időszakra kapott kWh- és költségértékeket.": ["Calculate each one separately, then add the consumption and cost values for the period.", "Berechne jedes Gerät einzeln und addiere anschließend Verbrauch und Kosten für den Zeitraum."],
+    "rezsi megosztas": ["Shared household costs", "Nebenkostenaufteilung"], "teljesitmeny atvalto": ["Power converter", "Leistungsumrechner"], "energia atvalto": ["Energy converter", "Energieumrechner"],
+    "A számítás névleges teljesítményből és megadott használati időből készül. A tényleges fogyasztás szabályozott készülékeknél és valós használat mellett eltérhet.": ["The estimate uses rated power and the usage time you enter. Actual consumption can differ for regulated appliances and in real-world use.", "Die Schätzung basiert auf Nennleistung und eingegebener Nutzungsdauer. Bei geregelten Geräten und im tatsächlichen Betrieb kann der Verbrauch abweichen."]
+  });
+  const waterCost = Object.freeze({
+    "Vízfogyasztás költség kalkulátor": ["Water consumption cost calculator", "Rechner für Wasserkosten"],
+    "Vízfogyasztás költsége": ["Water consumption cost", "Wasserkosten"],
+    "Vízfogyasztás köbméterben és becsült költség számítása napi literből, időszakból és saját m³-árral.": ["Calculate water use in cubic metres and estimate costs from daily litres, a period and your own price per m³.", "Berechne den Wasserverbrauch in Kubikmetern und schätze die Kosten anhand täglicher Liter, eines Zeitraums und deines Preises pro m³."],
+    "Napi fogyasztás (liter)": ["Daily consumption (litres)", "Täglicher Verbrauch (Liter)"], "Időszak (nap)": ["Period (days)", "Zeitraum (Tage)"], "Saját díj (Ft/m³)": ["Your price (HUF/m³)", "Eigener Preis (HUF/m³)"], "Fix díj az időszakra (Ft)": ["Fixed charge for period (HUF)", "Feste Gebühr für den Zeitraum (HUF)"],
+    "Teljes fogyasztás": ["Total consumption", "Gesamtverbrauch"], "Teljes fogyasztás:": ["Total consumption:", "Gesamtverbrauch:"],
+    "Fogyasztás": ["Consumption", "Verbrauch"], "Fogyasztás:": ["Consumption:", "Verbrauch:"],
+    "Változó díj": ["Variable charge", "Verbrauchsabhängige Kosten"], "Változó díj:": ["Variable charge:", "Verbrauchsabhängige Kosten:"],
+    "Becsült összes költség": ["Estimated total cost", "Geschätzte Gesamtkosten"], "Becsült összes költség:": ["Estimated total cost:", "Geschätzte Gesamtkosten:"],
+    "Hogyan számolható a vízfogyasztás költsége?": ["How can water costs be calculated?", "Wie lassen sich Wasserkosten berechnen?"],
+    "A napi literfogyasztást megszorozzuk az időszak napjaival, majd ezerrel osztva köbméterre váltjuk. A változó költség a köbméter és az általad megadott Ft/m³ díj szorzata. Ha az adott számlázásban fix díj is van, azt külön mezőben hozzáadhatod.": ["Multiply daily litres by the number of days, then divide by 1,000 to convert to cubic metres. Variable cost is the cubic metres multiplied by your price per m³. If the bill includes a fixed charge, add it in the separate field.", "Multipliziere die täglichen Liter mit der Anzahl der Tage und teile anschließend durch 1.000, um in Kubikmeter umzurechnen. Die variablen Kosten ergeben sich aus Kubikmetern mal deinem Preis pro m³. Eine feste Gebühr kannst du im separaten Feld ergänzen."],
+    "Az egységár szándékosan kézzel megadható. A víz- és csatornadíj település, szolgáltató, felhasználási mód és díjstruktúra szerint eltérhet, ezért az aktuális számládról vagy szolgáltatói tájékoztatóból érdemes kiolvasni a saját összevont vagy releváns egységáradat.": ["The price is entered manually because water and sewer charges vary by location, provider, use and tariff structure. Check your current bill or provider information for the combined or relevant unit price.", "Der Preis wird bewusst manuell eingegeben, da Wasser- und Abwassergebühren je nach Ort, Anbieter, Nutzung und Tarifstruktur variieren. Den maßgeblichen Gesamt- oder Einzelpreis findest du auf deiner aktuellen Rechnung oder in den Anbieterinformationen."],
+    "Napi 300 liter 30 napon át 9 000 liter, azaz 9 m³. 800 Ft/m³ saját egységárral ez 7 200 Ft változó költséget jelent; fix díj nélkül az összes becslés is 7 200 Ft.": ["At 300 litres per day for 30 days, usage is 9,000 litres, or 9 m³. At your price of HUF 800/m³, the variable cost is HUF 7,200; without a fixed charge, the estimated total is also HUF 7,200.", "Bei 300 Litern täglich über 30 Tage beträgt der Verbrauch 9.000 Liter beziehungsweise 9 m³. Bei einem eigenen Preis von 800 HUF/m³ liegen die variablen Kosten bei 7.200 HUF; ohne feste Gebühr entspricht dies auch den geschätzten Gesamtkosten."],
+    "Mire jó a napi literes megközelítés?": ["What is the daily-litre method useful for?", "Wofür eignet sich die Berechnung anhand täglicher Liter?"],
+    "Használható háztartási becslésre, egy készülék vagy tevékenység hatásának modellezésére, illetve spórolási forgatókönyvek összehasonlítására. Ha már ismered a mérőóra szerinti köbméterfogyasztást, abból közvetlenebb számítás készíthető.": ["It can estimate household use, model the effect of an appliance or activity, and compare savings scenarios. If you already know cubic-metre usage from a meter, you can calculate more directly from that figure.", "Die Methode eignet sich für Haushaltsschätzungen, zur Modellierung des Einflusses eines Geräts oder einer Tätigkeit und zum Vergleich von Sparszenarien. Wenn du den Zählerverbrauch in Kubikmetern kennst, kannst du direkter damit rechnen."],
+    "A csatornadíj benne van?": ["Is the sewer charge included?", "Ist die Abwassergebühr enthalten?"],
+    "Csak akkor, ha a saját Ft/m³ mezőben olyan összeget adsz meg, amely ezt is tartalmazza, vagy a fix díjjal kiegészíted a modellt.": ["Only if your HUF/m³ price includes it, or you add it through the fixed-charge field.", "Nur wenn dein Preis pro m³ die Gebühr einschließt oder du sie über das Feld für feste Gebühren ergänzt."],
+    "Miért nincs beépített tarifa?": ["Why is there no built-in tariff?", "Warum gibt es keinen hinterlegten Tarif?"],
+    "A díjak szolgáltatónként és felhasználónként eltérhetnek és változhatnak, ezért az eszköz a saját aktuális egységároddal számol.": ["Charges vary and can change by provider and user, so the calculator uses your current unit price.", "Gebühren unterscheiden sich je nach Anbieter und Nutzer und können sich ändern. Deshalb rechnet das Tool mit deinem aktuellen Einheitspreis."],
+    "1000 liter tényleg 1 m³?": ["Are 1,000 litres really 1 m³?", "Entsprechen 1.000 Liter tatsächlich 1 m³?"],
+    "Igen. Egy köbméter térfogat 1000 liternek felel meg.": ["Yes. One cubic metre of volume equals 1,000 litres.", "Ja. Ein Kubikmeter entspricht 1.000 Litern."],
+    "rezsi megosztas": ["Shared household costs", "Nebenkostenaufteilung"], "villanyfogyasztas koltseg": ["Electricity consumption cost", "Stromverbrauchskosten"], "terfogat atvalto": ["Volume converter", "Volumenumrechner"],
+    "Költségbecslés saját egységárral. Az aktuális szolgáltatói díjszabás, alapdíj, csatornadíj és egyéb tételek eltérhetnek a modellben megadottaktól.": ["Cost estimate using your own unit price. Current provider rates, base charges, sewer fees and other items may differ from the values in the model.", "Kostenschätzung mit eigenem Einheitspreis. Aktuelle Anbietertarife, Grundgebühren, Abwassergebühren und weitere Posten können von den Modellwerten abweichen."]
+  });
   const dictionaries = Object.freeze({
     "ar-kedvezmeny-kalkulator": discount,
     "egysegar-kalkulator": unit,
@@ -2079,7 +2137,9 @@
     "tulora-kalkulator": overtime,
     "oraber-kalkulator": hourlyWage,
     "rezsi-megosztas-kalkulator": utilitySplit,
-    "recept-adag-kalkulator": recipe
+    "recept-adag-kalkulator": recipe,
+    "villanyfogyasztas-koltseg-kalkulator": electricityCost,
+    "vizfogyasztas-koltseg-kalkulator": waterCost
   });
   const pages = Object.freeze(Object.keys(dictionaries));
   const supported = Object.freeze(["hu", "en", "de"]);
@@ -2124,7 +2184,7 @@
     if (Object.prototype.hasOwnProperty.call(shared, value)) return shared[value][index];
     const normalized = value.replace(/\s+/gu, " ").trim();
     if (Object.prototype.hasOwnProperty.call(content, normalized)) return content[normalized][index];
-    if (["datum-hozzaadas-kivonas-kalkulator", "eletkor-kalkulator", "datum-kulonbseg-kalkulator", "munkaido-kalkulator", "munkanap-kalkulator", "tulora-kalkulator", "oraber-kalkulator"].includes(page)) {
+    if (["datum-hozzaadas-kivonas-kalkulator", "eletkor-kalkulator", "datum-kulonbseg-kalkulator", "munkaido-kalkulator", "munkanap-kalkulator", "tulora-kalkulator", "oraber-kalkulator", "villanyfogyasztas-koltseg-kalkulator", "vizfogyasztas-koltseg-kalkulator"].includes(page)) {
       const date = translateDateValue(normalized, lang);
       if (date) return date;
       let match = /^(\d[\d\s.,]*)\s+nap$/u.exec(normalized);
@@ -2154,6 +2214,19 @@
     if (page === "oraber-kalkulator") {
       const hourly = /^(\d[\d\s.,]*\s+Ft)\/óra$/u.exec(normalized);
       if (hourly) return `${hourly[1]}/${lang === "en" ? "hour" : "Stunde"}`;
+    }
+    if (page === "villanyfogyasztas-koltseg-kalkulator") {
+      const energy = /^(\d[\d\s.,]*)\s+kWh$/u.exec(normalized);
+      if (energy) return `${energy[1]} kWh`;
+    }
+    if (page === "vizfogyasztas-koltseg-kalkulator") {
+      let match = /^(\d[\d\s.,]*)\s+liter$/u.exec(normalized);
+      if (match) {
+        const singular = new Intl.PluralRules(lang).select(Number(match[1].replace(/[\s,.]/gu, ""))) === "one";
+        return `${match[1]} ${lang === "en" ? (singular ? "litre" : "litres") : "Liter"}`;
+      }
+      match = /^(\d[\d\s.,]*)\s+m³$/u.exec(normalized);
+      if (match) return `${match[1]} m³`;
     }
     if (page === "recept-adag-kalkulator") {
       let match = /^A\(z\) (\d+)\. sor formátuma hibás\.$/u.exec(normalized);

@@ -214,7 +214,41 @@ async function checkEverydayLocales({ navigate, evaluate, setViewport }) {
       assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `recipe: overflow at ${width}`);
       assert.deepEqual(await evaluate("[...document.querySelectorAll('#kalkulator input, #kalkulator textarea')].map(e => e.value)"), recipeInputs);
     }
+
+    await navigate("/kalkulatorok/villanyfogyasztas-koltseg-kalkulator");
+    await choose("hu");
+    await edit({ "#electricPower": "1500", "#electricHours": "2", "#electricDays": "30", "#electricPrice": "70" });
+    const electricityHu = await result("#electricResult");
+    assert.ok(electricityHu.includes("90 kWh"), electricityHu);
+    assert.ok(electricityHu.includes("6300 Ft"), electricityHu);
+    const electricityInputs = await evaluate("[...document.querySelectorAll('#kalkulator input')].map(e => e.value)");
+    for (const [language, label] of [["en", "Estimated cost for period:"], ["de", "Geschätzte Kosten im Zeitraum:"]]) {
+      await choose(language);
+      const translated = await result("#electricResult");
+      assert.ok(translated.includes(label), translated);
+      assert.ok(translated.includes("90 kWh"), translated);
+      assert.ok(translated.includes("6300 Ft"), translated);
+      assert.deepEqual(await evaluate("[...document.querySelectorAll('#kalkulator input')].map(e => e.value)"), electricityInputs);
+      assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `electricity cost: overflow at ${width}`);
+    }
+
+    await navigate("/kalkulatorok/vizfogyasztas-koltseg-kalkulator");
+    await choose("hu");
+    await edit({ "#waterDaily": "300", "#waterDays": "30", "#waterPrice": "800", "#waterFixed": "1000" });
+    const waterHu = await result("#waterResult");
+    assert.ok(waterHu.includes("9000 liter"), waterHu);
+    assert.ok(waterHu.includes("8200 Ft"), waterHu);
+    const waterInputs = await evaluate("[...document.querySelectorAll('#kalkulator input')].map(e => e.value)");
+    for (const [language, label, litres] of [["en", "Estimated total cost:", "9000 litres"], ["de", "Geschätzte Gesamtkosten:", "9000 Liter"]]) {
+      await choose(language);
+      const translated = await result("#waterResult");
+      assert.ok(translated.includes(label), translated);
+      assert.ok(translated.includes(litres), translated);
+      assert.ok(translated.includes("8200 Ft"), translated);
+      assert.deepEqual(await evaluate("[...document.querySelectorAll('#kalkulator input')].map(e => e.value)"), waterInputs);
+      assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `water cost: overflow at ${width}`);
+    }
   }
-  console.log("Everyday locales: ratio, percentage change, tip, margin, markup, break-even, date, age, working-hours, working-days, overtime, hourly wage, shared costs and recipe passed at both widths.");
+  console.log("Everyday locales: ratio, percentage change, tip, margin, markup, break-even, dates, age, working-hours, working-days, overtime, hourly wage, shared costs, recipe, electricity and water costs passed at both widths.");
 }
 module.exports = { checkEverydayLocales };
