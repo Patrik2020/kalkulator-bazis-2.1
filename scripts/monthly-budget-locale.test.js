@@ -23,5 +23,8 @@ test("budget outputs localize labels and currency while preserving amounts", () 
   assert.equal(api.translate(page, "270 000 Ft", "en"), "270 000 HUF");
   assert.equal(api.translate(page, "Lakhatás", "en"), "Housing");
   assert.equal(api.translate(page, "pl. 550 000", "de"), "z. B. 550.000");
+  assert.equal(api.translate(page, "Hirdetés", "en"), "Advertisement");
+  assert.equal(api.translate(page, "Partnerlink. Az aktuális díjakat és feltételeket a Wise oldalán ellenőrizd.", "de"), "Partnerlink. Prüfe die aktuellen Gebühren und Bedingungen auf der Wise-Website.");
+  assert.equal(api.translate(page, "Használd fel a havi maradványt tudatosan", "en"), "Put your monthly remainder to work");
   assert.equal(api.translate(page, "Részletesebb, ismeretlen szöveg", "en"), null);
 });

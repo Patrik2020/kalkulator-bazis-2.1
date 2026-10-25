@@ -48,6 +48,12 @@ async function checkMonthlyBudgetLocale({ navigate, evaluate, setViewport }) {
       const reservePanel = await read(".budget-reserve-lab");
       assert.ok(reservePanel.includes(language === "en" ? "occasional expenses" : "seltene Ausgaben"));
       assert.match(reservePanel, /50\s*000 HUF/u, reservePanel);
+      const nextStep = await read(".kb-next-step");
+      assert.ok(nextStep.includes(language === "en" ? "Put your monthly remainder to work" : "Nutze deinen monatlichen Überschuss bewusst"), nextStep);
+      const wise = await read("[data-render='calculator-wise-banner']");
+      assert.ok(wise.includes(language === "en" ? "Check Wise's current fees" : "Prüfe die aktuellen Gebühren"), wise);
+      const placeholders = await evaluate("[...document.querySelectorAll('main input[placeholder]')].map(input => input.placeholder)");
+      assert.ok(placeholders.some(value => value.includes(language === "en" ? "e.g." : "z. B.")), placeholders.join(" | "));
       assert.deepEqual(await evaluate("[...document.querySelectorAll('main input')].map(input => input.value)"), inputs);
       assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `monthly budget overflow at ${width}px (${language})`);
       const csv = await evaluate(`(async () => {

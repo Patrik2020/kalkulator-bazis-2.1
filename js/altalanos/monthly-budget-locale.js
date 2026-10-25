@@ -29,7 +29,7 @@
         textRecords.set(node, { source, rendered });
       }
       main.querySelectorAll("[aria-label],[placeholder],[title]").forEach((element) => {
-        if (element.closest(blocked)) return;
+        if (element.closest('script,style,textarea,pre,code,[contenteditable],[translate="no"]')) return;
         let records = attributeRecords.get(element);
         if (!records) { records = new Map(); attributeRecords.set(element, records); }
         for (const name of ["aria-label", "placeholder", "title"]) {
@@ -66,6 +66,21 @@
   "use strict";
   const dictionary = Object.freeze({
     "Havi költségvetés kalkulátor": ["Monthly budget calculator", "Monatsbudget-Rechner"],
+    "ETF kalkulátor": ["ETF calculator", "ETF-Rechner"], "Hitelképesség": ["Borrowing capacity", "Kreditfähigkeit"],
+    "Az eredmény után": ["After your result", "Nach deinem Ergebnis"],
+    "Használd fel a havi maradványt tudatosan": ["Put your monthly remainder to work", "Nutze deinen monatlichen Überschuss bewusst"],
+    "Ha marad szabad összeg, érdemes megnézni, milyen hosszú távú célt tud támogatni. Ha szűk a keret, a hitelteher ellenőrzése lehet fontosabb.": ["If money remains, see which long-term goal it could support. If your budget is tight, checking your debt burden may be more useful.", "Wenn Geld übrig bleibt, prüfe, welches langfristige Ziel du damit unterstützen kannst. Bei knappem Budget kann es wichtiger sein, die Kreditbelastung zu überprüfen."],
+    "Nézd meg, mit jelenthet hosszú távon a rendszeres megtakarítás.": ["See what regular savings could mean over the long term.", "Sieh dir an, was regelmäßiges Sparen langfristig bewirken kann."],
+    "Ellenőrizd, mekkora hitelteher férhet bele biztonságosabban.": ["Check what level of debt may fit more safely.", "Prüfe, welche Kreditbelastung sich sicherer tragen lässt."],
+    "Pénzügyi tervezéshez": ["For financial planning", "Für die Finanzplanung"],
+    "Külföldről kapsz fizetést vagy több pénznemben kezelnéd a pénzed?": ["Receive income from abroad or manage money in several currencies?", "Erhältst du Einkommen aus dem Ausland oder verwaltest du Geld in mehreren Währungen?"],
+    "Ellenőrizd a Wise aktuális díjait, feltételeit és elérhető funkcióit.": ["Check Wise's current fees, terms and available features.", "Prüfe die aktuellen Gebühren, Bedingungen und Funktionen von Wise."],
+    "Wise feltételek": ["Wise terms", "Wise-Bedingungen"], "Wise feltételek →": ["Wise terms →", "Wise-Bedingungen →"],
+    "Partnerlink. Az aktuális díjakat és feltételeket a Wise oldalán ellenőrizd.": ["Partner link. Check current fees and terms on the Wise website.", "Partnerlink. Prüfe die aktuellen Gebühren und Bedingungen auf der Wise-Website."],
+    "Hirdetés": ["Advertisement", "Anzeige"],
+    "Wise partnerajánlat megnyitása": ["Open Wise partner offer", "Wise-Partnerangebot öffnen"],
+    "Nemzetközi pénzügyekhez Wise": ["Wise for international finances", "Wise für internationale Finanzen"],
+    "Deviza, utalás és külföldi pénzkezelés egyszerűbben.": ["Manage currency exchange, transfers and money abroad more easily.", "Währungen, Überweisungen und Geld im Ausland einfacher verwalten."],
     "Tervezd meg a havi bevételeidet, kiadásaidat és megtakarítási arányodat.": ["Plan your monthly income, expenses and savings rate.", "Plane deine monatlichen Einnahmen, Ausgaben und Sparquote."],
     "Havi nettó bevétel (Ft)": ["Monthly net income (HUF)", "Monatliches Nettoeinkommen (HUF)"],
     "Lakhatás (Ft)": ["Housing (HUF)", "Wohnen (HUF)"], "Rezsi és előfizetések (Ft)": ["Utilities and subscriptions (HUF)", "Nebenkosten und Abonnements (HUF)"],
