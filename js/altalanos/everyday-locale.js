@@ -5,9 +5,9 @@
   if (typeof module === "object" && module.exports) module.exports = api;
   if (!root?.document || new URLSearchParams(root.location.search).has("__kb_static_export")) return;
   const document = root.document;
-  const main = document.querySelector("main[data-simple-calc], main[data-batch01-calc], main[data-batch02-calc], main[data-batch04-calc], main[data-batch05-calc]");
+  const main = document.querySelector("main[data-simple-calc], main[data-batch01-calc], main[data-batch02-calc], main[data-batch03-calc], main[data-batch04-calc], main[data-batch05-calc]");
   if (!main) return;
-  const page = main.dataset.simpleCalc || main.dataset.batch01Calc || main.dataset.batch02Calc || main.dataset.batch04Calc || main.dataset.batch05Calc;
+  const page = main.dataset.simpleCalc || main.dataset.batch01Calc || main.dataset.batch02Calc || main.dataset.batch03Calc || main.dataset.batch04Calc || main.dataset.batch05Calc;
   if (!api.pages.includes(page)) return;
 
   const record = new WeakMap();
