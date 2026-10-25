@@ -1705,6 +1705,171 @@
     "Utolsó módszertani ellenőrzés:": ["Last methodology review:", "Letzte methodische Prüfung:"],
     "A születési dátum nem lehet későbbi.": ["The date of birth cannot be in the future.", "Das Geburtsdatum darf nicht in der Zukunft liegen."]
   });
+  const workTime = Object.freeze({
+    "Munkaidő kalkulátor": ["Working hours calculator", "Arbeitszeitrechner"],
+    "Számold ki a heti és havi munkaórát napi óraszám alapján.": ["Calculate your weekly and monthly working hours from your daily hours.", "Berechne deine wöchentliche und monatliche Arbeitszeit anhand der täglichen Stunden."],
+    "Műszak- és munkaidő-kalkulátor": ["Shift and working hours calculator", "Schicht- und Arbeitszeitrechner"],
+    "Kezel éjfélen átnyúló műszakot, szünetet, heti ismétlődést és havi becslést.": ["Handles overnight shifts, breaks, weekly schedules and monthly estimates.", "Berücksichtigt Nachtschichten, Pausen, Wochenpläne und Monatsschätzungen."],
+    "Műszakkezdés": ["Shift start", "Schichtbeginn"], "Műszak vége": ["Shift end", "Schichtende"],
+    "Levonandó szünet (perc)": ["Break to deduct (minutes)", "Abzuziehende Pause (Minuten)"],
+    "Munkanap hetente": ["Working days per week", "Arbeitstage pro Woche"], "Havi szorzó": ["Weeks per month", "Wochen pro Monat"],
+    "Nettó műszakidő": ["Net shift duration", "Netto-Schichtdauer"],
+    "Éjfélen átnyúló műszak": ["Overnight shift", "Nachtschicht"],
+    "Heti munkaidő": ["Weekly working hours", "Wöchentliche Arbeitszeit"], "Havi becslés": ["Monthly estimate", "Monatsschätzung"],
+    "A szünet nem lehet hosszabb a műszaknál.": ["The break cannot be longer than the shift.", "Die Pause darf nicht länger als die Schicht sein."],
+    "igen": ["yes", "ja"], "nem": ["no", "nein"],
+    "Heti és havi munkaóra becslése": ["Estimate weekly and monthly working hours", "Wöchentliche und monatliche Arbeitszeit schätzen"],
+    "A kalkulátor a heti munkanapok és a napi óraszám alapján számol heti munkaidőt, majd a választott hetek számával havi becslést készít. Gyorsan összevethető vele például a heti 5×8 órás, 4×10 órás vagy részmunkaidős beosztás.": [
+      "The calculator derives weekly hours from working days per week and hours per day, then estimates monthly hours using the selected weeks-per-month factor. It can quickly compare schedules such as 5×8 hours, 4×10 hours or part-time work.",
+      "Der Rechner ermittelt die Wochenarbeitszeit aus Arbeitstagen pro Woche und Stunden pro Tag. Mit dem gewählten Wochenfaktor schätzt er anschließend die Monatsarbeitszeit. So lassen sich etwa 5×8-Stunden-, 4×10-Stunden- oder Teilzeitmodelle vergleichen."
+    ],
+    "A havi eredmény becslés. A hónapok munkanapszáma eltér, és a szabadság, munkaszüneti nap, betegállomány, túlóra, munkaidőkeret vagy egyenlőtlen beosztás miatt a tényleges elszámolt idő más lehet.": [
+      "The monthly result is an estimate. The number of working days varies by month, and leave, public holidays, sickness, overtime, working-time accounts or irregular schedules can change the actual hours recorded.",
+      "Das Monatsergebnis ist eine Schätzung. Die Zahl der Arbeitstage variiert je nach Monat. Urlaub, Feiertage, Krankheit, Überstunden, Arbeitszeitkonten oder unregelmäßige Pläne können die tatsächlich erfasste Zeit verändern."
+    ],
+    "A képlet és a 4,33-as havi átlag": ["The formula and the 4.33-week monthly average", "Formel und Monatsdurchschnitt von 4,33 Wochen"],
+    "Heti munkaóra = heti munkanapok × napi munkaóra.": ["Weekly hours = working days per week × hours per day.", "Wochenstunden = Arbeitstage pro Woche × Stunden pro Tag."],
+    "A havi becslés a heti érték és a megadott heti szorzó szorzata. Az évi 52 hét tizenkét hónapra osztva körülbelül 4,33 hetet ad havonta, ezért ezt gyakran használják átlagos összehasonlításra.": [
+      "The monthly estimate is the weekly figure multiplied by the selected factor. Dividing 52 weeks by 12 months gives about 4.33 weeks per month, a common basis for average comparisons.",
+      "Die Monatsschätzung ergibt sich aus dem Wochenwert multipliziert mit dem gewählten Faktor. 52 Wochen geteilt durch 12 Monate ergeben etwa 4,33 Wochen pro Monat; dieser Durchschnitt wird häufig für Vergleiche genutzt."
+    ],
+    "Heti 5 nap × napi 8 óra = 40 óra hetente, ami 4,33-as szorzóval körülbelül 173,2 óra havonta. Heti 4 nap × napi 6 óra = 24 óra hetente, ami ugyanilyen átlaggal körülbelül 103,9 óra.": [
+      "Five days × 8 hours per day = 40 hours per week, or about 173.2 hours per month using a 4.33 factor. Four days × 6 hours per day = 24 hours per week, or about 103.9 hours per month using the same average.",
+      "Fünf Tage × 8 Stunden pro Tag ergeben 40 Wochenstunden und bei einem Faktor von 4,33 etwa 173,2 Stunden im Monat. Vier Tage × 6 Stunden ergeben 24 Wochenstunden und mit demselben Durchschnitt etwa 103,9 Monatsstunden."
+    ],
+    "Munkaidő, jelenléti idő és fizetett idő": ["Working time, presence time and paid time", "Arbeitszeit, Anwesenheitszeit und bezahlte Zeit"],
+    "A három fogalom nem mindig ugyanaz. A munkaközi szünet egyes helyzetekben nem része a munkaidőnek, miközben a munkahelyen töltött teljes jelenléti idő hosszabb lehet. Bérszámfejtésnél ezért mindig azt az óraszámot használd, amelyet az adott számítás valóban igényel.": [
+      "These three concepts are not always the same. In some cases, breaks are excluded from working time, while total time at the workplace can be longer. For payroll, use the hours required by the specific calculation.",
+      "Diese drei Begriffe bedeuten nicht immer dasselbe. Pausen zählen je nach Situation nicht zur Arbeitszeit, während die gesamte Anwesenheit am Arbeitsplatz länger sein kann. Verwende für die Lohnabrechnung die Stunden, die für die jeweilige Berechnung maßgeblich sind."
+    ],
+    "Mikor hasznos a kalkulátor?": ["When is this calculator useful?", "Wann ist dieser Rechner hilfreich?"],
+    "teljes és részmunkaidős ajánlatok összehasonlításánál;": ["comparing full-time and part-time offers;", "beim Vergleich von Vollzeit- und Teilzeitangeboten;"],
+    "órabér vagy havi bér gyors visszaellenőrzésénél;": ["quickly checking an hourly or monthly wage;", "beim schnellen Prüfen eines Stunden- oder Monatslohns;"],
+    "eltérő heti munkarendek tervezésénél;": ["planning different weekly schedules;", "bei der Planung unterschiedlicher Wochenarbeitszeiten;"],
+    "munkaidőkeret egyszerű átlagos szemléltetésénél;": ["illustrating an average working-time account;", "bei einer vereinfachten Durchschnittsbetrachtung eines Arbeitszeitkontos;"],
+    "munkaidőkeret egyszerű átlagos szemléltetésénél.": ["illustrating an average working-time account.", "bei einer vereinfachten Durchschnittsbetrachtung eines Arbeitszeitkontos."],
+    "Mikor nem elég ez az egyszerű számítás?": ["When is this simple calculation not enough?", "Wann reicht diese einfache Berechnung nicht aus?"],
+    "Munkaidőkeret, többműszakos vagy megszakítás nélküli beosztás, készenlét, túlóra, munkaszüneti napi munkavégzés és pótlékok esetén a tényleges elszámolás több szabálytól függ. Ilyenkor a kalkulátor tervezési segédlet, nem bérszámfejtési igazolás.": [
+      "Actual accounting can depend on many rules for working-time accounts, rotating or continuous shifts, on-call duty, overtime, work on public holidays and premiums. In these cases, the calculator is a planning aid, not a payroll record.",
+      "Bei Arbeitszeitkonten, Schicht- oder ununterbrochenem Betrieb, Bereitschaft, Überstunden, Feiertagsarbeit und Zuschlägen hängt die Abrechnung von mehreren Regeln ab. Der Rechner dient dann der Planung und ist kein Lohnnachweis."
+    ],
+    "A havi 4 hetet minden hónapra pontos értéknek tekintik.": ["Treating four weeks as an exact month.", "Vier Wochen als exakten Monatswert ansehen."],
+    "A fizetetlen szünetet automatikusan munkaidőként adják meg.": ["Automatically counting an unpaid break as working time.", "Eine unbezahlte Pause automatisch als Arbeitszeit ansetzen."],
+    "A naptári napokat munkanapokkal keverik.": ["Confusing calendar days with working days.", "Kalendertage mit Arbeitstagen verwechseln."],
+    "A túlórát és az alapórát egyetlen értékben kezelik.": ["Combining overtime and regular hours into one figure.", "Überstunden und reguläre Stunden zu einem Wert zusammenfassen."],
+    "Átlagos havi órát hasonlítanak egy konkrét hónap tényleges óraszámához.": ["Comparing average monthly hours with the actual hours in a specific month.", "Durchschnittliche Monatsstunden mit den tatsächlichen Stunden eines bestimmten Monats vergleichen."],
+    "Miért 4,33 hét az átlagos hónap?": ["Why is an average month 4.33 weeks?", "Warum hat ein Durchschnittsmonat 4,33 Wochen?"],
+    "Az év 52 hetét tizenkét hónapra osztva körülbelül 4,33 adódik. Ez éves átlag, nem egy adott hónap pontos hossza.": ["Dividing 52 weeks in a year by 12 months gives about 4.33. This is an annual average, not the exact length of a specific month.", "52 Wochen pro Jahr geteilt durch 12 Monate ergeben etwa 4,33. Das ist ein Jahresdurchschnitt, nicht die exakte Länge eines bestimmten Monats."],
+    "Részmunkaidőnél is használható?": ["Can I use it for part-time work?", "Kann ich ihn für Teilzeitarbeit verwenden?"],
+    "Igen. Add meg a tényleges heti munkanapokat és a napi óraszámot.": ["Yes. Enter your actual working days per week and hours per day.", "Ja. Gib deine tatsächlichen Arbeitstage pro Woche und Stunden pro Tag ein."],
+    "Műszakos munkarendnél pontos?": ["Is it accurate for shift work?", "Ist er für Schichtarbeit genau?"],
+    "Átlagos becslésre használható, de konkrét elszámoláshoz a tényleges műszakokat és távolléteket kell összesíteni.": ["It can provide an average estimate, but actual shifts and absences must be totalled for a specific payroll calculation.", "Er eignet sich für eine Durchschnittsschätzung. Für eine konkrete Abrechnung müssen tatsächliche Schichten und Abwesenheiten zusammengerechnet werden."],
+    "Hogyan kezeli a műszakot és az éjfélt?": ["How does it handle shifts and midnight?", "Wie behandelt der Rechner Schichten und Mitternacht?"],
+    "A kezdés és befejezés különbségéből indul ki, az éjfélen átnyúló műszakot automatikusan a következő napra vezeti át, majd levonja a megadott szünetet. A heti és havi érték a megadott munkanapszámból és havi szorzóból készülő becslés; nem munkaügyi nyilvántartás.": [
+      "It calculates the time between start and end, moves an overnight shift into the following day, then deducts the entered break. Weekly and monthly figures are estimates based on the entered working days and monthly factor; this is not an employment record.",
+      "Der Rechner ermittelt die Zeit zwischen Beginn und Ende, verschiebt eine Nachtschicht automatisch auf den Folgetag und zieht dann die angegebene Pause ab. Wochen- und Monatswerte sind Schätzungen anhand der Arbeitstage und des Monatsfaktors; sie sind kein Arbeitszeitnachweis."
+    ],
+    "A szünetet levonja?": ["Does it deduct breaks?", "Zieht der Rechner Pausen ab?"],
+    "Nem automatikusan. A napi órához azt az időt add meg, amelyet a számításban munkaidőként szeretnél kezelni.": ["Not automatically. Enter the time you want treated as working time in the daily-hours field.", "Nicht automatisch. Gib bei den Tagesstunden die Zeit ein, die in der Berechnung als Arbeitszeit gelten soll."],
+    "Órabért is számol?": ["Does it calculate an hourly wage too?", "Berechnet er auch einen Stundenlohn?"],
+    "Nem ezen az oldalon. Ehhez használd az órabér kalkulátort.": ["Not on this page. Use the hourly wage calculator for that.", "Nicht auf dieser Seite. Verwende dafür den Stundenlohnrechner."],
+    "Órabér kalkulátor": ["Hourly wage calculator", "Stundenlohnrechner"],
+    "Nettó–bruttó": ["Net–gross salary", "Netto–Brutto"],
+    "Dátumkülönbség": ["Date difference", "Datumsdifferenz"],
+    "Jelenléti idő vs. fizetett idő": ["Presence time vs. paid time", "Anwesenheitszeit vs. bezahlte Zeit"],
+    "A műszak hossza nem mindig a fizetett óraszám": ["Shift length is not always the number of paid hours", "Die Schichtdauer entspricht nicht immer den bezahlten Stunden"],
+    "Kezdés": ["Start", "Beginn"], "Befejezés": ["End", "Ende"],
+    "Nem fizetett szünet (perc)": ["Unpaid break (minutes)", "Unbezahlte Pause (Minuten)"],
+    "Jelenléti idő": ["Presence time", "Anwesenheitszeit"], "Számolt fizetett idő": ["Calculated paid time", "Berechnete bezahlte Zeit"],
+    "Éjfélen átnyúló műszaknál a rendszer következő napi befejezést feltételez. Munkaügyi elszámolásnál a szerződés, kollektív szabály és jogszabály az irányadó.": [
+      "For an overnight shift, the calculator assumes the end time falls on the next day. Contracts, collective rules and legislation govern employment accounting.",
+      "Bei einer Nachtschicht geht der Rechner davon aus, dass die Endzeit am Folgetag liegt. Für die arbeitsrechtliche Abrechnung gelten Vertrag, Tarifregeln und Gesetz."
+    ]
+  });
+  const workdays = Object.freeze({
+    "Munkanap kalkulátor": ["Working days calculator", "Arbeitstage-Rechner"],
+    "Számold ki két dátum között a hétfőtől péntekig eső napokat, és adj meg külön kihagyandó dátumokat is.": ["Count weekdays between two dates and optionally enter dates to exclude.", "Zähle die Wochentage zwischen zwei Daten und gib bei Bedarf auszuschließende Tage an."],
+    "Kezdő dátum": ["Start date", "Startdatum"], "Záró dátum": ["End date", "Enddatum"],
+    "Kihagyandó dátumok (opcionális)": ["Dates to exclude (optional)", "Auszuschließende Daten (optional)"],
+    "Pontosvesszővel, vesszővel vagy sortöréssel választhatod el. A kalkulátor nem tölt be automatikus ünnepnaplistát.": ["Separate dates with semicolons, commas or line breaks. The calculator does not load a public-holiday list automatically.", "Trenne die Daten mit Semikolon, Komma oder Zeilenumbruch. Der Rechner lädt keine Feiertagsliste automatisch."],
+    "Naptári napok": ["Calendar days", "Kalendertage"], "Naptári napok:": ["Calendar days:", "Kalendertage:"],
+    "Hétköznapok": ["Weekdays", "Wochentage"], "Hétköznapok:": ["Weekdays:", "Wochentage:"],
+    "Kihagyott hétköznapok": ["Excluded weekdays", "Ausgeschlossene Wochentage"], "Kihagyott hétköznapok:": ["Excluded weekdays:", "Ausgeschlossene Wochentage:"],
+    "Számított munkanapok": ["Calculated working days", "Berechnete Arbeitstage"], "Számított munkanapok:": ["Calculated working days:", "Berechnete Arbeitstage:"],
+    "Munkanap": ["Working day", "Arbeitstag"],
+    "A záró dátum nem lehet korábbi a kezdő dátumnál.": ["The end date cannot be earlier than the start date.", "Das Enddatum darf nicht vor dem Startdatum liegen."],
+    "datum hozzaadas kivonas": ["Date addition/subtraction", "Datum addieren/subtrahieren"],
+    "Mit számol a munkanap kalkulátor?": ["What does the working days calculator count?", "Was zählt der Arbeitstage-Rechner?"],
+    "A kalkulátor a kezdő és záró dátumot is beleszámítja, majd végiglépked az időszak naptári napjain. A szombatot és vasárnapot automatikusan hétvégének tekinti, a hétfőtől péntekig tartó napokat pedig hétköznapként számolja.": [
+      "The calculator includes both the start and end dates and checks each calendar day in the range. Saturdays and Sundays count as weekends; Monday through Friday count as weekdays.",
+      "Der Rechner zählt Start- und Enddatum mit und prüft jeden Kalendertag im Zeitraum. Samstag und Sonntag gelten als Wochenende, Montag bis Freitag als Wochentage."
+    ],
+    "Ha van olyan hétköznap, amelyet nem szeretnél munkanapnak számítani, a kihagyandó dátumok mezőben külön megadhatod. Ez lehet például ünnepnap, céges szünnap vagy bármilyen saját kivétel.": [
+      "If you do not want a weekday counted as a working day, enter it in the dates-to-exclude field. This could be a public holiday, company day off or any other exception.",
+      "Wenn ein Wochentag nicht als Arbeitstag zählen soll, kannst du ihn im Feld für auszuschließende Daten eintragen, etwa einen Feiertag, einen betrieblichen freien Tag oder eine andere Ausnahme."
+    ],
+    "2026. augusztus 24. és 28. között öt naptári nap van, és mind az öt hétfőtől péntekig esik. Külön kizárás nélkül ezért az eredmény 5 munkanap.": [
+      "There are five calendar days from 24 to 28 August 2026, and all five fall Monday through Friday. With no exclusions, the result is five working days.",
+      "Vom 24. bis 28. August 2026 gibt es fünf Kalendertage, die alle auf Montag bis Freitag fallen. Ohne Ausschlüsse beträgt das Ergebnis daher fünf Arbeitstage."
+    ],
+    "Miért nincs automatikus magyar ünnepnaplista?": ["Why is there no automatic Hungarian public-holiday list?", "Warum gibt es keine automatische ungarische Feiertagsliste?"],
+    "Az ünnepnapok, áthelyezett munkanapok és egyedi munkarendek évről évre változhatnak. Az eszköz ezért tudatosan általános naptári számítást végez, és a speciális napokat rád bízza. Így régi vagy jövőbeli dátumtartományokra is használható anélkül, hogy elavult naptáradatokra támaszkodna.": [
+      "Public holidays, shifted working days and special schedules can change from year to year. The tool therefore uses a general calendar calculation and lets you specify special days, so it can handle past or future ranges without relying on outdated calendar data.",
+      "Feiertage, verlegte Arbeitstage und besondere Arbeitszeiten können sich jährlich ändern. Das Werkzeug berechnet deshalb allgemein nach Kalendertagen und überlässt dir die Sondertage. So lassen sich auch vergangene oder zukünftige Zeiträume ohne veraltete Kalenderdaten berechnen."
+    ],
+    "A kezdő és záró nap beleszámít?": ["Are the start and end dates included?", "Zählen Start- und Enddatum mit?"],
+    "Igen. Ha hétköznapra esnek és nincsenek kizárva, mindkettőt beleszámítja.": ["Yes. Both are included if they fall on a weekday and are not excluded.", "Ja. Beide zählen mit, wenn sie auf einen Wochentag fallen und nicht ausgeschlossen sind."],
+    "Az ünnepnapokat ismeri?": ["Does it know public holidays?", "Kennt der Rechner Feiertage?"],
+    "Nem automatikusan. Az ünnepnapokat vagy más szünnapokat a kihagyandó dátumok mezőben adhatod meg.": ["Not automatically. Enter public holidays or other days off in the dates-to-exclude field.", "Nicht automatisch. Trage Feiertage oder andere freie Tage im Feld für auszuschließende Daten ein."],
+    "Mi történik, ha hétvégi dátumot adok meg kizárásként?": ["What if I enter a weekend date as an exclusion?", "Was passiert, wenn ich ein Wochenenddatum ausschließe?"],
+    "Nem csökkenti kétszer az eredményt: a hétvége eleve nem számít hétköznapnak.": ["It is not subtracted twice: weekend dates are not counted as weekdays in the first place.", "Das Ergebnis wird nicht doppelt gekürzt: Wochenendtage zählen von vornherein nicht als Wochentage."],
+    "datum kulonbseg": ["Date difference", "Datumsdifferenz"],
+    "fizetesi hatarido": ["Payment deadline", "Zahlungsfrist"],
+    "Általános naptári segédeszköz. Nem alkalmaz automatikusan magyar munkaszüneti napokat, áthelyezett munkanapokat vagy munkajogi szabályokat.": ["A general calendar aid. It does not automatically apply Hungarian public holidays, shifted working days or employment rules.", "Ein allgemeines Kalenderwerkzeug. Es berücksichtigt ungarische Feiertage, verlegte Arbeitstage oder arbeitsrechtliche Regeln nicht automatisch."]
+  });
+  const overtime = Object.freeze({
+    "Túlóra díj": ["Overtime pay", "Überstundenvergütung"],
+    "Túlóra díj kalkulátor": ["Overtime pay calculator", "Überstundenrechner"],
+    "Túlóra óradíj, teljes túlóradíj és a normál órabér feletti többlet kiszámítása saját szorzóval.": ["Calculate the overtime hourly rate, total overtime pay and premium over regular pay using your own multiplier.", "Berechne mit einem eigenen Faktor den Überstunden-Stundenlohn, die Gesamtvergütung und den Zuschlag gegenüber dem normalen Stundenlohn."],
+    "Alap órabér (Ft)": ["Regular hourly wage (HUF)", "Regulärer Stundenlohn (HUF)"], "Túlóra (óra)": ["Overtime hours", "Überstunden"],
+    "Elszámolási szorzó": ["Pay multiplier", "Abrechnungsfaktor"],
+    "Alap órabér: adj meg érvényes számot.": ["Regular hourly wage: enter a valid number.", "Regulärer Stundenlohn: Gib eine gültige Zahl ein."],
+    "Alap órabér: az érték legyen nagyobb nullánál.": ["Regular hourly wage: the value must be greater than zero.", "Regulärer Stundenlohn: Der Wert muss größer als null sein."],
+    "Túlóra: adj meg érvényes számot.": ["Overtime hours: enter a valid number.", "Überstunden: Gib eine gültige Zahl ein."],
+    "Túlóra: az érték nem lehet negatív.": ["Overtime hours cannot be negative.", "Die Überstunden dürfen nicht negativ sein."],
+    "Elszámolási szorzó: adj meg érvényes számot.": ["Pay multiplier: enter a valid number.", "Abrechnungsfaktor: Gib eine gültige Zahl ein."],
+    "Elszámolási szorzó: az érték legyen nagyobb nullánál.": ["The pay multiplier must be greater than zero.", "Der Abrechnungsfaktor muss größer als null sein."],
+    "Például 1,5 = az alap órabér 150%-a.": ["For example, 1.5 means 150% of the regular hourly wage.", "Zum Beispiel bedeutet 1,5: 150 % des regulären Stundenlohns."],
+    "Túlóra óradíja": ["Overtime hourly rate", "Stundenlohn für Überstunden"], "Túlóra óradíja:": ["Overtime hourly rate:", "Stundenlohn für Überstunden:"],
+    "Teljes túlóradíj": ["Total overtime pay", "Gesamtvergütung für Überstunden"], "Teljes túlóradíj:": ["Total overtime pay:", "Gesamtvergütung für Überstunden:"],
+    "Normál órabér feletti rész": ["Premium over regular pay", "Zuschlag gegenüber dem regulären Stundenlohn"], "Normál órabér feletti rész:": ["Premium over regular pay:", "Zuschlag gegenüber dem regulären Stundenlohn:"],
+    "Hogyan működik a túlóra díj kalkulátor?": ["How does the overtime pay calculator work?", "Wie funktioniert der Überstundenrechner?"],
+    "Az eszköz nem próbálja kitalálni, hogy egy adott munkaviszonyban milyen pótlék vagy elszámolási szabály jár. Ehelyett te adod meg az alap órabért, a túlórák számát és azt a szorzót, amellyel az órabért számolni szeretnéd.": [
+      "The tool does not infer which premium or pay rule applies to a particular employment relationship. You enter the regular hourly wage, overtime hours and the multiplier to use.",
+      "Das Werkzeug leitet nicht ab, welcher Zuschlag oder welche Abrechnungsregel für ein bestimmtes Arbeitsverhältnis gilt. Du gibst den regulären Stundenlohn, die Überstunden und den gewünschten Faktor ein."
+    ],
+    "A teljes túlóradíj képlete egyszerű: alap órabér × túlóra órák × szorzó. Külön megmutatjuk azt is, hogy ebből mennyi a normál órabérhez képest jelentkező többlet.": [
+      "The total overtime pay is calculated as regular hourly wage × overtime hours × multiplier. The calculator also shows the premium over the regular hourly wage.",
+      "Die Gesamtvergütung für Überstunden berechnet sich aus regulärem Stundenlohn × Überstunden × Faktor. Zusätzlich zeigt der Rechner den Zuschlag gegenüber dem regulären Stundenlohn."
+    ],
+    "3 000 Ft-os órabér, 8 túlóra és 1,5-ös szorzó esetén a túlóra óradíja 4 500 Ft, a teljes összeg 36 000 Ft. A normál 24 000 Ft-os nyolcórás díjhoz képest a többlet 12 000 Ft.": [
+      "With a HUF 3,000 hourly wage, 8 overtime hours and a 1.5 multiplier, the overtime rate is HUF 4,500 and total pay is HUF 36,000. The premium over the regular HUF 24,000 for eight hours is HUF 12,000.",
+      "Bei einem Stundenlohn von 3.000 HUF, 8 Überstunden und einem Faktor von 1,5 beträgt der Überstundenlohn 4.500 HUF und die Gesamtvergütung 36.000 HUF. Der Zuschlag gegenüber den regulären 24.000 HUF für acht Stunden beträgt 12.000 HUF."
+    ],
+    "Miért kell saját szorzót megadni?": ["Why do I need to enter my own multiplier?", "Warum muss ich einen eigenen Faktor angeben?"],
+    "A pótlékok és elszámolások függhetnek a munkaszerződéstől, kollektív szerződéstől, a munkarendtől, a túlóra időpontjától és az aktuális szabályoktól. A szabadon megadható szorzó ezért átláthatóbb, mint egy olyan automatikus jogi feltételezés, amely könnyen félrevezető lehet.": [
+      "Premiums and pay calculations can depend on the employment contract, collective agreement, schedule, timing of overtime and current rules. An adjustable multiplier is more transparent than an automatic legal assumption that could mislead.",
+      "Zuschläge und Abrechnungen können vom Arbeitsvertrag, Tarifvertrag, Arbeitszeitmodell, Zeitpunkt der Überstunden und den geltenden Regeln abhängen. Ein frei wählbarer Faktor ist transparenter als eine automatische rechtliche Annahme, die irreführen könnte."
+    ],
+    "Mit jelent az 1,5-ös szorzó?": ["What does a 1.5 multiplier mean?", "Was bedeutet ein Faktor von 1,5?"],
+    "Azt, hogy az adott túlóra óradíját az alap órabér 150%-ával számolod.": ["It means you calculate the overtime hourly rate at 150% of the regular wage.", "Damit berechnest du den Stundenlohn für Überstunden mit 150 % des regulären Lohns."],
+    "Bruttó vagy nettó órabért adjak meg?": ["Should I enter a gross or net hourly wage?", "Soll ich einen Brutto- oder Nettostundenlohn eingeben?"],
+    "Bármelyikkel számolhatsz, de az eredmény ugyanazon az alapon lesz. Bruttó bemenetből bruttó összeg, nettóból nettó összeg adódik.": ["Either works, but the result uses the same basis: gross input gives a gross result, and net input gives a net result.", "Beides ist möglich; das Ergebnis bleibt auf derselben Grundlage: Aus einem Bruttowert wird ein Brutto-, aus einem Nettowert ein Nettobetrag."],
+    "Megmondja, milyen pótlék jár nekem?": ["Does it tell me which premium I am entitled to?", "Sagt der Rechner, welcher Zuschlag mir zusteht?"],
+    "Nem. A kalkulátor a megadott szorzóval számol; a rád vonatkozó elszámolási szabályt külön kell ellenőrizned.": ["No. It uses the multiplier you enter; check the pay rules that apply to you separately.", "Nein. Er rechnet mit dem eingegebenen Faktor. Prüfe die für dich geltenden Abrechnungsregeln gesondert."],
+    "Általános bérszámítás saját szorzóval. Nem állapít meg munkajogi jogosultságot, pótlékot vagy kötelező elszámolási módot.": ["A general pay calculation using your own multiplier. It does not determine employment-law entitlements, premiums or mandatory pay rules.", "Eine allgemeine Lohnberechnung mit eigenem Faktor. Sie bestimmt keine arbeitsrechtlichen Ansprüche, Zuschläge oder verbindlichen Abrechnungsregeln."],
+    "oraber": ["Hourly wage", "Stundenlohn"], "munkaido": ["Working hours", "Arbeitszeit"], "netto brutto": ["Net–gross salary", "Netto–Brutto"]
+  });
   const dictionaries = Object.freeze({
     "ar-kedvezmeny-kalkulator": discount,
     "egysegar-kalkulator": unit,
@@ -1717,7 +1882,10 @@
     "fedezeti-pont-kalkulator": breakEven,
     "datum-hozzaadas-kivonas-kalkulator": dateAdd,
     "eletkor-kalkulator": age,
-    "datum-kulonbseg-kalkulator": dateDifference
+    "datum-kulonbseg-kalkulator": dateDifference,
+    "munkaido-kalkulator": workTime,
+    "munkanap-kalkulator": workdays,
+    "tulora-kalkulator": overtime
   });
   const pages = Object.freeze(Object.keys(dictionaries));
   const supported = Object.freeze(["hu", "en", "de"]);
@@ -1733,8 +1901,8 @@
   function unitWord(amount, lang, unit) {
     const singular = new Intl.PluralRules(lang).select(Number(amount.replace(/[\s,.]/gu, ""))) === "one";
     const words = {
-      en: { day: ["day", "days"], week: ["week", "weeks"], month: ["month", "months"], year: ["year", "years"] },
-      de: { day: ["Tag", "Tage"], week: ["Woche", "Wochen"], month: ["Monat", "Monate"], year: ["Jahr", "Jahre"] }
+      en: { day: ["day", "days"], week: ["week", "weeks"], month: ["month", "months"], year: ["year", "years"], hour: ["hour", "hours"], minute: ["minute", "minutes"] },
+      de: { day: ["Tag", "Tage"], week: ["Woche", "Wochen"], month: ["Monat", "Monate"], year: ["Jahr", "Jahre"], hour: ["Stunde", "Stunden"], minute: ["Minute", "Minuten"] }
     };
     return words[lang][unit][singular ? 0 : 1];
   }
@@ -1762,7 +1930,7 @@
     if (Object.prototype.hasOwnProperty.call(shared, value)) return shared[value][index];
     const normalized = value.replace(/\s+/gu, " ").trim();
     if (Object.prototype.hasOwnProperty.call(content, normalized)) return content[normalized][index];
-    if (["datum-hozzaadas-kivonas-kalkulator", "eletkor-kalkulator", "datum-kulonbseg-kalkulator"].includes(page)) {
+      if (["datum-hozzaadas-kivonas-kalkulator", "eletkor-kalkulator", "datum-kulonbseg-kalkulator", "munkaido-kalkulator", "munkanap-kalkulator", "tulora-kalkulator"].includes(page)) {
       const date = translateDateValue(normalized, lang);
       if (date) return date;
       let match = /^(\d[\d\s.,]*)\s+nap$/u.exec(normalized);
@@ -1778,6 +1946,16 @@
       match = /^A záródátum korábbi a kezdőnapnál \((\d+) nap eltérés\)\.$/u.exec(normalized);
       if (match) return lang === "en" ? `The end date is earlier than the start date (difference: ${match[1]} ${unitWord(match[1], lang, "day")}).` : `Das Enddatum liegt vor dem Startdatum (Abstand: ${match[1]} ${unitWord(match[1], lang, "day")}).`;
       if (normalized === "Adj meg érvényes dátumot.") return lang === "en" ? "Enter a valid date." : "Gib ein gültiges Datum ein.";
+    }
+    if (page === "munkaido-kalkulator") {
+      const duration = /^(\d[\d\s.,]*)\s+óra\s+(\d+)\s+perc$/u.exec(normalized);
+      if (duration) return `${duration[1]} ${unitWord(duration[1], lang, "hour")} ${duration[2]} ${unitWord(duration[2], lang, "minute")}`;
+      const hours = /^(\d[\d\s.,]*)\s+óra$/u.exec(normalized);
+      if (hours) return `${hours[1]} ${unitWord(hours[1], lang, "hour")}`;
+    }
+    if (page === "tulora-kalkulator") {
+      const hourly = /^(\d[\d\s.,]*\s+Ft)\/óra$/u.exec(normalized);
+      if (hourly) return `${hourly[1]}/${lang === "en" ? "hour" : "Stunde"}`;
     }
     if (page === "fedezeti-pont-kalkulator") {
       const quantity = /^(\d[\d\s.,]*)\s+db$/u.exec(normalized);
