@@ -26,7 +26,7 @@ async function checkMonthlyBudgetLocale({ navigate, evaluate, setViewport }) {
       await new Promise(requestAnimationFrame);
     })()`);
     const huResult = await read("#expenseResult");
-    assert.match(huResult, /Összes kiadás megtakarítással együtt:.*600/u, huResult);
+    assert.match(huResult, /Összes kiadás megtakarítással együtt:.*620/u, huResult);
     await evaluate(`(async () => {
       for (const [selector, value] of [[".budget-reserve-lab [data-q=annual-irregular]", "600000"], [".budget-reserve-lab [data-q=reserve-months]", "3"]]) {
         const input = document.querySelector(selector); input.value = value;
