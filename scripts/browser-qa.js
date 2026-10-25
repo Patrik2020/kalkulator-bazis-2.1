@@ -12,6 +12,7 @@ const { checkSharedLocales } = require("./shared-ui-locale-browser-checks");
 const { checkLocalizationCoverage } = require("./localization-coverage-browser-checks");
 const { checkMonthlyBudgetLocale } = require("./monthly-budget-locale-browser-checks");
 const { checkInvoiceDateLocales } = require("./invoice-date-locale-browser-checks");
+const { checkWealthGrowthLocales } = require("./wealth-growth-locale-browser-checks");
 
 const adsensePolicy = loadAdsensePolicy(path.resolve(__dirname, ".."));
 
@@ -809,6 +810,7 @@ const run = async () => {
   await checkLocalizationCoverage({ navigate, evaluate, setViewport });
   await checkMonthlyBudgetLocale({ navigate, evaluate, setViewport });
   await checkInvoiceDateLocales({ navigate, evaluate, setViewport });
+  await checkWealthGrowthLocales({ navigate, evaluate, setViewport });
 
   await setViewport(390, 844);
   await navigate("/");
