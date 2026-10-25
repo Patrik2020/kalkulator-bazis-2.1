@@ -3,5 +3,9 @@
   "Kapcsolódó kalkulátorok": ["Related calculators", "Verwandte Rechner"],
   "Átlag kalkulátor": ["Average calculator", "Durchschnittsrechner"],
   "Százalék kalkulátor": ["Percentage calculator", "Prozentrechner"],
-  "ÁFA kalkulátor": ["VAT calculator", "Mehrwertsteuer-Rechner"]
+  "ÁFA kalkulátor": ["VAT calculator", "Mehrwertsteuer-Rechner"],
+  "Árrés": ["Margin", "Handelsspanne"],
+  "Haszonkulcs": ["Markup", "Aufschlag"],
+  "Fedezeti pont": ["Break-even point", "Break-even-Punkt"],
+  "Egységnyi fedezet": ["Contribution per unit", "Deckungsbeitrag je Einheit"]
 }

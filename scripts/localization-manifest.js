@@ -4,7 +4,8 @@
 // entire site is localized. Browser and calculation checks remain separate.
 const detailPages = [
   ...["ar-kedvezmeny-kalkulator", "egysegar-kalkulator", "atlag-kalkulator",
-    "arany-kalkulator", "szazalekos-valtozas-kalkulator", "borravalo-kalkulator"].map(slug => ({
+    "arany-kalkulator", "szazalekos-valtozas-kalkulator", "borravalo-kalkulator",
+    "arres-kalkulator", "haszonkulcs-kalkulator", "fedezeti-pont-kalkulator"].map(slug => ({
     path: `kalkulatorok/${slug}.html`,
     module: "js/altalanos/everyday-locale.js", key: slug
   })),

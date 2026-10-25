@@ -5,9 +5,9 @@
   if (typeof module === "object" && module.exports) module.exports = api;
   if (!root?.document || new URLSearchParams(root.location.search).has("__kb_static_export")) return;
   const document = root.document;
-  const main = document.querySelector("main[data-simple-calc], main[data-batch01-calc]");
+  const main = document.querySelector("main[data-simple-calc], main[data-batch01-calc], main[data-batch04-calc], main[data-batch05-calc]");
   if (!main) return;
-  const page = main.dataset.simpleCalc || main.dataset.batch01Calc;
+  const page = main.dataset.simpleCalc || main.dataset.batch01Calc || main.dataset.batch04Calc || main.dataset.batch05Calc;
   if (!api.pages.includes(page)) return;
 
   const record = new WeakMap();
@@ -98,7 +98,13 @@
     "Átlag kalkulátor": ["Average calculator", "Durchschnittsrechner"],
     "Százalék kalkulátor": ["Percentage calculator", "Prozentrechner"],
     "ÁFA kalkulátor": ["VAT calculator", "Mehrwertsteuer-Rechner"],
-    "Hitelesség és számítási korlátok": ["Reliability and calculation limitations", "Verlässlichkeit und Berechnungsgrenzen"]
+    "Árrés kalkulátor": ["Margin calculator", "Handelsspannen-Rechner"],
+    "Haszonkulcs kalkulátor": ["Markup calculator", "Aufschlagsrechner"],
+    "Hitelesség és számítási korlátok": ["Reliability and calculation limitations", "Verlässlichkeit und Berechnungsgrenzen"],
+    "Morzsamenü": ["Breadcrumb navigation", "Brotkrümelnavigation"],
+    "Főoldal": ["Home", "Startseite"],
+    "Mindennapok": ["Everyday life", "Alltag"],
+    "Számítási módszertan": ["Calculation methodology", "Berechnungsmethodik"]
   });
   const discount = Object.freeze({
     "Számold ki az akciós árat, kedvezményt és megtakarítást.": [
@@ -1311,13 +1317,179 @@
         "Aktionen zum Speichern, Installieren und Teilen"
     ]
 });
+  const margin = Object.freeze({
+    "Árrés kalkulátor": ["Profit margin calculator", "Handelsspannen-Rechner"],
+    "Árrés összeg, árrésszázalék és haszonkulcs kiszámítása beszerzési és eladási árból.": [
+      "Calculate the margin amount, margin percentage and markup from the purchase and selling prices.",
+      "Berechne Handelsspanne, Handelsspannen-Prozentsatz und Aufschlag anhand von Einkaufs- und Verkaufspreis."
+    ],
+    "Beszerzési ár (Ft)": ["Purchase price (HUF)", "Einkaufspreis (HUF)"],
+    "Eladási ár (Ft)": ["Selling price (HUF)", "Verkaufspreis (HUF)"],
+    "Eredmény:": ["Result:", "Ergebnis:"],
+    "Árrés összege:": ["Margin amount:", "Handelsspanne:"],
+    "Árrés:": ["Margin:", "Handelsspanne:"],
+    "Haszonkulcs:": ["Markup:", "Aufschlag:"],
+    "Árrés": ["Margin", "Handelsspanne"],
+    "Mi az árrés?": ["What is a profit margin?", "Was ist eine Handelsspanne?"],
+    "Az árrés az eladási ár és a beszerzési ár különbsége. Az árrésszázalék azt mutatja meg, hogy az eladási ár mekkora része marad meg a beszerzési ár levonása után, még az egyéb költségek és adók figyelembevétele előtt.": [
+      "The margin is the difference between the selling price and the purchase price. The margin percentage shows what share of the selling price remains after subtracting the purchase price, before other costs and taxes.",
+      "Die Handelsspanne ist die Differenz zwischen Verkaufs- und Einkaufspreis. Der Prozentsatz zeigt, welcher Anteil des Verkaufspreises nach Abzug des Einkaufspreises vor weiteren Kosten und Steuern verbleibt."
+    ],
+    "A haszonkulcs más nevezőt használ: az árrést a beszerzési árhoz viszonyítja. Emiatt ugyanarra az ügyletre az árrésszázalék és a haszonkulcs százaléka eltérhet.": [
+      "Markup uses a different base: it compares the margin with the purchase price. As a result, the margin percentage and markup percentage can differ for the same transaction.",
+      "Der Aufschlag hat eine andere Bezugsgröße: Er setzt die Handelsspanne ins Verhältnis zum Einkaufspreis. Deshalb können Handelsspannen-Prozentsatz und Aufschlagsprozentsatz beim selben Geschäft unterschiedlich sein."
+    ],
+    "8 000 Ft beszerzési és 10 000 Ft eladási árnál az árrés 2 000 Ft. Ez az eladási ár 20%-a, a beszerzési árhoz viszonyított haszonkulcs pedig 25%.": [
+      "With a purchase price of HUF 8,000 and a selling price of HUF 10,000, the margin is HUF 2,000. This is 20% of the selling price; the markup on the purchase price is 25%.",
+      "Bei einem Einkaufspreis von 8.000 HUF und einem Verkaufspreis von 10.000 HUF beträgt die Handelsspanne 2.000 HUF. Das sind 20 % des Verkaufspreises; der Aufschlag auf den Einkaufspreis beträgt 25 %."
+    ],
+    "Mire nem elég az árrés?": ["What does the margin not tell you?", "Was sagt die Handelsspanne nicht aus?"],
+    "Az árrés önmagában nem azonos a vállalkozás nyereségével. Abból még lejöhet például szállítás, bér, energia, csomagolás, platformdíj, adó és más működési költség.": [
+      "The margin alone is not the same as business profit. It may still need to cover shipping, wages, energy, packaging, platform fees, taxes and other operating costs.",
+      "Die Handelsspanne entspricht nicht automatisch dem Unternehmensgewinn. Davon können noch Versand, Löhne, Energie, Verpackung, Plattformgebühren, Steuern und weitere Betriebskosten abgehen."
+    ],
+    "Árrés és haszonkulcs ugyanaz?": ["Are margin and markup the same?", "Sind Handelsspanne und Aufschlag dasselbe?"],
+    "Nem. Az árrés százalékát az eladási árhoz, a haszonkulcsot a beszerzési árhoz viszonyítjuk.": [
+      "No. The margin percentage is based on the selling price, while markup is based on the purchase price.",
+      "Nein. Der Handelsspannen-Prozentsatz bezieht sich auf den Verkaufspreis, der Aufschlag auf den Einkaufspreis."
+    ],
+    "Lehet negatív az árrés?": ["Can the margin be negative?", "Kann die Handelsspanne negativ sein?"],
+    "Igen, ha az eladási ár alacsonyabb a beszerzési árnál. Ez veszteséges értékesítést jelezhet.": [
+      "Yes, when the selling price is lower than the purchase price. This may indicate a loss-making sale.",
+      "Ja, wenn der Verkaufspreis unter dem Einkaufspreis liegt. Das kann auf einen Verkauf mit Verlust hindeuten."
+    ],
+    "Ez nettó vagy bruttó árakkal számol?": ["Does it use net or gross prices?", "Wird mit Netto- oder Bruttopreisen gerechnet?"],
+    "Bármelyikkel, de a két bemenet azonos alapon legyen: nettót nettóval vagy bruttót bruttóval hasonlíts össze.": [
+      "Either, as long as both inputs use the same basis: compare net with net or gross with gross.",
+      "Beides ist möglich, aber beide Eingaben müssen auf derselben Grundlage beruhen: Netto mit Netto oder Brutto mit Brutto vergleichen."
+    ],
+    "A kalkulátor kereskedelmi arányszámokat számol; nem teljes eredménykimutatás és nem adózási tanács.": [
+      "This calculator computes trading ratios; it is not a full profit-and-loss statement or tax advice.",
+      "Dieser Rechner ermittelt kaufmännische Kennzahlen; er ersetzt weder eine vollständige Gewinn- und Verlustrechnung noch eine Steuerberatung."
+    ],
+    "Beszerzési ár: az érték legyen nagyobb nullánál.": ["Purchase price: the value must be greater than zero.", "Einkaufspreis: Der Wert muss größer als null sein."],
+    "Eladási ár: az érték legyen nagyobb nullánál.": ["Selling price: the value must be greater than zero.", "Verkaufspreis: Der Wert muss größer als null sein."]
+  });
+  const markup = Object.freeze({
+    "Haszonkulcs kalkulátor": ["Markup calculator", "Aufschlagsrechner"],
+    "Eladási ár és árrés becslése beszerzési árból és megadott haszonkulcsból.": [
+      "Estimate the selling price and margin from the purchase price and markup entered.",
+      "Schätze anhand des Einkaufspreises und des eingegebenen Aufschlags den Verkaufspreis und die Handelsspanne."
+    ],
+    "Beszerzési ár (Ft)": ["Purchase price (HUF)", "Einkaufspreis (HUF)"],
+    "Haszonkulcs (%)": ["Markup (%)", "Aufschlag (%)"],
+    "Eredmény:": ["Result:", "Ergebnis:"],
+    "Eladási ár:": ["Selling price:", "Verkaufspreis:"],
+    "Árrés összege:": ["Margin amount:", "Handelsspanne:"],
+    "Árrés:": ["Margin:", "Handelsspanne:"],
+    "Haszonkulcs": ["Markup", "Aufschlag"],
+    "Mit jelent a haszonkulcs?": ["What does markup mean?", "Was bedeutet der Aufschlag?"],
+    "A haszonkulcs azt fejezi ki, hogy a beszerzési árhoz képest mekkora felárat teszel a termékre vagy szolgáltatásra. A kalkulátor a beszerzési árat megszorozza az 1 + haszonkulcs/100 tényezővel.": [
+      "Markup expresses the increase over the purchase price added to a product or service. The calculator multiplies the purchase price by 1 + markup/100.",
+      "Der Aufschlag gibt an, um wie viel der Einkaufswert für ein Produkt oder eine Dienstleistung erhöht wird. Der Rechner multipliziert den Einkaufspreis mit 1 + Aufschlag/100."
+    ],
+    "Ezután megmutatja az árrés összegét és azt is, hogy ez az eladási ár hány százaléka.": [
+      "It then shows the margin amount and what percentage of the selling price it represents.",
+      "Anschließend zeigt er die Handelsspanne als Betrag und ihren Anteil am Verkaufspreis."
+    ],
+    "8 000 Ft beszerzési ár és 25% haszonkulcs mellett az eladási ár 10 000 Ft, az árrés 2 000 Ft, ami az eladási ár 20%-a.": [
+      "With a purchase price of HUF 8,000 and a 25% markup, the selling price is HUF 10,000 and the margin is HUF 2,000, or 20% of the selling price.",
+      "Bei einem Einkaufspreis von 8.000 HUF und 25 % Aufschlag beträgt der Verkaufspreis 10.000 HUF. Die Handelsspanne liegt bei 2.000 HUF beziehungsweise 20 % des Verkaufspreises."
+    ],
+    "Árképzésnél mire figyelj?": ["What should you consider when setting prices?", "Was solltest du bei der Preisgestaltung beachten?"],
+    "A haszonkulcs csak egy egyszerű árképzési alap. A tényleges eladási árnál figyelembe kell venni az ÁFÁ-t, egyéb költségeket, piaci árat, kedvezményeket és a kívánt eredményt is.": [
+      "Markup is only a simple starting point for pricing. The actual selling price should also account for VAT, other costs, market prices, discounts and the desired outcome.",
+      "Der Aufschlag ist nur eine einfache Grundlage für die Preisgestaltung. Beim tatsächlichen Verkaufspreis sollten auch Mehrwertsteuer, weitere Kosten, Marktpreise, Rabatte und das angestrebte Ergebnis berücksichtigt werden."
+    ],
+    "25% haszonkulcs 25% árrést jelent?": ["Does a 25% markup mean a 25% margin?", "Bedeutet ein Aufschlag von 25 % auch 25 % Handelsspanne?"],
+    "Nem. 25% haszonkulcs a beszerzési árra vetül, ezért a példában az árrés az eladási ár 20%-a.": [
+      "No. A 25% markup is applied to the purchase price, so in this example the margin is 20% of the selling price.",
+      "Nein. Ein Aufschlag von 25 % bezieht sich auf den Einkaufspreis. Im Beispiel beträgt die Handelsspanne daher 20 % des Verkaufspreises."
+    ],
+    "Lehet negatív haszonkulcsot megadni?": ["Can I enter a negative markup?", "Kann ich einen negativen Aufschlag eingeben?"],
+    "Igen, például leárazás vagy veszteséges értékesítés modellezésére, de -100% alatt az eladási ár már negatív lenne, ezért azt nem engedjük.": [
+      "Yes, for example to model a markdown or a loss-making sale. Below -100%, the selling price would be negative, so that value is not allowed.",
+      "Ja, zum Beispiel um einen Preisnachlass oder einen Verkauf mit Verlust abzubilden. Unter -100 % wäre der Verkaufspreis negativ; solche Werte sind deshalb nicht zulässig."
+    ],
+    "Az ÁFA benne van?": ["Is VAT included?", "Ist die Mehrwertsteuer enthalten?"],
+    "A kalkulátor nem külön kezeli az ÁFÁ-t. Azonos alapon megadott nettó vagy bruttó árakkal számolj.": [
+      "The calculator does not handle VAT separately. Use net or gross prices consistently.",
+      "Der Rechner berücksichtigt die Mehrwertsteuer nicht gesondert. Verwende durchgehend Netto- oder Bruttopreise."
+    ],
+    "A haszonkulcs legyen nagyobb -100%-nál.": ["Markup must be greater than -100%.", "Der Aufschlag muss größer als -100 % sein."],
+    "Haszonkulcs: adj meg érvényes számot.": ["Markup: enter a valid number.", "Aufschlag: Gib eine gültige Zahl ein."],
+    "Egyszerű árképzési számítás; a tényleges nyereséghez minden további költséget és adót is figyelembe kell venni.": [
+      "A simple pricing calculation; actual profit also depends on all other costs and taxes.",
+      "Eine einfache Preiskalkulation; für den tatsächlichen Gewinn müssen auch alle weiteren Kosten und Steuern berücksichtigt werden."
+    ]
+  });
+  const breakEven = Object.freeze({
+    "Fedezeti pont kalkulátor": ["Break-even point calculator", "Break-even-Rechner"],
+    "Fedezeti pont": ["Break-even point", "Break-even-Punkt"],
+    "Fedezeti darabszám és árbevétel becslése fix költségből, egységárból és egységnyi változó költségből.": [
+      "Estimate the break-even quantity and revenue from fixed costs, unit selling price and variable cost per unit.",
+      "Schätze die Break-even-Menge und den Umsatz anhand der Fixkosten, des Verkaufspreises und der variablen Kosten je Einheit."
+    ],
+    "Fix költség (Ft)": ["Fixed costs (HUF)", "Fixkosten (HUF)"],
+    "Eladási ár / egység (Ft)": ["Selling price per unit (HUF)", "Verkaufspreis je Einheit (HUF)"],
+    "Változó költség / egység (Ft)": ["Variable cost per unit (HUF)", "Variable Kosten je Einheit (HUF)"],
+    "Eredmény:": ["Result:", "Ergebnis:"],
+    "Egységnyi fedezet:": ["Contribution per unit:", "Deckungsbeitrag je Einheit:"],
+    "Fedezeti hányad:": ["Contribution margin ratio:", "Deckungsbeitragsquote:"],
+    "Fedezeti mennyiség:": ["Break-even quantity:", "Break-even-Menge:"],
+    "Fedezeti árbevétel:": ["Break-even revenue:", "Break-even-Umsatz:"],
+    "db": ["units", "Stück"],
+    "Mi a fedezeti pont?": ["What is the break-even point?", "Was ist der Break-even-Punkt?"],
+    "A fedezeti pont az a mennyiség, amelynél az értékesítésből származó fedezet éppen kitermeli a vizsgált fix költséget. A számítás alapja az egységnyi fedezet: eladási ár mínusz az adott egységhez közvetlenül kapcsolódó változó költség.": [
+      "The break-even point is the quantity at which contribution from sales exactly covers the fixed costs being considered. It is based on contribution per unit: selling price minus the variable cost directly associated with each unit.",
+      "Der Break-even-Punkt ist die Absatzmenge, bei der der Deckungsbeitrag genau die betrachteten Fixkosten deckt. Grundlage ist der Deckungsbeitrag je Einheit: Verkaufspreis abzüglich der direkt zurechenbaren variablen Kosten je Einheit."
+    ],
+    "A szükséges darabszám a fix költség és az egységnyi fedezet hányadosa. Mivel a valóságban tört darabot sok terméknél nem lehet értékesíteni, a kalkulátor a szükséges mennyiséget felfelé kerekíti.": [
+      "The required quantity is fixed costs divided by contribution per unit. Since many products cannot be sold in fractions, the calculator rounds the required quantity up to the next whole unit.",
+      "Die erforderliche Menge ergibt sich aus Fixkosten geteilt durch Deckungsbeitrag je Einheit. Da viele Produkte nicht in Bruchteilen verkauft werden können, rundet der Rechner die erforderliche Menge auf die nächste ganze Einheit auf."
+    ],
+    "1 000 000 Ft fix költség, 10 000 Ft eladási ár és 6 000 Ft változó költség mellett 4 000 Ft az egységnyi fedezet. A fedezeti pont 250 darab, ami 2,5 millió Ft árbevételnek felel meg.": [
+      "With HUF 1,000,000 in fixed costs, a HUF 10,000 selling price and HUF 6,000 variable cost per unit, contribution per unit is HUF 4,000. The break-even point is 250 units, equal to HUF 2.5 million in revenue.",
+      "Bei 1.000.000 HUF Fixkosten, 10.000 HUF Verkaufspreis und 6.000 HUF variablen Kosten je Einheit beträgt der Deckungsbeitrag je Einheit 4.000 HUF. Der Break-even-Punkt liegt bei 250 Stück beziehungsweise 2,5 Millionen HUF Umsatz."
+    ],
+    "Mit hagy ki az egyszerű modell?": ["What does this simple model leave out?", "Was lässt dieses einfache Modell außer Acht?"],
+    "Több termék, eltérő árrés, készletveszteség, adók, kapacitáskorlátok, lépcsőzetesen változó fix költségek és szezonális hatások esetén összetettebb üzleti modellre lehet szükség. Ez az eszköz egy termékre vagy homogén egységre ad gyors becslést.": [
+      "A more detailed business model may be needed when there are multiple products, different margins, inventory losses, taxes, capacity constraints, step changes in fixed costs or seasonal effects. This tool gives a quick estimate for one product or a uniform unit.",
+      "Bei mehreren Produkten, unterschiedlichen Handelsspannen, Lagerverlusten, Steuern, Kapazitätsgrenzen, stufenweise veränderlichen Fixkosten oder saisonalen Effekten kann ein komplexeres Geschäftsmodell erforderlich sein. Dieses Werkzeug liefert eine schnelle Schätzung für ein Produkt oder eine homogene Einheit."
+    ],
+    "Mi számít fix költségnek?": ["What counts as a fixed cost?", "Was zählt zu den Fixkosten?"],
+    "Olyan vizsgált időszaki költség, amelyet a modellben nem kötünk közvetlenül minden egyes eladott egységhez.": [
+      "A cost for the period being modelled that is not directly tied to each unit sold.",
+      "Kosten im betrachteten Zeitraum, die im Modell nicht unmittelbar jeder verkauften Einheit zugeordnet werden."
+    ],
+    "Mi történik, ha a változó költség eléri az eladási árat?": ["What if variable cost equals the selling price?", "Was passiert, wenn die variablen Kosten dem Verkaufspreis entsprechen?"],
+    "Az ÁFA benne van?": ["Is VAT included?", "Ist die Mehrwertsteuer enthalten?"],
+    "Nincs pozitív egységnyi fedezet, ezért ebből az egyszerű modellből nem adható értelmes fedezeti pont.": [
+      "There is no positive contribution per unit, so this simple model cannot produce a meaningful break-even point.",
+      "Es gibt keinen positiven Deckungsbeitrag je Einheit. Daher kann dieses einfache Modell keinen sinnvollen Break-even-Punkt berechnen."
+    ],
+    "Az inputokat egységes alapon add meg: nettó árat nettó költséggel vagy bruttót bruttóval hasonlíts össze.": [
+      "Use a consistent basis for the inputs: compare a net price with net costs or a gross price with gross costs.",
+      "Verwende für die Eingaben dieselbe Grundlage: Vergleiche einen Nettopreis mit Nettokosten oder einen Bruttopreis mit Bruttokosten."
+    ],
+    "Az eladási ár legyen nagyobb a változó költségnél.": ["Selling price must be greater than variable cost.", "Der Verkaufspreis muss höher als die variablen Kosten sein."],
+    "Fix költség: az érték nem lehet negatív.": ["Fixed costs: the value must not be negative.", "Fixkosten: Der Wert darf nicht negativ sein."],
+    "Változó költség: az érték nem lehet negatív.": ["Variable cost: the value must not be negative.", "Variable Kosten: Der Wert darf nicht negativ sein."],
+    "Egyszerű egytermékes fedezeti modell. Nem helyettesít részletes költségszámítást, könyvelési vagy üzleti tervezési elemzést.": [
+      "A simple single-product break-even model. It does not replace detailed cost calculations, accounting or business planning analysis.",
+      "Ein einfaches Break-even-Modell für ein einzelnes Produkt. Es ersetzt weder eine detaillierte Kostenrechnung noch Buchhaltung oder Unternehmensplanung."
+    ]
+  });
   const dictionaries = Object.freeze({
     "ar-kedvezmeny-kalkulator": discount,
     "egysegar-kalkulator": unit,
     "atlag-kalkulator": average,
     "arany-kalkulator": Object.freeze({}),
     "szazalekos-valtozas-kalkulator": Object.freeze({}),
-    "borravalo-kalkulator": Object.freeze({})
+    "borravalo-kalkulator": Object.freeze({}),
+    "arres-kalkulator": margin,
+    "haszonkulcs-kalkulator": markup,
+    "fedezeti-pont-kalkulator": breakEven
   });
   const pages = Object.freeze(Object.keys(dictionaries));
   const supported = Object.freeze(["hu", "en", "de"]);
@@ -1329,6 +1501,10 @@
     if (Object.prototype.hasOwnProperty.call(shared, value)) return shared[value][index];
     const normalized = value.replace(/\s+/gu, " ").trim();
     if (Object.prototype.hasOwnProperty.call(content, normalized)) return content[normalized][index];
+    if (page === "fedezeti-pont-kalkulator") {
+      const quantity = /^(\d[\d\s.,]*)\s+db$/u.exec(normalized);
+      if (quantity) return quantity[1] + (lang === "en" ? " units" : " Stück");
+    }
     if (page === "egysegar-kalkulator") {
       const perUnit = /^([\d\s.,]+) Ft\/egység$/u.exec(value);
       if (perUnit) return perUnit[1] + (lang === "en" ? " HUF/unit" : " HUF/Einheit");

@@ -59,7 +59,36 @@ async function checkEverydayLocales({ navigate, evaluate, setViewport }) {
       await choose("hu");
       assert.equal(await result(selector), error);
     }
+    for (const [slug, fields, selector, invalid, expected] of [
+      ["arres", { "#marginCost": "8000", "#marginSell": "10000" }, "#marginResult", { "#marginSell": "0" }, ["Árrés összege: 2000 Ft Árrés: 20% Haszonkulcs: 25%", "Margin amount: 2000 Ft Margin: 20% Markup: 25%", "Handelsspanne: 2000 Ft Handelsspanne: 20% Aufschlag: 25%"]],
+      ["haszonkulcs", { "#markupCost": "8000", "#markupRate": "25" }, "#markupResult", { "#markupRate": "-100" }, ["Eladási ár: 10 000 Ft Árrés összege: 2000 Ft Árrés: 20%", "Selling price: 10 000 Ft Margin amount: 2000 Ft Margin: 20%", "Verkaufspreis: 10 000 Ft Handelsspanne: 2000 Ft Handelsspanne: 20%"]],
+      ["fedezeti-pont", { "#beFixed": "1000000", "#bePrice": "10000", "#beVariable": "6000" }, "#beResult", { "#bePrice": "5000" }, ["Egységnyi fedezet: 4000 Ft Fedezeti hányad: 40% Fedezeti mennyiség: 250 db Fedezeti árbevétel: 2 500 000 Ft", "Contribution per unit: 4000 Ft Contribution margin ratio: 40% Break-even quantity: 250 units Break-even revenue: 2 500 000 Ft", "Deckungsbeitrag je Einheit: 4000 Ft Deckungsbeitragsquote: 40% Break-even-Menge: 250 Stück Break-even-Umsatz: 2 500 000 Ft"]]
+    ]) {
+      await navigate(`/kalkulatorok/${slug}-kalkulator`);
+      await choose("hu");
+      await edit(fields);
+      const original = await result(selector);
+      assert.equal(original, expected[0]);
+      const inputs = await evaluate("[...document.querySelectorAll('main input')].map(e => e.value)");
+      for (const [language, index] of [["en", 1], ["de", 2]]) {
+        await choose(language);
+        assert.equal(await result(selector), expected[index]);
+        assert.deepEqual(await evaluate("[...document.querySelectorAll('main input')].map(e => e.value)"), inputs);
+        assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `${slug}: overflow at ${width}`);
+      }
+      await choose("hu");
+      assert.equal(await result(selector), original);
+      await edit(invalid);
+      const error = await result(selector);
+      assert.notEqual(error, original, `${slug}: invalid input did not produce an error`);
+      for (const language of ["en", "de"]) {
+        await choose(language);
+        assert.notEqual(await result(selector), error, `${slug}: untranslated ${language} error`);
+      }
+      await choose("hu");
+      assert.equal(await result(selector), error);
+    }
   }
-  console.log("Everyday locales: ratio, percentage change and tip calculations, errors and language restoration passed at both widths.");
+  console.log("Everyday locales: ratio, percentage change, tip, margin, markup and break-even calculations, errors and language restoration passed at both widths.");
 }
 module.exports = { checkEverydayLocales };
