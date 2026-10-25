@@ -454,11 +454,13 @@
     };
     section.addEventListener("input", calculate);
     section.querySelector("[data-download]").addEventListener("click", () => {
-      const rows = [["Kategória", "Havi összeg"], ["Bevétel", latest.income], ...latest.values, ["Összes kiadás", latest.expenses], ["Havi maradvány", latest.savings], ["Vésztartalék cél", latest.target]];
+      const localize = (label) => window.KB_BUDGET_LOCALE?.translateText(label) || label;
+      const rows = [[localize("Kategória"), localize("Havi összeg")], [localize("Bevétel"), latest.income], ...latest.values.map(([label, value]) => [localize(label), value]), [localize("Összes kiadás"), latest.expenses], [localize("Havi maradvány"), latest.savings], [localize("Vésztartalék cél"), latest.target]];
       const blob = new Blob(["\ufeff" + rows.map((row) => row.join(";")).join("\n")], { type: "text/csv;charset=utf-8" });
       const link = document.createElement("a");
       link.href = URL.createObjectURL(blob);
-      link.download = "havi-koltsegvetes-osszefoglalo.csv";
+      const language = window.KB_BUDGET_LOCALE?.getLanguage() || "hu";
+      link.download = language === "en" ? "monthly-budget-summary.csv" : language === "de" ? "monatsbudget-zusammenfassung.csv" : "havi-koltsegvetes-osszefoglalo.csv";
       link.click();
       URL.revokeObjectURL(link.href);
     });

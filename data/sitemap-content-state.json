@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-24",
+  "generatedAt": "2026-10-25",
   "pages": {
     "": {
       "hash": "69e32989731a9ce641c258daf36a0a9454c6c3461c7d95d0302a2b4c86be9dbf",
@@ -459,8 +459,8 @@
       "lastmod": "2026-08-21"
     },
     "kalkulatorok/datum-hozzaadas-kivonas-kalkulator.html": {
-      "hash": "b41516a03f059f5d9a9e027f554e3866f5ba1bac6cc987f5e330f23509376b23",
-      "lastmod": "2026-10-11"
+      "hash": "082502b37ae897e4380d3be56a57e49ab87c7f801a5a4f67f49fe5b84c58cddd",
+      "lastmod": "2026-10-25"
     },
     "kalkulatorok/aljzatkiegyenlito-kalkulator.html": {
       "hash": "add4b30e249872cec39c35003ed150c90bfe9d67d372d4126dba383c2e856734",
@@ -491,12 +491,12 @@
       "lastmod": "2026-08-21"
     },
     "kalkulatorok/arres-kalkulator.html": {
-      "hash": "3530f7a7dad253b15d1cea79c8a352a3d37916b4baf861eacb0541ded7593663",
-      "lastmod": "2026-08-21"
+      "hash": "4f1b38b3213cbed9ec49bf2fbd6c585983c49e6e09a4caeeecb8c6c3fa2a7caf",
+      "lastmod": "2026-10-25"
     },
     "kalkulatorok/haszonkulcs-kalkulator.html": {
-      "hash": "7a66c0f997af982da250a226206560afbff5fb6c1cf0478db9bdb65f83effceb",
-      "lastmod": "2026-08-21"
+      "hash": "29d07a608a12c2b5200098ccd11bf49f8efe3febe18724e463530f59b47caca1",
+      "lastmod": "2026-10-25"
     },
     "kalkulatorok/hitel-elotorlesztes-kalkulator.html": {
       "hash": "5ed7b41170422164dcd7796c65891a02f74347e5321a8f125633a6e32efbcf8c",
@@ -527,8 +527,8 @@
       "lastmod": "2026-08-21"
     },
     "kalkulatorok/fedezeti-pont-kalkulator.html": {
-      "hash": "34e90e9ffc7f6287f1c8a3b5d313bba71b2fcb8bcbf287001a080e13b60e780d",
-      "lastmod": "2026-08-21"
+      "hash": "f8ce9c46014e76f614580575b574f528ac1819e288693ed7344bd1e97be3b24d",
+      "lastmod": "2026-10-25"
     },
     "kalkulatorok/zuzottko-kalkulator.html": {
       "hash": "710bcd38b09d6302843b0715e7ed0de10bf26165fc78e593812aa134bc235da3",
