@@ -2,7 +2,7 @@
 
 Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőrzi, hogy naprakész-e.
 
-Aktív kalkulátor: **89**; részletes fordításon átesett: **27**; hátralévő: **62**.
+Aktív kalkulátor: **89**; részletes fordításon átesett: **29**; hátralévő: **60**.
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **49**.
 
@@ -95,7 +95,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/ido-atvalto-kalkulator.html | atvaltok | retired-review |
 | kalkulatorok/inflacio-kalkulator.html | penzugyi | content-review |
 | kalkulatorok/kaloria-kalkulator.html | egeszseg | content-review |
-| kalkulatorok/kamatos-kamat-kalkulator.html | penzugyi | content-review |
+| kalkulatorok/kamatos-kamat-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/kerites-oszlop-kalkulator.html | epitoipari | content-review |
 | kalkulatorok/kilometerdij-kalkulator.html | auto | content-review |
 | kalkulatorok/lakas-hitel-onero-kalkulator.html | penzugyi | content-review |
@@ -104,7 +104,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/megtakaritasi-cel-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/mertani-atlag-kalkulator.html | mindennapi | retired-review |
 | kalkulatorok/mertekegyseg-atvalto-kalkulator.html | atvaltok | content-review |
-| kalkulatorok/milliomos-kalkulator.html | penzugyi | content-review |
+| kalkulatorok/milliomos-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/mulcs-kalkulator.html | epitoipari | content-review |
 | kalkulatorok/multifunkcios-szamologep.html | standalone | content-review |
 | kalkulatorok/munkaido-kalkulator.html | mindennapi | detail-reviewed |

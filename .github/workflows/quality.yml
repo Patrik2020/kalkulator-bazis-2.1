@@ -85,6 +85,9 @@ jobs:
       - name: Check EN DE payment deadline and invoice tax point translations
         run: node --test scripts/invoice-date-locale.test.js
 
+      - name: Check EN DE compound interest and millionaire goal translations
+        run: node --test scripts/wealth-growth-locale.test.js
+
       - name: Verify localized VAT and percentage calculations without changing values
         run: node --test scripts/vat-percent-locale.test.js
 

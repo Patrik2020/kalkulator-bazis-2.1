@@ -3,6 +3,9 @@
 // A reviewed detail page is not a claim that metadata, every interaction or the
 // entire site is localized. Browser and calculation checks remain separate.
 const detailPages = [
+  ...["kamatos-kamat-kalkulator", "milliomos-kalkulator"].map(key => ({
+    path: `kalkulatorok/${key}.html`, module: "js/penzugyi/wealth-growth-locale.js", key
+  })),
   ...["fizetesi-hatarido-kalkulator", "szamla-teljesites-kalkulator"].map(key => ({
     path: `kalkulatorok/${key}.html`, module: "js/penzugyi/szamlazasi/invoice-date-locale.js", key
   })),
