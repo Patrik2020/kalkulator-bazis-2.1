@@ -82,6 +82,9 @@ jobs:
       - name: Check EN DE monthly budget translations
         run: node --test scripts/monthly-budget-locale.test.js
 
+      - name: Check EN DE payment deadline and invoice tax point translations
+        run: node --test scripts/invoice-date-locale.test.js
+
       - name: Verify localized VAT and percentage calculations without changing values
         run: node --test scripts/vat-percent-locale.test.js
 

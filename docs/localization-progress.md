@@ -2,7 +2,7 @@
 
 Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőrzi, hogy naprakész-e.
 
-Aktív kalkulátor: **89**; részletes fordításon átesett: **25**; hátralévő: **64**.
+Aktív kalkulátor: **89**; részletes fordításon átesett: **27**; hátralévő: **62**.
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **49**.
 
@@ -76,7 +76,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/feherje-szukseglet-kalkulator.html | egeszseg | content-review |
 | kalkulatorok/fektav-kalkulator.html | auto | content-review |
 | kalkulatorok/festek-kalkulator.html | epitoipari | content-review |
-| kalkulatorok/fizetesi-hatarido-kalkulator.html | penzugyi | content-review |
+| kalkulatorok/fizetesi-hatarido-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/fuga-kalkulator.html | epitoipari | content-review |
 | kalkulatorok/futotempo-kalkulator.html | egeszseg | content-review |
 | kalkulatorok/gipszkarton-kalkulator.html | epitoipari | content-review |
@@ -119,7 +119,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/rezsi-megosztas-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/sebesseg-atvalto-kalkulator.html | atvaltok | retired-review |
 | kalkulatorok/sulyozott-atlag-kalkulator.html | mindennapi | retired-review |
-| kalkulatorok/szamla-teljesites-kalkulator.html | penzugyi | content-review |
+| kalkulatorok/szamla-teljesites-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/szazalek-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/szazalekos-valtozas-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/szegolec-kalkulator.html | epitoipari | content-review |
