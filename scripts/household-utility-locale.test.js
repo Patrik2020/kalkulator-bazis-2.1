@@ -11,5 +11,8 @@ test("electricity and water cost calculators translate copy while preserving uni
   assert.equal(api.translate("vizfogyasztas-koltseg-kalkulator", "Saját díj (Ft/m³)", "en"), "Your price (HUF/m³)");
   assert.equal(api.translate("vizfogyasztas-koltseg-kalkulator", "Becsült összes költség:", "de"), "Geschätzte Gesamtkosten:");
   assert.equal(api.translate("vizfogyasztas-koltseg-kalkulator", "1000 liter tényleg 1 m³?", "en"), "Are 1,000 litres really 1 m³?");
-  assert.equal(api.translate("vizfogyasztas-koltseg-kalkulator", "A napi literes megközelítés", "de"), null);
+  assert.equal(api.translate("villanyfogyasztas-koltseg-kalkulator", "90 kWh", "de"), "90 kWh");
+  assert.equal(api.translate("vizfogyasztas-koltseg-kalkulator", "9000 liter", "en"), "9000 litres");
+  assert.equal(api.translate("vizfogyasztas-koltseg-kalkulator", "9000 liter", "de"), "9000 Liter");
+  assert.equal(api.translate("vizfogyasztas-koltseg-kalkulator", "9 m³", "en"), "9 m³");
 });

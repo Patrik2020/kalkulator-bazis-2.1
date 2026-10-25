@@ -239,11 +239,11 @@ async function checkEverydayLocales({ navigate, evaluate, setViewport }) {
     assert.ok(waterHu.includes("9000 liter"), waterHu);
     assert.ok(waterHu.includes("8200 Ft"), waterHu);
     const waterInputs = await evaluate("[...document.querySelectorAll('#kalkulator input')].map(e => e.value)");
-    for (const [language, label] of [["en", "Estimated total cost:"], ["de", "Geschätzte Gesamtkosten:"]]) {
+    for (const [language, label, litres] of [["en", "Estimated total cost:", "9000 litres"], ["de", "Geschätzte Gesamtkosten:", "9000 Liter"]]) {
       await choose(language);
       const translated = await result("#waterResult");
       assert.ok(translated.includes(label), translated);
-      assert.ok(translated.includes("9000 liter"), translated);
+      assert.ok(translated.includes(litres), translated);
       assert.ok(translated.includes("8200 Ft"), translated);
       assert.deepEqual(await evaluate("[...document.querySelectorAll('#kalkulator input')].map(e => e.value)"), waterInputs);
       assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `water cost: overflow at ${width}`);

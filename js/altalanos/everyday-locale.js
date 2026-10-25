@@ -2215,6 +2215,19 @@
       const hourly = /^(\d[\d\s.,]*\s+Ft)\/óra$/u.exec(normalized);
       if (hourly) return `${hourly[1]}/${lang === "en" ? "hour" : "Stunde"}`;
     }
+    if (page === "villanyfogyasztas-koltseg-kalkulator") {
+      const energy = /^(\d[\d\s.,]*)\s+kWh$/u.exec(normalized);
+      if (energy) return `${energy[1]} kWh`;
+    }
+    if (page === "vizfogyasztas-koltseg-kalkulator") {
+      let match = /^(\d[\d\s.,]*)\s+liter$/u.exec(normalized);
+      if (match) {
+        const singular = new Intl.PluralRules(lang).select(Number(match[1].replace(/[\s,.]/gu, ""))) === "one";
+        return `${match[1]} ${lang === "en" ? (singular ? "litre" : "litres") : "Liter"}`;
+      }
+      match = /^(\d[\d\s.,]*)\s+m³$/u.exec(normalized);
+      if (match) return `${match[1]} m³`;
+    }
     if (page === "recept-adag-kalkulator") {
       let match = /^A\(z\) (\d+)\. sor formátuma hibás\.$/u.exec(normalized);
       if (match) return lang === "en" ? `Line ${match[1]} has an invalid format.` : `Zeile ${match[1]} hat ein ungültiges Format.`;
