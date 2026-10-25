@@ -115,7 +115,7 @@
     ["A számítások módszertana és minőségbiztosítása", "Calculation methodology and quality assurance", "Berechnungsmethodik und Qualitätssicherung"], ["Hibát találtál? Jelezd nekünk.", "Found an error? Let us know.", "Einen Fehler gefunden? Sag uns Bescheid."], ["Források és módszertani ellenőrzés", "Sources and methodology review", "Quellen und methodische Prüfung"], ["MNB – befektetés és megtakarítás", "MNB – investing and saving", "MNB – Geldanlage und Sparen"], ["Az oldal tájékoztató kalkulátor; egyedi döntéshez szakember vagy hivatalos szerv adata szükséges.", "This page provides an informational calculator. For an individual decision, consult a professional or official source.", "Diese Seite bietet einen informativen Rechner. Für individuelle Entscheidungen sind fachliche Beratung oder Angaben einer offiziellen Stelle erforderlich."], ["Módszertani frissítés:", "Methodology updated:", "Methodik aktualisiert:"],
     ["a kalkulátor matematikai modell, nem befektetési ajánlás. Befektetés előtt érdemes elolvasni az", "this calculator is a mathematical model, not investment advice. Before investing, read the", "Der Rechner ist ein mathematisches Modell und keine Anlageempfehlung. Lies vor einer Geldanlage die"], ["MNB befektetés és megtakarítás tájékoztatóját", "MNB information on investing and saving", "Informationen der MNB zu Geldanlage und Sparen"], ["és az", "and the", "sowie die"], ["MNB befektetés előtti kérdezz-felelek oldalát", "MNB's investor questions and answers", "Fragen und Antworten der MNB vor einer Geldanlage"],
     ["ETF befektetés, célösszeg, TER és infláció becslése.", "Estimate ETF growth, investment targets, TER and inflation.", "Schätzung von ETF-Wachstum, Anlagezielen, TER und Inflation."], ["Befektetés növekedése kamatos kamattal.", "Investment growth with compound interest.", "Anlagewachstum mit Zinseszins."], ["Pénz vásárlóerejének változása infláció mellett.", "How inflation changes the purchasing power of money.", "Wie sich die Kaufkraft des Geldes durch Inflation verändert."], ["Osztalék kalkulátor", "Dividend calculator", "Dividendenrechner"], ["Osztalékbevétel, céljövedelemhez szükséges tőke és hosszú távú újrabefektetés becslése.", "Estimate dividend income, capital needed for a target income and long-term reinvestment.", "Schätzung von Dividendenerträgen, erforderlichem Kapital für ein Einkommensziel und langfristiger Wiederanlage."],
-    ["Hirdetés", "Advertisement", "Anzeige"], ["2026. július 15.", "15 July 2026", "15. Juli 2026"],
+    ["Hirdetés", "Advertisement", "Anzeige"], ["Mentési, telepítési és megosztási műveletek", "Bookmarking, installation and sharing actions", "Aktionen zum Speichern, Installieren und Teilen"], ["Éves portfólióérték", "Annual portfolio value", "Jährlicher Portfoliowert"], ["2026. július 15.", "15 July 2026", "15. Juli 2026"],
     ["Ne keresd újra. Mentsd le. Használd.", "Don't search again. Save it. Use it.", "Nicht erneut suchen. Speichere es. Nutze es."], ["Tedd el a Kalkulátor Bázist, hogy legközelebb egy mozdulattal visszatalálj ehhez a számításhoz – vagy oszd meg azzal, akinek szintén jól jöhet.", "Save Calculator Base so you can return to this calculation in one click, or share it with someone who may find it useful.", "Speichere Kalkulator Bázis, damit du mit einem Klick zu dieser Berechnung zurückkehrst oder sie mit jemandem teilst, der sie nützlich finden könnte."], ["Könyvjelzőzöm", "Bookmark", "Lesezeichen"], ["Telepítem", "Install", "Installieren"], ["Megosztom", "Share", "Teilen"], ["Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.", "Open your browser menu and look for Bookmark, Favorites or Save.", "Öffne das Browsermenü und suche nach Lesezeichen, Favoriten oder Speichern."], ["Másold ki ezt a hivatkozást, és küldd tovább.", "Copy this link and share it.", "Kopiere diesen Link und teile ihn."], ["Hasznos volt ez a kalkulátor?", "Was this calculator useful?", "War dieser Rechner hilfreich?"],
   ];
   const pages = ["kamatos-kamat-kalkulator", "milliomos-kalkulator"];
@@ -129,6 +129,8 @@
     if (page === "kamatos-kamat-kalkulator") {
       const result = /^(Hozam|Veszteség): (.+?) Ft · Befizetés: (.+?) Ft$/u.exec(text);
       if (result) return `${result[1] === "Hozam" ? (lang === "en" ? "Return" : "Rendite") : (lang === "en" ? "Loss" : "Verlust")}: ${result[2]} ${lang === "en" ? "HUF" : "HUF"} · ${lang === "en" ? "Contributions" : "Einzahlungen"}: ${result[3]} HUF`;
+      const yearTitle = /^(\d+)\. év: (.+?) Ft$/u.exec(text);
+      if (yearTitle) return lang === "en" ? `Year ${yearTitle[1]}: ${yearTitle[2]} HUF` : `${yearTitle[1]}. Jahr: ${yearTitle[2]} HUF`;
     }
     if (page === "milliomos-kalkulator") {
       const duration = /^(\d+) év (\d+) hónap$/u.exec(text);
@@ -143,6 +145,8 @@
       const afterSixty = /^(\d+) éven túl$/u.exec(text);
       if (afterSixty) return lang === "en" ? `Beyond ${afterSixty[1]} years` : `Mehr als ${afterSixty[1]} Jahre`;
     }
+    const example = /^pl\.\s*(.+)$/u.exec(text);
+    if (example) return lang === "en" ? `e.g. ${example[1]}` : `z. B. ${example[1]}`;
     return null;
   }
   return Object.freeze({ pages, supported, dictionaries, translate });

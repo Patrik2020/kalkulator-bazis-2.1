@@ -12,6 +12,12 @@ test("compound interest page guidance is available in English and German", () =>
   assert.equal(api.translate(page, "Adó utáni végösszeg", "de"), "Endbetrag nach Steuern");
   assert.equal(api.translate(page, "Hozam: 3 000 Ft · Befizetés: 1 000 Ft", "en"), "Return: 3 000 HUF · Contributions: 1 000 HUF");
   assert.equal(api.translate(page, "Veszteség: 500 Ft · Befizetés: 1 000 Ft", "de"), "Verlust: 500 HUF · Einzahlungen: 1 000 HUF");
+  assert.equal(api.translate(page, "1. év: 1 151 709 Ft", "en"), "Year 1: 1 151 709 HUF");
+  assert.equal(api.translate(page, "20. év: 26 358 038 Ft", "de"), "20. Jahr: 26 358 038 HUF");
+  assert.equal(api.translate(page, "pl. 100 000", "en"), "e.g. 100 000");
+  assert.equal(api.translate(page, "pl. 7", "de"), "z. B. 7");
+  assert.equal(api.translate(page, "Mentési, telepítési és megosztási műveletek", "en"), "Bookmarking, installation and sharing actions");
+  assert.equal(api.translate(page, "Éves portfólióérték", "de"), "Jährlicher Portfoliowert");
 });
 
 test("millionaire goal page preserves clear target and model limitations in both languages", () => {
