@@ -8,7 +8,8 @@ const detailPages = [
     "arres-kalkulator", "haszonkulcs-kalkulator", "fedezeti-pont-kalkulator",
     "datum-hozzaadas-kivonas-kalkulator", "eletkor-kalkulator",
     "datum-kulonbseg-kalkulator", "munkaido-kalkulator", "munkanap-kalkulator",
-    "tulora-kalkulator"].map(slug => ({
+    "tulora-kalkulator", "oraber-kalkulator", "rezsi-megosztas-kalkulator",
+    "recept-adag-kalkulator"].map(slug => ({
     path: `kalkulatorok/${slug}.html`,
     module: "js/altalanos/everyday-locale.js", key: slug
   })),
