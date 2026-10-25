@@ -79,6 +79,9 @@ jobs:
       - name: Check EN DE savings goal and emergency fund translations
         run: node --test scripts/savings-reserve-locale.test.js
 
+      - name: Check EN DE monthly budget translations
+        run: node --test scripts/monthly-budget-locale.test.js
+
       - name: Verify localized VAT and percentage calculations without changing values
         run: node --test scripts/vat-percent-locale.test.js
 
