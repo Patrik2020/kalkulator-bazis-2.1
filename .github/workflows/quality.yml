@@ -76,6 +76,9 @@ jobs:
       - name: Check EN DE electricity and water cost translations
         run: node --test scripts/household-utility-locale.test.js
 
+      - name: Check EN DE savings goal and emergency fund translations
+        run: node --test scripts/savings-reserve-locale.test.js
+
       - name: Verify localized VAT and percentage calculations without changing values
         run: node --test scripts/vat-percent-locale.test.js
 
