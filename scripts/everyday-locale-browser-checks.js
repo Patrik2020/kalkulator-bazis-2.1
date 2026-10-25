@@ -90,7 +90,7 @@ async function checkEverydayLocales({ navigate, evaluate, setViewport }) {
     }
     await navigate("/kalkulatorok/datum-hozzaadas-kivonas-kalkulator");
     await choose("hu");
-    assert.match(await result("#dateResult"), /20\. szeptember 2026|20\. szeptember 2026/u);
+    assert.match(await result("#dateResult"), /2026\. szeptember 20\./u);
     const dateInput = await evaluate("document.querySelector('#dateBase').value");
     for (const [language, date, weekday] of [["en", "20 September 2026", "Sunday"], ["de", "20. September 2026", "Sonntag"]]) {
       await choose(language);
