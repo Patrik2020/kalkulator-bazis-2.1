@@ -12,6 +12,7 @@ test("business calculator copy and calculation errors have reviewed EN/DE transl
     ["arres-kalkulator", "Árrés és haszonkulcs ugyanaz?", "Are margin and markup the same?", "Sind Handelsspanne und Aufschlag dasselbe?"],
     ["haszonkulcs-kalkulator", "A haszonkulcs legyen nagyobb -100%-nál.", "Markup must be greater than -100%.", "Der Aufschlag muss größer als -100 % sein."],
     ["fedezeti-pont-kalkulator", "Fedezeti mennyiség:", "Break-even quantity:", "Break-even-Menge:"],
+    ["fedezeti-pont-kalkulator", "250 db", "250 units", "250 Stück"],
     ["fedezeti-pont-kalkulator", "Az eladási ár legyen nagyobb a változó költségnél.", "Selling price must be greater than variable cost.", "Der Verkaufspreis muss höher als die variablen Kosten sein."]
   ];
   for (const [page, source, en, de] of checks) {

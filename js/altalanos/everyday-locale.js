@@ -1501,6 +1501,10 @@
     if (Object.prototype.hasOwnProperty.call(shared, value)) return shared[value][index];
     const normalized = value.replace(/\s+/gu, " ").trim();
     if (Object.prototype.hasOwnProperty.call(content, normalized)) return content[normalized][index];
+    if (page === "fedezeti-pont-kalkulator") {
+      const quantity = /^(\d[\d\s.,]*)\s+db$/u.exec(normalized);
+      if (quantity) return quantity[1] + (lang === "en" ? " units" : " Stück");
+    }
     if (page === "egysegar-kalkulator") {
       const perUnit = /^([\d\s.,]+) Ft\/egység$/u.exec(value);
       if (perUnit) return perUnit[1] + (lang === "en" ? " HUF/unit" : " HUF/Einheit");
