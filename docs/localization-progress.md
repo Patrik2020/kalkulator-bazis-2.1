@@ -2,7 +2,7 @@
 
 Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőrzi, hogy naprakész-e.
 
-Aktív kalkulátor: **89**; részletes fordításon átesett: **33**; hátralévő: **56**.
+Aktív kalkulátor: **89**; részletes fordításon átesett: **35**; hátralévő: **54**.
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **49**.
 
@@ -85,7 +85,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/haszonkulcs-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/hatotav-kalkulator.html | auto | content-review |
 | kalkulatorok/havi-koltsegvetes-kalkulator.html | penzugyi | detail-reviewed |
-| kalkulatorok/hitel-elotorlesztes-kalkulator.html | penzugyi | content-review |
+| kalkulatorok/hitel-elotorlesztes-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/hitel-torleszto-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/hitelkepesseg-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/homerseklet-atvalto-kalkulator.html | atvaltok | retired-review |
@@ -98,7 +98,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/kamatos-kamat-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/kerites-oszlop-kalkulator.html | epitoipari | content-review |
 | kalkulatorok/kilometerdij-kalkulator.html | auto | content-review |
-| kalkulatorok/lakas-hitel-onero-kalkulator.html | penzugyi | content-review |
+| kalkulatorok/lakas-hitel-onero-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/lepesszam-tavolsag-kalkulator.html | egeszseg | content-review |
 | kalkulatorok/makro-kalkulator.html | egeszseg | content-review |
 | kalkulatorok/megtakaritasi-cel-kalkulator.html | penzugyi | detail-reviewed |
