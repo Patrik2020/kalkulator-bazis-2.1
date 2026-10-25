@@ -64,6 +64,9 @@ jobs:
       - name: Check EN DE margin markup and break-even translations
         run: node --test scripts/business-locale.test.js
 
+      - name: Check EN DE date, age and date-difference translations
+        run: node --test scripts/date-locale.test.js
+
       - name: Verify localized VAT and percentage calculations without changing values
         run: node --test scripts/vat-percent-locale.test.js
 

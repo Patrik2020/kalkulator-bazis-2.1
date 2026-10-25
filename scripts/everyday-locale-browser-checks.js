@@ -88,7 +88,46 @@ async function checkEverydayLocales({ navigate, evaluate, setViewport }) {
       await choose("hu");
       assert.equal(await result(selector), error);
     }
+    await navigate("/kalkulatorok/datum-hozzaadas-kivonas-kalkulator");
+    await choose("hu");
+    assert.match(await result("#dateResult"), /20\. szeptember 2026|20\. szeptember 2026/u);
+    const dateInput = await evaluate("document.querySelector('#dateBase').value");
+    for (const [language, date, weekday] of [["en", "20 September 2026", "Sunday"], ["de", "20. September 2026", "Sonntag"]]) {
+      await choose(language);
+      const translated = await result("#dateResult");
+      assert.ok(translated.includes(date), translated);
+      assert.ok(translated.includes(weekday), translated);
+      assert.equal(await evaluate("document.querySelector('#dateBase').value"), dateInput);
+      assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `date add: overflow at ${width}`);
+    }
+    await choose("hu");
+
+    await navigate("/kalkulatorok/eletkor-kalkulator");
+    await choose("hu");
+    await edit({ "[name=birth]": "2000-01-01", "[name=asOf]": "2020-01-01" }, true);
+    const ageHu = await result("#kalkulator .everyday-result");
+    assert.match(ageHu, /20 év 0 hónap 0 nap/);
+    for (const [language, duration, label] of [["en", "20 years 0 months 0 days", "Exact age"], ["de", "20 Jahre 0 Monate 0 Tage", "Genaues Alter"]]) {
+      await choose(language);
+      const translated = await result("#kalkulator .everyday-result");
+      assert.ok(translated.includes(duration), translated);
+      assert.ok(translated.includes(label), translated);
+      assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `age: overflow at ${width}`);
+    }
+
+    await navigate("/kalkulatorok/datum-kulonbseg-kalkulator");
+    await choose("hu");
+    await edit({ "[name=start]": "2026-10-01", "[name=end]": "2026-10-08", "[name=offset]": "5" }, true);
+    const dateDiffHu = await result("#kalkulator .everyday-result");
+    assert.match(dateDiffHu, /7 nap/);
+    for (const [language, expectedLabel, expectedDate] of [["en", "Difference", "06/10/2026"], ["de", "Differenz", "06.10.2026"]]) {
+      await choose(language);
+      const translated = await result("#kalkulator .everyday-result");
+      assert.ok(translated.includes(expectedLabel), translated);
+      assert.ok(translated.includes(expectedDate), translated);
+      assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `date difference: overflow at ${width}`);
+    }
   }
-  console.log("Everyday locales: ratio, percentage change, tip, margin, markup and break-even calculations, errors and language restoration passed at both widths.");
+  console.log("Everyday locales: ratio, percentage change, tip, margin, markup, break-even, date addition, age and date difference passed at both widths.");
 }
 module.exports = { checkEverydayLocales };
