@@ -2,7 +2,7 @@
 
 Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőrzi, hogy naprakész-e.
 
-Aktív kalkulátor: **89**; részletes fordításon átesett: **22**; hátralévő: **67**.
+Aktív kalkulátor: **89**; részletes fordításon átesett: **24**; hátralévő: **65**.
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **49**.
 
@@ -101,7 +101,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/lakas-hitel-onero-kalkulator.html | penzugyi | content-review |
 | kalkulatorok/lepesszam-tavolsag-kalkulator.html | egeszseg | content-review |
 | kalkulatorok/makro-kalkulator.html | egeszseg | content-review |
-| kalkulatorok/megtakaritasi-cel-kalkulator.html | penzugyi | content-review |
+| kalkulatorok/megtakaritasi-cel-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/mertani-atlag-kalkulator.html | mindennapi | retired-review |
 | kalkulatorok/mertekegyseg-atvalto-kalkulator.html | atvaltok | content-review |
 | kalkulatorok/milliomos-kalkulator.html | penzugyi | content-review |
@@ -139,7 +139,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/uzemanyag-koltseg-kalkulator.html | auto | content-review |
 | kalkulatorok/uzemanyagar-kulonbseg-kalkulator.html | auto | content-review |
 | kalkulatorok/vakolat-kalkulator.html | epitoipari | content-review |
-| kalkulatorok/vesztartalek-kalkulator.html | penzugyi | content-review |
+| kalkulatorok/vesztartalek-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/villanyfogyasztas-koltseg-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/vizfogyasztas-kalkulator.html | egeszseg | content-review |
 | kalkulatorok/vizfogyasztas-koltseg-kalkulator.html | mindennapi | detail-reviewed |

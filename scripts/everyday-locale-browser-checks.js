@@ -248,7 +248,44 @@ async function checkEverydayLocales({ navigate, evaluate, setViewport }) {
       assert.deepEqual(await evaluate("[...document.querySelectorAll('#kalkulator input')].map(e => e.value)"), waterInputs);
       assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `water cost: overflow at ${width}`);
     }
+
+    await navigate("/kalkulatorok/megtakaritasi-cel-kalkulator");
+    await choose("hu");
+    const savingsHu = await result("#goalResult");
+    assert.ok(savingsHu.includes("15 hónap"), savingsHu);
+    assert.ok(savingsHu.includes("2"), savingsHu);
+    const savingsInputs = await evaluate("[...document.querySelectorAll('#kalkulator input')].map(e => e.value)");
+    for (const [language, label, duration] of [["en", "Estimated time:", "15 months"], ["de", "Geschätzte Dauer:", "15 Monate"]]) {
+      await choose(language);
+      const translated = await result("#goalResult");
+      assert.ok(translated.includes(label), translated);
+      assert.ok(translated.includes(duration), translated);
+      assert.ok(translated.includes("2"), translated);
+      assert.deepEqual(await evaluate("[...document.querySelectorAll('#kalkulator input')].map(e => e.value)"), savingsInputs);
+      assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `savings goal: overflow at ${width}`);
+    }
+
+    await navigate("/kalkulatorok/vesztartalek-kalkulator");
+    await choose("hu");
+    const reserveHu = await result("#reserveResult");
+    assert.ok(reserveHu.includes("16 hónap"), reserveHu);
+    assert.ok(reserveHu.includes("2"), reserveHu);
+    const reserveInputs = await evaluate("[...document.querySelectorAll('#kalkulator input')].map(e => e.value)");
+    for (const [language, label, duration] of [["en", "Estimated time to target:", "16 months"], ["de", "Geschätzte Zeit bis zum Ziel:", "16 Monate"]]) {
+      await choose(language);
+      const translated = await result("#reserveResult");
+      assert.ok(translated.includes(label), translated);
+      assert.ok(translated.includes(duration), translated);
+      assert.ok(translated.includes("2"), translated);
+      assert.deepEqual(await evaluate("[...document.querySelectorAll('#kalkulator input')].map(e => e.value)"), reserveInputs);
+      assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `emergency fund: overflow at ${width}`);
+    }
+    await choose("hu");
+    await edit({ "#reserveSaving": "0" });
+    assert.ok((await result("#reserveResult")).includes("A megadott havi megtakarítással nem számolható"));
+    await choose("en");
+    assert.ok((await result("#reserveResult")).includes("Cannot be estimated with the monthly savings entered"));
   }
-  console.log("Everyday locales: ratio, percentage change, tip, margin, markup, break-even, dates, age, working-hours, working-days, overtime, hourly wage, shared costs, recipe, electricity and water costs passed at both widths.");
+  console.log("Everyday locales: ratio, percentage change, tip, margin, markup, break-even, dates, age, working-hours, working-days, overtime, hourly wage, shared costs, recipe, electricity, water, savings goal and emergency fund passed at both widths.");
 }
 module.exports = { checkEverydayLocales };
