@@ -97,7 +97,7 @@
     ["A kalkulátor garantált eredményt mutat?", "Does the calculator show a guaranteed result?", "Zeigt der Rechner ein garantiertes Ergebnis?"], ["Nem, csak a megadott feltételezésekből számolt becslést.", "No. It provides an estimate based on the assumptions you enter.", "Nein. Er zeigt eine Schätzung auf Grundlage deiner Annahmen."],
     ["Rendszeres megtakarításnál is működik?", "Can it model regular savings too?", "Funktioniert er auch bei regelmäßigem Sparen?"], ["Igen, ilyenkor a havi befizetések is növelik a jövőbeli alapot.", "Yes. Monthly contributions also increase the future balance.", "Ja. Monatliche Einzahlungen erhöhen ebenfalls das zukünftige Guthaben."],
     ["Milyen hozammal érdemes számolni?", "What return should I use?", "Mit welcher Rendite sollte ich rechnen?"], ["Óvatos, több forgatókönyvet érdemes nézni: pesszimista, reálisabb és optimistább értékkel.", "Use caution and compare several scenarios, such as lower, moderate and higher returns.", "Gehe vorsichtig vor und vergleiche mehrere Szenarien, etwa niedrigere, mittlere und höhere Renditen."],
-    ["Kapcsolódó kalkulátorok", "Related calculators", "Passende Rechner"], ["ETF kalkulátor", "ETF calculator", "ETF-Rechner"], ["Mikor leszek milliomos?", "When will I become a millionaire?", "Wann werde ich Millionär?"], ["Infláció kalkulátor", "Inflation calculator", "Inflationsrechner"], ["Havi költségvetés kalkulátor", "Monthly budget calculator", "Monatsbudget-Rechner"],
+    ["Kapcsolódó kalkulátorok", "Related calculators", "Verwandte Rechner"], ["ETF kalkulátor", "ETF calculator", "ETF-Rechner"], ["Mikor leszek milliomos?", "When will I become a millionaire?", "Wann werde ich Millionär?"], ["Infláció kalkulátor", "Inflation calculator", "Inflationsrechner"], ["Havi költségvetés kalkulátor", "Monthly budget calculator", "Monatsbudget-Rechner"],
     ["Befizetés vagy hozam?", "Contributions or returns?", "Einzahlungen oder Rendite?"], ["Lásd külön, miből áll össze a végösszeg", "See what makes up the final balance", "Sieh dir an, wie sich der Endbetrag zusammensetzt"], ["A kamatos kamat erejét könnyű túlmisztifikálni. Az első években gyakran a rendszeres saját befizetés adja a növekedés nagyobb részét; az idő előrehaladtával nőhet a hozam szerepe.", "It is easy to overstate the power of compound interest. In the early years, regular contributions often account for most of the growth; returns may play a larger role over time.", "Die Wirkung des Zinseszinses wird leicht überschätzt. In den ersten Jahren stammt ein großer Teil des Zuwachses oft aus regelmäßigen Einzahlungen; mit der Zeit kann die Rendite stärker ins Gewicht fallen."],
     ["Összes saját befizetés", "Total contributions", "Summe der Einzahlungen"], ["Becsült végösszeg", "Estimated final balance", "Geschätzter Endbetrag"], ["Ebből becsült hozam", "Estimated returns", "Davon geschätzte Rendite"], ["Hozam aránya a végösszegből", "Returns as a share of the final balance", "Renditeanteil am Endbetrag"],
     ["Miért más, mint az ETF kalkulátor?", "How is this different from the ETF calculator?", "Wie unterscheidet er sich vom ETF-Rechner?"], ["Ez tiszta matematikai kamatoskamat-modell. Az ETF kalkulátor ehhez befektetésspecifikus költség-, infláció- és célösszeg-beállításokat is kapcsol.", "This is a pure mathematical compound interest model. The ETF calculator adds investment-specific fees, inflation and target settings.", "Dies ist ein reines mathematisches Zinseszinsmodell. Der ETF-Rechner ergänzt anlagebezogene Kosten, Inflation und Zielvorgaben."],
@@ -120,6 +120,7 @@
   ];
   const pages = ["kamatos-kamat-kalkulator", "milliomos-kalkulator"];
   const supported = ["hu", "en", "de"];
+  const dictionaries = Object.freeze(Object.fromEntries(pages.map(page => [page, Object.freeze(Object.fromEntries(rows.map(([source, en, de]) => [source, Object.freeze([en, de])])))])));
   const lookup = new Map(rows.map(row => [row[0], row]));
   function translate(page, text, lang) {
     if (!pages.includes(page) || !supported.includes(lang) || lang === "hu") return null;
@@ -144,5 +145,5 @@
     }
     return null;
   }
-  return Object.freeze({ pages, supported, translate });
+  return Object.freeze({ pages, supported, dictionaries, translate });
 });
