@@ -167,7 +167,54 @@ async function checkEverydayLocales({ navigate, evaluate, setViewport }) {
       assert.ok(translated.includes("36 000 Ft"), translated);
       assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `overtime: overflow at ${width}`);
     }
+
+    await navigate("/kalkulatorok/oraber-kalkulator");
+    await choose("hu");
+    await edit({ "[name=basis]": "gross", "[name=salary]": "600000", "[name=monthlyHours]": "174", "[name=overtimeHours]": "8", "[name=overtimeRate]": "1.5", "[name=premiumHours]": "3", "[name=premiumPercent]": "20", "[name=paidLeaveHours]": "4" }, true);
+    const hourlyHu = await result("#kalkulator .everyday-result");
+    assert.ok(hourlyHu.includes("Bruttó alapórabér"), hourlyHu);
+    const hourlyInputs = await evaluate("[...document.querySelectorAll('#kalkulator input, #kalkulator select')].map(e => e.value)");
+    for (const [language, regular, overtime] of [["en", "Gross regular hourly wage", "Overtime pay"], ["de", "Brutto-Grundstundenlohn", "Überstundenvergütung"]]) {
+      await choose(language);
+      const translated = await result("#kalkulator .everyday-result");
+      assert.ok(translated.includes(regular), translated);
+      assert.ok(translated.includes(overtime), translated);
+      assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `hourly wage: overflow at ${width}`);
+      assert.deepEqual(await evaluate("[...document.querySelectorAll('#kalkulator input, #kalkulator select')].map(e => e.value)"), hourlyInputs);
+    }
+
+    await navigate("/kalkulatorok/rezsi-megosztas-kalkulator");
+    await choose("hu");
+    await edit({ "[name=total]": "120000", "[name=mode]": "equal", "[name=a]": "1", "[name=b]": "1", "[name=c]": "1" }, true);
+    const utilityHu = await result("#kalkulator .everyday-result");
+    assert.ok(utilityHu.includes("40 000 Ft"), utilityHu);
+    const utilityInputs = await evaluate("[...document.querySelectorAll('#kalkulator input, #kalkulator select')].map(e => e.value)");
+    for (const [language, share] of [["en", "Person 1 share"], ["de", "Anteil Person 1"]]) {
+      await choose(language);
+      const translated = await result("#kalkulator .everyday-result");
+      assert.ok(translated.includes(share), translated);
+      assert.ok(translated.includes("40 000 Ft"), translated);
+      assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `shared costs: overflow at ${width}`);
+      assert.deepEqual(await evaluate("[...document.querySelectorAll('#kalkulator input, #kalkulator select')].map(e => e.value)"), utilityInputs);
+    }
+
+    await navigate("/kalkulatorok/recept-adag-kalkulator");
+    await choose("hu");
+    await edit({ "#recipeOriginal": "4", "#recipeTarget": "6", "#recipeIngredients": "Pálinka;500;ml\\nCukor;250;g" });
+    const recipeHu = await result("#recipeResult");
+    assert.ok(recipeHu.includes("Pálinka"), recipeHu);
+    assert.ok(recipeHu.includes("750 ml"), recipeHu);
+    const recipeInputs = await evaluate("[...document.querySelectorAll('#kalkulator input, #kalkulator textarea')].map(e => e.value)");
+    for (const [language, factor] of [["en", "Scaling factor:"], ["de", "Umrechnungsfaktor:"]]) {
+      await choose(language);
+      const translated = await result("#recipeResult");
+      assert.ok(translated.includes(factor), translated);
+      assert.ok(translated.includes("Pálinka"), translated);
+      assert.ok(translated.includes("750 ml"), translated);
+      assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `recipe: overflow at ${width}`);
+      assert.deepEqual(await evaluate("[...document.querySelectorAll('#kalkulator input, #kalkulator textarea')].map(e => e.value)"), recipeInputs);
+    }
   }
-  console.log("Everyday locales: ratio, percentage change, tip, margin, markup, break-even, date, age, working-hours, working-days and overtime passed at both widths.");
+  console.log("Everyday locales: ratio, percentage change, tip, margin, markup, break-even, date, age, working-hours, working-days, overtime, hourly wage, shared costs and recipe passed at both widths.");
 }
 module.exports = { checkEverydayLocales };

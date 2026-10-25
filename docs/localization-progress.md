@@ -2,7 +2,7 @@
 
 Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőrzi, hogy naprakész-e.
 
-Aktív kalkulátor: **89**; részletes fordításon átesett: **17**; hátralévő: **72**.
+Aktív kalkulátor: **89**; részletes fordításon átesett: **20**; hátralévő: **69**.
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **49**.
 
@@ -111,12 +111,12 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/munkanap-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/netto-brutto-kalkulator.html | penzugyi | partial |
 | kalkulatorok/nyomas-atvalto-kalkulator.html | atvaltok | retired-review |
-| kalkulatorok/oraber-kalkulator.html | mindennapi | content-review |
+| kalkulatorok/oraber-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/osztalek-kalkulator.html | penzugyi | content-review |
 | kalkulatorok/padlo-burkolat-kalkulator.html | epitoipari | content-review |
 | kalkulatorok/pulzus-zona-kalkulator.html | egeszseg | content-review |
-| kalkulatorok/recept-adag-kalkulator.html | mindennapi | content-review |
-| kalkulatorok/rezsi-megosztas-kalkulator.html | mindennapi | content-review |
+| kalkulatorok/recept-adag-kalkulator.html | mindennapi | detail-reviewed |
+| kalkulatorok/rezsi-megosztas-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/sebesseg-atvalto-kalkulator.html | atvaltok | retired-review |
 | kalkulatorok/sulyozott-atlag-kalkulator.html | mindennapi | retired-review |
 | kalkulatorok/szamla-teljesites-kalkulator.html | penzugyi | content-review |

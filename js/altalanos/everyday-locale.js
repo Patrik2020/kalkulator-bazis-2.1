@@ -49,6 +49,9 @@
       if (page === "egysegar-kalkulator") {
         main.querySelectorAll("#kalkulator .everyday-result li strong").forEach((name) => name.setAttribute("translate", "no"));
       }
+      if (page === "recept-adag-kalkulator") {
+        main.querySelectorAll("#recipeResult p:not(:first-child) strong").forEach((name) => name.setAttribute("translate", "no"));
+      }
       const nodes = [];
       const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
       while (walker.nextNode()) nodes.push(walker.currentNode);
@@ -1870,6 +1873,194 @@
     "Általános bérszámítás saját szorzóval. Nem állapít meg munkajogi jogosultságot, pótlékot vagy kötelező elszámolási módot.": ["A general pay calculation using your own multiplier. It does not determine employment-law entitlements, premiums or mandatory pay rules.", "Eine allgemeine Lohnberechnung mit eigenem Faktor. Sie bestimmt keine arbeitsrechtlichen Ansprüche, Zuschläge oder verbindlichen Abrechnungsregeln."],
     "oraber": ["Hourly wage", "Stundenlohn"], "munkaido": ["Working hours", "Arbeitszeit"], "netto brutto": ["Net–gross salary", "Netto–Brutto"]
   });
+  const hourlyWage = Object.freeze({
+    "Órabér kalkulátor": ["Hourly wage calculator", "Stundenlohnrechner"],
+    "Munkaidő kalkulátor": ["Working hours calculator", "Arbeitszeitrechner"],
+    "Nettó–bruttó": ["Net–gross salary", "Netto–Brutto"],
+    "Számold ki az órabéred havi bér és munkaóra alapján.": ["Calculate your hourly wage from monthly pay and working hours.", "Berechne deinen Stundenlohn anhand von Monatsgehalt und Arbeitsstunden."],
+    "Órabér-, túlóra- és pótlékkalkulátor": ["Hourly wage, overtime and premium calculator", "Rechner für Stundenlohn, Überstunden und Zuschläge"],
+    "Nettó vagy bruttó havi bérből becsül alapórabért, túlórát, pótlékot és fizetett távolléti időt.": ["Estimate the regular hourly wage, overtime, premiums and paid leave from gross or net monthly pay.", "Schätze regulären Stundenlohn, Überstunden, Zuschläge und bezahlte Abwesenheit aus einem Brutto- oder Netto-Monatsgehalt."],
+    "Megadott bér típusa": ["Pay basis", "Gehaltsart"], "Bruttó": ["Gross", "Brutto"], "Nettó": ["Net", "Netto"],
+    "Havi alapbér (Ft)": ["Base monthly pay (HUF)", "Monatliches Grundgehalt (HUF)"], "Havi alapórák": ["Regular hours per month", "Reguläre Stunden pro Monat"],
+    "Túlóra (óra)": ["Overtime hours", "Überstunden"], "Túlóra szorzó": ["Overtime multiplier", "Überstundenfaktor"],
+    "Pótlékos órák": ["Premium hours", "Zuschlagsstunden"], "Pótlék (%)": ["Premium (%)", "Zuschlag (%)"],
+    "Fizetett szabadság/távollét (óra)": ["Paid leave/absence (hours)", "Bezahlter Urlaub/Abwesenheit (Stunden)"],
+    "Bruttó alapórabér": ["Gross regular hourly wage", "Brutto-Grundstundenlohn"],
+    "Nettó alapórabér": ["Net regular hourly wage", "Netto-Grundstundenlohn"],
+    "Túlóra díja": ["Overtime pay", "Überstundenvergütung"], "Pótlék": ["Premium", "Zuschlag"],
+    "Fizetett távollét értéke": ["Value of paid absence", "Wert bezahlter Abwesenheit"],
+    "Becsült teljes összeg": ["Estimated total", "Geschätzter Gesamtbetrag"],
+    "Havi fizetés átszámítása óradíjra": ["Convert monthly pay to an hourly rate", "Monatsgehalt in Stundenlohn umrechnen"],
+    "A kalkulátor a megadott havi bért elosztja a havi munkaórák számával, így egy egyszerű, összehasonlítható óradíjat ad. Ez különösen hasznos eltérő óraszámú állásajánlatok, részmunkaidő vagy változó havi munkaidő összevetésénél.": [
+      "The calculator divides the entered monthly pay by monthly working hours to produce a simple, comparable hourly rate. This is useful for comparing job offers with different hours, part-time work or varying monthly schedules.",
+      "Der Rechner teilt das eingegebene Monatsgehalt durch die monatlichen Arbeitsstunden und ermittelt so einen einfachen, vergleichbaren Stundenlohn. Das hilft beim Vergleich von Stellenangeboten mit unterschiedlichen Stunden, Teilzeit oder wechselnder Monatsarbeitszeit."
+    ],
+    "A kalkulátor nem dönti el, hogy a megadott összeg bruttó vagy nettó. Ha bruttó havi bért adsz meg, bruttó óradíjat kapsz; nettó bérből nettó óradíj készül.": [
+      "The calculator does not determine whether your amount is gross or net. Gross monthly pay produces a gross hourly rate; net pay produces a net hourly rate.",
+      "Der Rechner entscheidet nicht, ob der eingegebene Betrag brutto oder netto ist. Aus einem Brutto-Monatsgehalt wird ein Brutto-, aus einem Nettogehalt ein Netto-Stundenlohn."
+    ],
+    "A képlet": ["The formula", "Die Formel"], "Órabér = havi bér / havi munkaóra.": ["Hourly wage = monthly pay / monthly working hours.", "Stundenlohn = Monatsgehalt / monatliche Arbeitsstunden."],
+    "A nyolcórás munkanap egyszerű értéke az órabér nyolcszorosa. Ez nem automatikusan azonos a munkajogi napi bérrel vagy a bérszámfejtés minden esetben használt alapjával.": [
+      "The simple value of an eight-hour workday is eight times the hourly wage. This is not automatically the same as a legal daily wage or the basis used in every payroll calculation.",
+      "Der einfache Wert eines Achtstundentags entspricht dem Achtfachen des Stundenlohns. Das ist nicht automatisch mit einem gesetzlichen Tageslohn oder der Grundlage jeder Lohnabrechnung gleichzusetzen."
+    ],
+    "600 000 Ft havi bér és 174 óra mellett az egyszerű óradíj körülbelül 3 448 Ft. Ugyanez 160 órával 3 750 Ft/óra, ezért ugyanaz a havi összeg eltérő munkaidő mellett más óradíjat jelent.": [
+      "With monthly pay of HUF 600,000 and 174 hours, the simple hourly rate is about HUF 3,448. At 160 hours, the same pay gives HUF 3,750 per hour, so the same monthly amount means a different hourly rate when working hours change.",
+      "Bei einem Monatsgehalt von 600.000 HUF und 174 Stunden beträgt der einfache Stundenlohn etwa 3.448 HUF. Bei 160 Stunden ergeben sich 3.750 HUF pro Stunde. Derselbe Monatsbetrag führt bei anderer Arbeitszeit also zu einem anderen Stundenlohn."
+    ],
+    "Miért fontos az óraszám?": ["Why do working hours matter?", "Warum sind die Arbeitsstunden wichtig?"],
+    "Két azonos havi fizetésű állás nem feltétlenül azonos értékű, ha az egyikhez rendszeresen több munkaóra tartozik. Az óradíj ezért jó összehasonlító mutató, de a műszakpótlék, túlóra, bónusz, cafeteria, utazási idő és egyéb juttatások külön is számítanak.": [
+      "Two jobs with the same monthly pay are not necessarily equal in value if one regularly requires more hours. The hourly rate is a useful comparison, but shift premiums, overtime, bonuses, benefits, travel time and other compensation also matter.",
+      "Zwei Stellen mit gleichem Monatsgehalt sind nicht unbedingt gleichwertig, wenn eine regelmäßig mehr Arbeitsstunden erfordert. Der Stundenlohn ist ein hilfreicher Vergleichswert; Schichtzuschläge, Überstunden, Boni, Zusatzleistungen, Wegezeit und weitere Vorteile zählen ebenfalls."
+    ],
+    "Bruttó és nettó órabér": ["Gross and net hourly wages", "Brutto- und Netto-Stundenlohn"],
+    "A bruttó órabér a levonások előtti, a nettó órabér a kézhez kapott összegből számított egyszerű arány. Ha két ajánlatot hasonlítasz össze, mindig azonos alapon számolj. Nettó összegek esetén az adókedvezmények miatt két ember eredménye eltérhet még azonos bruttó bér mellett is.": [
+      "Gross hourly wage is a simple ratio based on pay before deductions; net hourly wage uses take-home pay. Use the same basis when comparing offers. Tax credits can make net results differ between people even with the same gross pay.",
+      "Der Brutto-Stundenlohn basiert auf dem Gehalt vor Abzügen, der Netto-Stundenlohn auf dem Auszahlungsbetrag. Vergleiche Angebote immer auf derselben Grundlage. Wegen Steuervergünstigungen können Nettoergebnisse trotz gleichen Bruttogehalts unterschiedlich sein."
+    ],
+    "Alkalmazotti és vállalkozói óradíj nem ugyanaz": ["Employee and contractor hourly rates are not the same", "Stundenlohn als Angestellter und als Selbstständiger sind nicht dasselbe"],
+    "Vállalkozóként az óradíjnak fedeznie kellhet a nem számlázható időt, adókat, adminisztrációt, eszközöket, szabadságot és üzleti kockázatot is. Emiatt egy alkalmazotti óradíj egyszerű átvétele vállalkozói díjnak félrevezető lehet.": [
+      "For a contractor, the rate may also need to cover non-billable time, taxes, administration, equipment, leave and business risk. Simply reusing an employee hourly wage as a contractor rate can therefore be misleading.",
+      "Als Selbstständiger muss der Stundensatz möglicherweise auch nicht abrechenbare Zeit, Steuern, Verwaltung, Ausrüstung, Urlaub und Geschäftsrisiken abdecken. Einen Angestellten-Stundenlohn einfach als Honorarsatz zu übernehmen, kann daher irreführend sein."
+    ],
+    "Bruttó havi bért nettó óradíjként értelmeznek.": ["Treating gross monthly pay as a net hourly rate.", "Brutto-Monatsgehalt als Netto-Stundenlohn verstehen."],
+    "Átlagos 174 órát használnak egy konkrét, ettől jelentősen eltérő hónaphoz.": ["Using an average of 174 hours for a specific month that differs substantially.", "Den Durchschnitt von 174 Stunden für einen konkreten Monat verwenden, der deutlich davon abweicht."],
+    "A túlórát vagy pótlékot kétszer számolják bele.": ["Counting overtime or a premium twice.", "Überstunden oder Zuschläge doppelt einrechnen."],
+    "A teljes munkahelyen töltött időt automatikusan fizetett munkaórának tekintik.": ["Automatically treating all time at work as paid hours.", "Die gesamte Anwesenheitszeit automatisch als bezahlte Arbeitszeit ansehen."],
+    "Egyszeri bónuszt állandó havi bérként számolnak.": ["Treating a one-off bonus as regular monthly pay.", "Einen einmaligen Bonus als festes Monatsgehalt ansetzen."],
+    "Miért nem egyezik a bérpapírral?": ["Why does it differ from my payslip?", "Warum weicht das Ergebnis von meiner Gehaltsabrechnung ab?"],
+    "A bérpapír pótlékokat, távolléteket, adókat, kedvezményeket és egyéb tételeket is tartalmazhat.": ["A payslip can include premiums, absences, taxes, credits and other items.", "Eine Gehaltsabrechnung kann Zuschläge, Abwesenheiten, Steuern, Vergünstigungen und weitere Posten enthalten."],
+    "Részmunkaidőnél használható?": ["Can I use it for part-time work?", "Kann ich den Rechner für Teilzeitarbeit nutzen?"],
+    "Igen. A tényleges havi bért és a hozzá tartozó tényleges vagy tervezett munkaórát add meg.": ["Yes. Enter the actual monthly pay and the corresponding actual or planned hours.", "Ja. Gib das tatsächliche Monatsgehalt und die dazugehörigen tatsächlichen oder geplanten Arbeitsstunden ein."],
+    "Túlóradíjat számol?": ["Does it calculate overtime pay?", "Berechnet der Rechner Überstundenvergütung?"],
+    "Nem. Az alapóradíjat mutatja, a túlóra és pótlék külön számítás.": ["No. It shows the base hourly rate; overtime and premiums are calculated separately.", "Nein. Er zeigt den Grundstundenlohn; Überstunden und Zuschläge werden getrennt berechnet."],
+    "Melyik havi óraszámot használjam?": ["Which monthly hours should I use?", "Welche monatliche Stundenzahl soll ich verwenden?"],
+    "Összehasonlításhoz használhatsz átlagot, konkrét hónaphoz viszont a tényleges elszámolt óraszám a jobb alap.": ["An average works for comparisons, but for a specific month use the actual recorded hours.", "Für Vergleiche kannst du einen Durchschnitt verwenden. Für einen bestimmten Monat sind die tatsächlich erfassten Stunden die bessere Grundlage."],
+    "Állásajánlatok összevetésére elég az órabér?": ["Is the hourly rate enough to compare job offers?", "Reicht der Stundenlohn zum Vergleich von Stellenangeboten?"],
+    "Nem önmagában. Érdemes figyelembe venni a munkaidőt, pótlékokat, juttatásokat, utazást, szabadságot és a munkarend kiszámíthatóságát is.": ["Not by itself. Also consider working hours, premiums, benefits, commuting, leave and schedule predictability.", "Nicht allein. Berücksichtige auch Arbeitszeit, Zuschläge, Zusatzleistungen, Arbeitsweg, Urlaub und Planbarkeit des Arbeitszeitmodells."],
+    "Effektív órabér": ["Effective hourly wage", "Effektiver Stundenlohn"],
+    "A fizetett órabér és az idődre vetített órabér eltérhet": ["Hourly pay and pay per hour of your total time can differ", "Stundenlohn und Vergütung je Stunde deines gesamten Zeitaufwands können abweichen"],
+    "Havi nettó vagy bruttó bér (Ft)": ["Monthly net or gross pay (HUF)", "Monatliches Netto- oder Bruttogehalt (HUF)"],
+    "Fizetett havi órák": ["Paid hours per month", "Bezahlte Stunden pro Monat"],
+    "Tényleges jelenléti/utazással együtt vállalt órák": ["Actual hours committed, including presence and travel", "Tatsächlich gebundene Stunden einschließlich Anwesenheit und Arbeitsweg"],
+    "Fizetett órára vetítve": ["Per paid hour", "Je bezahlter Stunde"],
+    "Teljes időráfordításra vetítve": ["Per hour of total time", "Je Stunde des gesamten Zeitaufwands"], "Különbség": ["Difference", "Differenz"],
+    "A „teljes időráfordítás” nem munkajogi bérfogalom; személyes összehasonlításhoz használható, például két állásajánlat között.": [
+      "“Total time committed” is not an employment-law pay concept; it can be useful for personal comparisons, such as between two job offers.",
+      "„Gesamter Zeitaufwand“ ist kein arbeitsrechtlicher Lohnbegriff. Er kann für persönliche Vergleiche nützlich sein, etwa zwischen zwei Stellenangeboten."
+    ],
+    "Miből áll össze az órabér-becslés?": ["How is the hourly wage estimate calculated?", "Wie setzt sich die Stundenlohnschätzung zusammen?"],
+    "A megadott havi bért a havi alapórák számával osztja, majd a külön megadott túlóra-szorzót, pótlékszázalékot és óraszámokat alkalmazza. A nettó mód a már megadott nettó összegből számol; nem végzi el helyetted az adó- és járulékszámítást, ezért bérszámfejtésre nem használható.": [
+      "It divides monthly pay by regular monthly hours, then applies the entered overtime multiplier, premium percentage and hours. Net mode uses the net amount you provide; it does not calculate taxes or contributions and is not a payroll tool.",
+      "Der Rechner teilt das Monatsgehalt durch die monatlichen Grundstunden und berücksichtigt anschließend den eingegebenen Überstundenfaktor, Zuschlagsprozentsatz und die jeweiligen Stunden. Im Nettomodus wird der eingegebene Nettobetrag verwendet; Steuern und Beiträge werden nicht berechnet, daher eignet sich das Ergebnis nicht für die Lohnabrechnung."
+    ]
+  });
+  const utilitySplit = Object.freeze({
+    "Rezsi megosztás kalkulátor": ["Shared household costs calculator", "Rechner zur Aufteilung gemeinsamer Haushaltskosten"],
+    "Oszd szét a közös költségeket lakótársak vagy családtagok között.": ["Split shared expenses among housemates or family members.", "Teile gemeinsame Kosten unter Mitbewohnern oder Familienmitgliedern auf."],
+    "Rezsi- és közösköltség-megosztó": ["Utilities and shared costs splitter", "Rechner zur Aufteilung von Nebenkosten und Gemeinschaftskosten"],
+    "Egyenlő, naparányos, szobaméret- vagy fogyasztásarányos elszámolás három személyre.": ["Split costs among three people equally or by days, room size or consumption.", "Teile Kosten für drei Personen zu gleichen Teilen oder nach Tagen, Zimmergröße oder Verbrauch auf."],
+    "Megosztandó összeg (Ft)": ["Amount to split (HUF)", "Aufzuteilender Betrag (HUF)"], "Megosztás módja": ["Allocation method", "Aufteilungsmethode"],
+    "Egyenlő": ["Equal", "Gleich"], "Bent töltött napok": ["Days lived in", "Anzahl der Aufenthaltstage"],
+    "Szobaméret": ["Room size", "Zimmergröße"], "Mért fogyasztás": ["Measured consumption", "Gemessener Verbrauch"],
+    "A személy lakónapjai": ["Person A days at home", "Aufenthaltstage Person A"],
+    "B személy lakónapjai": ["Person B days at home", "Aufenthaltstage Person B"],
+    "C személy lakónapjai": ["Person C days at home", "Aufenthaltstage Person C"],
+    "Lakónap-alapú költségmegosztás": ["Cost sharing based on days lived in", "Kostenaufteilung nach Aufenthaltstagen"],
+    "Ha valaki csak a hónap felében lakott ott, az egyenlő harmadolás torzíthat": ["If someone lived there for only half the month, an equal three-way split can be misleading", "Wenn jemand nur den halben Monat dort gewohnt hat, kann eine gleichmäßige Drittelung verzerren"],
+    "Megosztandó költség (Ft)": ["Cost to split (HUF)", "Aufzuteilende Kosten (HUF)"],
+    "Ez csak egy lehetséges igazságossági szabály. Fogyasztásmérő, szobaméret vagy fix alapdíj esetén más megosztás lehet indokolt.": ["This is only one possible fairness rule. A different split may make sense when there are meters, different room sizes or a fixed base fee.", "Das ist nur eine mögliche Fairnessregel. Bei Zählern, unterschiedlichen Zimmergrößen oder festen Grundgebühren kann eine andere Aufteilung sinnvoll sein."],
+    "1. személy súlya/adata": ["Person 1 weight/value", "Gewicht/Wert für Person 1"],
+    "2. személy súlya/adata": ["Person 2 weight/value", "Gewicht/Wert für Person 2"],
+    "3. személy súlya/adata": ["Person 3 weight/value", "Gewicht/Wert für Person 3"],
+    "1. személy része": ["Person 1 share", "Anteil Person 1"], "2. személy része": ["Person 2 share", "Anteil Person 2"], "3. személy része": ["Person 3 share", "Anteil Person 3"],
+    "A része": ["Person A share", "Anteil Person A"], "B része": ["Person B share", "Anteil Person B"], "C része": ["Person C share", "Anteil Person C"],
+    "Ellenőrző összeg": ["Check total", "Kontrollsumme"],
+    "A megosztási súlyok összege legyen pozitív.": ["The sum of allocation weights must be positive.", "Die Summe der Aufteilungsgewichte muss positiv sein."],
+    "Közös háztartási költségek egyszerű elosztása": ["A simple way to split shared household costs", "Gemeinsame Haushaltskosten einfach aufteilen"],
+    "A rezsimegosztás kalkulátor a közösen fizetendő teljes költséget egyenlő részekre osztja, majd a saját részedhez hozzá tud adni egy csak rád vonatkozó extra tételt. Albérletben, közös nyaraláson vagy többgenerációs háztartásban gyors kiindulópontot adhat az elszámoláshoz.": [
+      "The shared-cost calculator divides the total bill equally, then lets you add an extra item that applies only to you. It can provide a quick starting point for settling expenses in a shared rental, group holiday or multigenerational household.",
+      "Der Rechner teilt die gemeinsamen Gesamtkosten gleichmäßig auf und ermöglicht anschließend einen zusätzlichen Posten, der nur dich betrifft. Das bietet einen schnellen Ausgangspunkt für die Abrechnung in einer Wohngemeinschaft, im gemeinsamen Urlaub oder im Mehrgenerationenhaushalt."
+    ],
+    "Az egyenlő fejenkénti elosztás nem minden helyzetben igazságos. Eltérő szobaméret, külön mérőóra, különböző beköltözési idő, otthoni munkavégzés vagy egyedi fogyasztás esetén más módszer lehet célszerű.": [
+      "An equal split is not fair in every situation. Different room sizes, separate meters, different move-in dates, working from home or individual consumption may call for another method.",
+      "Eine gleichmäßige Aufteilung ist nicht in jeder Situation gerecht. Unterschiedliche Zimmergrößen, separate Zähler, verschiedene Einzugsdaten, Homeoffice oder individueller Verbrauch können eine andere Methode erfordern."
+    ],
+    "A számítás menete": ["How the calculation works", "So funktioniert die Berechnung"],
+    "Az alap rész képlete:": ["The base share is calculated as:", "Der Grundanteil berechnet sich wie folgt:"],
+    "teljes közös költség / résztvevők száma": ["total shared costs / number of participants", "gesamte Gemeinschaftskosten / Anzahl der Beteiligten"],
+    ". A saját fizetendő összeg ehhez hozzáadja a „saját extra költség” mező értékét. Az extra tétel nem oszlik meg a többiek között.": [". Your amount due adds the value in the “personal extra cost” field. The extra is not shared with the others.", ". Dein Zahlbetrag erhöht sich um den Wert im Feld „eigene Zusatzkosten“. Dieser Posten wird nicht auf die anderen verteilt."],
+    "Példa három lakótárssal": ["Example with three housemates", "Beispiel mit drei Mitbewohnern"],
+    "Ha a közös villany-, víz- és internetköltség összesen 72 000 Ft, három embernél az alap rész 24 000 Ft fejenként. Ha az egyik lakóhoz tartozik még 3 500 Ft külön televíziós csomag, az ő fizetendő összege 27 500 Ft.": [
+      "If shared electricity, water and internet cost HUF 72,000 in total, the base share for three people is HUF 24,000 each. If one housemate also has a separate HUF 3,500 TV package, their amount due is HUF 27,500.",
+      "Betragen gemeinsame Strom-, Wasser- und Internetkosten insgesamt 72.000 HUF, entfallen bei drei Personen 24.000 HUF auf jede Person. Hat eine Person zusätzlich ein eigenes TV-Paket für 3.500 HUF, zahlt sie 27.500 HUF."
+    ],
+    "Más elosztási módszerek": ["Other allocation methods", "Andere Aufteilungsmethoden"],
+    "A kalkulátor az egyszerű fejenkénti módszert használja. Fogyasztásarányos elszámoláshoz almérő, naparányos elszámoláshoz az adott időszakban lakott napok száma, jövedelemarányos megosztáshoz pedig előre rögzített százalékok szükségesek. Ezeket közösen és átláthatóan érdemes meghatározni.": [
+      "The calculator uses a simple per-person split. Consumption-based allocation needs sub-meters, day-based allocation needs the number of days lived there, and income-based allocation needs agreed percentages. Decide on these openly together.",
+      "Der Rechner teilt einfach nach Personen auf. Für eine verbrauchsabhängige Aufteilung braucht es Zwischenzähler, für eine tageweise Aufteilung die Aufenthaltstage und für eine einkommensabhängige Aufteilung vorher vereinbarte Prozentsätze. Legt diese transparent gemeinsam fest."
+    ],
+    "Milyen elv alapján osztja szét a közös költséget?": ["How does it allocate shared costs?", "Nach welchem Prinzip teilt der Rechner gemeinsame Kosten auf?"],
+    "Egyenlő megosztásnál minden résztvevő azonos súlyt kap; nap-, alapterület- vagy fogyasztásarányos módban a három megadott érték aránya dönti el a részesedést. A kalkulátor a teljes összeget ezekkel a súlyokkal osztja fel, és ellenőrző összeggel segít kiszúrni az eltérést.": [
+      "With an equal split, everyone gets the same weight. In day-, floor-area- or consumption-based modes, each person's share follows the ratio of the three entered values. The calculator divides the total using those weights and shows a check total to help spot discrepancies.",
+      "Bei gleicher Aufteilung erhält jede Person dasselbe Gewicht. In der tage-, flächen- oder verbrauchsabhängigen Variante richtet sich der Anteil nach dem Verhältnis der drei eingegebenen Werte. Der Rechner teilt den Gesamtbetrag anhand dieser Gewichte auf und zeigt eine Kontrollsumme."
+    ],
+    "Olyan személyt is beleszámítanak, aki az adott időszakban nem lakott ott.": ["Including someone who did not live there during the period.", "Eine Person einbeziehen, die im betreffenden Zeitraum nicht dort gewohnt hat."],
+    "A saját extra költséget véletlenül a teljes közös összegbe és külön is beírják.": ["Accidentally including a personal extra in both the shared total and separately.", "Eigene Zusatzkosten versehentlich in die Gemeinschaftssumme und nochmals separat eintragen."],
+    "A jóváírásokat vagy korábbi túlfizetést kihagyják.": ["Leaving out credits or previous overpayments.", "Gutschriften oder frühere Überzahlungen nicht berücksichtigen."],
+    "Nincs tisztázva, mely költségek közösek és melyek egyéniek.": ["Not clarifying which costs are shared and which are individual.", "Nicht klären, welche Kosten gemeinsam und welche individuell sind."],
+    "Negatív extra költséget is megadhatok?": ["Can I enter a negative extra cost?", "Kann ich negative Zusatzkosten eingeben?"],
+    "Technikailag használható jóváírásként, de az elszámolást érdemes külön is dokumentálni.": ["Technically it can be used as a credit, but the settlement should also be documented separately.", "Technisch kann der Wert als Gutschrift dienen; die Abrechnung sollte trotzdem separat dokumentiert werden."],
+    "Naparányosan is számol?": ["Can it split costs by days?", "Kann der Rechner tageweise aufteilen?"],
+    "Nem. Ehhez előbb külön ki kell számolni az egyes személyek súlyát vagy naparányát.": ["No. First calculate each person's weight or day share separately.", "Nein. Berechne zuerst das Gewicht oder den Tagesanteil jeder Person separat."],
+    "A kauciót is osszam itt?": ["Should I split the deposit here too?", "Soll ich die Kaution hier ebenfalls aufteilen?"],
+    "A kaució nem havi rezsi, ezért célszerű külön elszámolni.": ["A deposit is not a monthly utility cost, so it is better to settle it separately.", "Eine Kaution ist keine monatliche Nebenkostenposition und sollte daher separat abgerechnet werden."],
+    "Mit tegyünk kerekítési különbségnél?": ["What should we do with rounding differences?", "Wie gehen wir mit Rundungsdifferenzen um?"],
+    "A néhány forintos eltérést egy ember vállalhatja, vagy a következő hónapban korrigálhatjátok.": ["One person can cover a small difference of a few forints, or you can adjust it next month.", "Eine Person kann eine kleine Differenz von wenigen Forint übernehmen oder ihr gleicht sie im nächsten Monat aus."],
+    "Borravaló és számla megosztás": ["Tip and bill splitter", "Trinkgeld- und Rechnungsaufteilung"],
+    "Havi költségvetés": ["Monthly budget", "Monatsbudget"], "Százalék kalkulátor": ["Percentage calculator", "Prozentrechner"]
+  });
+  const recipe = Object.freeze({
+    "Recept adag átszámító": ["Recipe serving converter", "Rezeptportionen umrechnen"],
+    "Recept adag átszámító kalkulátor": ["Recipe serving conversion calculator", "Rechner zum Umrechnen von Rezeptportionen"],
+    "Recept hozzávalóinak átszámítása más adagszámra, több hozzávaló egyszerre történő skálázásával.": ["Scale several recipe ingredients at once for a different number of servings.", "Skaliere mehrere Rezeptzutaten gleichzeitig für eine andere Portionszahl."],
+    "Eredeti adagszám": ["Original servings", "Ursprüngliche Portionen"], "Kívánt adagszám": ["Desired servings", "Gewünschte Portionen"],
+    "Hozzávalók": ["Ingredients", "Zutaten"],
+    "Soronként: név; mennyiség; egység. Például: Liszt;500;g": ["One per line: name; amount; unit. For example: Flour;500;g", "Eine Zutat pro Zeile: Name; Menge; Einheit. Beispiel: Mehl;500;g"],
+    "Átszámítási szorzó": ["Scaling factor", "Umrechnungsfaktor"], "Átszámítási szorzó:": ["Scaling factor:", "Umrechnungsfaktor:"],
+    "Hogyan skálázza a receptet?": ["How does it scale the recipe?", "Wie skaliert der Rechner das Rezept?"],
+    "A kalkulátor először kiszámítja a kívánt és az eredeti adagszám arányát. Ezzel a szorzóval módosítja minden megadott hozzávaló mennyiségét, ezért ugyanazt a receptet kisebb vagy nagyobb társaságra is gyorsan át lehet számítani.": [
+      "The calculator first finds the ratio between the desired and original number of servings. It multiplies each ingredient amount by this factor, making it easy to scale the same recipe up or down.",
+      "Der Rechner ermittelt zuerst das Verhältnis zwischen gewünschter und ursprünglicher Portionszahl. Mit diesem Faktor passt er jede Zutatenmenge an, sodass sich dasselbe Rezept schnell für mehr oder weniger Personen umrechnen lässt."
+    ],
+    "A hozzávalókat külön sorokban add meg, három adattal: név, mennyiség és egység. Az egységet nem alakítja át, csak a számszerű mennyiséget skálázza.": [
+      "Enter each ingredient on a separate line with three fields: name, amount and unit. The calculator does not convert units; it only scales the numeric amount.",
+      "Gib jede Zutat in einer eigenen Zeile mit drei Angaben ein: Name, Menge und Einheit. Der Rechner wandelt Einheiten nicht um, sondern skaliert nur den Zahlenwert."
+    ],
+    "Egy 4 adagos receptet 6 adagra növelve a szorzó 6/4 = 1,5. Így 500 g lisztből 750 g, 300 ml tejből 450 ml, 2 tojásból pedig matematikailag 3 darab lesz.": [
+      "Scaling a recipe from 4 to 6 servings gives a factor of 6/4 = 1.5. That turns 500 g of flour into 750 g, 300 ml of milk into 450 ml and 2 eggs into a mathematical result of 3 pieces.",
+      "Wird ein Rezept von 4 auf 6 Portionen erhöht, beträgt der Faktor 6/4 = 1,5. Aus 500 g Mehl werden 750 g, aus 300 ml Milch 450 ml und aus 2 Eiern rechnerisch 3 Stück."
+    ],
+    "Mennyiségi arányosítás.": ["Quantity scaling.", "Mengenanpassung."],
+    "Mikor kell kézzel korrigálni?": ["When should I adjust the result by hand?", "Wann sollte ich das Ergebnis manuell anpassen?"],
+    "A sütés-főzés nem mindig lineáris. Fűszereknél, sózásnál, sűrítőanyagoknál vagy tojásnál gyakran érdemes kerekíteni és kóstolással finomhangolni. A tepsi mérete, sütési idő és hőátadás sem feltétlenül skálázódik az adagszámmal.": [
+      "Cooking does not always scale linearly. For spices, salt, thickening agents or eggs, rounding and adjusting to taste is often sensible. Pan size, cooking time and heat transfer may not scale with the number of servings either.",
+      "Kochen und Backen skalieren nicht immer linear. Bei Gewürzen, Salz, Bindemitteln oder Eiern ist es oft sinnvoll, zu runden und nach Geschmack anzupassen. Blechgröße, Garzeit und Wärmeübertragung lassen sich ebenfalls nicht zwingend proportional zur Portionszahl skalieren."
+    ],
+    "Tizedes mennyiséget is elfogad?": ["Does it accept decimal amounts?", "Akzeptiert der Rechner Dezimalmengen?"],
+    "Igen, ponttal vagy tizedesvesszővel is megadhatsz mennyiséget.": ["Yes. Enter amounts using a decimal point or comma.", "Ja. Mengen können mit Dezimalpunkt oder Dezimalkomma eingegeben werden."],
+    "Átváltja a grammot dekagrammra?": ["Does it convert grams to decagrams?", "Rechnet er Gramm in Dekagramm um?"],
+    "Nem. A megadott egységet változatlanul hagyja, csak a mennyiséget szorozza fel vagy le.": ["No. It keeps the entered unit and only scales the amount up or down.", "Nein. Die eingegebene Einheit bleibt gleich; nur die Menge wird hoch- oder herunterskaliert."],
+    "Mi történik a darabos hozzávalókkal?": ["What happens to ingredients counted in pieces?", "Was passiert bei Zutaten, die stückweise gezählt werden?"],
+    "Matematikai eredményt kapsz, amelyet a gyakorlatban szükség esetén egész darabra kell kerekíteni.": ["You get a mathematical result, which may need to be rounded to whole pieces in practice.", "Du erhältst ein mathematisches Ergebnis, das in der Praxis gegebenenfalls auf ganze Stück gerundet werden muss."],
+    "Mennyiségi arányosítás. A recept technológiai tulajdonságai, sütési idő és ízesítés nem feltétlenül változik lineárisan az adagszámmal.": [
+      "The calculator scales quantities proportionally. A recipe's technical properties, cooking time and seasoning do not necessarily change linearly with the number of servings.",
+      "Der Rechner passt Mengen proportional an. Die Eigenschaften des Rezepts, die Garzeit und die Würzung verändern sich nicht zwingend linear mit der Portionszahl."
+    ],
+    "egysegar": ["Unit price", "Grundpreis"], "terfogat atvalto": ["Volume converter", "Volumenumrechner"], "tomeg atvalto": ["Weight converter", "Gewichtsumrechner"],
+    "Adj meg legalább egy hozzávalót.": ["Enter at least one ingredient.", "Gib mindestens eine Zutat ein."],
+    "A(z) 1. sor formátuma hibás.": ["Line 1 has an invalid format.", "Zeile 1 hat ein ungültiges Format."]
+  });
   const dictionaries = Object.freeze({
     "ar-kedvezmeny-kalkulator": discount,
     "egysegar-kalkulator": unit,
@@ -1885,7 +2076,10 @@
     "datum-kulonbseg-kalkulator": dateDifference,
     "munkaido-kalkulator": workTime,
     "munkanap-kalkulator": workdays,
-    "tulora-kalkulator": overtime
+    "tulora-kalkulator": overtime,
+    "oraber-kalkulator": hourlyWage,
+    "rezsi-megosztas-kalkulator": utilitySplit,
+    "recept-adag-kalkulator": recipe
   });
   const pages = Object.freeze(Object.keys(dictionaries));
   const supported = Object.freeze(["hu", "en", "de"]);
@@ -1930,7 +2124,7 @@
     if (Object.prototype.hasOwnProperty.call(shared, value)) return shared[value][index];
     const normalized = value.replace(/\s+/gu, " ").trim();
     if (Object.prototype.hasOwnProperty.call(content, normalized)) return content[normalized][index];
-      if (["datum-hozzaadas-kivonas-kalkulator", "eletkor-kalkulator", "datum-kulonbseg-kalkulator", "munkaido-kalkulator", "munkanap-kalkulator", "tulora-kalkulator"].includes(page)) {
+    if (["datum-hozzaadas-kivonas-kalkulator", "eletkor-kalkulator", "datum-kulonbseg-kalkulator", "munkaido-kalkulator", "munkanap-kalkulator", "tulora-kalkulator", "oraber-kalkulator"].includes(page)) {
       const date = translateDateValue(normalized, lang);
       if (date) return date;
       let match = /^(\d[\d\s.,]*)\s+nap$/u.exec(normalized);
@@ -1956,6 +2150,18 @@
     if (page === "tulora-kalkulator") {
       const hourly = /^(\d[\d\s.,]*\s+Ft)\/óra$/u.exec(normalized);
       if (hourly) return `${hourly[1]}/${lang === "en" ? "hour" : "Stunde"}`;
+    }
+    if (page === "oraber-kalkulator") {
+      const hourly = /^(\d[\d\s.,]*\s+Ft)\/óra$/u.exec(normalized);
+      if (hourly) return `${hourly[1]}/${lang === "en" ? "hour" : "Stunde"}`;
+    }
+    if (page === "recept-adag-kalkulator") {
+      let match = /^A\(z\) (\d+)\. sor formátuma hibás\.$/u.exec(normalized);
+      if (match) return lang === "en" ? `Line ${match[1]} has an invalid format.` : `Zeile ${match[1]} hat ein ungültiges Format.`;
+      match = /^(.+) mennyisége: adj meg érvényes számot\.$/u.exec(normalized);
+      if (match) return lang === "en" ? `${match[1]}: enter a valid amount.` : `${match[1]}: Gib eine gültige Menge ein.`;
+      match = /^(.+) mennyisége: az érték legyen nagyobb nullánál\.$/u.exec(normalized);
+      if (match) return lang === "en" ? `${match[1]}: the amount must be greater than zero.` : `${match[1]}: Die Menge muss größer als null sein.`;
     }
     if (page === "fedezeti-pont-kalkulator") {
       const quantity = /^(\d[\d\s.,]*)\s+db$/u.exec(normalized);
