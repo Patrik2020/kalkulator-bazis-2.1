@@ -220,14 +220,14 @@ async function checkEverydayLocales({ navigate, evaluate, setViewport }) {
     await edit({ "#electricPower": "1500", "#electricHours": "2", "#electricDays": "30", "#electricPrice": "70" });
     const electricityHu = await result("#electricResult");
     assert.ok(electricityHu.includes("90 kWh"), electricityHu);
-    assert.ok(electricityHu.includes("6 300 Ft"), electricityHu);
+    assert.ok(electricityHu.includes("6300 Ft"), electricityHu);
     const electricityInputs = await evaluate("[...document.querySelectorAll('#kalkulator input')].map(e => e.value)");
     for (const [language, label] of [["en", "Estimated cost for period:"], ["de", "Geschätzte Kosten im Zeitraum:"]]) {
       await choose(language);
       const translated = await result("#electricResult");
       assert.ok(translated.includes(label), translated);
       assert.ok(translated.includes("90 kWh"), translated);
-      assert.ok(translated.includes("6 300 Ft"), translated);
+      assert.ok(translated.includes("6300 Ft"), translated);
       assert.deepEqual(await evaluate("[...document.querySelectorAll('#kalkulator input')].map(e => e.value)"), electricityInputs);
       assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `electricity cost: overflow at ${width}`);
     }
@@ -236,15 +236,15 @@ async function checkEverydayLocales({ navigate, evaluate, setViewport }) {
     await choose("hu");
     await edit({ "#waterDaily": "300", "#waterDays": "30", "#waterPrice": "800", "#waterFixed": "1000" });
     const waterHu = await result("#waterResult");
-    assert.ok(waterHu.includes("9 000 liter"), waterHu);
-    assert.ok(waterHu.includes("8 200 Ft"), waterHu);
+    assert.ok(waterHu.includes("9000 liter"), waterHu);
+    assert.ok(waterHu.includes("8200 Ft"), waterHu);
     const waterInputs = await evaluate("[...document.querySelectorAll('#kalkulator input')].map(e => e.value)");
     for (const [language, label] of [["en", "Estimated total cost:"], ["de", "Geschätzte Gesamtkosten:"]]) {
       await choose(language);
       const translated = await result("#waterResult");
       assert.ok(translated.includes(label), translated);
-      assert.ok(translated.includes("9 000 liter"), translated);
-      assert.ok(translated.includes("8 200 Ft"), translated);
+      assert.ok(translated.includes("9000 liter"), translated);
+      assert.ok(translated.includes("8200 Ft"), translated);
       assert.deepEqual(await evaluate("[...document.querySelectorAll('#kalkulator input')].map(e => e.value)"), waterInputs);
       assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `water cost: overflow at ${width}`);
     }
