@@ -2,7 +2,7 @@
 
 Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőrzi, hogy naprakész-e.
 
-Aktív kalkulátor: **89**; részletes fordításon átesett: **14**; hátralévő: **75**.
+Aktív kalkulátor: **89**; részletes fordításon átesett: **17**; hátralévő: **72**.
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **49**.
 
@@ -107,8 +107,8 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/milliomos-kalkulator.html | penzugyi | content-review |
 | kalkulatorok/mulcs-kalkulator.html | epitoipari | content-review |
 | kalkulatorok/multifunkcios-szamologep.html | standalone | content-review |
-| kalkulatorok/munkaido-kalkulator.html | mindennapi | content-review |
-| kalkulatorok/munkanap-kalkulator.html | mindennapi | content-review |
+| kalkulatorok/munkaido-kalkulator.html | mindennapi | detail-reviewed |
+| kalkulatorok/munkanap-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/netto-brutto-kalkulator.html | penzugyi | partial |
 | kalkulatorok/nyomas-atvalto-kalkulator.html | atvaltok | retired-review |
 | kalkulatorok/oraber-kalkulator.html | mindennapi | content-review |
@@ -134,7 +134,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/testzsir-kalkulator.html | egeszseg | content-review |
 | kalkulatorok/tetocserep-kalkulator.html | epitoipari | content-review |
 | kalkulatorok/tomeg-atvalto-kalkulator.html | atvaltok | retired-review |
-| kalkulatorok/tulora-kalkulator.html | mindennapi | content-review |
+| kalkulatorok/tulora-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/utazasi-ido-kalkulator.html | auto | content-review |
 | kalkulatorok/uzemanyag-koltseg-kalkulator.html | auto | content-review |
 | kalkulatorok/uzemanyagar-kulonbseg-kalkulator.html | auto | content-review |

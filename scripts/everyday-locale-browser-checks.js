@@ -127,7 +127,47 @@ async function checkEverydayLocales({ navigate, evaluate, setViewport }) {
       assert.ok(translated.includes(expectedDate), translated);
       assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `date difference: overflow at ${width}`);
     }
+
+    await navigate("/kalkulatorok/munkaido-kalkulator");
+    await choose("hu");
+    await edit({ "#kalkulator [name=start]": "22:00", "#kalkulator [name=end]": "06:00", "#kalkulator [name=break]": "30", "#kalkulator [name=days]": "5", "#kalkulator [name=weeks]": "4.348" }, true);
+    const hoursHu = await result("#kalkulator .everyday-result");
+    assert.ok(hoursHu.includes("7 óra 30 perc"), hoursHu);
+    for (const [language, duration, overnight] of [["en", "7 hours 30 minutes", "yes"], ["de", "7 Stunden 30 Minuten", "ja"]]) {
+      await choose(language);
+      const translated = await result("#kalkulator .everyday-result");
+      assert.ok(translated.includes(duration), translated);
+      assert.ok(translated.includes(overnight), translated);
+      assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `working hours: overflow at ${width}`);
+    }
+
+    await navigate("/kalkulatorok/munkanap-kalkulator");
+    await choose("hu");
+    await edit({ "#workStart": "2026-10-05", "#workEnd": "2026-10-09", "#workExcluded": "2026-10-07" });
+    const workdaysHu = await result("#workResult");
+    assert.ok(workdaysHu.includes("4"), workdaysHu);
+    for (const [language, label] of [["en", "Calculated working days:"], ["de", "Berechnete Arbeitstage:"]]) {
+      await choose(language);
+      const translated = await result("#workResult");
+      assert.ok(translated.includes(label), translated);
+      assert.ok(translated.includes("4"), translated);
+      assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `working days: overflow at ${width}`);
+    }
+
+    await navigate("/kalkulatorok/tulora-kalkulator");
+    await choose("hu");
+    await edit({ "#otRate": "3000", "#otHours": "8", "#otMultiplier": "1.5" });
+    const overtimeHu = await result("#otResult");
+    assert.ok(overtimeHu.includes("36 000 Ft"), overtimeHu);
+    for (const [language, rate] of [["en", "Overtime hourly rate:"], ["de", "Stundenlohn für Überstunden:"]]) {
+      await choose(language);
+      const translated = await result("#otResult");
+      assert.ok(translated.includes(rate), translated);
+      assert.ok(translated.includes(language === "en" ? "4500 Ft/hour" : "4500 Ft/Stunde"), translated);
+      assert.ok(translated.includes("36 000 Ft"), translated);
+      assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `overtime: overflow at ${width}`);
+    }
   }
-  console.log("Everyday locales: ratio, percentage change, tip, margin, markup, break-even, date addition, age and date difference passed at both widths.");
+  console.log("Everyday locales: ratio, percentage change, tip, margin, markup, break-even, date, age, working-hours, working-days and overtime passed at both widths.");
 }
 module.exports = { checkEverydayLocales };

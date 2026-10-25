@@ -67,6 +67,9 @@ jobs:
       - name: Check EN DE date, age and date-difference translations
         run: node --test scripts/date-locale.test.js
 
+      - name: Check EN DE working-hours, working-days and overtime translations
+        run: node --test scripts/workday-locale.test.js
+
       - name: Verify localized VAT and percentage calculations without changing values
         run: node --test scripts/vat-percent-locale.test.js
 
