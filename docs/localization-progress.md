@@ -2,7 +2,7 @@
 
 Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőrzi, hogy naprakész-e.
 
-Aktív kalkulátor: **89**; részletes fordításon átesett: **31**; hátralévő: **58**.
+Aktív kalkulátor: **89**; részletes fordításon átesett: **33**; hátralévő: **56**.
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **49**.
 
@@ -86,8 +86,8 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/hatotav-kalkulator.html | auto | content-review |
 | kalkulatorok/havi-koltsegvetes-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/hitel-elotorlesztes-kalkulator.html | penzugyi | content-review |
-| kalkulatorok/hitel-torleszto-kalkulator.html | penzugyi | content-review |
-| kalkulatorok/hitelkepesseg-kalkulator.html | penzugyi | content-review |
+| kalkulatorok/hitel-torleszto-kalkulator.html | penzugyi | detail-reviewed |
+| kalkulatorok/hitelkepesseg-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/homerseklet-atvalto-kalkulator.html | atvaltok | retired-review |
 | kalkulatorok/hosszusag-atvalto-kalkulator.html | atvaltok | retired-review |
 | kalkulatorok/hoszigeteles-kalkulator.html | epitoipari | content-review |

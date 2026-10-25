@@ -91,6 +91,9 @@ jobs:
       - name: Check EN DE ETF and inflation translations
         run: node --test scripts/investment-inflation-locale.test.js
 
+      - name: Check EN DE loan and borrowing capacity translations
+        run: node --test scripts/credit-locale.test.js
+
       - name: Verify localized VAT and percentage calculations without changing values
         run: node --test scripts/vat-percent-locale.test.js
 
