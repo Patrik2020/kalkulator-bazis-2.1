@@ -2,7 +2,7 @@
 
 Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőrzi, hogy naprakész-e.
 
-Aktív kalkulátor: **89**; részletes fordításon átesett: **8**; hátralévő: **81**.
+Aktív kalkulátor: **89**; részletes fordításon átesett: **11**; hátralévő: **78**.
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **49**.
 
@@ -48,7 +48,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/alvasciklus-kalkulator.html | egeszseg | content-review |
 | kalkulatorok/ar-kedvezmeny-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/arany-kalkulator.html | mindennapi | detail-reviewed |
-| kalkulatorok/arres-kalkulator.html | mindennapi | content-review |
+| kalkulatorok/arres-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/atlag-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/auto-ertekvesztes-kalkulator.html | auto | content-review |
 | kalkulatorok/auto-fogyasztas-kalkulator.html | auto | content-review |
@@ -72,7 +72,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/etf-kalkulator.html | penzugyi | content-review |
 | kalkulatorok/ev-toltesi-koltseg-kalkulator.html | auto | content-review |
 | kalkulatorok/eves-auto-koltseg-kalkulator.html | auto | content-review |
-| kalkulatorok/fedezeti-pont-kalkulator.html | mindennapi | content-review |
+| kalkulatorok/fedezeti-pont-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/feherje-szukseglet-kalkulator.html | egeszseg | content-review |
 | kalkulatorok/fektav-kalkulator.html | auto | content-review |
 | kalkulatorok/festek-kalkulator.html | epitoipari | content-review |
@@ -82,7 +82,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/gipszkarton-kalkulator.html | epitoipari | content-review |
 | kalkulatorok/gumi-meret-kalkulator.html | auto | content-review |
 | kalkulatorok/harmasszabaly-kalkulator.html | mindennapi | content-review |
-| kalkulatorok/haszonkulcs-kalkulator.html | mindennapi | content-review |
+| kalkulatorok/haszonkulcs-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/hatotav-kalkulator.html | auto | content-review |
 | kalkulatorok/havi-koltsegvetes-kalkulator.html | penzugyi | content-review |
 | kalkulatorok/hitel-elotorlesztes-kalkulator.html | penzugyi | content-review |

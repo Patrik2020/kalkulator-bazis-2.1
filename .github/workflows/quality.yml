@@ -61,6 +61,9 @@ jobs:
       - name: Check EN DE discount unit-price and average labels and errors
         run: node --test scripts/discount-unit-average-locale.test.js
 
+      - name: Check EN DE margin markup and break-even translations
+        run: node --test scripts/business-locale.test.js
+
       - name: Verify localized VAT and percentage calculations without changing values
         run: node --test scripts/vat-percent-locale.test.js
 
