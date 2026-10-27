@@ -39,7 +39,8 @@ const detailPages = [
   { path: "kalkulatorok/netto-brutto-kalkulator.html", module: "js/penzugyi/netto-brutto-locale.js", key: "netto-brutto-kalkulator" },
   ...["auto-fogyasztas-kalkulator", "uzemanyag-koltseg-kalkulator"].map(key => ({
     path: `kalkulatorok/${key}.html`, module: "js/autos/fuel-locale.js", key
-  }))
+  })),
+  { path: "kalkulatorok/hatotav-kalkulator.html", module: "js/autos/fuel-locale.js", key: "hatotav-kalkulator" }
 ];
 
 module.exports = { detailPages };

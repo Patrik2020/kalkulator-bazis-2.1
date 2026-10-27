@@ -73,6 +73,36 @@ async function checkFuelLocales({ navigate, evaluate, setViewport }) {
     }
     await choose("hu");
     assert.match(await evaluate('document.querySelector(\'.card-calculator form.ac-grid label\')?.textContent || ""'), /Távolság/u);
+
+    await navigate("/kalkulatorok/hatotav-kalkulator");
+    await evaluate(`(async () => {
+      for (let i = 0; i < 60 && !document.getElementById('simpleCalcResults'); i += 1) await new Promise(requestAnimationFrame);
+      const fuel = document.getElementById('fuel');
+      const consumption = document.getElementById('consumption');
+      if (!fuel || !consumption) throw new Error('Driving range calculator did not initialize');
+      fuel.value = '32'; consumption.value = '6.4';
+      fuel.dispatchEvent(new Event('input', { bubbles: true }));
+      consumption.dispatchEvent(new Event('input', { bubbles: true }));
+    })()`);
+    const rangeBefore = await evaluate(`JSON.stringify({fuel: document.getElementById('fuel').value, consumption: document.getElementById('consumption').value})`);
+    for (const [language, label] of [["en", "Fuel in tank (L)"], ["de", "Kraftstoff im Tank (l)"]]) {
+      await choose(language);
+      const actual = await evaluate(`JSON.stringify({
+        label: document.querySelector('label[for="fuel"]')?.textContent.trim(),
+        result: document.getElementById('simpleCalcResults')?.textContent,
+        guidance: document.querySelector('.calculator-guide h2')?.textContent,
+        state: {fuel: document.getElementById('fuel')?.value, consumption: document.getElementById('consumption')?.value},
+        width: document.documentElement.scrollWidth
+      })`);
+      const result = JSON.parse(actual);
+      assert.equal(result.label, label, `${language}: range field label`);
+      assert.match(result.result, /500\s*km/u, `${language}: calculated range`);
+      assert.ok(result.guidance.length > 0, `${language}: range guidance translated`);
+      assert.deepEqual(result.state, JSON.parse(rangeBefore), `${language}: range inputs changed`);
+      assert.ok(result.width <= width + 1, `range calculator overflow at ${width}px (${language})`);
+    }
+    await choose("hu");
+    assert.match(await evaluate('document.querySelector(\'label[for="fuel"]\')?.textContent || ""'), /Üzemanyag a tankban/u);
   }
   console.log("Fuel locales: HU/EN/DE labels, calculation results and input preservation passed at 390/1440px.");
 }
