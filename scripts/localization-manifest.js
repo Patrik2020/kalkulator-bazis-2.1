@@ -36,7 +36,10 @@ const detailPages = [
     module: "js/altalanos/vat-percent-locale.js", key
   })),
   { path: "kalkulatorok/osztalek-kalkulator.html", module: "js/penzugyi/dividend-locale.js", key: "osztalek-kalkulator" },
-  { path: "kalkulatorok/netto-brutto-kalkulator.html", module: "js/penzugyi/netto-brutto-locale.js", key: "netto-brutto-kalkulator" }
+  { path: "kalkulatorok/netto-brutto-kalkulator.html", module: "js/penzugyi/netto-brutto-locale.js", key: "netto-brutto-kalkulator" },
+  ...["auto-fogyasztas-kalkulator", "uzemanyag-koltseg-kalkulator"].map(key => ({
+    path: `kalkulatorok/${key}.html`, module: "js/autos/fuel-locale.js", key
+  }))
 ];
 
 module.exports = { detailPages };
