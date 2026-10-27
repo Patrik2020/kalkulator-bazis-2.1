@@ -94,6 +94,7 @@
     "A számítások módszertana és minőségbiztosítása": ["Calculation methodology and quality assurance", "Berechnungsmethodik und Qualitätssicherung"],
     "Hibát találtál? Jelezd nekünk.": ["Found an issue? Let us know.", "Einen Fehler gefunden? Sag uns Bescheid."],
     "Kapcsolódó kalkulátorok": ["Related calculators", "Verwandte Rechner"],
+    "Utolsó tartalmi frissítés:": ["Last content update:", "Letzte inhaltliche Aktualisierung:"],
     "Hirdetés": ["Advertisement", "Anzeige"],
     "Autó fogyasztás": ["Car fuel consumption", "Kraftstoffverbrauch"],
     "Éves autóköltség": ["Annual car costs", "Jährliche Autokosten"],
@@ -260,7 +261,81 @@
     "Árváltozási forgatókönyv": ["Fuel price scenario", "Kraftstoffpreisszenario"],
     "A tesztelt ár nem előrejelzés, csak egy feltételezett változás hatását mutatja.": ["The scenario price is not a forecast; it only shows the effect of an assumed price change.", "Der Szenariopreis ist keine Prognose, sondern zeigt nur die Wirkung einer angenommenen Preisänderung."]
   });
-  const dictionaries = Object.freeze({ "auto-fogyasztas-kalkulator": consumption, "uzemanyag-koltseg-kalkulator": fuelCost });
+  const range = Object.freeze({
+    "Hatótáv kalkulátor": ["Driving range calculator", "Reichweiten-Rechner"],
+    "Becsüld meg, hány kilométert tehetsz meg a tankban lévő üzemanyaggal.": ["Estimate how many kilometres you can travel with the fuel in your tank.", "Schätze, wie viele Kilometer du mit dem Kraftstoff im Tank fahren kannst."],
+    "Üzemanyag a tankban (l)": ["Fuel in tank (L)", "Kraftstoff im Tank (l)"],
+    "Fogyasztás (l/100 km)": ["Fuel consumption (L/100 km)", "Verbrauch (l/100 km)"],
+    "Eredmény:": ["Result:", "Ergebnis:"],
+    "Az értékek legyenek nagyobbak nullánál": ["Enter values greater than zero", "Gib Werte größer als null ein"],
+    "Elméleti hatótáv üzemanyagból és fogyasztásból": ["Theoretical range based on fuel and consumption", "Theoretische Reichweite anhand von Kraftstoffmenge und Verbrauch"],
+    "A kalkulátor azt becsüli meg, hány kilométer tehető meg a megadott üzemanyag-mennyiséggel és átlagfogyasztással. Útvonaltervezéshez, tankolási döntéshez vagy több jármű fogyasztásának összehasonlításához ad gyors támpontot.": [
+      "This calculator estimates how many kilometres you can travel with the fuel amount and average consumption you enter. It can help with route planning, deciding when to refuel or comparing the consumption of different vehicles.",
+      "Dieser Rechner schätzt, wie viele Kilometer du mit der angegebenen Kraftstoffmenge und dem Durchschnittsverbrauch fahren kannst. Er bietet eine schnelle Orientierung für die Routenplanung, die Entscheidung zum Tanken oder den Vergleich verschiedener Fahrzeuge."
+    ],
+    "Az eredmény elméleti érték. Nem azt jelenti, hogy biztonságosan ennyit kell autóznod tankolás nélkül. A tényleges hatótávot a forgalom, útvonal, időjárás, terhelés, guminyomás, klímahasználat és vezetési stílus is befolyásolja.": [
+      "The result is theoretical. It does not mean you should safely drive this far without refuelling. Actual range also depends on traffic, route, weather, load, tyre pressure, air-conditioning use and driving style.",
+      "Das Ergebnis ist ein theoretischer Wert. Es bedeutet nicht, dass du diese Strecke sicher ohne Tanken fahren solltest. Die tatsächliche Reichweite hängt auch von Verkehr, Strecke, Wetter, Beladung, Reifendruck, Klimaanlage und Fahrstil ab."
+    ],
+    "A képlet": ["Formula", "Formel"],
+    "Hatótáv = üzemanyag liter / fogyasztás liter/100 km × 100.": ["Range = fuel in litres ÷ consumption in litres per 100 km × 100.", "Reichweite = Kraftstoff in Litern ÷ Verbrauch in Litern pro 100 km × 100."],
+    "Példa": ["Example", "Beispiel"],
+    "32 liter üzemanyag és 6,4 l/100 km fogyasztás mellett az elméleti hatótáv 500 km. Ha 10% biztonsági tartalékot hagysz, tervezéshez inkább körülbelül 450 km-rel érdemes számolni.": [
+      "With 32 litres of fuel and consumption of 6.4 L/100 km, the theoretical range is 500 km. If you keep a 10% safety reserve, plan for about 450 km instead.",
+      "Bei 32 Litern Kraftstoff und einem Verbrauch von 6,4 l/100 km beträgt die theoretische Reichweite 500 km. Mit einer Sicherheitsreserve von 10 % solltest du eher mit rund 450 km planen."
+    ],
+    "Miért térhet el a valós hatótáv?": ["Why can actual range differ?", "Warum kann die tatsächliche Reichweite abweichen?"],
+    "városi araszolás és sok hidegindítás növelheti a fogyasztást;": ["Stop-and-go city traffic and frequent cold starts can increase consumption;", "Stop-and-go-Verkehr in der Stadt und häufige Kaltstarts können den Verbrauch erhöhen;"],
+    "autópályán a nagyobb sebesség emelheti a légellenállást;": ["Higher motorway speeds can increase aerodynamic drag;", "Höhere Geschwindigkeiten auf der Autobahn können den Luftwiderstand erhöhen;"],
+    "téli idő, rövid utak és fűtés növelheti az energiaigényt;": ["Cold weather, short trips and heating can increase energy use;", "Kälte, kurze Fahrten und Heizung können den Energiebedarf erhöhen;"],
+    "tetőbox, utánfutó vagy nagy terhelés rontja a fogyasztást;": ["A roof box, trailer or heavy load can worsen fuel consumption;", "Dachbox, Anhänger oder hohe Beladung können den Verbrauch erhöhen;"],
+    "alacsony guminyomás szintén kedvezőtlen lehet.": ["Low tyre pressure can also have a negative effect.", "Auch ein zu niedriger Reifendruck kann sich negativ auswirken."],
+    "Milyen fogyasztási adatot érdemes megadni?": ["Which consumption figure should I enter?", "Welchen Verbrauchswert sollte ich eingeben?"],
+    "A legjobb kiindulás több tankolásból számolt valós átlag, különösen akkor, ha az út jellege hasonló a következő utazáshoz. A fedélzeti számítógép hasznos, de nem feltétlenül teljesen pontos. Pillanatnyi fogyasztásból hosszú távú hatótávot becsülni félrevezető lehet.": [
+      "A real-world average based on several fill-ups is the best starting point, especially if the next trip is similar. The onboard computer can help, but may not be fully accurate. Using instantaneous consumption to estimate long-distance range can be misleading.",
+      "Ein tatsächlicher Durchschnitt aus mehreren Tankvorgängen ist der beste Ausgangspunkt, besonders wenn die nächste Fahrt ähnlich ist. Der Bordcomputer kann hilfreich sein, ist aber nicht unbedingt ganz genau. Aus dem Momentanverbrauch die Reichweite für eine lange Strecke abzuleiten, kann irreführend sein."
+    ],
+    "Névleges tankméret és tényleges üzemanyag": ["Tank capacity and fuel actually available", "Tankvolumen und tatsächlich verfügbarer Kraftstoff"],
+    "A gyári tankkapacitás nem ugyanaz, mint az aktuálisan rendelkezésre álló üzemanyag. Ha a tartály 45 literes, de nincs tele, a kalkulátorban ne a 45 litert add meg. A szintjelző maga is becslés, ezért a maradék mennyiség bizonytalansága nőhet alacsony üzemanyagszintnél.": [
+      "The manufacturer's tank capacity is not the same as the fuel currently available. If the tank holds 45 litres but is not full, do not enter 45 litres in the calculator. The fuel gauge is also an estimate, so the remaining amount may be less certain when the level is low.",
+      "Das vom Hersteller angegebene Tankvolumen entspricht nicht der aktuell verfügbaren Kraftstoffmenge. Wenn der Tank 45 Liter fasst, aber nicht voll ist, gib im Rechner nicht 45 Liter ein. Auch die Tankanzeige ist nur ein Schätzwert; bei niedrigem Füllstand ist die Restmenge daher unsicherer."
+    ],
+    "Miért érdemes tartalékot hagyni?": ["Why should I keep a reserve?", "Warum sollte ich eine Reserve einplanen?"],
+    "Az elméleti nulla közelében már egy kisebb fogyasztási eltérés is problémát okozhat. Hosszabb úton, ritka benzinkutaknál vagy ismeretlen útvonalon különösen érdemes korábban tankolni.": [
+      "Near the theoretical limit, even a small change in consumption can cause problems. Refuelling earlier is especially sensible on long trips, where fuel stations are sparse or the route is unfamiliar.",
+      "Nahe der theoretischen Grenze kann bereits eine geringe Verbrauchsänderung zum Problem werden. Auf langen Strecken, bei wenigen Tankstellen oder auf unbekannten Routen solltest du besonders frühzeitig tanken."
+    ],
+    "Gyakori hibák": ["Common mistakes", "Häufige Fehler"],
+    "A tank névleges űrtartalmát adják meg a tényleges mennyiség helyett.": ["Entering the tank's rated capacity instead of the amount of fuel actually available.", "Das angegebene Tankvolumen statt der tatsächlich verfügbaren Kraftstoffmenge einzugeben."],
+    "Pillanatnyi fogyasztást használnak hosszú távú átlagként.": ["Using instantaneous consumption as a long-term average.", "Den Momentanverbrauch als langfristigen Durchschnitt zu verwenden."],
+    "Nem hagynak biztonsági tartalékot.": ["Not keeping a safety reserve.", "Keine Sicherheitsreserve einzuplanen."],
+    "Liter/100 km helyett km/l értéket írnak be.": ["Entering km/L instead of L/100 km.", "km/l statt l/100 km einzugeben."],
+    "A fedélzeti kijelző értékét abszolút pontosnak tekintik.": ["Treating the onboard display as completely accurate.", "Die Anzeige des Bordcomputers für absolut genau zu halten."],
+    "Miért mutat mást az autó?": ["Why does my car show a different figure?", "Warum zeigt mein Auto einen anderen Wert an?"],
+    "A fedélzeti rendszer saját fogyasztási és üzemanyagszint-adatokból számol, amelyek eltérhetnek a kézzel megadott értékektől.": ["The onboard system calculates using its own consumption and fuel-level data, which may differ from the values you enter manually.", "Das Bordcomputer-System rechnet mit eigenen Verbrauchs- und Tankstandsdaten, die von den manuell eingegebenen Werten abweichen können."],
+    "A tartalék lámpa után használható?": ["Can I use it after the low-fuel warning comes on?", "Kann ich nach Aufleuchten der Reserveleuchte noch fahren?"],
+    "Számolni lehet, de ilyenkor a maradék mennyiség bizonytalanabb. Tankolj mielőbb.": ["You can calculate it, but the remaining amount is less certain. Refuel as soon as possible.", "Eine Berechnung ist möglich, aber die verbleibende Menge ist dann unsicherer. Tanke möglichst bald."],
+    "Oda-vissza útra hogyan tervezzek?": ["How should I plan a round trip?", "Wie plane ich eine Hin- und Rückfahrt?"],
+    "Add össze a teljes távot, és hasonlítsd a biztonsági tartalékkal csökkentett hatótávhoz.": ["Add the outbound and return distances, then compare the total with the range after subtracting your safety reserve.", "Addiere Hin- und Rückweg und vergleiche die Gesamtstrecke mit der Reichweite abzüglich deiner Sicherheitsreserve."],
+    "Elektromos autóra használható?": ["Can I use it for an electric car?", "Kann ich den Rechner für ein Elektroauto verwenden?"],
+    "Nem közvetlenül. Ott akkukapacitás és kWh/100 km fogyasztás alapján kell számolni.": ["Not directly. For an electric car, calculate using battery capacity and consumption in kWh/100 km.", "Nicht direkt. Bei einem Elektroauto solltest du anhand der Batteriekapazität und des Verbrauchs in kWh/100 km rechnen."],
+    "Miért nőhet meg télen a fogyasztás?": ["Why can consumption increase in winter?", "Warum kann der Verbrauch im Winter steigen?"],
+    "Hideg motor, rövid utak, sűrűbb levegő, téli gumi és egyéb körülmények is növelhetik az energiafelhasználást.": ["A cold engine, short trips, denser air, winter tyres and other conditions can increase energy use.", "Ein kalter Motor, kurze Fahrten, dichtere Luft, Winterreifen und weitere Faktoren können den Energieverbrauch erhöhen."],
+    "Hatótáv-tartalék": ["Range reserve", "Reichweitenreserve"],
+    "A matematikai maximum nem célállomás": ["The mathematical maximum is not a destination", "Das mathematische Maximum ist kein Ziel"],
+    "A kijelzett vagy számolt hatótáv optimális becslés. Tervezéshez érdemes külön tartalékot hagyni forgalomra, kerülőre, hidegre vagy váratlan fogyasztásnövekedésre.": [
+      "The displayed or calculated range is an optimistic estimate. When planning, keep a reserve for traffic, detours, cold weather or an unexpected increase in consumption.",
+      "Die angezeigte oder berechnete Reichweite ist eine optimistische Schätzung. Plane eine Reserve für Verkehr, Umwege, Kälte oder einen unerwarteten Mehrverbrauch ein."
+    ],
+    "Felhasználható üzemanyag (l)": ["Usable fuel (L)", "Verfügbarer Kraftstoff (l)"],
+    "Várható fogyasztás (l/100 km)": ["Expected consumption (L/100 km)", "Erwarteter Verbrauch (l/100 km)"],
+    "Biztonsági tartalék (%)": ["Safety reserve (%)", "Sicherheitsreserve (%)"],
+    "Matematikai maximum": ["Mathematical maximum", "Mathematisches Maximum"],
+    "Tervezhető hatótáv": ["Plannable range", "Planbare Reichweite"],
+    "Meghagyott tartalék": ["Remaining reserve", "Verbleibende Reserve"],
+    "2026. augusztus 8.": ["8 August 2026", "8. August 2026"]
+  });
+  const dictionaries = Object.freeze({ "auto-fogyasztas-kalkulator": consumption, "uzemanyag-koltseg-kalkulator": fuelCost, "hatotav-kalkulator": range });
   const pages = Object.freeze(Object.keys(dictionaries)), supported = Object.freeze(["hu", "en", "de"]);
   const dynamic = Object.freeze({
     "Átlagfogyasztás:": ["Average fuel consumption:", "Durchschnittsverbrauch:"],
