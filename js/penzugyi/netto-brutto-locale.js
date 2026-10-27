@@ -293,16 +293,19 @@
     if (scoped && pageOrValue !== page) return null;
     const value = scoped ? valueOrLanguage : pageOrValue;
     const lang = scoped ? requestedLanguage : valueOrLanguage;
-    if (!supported.includes(lang) || lang === "hu") return null;
+    if (!supported.includes(lang) || lang === "hu" || typeof value !== "string") return null;
+    // HTML source nodes can include line breaks and indentation within a sentence.
+    // Match the same normalized copy collected by the browser coverage audit.
+    const normalized = value.replace(/\s+/gu, " ").trim();
     const index = lang === "en" ? 0 : 1;
-    if (Object.prototype.hasOwnProperty.call(exact, value)) return exact[value][index];
+    if (Object.prototype.hasOwnProperty.call(exact, normalized)) return exact[normalized][index];
     for (const [pattern, builder] of dynamic) {
-      const match = value.match(pattern);
+      const match = normalized.match(pattern);
       if (match) return builder(lang, match);
     }
     for (const [source, texts] of Object.entries(prefixes)) {
-      if (value.startsWith(source) && /\s/.test(value.charAt(source.length))) {
-        return texts[index] + value.slice(source.length);
+      if (normalized.startsWith(source) && /\s/.test(normalized.charAt(source.length))) {
+        return texts[index] + normalized.slice(source.length);
       }
     }
     return null;
