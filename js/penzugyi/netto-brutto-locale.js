@@ -226,6 +226,56 @@
     "Mikor ne ezt használd?": ["When should you not rely on this calculator?", "Wann solltest du dich nicht auf diesen Rechner verlassen?"],
     "Hasznos volt ez a kalkulátor?": ["Was this calculator useful?", "War dieser Rechner hilfreich?"],
     "Ha több speciális kedvezmény, több munkáltató, külföldi adózás, egyéni vállalkozói jogviszony vagy összetett bérszámfejtés érintett, a kalkuláció legyen csak előzetes kontroll.": ["If several special allowances, multiple employers, foreign taxation, self-employment or complex payroll rules apply, use this calculation only as an initial cross-check.", "Bei mehreren Sondervergünstigungen, mehreren Arbeitgebern, ausländischer Besteuerung, selbstständiger Tätigkeit oder komplexer Lohnabrechnung sollte diese Berechnung nur eine erste Orientierung sein."]
+,
+    "Az eredmény után": ["After your result", "Nach deinem Ergebnis"],
+    "Becsüld meg, mekkora törlesztés férhet bele a jövedelmedbe.": [
+      "Estimate what monthly loan payment could fit your income.",
+      "Schätze ein, welche monatliche Kreditrate zu deinem Einkommen passen könnte."
+    ],
+    "Ellenőrizd a Wise aktuális díjait, feltételeit és elérhető funkcióit.": [
+      "Check Wise's current fees, terms and available features.",
+      "Prüfe die aktuellen Gebühren, Bedingungen und Funktionen von Wise."
+    ],
+    "Havi költségvetés": ["Monthly budget", "Monatsbudget"],
+    "Hirdetés": ["Advertisement", "Anzeige"],
+    "Hitelképesség": ["Loan eligibility", "Kreditwürdigkeit"],
+    "Kalkulátor Bázis ChatGPT-bővítmény": ["Kalkulátor Bázis ChatGPT app", "Kalkulátor Bázis ChatGPT-App"],
+    "Kapcsolódó friss hírek": ["Related news", "Passende aktuelle Meldungen"],
+    "Külföldről kapsz fizetést vagy több pénznemben kezelnéd a pénzed?": [
+      "Paid from abroad or managing money in several currencies?",
+      "Wirst du aus dem Ausland bezahlt oder verwaltest du Geld in mehreren Währungen?"
+    ],
+    "Mennyi marad a fizetésedből hó végére?": [
+      "How much of your salary is left at the end of the month?",
+      "Wie viel von deinem Gehalt bleibt am Monatsende übrig?"
+    ],
+    "Mentési, telepítési és megosztási műveletek": [
+      "Bookmark, install and sharing options",
+      "Optionen zum Speichern, Installieren und Teilen"
+    ],
+    "Nettó - bruttó kalkulátor": ["Net-to-gross salary calculator", "Netto-Brutto-Rechner"],
+    "Nézd meg, mennyi maradhat kiadások és megtakarítás után.": [
+      "See how much may remain after expenses and savings.",
+      "Sieh nach, wie viel nach Ausgaben und Ersparnissen übrig bleiben könnte."
+    ],
+    "Partnerlink. Az aktuális díjakat és feltételeket a Wise oldalán ellenőrizd.": [
+      "Partner link. Check Wise's website for current fees and terms.",
+      "Partnerlink. Die aktuellen Gebühren und Bedingungen findest du auf der Wise-Website."
+    ],
+    "Pénzügyi tervezéshez": ["For financial planning", "Für deine Finanzplanung"],
+    "Tedd el a Kalkulátor Bázist, hogy legközelebb egy mozdulattal visszatalálj ehhez a számításhoz – vagy oszd meg azzal, akinek szintén jól jöhet.": [
+      "Save Kalkulátor Bázis so you can return to this calculation in one click, or share it with someone who might find it useful.",
+      "Speichere Kalkulátor Bázis, um mit einem Klick zu dieser Berechnung zurückzukehren, oder teile sie mit jemandem, für den sie nützlich sein könnte."
+    ],
+    "Wise feltételek →": ["Wise terms →", "Wise-Bedingungen →"],
+    "a kalkulátor a közzétett NAV és hivatalos adózási információk alapján készült. Az eredmény tájékoztató jellegű, nem minősül adó- vagy bérszámfejtési tanácsadásnak.": [
+      "The calculator is based on published NAV and official tax information. The result is for guidance only and is not tax or payroll advice.",
+      "Der Rechner basiert auf veröffentlichten NAV- und offiziellen Steuerinformationen. Das Ergebnis dient nur zur Orientierung und ist keine Steuer- oder Lohnabrechnungsberatung."
+    ],
+    "Írd össze a havi kiadásaidat a költségvetés-kalkulátorban. Ha hitelt tervezel, a becsült törlesztési keretet is megnézheted.": [
+      "List your monthly expenses in the budget calculator. If you are planning to borrow, you can also check an estimated affordable payment.",
+      "Erfasse deine monatlichen Ausgaben im Budgetrechner. Wenn du einen Kredit planst, kannst du auch eine geschätzte tragbare Rate prüfen."
+    ]
   });
   const page = "netto-brutto-kalkulator";
   const prefixes = Object.freeze({
