@@ -10,6 +10,16 @@ async function checkNettoBruttoLocales({ navigate, evaluate, setViewport }) {
     await new Promise(requestAnimationFrame); await new Promise(requestAnimationFrame);
   })()`);
   const read = selector => evaluate(`document.querySelector(${JSON.stringify(selector)})?.textContent.replace(/\\s+/g,' ').trim() || ''`);
+  const waitForText = (selector, expected) => evaluate(`(async () => {
+    const selector = ${JSON.stringify(selector)};
+    const expected = ${JSON.stringify(expected)};
+    for (let attempt = 0; attempt < 30; attempt += 1) {
+      const value = document.querySelector(selector)?.textContent.replace(/\\s+/g, ' ').trim() || '';
+      if (value.includes(expected)) return value;
+      await new Promise(requestAnimationFrame);
+    }
+    return document.querySelector(selector)?.textContent.replace(/\\s+/g, ' ').trim() || '';
+  })()`);
   const state = () => evaluate(`JSON.stringify({
     gross: document.getElementById('gross')?.value,
     net: document.getElementById('net-input')?.value,
@@ -44,7 +54,8 @@ async function checkNettoBruttoLocales({ navigate, evaluate, setViewport }) {
       ['de', 'Brutto-Netto-Rechner', 'Bruttogehalt (HUF)', 'Nettogehalt (HUF)', 'nur zum Vergleich']
     ]) {
       await choose(language);
-      assert.ok((await read('main h1')).includes(h1), `${language}: page title`);
+      const heading = await waitForText('main h1', h1);
+      assert.ok(heading.includes(h1), `${language}: page title (rendered: ${heading})`);
       assert.ok((await read('label[for="gross"]')).includes(gross), `${language}: gross label`);
       assert.ok((await read('label[for="net-input"]')).includes(net), `${language}: net label`);
       assert.ok((await read('#salary-tax-rate option[value="9"]')).includes(comparison), `${language}: 9% explanation`);
