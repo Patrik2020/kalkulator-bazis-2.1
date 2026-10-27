@@ -27,3 +27,10 @@ test("multiline copy is normalized and Hungarian content is restored safely", ()
   assert.match(api.translate("auto-fogyasztas-kalkulator", "Tedd el a Kalkulátor Bázist, hogy legközelebb egy mozdulattal visszatalálj\n ehhez a számításhoz – vagy oszd meg azzal, akinek szintén jól jöhet.", "en"), /^Save Kalkulátor Bázis/u);
   assert.equal(api.translate("auto-fogyasztas-kalkulator", "6,5 l/100 km", "en"), null);
 });
+
+test("shared auto and partner copy is translated in both calculator scopes", () => {
+  for (const page of api.pages) {
+    assert.equal(api.translate(page, "Hirdetés", "en"), "Advertisement");
+    assert.equal(api.translate(page, "Utazást tervezel és devizában fizetnél?", "de"), "Planst du eine Reise und möchtest in einer Fremdwährung bezahlen?");
+  }
+});
