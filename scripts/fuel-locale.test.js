@@ -39,6 +39,8 @@ test("range calculator translates guidance and keeps the result unit unchanged",
   assert.ok(api.pages.includes("hatotav-kalkulator"));
   assert.equal(api.translate("hatotav-kalkulator", "Üzemanyag a tankban (l)", "en"), "Fuel in tank (L)");
   assert.equal(api.translate("hatotav-kalkulator", "Biztonsági tartalék (%)", "de"), "Sicherheitsreserve (%)");
+  assert.equal(api.translate("hatotav-kalkulator", "Autófogyasztás", "en"), "Car fuel consumption");
+  assert.equal(api.translate("hatotav-kalkulator", "538 km", "de"), "538 km");
   assert.match(api.translate("hatotav-kalkulator", "A kijelzett vagy számolt hatótáv optimális becslés.\n      Tervezéshez érdemes külön tartalékot hagyni forgalomra, kerülőre, hidegre vagy váratlan fogyasztásnövekedésre.", "en"), /^The displayed or calculated range is an optimistic estimate/u);
   assert.equal(api.translate("hatotav-kalkulator", "500 km", "en"), null);
 });

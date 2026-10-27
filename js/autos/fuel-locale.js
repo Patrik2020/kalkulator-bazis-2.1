@@ -133,6 +133,10 @@
     "Üzemanyagköltség kalkulátor": ["Fuel cost calculator", "Kraftstoffkosten-Rechner"],
     "Autó fogyasztás kalkulátor": ["Car fuel consumption calculator", "Kraftstoffverbrauchsrechner fürs Auto"],
     "Hatótáv kalkulátor": ["Driving range calculator", "Reichweiten-Rechner"],
+    "Gyakori kérdések": ["Frequently asked questions", "Häufige Fragen"],
+    "Autófogyasztás": ["Car fuel consumption", "Kraftstoffverbrauch"],
+    "Tankolás": ["Refuelling", "Tanken"],
+    "Üzemanyagköltség": ["Fuel costs", "Kraftstoffkosten"],
     "Éves autóköltség kalkulátor": ["Annual car cost calculator", "Jährliche Autokosten"],
     "Kilométerdíj kalkulátor": ["Cost per kilometre calculator", "Kilometerkosten-Rechner"],
     "Autópályadíj kalkulátor": ["Motorway toll calculator", "Autobahnmaut-Rechner"],
@@ -333,7 +337,10 @@
     "Matematikai maximum": ["Mathematical maximum", "Mathematisches Maximum"],
     "Tervezhető hatótáv": ["Plannable range", "Planbare Reichweite"],
     "Meghagyott tartalék": ["Remaining reserve", "Verbleibende Reserve"],
-    "2026. augusztus 8.": ["8 August 2026", "8. August 2026"]
+    "2026. augusztus 8.": ["8 August 2026", "8. August 2026"],
+    "538 km": ["538 km", "538 km"],
+    "458 km": ["458 km", "458 km"],
+    "81 km": ["81 km", "81 km"]
   });
   const dictionaries = Object.freeze({ "auto-fogyasztas-kalkulator": consumption, "uzemanyag-koltseg-kalkulator": fuelCost, "hatotav-kalkulator": range });
   const pages = Object.freeze(Object.keys(dictionaries)), supported = Object.freeze(["hu", "en", "de"]);
