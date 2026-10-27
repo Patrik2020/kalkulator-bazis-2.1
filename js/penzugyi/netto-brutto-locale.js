@@ -263,15 +263,7 @@
       "Partnerlink. Die aktuellen Gebühren und Bedingungen findest du auf der Wise-Website."
     ],
     "Pénzügyi tervezéshez": ["For financial planning", "Für deine Finanzplanung"],
-    "Tedd el a Kalkulátor Bázist, hogy legközelebb egy mozdulattal visszatalálj ehhez a számításhoz – vagy oszd meg azzal, akinek szintén jól jöhet.": [
-      "Save Kalkulátor Bázis so you can return to this calculation in one click, or share it with someone who might find it useful.",
-      "Speichere Kalkulátor Bázis, um mit einem Klick zu dieser Berechnung zurückzukehren, oder teile sie mit jemandem, für den sie nützlich sein könnte."
-    ],
     "Wise feltételek →": ["Wise terms →", "Wise-Bedingungen →"],
-    "a kalkulátor a közzétett NAV és hivatalos adózási információk alapján készült. Az eredmény tájékoztató jellegű, nem minősül adó- vagy bérszámfejtési tanácsadásnak.": [
-      "The calculator is based on published NAV and official tax information. The result is for guidance only and is not tax or payroll advice.",
-      "Der Rechner basiert auf veröffentlichten NAV- und offiziellen Steuerinformationen. Das Ergebnis dient nur zur Orientierung und ist keine Steuer- oder Lohnabrechnungsberatung."
-    ],
     "Írd össze a havi kiadásaidat a költségvetés-kalkulátorban. Ha hitelt tervezel, a becsült törlesztési keretet is megnézheted.": [
       "List your monthly expenses in the budget calculator. If you are planning to borrow, you can also check an estimated affordable payment.",
       "Erfasse deine monatlichen Ausgaben im Budgetrechner. Wenn du einen Kredit planst, kannst du auch eine geschätzte tragbare Rate prüfen."
