@@ -342,7 +342,74 @@
     "458 km": ["458 km", "458 km"],
     "81 km": ["81 km", "81 km"]
   });
-  const dictionaries = Object.freeze({ "auto-fogyasztas-kalkulator": consumption, "uzemanyag-koltseg-kalkulator": fuelCost, "hatotav-kalkulator": range });
+  const fueling = Object.freeze({
+    "Tankolás kalkulátor": ["Refuelling budget calculator", "Tankbudget-Rechner"],
+    "Számold ki, hány liter üzemanyagot kapsz a megadott tankolási keretből.": ["Calculate how many litres of fuel you can buy with your refuelling budget.", "Berechne, wie viele Liter Kraftstoff du für dein Tankbudget bekommst."],
+    "Tankolási keret (Ft)": ["Refuelling budget (HUF)", "Tankbudget (HUF)"],
+    "Üzemanyagár (Ft/l)": ["Fuel price (HUF/L)", "Kraftstoffpreis (HUF/l)"],
+    "Tankolható mennyiség:": ["Fuel you can buy:", "Kaufbare Kraftstoffmenge:"],
+    "Mire jó a tankolás kalkulátor?": ["What is the refuelling calculator for?", "Wofür ist der Tankbudget-Rechner gedacht?"],
+    "Ez az oldal azt mutatja meg, hogy egy megadott tankolási keretből hány liter üzemanyagot tudsz vásárolni az aktuális literenkénti ár mellett. Akkor hasznos, ha indulás előtt szeretnéd látni, mire elég például 10 000, 20 000 vagy 30 000 Ft, vagy ha össze szeretnéd vetni két különböző üzemanyagár hatását.": [
+      "This page shows how many litres of fuel you can buy with a given budget at the current price per litre. It is useful before setting off if you want to see what, for example, HUF 10,000, 20,000 or 30,000 will buy, or compare the effect of two different fuel prices.",
+      "Diese Seite zeigt, wie viele Liter Kraftstoff du mit einem bestimmten Tankbudget zum aktuellen Literpreis kaufen kannst. Sie ist hilfreich, wenn du vor der Fahrt wissen möchtest, wie viel du zum Beispiel für 10.000, 20.000 oder 30.000 HUF bekommst, oder zwei Kraftstoffpreise vergleichen willst."
+    ],
+    "A kalkulátor nem a két tankolás közötti fogyasztást méri. Ahhoz a megtett kilométer és az utántöltött liter szükséges; erre az autó fogyasztás kalkulátor való. Itt a bemenet a tankolásra szánt összeg és a kútoszlopon látott Ft/l ár.": [
+      "This calculator does not measure fuel consumption between fill-ups. That requires the distance travelled and the litres added; use the car fuel consumption calculator for that. Here, enter your fuel budget and the HUF-per-litre price shown at the pump.",
+      "Dieser Rechner misst nicht den Verbrauch zwischen zwei Tankvorgängen. Dafür brauchst du die gefahrene Strecke und die nachgetankten Liter; verwende dafür den Rechner für den Kraftstoffverbrauch. Hier gibst du dein Tankbudget und den an der Zapfsäule angezeigten Preis in HUF pro Liter ein."
+    ],
+    "Hogyan működik a számítás?": ["How does the calculation work?", "Wie funktioniert die Berechnung?"],
+    "A képlet egyszerű:": ["The formula is simple:", "Die Formel ist einfach:"],
+    "tankolható liter = tankolási keret / literenkénti üzemanyagár": ["litres you can buy = refuelling budget ÷ fuel price per litre", "kaufbare Liter = Tankbudget ÷ Kraftstoffpreis pro Liter"],
+    "Ha 20 000 Ft-ot szánsz tankolásra, és az üzemanyag ára 640 Ft/l, akkor 20 000 / 640 = 31,25 liter jön ki. A megjelenített eredmény egy tizedesre kerekítve 31,3 liter.": [
+      "If you set aside HUF 20,000 and fuel costs HUF 640/L, the result is 20,000 ÷ 640 = 31.25 litres. The displayed result is rounded to one decimal place: 31.3 litres.",
+      "Wenn du 20.000 HUF zum Tanken einplanst und der Kraftstoff 640 HUF/l kostet, ergibt sich 20.000 ÷ 640 = 31,25 Liter. Das angezeigte Ergebnis wird auf eine Dezimalstelle gerundet: 31,3 Liter."
+    ],
+    "A számítás forinttal és literrel dolgozik. A tizedesvessző és a tizedespont közötti különbségre érdemes figyelni, mert egy rosszul beírt üzemanyagár teljesen más eredményt adhat. A kalkulátor a kedvezményeket, pontgyűjtő jóváírást, bankkártyás visszatérítést vagy több üzemanyagtípus keverését nem kezeli külön.": [
+      "The calculation uses forints and litres. Check whether you enter a decimal comma or point correctly: a mistyped fuel price can change the result substantially. The calculator does not separately account for discounts, loyalty points, card cashback or mixing different fuel types.",
+      "Die Berechnung erfolgt in Forint und Litern. Achte auf Dezimalkomma oder Dezimalpunkt: Ein falsch eingegebener Kraftstoffpreis kann das Ergebnis deutlich verändern. Rabatte, Treuepunkte, Kreditkarten-Cashback oder eine Mischung verschiedener Kraftstoffarten berücksichtigt der Rechner nicht gesondert."
+    ],
+    "Konkrét példa": ["Example", "Konkretes Beispiel"],
+    "Ha a tankolási keret 15 000 Ft, a benzin ára pedig 625 Ft/l, akkor a számítás: 15 000 / 625 = 24 liter. Ez azt jelenti, hogy ekkora keretből nagyjából 24 liter üzemanyagot tankolhatsz. Ha az autó átlagfogyasztása 6,5 l/100 km, ez a mennyiség körülbelül 369 km elméleti útra lehet elég, de ezt már külön hatótáv- vagy üzemanyagköltség-számítással érdemes ellenőrizni.": [
+      "If your budget is HUF 15,000 and petrol costs HUF 625/L, the calculation is 15,000 ÷ 625 = 24 litres. That budget buys about 24 litres of fuel. At an average consumption of 6.5 L/100 km, this could theoretically cover about 369 km, but check that separately with a range or fuel-cost calculator.",
+      "Bei einem Tankbudget von 15.000 HUF und einem Benzinpreis von 625 HUF/l lautet die Rechnung: 15.000 ÷ 625 = 24 Liter. Für dieses Budget bekommst du also etwa 24 Liter Kraftstoff. Bei einem Durchschnittsverbrauch von 6,5 l/100 km könnte das theoretisch für rund 369 km reichen. Prüfe dies aber separat mit einem Reichweiten- oder Kraftstoffkosten-Rechner."
+    ],
+    "Az eredmény értelmezése": ["How to interpret the result", "So ist das Ergebnis zu verstehen"],
+    "Az eredmény a megadott keretből vásárolható üzemanyag mennyisége. A valódi kútoszlopos érték néhány tized literrel eltérhet a kerekítés, a pontos literár, a fizetés módja vagy a tankolás megszakítása miatt. Ha teljes útköltséget tervezel, a liter mennyisége önmagában kevés: szükség lesz a fogyasztásra, a távolságra, esetleges autópályadíjra, parkolásra és egyéb útiköltségre is.": [
+      "The result is the amount of fuel you can buy within your budget. The pump reading may differ by a few tenths of a litre due to rounding, the exact price, payment method or when you stop fuelling. For a full trip-cost estimate, litres alone are not enough: you also need consumption, distance, any tolls, parking and other travel costs.",
+      "Das Ergebnis zeigt die Kraftstoffmenge, die du für dein Budget kaufen kannst. Die Zapfsäule kann wegen Rundung, genauem Literpreis, Zahlungsart oder dem Zeitpunkt des Tankstopps um einige Zehntelliter abweichen. Für die gesamten Fahrtkosten reichen die Liter allein nicht: Du brauchst auch Verbrauch, Strecke, mögliche Maut, Parkgebühren und weitere Reisekosten."
+    ],
+    "Korlátok és gyakori hibák": ["Limitations and common mistakes", "Grenzen und häufige Fehler"],
+    "Ne keverd össze a literenkénti árat a teljes tankolási összeggel.": ["Do not confuse the price per litre with the total amount spent on fuel.", "Verwechsle den Preis pro Liter nicht mit dem Gesamtbetrag für das Tanken."],
+    "Mindig Ft/l árat adj meg, ne eurós vagy más devizás értéket.": ["Enter the price in HUF/L, not in euros or another currency.", "Gib den Preis in HUF/l an, nicht in Euro oder einer anderen Währung."],
+    "Kupon, flottakedvezmény vagy pontbeváltás esetén a tényleges fizetendő ár eltérhet.": ["With a coupon, fleet discount or redeemed points, the amount you actually pay may differ.", "Bei Gutscheinen, Flottenrabatten oder eingelösten Punkten kann der tatsächlich zu zahlende Preis abweichen."],
+    "A kalkulátor nem mondja meg, hány kilométerre elég az üzemanyag; ehhez fogyasztási adat is kell.": ["The calculator does not show how many kilometres the fuel will cover; you also need a consumption figure for that.", "Der Rechner zeigt nicht, für wie viele Kilometer der Kraftstoff reicht; dafür brauchst du zusätzlich einen Verbrauchswert."],
+    "Mit írjak a tankolási keret mezőbe?": ["What should I enter as my refuelling budget?", "Was trage ich als Tankbudget ein?"],
+    "Azt az összeget forintban, amelyet tankolásra szánsz. Ha pontosan 20 000 Ft-ért szeretnél tankolni, akkor 20000 legyen a bemenet.": ["Enter the amount in forints that you plan to spend on fuel. If you want to spend exactly HUF 20,000, enter 20000.", "Gib den Betrag in Forint ein, den du fürs Tanken einplanst. Wenn du genau 20.000 HUF ausgeben möchtest, gib 20000 ein."],
+    "A kalkulátor kiszámolja az út teljes költségét?": ["Does the calculator work out the full cost of a trip?", "Berechnet der Rechner die gesamten Fahrtkosten?"],
+    "Nem. Ez az oldal a keretből vásárolható litert számolja. Teljes útiköltséghez használd az üzemanyag költség kalkulátort, ahol távolságot és fogyasztást is megadhatsz.": ["No. This page calculates how many litres your budget will buy. For full trip costs, use the fuel cost calculator, where you can also enter distance and consumption.", "Nein. Diese Seite berechnet, wie viele Liter du für dein Budget bekommst. Für die gesamten Fahrtkosten verwende den Kraftstoffkosten-Rechner und gib auch Strecke und Verbrauch ein."],
+    "Miért térhet el a kútoszlopon látható érték?": ["Why might the pump show a different amount?", "Warum kann die Zapfsäule einen anderen Wert anzeigen?"],
+    "A kút pontos literára, a kerekítés, a fizetési kedvezmény, illetve az, hogy mikor állítod le a tankolást, kisebb eltérést okozhat.": ["The exact price per litre, rounding, a payment discount and when you stop fuelling can cause small differences.", "Der genaue Literpreis, Rundungen, ein Zahlungsrabatt und der Zeitpunkt, an dem du den Tankvorgang beendest, können kleine Abweichungen verursachen."],
+    "Használható benzinhez és dízelhez is?": ["Can I use it for petrol and diesel?", "Kann ich den Rechner für Benzin und Diesel verwenden?"],
+    "Igen. A képlet üzemanyagtípustól független, csak a megfelelő literenkénti árat kell megadni.": ["Yes. The formula works for any fuel type; just enter the correct price per litre.", "Ja. Die Formel ist unabhängig von der Kraftstoffart. Gib einfach den passenden Literpreis ein."],
+    "2026. július 1.": ["1 July 2026", "1. Juli 2026"],
+    "Éves autóköltség kalkulátor": ["Annual car cost calculator", "Jährliche Autokosten"],
+    "Becsüld meg az autó éves fenntartási költségét.": ["Estimate your car's annual running costs.", "Schätze die jährlichen Unterhaltskosten deines Autos."],
+    "Kilométerdíj kalkulátor": ["Cost per kilometre calculator", "Kilometerkosten-Rechner"],
+    "Számold ki, mennyibe kerül egy kilométer az autóddal.": ["Calculate how much each kilometre costs you.", "Berechne, wie viel dich jeder Kilometer mit deinem Auto kostet."],
+    "Autó értékvesztés kalkulátor": ["Car depreciation calculator", "Wertverlust-Rechner fürs Auto"],
+    "Számold ki, mennyit veszíthet az autó az értékéből évente.": ["Estimate how much value your car may lose each year.", "Schätze, wie viel Wert dein Auto pro Jahr verlieren kann."],
+    "Tankolási keret": ["Refuelling budget", "Tankbudget"],
+    "Árengedmény literenként: mennyit számít a teljes tankolásnál?": ["Discount per litre: how much does it save on a full refuel?", "Rabatt pro Liter: Wie viel macht das beim Tanken aus?"],
+    "Listaár (Ft/l)": ["Regular price (HUF/L)", "Listenpreis (HUF/l)"],
+    "Kedvezmény (Ft/l)": ["Discount (HUF/L)", "Rabatt (HUF/l)"],
+    "Liter kedvezmény nélkül": ["Litres without discount", "Liter ohne Rabatt"],
+    "Liter kedvezménnyel": ["Litres with discount", "Liter mit Rabatt"],
+    "Plusz üzemanyag": ["Additional fuel", "Zusätzlicher Kraftstoff"],
+    "Megtakarítás azonos liternél": ["Saving for the same number of litres", "Ersparnis bei gleicher Literzahl"],
+    "Ne csak a literárat nézd": ["Look beyond the price per litre", "Achte nicht nur auf den Literpreis"],
+    "Ha a kedvezményért kerülőt teszel, a plusz kilométer üzemanyag- és időigénye csökkentheti vagy el is viheti az előnyt.": ["If you drive out of your way for a discount, the extra fuel and time may reduce or even cancel the savings.", "Wenn du für einen Rabatt einen Umweg fährst, können zusätzlicher Kraftstoff und Zeit den Vorteil verringern oder ganz aufheben."]
+  });
+  const dictionaries = Object.freeze({ "auto-fogyasztas-kalkulator": consumption, "uzemanyag-koltseg-kalkulator": fuelCost, "hatotav-kalkulator": range, "tankolas-kalkulator": fueling });
   const pages = Object.freeze(Object.keys(dictionaries)), supported = Object.freeze(["hu", "en", "de"]);
   const dynamic = Object.freeze({
     "Átlagfogyasztás:": ["Average fuel consumption:", "Durchschnittsverbrauch:"],
@@ -350,6 +417,7 @@
     "Várható költség:": ["Estimated cost:", "Voraussichtliche Kosten:"],
     "Teljes útiköltség:": ["Total trip cost:", "Gesamte Fahrtkosten:"],
     "Egy főre:": ["Per person:", "Pro Person:"],
+    "Tankolható mennyiség:": ["Fuel you can buy:", "Kaufbare Kraftstoffmenge:"],
     "Stresszelt költség:": ["Scenario cost:", "Kosten im Szenario:"],
     "Fogyasztási teszt:": ["Consumption scenario:", "Verbrauchsszenario:"],
     "Üzemanyag:": ["Fuel:", "Kraftstoff:"],
