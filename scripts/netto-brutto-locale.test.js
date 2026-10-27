@@ -42,3 +42,19 @@ test("errors translate while unreviewed Hungarian legal warnings remain Hungaria
   assert.equal(api.translate("9%-os összehasonlító számítás – nem a hatályos 2026-os és nem a végleges 2027-es adószabály.", "de"), null);
   assert.equal(api.translate("199 500 Ft", "en"), null);
 });
+test("net salary page recommendations, retention controls and contextual notices are translated", () => {
+  const page = "netto-brutto-kalkulator";
+  const cases = [
+    ["Havi költségvetés", "Monthly budget", "Monatsbudget"],
+    ["Nettó - bruttó kalkulátor", "Net-to-gross salary calculator", "Netto-Brutto-Rechner"],
+    ["Hirdetés", "Advertisement", "Anzeige"],
+    ["Az eredmény után", "After your result", "Nach deinem Ergebnis"],
+    ["Kapcsolódó friss hírek", "Related news", "Passende aktuelle Meldungen"],
+    ["Külföldről kapsz fizetést vagy több pénznemben kezelnéd a pénzed?", "Paid from abroad or managing money in several currencies?", "Wirst du aus dem Ausland bezahlt oder verwaltest du Geld in mehreren Währungen?"],
+    ["a kalkulátor a közzétett NAV és hivatalos adózási információk alapján készült. Az eredmény tájékoztató jellegű, nem minősül adó- vagy bérszámfejtési tanácsadásnak.", "The calculator is based on published NAV and official tax information. The result is for guidance only and is not tax or payroll advice.", "Der Rechner basiert auf veröffentlichten NAV- und offiziellen Steuerinformationen. Das Ergebnis dient nur zur Orientierung und ist keine Steuer- oder Lohnabrechnungsberatung."]
+  ];
+  for (const [hu, en, de] of cases) {
+    assert.equal(api.translate(page, hu, "en"), en, hu);
+    assert.equal(api.translate(page, hu, "de"), de, hu);
+  }
+});
