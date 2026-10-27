@@ -94,6 +94,41 @@
     "A számítások módszertana és minőségbiztosítása": ["Calculation methodology and quality assurance", "Berechnungsmethodik und Qualitätssicherung"],
     "Hibát találtál? Jelezd nekünk.": ["Found an issue? Let us know.", "Einen Fehler gefunden? Sag uns Bescheid."],
     "Kapcsolódó kalkulátorok": ["Related calculators", "Verwandte Rechner"],
+    "Hirdetés": ["Advertisement", "Anzeige"],
+    "Autó fogyasztás": ["Car fuel consumption", "Kraftstoffverbrauch"],
+    "Éves autóköltség": ["Annual car costs", "Jährliche Autokosten"],
+    "Üzemanyag költség kalkulátor": ["Fuel cost calculator", "Kraftstoffkosten-Rechner"],
+    "Az eredmény után": ["After your result", "Nach deinem Ergebnis"],
+    "Az egy útra jutó üzemanyagköltség után hasznos lehet a valós fogyasztás és az éves fenntartási költség ellenőrzése.": [
+      "After estimating fuel costs for one trip, it can help to check real-world consumption and annual ownership costs.",
+      "Nach der Schätzung der Kraftstoffkosten für eine Fahrt lohnt es sich, den tatsächlichen Verbrauch und die jährlichen Unterhaltskosten zu prüfen."
+    ],
+    "Külföldi utazáshoz": ["For travel abroad", "Für Auslandsreisen"],
+    "Lásd a biztosítás, szerviz és egyéb tételek hatását is.": [
+      "See how insurance, servicing and other costs affect the total.",
+      "Sieh dir an, wie Versicherung, Wartung und weitere Posten die Gesamtkosten beeinflussen."
+    ],
+    "Nézd meg a Wise kártyás fizetéshez, pénzváltáshoz és külföldi költéshez kapcsolódó aktuális feltételeit.": [
+      "Check Wise's current terms for card payments, currency exchange and spending abroad.",
+      "Informiere dich über die aktuellen Bedingungen von Wise für Kartenzahlungen, Währungsumtausch und Ausgaben im Ausland."
+    ],
+    "Nézd meg, mit jelent az út a teljes autóhasználatban": [
+      "See what the trip means for your overall car costs",
+      "Sieh dir an, welchen Einfluss die Fahrt auf deine gesamten Autokosten hat"
+    ],
+    "Partnerlink. Az aktuális díjakat és feltételeket a Wise oldalán ellenőrizd.": [
+      "Partner link. Check current fees and terms on Wise's website.",
+      "Partnerlink. Prüfe die aktuellen Gebühren und Bedingungen auf der Wise-Website."
+    ],
+    "Számold ki tankolási adatokból a tényleges fogyasztást.": [
+      "Calculate real-world fuel consumption from refuelling data.",
+      "Berechne den tatsächlichen Verbrauch anhand deiner Tankdaten."
+    ],
+    "Utazást tervezel és devizában fizetnél?": [
+      "Planning a trip and paying in a foreign currency?",
+      "Planst du eine Reise und möchtest in einer Fremdwährung bezahlen?"
+    ],
+    "Wise utazáshoz →": ["Wise for travel →", "Wise für Reisen →"],
     "Üzemanyagköltség kalkulátor": ["Fuel cost calculator", "Kraftstoffkosten-Rechner"],
     "Autó fogyasztás kalkulátor": ["Car fuel consumption calculator", "Kraftstoffverbrauchsrechner fürs Auto"],
     "Hatótáv kalkulátor": ["Driving range calculator", "Reichweiten-Rechner"],
