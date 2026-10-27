@@ -97,6 +97,9 @@ jobs:
       - name: Check EN DE mortgage planning and early repayment translations
         run: node --test scripts/mortgage-tools-locale.test.js
 
+      - name: Check EN DE dividend calculator copy and dynamic results
+        run: node --test scripts/dividend-locale.test.js
+
       - name: Verify localized VAT and percentage calculations without changing values
         run: node --test scripts/vat-percent-locale.test.js
 
