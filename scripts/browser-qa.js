@@ -16,6 +16,7 @@ const { checkWealthGrowthLocales } = require("./wealth-growth-locale-browser-che
 const { checkInvestmentInflationLocales } = require("./investment-inflation-locale-browser-checks");
 const { checkCreditLocales } = require("./credit-locale-browser-checks");
 const { checkMortgageToolLocales } = require("./mortgage-tools-locale-browser-checks");
+const { checkDividendLocale } = require("./dividend-locale-browser-checks");
 
 const adsensePolicy = loadAdsensePolicy(path.resolve(__dirname, ".."));
 
@@ -817,6 +818,7 @@ const run = async () => {
   await checkInvestmentInflationLocales({ navigate, evaluate, setViewport });
   await checkCreditLocales({ navigate, evaluate, setViewport });
   await checkMortgageToolLocales({ navigate, evaluate, setViewport });
+  await checkDividendLocale({ navigate, evaluate, setViewport });
 
   await setViewport(390, 844);
   await navigate("/");

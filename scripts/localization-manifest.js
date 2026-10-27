@@ -34,7 +34,8 @@ const detailPages = [
   ...[["afa", "vat"], ["szazalek", "percent"]].map(([slug, key]) => ({
     path: `kalkulatorok/${slug}-kalkulator.html`,
     module: "js/altalanos/vat-percent-locale.js", key
-  }))
+  })),
+  { path: "kalkulatorok/osztalek-kalkulator.html", module: "js/penzugyi/dividend-locale.js", key: "osztalek-kalkulator" }
 ];
 
 module.exports = { detailPages };
