@@ -174,6 +174,7 @@
     "Jegybanki alapkamat: 5,50%": ["Central bank base rate: 5.50%", "Leitzins: 5,50 %"],
     "Összes friss hír →": ["All latest news →", "Alle aktuellen Meldungen →"],
     "Nettó–bruttó kalkulátor 2026": ["Gross to net salary calculator 2026", "Brutto-Netto-Rechner 2026"],
+    "Net–gross salary calculator 2026": ["Gross to net salary calculator 2026", "Brutto-Netto-Rechner 2026"],
     "Újdonság: a Kalkulátor Bázis már ChatGPT-bővítményként is elérhető.": ["New: Calculator Base is now also available as a ChatGPT app.", "Neu: Kalkulator Bázis ist jetzt auch als ChatGPT-App verfügbar."],
     "A 2026-os nettó–bruttó számításokat a saját Kalkulátor Bázis Salary API végzi, így ugyanez a számítás közvetlenül ChatGPT-ből is használható.": ["The 2026 gross-to-net calculations run through the Kalkulátor Bázis Salary API, so you can also use the same calculation directly in ChatGPT.", "Die Brutto-Netto-Berechnungen für 2026 laufen über die Kalkulátor Bázis Salary API. Damit kannst du dieselbe Berechnung auch direkt in ChatGPT nutzen."],
     "Ne keresd újra. Mentsd le. Használd.": ["Don't search again. Save it. Use it.", "Nicht erneut suchen. Speichern. Wiederverwenden."],
