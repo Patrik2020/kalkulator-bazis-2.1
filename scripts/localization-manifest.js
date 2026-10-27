@@ -35,7 +35,8 @@ const detailPages = [
     path: `kalkulatorok/${slug}-kalkulator.html`,
     module: "js/altalanos/vat-percent-locale.js", key
   })),
-  { path: "kalkulatorok/osztalek-kalkulator.html", module: "js/penzugyi/dividend-locale.js", key: "osztalek-kalkulator" }
+  { path: "kalkulatorok/osztalek-kalkulator.html", module: "js/penzugyi/dividend-locale.js", key: "osztalek-kalkulator" },
+  { path: "kalkulatorok/netto-brutto-kalkulator.html", module: "js/penzugyi/netto-brutto-locale.js", key: "netto-brutto-kalkulator" }
 ];
 
 module.exports = { detailPages };

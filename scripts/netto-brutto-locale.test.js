@@ -3,6 +3,20 @@ const assert = require("node:assert/strict");
 const { test } = require("node:test");
 const api = require("../js/penzugyi/netto-brutto-locale");
 
+test("the detailed salary page exposes scoped locale coverage and translates its expanded guidance", () => {
+  const page = "netto-brutto-kalkulator";
+  assert.ok(api.pages.includes(page));
+  assert.equal(api.translate(page, "Nettó–bruttó kalkulátor 2026", "en"), "Gross to net salary calculator 2026");
+  assert.equal(api.translate(page, "Net–gross salary calculator 2026", "en"), "Gross to net salary calculator 2026");
+  assert.equal(api.translate(page, "Net–gross salary calculator 2026", "de"), "Brutto-Netto-Rechner 2026");
+  assert.equal(api.translate(page, "Netto-Brutto-Rechner 2026", "de"), "Brutto-Netto-Rechner 2026");
+  assert.match(api.translate(page, "Állást váltanál, de az ajánlatban csak a bruttó bér szerepel? Írd be az összeget a kalkulátorba. Az eredmény mellett külön látod az SZJA-t, a TB-járulékot és a becsült teljes munkáltatói költséget, így követhető, hogyan jutottunk el a nettóig.", "en"), /Changing jobs, but the offer lists only gross pay/u);
+  assert.match(api.translate(page, "Ha a családi kedvezményt megosztjátok, egyeztessétek, ki mekkora részt érvényesít. A kalkulátor nem kér be megosztási arányt; az eredményt ehhez külön ellenőrizni kell.", "de"), /Familienvergünstigung aufteilt/u);
+  assert.equal(api.translate(page, "Bruttó fizetés: 500 000 Ft", "en"), "Gross salary: 500 000 Ft");
+  assert.match(api.translate(page, "Tedd el a Kalkulátor Bázist, hogy legközelebb egy mozdulattal visszatalálj\n      ehhez a számításhoz – vagy oszd meg azzal, akinek szintén jól jöhet.", "en"), /^Bookmark Calculator Base/u);
+  assert.equal(api.translate("another-page", "Bruttó fizetés: 500 000 Ft", "en"), null);
+});
+
 test("salary form controls and legal comparison disclaimer are accurately translated", () => {
   assert.equal(api.translate("Bruttóból nettó", "en"), "Gross to net");
   assert.equal(api.translate("Nettóból bruttó", "de"), "Netto zu Brutto");
@@ -31,4 +45,20 @@ test("errors translate while unreviewed Hungarian legal warnings remain Hungaria
   assert.equal(api.translate("Az adóhatóság hivatalos közleménye.", "en"), null);
   assert.equal(api.translate("9%-os összehasonlító számítás – nem a hatályos 2026-os és nem a végleges 2027-es adószabály.", "de"), null);
   assert.equal(api.translate("199 500 Ft", "en"), null);
+});
+test("net salary page recommendations, retention controls and contextual notices are translated", () => {
+  const page = "netto-brutto-kalkulator";
+  const cases = [
+    ["Havi költségvetés", "Monthly budget", "Monatsbudget"],
+    ["Nettó - bruttó kalkulátor", "Net-to-gross salary calculator", "Netto-Brutto-Rechner"],
+    ["Hirdetés", "Advertisement", "Anzeige"],
+    ["Az eredmény után", "After your result", "Nach deinem Ergebnis"],
+    ["Kapcsolódó friss hírek", "Related news", "Passende aktuelle Meldungen"],
+    ["Külföldről kapsz fizetést vagy több pénznemben kezelnéd a pénzed?", "Paid from abroad or managing money in several currencies?", "Wirst du aus dem Ausland bezahlt oder verwaltest du Geld in mehreren Währungen?"],
+    ["a kalkulátor a közzétett NAV és hivatalos adózási információk alapján készült. Az eredmény tájékoztató jellegű, nem minősül adó- vagy bérszámfejtési tanácsadásnak.", "The calculator is based on published NAV and official tax information. The result is for guidance only and is not tax or payroll advice.", "Der Rechner basiert auf veröffentlichten NAV- und offiziellen Steuerinformationen. Das Ergebnis dient nur zur Orientierung und ist keine Steuer- oder Lohnabrechnungsberatung."]
+  ];
+  for (const [hu, en, de] of cases) {
+    assert.equal(api.translate(page, hu, "en"), en, hu);
+    assert.equal(api.translate(page, hu, "de"), de, hu);
+  }
 });
