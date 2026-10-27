@@ -40,7 +40,8 @@ const detailPages = [
   ...["auto-fogyasztas-kalkulator", "uzemanyag-koltseg-kalkulator"].map(key => ({
     path: `kalkulatorok/${key}.html`, module: "js/autos/fuel-locale.js", key
   })),
-  { path: "kalkulatorok/hatotav-kalkulator.html", module: "js/autos/fuel-locale.js", key: "hatotav-kalkulator" }
+  { path: "kalkulatorok/hatotav-kalkulator.html", module: "js/autos/fuel-locale.js", key: "hatotav-kalkulator" },
+  { path: "kalkulatorok/tankolas-kalkulator.html", module: "js/autos/fuel-locale.js", key: "tankolas-kalkulator" }
 ];
 
 module.exports = { detailPages };

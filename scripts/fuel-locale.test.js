@@ -4,7 +4,7 @@ const { test } = require("node:test");
 const api = require("../js/autos/fuel-locale");
 
 test("fuel calculator pages expose scoped English and German copy", () => {
-  assert.deepEqual(api.pages, ["auto-fogyasztas-kalkulator", "uzemanyag-koltseg-kalkulator", "hatotav-kalkulator"]);
+  assert.deepEqual(api.pages, ["auto-fogyasztas-kalkulator", "uzemanyag-koltseg-kalkulator", "hatotav-kalkulator", "tankolas-kalkulator"]);
   assert.equal(api.translate("auto-fogyasztas-kalkulator", "Tankolt mennyiség (l)", "en"), "Fuel added (L)");
   assert.equal(api.translate("uzemanyag-koltseg-kalkulator", "Fogyasztás (l/100 km)", "de"), "Verbrauch (l/100 km)");
   assert.equal(api.translate("other-page", "Tankolt mennyiség (l)", "en"), null);
@@ -43,4 +43,12 @@ test("range calculator translates guidance and keeps the result unit unchanged",
   assert.equal(api.translate("hatotav-kalkulator", "538 km", "de"), "538 km");
   assert.match(api.translate("hatotav-kalkulator", "A kijelzett vagy számolt hatótáv optimális becslés.\n      Tervezéshez érdemes külön tartalékot hagyni forgalomra, kerülőre, hidegre vagy váratlan fogyasztásnövekedésre.", "en"), /^The displayed or calculated range is an optimistic estimate/u);
   assert.equal(api.translate("hatotav-kalkulator", "500 km", "en"), null);
+});
+
+test("refuelling budget page translates both calculator panels", () => {
+  assert.equal(api.translate("tankolas-kalkulator", "Tankolási keret (Ft)", "en"), "Refuelling budget (HUF)");
+  assert.equal(api.translate("tankolas-kalkulator", "Liter kedvezménnyel", "de"), "Liter mit Rabatt");
+  assert.equal(api.translate("tankolas-kalkulator", "Tankolható mennyiség:", "en"), "Fuel you can buy:");
+  assert.match(api.translate("tankolas-kalkulator", ". Ha 20 000 Ft-ot szánsz tankolásra, és az üzemanyag ára 640 Ft/l, akkor 20 000 / 640 = 31,25 liter jön ki. A megjelenített eredmény egy tizedesre kerekítve 31,3 liter.", "en"), /^\. If you set aside HUF 20,000/u);
+  assert.equal(api.translate("tankolas-kalkulator", "10 000 Ft", "en"), null);
 });

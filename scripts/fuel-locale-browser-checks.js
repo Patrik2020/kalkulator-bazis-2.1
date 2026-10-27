@@ -103,6 +103,36 @@ async function checkFuelLocales({ navigate, evaluate, setViewport }) {
     }
     await choose("hu");
     assert.match(await evaluate('document.querySelector(\'label[for="fuel"]\')?.textContent || ""'), /Üzemanyag a tankban/u);
+
+    await navigate("/kalkulatorok/tankolas-kalkulator");
+    await evaluate(`(async () => {
+      for (let i = 0; i < 60 && !document.getElementById('simpleCalcResults'); i += 1) await new Promise(requestAnimationFrame);
+      const budget = document.getElementById('budget');
+      const price = document.getElementById('price');
+      if (!budget || !price) throw new Error('Refuelling budget calculator did not initialize');
+      budget.value = '20000'; price.value = '640';
+      budget.dispatchEvent(new Event('input', { bubbles: true }));
+      price.dispatchEvent(new Event('input', { bubbles: true }));
+    })()`);
+    const budgetBefore = await evaluate(`JSON.stringify({budget: document.getElementById('budget').value, price: document.getElementById('price').value})`);
+    for (const [language, label] of [["en", "Refuelling budget (HUF)"], ["de", "Tankbudget (HUF)"]]) {
+      await choose(language);
+      const actual = await evaluate(`JSON.stringify({
+        label: document.querySelector('label[for="budget"]')?.textContent.trim(),
+        result: document.getElementById('simpleCalcResults')?.textContent,
+        discountLabel: document.querySelector('[data-acq-input="budget"]')?.parentElement?.textContent.trim(),
+        state: {budget: document.getElementById('budget')?.value, price: document.getElementById('price')?.value},
+        width: document.documentElement.scrollWidth
+      })`);
+      const result = JSON.parse(actual);
+      assert.equal(result.label, label, `${language}: refuelling budget label`);
+      assert.match(result.result, /31,25 l/u, `${language}: calculated fuel volume`);
+      assert.ok(result.discountLabel && !result.discountLabel.includes("Tankolási keret"), `${language}: discount panel localized`);
+      assert.deepEqual(result.state, JSON.parse(budgetBefore), `${language}: refuelling inputs changed`);
+      assert.ok(result.width <= width + 1, `refuelling calculator overflow at ${width}px (${language})`);
+    }
+    await choose("hu");
+    assert.match(await evaluate('document.querySelector(\'label[for="budget"]\')?.textContent || ""'), /Tankolási keret/u);
   }
   console.log("Fuel locales: HU/EN/DE labels, calculation results and input preservation passed at 390/1440px.");
 }
