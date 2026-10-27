@@ -7,6 +7,8 @@ test("the detailed salary page exposes scoped locale coverage and translates its
   const page = "netto-brutto-kalkulator";
   assert.ok(api.pages.includes(page));
   assert.equal(api.translate(page, "Nettó–bruttó kalkulátor 2026", "en"), "Gross to net salary calculator 2026");
+  assert.equal(api.translate(page, "Net–gross salary calculator 2026", "en"), "Gross to net salary calculator 2026");
+  assert.equal(api.translate(page, "Net–gross salary calculator 2026", "de"), "Brutto-Netto-Rechner 2026");
   assert.match(api.translate(page, "Állást váltanál, de az ajánlatban csak a bruttó bér szerepel? Írd be az összeget a kalkulátorba. Az eredmény mellett külön látod az SZJA-t, a TB-járulékot és a becsült teljes munkáltatói költséget, így követhető, hogyan jutottunk el a nettóig.", "en"), /Changing jobs, but the offer lists only gross pay/u);
   assert.match(api.translate(page, "Ha a családi kedvezményt megosztjátok, egyeztessétek, ki mekkora részt érvényesít. A kalkulátor nem kér be megosztási arányt; az eredményt ehhez külön ellenőrizni kell.", "de"), /Familienvergünstigung aufteilt/u);
   assert.equal(api.translate(page, "Bruttó fizetés: 500 000 Ft", "en"), "Gross salary: 500 000 Ft");
