@@ -2,7 +2,7 @@
 
 Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőrzi, hogy naprakész-e.
 
-Aktív kalkulátor: **89**; részletes fordításon átesett: **37**; hátralévő: **52**.
+Aktív kalkulátor: **89**; részletes fordításon átesett: **39**; hátralévő: **50**.
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **49**.
 
@@ -51,7 +51,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/arres-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/atlag-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/auto-ertekvesztes-kalkulator.html | auto | content-review |
-| kalkulatorok/auto-fogyasztas-kalkulator.html | auto | content-review |
+| kalkulatorok/auto-fogyasztas-kalkulator.html | auto | detail-reviewed |
 | kalkulatorok/auto-kalkulator.html | auto | content-review |
 | kalkulatorok/autopalyadij-kalkulator.html | auto | content-review |
 | kalkulatorok/beton-kalkulator.html | epitoipari | content-review |
@@ -136,7 +136,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/tomeg-atvalto-kalkulator.html | atvaltok | retired-review |
 | kalkulatorok/tulora-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/utazasi-ido-kalkulator.html | auto | content-review |
-| kalkulatorok/uzemanyag-koltseg-kalkulator.html | auto | content-review |
+| kalkulatorok/uzemanyag-koltseg-kalkulator.html | auto | detail-reviewed |
 | kalkulatorok/uzemanyagar-kulonbseg-kalkulator.html | auto | content-review |
 | kalkulatorok/vakolat-kalkulator.html | epitoipari | content-review |
 | kalkulatorok/vesztartalek-kalkulator.html | penzugyi | detail-reviewed |
