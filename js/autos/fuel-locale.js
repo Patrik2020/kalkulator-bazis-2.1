@@ -364,6 +364,10 @@
       "If you set aside HUF 20,000 and fuel costs HUF 640/L, the result is 20,000 ÷ 640 = 31.25 litres. The displayed result is rounded to one decimal place: 31.3 litres.",
       "Wenn du 20.000 HUF zum Tanken einplanst und der Kraftstoff 640 HUF/l kostet, ergibt sich 20.000 ÷ 640 = 31,25 Liter. Das angezeigte Ergebnis wird auf eine Dezimalstelle gerundet: 31,3 Liter."
     ],
+    ". Ha 20 000 Ft-ot szánsz tankolásra, és az üzemanyag ára 640 Ft/l, akkor 20 000 / 640 = 31,25 liter jön ki. A megjelenített eredmény egy tizedesre kerekítve 31,3 liter.": [
+      ". If you set aside HUF 20,000 and fuel costs HUF 640/L, the result is 20,000 ÷ 640 = 31.25 litres. The displayed result is rounded to one decimal place: 31.3 litres.",
+      ". Wenn du 20.000 HUF zum Tanken einplanst und der Kraftstoff 640 HUF/l kostet, ergibt sich 20.000 ÷ 640 = 31,25 Liter. Das angezeigte Ergebnis wird auf eine Dezimalstelle gerundet: 31,3 Liter."
+    ],
     "A számítás forinttal és literrel dolgozik. A tizedesvessző és a tizedespont közötti különbségre érdemes figyelni, mert egy rosszul beírt üzemanyagár teljesen más eredményt adhat. A kalkulátor a kedvezményeket, pontgyűjtő jóváírást, bankkártyás visszatérítést vagy több üzemanyagtípus keverését nem kezeli külön.": [
       "The calculation uses forints and litres. Check whether you enter a decimal comma or point correctly: a mistyped fuel price can change the result substantially. The calculator does not separately account for discounts, loyalty points, card cashback or mixing different fuel types.",
       "Die Berechnung erfolgt in Forint und Litern. Achte auf Dezimalkomma oder Dezimalpunkt: Ein falsch eingegebener Kraftstoffpreis kann das Ergebnis deutlich verändern. Rabatte, Treuepunkte, Kreditkarten-Cashback oder eine Mischung verschiedener Kraftstoffarten berücksichtigt der Rechner nicht gesondert."

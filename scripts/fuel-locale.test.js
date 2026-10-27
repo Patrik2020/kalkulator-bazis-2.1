@@ -49,5 +49,6 @@ test("refuelling budget page translates both calculator panels", () => {
   assert.equal(api.translate("tankolas-kalkulator", "Tankolási keret (Ft)", "en"), "Refuelling budget (HUF)");
   assert.equal(api.translate("tankolas-kalkulator", "Liter kedvezménnyel", "de"), "Liter mit Rabatt");
   assert.equal(api.translate("tankolas-kalkulator", "Tankolható mennyiség:", "en"), "Fuel you can buy:");
+  assert.match(api.translate("tankolas-kalkulator", ". Ha 20 000 Ft-ot szánsz tankolásra, és az üzemanyag ára 640 Ft/l, akkor 20 000 / 640 = 31,25 liter jön ki. A megjelenített eredmény egy tizedesre kerekítve 31,3 liter.", "en"), /^\. If you set aside HUF 20,000/u);
   assert.equal(api.translate("tankolas-kalkulator", "10 000 Ft", "en"), null);
 });
