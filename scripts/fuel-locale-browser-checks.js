@@ -133,6 +133,37 @@ async function checkFuelLocales({ navigate, evaluate, setViewport }) {
     }
     await choose("hu");
     assert.match(await evaluate('document.querySelector(\'label[for="budget"]\')?.textContent || ""'), /Tankolási keret/u);
+
+    await navigate("/kalkulatorok/autopalyadij-kalkulator");
+    await evaluate(`(async () => {
+      for (let i = 0; i < 60 && !document.getElementById('simpleCalcResults'); i += 1) await new Promise(requestAnimationFrame);
+      const fee = document.getElementById('fee');
+      const people = document.getElementById('people');
+      if (!fee || !people) throw new Error('Toll-sharing calculator did not initialize');
+      fee.value = '6620'; people.value = '4';
+      fee.dispatchEvent(new Event('input', { bubbles: true }));
+      people.dispatchEvent(new Event('input', { bubbles: true }));
+    })()`);
+    const tollBefore = await evaluate(`JSON.stringify({fee: document.getElementById('fee').value, people: document.getElementById('people').value})`);
+    for (const [language, label] of [["en", "Road toll (HUF)"], ["de", "Mautgebühr (HUF)"]]) {
+      await choose(language);
+      const actual = await evaluate(`JSON.stringify({
+        label: document.querySelector('label[for="fee"]')?.textContent.trim(),
+        result: document.getElementById('simpleCalcResults')?.textContent,
+        guide: document.querySelector('.calculator-guide h2')?.textContent,
+        breakEven: document.querySelector('.auto-converter-quality h2')?.textContent,
+        state: {fee: document.getElementById('fee')?.value, people: document.getElementById('people')?.value},
+        width: document.documentElement.scrollWidth
+      })`);
+      const result = JSON.parse(actual);
+      assert.equal(result.label, label, `${language}: toll field label`);
+      assert.match(result.result, /1[\s\u00a0\u202f]?655/u, `${language}: cost per person`);
+      assert.ok(result.guide && result.breakEven, `${language}: toll guidance and vignette comparison localized`);
+      assert.deepEqual(result.state, JSON.parse(tollBefore), `${language}: toll inputs changed`);
+      assert.ok(result.width <= width + 1, `toll calculator overflow at ${width}px (${language})`);
+    }
+    await choose("hu");
+    assert.match(await evaluate('document.querySelector(\'label[for="fee"]\')?.textContent || ""'), /Autópályadíj/u);
   }
   console.log("Fuel locales: HU/EN/DE labels, calculation results and input preservation passed at 390/1440px.");
 }
