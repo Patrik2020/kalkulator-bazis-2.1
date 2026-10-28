@@ -2,7 +2,7 @@
 
 Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőrzi, hogy naprakész-e.
 
-Aktív kalkulátor: **89**; részletes fordításon átesett: **35**; hátralévő: **54**.
+Aktív kalkulátor: **89**; részletes fordításon átesett: **41**; hátralévő: **48**.
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **50**.
 
@@ -52,7 +52,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/arres-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/atlag-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/auto-ertekvesztes-kalkulator.html | auto | content-review |
-| kalkulatorok/auto-fogyasztas-kalkulator.html | auto | content-review |
+| kalkulatorok/auto-fogyasztas-kalkulator.html | auto | detail-reviewed |
 | kalkulatorok/auto-kalkulator.html | auto | content-review |
 | kalkulatorok/autopalyadij-kalkulator.html | auto | content-review |
 | kalkulatorok/beton-kalkulator.html | epitoipari | content-review |
@@ -84,7 +84,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/gumi-meret-kalkulator.html | auto | content-review |
 | kalkulatorok/harmasszabaly-kalkulator.html | mindennapi | content-review |
 | kalkulatorok/haszonkulcs-kalkulator.html | mindennapi | detail-reviewed |
-| kalkulatorok/hatotav-kalkulator.html | auto | content-review |
+| kalkulatorok/hatotav-kalkulator.html | auto | detail-reviewed |
 | kalkulatorok/havi-koltsegvetes-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/hitel-elotorlesztes-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/hitel-torleszto-kalkulator.html | penzugyi | detail-reviewed |
@@ -110,10 +110,10 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/multifunkcios-szamologep.html | standalone | content-review |
 | kalkulatorok/munkaido-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/munkanap-kalkulator.html | mindennapi | detail-reviewed |
-| kalkulatorok/netto-brutto-kalkulator.html | penzugyi | partial |
+| kalkulatorok/netto-brutto-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/nyomas-atvalto-kalkulator.html | atvaltok | retired-review |
 | kalkulatorok/oraber-kalkulator.html | mindennapi | detail-reviewed |
-| kalkulatorok/osztalek-kalkulator.html | penzugyi | content-review |
+| kalkulatorok/osztalek-kalkulator.html | penzugyi | detail-reviewed |
 | kalkulatorok/padlo-burkolat-kalkulator.html | epitoipari | content-review |
 | kalkulatorok/pulzus-zona-kalkulator.html | egeszseg | content-review |
 | kalkulatorok/recept-adag-kalkulator.html | mindennapi | detail-reviewed |
@@ -124,7 +124,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/szazalek-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/szazalekos-valtozas-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/szegolec-kalkulator.html | epitoipari | content-review |
-| kalkulatorok/tankolas-kalkulator.html | auto | content-review |
+| kalkulatorok/tankolas-kalkulator.html | auto | detail-reviewed |
 | kalkulatorok/tapeta-kalkulator.html | epitoipari | content-review |
 | kalkulatorok/tegla-kalkulator.html | epitoipari | content-review |
 | kalkulatorok/teljesitmeny-atvalto-kalkulator.html | atvaltok | retired-review |
@@ -137,7 +137,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/tomeg-atvalto-kalkulator.html | atvaltok | retired-review |
 | kalkulatorok/tulora-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/utazasi-ido-kalkulator.html | auto | content-review |
-| kalkulatorok/uzemanyag-koltseg-kalkulator.html | auto | content-review |
+| kalkulatorok/uzemanyag-koltseg-kalkulator.html | auto | detail-reviewed |
 | kalkulatorok/uzemanyagar-kulonbseg-kalkulator.html | auto | content-review |
 | kalkulatorok/vakolat-kalkulator.html | epitoipari | content-review |
 | kalkulatorok/vesztartalek-kalkulator.html | penzugyi | detail-reviewed |
