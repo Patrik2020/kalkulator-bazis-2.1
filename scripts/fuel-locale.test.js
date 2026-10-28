@@ -58,5 +58,6 @@ test("toll-splitting page translates its calculator and vignette comparison", ()
   assert.equal(api.translate("autopalyadij-kalkulator", "Egy főre jutó díj:", "de"), "Kosten pro Person:");
   assert.equal(api.translate("autopalyadij-kalkulator", "Matricaválasztás nullszaldó", "en"), "Vignette break-even comparison");
   assert.equal(api.translate("autopalyadij-kalkulator", "1 655 Ft", "en"), "HUF 1,655");
+  assert.match(api.translate("autopalyadij-kalkulator", ", és nem választja ki automatikusan a megfelelő magyar vagy külföldi úthasználati jogosultságot. A megadott teljes összeget osztja el a résztvevők között.", "en"), /^, and it does not automatically select/u);
   assert.equal(api.translate("autopalyadij-kalkulator", "6 620 Ft", "en"), null);
 });
