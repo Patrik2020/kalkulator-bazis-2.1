@@ -4,7 +4,7 @@ const { test } = require("node:test");
 const api = require("../js/autos/fuel-locale");
 
 test("fuel calculator pages expose scoped English and German copy", () => {
-  assert.deepEqual(api.pages, ["auto-fogyasztas-kalkulator", "uzemanyag-koltseg-kalkulator", "hatotav-kalkulator", "tankolas-kalkulator"]);
+  assert.deepEqual(api.pages, ["auto-fogyasztas-kalkulator", "uzemanyag-koltseg-kalkulator", "hatotav-kalkulator", "tankolas-kalkulator", "autopalyadij-kalkulator"]);
   assert.equal(api.translate("auto-fogyasztas-kalkulator", "Tankolt mennyiség (l)", "en"), "Fuel added (L)");
   assert.equal(api.translate("uzemanyag-koltseg-kalkulator", "Fogyasztás (l/100 km)", "de"), "Verbrauch (l/100 km)");
   assert.equal(api.translate("other-page", "Tankolt mennyiség (l)", "en"), null);
@@ -51,4 +51,12 @@ test("refuelling budget page translates both calculator panels", () => {
   assert.equal(api.translate("tankolas-kalkulator", "Tankolható mennyiség:", "en"), "Fuel you can buy:");
   assert.match(api.translate("tankolas-kalkulator", ". Ha 20 000 Ft-ot szánsz tankolásra, és az üzemanyag ára 640 Ft/l, akkor 20 000 / 640 = 31,25 liter jön ki. A megjelenített eredmény egy tizedesre kerekítve 31,3 liter.", "en"), /^\. If you set aside HUF 20,000/u);
   assert.equal(api.translate("tankolas-kalkulator", "10 000 Ft", "en"), null);
+});
+
+test("toll-splitting page translates its calculator and vignette comparison", () => {
+  assert.equal(api.translate("autopalyadij-kalkulator", "Autópályadíj (Ft)", "en"), "Road toll (HUF)");
+  assert.equal(api.translate("autopalyadij-kalkulator", "Egy főre jutó díj:", "de"), "Kosten pro Person:");
+  assert.equal(api.translate("autopalyadij-kalkulator", "Matricaválasztás nullszaldó", "en"), "Vignette break-even comparison");
+  assert.equal(api.translate("autopalyadij-kalkulator", "1 655 Ft", "en"), "HUF 1,655");
+  assert.equal(api.translate("autopalyadij-kalkulator", "6 620 Ft", "en"), null);
 });
