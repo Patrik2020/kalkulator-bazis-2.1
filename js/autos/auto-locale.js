@@ -110,7 +110,7 @@
     "klíma, fűtés, terhelés és tetőcsomagtartó;":["air conditioning, heating, load and roof racks;","Klimaanlage, Heizung, Beladung und Dachträger;"],
     "guminyomás, gumiabroncs és műszaki állapot;":["tyre pressure, tyres and vehicle condition;","Reifendruck, Reifen und Fahrzeugzustand;"],
     "a fedélzeti számítógép és a tankolás mérési hibája.":["on-board computer estimates and refuelling measurement errors.","Schätzwerte des Bordcomputers und Messfehler beim Tanken."],
-    "Gyakori kérdések":["Frequently Asked Questions","Häufige Fragen"],
+    "Gyakori kérdések":["Frequently asked questions","Häufige Fragen"],
     "Melyik fogyasztási adatot használjam úttervezéshez?":["Which fuel consumption figure should I use for trip planning?","Welchen Verbrauchswert sollte ich für die Fahrtplanung verwenden?"],
     "Az adott út jellegéhez hasonló korábbi utak átlagát. Autópályára ne feltétlenül a városi értéket add meg.":["Use the average from previous trips with similar conditions. For motorway driving, don't automatically use your city figure.","Verwende den Durchschnitt ähnlicher früherer Fahrten. Für Autobahnfahrten solltest du nicht unbedingt den Stadtverbrauch ansetzen."],
     "Miért más a fedélzeti számítógép?":["Why does the on-board computer show a different figure?","Warum zeigt der Bordcomputer einen anderen Wert?"],
