@@ -57,6 +57,7 @@ jobs:
           node --test scripts/floor-level-locale.test.js
           node --test scripts/sleep-cycle-locale.test.js
           node --test scripts/auto-locale.test.js
+          node --test scripts/concrete-locale.test.js
           node scripts/localization-inventory.js --check
 
       - name: Verify salary form and dynamic output translations
