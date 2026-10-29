@@ -65,6 +65,16 @@ async function main() {
   if (todayPosts.length) {
     console.log('Not posting: Buffer already records a Facebook post for today: ' +
       todayPosts.map(p => p.id).join(', '));
+    for (const item of todayPosts) {
+      const detail = (await queryBuffer(key,
+        'query { post(input: { id: ' + JSON.stringify(item.id) +
+        ' }) { id status externalLink error { message rawError supportUrl } } }')).post;
+      if (detail?.status === 'error') {
+        console.error('Buffer post ' + item.id + ' failed. Reason: ' + JSON.stringify(detail.error));
+      } else {
+        console.log('Buffer post ' + item.id + ': ' + detail?.status);
+      }
+    }
     return;
   }
 
