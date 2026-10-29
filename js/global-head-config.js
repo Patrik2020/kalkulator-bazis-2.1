@@ -177,7 +177,7 @@
           "terfogat-atvalto-kalkulator", "ido-atvalto-kalkulator", "sebesseg-atvalto-kalkulator",
         ],
         ["css/pages/auto-converter-upgrades.css?v=151e8b88ae68"],
-        ["js/auto-converter-upgrades.js?v=5972f20bd8cd"]
+        ["js/auto-converter-upgrades.js?v=73e8f93f972f"]
       ),
       slugFeature(
         "finance-quality",
