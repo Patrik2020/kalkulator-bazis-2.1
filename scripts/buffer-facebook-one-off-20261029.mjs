@@ -63,9 +63,18 @@ async function main() {
     budapestDateISO(new Date(p.sentAt || p.dueAt || p.createdAt)) === EXPECTED_DATE
   );
   if (todayPosts.length) {
-    console.log('Not posting: Buffer already records a Facebook post for today: ' +
-      todayPosts.map(p => p.id).join(', '));
-    return;
+    const failedId = '6ae337082c1fad6058647bfb';
+    const exactFailed = todayPosts.length === 1 &&
+      todayPosts[0].id === failedId &&
+      todayPosts[0].status === 'error' &&
+      todayPosts[0].text === POST_TEXT;
+    if (!exactFailed) {
+      console.log('Not posting: other existing Facebook posts for today; duplicate guard.');
+      return;
+    }
+    // User explicitly reauthorized Buffer's Facebook channel and requested retry.
+    // Retry only the known previously failed post. Any other history blocks action.
+    console.log('Retrying exact failed post after channel reauthorization: ' + failedId);
   }
 
   const mutation = 'mutation { createPost(input: { text: ' + JSON.stringify(POST_TEXT) +
