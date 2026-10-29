@@ -1,0 +1,59 @@
+name: Facebook extra post October 29 (one-time)
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/buffer-facebook-one-off-20261029.yml
+      - scripts/buffer-facebook-one-off-20261029.mjs
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/buffer-facebook-one-off-20261029.yml
+      - scripts/buffer-facebook-one-off-20261029.mjs
+
+permissions:
+  contents: read
+
+concurrency:
+  group: facebook-extra-post-20261029
+  cancel-in-progress: false
+
+jobs:
+  check:
+    name: Validate text post (no publishing)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+      - name: Check syntax
+        run: node --check scripts/buffer-facebook-one-off-20261029.mjs
+      - name: Preview text only
+        run: node scripts/buffer-facebook-one-off-20261029.mjs
+
+  publish:
+    name: Publish one extra Facebook post today
+    needs: check
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+      - name: Publish only after checking Buffer history
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          PUBLISH_TODAY: 'true'
+        run: node scripts/buffer-facebook-one-off-20261029.mjs
