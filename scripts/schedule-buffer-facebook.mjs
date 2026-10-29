@@ -110,7 +110,7 @@ export async function scheduleTomorrow({ dryRun = true, now = new Date() } = {})
       (response.createPost?.message || 'unknown error. Check Buffer before retrying.'));
   }
   const post = response.createPost.post;
-  if (post.dueAt !== dueAt || post.text !== text || (post.assets?.length ?? -1) !== 0) {
+  if (new Date(post.dueAt).getTime() !== new Date(dueAt).getTime() || post.text !== text || (post.assets?.length ?? -1) !== 0) {
     throw new Error('Buffer returned an unexpected schedule/text/media. Review the Buffer queue before retrying.');
   }
   console.log('Scheduled text-only post ID: ' + post.id + '; local date ' + dateISO);
