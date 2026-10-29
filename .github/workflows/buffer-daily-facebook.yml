@@ -1,4 +1,4 @@
-name: Buffer daily text-only Facebook
+name: Buffer daily illustrated Facebook
 
 on:
   pull_request:
@@ -7,6 +7,8 @@ on:
       - scripts/buffer-facebook-post-bank.mjs
       - scripts/schedule-buffer-facebook.mjs
       - scripts/buffer-facebook-posts.test.mjs
+      - scripts/buffer-facebook-images.mjs
+      - assets/social/facebook/**
   push:
     branches: [main]
     paths:
@@ -14,6 +16,8 @@ on:
       - scripts/buffer-facebook-post-bank.mjs
       - scripts/schedule-buffer-facebook.mjs
       - scripts/buffer-facebook-posts.test.mjs
+      - scripts/buffer-facebook-images.mjs
+      - assets/social/facebook/**
   schedule:
     # Schedules NEXT day's 08:00 Europe/Budapest post, safely ahead of time.
     - cron: '13 4 * * *'
@@ -28,7 +32,7 @@ concurrency:
 
 jobs:
   test-post-generator:
-    name: Check curated posts and timezone logic
+    name: Validate curated posts, PNG assets and timezones
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -46,7 +50,7 @@ jobs:
         run: node scripts/schedule-buffer-facebook.mjs
 
   schedule-next-post:
-    name: Schedule exactly one text-only Facebook post
+    name: Schedule one image+text Facebook post
     needs: test-post-generator
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
@@ -60,7 +64,7 @@ jobs:
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: '24'
-      - name: Verify Buffer channel, avoid duplicate and schedule next day
+      - name: Verify image URL, avoid duplicate and schedule next day
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           ALLOW_BUFFER_POSTING: 'true'
