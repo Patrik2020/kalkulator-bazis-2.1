@@ -7,7 +7,7 @@
   const doc = root.document, main = doc.querySelector('main[data-simple-calc="auto-ertekvesztes-kalkulator"]');
   if (!main) return;
   let language = "hu", rendering = false;
-  const states = new WeakMap(), originals = new Map();
+  const states = new WeakMap(), attributeStates = new WeakMap(), originals = new Map();
   function translateNode(node) {
     const current = node.nodeValue, state = states.get(node);
     const source = state && state.rendered === current ? state.source : current;
@@ -28,6 +28,19 @@
         if (node.parentElement?.tagName === "OPTION" && !node.parentElement.hasAttribute("value")) continue;
         translateNode(node);
       }
+      main.querySelectorAll("[aria-label],[placeholder],[title]").forEach(element => {
+        if (element.closest("[contenteditable],[translate='no']")) return;
+        let state = attributeStates.get(element);
+        if (!state) { state = new Map(); attributeStates.set(element, state); }
+        for (const name of ["aria-label", "placeholder", "title"]) {
+          if (!element.hasAttribute(name)) continue;
+          const current = element.getAttribute(name), previous = state.get(name);
+          const source = previous && previous.rendered === current ? previous.source : current;
+          const result = api.translate("auto-ertekvesztes-kalkulator", source, language) ?? source;
+          if (result !== current) element.setAttribute(name, result);
+          state.set(name, { source, rendered: result });
+        }
+      });
       for (const selector of ["title", 'meta[name="description"]', 'meta[property="og:title"]', 'meta[property="og:description"]', 'meta[name="twitter:title"]', 'meta[name="twitter:description"]']) {
         const element = doc.querySelector(selector);
         if (!element) continue;
