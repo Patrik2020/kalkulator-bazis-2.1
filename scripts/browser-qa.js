@@ -20,6 +20,7 @@ const { checkDividendLocale } = require("./dividend-locale-browser-checks");
 const { checkNettoBruttoLocales } = require("./netto-brutto-locale-browser-checks");
 const { checkFuelLocales, checkDepreciationLocale, checkFloorLevelLocale, checkSleepCycleLocale, checkAutoCalculatorLocale } = require("./fuel-locale-browser-checks");
 const { checkConcreteCalculatorLocale } = require("./concrete-locale-browser-checks");
+const { checkBmiCalculatorLocale } = require("./bmi-locale-browser-checks");
 
 const adsensePolicy = loadAdsensePolicy(path.resolve(__dirname, ".."));
 
