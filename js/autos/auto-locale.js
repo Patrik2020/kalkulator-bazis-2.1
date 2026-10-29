@@ -152,14 +152,25 @@
     "Bevitel":["Input","Eingabe"],
     "Súgó":["Help","Hilfe"],
     "Forrás: NAV":["Source: NAV","Quelle: NAV"],
-    "Számítási mód":["Calculation method","Berechnungsmethode"]
+    "Számítási mód":["Calculation method","Berechnungsmethode"],
+    "Autós út- és hatótáv kalkulátor":["Auto Trip and Range Calculator","Auto-Fahrt- und Reichweitenrechner"],
+    "Az eredmény után":["What to do after the result","Was kommt nach dem Ergebnis?"],
+    "Az út költségétől lépj tovább a teljes autóköltség felé":["Go from trip costs to the full cost of car ownership","Von den Fahrtkosten zu den gesamten Autokosten"],
+    "Az üzemanyag csak egy része az autózás költségének. Érdemes külön megnézni a valós fogyasztást és az éves fenntartási terhet is.":["Fuel is only part of the cost of driving. Check your actual fuel consumption and annual running costs separately, too.","Kraftstoff ist nur ein Teil der Autokosten. Prüfe auch den tatsächlichen Verbrauch und die jährlichen Unterhaltskosten."],
+    "Becsüld meg az autó teljes éves fenntartását.":["Estimate your car's total annual running costs.","Schätze die jährlichen Gesamtkosten für dein Auto."],
+    "Hirdetés":["Advertisement","Anzeige"],
+    "Tankolási adatokból ellenőrizd a tényleges fogyasztást.":["Check actual fuel consumption using refuelling data.","Prüfe den tatsächlichen Verbrauch anhand von Tankdaten."],
+    "Valós fogyasztás":["Actual fuel consumption","Tatsächlicher Verbrauch"]
   });
   const supported = Object.freeze(["hu","en","de"]);
   function translate(page, value, language) {
     if (page !== pageKey || typeof value !== "string" || !supported.includes(language) || language === "hu") return null;
     const normalized = value.trim().replace(/\s+/gu, " ");
     const pair = dictionary[normalized];
-    return pair ? pair[language === "en" ? 0 : 1] : null;
+    if (pair) return pair[language === "en" ? 0 : 1];
+    const perKilometre = normalized.match(/^([\d\s.,]+)\\s*Ft\\/km$/u);
+    if (perKilometre) return `${perKilometre[1]} HUF/km`;
+    return null;
   }
   const dictionaries = Object.freeze({ [pageKey]: dictionary });
   return { pages: Object.freeze([pageKey]), dictionaries, dictionary, supported, translate };
