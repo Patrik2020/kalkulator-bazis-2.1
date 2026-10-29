@@ -163,6 +163,7 @@
     "Teljes mixerfordulók":["Full mixer truckloads","Volle Fahrmischer-Ladungen"],
     "Utolsó forduló becsült mennyisége":["Estimated amount in the final load","Geschätzte Menge der letzten Ladung"],
     "Szerkezeti beton esetén a betonminőség, vasalás, bedolgozás, tömörítés és utókezelés nem mennyiségi kalkulátor kérdése.":["For structural concrete, concrete grade, reinforcement, placement, compaction and curing cannot be determined by a quantity calculator.","Bei tragendem Beton lassen sich Betongüte, Bewehrung, Einbau, Verdichtung und Nachbehandlung nicht mit einem Mengenrechner festlegen."],
+    "Kapcsolódó friss hírek":["Related latest news","Passende aktuelle Nachrichten"],
     "FRISS HÍREK":["LATEST NEWS","NEUESTE NACHRICHTEN"],
     "Friss gazdasági hírek":["Latest economic news","Aktuelle Wirtschaftsnachrichten"],
     "Szeptemberi infláció: 1,6%":["September inflation: 1.6%","Inflation im September: 1,6 %"],
