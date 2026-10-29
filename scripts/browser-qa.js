@@ -830,6 +830,7 @@ const run = async () => {
   await checkSleepCycleLocale({ navigate, evaluate, setViewport });
   await checkAutoCalculatorLocale({ navigate, evaluate, setViewport });
   await checkConcreteCalculatorLocale({ navigate, evaluate, setViewport });
+  await checkBmiCalculatorLocale({ navigate, evaluate, setViewport });
 
   await setViewport(390, 844);
   await navigate("/");
