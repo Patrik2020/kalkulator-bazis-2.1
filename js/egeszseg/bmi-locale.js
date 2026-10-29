@@ -65,7 +65,7 @@
     "BMI kalkulátor – számítás testsúly és magasság alapján":["BMI Calculator – Calculate from Weight and Height","BMI-Rechner – Berechnung anhand von Gewicht und Größe"],
     "BMI kalkulátor":["BMI Calculator","BMI-Rechner"],
     "BMI kalkulátor 2026 | Testtömegindex számítás és értelmezés":["BMI Calculator 2026 | Body Mass Index Calculation and Interpretation","BMI-Rechner 2026 | Berechnung und Einordnung des Body-Mass-Index"],
-    "BMI kalkulátor felnőtteknek: testtömegindex számítás testsúly és magasság alapján, kategóriák, képlet, példaszámítás és értelmezési korlátok.":["Adult BMI calculator: calculate body mass index from weight and height, with categories, formula, example and interpretation limits.","BMI-Rechner für Erwachsene: Body-Mass-Index anhand von Gewicht und Größe berechnen, mit Kategorien, Formel, Beispiel und Hinweisen zur Einordnung."]
+    "BMI kalkulátor felnőtteknek: testtömegindex számítás testsúly és magasság alapján, kategóriák, képlet, példaszámítás és értelmezési korlátok.":["Adult BMI calculator: calculate body mass index from weight and height, with categories, formula, example and interpretation limits.","BMI-Rechner für Erwachsene: Body-Mass-Index anhand von Gewicht und Größe berechnen, mit Kategorien, Formel, Beispiel und Hinweisen zur Einordnung."],
     "Számold ki a testtömegindexedet testsúly és magasság alapján, majd olvasd el, hogyan érdemes értelmezni az eredményt.":["Calculate your body mass index (BMI) from your weight and height, then learn how to interpret the result.","Berechne deinen Body-Mass-Index (BMI) anhand von Gewicht und Größe und erfahre, wie du das Ergebnis einordnen kannst."],
     "Testsúly (kg)":["Weight (kg)","Gewicht (kg)"],
     "Magasság (cm)":["Height (cm)","Größe (cm)"],
