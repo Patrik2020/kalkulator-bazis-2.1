@@ -212,4 +212,49 @@ async function checkDepreciationLocale({ navigate, evaluate, setViewport }) {
   console.log('Depreciation locale: HU/EN/DE labels, scenario results, metadata and input preservation passed at 390/1440px.');
 }
 
-module.exports = { checkFuelLocales, checkDepreciationLocale };
+async function checkFloorLevelLocale({ navigate, evaluate, setViewport }) {
+  const choose = language => evaluate(`(async () => {
+    const select = document.getElementById('kbInternalLanguage');
+    if (!select) throw new Error('Missing internal language selector');
+    select.value = ${JSON.stringify(language)};
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+    await new Promise(requestAnimationFrame);
+    await new Promise(requestAnimationFrame);
+  })()`);
+  for (const width of [390, 1440]) {
+    await setViewport(width, 1000);
+    await navigate('/kalkulatorok/aljzatkiegyenlito-kalkulator');
+    await evaluate(`(async () => {
+      for (let i = 0; i < 120 && !document.querySelector('#levelResult p strong'); i += 1) await new Promise(requestAnimationFrame);
+      if (!document.querySelector('#levelResult p strong')) throw new Error('Floor level calculator did not initialize');
+    })()`);
+    const before = await evaluate(`JSON.stringify([...document.querySelectorAll('#kalkulator input')].map(input => [input.id, input.value]))`);
+    for (const [language, label, heading, resultLabel, bagWord] of [
+      ['en', 'Area (m²)', 'Floor Levelling Compound Calculator', 'Base material required:', 'bags'],
+      ['de', 'Fläche (m²)', 'Bodenausgleich-Rechner', 'Grundbedarf:', 'Säcke']
+    ]) {
+      await choose(language);
+      const actual = await evaluate(`JSON.stringify({
+        label: document.querySelector('label[for="levelArea"]')?.textContent.trim(),
+        heading: document.querySelector('main h1')?.textContent.trim(),
+        results: document.getElementById('levelResult')?.textContent,
+        body: document.querySelector('main')?.textContent,
+        state: [...document.querySelectorAll('#kalkulator input')].map(input => [input.id, input.value]),
+        width: document.documentElement.scrollWidth
+      })`);
+      const result = JSON.parse(actual);
+      assert.equal(result.label, label, `${language}: area input label`);
+      assert.equal(result.heading, heading, `${language}: page heading`);
+      assert.ok(result.results.includes(resultLabel), `${language}: translated output labels`);
+      assert.ok(result.results.includes(bagWord), `${language}: translated bag unit`);
+      assert.ok(result.body.includes(language === 'en' ? 'How does it calculate the material needed?' : 'Wie berechnet der Rechner den Materialbedarf?'), `${language}: guidance translation`);
+      assert.deepEqual(result.state, JSON.parse(before), `${language}: input values changed`);
+      assert.ok(result.width <= width + 1, `floor level calculator overflow at ${width}px (${language})`);
+    }
+    await choose('hu');
+    assert.match(await evaluate(`document.querySelector('label[for="levelArea"]')?.textContent || ''`), /Felület/u);
+  }
+  console.log('Floor level locale: HU/EN/DE labels, calculations, content and input preservation passed at 390/1440px.');
+}
+
+module.exports = { checkFuelLocales, checkDepreciationLocale, checkFloorLevelLocale };

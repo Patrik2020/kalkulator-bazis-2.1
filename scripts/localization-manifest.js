@@ -43,7 +43,8 @@ const detailPages = [
   { path: "kalkulatorok/hatotav-kalkulator.html", module: "js/autos/fuel-locale.js", key: "hatotav-kalkulator" },
   { path: "kalkulatorok/tankolas-kalkulator.html", module: "js/autos/fuel-locale.js", key: "tankolas-kalkulator" },
   { path: "kalkulatorok/autopalyadij-kalkulator.html", module: "js/autos/fuel-locale.js", key: "autopalyadij-kalkulator" },
-  { path: "kalkulatorok/auto-ertekvesztes-kalkulator.html", module: "js/autos/depreciation-locale.js", key: "auto-ertekvesztes-kalkulator" }
+  { path: "kalkulatorok/auto-ertekvesztes-kalkulator.html", module: "js/autos/depreciation-locale.js", key: "auto-ertekvesztes-kalkulator" },
+  { path: "kalkulatorok/aljzatkiegyenlito-kalkulator.html", module: "js/autos/floor-level-locale.js", key: "aljzatkiegyenlito-kalkulator" }
 ];
 
 module.exports = { detailPages };
