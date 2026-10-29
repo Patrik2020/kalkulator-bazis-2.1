@@ -61,6 +61,7 @@
   }).observe(main, { childList: true, characterData: true, subtree: true });
 })(typeof window === "undefined" ? null : window, function () {
   "use strict";
+  const pageKey = "auto-kalkulator";
   const dictionary = Object.freeze({
     "Utazási költség kalkulátor – fogyasztás és hatótáv":["Trip Cost Calculator – Fuel Consumption and Range","Fahrtkosten-Rechner – Verbrauch und Reichweite"],
     "Utazási költség kalkulátor autóhoz: számold ki az üzemanyagköltséget távolság, fogyasztás és literár alapján, valamint a fogyasztást és becsült hatótávot.":["Calculate your car's fuel cost based on distance, consumption and price per litre, as well as fuel consumption and estimated range.","Berechne Kraftstoffkosten anhand von Strecke, Verbrauch und Literpreis sowie den Verbrauch und die geschätzte Reichweite."],
