@@ -165,7 +165,14 @@
     "Az oldal tájékoztató kalkulátor; egyedi döntéshez szakember vagy hivatalos szerv adata szükséges.":["This is an informational calculator; consult a professional or official source for individual decisions.","Dieser Rechner dient der Information. Für individuelle Entscheidungen sind Fachleute oder offizielle Stellen heranzuziehen."],
     "Módszertani frissítés:":["Methodology updated:","Methodisch aktualisiert:"],
     "2026. július 15.":["15 July 2026","15. Juli 2026"],
-    "Hirdetés":["Advertisement","Anzeige"]
+    "Hirdetés":["Advertisement","Anzeige"],
+    "A BMI tájékozódási pont, nem diagnózis. Ha életmódtervezéshez használod, érdemes az energiaigényt és a testösszetételt is külön megnézni.":["BMI is a guide, not a diagnosis. If you are using it to plan lifestyle changes, also look separately at energy needs and body composition.","Der BMI ist ein Richtwert, keine Diagnose. Wenn du ihn zur Lebensstilplanung nutzt, solltest du auch Energiebedarf und Körperzusammensetzung gesondert betrachten."],
+    "A BMI-t mindig több adattal együtt értelmezd":["Always interpret BMI alongside other information","Beurteile den BMI immer zusammen mit weiteren Angaben"],
+    "Az eredmény után":["What to do after your result","Was kommt nach deinem Ergebnis?"],
+    "Becsüld meg a napi energiaigényedet.":["Estimate your daily energy needs.","Schätze deinen täglichen Energiebedarf."],
+    "Egészítsd ki a BMI-t egy másik testösszetételi becsléssel.":["Complement BMI with another body-composition estimate.","Ergänze den BMI durch eine weitere Einschätzung der Körperzusammensetzung."],
+    "Kalóriaszükséglet":["Calorie needs","Kalorienbedarf"],
+    "Testzsír kalkulátor":["Body Fat Calculator","Körperfettrechner"]
   });
   const supported = Object.freeze(["hu","en","de"]);
   function translate(page, value, language) {
