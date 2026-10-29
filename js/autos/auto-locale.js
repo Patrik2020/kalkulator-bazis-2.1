@@ -48,7 +48,7 @@
         if (!element) continue;
         const key = selector === "title" ? "title" : selector + ":" + (element.getAttribute("name") || element.getAttribute("property") || "");
         if (!originals.has(key)) originals.set(key, selector === "title" ? element.textContent : element.getAttribute("content"));
-        const source = originals.get(key), value = api.translate(source, language) ?? source;
+        const source = originals.get(key), value = api.translate(pageKey, source, language) ?? source;
         if (selector === "title") element.textContent = value; else element.setAttribute("content", value);
       }
     } finally { rendering = false; }
