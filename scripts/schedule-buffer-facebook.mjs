@@ -140,7 +140,7 @@ export async function scheduleTomorrow({ dryRun = true, now = new Date() } = {})
     }
     await verifyImageAvailable(image.url);
     const upgradeMutation = 'mutation { editPost(input: { id: ' + gq(previous.id) +
-      ', assets: [{ image: { url: ' + gq(image.url) + ' } }] }) { ' +
+      ', assets: [{ image: { url: ' + gq(image.url) + ' } }], metadata: { facebook: { type: post } } }) { ' +
       '... on PostActionSuccess { post { id text dueAt assets { id mimeType } } } ' +
       '... on MutationError { message } } }';
     const upgraded = (await bufferQuery(token, upgradeMutation)).editPost;
