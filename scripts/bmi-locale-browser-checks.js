@@ -25,7 +25,7 @@ async function checkBmiCalculatorLocale({ navigate, evaluate, setViewport }) {
     const before=await evaluate(`JSON.stringify([...document.querySelectorAll('.page-bmi input[type=number]')].map(input=>[input.id,input.value]))`);
     for (const [language,heading,label,category,caveat] of [
       ['en','BMI Calculator','Weight (kg)','Healthy weight','not a diagnosis'],
-      ['de','BMI-Rechner','Gewicht (kg)','Normalgewicht','keine Diagnose']
+      ['de','BMI-Rechner','Gewicht (kg)','Normalgewicht','keine diagnose']
     ]) {
       await choose(language);
       const result=JSON.parse(await evaluate(`JSON.stringify({
