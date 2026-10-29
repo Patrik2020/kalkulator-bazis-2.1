@@ -5,6 +5,7 @@
   if (typeof module === "object" && module.exports) module.exports = api;
   if (!root?.document || new URLSearchParams(root.location.search).has("__kb_static_export")) return;
   const doc = root.document;
+  const pageKey = "auto-kalkulator";
   const main = doc.querySelector("main.page-auto");
   if (!main) return;
   let language = "hu", rendering = false;
@@ -14,7 +15,7 @@
     const source = previous && previous.rendered === current ? previous.source : current;
     const parts = /^(\s*)([\s\S]*?)(\s*)$/u.exec(source);
     if (!parts || !parts[2]) return;
-    const translated = api.translate(parts[2], language);
+    const translated = api.translate(pageKey, parts[2], language);
     const result = parts[1] + (translated ?? parts[2]) + parts[3];
     if (result !== current) node.nodeValue = result;
     if (translated !== null || previous) textState.set(node, { source, rendered: result });
@@ -37,7 +38,7 @@
           if (!element.hasAttribute(name)) continue;
           const current = element.getAttribute(name), previous = state.get(name);
           const source = previous && previous.rendered === current ? previous.source : current;
-          const value = api.translate(source, language) ?? source;
+          const value = api.translate(pageKey, source, language) ?? source;
           if (value !== current) element.setAttribute(name, value);
           state.set(name, { source, rendered: value });
         }
@@ -153,11 +154,12 @@
     "Számítási mód":["Calculation method","Berechnungsmethode"]
   });
   const supported = Object.freeze(["hu","en","de"]);
-  function translate(value, language) {
-    if (typeof value !== "string" || !supported.includes(language) || language === "hu") return null;
+  function translate(page, value, language) {
+    if (page !== pageKey || typeof value !== "string" || !supported.includes(language) || language === "hu") return null;
     const normalized = value.trim().replace(/\s+/gu, " ");
     const pair = dictionary[normalized];
     return pair ? pair[language === "en" ? 0 : 1] : null;
   }
-  return { dictionary, supported, translate };
+  const dictionaries = Object.freeze({ [pageKey]: dictionary });
+  return { pages: Object.freeze([pageKey]), dictionaries, dictionary, supported, translate };
 });
