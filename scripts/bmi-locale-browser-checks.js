@@ -33,7 +33,7 @@ async function checkBmiCalculatorLocale({ navigate, evaluate, setViewport }) {
         label:document.querySelector('label[for="weight"]')?.textContent.trim(),
         value:document.getElementById('result-bmi')?.textContent.trim(),
         category:document.getElementById('result-category')?.textContent.trim(),
-        caveat:document.querySelector('.page-bmi .info-box')?.textContent,
+        caveat:document.querySelector('.page-bmi .reliability-note')?.textContent,
         values:[...document.querySelectorAll('.page-bmi input[type=number]')].map(input=>[input.id,input.value]),
         width:document.documentElement.scrollWidth
       })`));
