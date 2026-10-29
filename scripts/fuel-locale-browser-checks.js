@@ -201,7 +201,7 @@ async function checkDepreciationLocale({ navigate, evaluate, setViewport }) {
       const result = JSON.parse(actual);
       assert.equal(result.label, label, `${language}: current value label`);
       assert.equal(result.title, title, `${language}: page title`);
-      assert.ok(result.result.includes('HUF'), `${language}: scenario values use translated currency`);
+      assert.ok(result.result.includes('HUF'), `${language}: scenario values use translated currency: ${result.result}`);
       assert.ok(result.guidance.includes(guidance), `${language}: depreciation guidance translated`);
       assert.deepEqual(result.state, JSON.parse(before), `${language}: calculation inputs changed`);
       assert.ok(result.width <= width + 1, `depreciation calculator overflow at ${width}px (${language})`);
