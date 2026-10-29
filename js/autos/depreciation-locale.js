@@ -6,7 +6,7 @@
   if (!root?.document || new URLSearchParams(root.location.search).has("__kb_static_export")) return;
   const doc = root.document, main = doc.querySelector('main[data-simple-calc="auto-ertekvesztes-kalkulator"]');
   if (!main) return;
-  let language = "hu", rendering = false;
+  let language = "hu", rendering = false, normalizedForm = null;
   const states = new WeakMap(), attributeStates = new WeakMap(), originals = new Map();
   function translateNode(node) {
     const current = node.nodeValue, state = states.get(node);
@@ -17,10 +17,21 @@
     if (result !== current) node.nodeValue = result;
     if (result !== source || state) states.set(node, { source, rendered: result });
   }
+  function normalizeCalculatorForm() {
+    const form = main.querySelector(".card-calculator form.ac-grid");
+    if (!form?.elements.namedItem("firstLow") || normalizedForm === form) return;
+    normalizedForm = form;
+    for (const name of ["firstLow", "laterLow", "firstMid", "laterMid", "firstHigh", "laterHigh", "infl"]) {
+      const input = form.elements.namedItem(name);
+      if (input) input.step = "any";
+    }
+    if (form.checkValidity()) form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+  }
   function render() {
     if (rendering) return;
     rendering = true;
     try {
+      normalizeCalculatorForm();
       const walker = doc.createTreeWalker(main, NodeFilter.SHOW_TEXT), nodes = [];
       while (walker.nextNode()) nodes.push(walker.currentNode);
       for (const node of nodes) {
