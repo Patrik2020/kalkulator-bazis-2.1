@@ -53,6 +53,7 @@ jobs:
       - name: Guard localization inventory, wiring and terminology
         run: |
           node --test scripts/localization-foundation.test.js
+          node --test scripts/depreciation-locale.test.js
           node scripts/localization-inventory.js --check
 
       - name: Verify salary form and dynamic output translations

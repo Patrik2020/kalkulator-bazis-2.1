@@ -168,4 +168,48 @@ async function checkFuelLocales({ navigate, evaluate, setViewport }) {
   console.log("Fuel locales: HU/EN/DE labels, calculation results and input preservation passed at 390/1440px.");
 }
 
-module.exports = { checkFuelLocales };
+async function checkDepreciationLocale({ navigate, evaluate, setViewport }) {
+  const choose = language => evaluate(`(async () => {
+    const select = document.getElementById('kbInternalLanguage');
+    if (!select) throw new Error('Missing internal language selector');
+    select.value = ${JSON.stringify(language)};
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+    await new Promise(requestAnimationFrame);
+    await new Promise(requestAnimationFrame);
+  })()`);
+  for (const width of [390, 1440]) {
+    await setViewport(width, 1000);
+    await navigate('/kalkulatorok/auto-ertekvesztes-kalkulator');
+    await evaluate(`(async () => {
+      for (let i = 0; i < 180 && (window.KB_AUTO_CONVERTER_UPGRADE_READY !== 'auto-ertekvesztes-kalkulator' || !document.querySelector('.card-calculator form.ac-grid input[name="firstLow"]')); i += 1) await new Promise(requestAnimationFrame);
+      if (window.KB_AUTO_CONVERTER_UPGRADE_READY !== 'auto-ertekvesztes-kalkulator') throw new Error('Depreciation calculator did not finish initializing');
+    })()`);
+    const before = await evaluate(`JSON.stringify([...document.querySelectorAll('.card-calculator form.ac-grid input')].map(input => [input.name, input.value]))`);
+    for (const [language, label, title, guidance] of [
+      ['en', 'Current value (HUF)', 'Car Depreciation Calculator', 'A percentage is not a fixed yearly loss'],
+      ['de', 'Aktueller Wert (HUF)', 'Autowertverlust-Rechner', 'Ein Prozentsatz ist kein gleichbleibender Geldverlust']
+    ]) {
+      await choose(language);
+      const actual = await evaluate(`JSON.stringify({
+        label: document.querySelector('.card-calculator form.ac-grid label')?.textContent.trim(),
+        title: document.querySelector('main h1')?.textContent.trim(),
+        result: document.querySelector('.card-calculator form.ac-grid .ac-result')?.textContent,
+        guidance: document.querySelector('.auto-converter-quality h2')?.textContent,
+        state: [...document.querySelectorAll('.card-calculator form.ac-grid input')].map(input => [input.name, input.value]),
+        width: document.documentElement.scrollWidth
+      })`);
+      const result = JSON.parse(actual);
+      assert.equal(result.label, label, `${language}: current value label`);
+      assert.equal(result.title, title, `${language}: page title`);
+      assert.ok(result.result.includes('HUF'), `${language}: scenario values use translated currency: ${result.result}`);
+      assert.ok(result.guidance.includes(guidance), `${language}: depreciation guidance translated`);
+      assert.deepEqual(result.state, JSON.parse(before), `${language}: calculation inputs changed`);
+      assert.ok(result.width <= width + 1, `depreciation calculator overflow at ${width}px (${language})`);
+    }
+    await choose('hu');
+    assert.match(await evaluate("document.querySelector('.card-calculator form.ac-grid label')?.textContent || ''"), /Jelenlegi érték/u);
+  }
+  console.log('Depreciation locale: HU/EN/DE labels, scenario results, metadata and input preservation passed at 390/1440px.');
+}
+
+module.exports = { checkFuelLocales, checkDepreciationLocale };
