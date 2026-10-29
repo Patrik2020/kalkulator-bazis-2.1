@@ -828,6 +828,7 @@ const run = async () => {
   await checkFloorLevelLocale({ navigate, evaluate, setViewport });
   await checkSleepCycleLocale({ navigate, evaluate, setViewport });
   await checkAutoCalculatorLocale({ navigate, evaluate, setViewport });
+  await checkConcreteCalculatorLocale({ navigate, evaluate, setViewport });
 
   await setViewport(390, 844);
   await navigate("/");
