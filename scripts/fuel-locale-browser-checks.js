@@ -186,8 +186,8 @@ async function checkDepreciationLocale({ navigate, evaluate, setViewport }) {
     })()`);
     const before = await evaluate(`JSON.stringify([...document.querySelectorAll('.card-calculator form.ac-grid input')].map(input => [input.name, input.value]))`);
     for (const [language, label, title, guidance] of [
-      ['en', 'Current value (HUF)', 'Car Depreciation Calculator', 'Reliability and calculation limits'],
-      ['de', 'Aktueller Wert (HUF)', 'Autowertverlust-Rechner', 'Zuverlässigkeit und Grenzen der Berechnung']
+      ['en', 'Current value (HUF)', 'Car Depreciation Calculator', 'A percentage is not a fixed yearly loss'],
+      ['de', 'Aktueller Wert (HUF)', 'Autowertverlust-Rechner', 'Ein Prozentsatz ist kein gleichbleibender Geldverlust']
     ]) {
       await choose(language);
       const actual = await evaluate(`JSON.stringify({
