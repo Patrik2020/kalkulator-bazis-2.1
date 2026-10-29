@@ -1,0 +1,26 @@
+name: Buffer Facebook connection check
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: buffer-connection-check
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Verify Buffer API and Facebook Page
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate Buffer connection (read-only)
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+        run: node scripts/check-buffer-connection.mjs
