@@ -2,7 +2,7 @@
 
 Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőrzi, hogy naprakész-e.
 
-Aktív kalkulátor: **89**; részletes fordításon átesett: **46**; hátralévő: **43**.
+Aktív kalkulátor: **89**; részletes fordításon átesett: **47**; hátralévő: **42**.
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **50**.
 
