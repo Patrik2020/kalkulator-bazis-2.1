@@ -301,4 +301,60 @@ async function checkSleepCycleLocale({ navigate, evaluate, setViewport }) {
   console.log('Sleep-cycle locale: HU/EN/DE labels, examples, health caveats and input preservation passed at 390/1440px.');
 }
 
-module.exports = { checkFuelLocales, checkDepreciationLocale, checkFloorLevelLocale, checkSleepCycleLocale };
+
+async function checkAutoCalculatorLocale({ navigate, evaluate, setViewport }) {
+  const choose = language => evaluate(`(async () => {
+    const select = document.getElementById('kbInternalLanguage');
+    if (!select) throw new Error('Missing internal language selector');
+    select.value = ${JSON.stringify(language)};
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+    await new Promise(requestAnimationFrame);
+    await new Promise(requestAnimationFrame);
+  })()`);
+  for (const width of [390, 1440]) {
+    await setViewport(width, 1000);
+    await navigate('/kalkulatorok/auto-kalkulator');
+    const before = await evaluate(`(async () => {
+      const values = { distance:100, fuelUsed:8, 'distance-cost':100, 'consumption-cost':7, fuelPrice:600, tankSize:50, 'consumption-range':7 };
+      for (const [id,value] of Object.entries(values)) {
+        const input=document.getElementById(id);
+        if(!input) throw new Error('Missing auto calculator input: '+id);
+        input.value=String(value);
+        input.dispatchEvent(new Event('input',{bubbles:true}));
+      }
+      await new Promise(requestAnimationFrame);
+      return JSON.stringify([...document.querySelectorAll('.page-auto input')].map(input=>[input.id,input.value]));
+    })()`);
+    for (const [language,heading,label,warning] of [
+      ['en','Trip Cost, Fuel Consumption and Range Calculator','Distance travelled (km)','Always leave a safety reserve.'],
+      ['de','Rechner für Fahrtkosten, Verbrauch und Reichweite','Zurückgelegte Strecke (km)','Lass immer eine Sicherheitsreserve.']
+    ]) {
+      await choose(language);
+      const result=JSON.parse(await evaluate(`JSON.stringify({
+        heading:document.querySelector('.page-auto h1')?.textContent.trim(),
+        label:document.querySelector('label[for="distance"]')?.textContent.trim(),
+        section:document.querySelector('.page-auto h2')?.textContent.trim(),
+        consumption:document.getElementById('result-consumption')?.textContent,
+        cost:document.getElementById('result-cost')?.textContent,
+        range:document.getElementById('result-range')?.textContent,
+        content:document.querySelector('.page-auto')?.textContent,
+        values:[...document.querySelectorAll('.page-auto input')].map(input=>[input.id,input.value]),
+        width:document.documentElement.scrollWidth
+      })`));
+      assert.equal(result.heading,heading,language+': page heading');
+      assert.equal(result.label,label,language+': first input label');
+      assert.equal(result.section,language==='en'?'Fuel Consumption Calculator':'Verbrauchsrechner',language+': first section heading');
+      assert.match(result.consumption,/8\.00\s*l\/100 km/u,language+': fuel consumption result');
+      assert.match(result.cost,/4\s*200\s*Ft/u,language+': trip cost numeric result');
+      assert.match(result.range,/714\s*km/u,language+': theoretical range result');
+      assert.ok(result.content.includes(warning),language+': reserve guidance');
+      assert.deepEqual(result.values,JSON.parse(before),language+': input values changed');
+      assert.ok(result.width<=width+1,'auto calculator overflow at '+width+'px ('+language+')');
+    }
+    await choose('hu');
+    assert.equal(await evaluate(`document.querySelector('label[for="distance"]')?.textContent.trim()`),'Megtett távolság (km)');
+  }
+  console.log('Auto trip calculator locale: HU/EN/DE content, three calculations and input preservation passed at 390/1440px.');
+}
+
+module.exports = { checkFuelLocales, checkDepreciationLocale, checkFloorLevelLocale, checkSleepCycleLocale, checkAutoCalculatorLocale };

@@ -45,7 +45,8 @@ const detailPages = [
   { path: "kalkulatorok/autopalyadij-kalkulator.html", module: "js/autos/fuel-locale.js", key: "autopalyadij-kalkulator" },
   { path: "kalkulatorok/auto-ertekvesztes-kalkulator.html", module: "js/autos/depreciation-locale.js", key: "auto-ertekvesztes-kalkulator" },
   { path: "kalkulatorok/aljzatkiegyenlito-kalkulator.html", module: "js/autos/floor-level-locale.js", key: "aljzatkiegyenlito-kalkulator" },
-  { path: "kalkulatorok/alvasciklus-kalkulator.html", module: "js/altalanos/sleep-cycle-locale.js", key: "alvasciklus-kalkulator" }
+  { path: "kalkulatorok/alvasciklus-kalkulator.html", module: "js/altalanos/sleep-cycle-locale.js", key: "alvasciklus-kalkulator" },
+  { path: "kalkulatorok/auto-kalkulator.html", module: "js/autos/auto-locale.js", key: "auto-kalkulator" }
 ];
 
 module.exports = { detailPages };

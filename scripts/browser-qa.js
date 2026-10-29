@@ -18,7 +18,7 @@ const { checkCreditLocales } = require("./credit-locale-browser-checks");
 const { checkMortgageToolLocales } = require("./mortgage-tools-locale-browser-checks");
 const { checkDividendLocale } = require("./dividend-locale-browser-checks");
 const { checkNettoBruttoLocales } = require("./netto-brutto-locale-browser-checks");
-const { checkFuelLocales, checkDepreciationLocale, checkFloorLevelLocale, checkSleepCycleLocale } = require("./fuel-locale-browser-checks");
+const { checkFuelLocales, checkDepreciationLocale, checkFloorLevelLocale, checkSleepCycleLocale, checkAutoCalculatorLocale } = require("./fuel-locale-browser-checks");
 
 const adsensePolicy = loadAdsensePolicy(path.resolve(__dirname, ".."));
 
@@ -826,6 +826,7 @@ const run = async () => {
   await checkDepreciationLocale({ navigate, evaluate, setViewport });
   await checkFloorLevelLocale({ navigate, evaluate, setViewport });
   await checkSleepCycleLocale({ navigate, evaluate, setViewport });
+  await checkAutoCalculatorLocale({ navigate, evaluate, setViewport });
 
   await setViewport(390, 844);
   await navigate("/");
