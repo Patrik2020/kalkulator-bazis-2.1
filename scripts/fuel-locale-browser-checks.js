@@ -257,4 +257,48 @@ async function checkFloorLevelLocale({ navigate, evaluate, setViewport }) {
   console.log('Floor level locale: HU/EN/DE labels, calculations, content and input preservation passed at 390/1440px.');
 }
 
-module.exports = { checkFuelLocales, checkDepreciationLocale, checkFloorLevelLocale };
+async function checkSleepCycleLocale({ navigate, evaluate, setViewport }) {
+  const choose = language => evaluate(`(async () => {
+    const select = document.getElementById('kbInternalLanguage');
+    if (!select) throw new Error('Missing internal language selector');
+    select.value = ${JSON.stringify(language)};
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+    await new Promise(requestAnimationFrame);
+    await new Promise(requestAnimationFrame);
+  })()`);
+  for (const width of [390, 1440]) {
+    await setViewport(width, 1000);
+    await navigate('/kalkulatorok/alvasciklus-kalkulator');
+    await evaluate(`(async () => {
+      for (let i=0;i<120 && !document.querySelector('#simpleCalcResults p strong');i+=1) await new Promise(requestAnimationFrame);
+      if(!document.querySelector('#simpleCalcResults p strong')) throw new Error('Sleep-cycle calculator did not initialize');
+    })()`);
+    const before=await evaluate(`JSON.stringify([...document.querySelectorAll('#simpleCalcFields input')].map(input=>[input.id,input.value]))`);
+    for(const [language,label,heading,resultLabel,warning] of [
+      ['en','Wake-up hour','Sleep Cycle Calculator','Example: 6 × 90 minutes + 15 minutes to fall asleep','not a biological rule'],
+      ['de','Stunde des Aufwachens','Schlafzyklus-Rechner','Beispiel: 6 × 90 Minuten + 15 Minuten zum Einschlafen','keine biologische Regel']
+    ]) {
+      await choose(language);
+      const actual=await evaluate(`JSON.stringify({
+        label:document.querySelector('label[for="wakeHour"]')?.textContent.trim(),
+        heading:document.querySelector('main h1')?.textContent.trim(),
+        results:document.getElementById('simpleCalcResults')?.textContent,
+        content:document.querySelector('main')?.textContent,
+        state:[...document.querySelectorAll('#simpleCalcFields input')].map(input=>[input.id,input.value]),
+        width:document.documentElement.scrollWidth
+      })`);
+      const result=JSON.parse(actual);
+      assert.equal(result.label,label,`${language}: wake-up input label`);
+      assert.equal(result.heading,heading,`${language}: page heading`);
+      assert.ok(result.results.includes(resultLabel),`${language}: translated example output`);
+      assert.ok(result.content.includes(warning),`${language}: cycle length caution`);
+      assert.deepEqual(result.state,JSON.parse(before),`${language}: wake-up time changed`);
+      assert.ok(result.width<=width+1,`sleep-cycle calculator overflow at ${width}px (${language})`);
+    }
+    await choose('hu');
+    assert.match(await evaluate(`document.querySelector('label[for="wakeHour"]')?.textContent||''`),/Felkelés órája/u);
+  }
+  console.log('Sleep-cycle locale: HU/EN/DE labels, examples, health caveats and input preservation passed at 390/1440px.');
+}
+
+module.exports = { checkFuelLocales, checkDepreciationLocale, checkFloorLevelLocale, checkSleepCycleLocale };
