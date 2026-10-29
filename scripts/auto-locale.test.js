@@ -17,3 +17,10 @@ test("three live outputs remain numeric and Hungarian labels remain unchanged",(
   assert.equal(translate(page,"4200 Ft","en"),null);
   assert.equal(translate(page,"Költség:","hu"),null);
 });
+
+test("related recommendations and dynamic per-kilometre amounts are localized",()=>{
+  assert.equal(translate(page,"Az eredmény után","en"),"What to do after the result");
+  assert.equal(translate(page,"Valós fogyasztás","de"),"Tatsächlicher Verbrauch");
+  assert.equal(translate(page,"100,3 Ft/km","en"),"100,3 HUF/km");
+  assert.equal(translate(page,"100,3 Ft/km","de"),"100,3 HUF/km");
+});
