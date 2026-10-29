@@ -101,7 +101,7 @@ export async function scheduleTomorrow({ dryRun = true, now = new Date() } = {})
 
   const mutation = 'mutation { createPost(input: { text: ' + gq(text) +
     ', channelId: ' + gq(channelId) +
-    ', schedulingType: automatic, mode: customScheduled, dueAt: ' + gq(dueAt) +
+    ', schedulingType: automatic, mode: customScheduled, metadata: { facebook: { type: post } }, dueAt: ' + gq(dueAt) +
     ' }) { ... on PostActionSuccess { post { id dueAt text assets { id } } } ' +
     '... on MutationError { message } } }';
   const response = await bufferQuery(token, mutation);
