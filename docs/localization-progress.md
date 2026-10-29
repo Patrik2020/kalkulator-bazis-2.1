@@ -55,7 +55,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/auto-fogyasztas-kalkulator.html | auto | detail-reviewed |
 | kalkulatorok/auto-kalkulator.html | auto | detail-reviewed |
 | kalkulatorok/autopalyadij-kalkulator.html | auto | detail-reviewed |
-| kalkulatorok/beton-kalkulator.html | epitoipari | content-review |
+| kalkulatorok/beton-kalkulator.html | epitoipari | detail-reviewed |
 | kalkulatorok/bmi-kalkulator.html | egeszseg | content-review |
 | kalkulatorok/bmr-kalkulator.html | egeszseg | content-review |
 | kalkulatorok/borravalo-kalkulator.html | mindennapi | detail-reviewed |
