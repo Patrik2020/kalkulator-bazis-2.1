@@ -181,8 +181,8 @@ async function checkDepreciationLocale({ navigate, evaluate, setViewport }) {
     await setViewport(width, 1000);
     await navigate('/kalkulatorok/auto-ertekvesztes-kalkulator');
     await evaluate(`(async () => {
-      for (let i = 0; i < 180 && !document.querySelector('.card-calculator form.ac-grid input[name="firstLow"]'); i += 1) await new Promise(requestAnimationFrame);
-      if (!document.querySelector('.card-calculator form.ac-grid input[name="firstLow"]')) throw new Error('Depreciation calculator did not initialize');
+      for (let i = 0; i < 180 && (window.KB_AUTO_CONVERTER_UPGRADE_READY !== 'auto-ertekvesztes-kalkulator' || !document.querySelector('.card-calculator form.ac-grid input[name="firstLow"]')); i += 1) await new Promise(requestAnimationFrame);
+      if (window.KB_AUTO_CONVERTER_UPGRADE_READY !== 'auto-ertekvesztes-kalkulator') throw new Error('Depreciation calculator did not finish initializing');
     })()`);
     const before = await evaluate(`JSON.stringify([...document.querySelectorAll('.card-calculator form.ac-grid input')].map(input => [input.name, input.value]))`);
     for (const [language, label, title, guidance] of [
