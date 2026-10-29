@@ -1,0 +1,51 @@
+name: Generate Facebook illustration library (feature branch only)
+
+on:
+  push:
+    branches:
+      - feat/buffer-facebook-illustrated-posts
+    paths:
+      - scripts/generate-buffer-facebook-images.mjs
+      - .github/workflows/generate-buffer-facebook-images.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: buffer-illustration-library
+  cancel-in-progress: false
+
+jobs:
+  render-library:
+    name: Render and save curated PNG graphics
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout illustration development branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: feat/buffer-facebook-illustrated-posts
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+      - name: Install pinned SVG renderer in an isolated temporary directory
+        run: npm install --prefix /tmp/buffer-social-render --no-package-lock --no-save --no-audit --no-fund --ignore-scripts @resvg/resvg-js@2.6.2
+      - name: Generate all 28 number-free images
+        run: node scripts/generate-buffer-facebook-images.mjs
+      - name: Verify image count and dimensions
+        run: |
+          count="$(find assets/social/facebook -maxdepth 1 -name '*.png' -type f | wc -l)"
+          test "$count" -eq 28
+          node -e 'const fs=require("fs"),p="assets/social/facebook/";for(const f of fs.readdirSync(p)){if(!f.endsWith(".png"))continue;const b=fs.readFileSync(p+f);if(b.readUInt32BE(16)!==1080 || b.readUInt32BE(20)!==1080)process.exit(1)}'
+      - name: Commit PNG assets on feature branch only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/social/facebook/*.png
+          if git diff --cached --quiet; then
+            echo "Graphics unchanged"
+            exit 0
+          fi
+          git commit -m "assets: add branded Facebook illustration bank"
+          git push origin HEAD:refs/heads/feat/buffer-facebook-illustrated-posts
