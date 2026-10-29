@@ -168,7 +168,7 @@
     const normalized = value.trim().replace(/\s+/gu, " ");
     const pair = dictionary[normalized];
     if (pair) return pair[language === "en" ? 0 : 1];
-    const perKilometre = normalized.match(/^([\d\s.,]+)\\s*Ft\\/km$/u);
+    const perKilometre = normalized.match(/^([\d\s.,]+)\s*Ft\/km$/u);
     if (perKilometre) return `${perKilometre[1]} HUF/km`;
     return null;
   }
