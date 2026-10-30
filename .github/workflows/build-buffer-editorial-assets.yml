@@ -1,0 +1,47 @@
+name: Build Facebook editorial artwork (feature branch only)
+
+on:
+  push:
+    branches:
+      - feat/buffer-editorial-visual-refresh-20261031
+    paths:
+      - .github/workflows/build-buffer-editorial-assets.yml
+      - scripts/generate-buffer-editorial-images.mjs
+
+permissions:
+  contents: write
+
+concurrency:
+  group: buffer-editorial-asset-render
+  cancel-in-progress: false
+
+jobs:
+  render:
+    name: Render and version original editorial PNGs
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout feature branch
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: feat/buffer-editorial-visual-refresh-20261031
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: '24'
+      - name: Install fixed SVG renderer
+        run: npm install --prefix /tmp/buffer-social-render --no-package-lock --no-save --no-audit --no-fund --ignore-scripts @resvg/resvg-js@2.6.2
+      - name: Render original graphics
+        run: node scripts/generate-buffer-editorial-images.mjs
+      - name: Verify all expected 1080-square PNG images
+        run: |
+          test "$(find assets/social/facebook/editorial -maxdepth 1 -name '*.png' -type f | wc -l)" -eq 28
+          node -e 'const fs=require("fs"),p="assets/social/facebook/editorial/";for(const f of fs.readdirSync(p)){if(!f.endsWith(".png"))continue;const b=fs.readFileSync(p+f);if(b.readUInt32BE(16)!==1080||b.readUInt32BE(20)!==1080)process.exit(1)}'
+      - name: Version rendered assets only in the development branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/social/facebook/editorial/*.png
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "assets: create editorial Facebook graphics without calculations"
+          git push origin HEAD:refs/heads/feat/buffer-editorial-visual-refresh-20261031
