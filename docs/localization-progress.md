@@ -2,7 +2,7 @@
 
 Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőrzi, hogy naprakész-e.
 
-Aktív kalkulátor: **89**; részletes fordításon átesett: **50**; hátralévő: **39**.
+Aktív kalkulátor: **89**; részletes fordításon átesett: **51**; hátralévő: **38**.
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **50**.
 
@@ -60,7 +60,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/bmr-kalkulator.html | egeszseg | detail-reviewed |
 | kalkulatorok/borravalo-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/co2-kibocsatas-kalkulator.html | auto | detail-reviewed |
-| kalkulatorok/csempe-kalkulator.html | epitoipari | content-review |
+| kalkulatorok/csempe-kalkulator.html | epitoipari | detail-reviewed |
 | kalkulatorok/csemperagaszto-kalkulator.html | epitoipari | content-review |
 | kalkulatorok/datum-hozzaadas-kivonas-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/datum-kulonbseg-kalkulator.html | mindennapi | detail-reviewed |

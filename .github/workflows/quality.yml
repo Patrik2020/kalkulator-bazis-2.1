@@ -58,6 +58,7 @@ jobs:
           node --test scripts/sleep-cycle-locale.test.js
           node --test scripts/auto-locale.test.js
           node --test scripts/concrete-locale.test.js
+          node --test scripts/csempe-locale.test.js
           node --test scripts/bmi-locale.test.js
           node --test scripts/bmr-locale.test.js
           node --test scripts/co2-locale.test.js

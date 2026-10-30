@@ -2,6 +2,7 @@
 "use strict";
 const assert = require("node:assert/strict");
 const { detailPages } = require("./localization-manifest");
+const { checkTileCalculatorLocale } = require("./csempe-locale-browser-checks");
 
 // Deliberate language-neutral names/units only. Do not whitelist sentences or
 // detect Hungarian only by accents: "Minimum" can be valid in all languages.
@@ -57,5 +58,6 @@ async function checkLocalizationCoverage({ navigate, evaluate, setViewport }) {
   }
   assert.deepEqual(failures, [], "Untranslated main-content text or accessible attributes: " + JSON.stringify(failures));
   console.log(`Localization coverage: ${detailPages.length} detail pages, EN/DE copy and HU restoration passed.`);
+  await checkTileCalculatorLocale({ navigate, evaluate, setViewport });
 }
 module.exports = { checkLocalizationCoverage, requiresTranslation, collectMainCopy };
