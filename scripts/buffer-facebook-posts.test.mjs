@@ -52,7 +52,7 @@ test('each category has four distinctive original PNG illustrations with no nume
       assert.equal(item.category, weekday);
       assert.equal(item.url, IMAGE_ORIGIN + item.file);
       assert.match(item.file, /^[a-z-]+-[1-4]\.png$/);
-      const buffer = fs.readFileSync(path.resolve('assets/social/facebook', item.file));
+      const buffer = fs.readFileSync(path.resolve('assets/social/facebook/editorial', item.file));
       assert.equal(buffer.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
       assert.equal(buffer.readUInt32BE(16), 1080);
       assert.equal(buffer.readUInt32BE(20), 1080);
