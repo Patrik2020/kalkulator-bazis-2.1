@@ -104,12 +104,17 @@ test('queued image+text from earlier release gets calculator URL without duplica
   });
 });
 
-test('already linked and illustrated queued post never gets a duplicate', { concurrency: false }, async () => {
+test('Oct 31 design launch refreshes exactly one scheduled post image without duplication', { concurrency: false }, async () => {
   await withFakeBuffer({ id: 'queued-1', dueAt, status: 'scheduled',
     text: renderPostWithCalculator(runDate), assets: [{ id: 'image-1', mimeType: 'image/png' }] },
   (result, requests) => {
-    assert.equal(result.skipped, true);
-    assert.equal(requests.filter(query => query.includes('editPost(') || query.includes('createPost(')).length, 0);
+    assert.equal(result.upgraded, true);
+    assert.equal(result.postId, 'queued-1');
+    assert.equal(requests.filter(query => query.includes('editPost(')).length, 1);
+    assert.equal(requests.filter(query => query.includes('createPost(')).length, 0);
+    const edit = requests.find(query => query.includes('editPost('));
+    assert.ok(edit.includes('/facebook/editorial/otthon-1.png'));
+    assert.ok(edit.includes(renderPostWithCalculator(runDate).slice(0, 20).replaceAll('\n', '\\n')));
   });
 });
 
