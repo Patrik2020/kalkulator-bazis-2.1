@@ -70,6 +70,7 @@
     "Csempe és járólap kalkulátor": ["Wall and Floor Tile Calculator", "Wand- und Bodenfliesenrechner"],
     "Számold ki egy téglalap alakú helyiség négy falának és padlójának burkolásához szükséges mennyiséget.": ["Estimate the tiles needed for the four walls and floor of a rectangular room.", "Schätze den Fliesenbedarf für die vier Wände und den Boden eines rechteckigen Raums."],
     "Helyiség és burkolat adatai": ["Room and tile details", "Raum- und Fliesenangaben"], "Helyiség méretei": ["Room dimensions", "Raummaße"],
+    "pl. 1,60": ["e.g. 1.60", "z. B. 1,60"], "pl. 2,50": ["e.g. 2.50", "z. B. 2,50"], "pl. 30": ["e.g. 30", "z. B. 30"], "pl. 60": ["e.g. 60", "z. B. 60"],
     "Helyiség hossza (m)": ["Room length (m)", "Raumlänge (m)"], "Helyiség szélessége (m)": ["Room width (m)", "Raumbreite (m)"],
     "Burkolandó falmagasság (m)": ["Tiling height (m)", "Fliesenhöhe an der Wand (m)"], "Nem muszáj a teljes belmagasságot megadni.": ["You do not have to enter the full ceiling height.", "Du musst nicht die gesamte Raumhöhe angeben."],
     "Ráhagyás": ["Waste allowance", "Verschnittzuschlag"], "5% – egyszerű kiosztás": ["5% – simple layout", "5 % – einfacher Verband"], "10% – általános": ["10% – standard", "10 % – üblich"], "15% – sok vágás vagy minta": ["15% – many cuts or a pattern", "15 % – viele Zuschnitte oder Muster"], "20% – bonyolult kiosztás": ["20% – complex layout", "20 % – komplexer Verband"],
