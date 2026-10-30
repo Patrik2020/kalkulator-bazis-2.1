@@ -7,6 +7,8 @@ const page = "csempe-kalkulator";
 test("tile calculator inputs, guidance and FAQs are translated in English and German", () => {
   assert.equal(translate(page, "Csempe és járólap kalkulátor", "en"), "Wall and Floor Tile Calculator");
   assert.equal(translate(page, "Helyiség hossza (m)", "de"), "Raumlänge (m)");
+  assert.equal(translate(page, "pl. 1,60", "en"), "e.g. 1.60");
+  assert.equal(translate(page, "pl. 60", "de"), "z. B. 60");
   assert.equal(translate(page, "A helyiség kerületét megszorozza a burkolandó falmagassággal. Az ajtó felülete opcionálisan levonható, majd a választott ráhagyás alapján kiszámolja a vásárolandó négyzetmétert és a becsült darabszámot.", "en"), "The room perimeter is multiplied by the height to be tiled. You can optionally deduct the door area; the calculator then applies the selected allowance to estimate the area to buy and the number of tiles.");
   assert.equal(translate(page, "Dobozszámot is számol?", "de"), "Berechnet der Rechner auch die Anzahl der Kartons?");
 });
