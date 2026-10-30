@@ -287,7 +287,6 @@
 
   let tcfListenerRegistered = false;
   let tcfPollTimer = null;
-  let tcfPollCount = 0;
 
   const registerTcfListener = () => {
     if (tcfListenerRegistered || typeof window.__tcfapi !== "function") return false;
@@ -310,9 +309,10 @@
       return;
     }
     if (tcfPollTimer) return;
+    // A slow CMP must still be able to release the consent gate. Keep waiting
+    // until its API exists; elapsed time never authorizes ad requests.
     tcfPollTimer = window.setInterval(() => {
-      tcfPollCount += 1;
-      if (registerTcfListener() || tcfPollCount >= 48) {
+      if (registerTcfListener()) {
         window.clearInterval(tcfPollTimer);
         tcfPollTimer = null;
       }
