@@ -1,4 +1,5 @@
 import { renderPost } from './buffer-facebook-post-bank.mjs';
+import { calculatorForDate, renderPostWithCalculator } from './buffer-facebook-calculator-links.mjs';
 import { imageForDate } from './buffer-facebook-images.mjs';
 
 const TIME_ZONE = 'Europe/Budapest';
@@ -104,14 +105,19 @@ function assertScheduledImage(post, expectedText, dueAt) {
 export async function scheduleTomorrow({ dryRun = true, now = new Date() } = {}) {
   const dateISO = nextLocalDateISO(now);
   const dueAt = dueAtEightBudapest(dateISO);
-  const text = renderPost(dateISO);
+  const legacyText = renderPost(dateISO);
+  const text = renderPostWithCalculator(dateISO);
+  const calculator = calculatorForDate(dateISO);
   const image = imageForDate(dateISO);
-  if (text.length < 80 || text.length > 1800 || /https?:\/\//.test(text)) {
-    throw new Error('Post content validation failed.');
+  if (text.length < 80 || text.length > 1800 ||
+      (text.match(/https?:\/\//g) || []).length !== 1 ||
+      !text.includes('\n' + calculator.url + '\n')) {
+    throw new Error('Post content or calculator link validation failed.');
   }
   if (new Date(dueAt).getTime() <= now.getTime() + 60_000) throw new Error('Target time is not safely in the future.');
   console.log('Target: ' + dateISO + ' 08:00 Europe/Budapest / ' + dueAt);
   console.log('Curated, number-free PNG illustration: ' + image.file);
+  console.log('Relevant calculator: ' + calculator.url);
   if (dryRun) {
     console.log('[DRY RUN] No Buffer write. Content:\n' + text);
     return { dateISO, dueAt, text, imageUrl: image.url, dryRun: true };
@@ -127,28 +133,42 @@ export async function scheduleTomorrow({ dryRun = true, now = new Date() } = {})
       return { dateISO, skipped: true };
     }
     const previous = existing[0];
-    if (previous.assets?.length) {
-      console.log('Skipping: an existing Facebook post already has media.');
-      return { dateISO, skipped: true };
-    }
-    const sameText = previous.text === text;
     const sameTime = new Date(previous.dueAt).getTime() === new Date(dueAt).getTime();
     const stillScheduled = !['sent', 'error', 'draft'].includes(previous.status);
-    if (!sameText || !sameTime || !stillScheduled) {
+    // Only upgrade a post created by the old or current curated schedule.
+    // Never change manual posts, failed/sent entries or unexpected queue items.
+    if (!sameTime || !stillScheduled ||
+        (previous.text !== legacyText && previous.text !== text)) {
       console.log('Skipping: existing post differs or is not an editable scheduled post.');
       return { dateISO, skipped: true };
     }
+    if ((previous.assets?.length ?? 0) > 1 ||
+        (previous.assets?.length === 1 &&
+         !previous.assets[0]?.mimeType?.startsWith('image/'))) {
+      console.log('Skipping: existing post uses unexpected media assets.');
+      return { dateISO, skipped: true };
+    }
+    if (previous.text === text && previous.assets?.length === 1) {
+      console.log('Skipping: linked image+text post is already scheduled (no duplicate).');
+      return { dateISO, skipped: true };
+    }
+
+    // Reuse the SAME post ID, due date, caption and curated image URL.
+    // Supplying the asset explicitly prevents it being lost on Buffer edit.
     await verifyImageAvailable(image.url);
     const upgradeMutation = 'mutation { editPost(input: { id: ' + gq(previous.id) +
+      ', text: ' + gq(text) +
       ', assets: [{ image: { url: ' + gq(image.url) + ' } }], metadata: { facebook: { type: post } } }) { ' +
       '... on PostActionSuccess { post { id text dueAt assets { id mimeType } } } ' +
       '... on MutationError { message } } }';
     const upgraded = (await bufferQuery(token, upgradeMutation)).editPost;
-    if (!upgraded?.post?.id) throw new Error('Buffer rejected media upgrade for existing post: ' +
-      (upgraded?.message || 'unknown error; do not create a duplicate.'));
+    if (!upgraded?.post?.id || upgraded.post.id !== previous.id) {
+      throw new Error('Buffer rejected safe update of existing post: ' +
+        (upgraded?.message || 'unknown error; do not create a duplicate.'));
+    }
     assertScheduledImage(upgraded.post, text, dueAt);
-    console.log('Added image to previously scheduled Facebook post ID: ' + upgraded.post.id);
-    return { dateISO, postId: upgraded.post.id, dueAt, upgraded: true };
+    console.log('Updated existing scheduled image+text post with calculator link. ID: ' + previous.id);
+    return { dateISO, postId: previous.id, dueAt, upgraded: true };
   }
 
   await verifyImageAvailable(image.url);
@@ -165,7 +185,7 @@ export async function scheduleTomorrow({ dryRun = true, now = new Date() } = {})
   }
   const post = response.createPost.post;
   assertScheduledImage(post, text, dueAt);
-  console.log('Scheduled Facebook image+text post ID: ' + post.id + '; local date ' + dateISO);
+  console.log('Scheduled Facebook image+text post with calculator link, ID: ' + post.id + '; local date ' + dateISO);
   return { dateISO, postId: post.id, dueAt, imageUrl: image.url };
 }
 
