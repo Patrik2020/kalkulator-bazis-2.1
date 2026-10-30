@@ -48,7 +48,8 @@ const detailPages = [
   { path: "kalkulatorok/alvasciklus-kalkulator.html", module: "js/altalanos/sleep-cycle-locale.js", key: "alvasciklus-kalkulator" },
   { path: "kalkulatorok/auto-kalkulator.html", module: "js/autos/auto-locale.js", key: "auto-kalkulator" },
   { path: "kalkulatorok/beton-kalkulator.html", module: "js/epitoipari/beton-locale.js", key: "beton-kalkulator" },
-  { path: "kalkulatorok/bmi-kalkulator.html", module: "js/egeszseg/bmi-locale.js", key: "bmi-kalkulator" }
+  { path: "kalkulatorok/bmi-kalkulator.html", module: "js/egeszseg/bmi-locale.js", key: "bmi-kalkulator" },
+  { path: "kalkulatorok/bmr-kalkulator.html", module: "js/egeszseg/bmr-locale.js", key: "bmr-kalkulator" }
 ];
 
 module.exports = { detailPages };
