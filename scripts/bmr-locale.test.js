@@ -9,6 +9,7 @@ test("BMR metadata, inputs, errors and live energy units are localized", () => {
   assert.equal(translate(page, "BMR kalkulátor", "de"), "BMR-Rechner");
   assert.equal(translate(page, "Testsúly (kg)", "en"), "Weight (kg)");
   assert.equal(translate(page, "A Mifflin–St Jeor becslést ezen az oldalon felnőtteknek (18+) használjuk", "de"), "Auf dieser Seite wird die Mifflin–St-Jeor-Schätzung für Erwachsene (ab 18 Jahren) verwendet.");
+  assert.equal(translate(page, "Becsült nyugalmi energiaigény:", "en"), "Estimated resting energy expenditure:");
   assert.equal(translate(page, "1 686 kcal/nap", "en"), "1 686 kcal/day");
   assert.equal(translate(page, "1 686 kcal/nap", "de"), "1 686 kcal/Tag");
   assert.equal(translate(page, "Hirdetés", "en"), "Advertisement");

@@ -175,6 +175,10 @@
     const normalized = value.trim().replace(/\s+/gu, " ");
     const pair = dictionary[normalized];
     if (pair) return pair[language === "en" ? 0 : 1];
+    const colon = normalized.endsWith(":");
+    const unpunctuated = colon ? normalized.slice(0, -1).trimEnd() : normalized;
+    const labelPair = dictionary[unpunctuated];
+    if (labelPair) return labelPair[language === "en" ? 0 : 1] + (colon ? ":" : "");
     const energy = /^([\d.,\s]+) kcal\/nap$/u.exec(normalized);
     if (energy) return `${energy[1]} ${language === "en" ? "kcal/day" : "kcal/Tag"}`;
     return null;
