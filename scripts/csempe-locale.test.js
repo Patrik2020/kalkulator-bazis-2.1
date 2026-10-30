@@ -31,3 +31,18 @@ test("door validation, box planner and related copy are localized", () => {
   assert.equal(translate(page, "Számold ki a várható fugázóanyag-szükségletet burkoláshoz.", "de"), "Schätze, wie viel Fugenmörtel du für dein Fliesenprojekt benötigst.");
   assert.equal(translate(page, "Csempe és járólap kalkulátor", "hu"), null);
 });
+
+test("the error-report email subject and template follow the selected language", () => {
+  const source = "mailto:kalkulatorbazis@gmail.com?subject=Hibabejelent%C3%A9s%20%E2%80%93%20Csempe%20kalkul%C3%A1tor&body=Kalkul%C3%A1tor%3A%20Csempe%20kalkul%C3%A1tor%0AOldal%3A%20https%3A%2F%2Fkalkulatorbazis.hu%2Fkalkulatorok%2Fcsempe-kalkulator.html%0A%0AA%20hiba%20r%C3%B6vid%20le%C3%ADr%C3%A1sa%3A%0A";
+  const en = new URL(translateReport(source, "en"));
+  const de = new URL(translateReport(source, "de"));
+  assert.equal(en.searchParams.get("subject"), "Error report – Tile Calculator");
+  assert.equal(en.searchParams.get("body"), "Calculator: Tile Calculator\nPage: https://kalkulatorbazis.hu/kalkulatorok/csempe-kalkulator.html\n\nBriefly describe the issue:\n");
+  assert.equal(de.searchParams.get("subject"), "Fehlermeldung – Fliesenrechner");
+  assert.equal(de.searchParams.get("body"), "Rechner: Fliesenrechner\nSeite: https://kalkulatorbazis.hu/kalkulatorok/csempe-kalkulator.html\n\nBeschreibe den Fehler kurz:\n");
+  assert.equal(translateReport(source, "hu"), source);
+});
+
+function translateReport(source, language) {
+  return require("../js/epitoipari/csempe-locale.js").localizeReportHref(source, language);
+}

@@ -32,6 +32,12 @@
           state.set(name, { source, rendered: value });
         }
       });
+      const errorLink = main.querySelector('a[href^="mailto:"][href*="subject="]');
+      if (errorLink) {
+        const source = originals.has("errorReportHref") ? originals.get("errorReportHref") : errorLink.getAttribute("href");
+        originals.set("errorReportHref", source);
+        errorLink.setAttribute("href", api.localizeReportHref(source, language));
+      }
       const structured = doc.getElementById("kb-structured-data");
       if (structured) {
         if (!originals.has("jsonld")) originals.set("jsonld", structured.textContent);
@@ -111,5 +117,19 @@
   }
   function parseHu(value) { return Number(value.replace(/\s/gu, "").replace(/\./gu, "").replace(/,/gu, ".")); }
   function formatHu(value, language, decimals = 2) { return format(parseHu(value), language, decimals); }
-  return { pages: Object.freeze([page]), dictionaries: Object.freeze({ [page]: dictionary }), dictionary, supported, translate };
+  function localizeReportHref(sourceHref, language) {
+    if (language === "hu" || !supported.includes(language)) return sourceHref;
+    const url = new URL(sourceHref);
+    const copy = language === "en" ? {
+      subject: "Error report – Tile Calculator",
+      body: "Calculator: Tile Calculator\nPage: https://kalkulatorbazis.hu/kalkulatorok/csempe-kalkulator.html\n\nBriefly describe the issue:\n"
+    } : {
+      subject: "Fehlermeldung – Fliesenrechner",
+      body: "Rechner: Fliesenrechner\nSeite: https://kalkulatorbazis.hu/kalkulatorok/csempe-kalkulator.html\n\nBeschreibe den Fehler kurz:\n"
+    };
+    url.searchParams.set("subject", copy.subject);
+    url.searchParams.set("body", copy.body);
+    return url.toString();
+  }
+  return { pages: Object.freeze([page]), dictionaries: Object.freeze({ [page]: dictionary }), dictionary, supported, translate, localizeReportHref };
 });
