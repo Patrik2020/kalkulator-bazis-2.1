@@ -13,6 +13,8 @@ async function checkCo2CalculatorLocale({ navigate, evaluate, setViewport }) {
       assert.match(actual.label, new RegExp(label, "u"), `${language}: powertrain label`);
       assert.match(actual.result, /Direct use-phase emissions|Direkte Emissionen während der Nutzung/u, `${language}: translated result label`);
       assert.match(actual.result, /15,02 kg CO₂/u, `${language}: direct emissions figure`);
+      const related = await evaluate(`JSON.stringify([...document.querySelectorAll('main .calculator-card h3')].map(x=>x.textContent.trim()))`);
+      assert.ok(related.includes(language === "en" ? "Fuel consumption calculator" : "Kraftstoffverbrauchsrechner"), `${language}: related calculator cards`);
       assert.deepEqual(actual.inputs, JSON.parse(inputBefore), `${language}: input values changed`);
       assert.match(actual.title, /CO₂/u, `${language}: page title`);
       assert.ok(actual.width <= width + 1, `CO2 page overflow at ${width}px (${language})`);
