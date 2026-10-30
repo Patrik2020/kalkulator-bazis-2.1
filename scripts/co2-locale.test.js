@@ -24,3 +24,9 @@ test("guidance, FAQ and metadata copy have complete translations", () => {
   assert.equal(api.translate("co2-kibocsatas-kalkulator", "hu-HU", "de"), "de-DE");
   assert.equal(api.translate("co2-kibocsatas-kalkulator", "CO2 kibocsátás kalkulátor", "en"), "Car CO₂ emissions calculator");
 });
+
+test("dynamically inserted related calculator cards are localized", () => {
+  assert.equal(api.translate("co2-kibocsatas-kalkulator", "Autó fogyasztás kalkulátor", "en"), "Fuel consumption calculator");
+  assert.equal(api.translate("co2-kibocsatas-kalkulator", "Számold ki egy út várható üzemanyagköltségét.", "de"), "Berechne die voraussichtlichen Kraftstoffkosten einer Fahrt.");
+  assert.equal(api.translate("co2-kibocsatas-kalkulator", "Becsüld meg, hány kilométert tehetsz meg a tankban lévő üzemanyaggal.", "en"), "Estimate how far you can travel with the fuel in your tank.");
+});
