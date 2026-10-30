@@ -14,6 +14,9 @@ async function checkBmrCalculatorLocale({ navigate, evaluate, setViewport }) {
     await setViewport(width, 1000);
     await navigate('/kalkulatorok/bmr-kalkulator');
     await evaluate(`(async () => {
+      const gender=document.getElementById('gender');
+      gender.value='2';
+      gender.dispatchEvent(new Event('change',{bubbles:true}));
       for (const [id,value] of [['weight','75'],['height','175'],['age','35']]) {
         const input=document.getElementById(id);
         if(!input) throw new Error('Missing BMR input: '+id);
@@ -22,7 +25,7 @@ async function checkBmrCalculatorLocale({ navigate, evaluate, setViewport }) {
       }
       await new Promise(requestAnimationFrame);
     })()`);
-    const before=await evaluate(`JSON.stringify([...document.querySelectorAll('[data-simple-calc="bmr-kalkulator"] input')].map(input=>[input.id,input.value]))`);
+    const before=await evaluate(`JSON.stringify({gender:document.getElementById('gender')?.value,values:[...document.querySelectorAll('[data-simple-calc="bmr-kalkulator"] input')].map(input=>[input.id,input.value])})`);
     for (const [language,heading,weightLabel,resultLabel,unit,faqTitle,caveat] of [
       ['en','BMR Calculator','Weight (kg)','Estimated resting energy expenditure','kcal/day','Frequently asked questions','not a diagnosis'],
       ['de','BMR-Rechner','Gewicht (kg)','Geschätzter Ruheenergieverbrauch','kcal/Tag','Häufige Fragen','keine diagnose']
@@ -37,6 +40,7 @@ async function checkBmrCalculatorLocale({ navigate, evaluate, setViewport }) {
         meta:document.querySelector('meta[name="description"]')?.content,
         schema:document.querySelector('#kb-structured-data')?.textContent,
         values:[...document.querySelectorAll('[data-simple-calc="bmr-kalkulator"] input')].map(input=>[input.id,input.value]),
+        gender:document.getElementById('gender')?.value,
         width:document.documentElement.scrollWidth
       })`));
       assert.equal(result.heading,heading,language+': heading');
@@ -48,7 +52,7 @@ async function checkBmrCalculatorLocale({ navigate, evaluate, setViewport }) {
       assert.ok(result.caveat.toLowerCase().includes(caveat),language+': health caveat');
       assert.ok(!result.meta.includes('BMR kalkulátor'),language+': metadata remains Hungarian');
       assert.ok(result.schema.includes(language==='en'?'BMR Calculator':'BMR-Rechner'),language+': structured data remains Hungarian');
-      assert.deepEqual(result.values,JSON.parse(before),language+': input values changed');
+      assert.deepEqual({gender:result.gender,values:result.values},JSON.parse(before),language+': input values changed');
       assert.ok(result.width<=width+1,'BMR page overflow at '+width+'px ('+language+')');
     }
     await choose('hu');
