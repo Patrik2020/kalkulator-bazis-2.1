@@ -99,7 +99,7 @@
     match = /^(\d[\d.,]*) db$/u.exec(normalized);
     if (match) return `${new Intl.NumberFormat(language === "en" ? "en-GB" : "de-DE", { maximumFractionDigits: 0 }).format(parseHu(match[1]))} ${language === "en" ? "tiles" : "Fliesen"}`;
     match = /^(\d+) doboz$/u.exec(normalized);
-    if (match) return `${match[1]} ${language === "en" ? (match[1] === "1" ? "box" : "boxes") : "Kartons"}`;
+    if (match) return `${match[1]} ${language === "en" ? (match[1] === "1" ? "box" : "boxes") : (match[1] === "1" ? "Karton" : "Kartons")}`;
     match = /^A darabszám már tartalmaz (\d+) külön javítótartalék dobozt\.$/u.exec(normalized);
     if (match) return language === "en" ? `The total already includes ${match[1]} extra ${match[1] === "1" ? "box" : "boxes"} for repairs.` : `Die Gesamtzahl enthält bereits ${match[1]} ${match[1] === "1" ? "zusätzlichen Karton" : "zusätzliche Kartons"} als Reparaturreserve.`;
     match = /^A négy fal nettó felülete ([\d.,\s]+) m²\. ([\d.,\s]+)% ráhagyással ([\d.,\s]+) m², vagyis körülbelül ([\d.,\s]+) darab falicsempe szükséges\.$/u.exec(normalized);
