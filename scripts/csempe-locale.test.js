@@ -16,6 +16,8 @@ test("dynamic area and tile counts keep the calculated values while using locale
   assert.equal(translate(page, "36,42 m²", "de"), "36,42 m²");
   assert.equal(translate(page, "203 db", "en"), "203 tiles");
   assert.equal(translate(page, "147 db", "de"), "147 Fliesen");
+  assert.equal(translate(page, "1 doboz", "en"), "1 box");
+  assert.equal(translate(page, "1 doboz", "de"), "1 Karton");
   assert.match(translate(page, "A négy fal nettó felülete 33,11 m². 10% ráhagyással 36,42 m², vagyis körülbelül 203 darab falicsempe szükséges.", "en"), /33\.11 m².*36\.42 m².*203 wall tiles/u);
   assert.match(translate(page, "A padló felülete 12,00 m². 10% ráhagyással 13,20 m², vagyis körülbelül 147 darab járólap szükséges.", "de"), /12,00 m².*13,20 m².*147 Bodenfliesen/u);
 });
