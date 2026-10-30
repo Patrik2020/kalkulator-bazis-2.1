@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-28",
+  "generatedAt": "2026-10-30",
   "pages": {
     "": {
       "hash": "69e32989731a9ce641c258daf36a0a9454c6c3461c7d95d0302a2b4c86be9dbf",
@@ -275,8 +275,8 @@
       "lastmod": "2026-10-18"
     },
     "kalkulatorok/auto-kalkulator.html": {
-      "hash": "3a7b8523621ee755dee60cb9e9f6018976b3b0b2d6e04ed36f56e4d5833ba318",
-      "lastmod": "2026-07-01"
+      "hash": "05fc4a1a65b7152d625ab852420f80a50cba5bfe658f6af7fc4697c0e55ad0db",
+      "lastmod": "2026-10-30"
     },
     "kalkulatorok/mertekegyseg-atvalto-kalkulator.html": {
       "hash": "2fa2672137d65cad334b6334b7ad5a62bdabbec841a2732a10be5aaa3a22517b",

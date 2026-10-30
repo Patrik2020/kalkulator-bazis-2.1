@@ -230,7 +230,7 @@ function ensureCookieBanner(base, onReady) {
     return Promise.resolve();
   }
 
-  return loadScriptOnce(base + "js/cookie.js?v=406f40c6a5eb", () => {
+  return loadScriptOnce(base + "js/cookie.js?v=f0351a7b46d1", () => {
     if (onReady) onReady();
   });
 }

@@ -1,0 +1,37 @@
+/* Seasonal details are opt-in at runtime and never block page controls. */
+.kb-halloween .logo-mark { position: relative; }
+.kb-halloween .logo-mark::after {
+  content: '🎃'; position: absolute; right: -7px; bottom: -5px;
+  font-size: 19px; line-height: 1; pointer-events: none;
+}
+.kb-halloween .kb-header { position: relative; }
+.kb-halloween .kb-halloween-web {
+  position: absolute; top: 0; right: 0; width: 44px; height: 44px;
+  pointer-events: none; opacity: .32; color: #a15a2c;
+  background: repeating-radial-gradient(circle at 100% 0, transparent 0 10px, currentColor 11px 12px, transparent 13px 20px);
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+.kb-halloween .kb-halloween-web::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 49%, currentColor 50% 52%, transparent 53%);
+}
+.kb-halloween #homeHero {
+  background-image: radial-gradient(ellipse at 10% 15%, rgb(245 147 44 / 12%), transparent 60%);
+}
+.kb-halloween .kb-halloween-note {
+  display: inline-block; max-width: 100%; margin: 0 0 16px; padding: 8px 12px;
+  border: 1px solid #edc190; border-radius: 12px;
+  background: #fff3e4; color: #783b12; font-size: 14px; font-weight: 650;
+  line-height: 1.5; overflow-wrap: anywhere;
+}
+.kb-halloween[data-theme='dark'] .kb-halloween-note {
+  background: #352518; border-color: #80562f; color: #ffcf99;
+}
+.kb-halloween[data-theme='dark'] .kb-halloween-web { color: #ffcf99; }
+@media (max-width: 600px) {
+  .kb-halloween .kb-halloween-web { width: 28px; height: 28px; opacity: .22; }
+  .kb-halloween .kb-halloween-note { font-size: 13px; padding: 6px 10px; }
+}
+@media print {
+  .kb-halloween-web, .kb-halloween-note, .kb-halloween .logo-mark::after { display: none !important; }
+}

@@ -131,7 +131,7 @@ jobs:
         run: node --test scripts/browser-qa-policy-runner.test.js
 
       - name: Test shared AdSense page policy
-        run: node --test scripts/adsense-policy.test.js scripts/publisher-ads.test.js
+        run: node --test scripts/adsense-policy.test.js scripts/publisher-ads.test.js scripts/adsense-cmp-wait.test.js
 
       - name: Test calculator scope isolation and collision detection
         run: node --test scripts/calculator-scopes.test.js
