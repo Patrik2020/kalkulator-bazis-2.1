@@ -13,8 +13,10 @@ async function checkCo2CalculatorLocale({ navigate, evaluate, setViewport }) {
       assert.match(actual.label, new RegExp(label, "u"), `${language}: powertrain label`);
       assert.match(actual.result, /Direct use-phase emissions|Direkte Emissionen während der Nutzung/u, `${language}: translated result label`);
       assert.match(actual.result, /15,02 kg CO₂/u, `${language}: direct emissions figure`);
-      const related = await evaluate(`JSON.stringify([...document.querySelectorAll('main .calculator-card h3')].map(x=>x.textContent.trim()))`);
-      assert.ok(related.includes(language === "en" ? "Fuel consumption calculator" : "Kraftstoffverbrauchsrechner"), `${language}: related calculator cards`);
+      const related = JSON.parse(await evaluate(`(async()=>{for(let i=0;i<120&&document.querySelectorAll('main .calculator-card').length<3;i++)await new Promise(requestAnimationFrame);await new Promise(requestAnimationFrame);return JSON.stringify([...document.querySelectorAll('main .calculator-card')].map(x=>x.innerText.replace(/\\s+/gu,' ').trim()))})()`));
+      assert.equal(related.length, 3, `${language}: related calculator cards did not load`);
+      assert.ok(related.some(text => text.includes(language === "en" ? "Fuel consumption calculator" : "Kraftstoffverbrauchsrechner") && text.includes(language === "en" ? "Estimate your real-world fuel consumption" : "Berechne den tatsächlichen Kraftstoffverbrauch")), `${language}: related calculator card copy: ${JSON.stringify(related)}`);
+      assert.ok(related.some(text => text.includes(language === "en" ? "Fuel cost calculator" : "Kraftstoffkostenrechner") && text.includes(language === "en" ? "Estimate the fuel cost of a trip." : "Berechne die voraussichtlichen Kraftstoffkosten einer Fahrt.")), `${language}: fuel cost related card copy: ${JSON.stringify(related)}`);
       assert.deepEqual(actual.inputs, JSON.parse(inputBefore), `${language}: input values changed`);
       assert.match(actual.title, /CO₂/u, `${language}: page title`);
       assert.ok(actual.width <= width + 1, `CO2 page overflow at ${width}px (${language})`);
