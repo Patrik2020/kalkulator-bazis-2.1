@@ -7,6 +7,8 @@ on:
       - scripts/buffer-facebook-post-bank.mjs
       - scripts/schedule-buffer-facebook.mjs
       - scripts/buffer-facebook-posts.test.mjs
+      - scripts/buffer-facebook-links.test.mjs
+      - scripts/buffer-facebook-calculator-links.mjs
       - scripts/buffer-facebook-images.mjs
       - assets/social/facebook/**
   push:
@@ -16,6 +18,8 @@ on:
       - scripts/buffer-facebook-post-bank.mjs
       - scripts/schedule-buffer-facebook.mjs
       - scripts/buffer-facebook-posts.test.mjs
+      - scripts/buffer-facebook-links.test.mjs
+      - scripts/buffer-facebook-calculator-links.mjs
       - scripts/buffer-facebook-images.mjs
       - assets/social/facebook/**
   schedule:
@@ -32,7 +36,7 @@ concurrency:
 
 jobs:
   test-post-generator:
-    name: Validate curated posts, PNG assets and timezones
+    name: Validate posts, calculator URLs, PNG assets and timezones
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -45,7 +49,7 @@ jobs:
         with:
           node-version: '24'
       - name: Test calculations, content, daylight saving
-        run: node --test scripts/buffer-facebook-posts.test.mjs
+        run: node --test scripts/buffer-facebook-posts.test.mjs scripts/buffer-facebook-links.test.mjs
       - name: Preview upcoming post without Buffer access
         run: node scripts/schedule-buffer-facebook.mjs
 
@@ -64,7 +68,7 @@ jobs:
         uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: '24'
-      - name: Verify image URL, avoid duplicate and schedule next day
+      - name: Verify image and calculator URL, then safely schedule next day
         env:
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           ALLOW_BUFFER_POSTING: 'true'
