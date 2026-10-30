@@ -21,6 +21,7 @@ const { checkNettoBruttoLocales } = require("./netto-brutto-locale-browser-check
 const { checkFuelLocales, checkDepreciationLocale, checkFloorLevelLocale, checkSleepCycleLocale, checkAutoCalculatorLocale } = require("./fuel-locale-browser-checks");
 const { checkConcreteCalculatorLocale } = require("./concrete-locale-browser-checks");
 const { checkBmiCalculatorLocale } = require("./bmi-locale-browser-checks");
+const { checkBmrCalculatorLocale } = require("./bmr-locale-browser-checks");
 
 const adsensePolicy = loadAdsensePolicy(path.resolve(__dirname, ".."));
 
@@ -831,6 +832,7 @@ const run = async () => {
   await checkAutoCalculatorLocale({ navigate, evaluate, setViewport });
   await checkConcreteCalculatorLocale({ navigate, evaluate, setViewport });
   await checkBmiCalculatorLocale({ navigate, evaluate, setViewport });
+  await checkBmrCalculatorLocale({ navigate, evaluate, setViewport });
 
   await setViewport(390, 844);
   await navigate("/");
