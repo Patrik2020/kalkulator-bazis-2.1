@@ -1,10 +1,10 @@
-// Maps a curated weekday post to its original, calculation-free illustration.
+// Maps a curated weekday post to its human-designed editorial, calculation-free illustration.
 const SLUGS = [
   'penzugyek', 'autozas', 'befektetes', 'matek',
   'gazdasag', 'otthon', 'tevhitek',
 ];
 
-export const IMAGE_ORIGIN = 'https://raw.githubusercontent.com/Patrik2020/kalkulator-bazis-2.1/main/assets/social/facebook/';
+export const IMAGE_ORIGIN = 'https://raw.githubusercontent.com/Patrik2020/kalkulator-bazis-2.1/main/assets/social/facebook/editorial/';
 
 export function imageForDate(dateISO) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(dateISO)) throw new Error('Invalid date format.');
