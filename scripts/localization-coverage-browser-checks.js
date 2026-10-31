@@ -59,5 +59,6 @@ async function checkLocalizationCoverage({ navigate, evaluate, setViewport }) {
   assert.deepEqual(failures, [], "Untranslated main-content text or accessible attributes: " + JSON.stringify(failures));
   console.log(`Localization coverage: ${detailPages.length} detail pages, EN/DE copy and HU restoration passed.`);
   await checkTileCalculatorLocale({ navigate, evaluate, setViewport });
+  await require("./csemperagaszto-locale-browser-checks").checkAdhesiveLocale({ navigate, evaluate, setViewport });
 }
 module.exports = { checkLocalizationCoverage, requiresTranslation, collectMainCopy };
