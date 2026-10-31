@@ -8,6 +8,9 @@ const { checkTileCalculatorLocale } = require("./csempe-locale-browser-checks");
 // detect Hungarian only by accents: "Minimum" can be valid in all languages.
 const neutral = new Set(["Kalkulátor Bázis", "Ft", "HUF", "A", "B", "C", "kg", "g", "l", "ml", "db", "EU"]);
 function requiresTranslation(text) {
+  // A converted amount with ISO currency codes is meaningful in every locale;
+  // decimal and grouping separators may also be identical in HU and DE.
+  if (/^[\d\s.,+−-]+ [A-Z]{3} = [\d\s.,+−-]+ [A-Z]{3}$/u.test(text)) return false;
   return /\p{L}/u.test(text) && !neutral.has(text) && !/^[\d\s.,+−–×÷/%():=²³-]+(?:Ft|HUF|kg|g|ml|l|db)?$/u.test(text);
 }
 
@@ -42,6 +45,11 @@ async function checkLocalizationCoverage({ navigate, evaluate, setViewport }) {
   })()`);
   for (const page of detailPages) {
     await navigate("/" + page.path.replace(/\.html$/, ""));
+    if (page.key === "deviza-atvalto-kalkulator") {
+      // The live-rate widget replaces its loading copy asynchronously. Compare
+      // language states only after the initial fetch has settled.
+      await evaluate(`(async()=>{await window.KB_CURRENCY_CONVERTER.ready;await new Promise(requestAnimationFrame)})()`);
+    }
     await choose("hu");
     const original = await evaluate(`(${collectMainCopy.toString()})()`);
     assert.ok(original.length > 10, `${page.path}: empty source copy`);
@@ -63,5 +71,6 @@ async function checkLocalizationCoverage({ navigate, evaluate, setViewport }) {
   await require("./derek-csipo-locale-browser-checks").checkWaistHipLocale({ navigate, evaluate, setViewport });
   await require("./deviza-locale-browser-checks").checkCurrencyLocale({ navigate, evaluate, setViewport });
   await require("./one-rep-max-locale-browser-checks").checkOneRepMaxLocale({ navigate, evaluate, setViewport });
+  await require("./ev-charge-locale-browser-checks").checkEvChargeLocale({ navigate, evaluate, setViewport });
 }
 module.exports = { checkLocalizationCoverage, requiresTranslation, collectMainCopy };

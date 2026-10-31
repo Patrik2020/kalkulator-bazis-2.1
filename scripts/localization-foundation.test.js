@@ -5,7 +5,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { inventory } = require("./localization-inventory");
 const { detailPages } = require("./localization-manifest");
-const { checkLocalizationCoverage } = require("./localization-coverage-browser-checks");
+const { checkLocalizationCoverage, requiresTranslation } = require("./localization-coverage-browser-checks");
 const glossary = require("../data/localization-glossary.json");
 
 test("reviewed pages exist, load their locale module, and use valid dictionary keys", () => {
@@ -33,6 +33,9 @@ test("common calculator terminology agrees with the shared glossary", () => {
 });
 
 test("coverage gate rejects untranslated ASCII copy, not only Hungarian accents", async () => {
+  assert.equal(requiresTranslation("100 HUF = 0,27 EUR"), false);
+  assert.equal(requiresTranslation("100 HUF = 0.27 EUR"), false);
+  assert.equal(requiresTranslation("Árfolyamok betöltése..."), true);
   await assert.rejects(checkLocalizationCoverage({
     navigate: async () => {}, setViewport: async () => {},
     evaluate: async expression => expression.startsWith("(function collectMainCopy") ?
