@@ -115,7 +115,7 @@
     "Az Epley és Brzycki eltérően közelít, ezért a különbség jól jelzi, hogy a szám nem laborpontosságú.": ["Epley and Brzycki estimate the maximum differently. The difference is a useful reminder that neither result is exact.", "Epley und Brzycki schätzen den Höchstwert unterschiedlich. Die Abweichung zeigt, dass kein Ergebnis auf das Kilogramm genau ist."],
     "Muszáj kipróbálnom a kiszámolt maximumot?": ["Do I need to try lifting the estimated maximum?", "Muss ich das geschätzte Maximum tatsächlich heben?"],
     "Nem. A becslés főleg edzéstervezési viszonyítási pont; maximális próbát nem szükséges végezni.": ["No. The estimate is mainly a reference point for planning your training; a maximal attempt is unnecessary.", "Nein. Die Schätzung dient vor allem als Orientierung für die Trainingsplanung; ein Maximalversuch ist nicht nötig."],
-    "Kapcsolódó kalkulátorok": ["Related calculators", "Ähnliche Rechner"],
+    "Kapcsolódó kalkulátorok": ["Related calculators", "Verwandte Rechner"],
     "feherje szukseglet": ["Protein needs", "Proteinbedarf"], "pulzus zona": ["Heart rate zones", "Herzfrequenzzonen"], "kaloria": ["Calories", "Kalorien"],
     "Utolsó tartalmi frissítés:": ["Content last reviewed:", "Inhalt zuletzt geprüft:"],
     "2026. augusztus 21.": ["21 August 2026", "21. August 2026"],

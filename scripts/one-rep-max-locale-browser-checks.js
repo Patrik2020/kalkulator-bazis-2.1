@@ -16,7 +16,7 @@ async function checkOneRepMaxLocale({ navigate, evaluate, setViewport }) {
       assert.ok(result.title.includes(heading));
       assert.ok(result.result.includes(label) && result.result.includes(number), `${language}: result`);
       assert.ok(result.guide.includes(language === "en" ? "repetitions" : "Wiederholungen"));
-      assert.ok(result.faq.includes(language === "en" ? "maximal attempt" : "Maximalversuch"));
+      assert.ok(result.faq.includes(language === "en" ? "Do I need to try lifting" : "Muss ich das geschätzte Maximum"));
       assert.ok(result.related.includes(language === "en" ? "Protein needs" : "Proteinbedarf"));
       assert.ok(result.meta.includes(language === "en" ? "one-rep max" : "Einerwiederholungsmaximum"));
       assert.equal(result.schema["@graph"][0].inLanguage, language === "en" ? "en-GB" : "de-DE");
