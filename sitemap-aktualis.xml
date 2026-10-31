@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kalkulatorbazis.hu/aktualis</loc>
-    <lastmod>2026-10-28</lastmod>
+    <lastmod>2026-10-31</lastmod>
   </url>
   <url>
     <loc>https://kalkulatorbazis.hu/aktualis/ksh-inflacio-2026-augusztus</loc>
@@ -44,8 +44,13 @@
     <loc>https://kalkulatorbazis.hu/aktualis/ksh-keresetek-2026-augusztus</loc>
     <lastmod>2026-10-19</lastmod>
   </url>
-  <url><loc>https://kalkulatorbazis.hu/aktualis/szja-2027-bejelentett-adocsokkentes</loc><lastmod>2026-10-24</lastmod></url>
-  <url><loc>https://kalkulatorbazis.hu/aktualis/csaladi-potlek-2027-duplazas-tervezete</loc><lastmod>2026-10-24</lastmod></url>
+  <url><loc>https://kalkulatorbazis.hu/aktualis/szja-2027-bejelentett-adocsokkentes</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://kalkulatorbazis.hu/aktualis/csaladi-potlek-2027-duplazas-tervezete</loc><lastmod>2026-10-31</lastmod></url>
   <url><loc>https://kalkulatorbazis.hu/aktualis/mnb-alapkamat-2026-oktober</loc><lastmod>2026-10-24</lastmod></url>
   <url><loc>https://kalkulatorbazis.hu/aktualis/nav-eafa-anyk-atallas-2026</loc><lastmod>2026-10-26</lastmod></url>
+  <url><loc>https://kalkulatorbazis.hu/aktualis/nav-uzemanyag-elszamolasi-arak-2026-november</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://kalkulatorbazis.hu/aktualis/adotorveny-javaslatok-2027-oktober</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://kalkulatorbazis.hu/aktualis/ksh-gdp-2026-harmadik-negyedev</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://kalkulatorbazis.hu/aktualis/mnb-lakasarindex-2026-harmadik-negyedev</loc><lastmod>2026-10-31</lastmod></url>
+  <url><loc>https://kalkulatorbazis.hu/aktualis/ksh-ipari-termeloi-arak-2026-szeptember</loc><lastmod>2026-10-31</lastmod></url>
 </urlset>
