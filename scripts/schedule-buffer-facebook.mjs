@@ -63,7 +63,7 @@ function gq(value) {
 
 // Buffer requires a public, permanent direct image URL. No silent text-only fallback.
 async function verifyImageAvailable(url) {
-  if (!/^https:\/\/raw\.githubusercontent\.com\/Patrik2020\/kalkulator-bazis-2\.1\/main\/assets\/social\/facebook\/editorial\/[a-z-]+-[1-4]\.png$/.test(url)) {
+  if (!/^https:\/\/raw\.githubusercontent\.com\/Patrik2020\/kalkulator-bazis-2\.1\/main\/assets\/social\/facebook\/photographic\/[a-z-]+-[1-4]\.png$/.test(url)) {
     throw new Error('Image URL is outside the approved first-party asset bank.');
   }
   const response = await fetch(url, { headers: { Range: 'bytes=0-31' }, signal: AbortSignal.timeout(15000) });
@@ -148,10 +148,10 @@ export async function scheduleTomorrow({ dryRun = true, now = new Date() } = {})
       console.log('Skipping: existing post uses unexpected media assets.');
       return { dateISO, skipped: true };
     }
-    // Launch cutover: re-attach the newly designed asset to the already
-    // queued Saturday post, preserving its ID, 08:00 schedule and caption.
+    // Launch cutover: re-attach the real-photography asset to the already
+    // queued Sunday post, preserving its ID, 08:00 schedule and caption.
     // For later dates, keep the normal idempotent no-op behavior.
-    const refreshPreviouslyQueuedImage = dateISO === '2026-10-31';
+    const refreshPreviouslyQueuedImage = dateISO === '2026-11-01';
     if (previous.text === text && previous.assets?.length === 1 && !refreshPreviouslyQueuedImage) {
       console.log('Skipping: linked image+text post is already scheduled (no duplicate).');
       return { dateISO, skipped: true };
@@ -171,7 +171,7 @@ export async function scheduleTomorrow({ dryRun = true, now = new Date() } = {})
         (upgraded?.message || 'unknown error; do not create a duplicate.'));
     }
     assertScheduledImage(upgraded.post, text, dueAt);
-    console.log('Updated existing scheduled image+text post with editorial image and calculator link. ID: ' + previous.id);
+    console.log('Updated existing scheduled image+text post with photographic image and calculator link. ID: ' + previous.id);
     return { dateISO, postId: previous.id, dueAt, upgraded: true };
   }
 
