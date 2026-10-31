@@ -12,7 +12,7 @@ async function checkWaistHipLocale({ navigate, evaluate, setViewport }) {
       ["de", "Taille-Hüfte-Verhältnis-Rechner", "0,82", "0,85"]
     ]) {
       await choose(language);
-      const result = JSON.parse(await evaluate(`JSON.stringify({title:document.title,heading:document.querySelector('main h1')?.textContent.trim(),label:document.querySelector('label[for="waist"]')?.textContent.trim(),result:document.getElementById('simpleCalcResults')?.innerText,guide:document.querySelector('.calculator-guide')?.innerText,faq:document.querySelector('.faq-list')?.innerText,meta:document.querySelector('meta[name="description"]')?.content,schema:JSON.parse(document.getElementById('kb-structured-data').textContent),report:new URL(document.querySelector('main a[href^="mailto:"]').href).searchParams,waist:document.getElementById('waist').value,hip:document.getElementById('hip').value,width:document.documentElement.scrollWidth})`));
+      const result = JSON.parse(await evaluate(`JSON.stringify({title:document.title,heading:document.querySelector('main h1')?.textContent.trim(),label:document.querySelector('label[for="waist"]')?.textContent.trim(),result:document.getElementById('simpleCalcResults')?.innerText,guide:document.querySelector('.calculator-guide')?.innerText,faq:document.querySelector('.faq-list')?.innerText,related:document.querySelector('main .related-section')?.innerText,meta:document.querySelector('meta[name="description"]')?.content,schema:JSON.parse(document.getElementById('kb-structured-data').textContent),waist:document.getElementById('waist').value,hip:document.getElementById('hip').value,width:document.documentElement.scrollWidth})`));
       assert.equal(result.heading, heading, `${language}: heading`);
       assert.ok(result.title.includes(heading), `${language}: title`);
       assert.ok(result.label.includes(language === "en" ? "Waist" : "Taillenumfang"), `${language}: label`);
@@ -22,6 +22,12 @@ async function checkWaistHipLocale({ navigate, evaluate, setViewport }) {
       assert.ok(result.result.includes(language === "en" ? "Indicative threshold used:" : "Verwendeter Orientierungswert:"), `${language}: dynamic threshold label`);
       assert.ok(result.guide.includes(language === "en" ? "measurement" : "Mess"), `${language}: guide`);
       assert.ok(result.faq.includes(language === "en" ? "pregnancy" : "Schwangerschaft"), `${language}: FAQ`);
+      // The runtime card section is optional in the local static-server build.
+      if (result.related) {
+        assert.ok(result.related.includes(language === "en" ? "Calculate body mass index" : "Berechne den Body-Mass-Index"), `${language}: related BMI description`);
+        assert.ok(result.related.includes(language === "en" ? "Body Fat Percentage Calculator" : "Körperfettanteil-Rechner"), `${language}: related body-fat title`);
+        assert.ok(result.related.includes(language === "en" ? "weight range" : "Gewichtsbereich"), `${language}: related weight-range description`);
+      }
       assert.ok(result.meta.includes(language === "en" ? "waist-to-hip" : "Taille-Hüfte"), `${language}: metadata`);
       assert.equal(result.schema["@graph"][0].inLanguage, language === "en" ? "en-US" : "de-DE");
       assert.equal(result.waist, "82"); assert.equal(result.hip, "100");

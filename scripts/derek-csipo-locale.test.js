@@ -9,6 +9,15 @@ test("WHR inputs, guide, FAQ, metadata and structured language are translated", 
   assert.equal(translate(page, "Terhesség alatt használható?", "de"), "Kann ich den Rechner in der Schwangerschaft nutzen?");
   assert.equal(translate(page, "Derék–csípő arány kalkulátor | WHR értelmezéssel", "en"), "Waist-to-Hip Ratio Calculator | WHR Explained");
   assert.equal(translate(page, "hu-HU", "de"), "de-DE");
+  assert.equal(translate(page, "Testzsír százalék kalkulátor", "en"), "Body Fat Percentage Calculator");
+  assert.equal(translate(page, "Becsüld meg az ideális testsúlyt magasság és nem alapján.", "de"), "Schätze einen Gewichtsbereich anhand von Größe und Geschlecht.");
+  for (const source of [
+    "Ideális testsúly kalkulátor", "Testtömegindex kiszámítása testsúly és magasság alapján.",
+    "Becsüld meg a testzsírszázalékot derék, nyak, csípő és magasság alapján."
+  ]) {
+    assert.ok(translate(page, source, "en"), source);
+    assert.ok(translate(page, source, "de"), source);
+  }
   assert.equal(translate(page, "Derékbőség (cm)", "hu"), null);
 });
 
