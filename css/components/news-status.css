@@ -1,0 +1,18 @@
+/* Publikálási és tartalmi frissítési állapot – Aktuális és főoldal */
+.news-flag{display:inline-flex;align-items:center;gap:.3rem;max-width:100%;width:max-content;padding:.25rem .55rem;border:1px solid transparent;border-radius:999px;font-size:.68rem;font-weight:850;line-height:1.35;letter-spacing:.055em;text-transform:uppercase;white-space:normal}
+.news-flag--new{color:#075e45;background:#e2f7eb;border-color:#b9e9d0}
+.news-flag--updated{color:#74491b;background:#fff1db;border-color:#efd7af}
+.current-meta .news-flag{letter-spacing:.05em}
+.current-meta .news-flag::before{content:none}
+.current-news-update{padding:16px 20px;margin:0 0 25px;background:#fff9ec;border:1px solid #ebd9b0;border-radius:14px}
+.current-news-update p{margin:9px 0 0;line-height:1.7;color:#574524}
+.news-item-copy{display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-width:0}
+.news-item-copy b{display:block}
+.news-main h3 a{color:inherit;text-decoration:none}
+.news-main h3 a:hover,.news-main h3 a:focus-visible{color:var(--season, #0b66f2)}
+.news-main .news-more{margin-top:18px}
+html[data-theme="dark"] .news-flag--new{background:#163d32;color:#b4f6d1;border-color:#286d52}
+html[data-theme="dark"] .news-flag--updated{background:#493519;color:#ffdfae;border-color:#785b2e}
+html[data-theme="dark"] .current-news-update{background:#332719;border-color:#74552c}
+html[data-theme="dark"] .current-news-update p{color:#f7e2b7}
+@media(max-width:680px){.news-item-copy{gap:5px}.news-flag{font-size:.64rem;padding:.22rem .48rem}}
