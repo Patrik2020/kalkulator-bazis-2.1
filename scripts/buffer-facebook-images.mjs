@@ -4,7 +4,7 @@ const SLUGS = [
   'gazdasag', 'otthon', 'tevhitek',
 ];
 
-export const IMAGE_ORIGIN = 'https://raw.githubusercontent.com/Patrik2020/kalkulator-bazis-2.1/main/assets/social/facebook/editorial/';
+export const IMAGE_ORIGIN = 'https://raw.githubusercontent.com/Patrik2020/kalkulator-bazis-2.1/main/assets/social/facebook/photographic/';
 
 export function imageForDate(dateISO) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(dateISO)) throw new Error('Invalid date format.');

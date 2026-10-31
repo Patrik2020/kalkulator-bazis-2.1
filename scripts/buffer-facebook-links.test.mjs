@@ -8,8 +8,8 @@ import { FACEBOOK_CALCULATOR_SLUGS, calculatorForDate, renderPostWithCalculator 
 import { dueAtEightBudapest, scheduleTomorrow } from './schedule-buffer-facebook.mjs';
 
 const pageId = '1427930577066568';
-const runDate = '2026-10-31';
-const runNow = new Date('2026-10-30T07:20:00.000Z');
+const runDate = '2026-11-01';
+const runNow = new Date('2026-10-31T13:20:00.000Z');
 const dueAt = dueAtEightBudapest(runDate);
 
 test('all 28 post links lead to actual calculator HTML pages listed in sitemap', () => {
@@ -104,7 +104,7 @@ test('queued image+text from earlier release gets calculator URL without duplica
   });
 });
 
-test('Oct 31 design launch refreshes exactly one scheduled post image without duplication', { concurrency: false }, async () => {
+test('Nov 1 photographic launch refreshes exactly one scheduled post image without duplication', { concurrency: false }, async () => {
   await withFakeBuffer({ id: 'queued-1', dueAt, status: 'scheduled',
     text: renderPostWithCalculator(runDate), assets: [{ id: 'image-1', mimeType: 'image/png' }] },
   (result, requests) => {
@@ -113,7 +113,7 @@ test('Oct 31 design launch refreshes exactly one scheduled post image without du
     assert.equal(requests.filter(query => query.includes('editPost(')).length, 1);
     assert.equal(requests.filter(query => query.includes('createPost(')).length, 0);
     const edit = requests.find(query => query.includes('editPost('));
-    assert.ok(edit.includes('/facebook/editorial/otthon-1.png'));
+    assert.ok(edit.includes('/facebook/photographic/tevhitek-1.png'));
     assert.ok(edit.includes(renderPostWithCalculator(runDate).slice(0, 20).replaceAll('\n', '\\n')));
   });
 });

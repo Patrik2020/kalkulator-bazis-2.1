@@ -10,7 +10,7 @@ const { Resvg } = require('@resvg/resvg-js');
 const outDir = path.resolve('assets/social/facebook/editorial');
 fs.mkdirSync(outDir, { recursive: true });
 
-const categories = [
+export const categories = [
   {
     slug: 'penzugyek', section: 'PÉNZÜGYEK',
     headlines: [
@@ -199,6 +199,7 @@ function imageSvg(cat, variant) {
     '</svg>'
   ].join('');
 }
+if (process.argv[1]?.endsWith('/generate-buffer-editorial-images.mjs')) {
 let count=0;
 for(let cat=0;cat<categories.length;cat++){
   for(let variant=0;variant<4;variant++){
@@ -214,3 +215,5 @@ for(let cat=0;cat<categories.length;cat++){
 }
 if(count!==28) throw new Error('Expected 28 images, got '+count);
 console.log('Finished 28 original editorial PNGs without calculations.');
+
+}
