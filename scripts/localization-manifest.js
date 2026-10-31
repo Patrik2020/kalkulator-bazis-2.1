@@ -49,6 +49,7 @@ const detailPages = [
   { path: "kalkulatorok/auto-kalkulator.html", module: "js/autos/auto-locale.js", key: "auto-kalkulator" },
   { path: "kalkulatorok/beton-kalkulator.html", module: "js/epitoipari/beton-locale.js", key: "beton-kalkulator" },
   { path: "kalkulatorok/csempe-kalkulator.html", module: "js/epitoipari/csempe-locale.js", key: "csempe-kalkulator" },
+  { path: "kalkulatorok/csemperagaszto-kalkulator.html", module: "js/epitoipari/csemperagaszto-locale.js", key: "csemperagaszto-kalkulator" },
   { path: "kalkulatorok/bmi-kalkulator.html", module: "js/egeszseg/bmi-locale.js", key: "bmi-kalkulator" },
   { path: "kalkulatorok/bmr-kalkulator.html", module: "js/egeszseg/bmr-locale.js", key: "bmr-kalkulator" },
   { path: "kalkulatorok/co2-kibocsatas-kalkulator.html", module: "js/autos/co2-locale.js", key: "co2-kibocsatas-kalkulator" }
