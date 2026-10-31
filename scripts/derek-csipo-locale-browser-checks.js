@@ -14,6 +14,9 @@ async function checkWaistHipLocale({ navigate, evaluate, setViewport }) {
       await choose(language);
       const result = JSON.parse(await evaluate(`JSON.stringify({title:document.title,heading:document.querySelector('main h1')?.textContent.trim(),label:document.querySelector('label[for="waist"]')?.textContent.trim(),result:document.getElementById('simpleCalcResults')?.innerText,guide:document.querySelector('.calculator-guide')?.innerText,faq:document.querySelector('.faq-list')?.innerText,related:document.querySelector('main .related-section')?.innerText,meta:document.querySelector('meta[name="description"]')?.content,schema:JSON.parse(document.getElementById('kb-structured-data').textContent),waist:document.getElementById('waist').value,hip:document.getElementById('hip').value,width:document.documentElement.scrollWidth})`));
       assert.equal(result.heading, heading, `${language}: heading`);
+      const sectionLinks = await evaluate(`[...document.querySelectorAll('main .kb-page-nav__links a')].map(a=>a.textContent).join(' | ')`);
+      if (sectionLinks) assert.ok(sectionLinks.includes(
+        language === "en" ? "What is the waist-to-hip ratio?" : "Was ist das Taille-Hüfte-Verhältnis?"), `${language}: section navigation after language switch`);
       assert.ok(result.title.includes(heading), `${language}: title`);
       assert.ok(result.label.includes(language === "en" ? "Waist" : "Taillenumfang"), `${language}: label`);
       assert.ok(result.result.includes(ratio) && result.result.includes(threshold), `${language}: WHR and threshold`);
@@ -39,6 +42,8 @@ async function checkWaistHipLocale({ navigate, evaluate, setViewport }) {
     }
     await choose("hu");
     assert.equal(await evaluate(`document.querySelector('main h1').textContent.trim()`), "Derék-csípő arány kalkulátor");
+    const huLinks = await evaluate(`[...document.querySelectorAll('main .kb-page-nav__links a')].map(a=>a.textContent).join(' | ')`);
+    if (huLinks) assert.ok(huLinks.includes("Mi a derék–csípő arány?"), "HU section navigation restoration");
   }
   console.log("Waist-to-hip ratio locale: EN/DE content, calculation, validation, metadata and HU restoration passed.");
 }
