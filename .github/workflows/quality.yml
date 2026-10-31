@@ -62,6 +62,7 @@ jobs:
           node --test scripts/csemperagaszto-locale.test.js
           node --test scripts/bmi-locale.test.js
           node --test scripts/bmr-locale.test.js
+          node --test scripts/derek-csipo-locale.test.js
           node --test scripts/co2-locale.test.js
           node scripts/localization-inventory.js --check
 
