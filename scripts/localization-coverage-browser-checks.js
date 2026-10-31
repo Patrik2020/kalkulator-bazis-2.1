@@ -61,5 +61,6 @@ async function checkLocalizationCoverage({ navigate, evaluate, setViewport }) {
   await checkTileCalculatorLocale({ navigate, evaluate, setViewport });
   await require("./csemperagaszto-locale-browser-checks").checkAdhesiveLocale({ navigate, evaluate, setViewport });
   await require("./derek-csipo-locale-browser-checks").checkWaistHipLocale({ navigate, evaluate, setViewport });
+  await require("./deviza-locale-browser-checks").checkCurrencyLocale({ navigate, evaluate, setViewport });
 }
 module.exports = { checkLocalizationCoverage, requiresTranslation, collectMainCopy };

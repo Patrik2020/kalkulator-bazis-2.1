@@ -8,6 +8,10 @@
     const lastUpdate = document.getElementById("lastUpdate");
     const rateSource = document.getElementById("rateSource");
     const retryButton = document.getElementById("retryRates");
+    const localeApi = () => window.KB_CURRENCY_LOCALE;
+    const language = () => localeApi()?.language?.() || window.KB_SITE_LANGUAGE?.get?.() || "hu";
+    const translate = (value) => localeApi()?.translate?.("deviza-atvalto-kalkulator", value, language()) ?? value;
+    const formatLocale = () => ({ hu: "hu-HU", en: "en-GB", de: "de-DE" })[language()] || "hu-HU";
 
     if (!inputValue || !fromCurrency || !toCurrency || !result || !lastUpdate) {
         return;
@@ -40,6 +44,7 @@
 
     let rates = {};
     let activeSnapshot = null;
+    let activeSnapshotState = {};
     let pendingLoad = null;
 
     const normalizeSnapshot = ({ nextRates, date, source, savedAt = Date.now() }) => {
@@ -179,7 +184,7 @@
     const formatDate = (date) => {
         const parsedDate = new Date(`${date}T12:00:00Z`);
         if (Number.isNaN(parsedDate.getTime())) return date;
-        return new Intl.DateTimeFormat("hu-HU", {
+        return new Intl.DateTimeFormat(formatLocale(), {
             year: "numeric",
             month: "long",
             day: "numeric",
@@ -200,15 +205,16 @@
         lastUpdate.textContent = formatDate(snapshot.date);
         if (rateSource) {
             const suffix = cached
-                ? refreshFailed ? " (mentett adat, a frissítés most nem sikerült)" : " (mentett adat)"
+                ? refreshFailed ? translate(" (mentett adat, a frissítés most nem sikerült)") : translate(" (mentett adat)")
                 : "";
-            rateSource.textContent = `${publicSourceLabel(snapshot.source)}${suffix}`;
+            rateSource.textContent = `${translate(publicSourceLabel(snapshot.source))}${suffix}`;
         }
     };
 
     const applySnapshot = (snapshot, state = {}) => {
         rates = snapshot.rates;
         activeSnapshot = snapshot;
+        activeSnapshotState = state;
         updateMetadata(snapshot, state);
         convertCurrency();
     };
@@ -249,15 +255,15 @@
         const convertedValue = valueInEuro * rates[to];
 
         result.textContent =
-            `${value.toLocaleString("hu-HU", { maximumFractionDigits: 2 })} ${from} = ` +
-            `${convertedValue.toLocaleString("hu-HU", { maximumFractionDigits: 2 })} ${to}`;
+            `${value.toLocaleString(formatLocale(), { maximumFractionDigits: 2 })} ${from} = ` +
+            `${convertedValue.toLocaleString(formatLocale(), { maximumFractionDigits: 2 })} ${to}`;
     }
 
     const setRetryState = ({ visible, loading = false }) => {
         if (!retryButton) return;
         retryButton.hidden = !visible;
         retryButton.disabled = loading;
-        retryButton.textContent = loading ? "Újratöltés…" : "Árfolyamok újratöltése";
+        retryButton.textContent = translate(loading ? "Újratöltés…" : "Árfolyamok újratöltése");
     };
 
     const loadRates = () => {
@@ -265,9 +271,9 @@
 
         pendingLoad = (async () => {
             if (!activeSnapshot) {
-                result.textContent = "Árfolyamok betöltése...";
-                lastUpdate.textContent = "Betöltés...";
-                if (rateSource) rateSource.textContent = "Betöltés...";
+                result.textContent = translate("Árfolyamok betöltése...");
+                lastUpdate.textContent = translate("Betöltés...");
+                if (rateSource) rateSource.textContent = translate("Betöltés...");
             }
             setRetryState({ visible: Boolean(activeSnapshot), loading: true });
 
@@ -290,10 +296,10 @@
                 applySnapshot(activeSnapshot, { cached: true, refreshFailed: true });
             } else {
                 result.textContent = navigator.onLine
-                    ? "Nem sikerült betölteni az árfolyamokat. Próbáld meg újra."
-                    : "Az árfolyamok betöltéséhez internetkapcsolat szükséges.";
-                lastUpdate.textContent = "Nincs elérhető adat";
-                if (rateSource) rateSource.textContent = "Nem elérhető";
+                    ? translate("Nem sikerült betölteni az árfolyamokat. Próbáld meg újra.")
+                    : translate("Az árfolyamok betöltéséhez internetkapcsolat szükséges.");
+                lastUpdate.textContent = translate("Nincs elérhető adat");
+                if (rateSource) rateSource.textContent = translate("Nem elérhető");
             }
 
             setRetryState({ visible: true });
@@ -310,6 +316,13 @@
     fromCurrency.addEventListener("change", convertCurrency);
     toCurrency.addEventListener("change", convertCurrency);
     retryButton?.addEventListener("click", loadRates);
+    document.addEventListener?.("kb:language-changed", () => {
+        if (activeSnapshot) {
+            updateMetadata(activeSnapshot, activeSnapshotState);
+            convertCurrency();
+        }
+        if (retryButton) setRetryState({ visible: !retryButton.hidden, loading: retryButton.disabled });
+    });
 
     if (!inputValue.value) inputValue.value = 100;
 
