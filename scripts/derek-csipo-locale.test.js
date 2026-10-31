@@ -15,7 +15,10 @@ test("WHR inputs, guide, FAQ, metadata and structured language are translated", 
 test("dynamic WHR results and error messages retain thresholds and meaning", () => {
   for (const [source, english, german] of [
     ["Derék-csípő arány", "Waist-to-hip ratio", "Taille-Hüfte-Verhältnis"],
+    ["Derék-csípő arány:", "Waist-to-hip ratio:", "Taille-Hüfte-Verhältnis:"],
     ["WHO általános küszöbéhez viszonyítva", "Compared with the general WHO threshold", "Vergleich mit dem allgemeinen WHO-Schwellenwert"],
+    ["WHO általános küszöbéhez viszonyítva:", "Compared with the general WHO threshold:", "Vergleich mit dem allgemeinen WHO-Schwellenwert:"],
+    ["Használt tájékoztató küszöb:", "Indicative threshold used:", "Verwendeter Orientierungswert:"],
     ["a küszöb felett", "above the threshold", "über dem Schwellenwert"],
     ["a küszöbön vagy alatta", "at or below the threshold", "am oder unter dem Schwellenwert"],
     ["Az értékek legyenek nagyobbak nullánál", "Values must be greater than zero.", "Die Werte müssen größer als null sein."],

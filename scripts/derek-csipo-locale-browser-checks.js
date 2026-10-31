@@ -17,6 +17,9 @@ async function checkWaistHipLocale({ navigate, evaluate, setViewport }) {
       assert.ok(result.title.includes(heading), `${language}: title`);
       assert.ok(result.label.includes(language === "en" ? "Waist" : "Taillenumfang"), `${language}: label`);
       assert.ok(result.result.includes(ratio) && result.result.includes(threshold), `${language}: WHR and threshold`);
+      assert.ok(result.result.includes(language === "en" ? "Waist-to-hip ratio:" : "Taille-Hüfte-Verhältnis:"), `${language}: dynamic ratio label`);
+      assert.ok(result.result.includes(language === "en" ? "Compared with the general WHO threshold:" : "Vergleich mit dem allgemeinen WHO-Schwellenwert:"), `${language}: dynamic comparison label`);
+      assert.ok(result.result.includes(language === "en" ? "Indicative threshold used:" : "Verwendeter Orientierungswert:"), `${language}: dynamic threshold label`);
       assert.ok(result.guide.includes(language === "en" ? "measurement" : "Mess"), `${language}: guide`);
       assert.ok(result.faq.includes(language === "en" ? "pregnancy" : "Schwangerschaft"), `${language}: FAQ`);
       assert.ok(result.meta.includes(language === "en" ? "waist-to-hip" : "Taille-Hüfte"), `${language}: metadata`);
