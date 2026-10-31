@@ -175,10 +175,15 @@
     "2026. július 15.": ["15 July 2026", "15. Juli 2026"]
   });
   const supported = Object.freeze(["hu", "en", "de"]);
+  const reverse = new Map();
+  for (const [source, pair] of Object.entries(dictionary)) {
+    for (const localized of pair) if (localized !== source && !reverse.has(localized)) reverse.set(localized, source);
+  }
   function translate(scope, value, language) {
-    if (scope !== page || typeof value !== "string" || !supported.includes(language) || language === "hu") return null;
+    if (scope !== page || typeof value !== "string" || !supported.includes(language)) return null;
     const normalized = value.trim().replace(/\s+/gu, " ");
-    const pair = dictionary[normalized];
+    if (language === "hu") return reverse.get(normalized) ?? null;
+    const pair = dictionary[normalized] || dictionary[reverse.get(normalized)];
     if (pair) return pair[language === "en" ? 0 : 1];
     if (/^0,\d{2}$/u.test(normalized) && language === "en") return normalized.replace(",", ".");
     return null;

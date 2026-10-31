@@ -19,6 +19,9 @@ test("WHR inputs, guide, FAQ, metadata and structured language are translated", 
     assert.ok(translate(page, source, "de"), source);
   }
   assert.equal(translate(page, "Derékbőség (cm)", "hu"), null);
+  assert.equal(translate(page, "What is the waist-to-hip ratio?", "de"), "Was ist das Taille-Hüfte-Verhältnis?");
+  assert.equal(translate(page, "Die Formel", "en"), "The formula");
+  assert.equal(translate(page, "The formula", "hu"), "A képlet");
 });
 
 test("dynamic WHR results and error messages retain thresholds and meaning", () => {
