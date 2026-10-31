@@ -2,7 +2,7 @@
 
 Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőrzi, hogy naprakész-e.
 
-Aktív kalkulátor: **89**; részletes fordításon átesett: **55**; hátralévő: **34**.
+Aktív kalkulátor: **89**; részletes fordításon átesett: **56**; hátralévő: **33**.
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **55**.
 
@@ -76,7 +76,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/eletkor-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/energia-atvalto-kalkulator.html | atvaltok | retired-review |
 | kalkulatorok/etf-kalkulator.html | penzugyi | detail-reviewed |
-| kalkulatorok/ev-toltesi-koltseg-kalkulator.html | auto | content-review |
+| kalkulatorok/ev-toltesi-koltseg-kalkulator.html | auto | detail-reviewed |
 | kalkulatorok/eves-auto-koltseg-kalkulator.html | auto | content-review |
 | kalkulatorok/fedezeti-pont-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/feherje-szukseglet-kalkulator.html | egeszseg | content-review |

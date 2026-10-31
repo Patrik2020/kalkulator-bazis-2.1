@@ -65,6 +65,7 @@ jobs:
           node --test scripts/derek-csipo-locale.test.js
           node --test scripts/deviza-locale.test.js
           node --test scripts/one-rep-max-locale.test.js
+          node --test scripts/ev-charge-locale.test.js
           node --test scripts/co2-locale.test.js
           node scripts/localization-inventory.js --check
 
