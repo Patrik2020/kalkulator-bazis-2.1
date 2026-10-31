@@ -10,7 +10,7 @@ const { Resvg } = require('@resvg/resvg-js');
 const outDir = path.resolve('assets/social/facebook/editorial');
 fs.mkdirSync(outDir, { recursive: true });
 
-const categories = [
+export const categories = [
   {
     slug: 'penzugyek', section: 'PÉNZÜGYEK',
     headlines: [
