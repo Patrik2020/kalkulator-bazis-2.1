@@ -94,6 +94,8 @@
     "A ráhagyás legfeljebb 100% legyen.": ["Allowance must not exceed 100%.", "Der Zuschlag darf höchstens 100 % betragen."],
     "Adj meg érvényes adatokat a számításhoz.": ["Enter valid values to calculate.", "Gib gültige Werte für die Berechnung ein."],
     "Hasznos volt ez a kalkulátor?": ["Was this calculator useful?", "War dieser Rechner hilfreich?"], "Ne keresd újra. Mentsd le. Használd.": ["Don't search again. Save it. Use it.", "Nicht erneut suchen. Speichern. Wiederverwenden."],
+    "Hirdetés": ["Advertisement", "Anzeige"],
+    "Tedd el a Kalkulátor Bázist, hogy legközelebb egy mozdulattal visszatalálj ehhez a számításhoz – vagy oszd meg azzal, akinek szintén jól jöhet.": ["Save Kalkulátor Bázis to return to this calculation in one click — or share it with someone who might find it useful.", "Speichere Kalkulátor Bázis, um mit einem Klick zu dieser Berechnung zurückzukehren – oder teile sie mit jemandem, für den sie nützlich sein könnte."],
     "Tedd el a Kalkulátor Bázist, hogy legközelebb egy mozdulattal visszatalálj": ["Save Kalkulátor Bázis to return to this calculation in one click", "Speichere Kalkulátor Bázis, um mit einem Klick zu dieser Berechnung zurückzukehren"],
     "ehhez a számításhoz – vagy oszd meg azzal, akinek szintén jól jöhet.": ["— or share it with someone who might find it useful.", "– oder teile sie mit jemandem, für den sie nützlich sein könnte."],
     "Mentési, telepítési és megosztási műveletek": ["Bookmarking, installation and sharing actions", "Aktionen zum Speichern, Installieren und Teilen"],
