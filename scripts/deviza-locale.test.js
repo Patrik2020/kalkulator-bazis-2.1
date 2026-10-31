@@ -11,6 +11,7 @@ test("currency form, guidance, FAQ, metadata and fee comparison are localized", 
     ["Magyar forint (HUF)", "Hungarian forint (HUF)", "Ungarischer Forint (HUF)"],
     ["A kalkulátor valós idejű árfolyamot ad?", "Does the calculator use a real-time exchange rate?", "Verwendet der Rechner einen Echtzeitkurs?"],
     ["Mekkora különbséget okoz a spread vagy szolgáltatói felár?", "How much difference can a spread or provider markup make?", "Wie groß ist der Unterschied durch Spread oder Anbieteraufschlag?"],
+    ["Külföldi pénzt váltanál vagy utalnál?", "Need to exchange or transfer money internationally?", "Möchtest du Geld ins Ausland überweisen oder eine Währung wechseln?"],
     ["hu-HU", "en-GB", "de-DE"]
   ]) {
     assert.equal(locale.translate(page, source, "en"), english);

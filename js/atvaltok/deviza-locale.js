@@ -151,7 +151,13 @@
     ["Középárfolyam", "Mid-market rate", "Mittelkurs"], ["Felár / spread (%)", "Markup / spread (%)", "Aufschlag / Spread (%)"], ["Fix díj (Ft)", "Fixed fee (HUF)", "Feste Gebühr (HUF)"],
     ["Elméleti középárfolyamos összeg", "Theoretical amount at the mid-market rate", "Theoretischer Betrag zum Mittelkurs"], ["Felárral és díjjal", "With markup and fee", "Mit Aufschlag und Gebühr"], ["Különbség", "Difference", "Differenz"],
     ["Miért fontos?", "Why does this matter?", "Warum ist das wichtig?"],
-    ["A devizaátváltó referenciaárfolyama nem feltétlenül azonos azzal az árfolyammal, amelyet bank, kártyatársaság vagy szolgáltató ténylegesen alkalmaz.", "The converter's reference rate may differ from the rate actually used by a bank, card network or service provider.", "Der Referenzkurs des Rechners kann vom Kurs abweichen, den eine Bank, ein Kartennetzwerk oder ein Dienstleister tatsächlich anwendet."]
+    ["A devizaátváltó referenciaárfolyama nem feltétlenül azonos azzal az árfolyammal, amelyet bank, kártyatársaság vagy szolgáltató ténylegesen alkalmaz.", "The converter's reference rate may differ from the rate actually used by a bank, card network or service provider.", "Der Referenzkurs des Rechners kann vom Kurs abweichen, den eine Bank, ein Kartennetzwerk oder ein Dienstleister tatsächlich anwendet."],
+    ["Devizás helyzethez", "For foreign-currency needs", "Für Fremdwährungsfragen"],
+    ["Hirdetés", "Advertisement", "Anzeige"],
+    ["Külföldi pénzt váltanál vagy utalnál?", "Need to exchange or transfer money internationally?", "Möchtest du Geld ins Ausland überweisen oder eine Währung wechseln?"],
+    ["Nézd meg a Wise aktuális lehetőségeit több pénznem, nemzetközi utalás és devizás költés esetén.", "Explore Wise's current options for holding multiple currencies, making international transfers and spending abroad.", "Sieh dir die aktuellen Möglichkeiten von Wise für mehrere Währungen, internationale Überweisungen und Ausgaben im Ausland an."],
+    ["Partnerlink. Az aktuális díjakat és feltételeket a Wise oldalán ellenőrizd.", "Partner link. Check current fees and terms on the Wise website.", "Partnerlink. Prüfe die aktuellen Gebühren und Bedingungen auf der Wise-Website."],
+    ["Wise megnyitása →", "Open Wise →", "Wise öffnen →"]
   ];
   const normalize = (value) => value.trim().replace(/\s+/gu, " ");
   const dictionary = Object.freeze(Object.fromEntries(entries.map(([hu, en, de]) => [normalize(hu), [en, de]])));
