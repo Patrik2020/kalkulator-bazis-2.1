@@ -53,6 +53,7 @@ const detailPages = [
   { path: "kalkulatorok/bmi-kalkulator.html", module: "js/egeszseg/bmi-locale.js", key: "bmi-kalkulator" },
   { path: "kalkulatorok/bmr-kalkulator.html", module: "js/egeszseg/bmr-locale.js", key: "bmr-kalkulator" },
   { path: "kalkulatorok/derek-csipo-kalkulator.html", module: "js/egeszseg/derek-csipo-locale.js", key: "derek-csipo-kalkulator" },
+  { path: "kalkulatorok/deviza-atvalto-kalkulator.html", module: "js/atvaltok/deviza-locale.js", key: "deviza-atvalto-kalkulator" },
   { path: "kalkulatorok/co2-kibocsatas-kalkulator.html", module: "js/autos/co2-locale.js", key: "co2-kibocsatas-kalkulator" }
 ];
 
