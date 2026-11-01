@@ -12,6 +12,7 @@ test("braking distance content, FAQ and metadata translate in both languages", (
     assert.ok(translate(page, source, "de"), source);
   }
   assert.equal(translate(page, "hu-HU", "de"), "de-DE");
+  assert.equal(translate(page, "Hirdetés", "en"), "Advertisement");
   assert.equal(translate(page, "Braking Distance Calculator", "hu"), "Féktáv kalkulátor");
 });
 

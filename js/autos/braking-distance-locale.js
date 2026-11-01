@@ -76,7 +76,7 @@
     ["Féktáv","Braking distance","Bremsweg"],
     ["Elméleti reakcióút, fékút és teljes megállási távolság becslése sebesség, reakcióidő és tapadási tényező alapján.","Estimate reaction distance, theoretical braking distance and total stopping distance from speed, reaction time and grip coefficient.","Schätze Reaktionsweg, theoretischen Bremsweg und gesamten Anhalteweg anhand von Geschwindigkeit, Reaktionszeit und Reibwert."],
     ["Autó és közlekedés kalkulátorok","Car and transport calculators","Rechner für Auto und Verkehr"],
-    ["Főoldal","Home","Startseite"],["Autó & közlekedés","Cars & transport","Auto & Verkehr"],["Morzsamenü","Breadcrumb","Brotkrumennavigation"],
+    ["Főoldal","Home","Startseite"],["Autó & közlekedés","Cars & transport","Auto & Verkehr"],["Morzsamenü","Breadcrumb","Brotkrumennavigation"],["Hirdetés","Advertisement","Anzeige"],
     ["Sebesség (km/h)","Speed (km/h)","Geschwindigkeit (km/h)"],
     ["Reakcióidő (s)","Reaction time (s)","Reaktionszeit (s)"],
     ["Tapadási tényező (μ)","Grip coefficient (μ)","Reibwert (μ)"],
