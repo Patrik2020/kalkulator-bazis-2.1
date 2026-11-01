@@ -74,5 +74,6 @@ async function checkLocalizationCoverage({ navigate, evaluate, setViewport }) {
   await require("./ev-charge-locale-browser-checks").checkEvChargeLocale({ navigate, evaluate, setViewport });
   await require("./annual-car-cost-locale-browser-checks").checkAnnualCarCostLocale({ navigate, evaluate, setViewport });
   await require("./kilometre-cost-locale-browser-checks").checkKilometreCostLocale({ navigate, evaluate, setViewport });
+  await require("./tyre-size-locale-browser-checks").checkTyreSizeLocale({ navigate, evaluate, setViewport });
 }
 module.exports = { checkLocalizationCoverage, requiresTranslation, collectMainCopy };

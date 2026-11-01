@@ -58,6 +58,7 @@ const detailPages = [
   { path: "kalkulatorok/ev-toltesi-koltseg-kalkulator.html", module: "js/autos/ev-charge-locale.js", key: "ev-toltesi-koltseg-kalkulator" },
   { path: "kalkulatorok/eves-auto-koltseg-kalkulator.html", module: "js/autos/annual-car-cost-locale.js", key: "eves-auto-koltseg-kalkulator" },
   { path: "kalkulatorok/kilometerdij-kalkulator.html", module: "js/autos/kilometre-cost-locale.js", key: "kilometerdij-kalkulator" },
+  { path: "kalkulatorok/gumi-meret-kalkulator.html", module: "js/autos/tyre-size-locale.js", key: "gumi-meret-kalkulator" },
   { path: "kalkulatorok/co2-kibocsatas-kalkulator.html", module: "js/autos/co2-locale.js", key: "co2-kibocsatas-kalkulator" }
 ];
 
