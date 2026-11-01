@@ -70,6 +70,7 @@ jobs:
           node --test scripts/kilometre-cost-locale.test.js
           node --test scripts/tyre-size-locale.test.js
           node --test scripts/braking-distance-locale.test.js
+          node --test scripts/travel-time-locale.test.js
           node --test scripts/co2-locale.test.js
           node scripts/localization-inventory.js --check
 
