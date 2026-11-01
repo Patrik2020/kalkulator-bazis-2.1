@@ -77,6 +77,7 @@
     "Becsüld meg az autó éves fenntartási költségét.": ["Estimate the annual cost of owning a car.", "Schätze die jährlichen Kosten für dein Auto."],
     "Autó és közlekedés kalkulátorok": ["Car and transport calculators", "Rechner für Auto und Verkehr"],
     "Főoldal": ["Home", "Startseite"], "Autó & közlekedés": ["Cars & transport", "Auto & Verkehr"],
+    "Hirdetés": ["Advertisement", "Anzeige"],
     "Számold ki az autótartás teljes éves költségét és a havi átlagos fenntartási terhet.": ["Calculate the total annual cost of owning your car and the average monthly cost.", "Berechne die gesamten jährlichen Autokosten und den monatlichen Durchschnitt."],
     "Éves autóköltség-tervező": ["Annual car cost planner", "Planer für jährliche Autokosten"],
     "A mezők tájékoztató tervezésre valók; hivatalos, gyártói vagy szolgáltatói adat esetén mindig azt használd.": ["These fields are for planning estimates. Use official, manufacturer or provider figures when available.", "Diese Eingaben dienen der Planung. Nutze verfügbare offizielle Angaben sowie Daten des Herstellers oder Anbieters."],

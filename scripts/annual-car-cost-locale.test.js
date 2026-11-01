@@ -12,6 +12,8 @@ test("annual car costs distinguish cash flow, depreciation and financing", () =>
   assert.equal(translate(page, "A hiteltörlesztő teljes összege költség?", "en"), "Is the whole loan payment a cost?");
   assert.equal(translate(page, "hu-HU", "de"), "de-DE");
   assert.equal(translate(page, "Gyakori kérdések", "de"), "Häufige Fragen");
+  assert.equal(translate(page, "Hirdetés", "en"), "Advertisement");
+  assert.equal(translate(page, "Hirdetés", "de"), "Anzeige");
   assert.equal(translate(page, "Annual Car Cost Calculator", "hu"), "Éves autóköltség kalkulátor");
 });
 
