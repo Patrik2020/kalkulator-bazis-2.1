@@ -11,6 +11,7 @@ test("tyre size copy distinguishes geometry from vehicle approval", () => {
   assert.ok(translate(page, "A geometriai egyezés nem jelent automatikus műszaki megfelelőséget. Csak a jármű gyártója, jóváhagyási dokumentuma vagy hiteles műszaki adat alapján engedélyezett méretet használj.", "de").includes("technische Eignung"));
   assert.equal(translate(page, "hu-HU", "de"), "de-DE");
   assert.equal(translate(page, "Hirdetés", "en"), "Advertisement");
+  assert.equal(translate(page, "R", "de"), "R");
   assert.equal(translate(page, "Tyre Size Calculator", "hu"), "Gumiméret váltó kalkulátor");
 });
 
