@@ -72,5 +72,6 @@ async function checkLocalizationCoverage({ navigate, evaluate, setViewport }) {
   await require("./deviza-locale-browser-checks").checkCurrencyLocale({ navigate, evaluate, setViewport });
   await require("./one-rep-max-locale-browser-checks").checkOneRepMaxLocale({ navigate, evaluate, setViewport });
   await require("./ev-charge-locale-browser-checks").checkEvChargeLocale({ navigate, evaluate, setViewport });
+  await require("./annual-car-cost-locale-browser-checks").checkAnnualCarCostLocale({ navigate, evaluate, setViewport });
 }
 module.exports = { checkLocalizationCoverage, requiresTranslation, collectMainCopy };
