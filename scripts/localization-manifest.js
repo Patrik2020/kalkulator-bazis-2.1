@@ -56,6 +56,7 @@ const detailPages = [
   { path: "kalkulatorok/deviza-atvalto-kalkulator.html", module: "js/atvaltok/deviza-locale.js", key: "deviza-atvalto-kalkulator" },
   { path: "kalkulatorok/egyszeri-max-1rm-kalkulator.html", module: "js/egeszseg/one-rep-max-locale.js", key: "egyszeri-max-1rm-kalkulator" },
   { path: "kalkulatorok/ev-toltesi-koltseg-kalkulator.html", module: "js/autos/ev-charge-locale.js", key: "ev-toltesi-koltseg-kalkulator" },
+  { path: "kalkulatorok/eves-auto-koltseg-kalkulator.html", module: "js/autos/annual-car-cost-locale.js", key: "eves-auto-koltseg-kalkulator" },
   { path: "kalkulatorok/co2-kibocsatas-kalkulator.html", module: "js/autos/co2-locale.js", key: "co2-kibocsatas-kalkulator" }
 ];
 
