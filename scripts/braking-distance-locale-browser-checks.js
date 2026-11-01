@@ -9,7 +9,7 @@ async function checkBrakingDistanceLocale({ navigate, evaluate, setViewport }) {
     for (const [language, heading, distance] of [["en", "Braking Distance Calculator", "13.9 m"],
       ["de", "Bremswegrechner", "13,9 m"]]) {
       await choose(language);
-      const result = JSON.parse(await evaluate(`JSON.stringify({title:document.title,heading:document.querySelector('main h1')?.textContent.trim(),result:document.getElementById('brakeResult')?.innerText,guide:document.querySelector('.calculator-guide')?.innerText,faq:document.querySelector('.faq-list')?.innerText,note:document.querySelector('.reliability-note')?.innerText,meta:document.querySelector('meta[name="description"]')?.content,schema:JSON.parse(document.getElementById('kb-structured-data').textContent),width:document.documentElement.scrollWidth})`));
+      const result = JSON.parse(await evaluate(`JSON.stringify({title:document.title,heading:document.querySelector('main h1')?.textContent.trim(),result:document.getElementById('brakeResult')?.innerText,guide:document.querySelector('.calculator-guide')?.innerText,faq:document.querySelector('.faq-list')?.textContent,note:document.querySelector('.reliability-note')?.innerText,meta:document.querySelector('meta[name="description"]')?.content,schema:JSON.parse(document.getElementById('kb-structured-data').textContent),width:document.documentElement.scrollWidth})`));
       assert.equal(result.heading, heading);
       assert.ok(result.title.includes(heading));
       assert.ok(result.result.includes(distance) && result.result.includes(language === "en" ? "Total stopping distance" : "Gesamter Anhalteweg"), result.result);
