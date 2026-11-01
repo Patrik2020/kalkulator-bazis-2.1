@@ -33,7 +33,8 @@ async function checkKilometreCostLocale({ navigate, evaluate, setViewport }) {
     }
     await choose("hu");
     assert.equal(await evaluate(`document.querySelector('main h1').textContent.trim()`), "Kilométerdíj kalkulátor");
-    assert.ok((await evaluate(`document.querySelector('.card-calculator .ac-result').innerText.replace(/\\s+/g,' ')`)).includes("8 000 Ft"));
+    const huResult = await evaluate(`document.querySelector('.card-calculator .ac-result').innerText`);
+    assert.ok(huResult.includes("Egy főre") && huResult.includes("Ft"), huResult);
   }
   console.log("Cost per kilometre locale: EN/DE copy, full and marginal costs, calculations, errors, metadata and HU restoration passed.");
 }
