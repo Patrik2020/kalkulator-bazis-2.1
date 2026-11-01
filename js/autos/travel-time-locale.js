@@ -5,7 +5,7 @@
   if (typeof module === "object" && module.exports) module.exports = api;
   if (!root?.document || new URLSearchParams(root.location.search).has("__kb_static_export")) return;
   const doc = root.document, page = "utazasi-ido-kalkulator";
-  const main = doc.querySelector('main[data-batch02-calc="utazasi-ido-kalkulator"]');
+  const main = doc.querySelector('main[data-simple-calc="utazasi-ido-kalkulator"]');
   if (!main) return;
   let language = "hu", rendering = false;
   const textState = new WeakMap(), attrState = new WeakMap(), originals = new Map();
