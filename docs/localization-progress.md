@@ -2,7 +2,7 @@
 
 Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőrzi, hogy naprakész-e.
 
-Aktív kalkulátor: **89**; részletes fordításon átesett: **58**; hátralévő: **31**.
+Aktív kalkulátor: **89**; részletes fordításon átesett: **59**; hátralévő: **30**.
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **55**.
 
@@ -86,7 +86,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/fuga-kalkulator.html | epitoipari | content-review |
 | kalkulatorok/futotempo-kalkulator.html | egeszseg | content-review |
 | kalkulatorok/gipszkarton-kalkulator.html | epitoipari | content-review |
-| kalkulatorok/gumi-meret-kalkulator.html | auto | content-review |
+| kalkulatorok/gumi-meret-kalkulator.html | auto | detail-reviewed |
 | kalkulatorok/harmasszabaly-kalkulator.html | mindennapi | content-review |
 | kalkulatorok/haszonkulcs-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/hatotav-kalkulator.html | auto | detail-reviewed |
