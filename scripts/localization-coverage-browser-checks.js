@@ -77,5 +77,6 @@ async function checkLocalizationCoverage({ navigate, evaluate, setViewport }) {
   await require("./tyre-size-locale-browser-checks").checkTyreSizeLocale({ navigate, evaluate, setViewport });
   await require("./braking-distance-locale-browser-checks").checkBrakingDistanceLocale({ navigate, evaluate, setViewport });
   await require("./travel-time-locale-browser-checks").checkTravelTimeLocale({ navigate, evaluate, setViewport });
+  await require("./fuel-price-difference-locale-browser-checks").checkFuelPriceDifferenceLocale({ navigate, evaluate, setViewport });
 }
 module.exports = { checkLocalizationCoverage, requiresTranslation, collectMainCopy };

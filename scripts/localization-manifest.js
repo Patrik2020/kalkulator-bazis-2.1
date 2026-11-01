@@ -61,6 +61,7 @@ const detailPages = [
   { path: "kalkulatorok/gumi-meret-kalkulator.html", module: "js/autos/tyre-size-locale.js", key: "gumi-meret-kalkulator" },
   { path: "kalkulatorok/fektav-kalkulator.html", module: "js/autos/braking-distance-locale.js", key: "fektav-kalkulator" },
   { path: "kalkulatorok/utazasi-ido-kalkulator.html", module: "js/autos/travel-time-locale.js", key: "utazasi-ido-kalkulator" },
+  { path: "kalkulatorok/uzemanyagar-kulonbseg-kalkulator.html", module: "js/autos/fuel-price-difference-locale.js", key: "uzemanyagar-kulonbseg-kalkulator" },
   { path: "kalkulatorok/co2-kibocsatas-kalkulator.html", module: "js/autos/co2-locale.js", key: "co2-kibocsatas-kalkulator" }
 ];
 
