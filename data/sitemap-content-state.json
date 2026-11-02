@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-30",
+  "generatedAt": "2026-11-02",
   "pages": {
     "": {
-      "hash": "69e32989731a9ce641c258daf36a0a9454c6c3461c7d95d0302a2b4c86be9dbf",
-      "lastmod": "2026-10-19"
+      "hash": "5a54495419ea2d58323da5dd8bdffba48a4f079b0e56510afc10bcb08de7ba9a",
+      "lastmod": "2026-11-02"
     },
     "penzugyi.html": {
       "hash": "1e11fa0b052e894329cd6bee91dccb8f01ee02e7704a458cb733aab39006c460",
@@ -91,20 +91,28 @@
       "lastmod": "2026-08-21"
     },
     "aktualis.html": {
-      "hash": "560da3fc88391866cc9c058d17d5ca31bb7aee32ada7217172e17fbdf4013136",
-      "lastmod": "2026-10-28"
+      "hash": "0220d8909433dba5800f6efcfcb753540c5c58af834547f040a08d3e57980e6b",
+      "lastmod": "2026-11-02"
+    },
+    "aktualis/adotorveny-javaslatok-2027-oktober.html": {
+      "hash": "c7583230350fa35da5cb67899ad13ec2836c1b151b765dc2b9599d850900d4ff",
+      "lastmod": "2026-10-31"
     },
     "aktualis/allampapir-kamatok-2026-szeptember.html": {
       "hash": "7796f4dd3dc33afc0b1ae17f4f9a31431e9103099f0ccefa2f01fa1da48f7d09",
       "lastmod": "2026-09-26"
     },
     "aktualis/csaladi-potlek-2027-duplazas-tervezete.html": {
-      "hash": "abec3b8e5f724b1b8af4fff4cdf44f93b938a9ce290162f5c421dd323ee3a7ec",
-      "lastmod": "2026-10-24"
+      "hash": "cfd1c794125ec9ac0c42ced9dac45e2e4eff84653d1e779f390755d4a96d2347",
+      "lastmod": "2026-11-02"
     },
     "aktualis/dizeltamogatas-2026.html": {
       "hash": "8daefc866cfe7209c37bdb9f99f719f5538e83bbfb0ad6986685511552a8d771",
       "lastmod": "2026-09-22"
+    },
+    "aktualis/ksh-gdp-2026-harmadik-negyedev.html": {
+      "hash": "0527c9a8b73d343bfc15917acb6591fbfa6d0074c78d8daee6c6fad46e8191f5",
+      "lastmod": "2026-10-31"
     },
     "aktualis/ksh-inflacio-2026-augusztus.html": {
       "hash": "131396f9436fb905079219bfb63eee7d3bf0c032d97b299de7a13d7c0572104a",
@@ -113,6 +121,10 @@
     "aktualis/ksh-inflacio-2026-szeptember.html": {
       "hash": "fe5682b3073ad3526a54c9bba69cb18c3ee134ae9f8d5d4b7777178921b07724",
       "lastmod": "2026-10-11"
+    },
+    "aktualis/ksh-ipari-termeloi-arak-2026-szeptember.html": {
+      "hash": "b8dd5e9bc4fa4518c8043a8ee002e770ab42db2f6fa4e859200b3b1ccdefb49d",
+      "lastmod": "2026-10-31"
     },
     "aktualis/ksh-keresetek-2026-augusztus.html": {
       "hash": "5fef9873f807bc7858895a75675996a39b4776f1b418b75a052f2fba756ad52b",
@@ -142,6 +154,10 @@
       "hash": "7c8d23a063bdf40b205050817c75ee306bb7343016f0d9b9763c7d951257955d",
       "lastmod": "2026-09-23"
     },
+    "aktualis/mnb-lakasarindex-2026-harmadik-negyedev.html": {
+      "hash": "98f422bd9ba68a79921bf96668b052711bf20d79eb90496668d072cccd5b5c3e",
+      "lastmod": "2026-10-31"
+    },
     "aktualis/nav-eafa-anyk-atallas-2026.html": {
       "hash": "1881997e1373fc130b1e4cb4916637ad3090394004297e91b0f5d51f98f97d73",
       "lastmod": "2026-10-26"
@@ -149,6 +165,10 @@
     "aktualis/nav-unios-kezelesi-dij-2026-november.html": {
       "hash": "7074cabc0c97a04713fcf084a1c638deb332ed94ae8fcca5a7325b3e0685a219",
       "lastmod": "2026-10-15"
+    },
+    "aktualis/nav-uzemanyag-elszamolasi-arak-2026-november.html": {
+      "hash": "da2164ddb293d4adfbf4df21f5d0159a2196f23357ac171cd1f3bb5b361fc8ad",
+      "lastmod": "2026-10-31"
     },
     "aktualis/nav-uzemanyag-elszamolasi-arak-2026-oktober.html": {
       "hash": "570d897f709279de412cd772cadd3562cb98359deb191f9223bfc850dbf19f0e",
@@ -159,8 +179,8 @@
       "lastmod": "2026-09-11"
     },
     "aktualis/szja-2027-bejelentett-adocsokkentes.html": {
-      "hash": "9cde998d905de4bb9acffde2c64945ba24df9106dff31536b632cc9bc07dcfa6",
-      "lastmod": "2026-10-24"
+      "hash": "0cafff4256eddc0ff12e4ca07232d1c5c7f5e8aee9a4ff6aa65e603db21c3356",
+      "lastmod": "2026-11-02"
     },
     "landing-pages/elethelyzetek/lakasvasarlas.html": {
       "hash": "ba094e67c85a7facdbcb72fb28c2177441bb6eb080c6b6c8034d4b302b197160",
