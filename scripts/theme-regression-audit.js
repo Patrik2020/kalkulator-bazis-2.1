@@ -83,7 +83,7 @@ if (!style.includes(`@import url('./pages/dark-mode-hardening.css?v=${hardeningV
 }
 
 const seasons = ['spring', 'summer', 'autumn', 'winter'];
-const events = ['halloween', 'christmas', 'newyear', 'easter'];
+const events = ['christmas', 'newyear', 'easter'];
 
 for (const season of seasons) {
   if (!seasonalCss.includes(`html[data-season="${season}"]`)) {
@@ -156,6 +156,14 @@ for (const event of events) {
   if (result.dataset.season !== 'autumn' || result.dataset.event !== event) {
     errors.push(`A kbEvent=${event} teszt override hibás.`);
   }
+}
+
+const obsoleteHalloween = runSeasonal('?kbSeason=autumn&kbEvent=halloween');
+if (obsoleteHalloween.dataset.event !== undefined) {
+  errors.push('A korábbi Halloween event override továbbra is működik.');
+}
+if (/halloween/i.test(seasonalCss) || /halloween/i.test(seasonalScript)) {
+  errors.push('Halloween kód maradt a szezonális rétegben.');
 }
 
 function cssFiles(dir) {

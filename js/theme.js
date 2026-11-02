@@ -5,10 +5,10 @@
   const storageKey = "kalkulatorbazis-theme";
   const root = document.documentElement;
   const colors = { light: "#ffffff", dark: "#111827" };
-  const seasonalCssAsset = "css/seasonal-theme.css?v=17b028ddc6f1";
+  const seasonalCssAsset = "css/seasonal-theme.css?v=0f4da9cdb9cc";
   const seasonalMotifCssAsset = "css/seasonal-autumn-motifs.css?v=5859aa36e632";
   const seasonalGlobalCssAsset = "css/seasonal-autumn-global.css?v=86603e3e382b";
-  const seasonalScriptAsset = "js/seasonal-theme.js?v=b4dad1e9d097";
+  const seasonalScriptAsset = "js/seasonal-theme.js?v=f69c8c250a39";
   const currentImpactCssAsset = "css/pages/current-impact.css?v=2d495ca7efb7";
   const currentImpactScriptAsset = "js/current-impact.js?v=7926006eea55";
 

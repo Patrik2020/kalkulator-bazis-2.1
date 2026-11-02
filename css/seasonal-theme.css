@@ -327,21 +327,6 @@ html[data-season="autumn"] body.home-page.home-professional .popular-grid .card:
 }
 
 /* Ünnepi felülírások: erősebbek az évszaknál, de továbbra sem giccsesek. */
-html[data-event="halloween"] {
-  --kb-season-accent: #d56a27;
-  --kb-season-accent-2: #8c64bc;
-  --kb-season-glow-1: rgba(214, 103, 37, 0.22);
-  --kb-season-glow-2: rgba(94, 61, 122, 0.16);
-  --kb-season-topbar: linear-gradient(90deg, #1d1820, #d46b27 50%, #6c4b88);
-}
-html[data-event="halloween"] body.home-page.home-professional {
-  --hp-blue: #d16b2e;
-  --hp-blue-strong: #a54e21;
-  --hp-blue-soft: #f6dfca;
-  --hp-navy: #382b3d;
-  --hp-navy-deep: #241d29;
-}
-
 html[data-event="christmas"] {
   --kb-season-accent: #2f7055;
   --kb-season-accent-2: #c9a84a;

@@ -6,7 +6,7 @@
 
   const root = document.documentElement;
   const VALID_SEASONS = new Set(["spring", "summer", "autumn", "winter"]);
-  const VALID_EVENTS = new Set(["halloween", "christmas", "newyear", "easter"]);
+  const VALID_EVENTS = new Set(["christmas", "newyear", "easter"]);
   const DAY_MS = 86_400_000;
 
   const budapestDateParts = (date = new Date()) => {
@@ -69,9 +69,6 @@
 
     // Advent + Christmas period. Kept restrained and brand-led, not decorative overload.
     if (month === 12 && day >= 1 && day <= 26) return "christmas";
-
-    // Halloween has a deliberately short window so autumn remains the default identity.
-    if ((month === 10 && day >= 20) || (month === 11 && day <= 2)) return "halloween";
 
     const easter = easterSunday(year);
     const delta = dayDelta(parts, easter);
