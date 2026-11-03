@@ -4,7 +4,7 @@ Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőr
 
 Aktív kalkulátor: **89**; részletes fordításon átesett: **62**; hátralévő: **27**.
 
-Kivezetett kalkulátor: **13**; egyéb oldal: **55**.
+Kivezetett kalkulátor: **13**; egyéb oldal: **56**.
 
 A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Nem jelent teljes SEO-fordítást vagy minden lehetséges interakció lefedését. A `partial` részleges fordítást, a `content-review` további tartalmi felmérést és fordítást jelent. A kivezetett oldalakhoz előbb tartalmi döntés szükséges.
 
@@ -29,6 +29,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | aktualis/mnb-alapkamat-2026-oktober.html | other | content-review |
 | aktualis/mnb-alapkamat-inflacios-cel-2026-szeptember.html | other | content-review |
 | aktualis/mnb-lakasarindex-2026-harmadik-negyedev.html | other | content-review |
+| aktualis/mnb-piacfelugyelet-befektetovedelem-2026-november.html | other | content-review |
 | aktualis/nav-eafa-anyk-atallas-2026.html | other | content-review |
 | aktualis/nav-unios-kezelesi-dij-2026-november.html | other | content-review |
 | aktualis/nav-uzemanyag-elszamolasi-arak-2026-november.html | other | content-review |

@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-02",
+  "generatedAt": "2026-11-03",
   "pages": {
     "": {
-      "hash": "5a54495419ea2d58323da5dd8bdffba48a4f079b0e56510afc10bcb08de7ba9a",
-      "lastmod": "2026-11-02"
+      "hash": "f256e695ec98cd75452294c6d66ee344235a738fbd208b9282336d1d69c9cc80",
+      "lastmod": "2026-11-03"
     },
     "penzugyi.html": {
       "hash": "1e11fa0b052e894329cd6bee91dccb8f01ee02e7704a458cb733aab39006c460",
@@ -91,8 +91,8 @@
       "lastmod": "2026-08-21"
     },
     "aktualis.html": {
-      "hash": "0220d8909433dba5800f6efcfcb753540c5c58af834547f040a08d3e57980e6b",
-      "lastmod": "2026-11-02"
+      "hash": "52d083ccf235c26c52894d7c571ca7eb1e2ab24de0a00e89ac62855f98f2c108",
+      "lastmod": "2026-11-03"
     },
     "aktualis/adotorveny-javaslatok-2027-oktober.html": {
       "hash": "c7583230350fa35da5cb67899ad13ec2836c1b151b765dc2b9599d850900d4ff",
@@ -157,6 +157,10 @@
     "aktualis/mnb-lakasarindex-2026-harmadik-negyedev.html": {
       "hash": "98f422bd9ba68a79921bf96668b052711bf20d79eb90496668d072cccd5b5c3e",
       "lastmod": "2026-10-31"
+    },
+    "aktualis/mnb-piacfelugyelet-befektetovedelem-2026-november.html": {
+      "hash": "38868a4f996b28a3370c290f8ca8bf918fea457b9c629304267530c90869b957",
+      "lastmod": "2026-11-03"
     },
     "aktualis/nav-eafa-anyk-atallas-2026.html": {
       "hash": "1881997e1373fc130b1e4cb4916637ad3090394004297e91b0f5d51f98f97d73",
