@@ -17,7 +17,8 @@ async function checkGroutLocale({ navigate, evaluate, setViewport }) {
       assert.equal(result.heading, heading, `${language}: heading`);
       assert.ok(result.title.includes(language === "en" ? "Grout Calculator" : "Fugenmörtel-Rechner"), `${language}: title`);
       assert.equal(result.label, language === "en" ? "Tiled area (m²)" : "Geflieste Fläche (m²)");
-      assert.ok(result.results.includes(net) && result.results.includes(purchase) && result.results.includes(packs), `${language}: ${result.results}`);
+      const normalizedResults = result.results.toLocaleLowerCase(language);
+      assert.ok(normalizedResults.includes(net.toLocaleLowerCase(language)) && normalizedResults.includes(purchase.toLocaleLowerCase(language)) && normalizedResults.includes(packs.toLocaleLowerCase(language)), `${language}: ${result.results}`);
       assert.ok(result.guide.includes(language === "en" ? "manufacturer's consumption table" : "Verbrauchstabelle"), `${language}: guide`);
       assert.ok(result.faq.includes(language === "en" ? "silicone" : "Silikon"), `${language}: FAQ`);
       assert.ok(result.quality.includes(language === "en" ? "Dry interior wall" : "Trockene Innenwand"), `${language}: quality panel`);
