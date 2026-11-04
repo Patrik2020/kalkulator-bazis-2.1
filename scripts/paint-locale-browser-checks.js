@@ -24,7 +24,7 @@ async function checkPaintLocale({ navigate, evaluate, setViewport }) {
       assert.ok(result.summary.includes(language === "en" ? "Painting summary" : "Anstrichübersicht"), result.summary);
       assert.ok(result.guide.includes(language === "en" ? "product data sheet" : "Produktdatenblatt"));
       assert.ok(result.faq.includes(language === "en" ? "actual consumption" : "tatsächliche Verbrauch"));
-      assert.ok(result.quality.includes(language === "en" ? "Coverage reality check" : "Deckkraft-Praxischeck"));
+      assert.ok(result.quality.includes(language === "en" ? "Coverage reality check" : "Deckkraft-Praxischeck"), `${language}: ${result.quality}`);
       assert.equal(result.adjusted, language === "en" ? "14.21 l" : "14,21 l");
       assert.equal(result.buckets, "2 × 10 l");
       assert.ok(result.meta.includes(language === "en" ? "estimate how much wall paint" : "Schätze, wie viel Wandfarbe"));
