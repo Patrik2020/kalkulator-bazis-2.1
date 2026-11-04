@@ -72,6 +72,7 @@ jobs:
           node --test scripts/braking-distance-locale.test.js
           node --test scripts/travel-time-locale.test.js
           node --test scripts/fuel-price-difference-locale.test.js
+          node --test scripts/protein-needs-locale.test.js
           node --test scripts/co2-locale.test.js
           node scripts/localization-inventory.js --check
 

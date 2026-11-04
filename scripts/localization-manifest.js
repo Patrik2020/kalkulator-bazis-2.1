@@ -62,6 +62,7 @@ const detailPages = [
   { path: "kalkulatorok/fektav-kalkulator.html", module: "js/autos/braking-distance-locale.js", key: "fektav-kalkulator" },
   { path: "kalkulatorok/utazasi-ido-kalkulator.html", module: "js/autos/travel-time-locale.js", key: "utazasi-ido-kalkulator" },
   { path: "kalkulatorok/uzemanyagar-kulonbseg-kalkulator.html", module: "js/autos/fuel-price-difference-locale.js", key: "uzemanyagar-kulonbseg-kalkulator" },
+  { path: "kalkulatorok/feherje-szukseglet-kalkulator.html", module: "js/egeszseg/protein-needs-locale.js", key: "feherje-szukseglet-kalkulator" },
   { path: "kalkulatorok/co2-kibocsatas-kalkulator.html", module: "js/autos/co2-locale.js", key: "co2-kibocsatas-kalkulator" }
 ];
 
