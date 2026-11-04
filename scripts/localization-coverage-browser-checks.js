@@ -81,5 +81,6 @@ async function checkLocalizationCoverage({ navigate, evaluate, setViewport }) {
   await require("./protein-needs-locale-browser-checks").checkProteinNeedsLocale({ navigate, evaluate, setViewport });
   await require("./paint-locale-browser-checks").checkPaintLocale({ navigate, evaluate, setViewport });
   await require("./grout-locale-browser-checks").checkGroutLocale({ navigate, evaluate, setViewport });
+  await require("./running-pace-locale-browser-checks").checkRunningPaceLocale({ navigate, evaluate, setViewport });
 }
 module.exports = { checkLocalizationCoverage, requiresTranslation, collectMainCopy };

@@ -75,6 +75,7 @@ jobs:
           node --test scripts/protein-needs-locale.test.js
           node --test scripts/paint-locale.test.js
           node --test scripts/grout-locale.test.js
+          node --test scripts/running-pace-locale.test.js
           node --test scripts/co2-locale.test.js
           node scripts/localization-inventory.js --check
 
