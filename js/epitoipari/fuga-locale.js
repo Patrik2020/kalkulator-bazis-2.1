@@ -1,0 +1,142 @@
+/* global module */
+(function (root, factory) {
+  "use strict";
+  const api = factory();
+  if (typeof module === "object" && module.exports) module.exports = api;
+  if (!root?.document || new URLSearchParams(root.location.search).has("__kb_static_export")) return;
+  const doc = root.document, page = "fuga-kalkulator", main = doc.querySelector('main[data-simple-calc="fuga-kalkulator"]');
+  if (!main) return;
+  let language = "hu", rendering = false;
+  const textState = new WeakMap(), attrState = new WeakMap(), originals = new Map();
+  function render() {
+    if (rendering) return;
+    rendering = true;
+    try {
+      const walker = doc.createTreeWalker(main, root.NodeFilter.SHOW_TEXT), nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      for (const node of nodes) {
+        if (node.parentElement?.closest("script,style,textarea,pre,code,[contenteditable],[translate='no']")) continue;
+        const current = node.nodeValue, old = textState.get(node), source = old?.rendered === current ? old.source : current;
+        const parts = /^(\s*)([\s\S]*?)(\s*)$/u.exec(source);
+        if (!parts?.[2]) continue;
+        const translated = api.translate(page, parts[2], language), value = parts[1] + (translated ?? parts[2]) + parts[3];
+        if (value !== current) node.nodeValue = value;
+        if (translated !== null || old) textState.set(node, { source, rendered: value });
+      }
+      main.querySelectorAll("[aria-label],[placeholder],[title]").forEach(element => {
+        let state = attrState.get(element); if (!state) { state = new Map(); attrState.set(element, state); }
+        for (const name of ["aria-label", "placeholder", "title"]) if (element.hasAttribute(name)) {
+          const current = element.getAttribute(name), old = state.get(name), source = old?.rendered === current ? old.source : current;
+          const value = api.translate(page, source, language) ?? source;
+          if (value !== current) element.setAttribute(name, value);
+          state.set(name, { source, rendered: value });
+        }
+      });
+      const errorLink = main.querySelector('a[href^="mailto:"][href*="subject="]');
+      if (errorLink) {
+        const source = originals.has("errorHref") ? originals.get("errorHref") : errorLink.getAttribute("href");
+        originals.set("errorHref", source); errorLink.setAttribute("href", api.localizeReportHref(source, language));
+      }
+      const structured = doc.getElementById("kb-structured-data");
+      if (structured) {
+        if (!originals.has("jsonld")) originals.set("jsonld", structured.textContent);
+        try { structured.textContent = JSON.stringify(localize(JSON.parse(originals.get("jsonld")))); } catch { /* Keep source data. */ }
+      }
+      for (const selector of ["title", 'meta[name="description"]', 'meta[property="og:title"]', 'meta[property="og:description"]', 'meta[name="twitter:title"]', 'meta[name="twitter:description"]']) {
+        const element = doc.querySelector(selector); if (!element) continue;
+        const source = originals.has(selector) ? originals.get(selector) : (selector === "title" ? element.textContent : element.content);
+        originals.set(selector, source); const value = api.translate(page, source, language) ?? source;
+        if (selector === "title") element.textContent = value; else element.content = value;
+      }
+    } finally { rendering = false; }
+  }
+  function localize(value) {
+    if (typeof value === "string") return api.translate(page, value, language) ?? value;
+    if (Array.isArray(value)) return value.map(localize);
+    if (value && typeof value === "object") return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, localize(item)]));
+    return value;
+  }
+  function choose(next) { language = api.supported.includes(next) ? next : "hu"; render(); }
+  doc.addEventListener("kb:language-changed", event => choose(event.detail?.language || "hu"));
+  choose(root.KB_SITE_LANGUAGE?.get?.() || "hu");
+  new root.MutationObserver(changes => { if (changes.some(change => change.type === "childList" || change.type === "characterData")) render(); }).observe(main, { childList: true, characterData: true, subtree: true });
+})(typeof window === "undefined" ? null : window, function () {
+  "use strict";
+  const page = "fuga-kalkulator";
+  const entries = [
+    ["hu-HU","en-GB","de-DE"],
+    ["Fugakalkulátor – fugázóanyag mennyiség és szükséglet","Grout Calculator – Quantity and Material Requirement","Fugenmörtel-Rechner – Menge und Materialbedarf"],
+    ["Fugakalkulátor csempe és járólap burkoláshoz: számold ki a szükséges fugázóanyag mennyiségét lapméret, fugaszélesség, mélység, felület és ráhagyás alapján.","Grout calculator for wall and floor tiles: estimate the required grout from tile size, joint width, depth, area and allowance.","Fugenmörtel-Rechner für Wand- und Bodenfliesen: Berechne den Bedarf anhand von Fliesenformat, Fugenbreite, Tiefe, Fläche und Zuschlag."],
+    ["Fuga kalkulátor","Grout Calculator","Fugenmörtel-Rechner"],
+    ["Számold ki a várható fugázóanyag-szükségletet burkoláshoz.","Estimate the grout required for a tiling project.","Schätze den Fugenmörtelbedarf für dein Fliesenprojekt."],
+    ["Otthon és felújítás kalkulátorok","Home and renovation calculators","Rechner für Haus und Renovierung"],
+    ["Főoldal","Home","Startseite"],["Otthon & felújítás","Home & renovation","Haus & Renovierung"],
+    ["Fugakalkulátor – fugázóanyag mennyiség kalkulátor","Grout Calculator – Estimate Grout Quantity","Fugenmörtel-Rechner – Fugenmörtelmenge berechnen"],
+    ["Becsüld meg, mennyi fugázóanyag kell a megadott burkolathoz, lapmérethez és fugaszélességhez.","Estimate how much grout you need for the specified tiled area, tile size and joint width.","Schätze, wie viel Fugenmörtel du für die angegebene Fläche, das Fliesenformat und die Fugenbreite benötigst."],
+    ["Részletes anyagtervező","Detailed material planner","Detaillierter Materialplaner"],
+    ["Fugázóanyag-tervező lapvastagsággal","Grout planner with tile thickness","Fugenmörtelplaner mit Fliesendicke"],
+    ["A lapméret, fugaszélesség, fugamélység, anyagsűrűség, csomagméret és ráhagyás alapján számol.","Calculates from tile size, joint width, joint depth, material density, pack size and allowance.","Berechnet den Bedarf anhand von Fliesenformat, Fugenbreite, Fugentiefe, Materialdichte, Packungsgröße und Zuschlag."],
+    ["Burkolt felület (m²)","Tiled area (m²)","Geflieste Fläche (m²)"],["Lap hossza (mm)","Tile length (mm)","Fliesenlänge (mm)"],["Lap szélessége (mm)","Tile width (mm)","Fliesenbreite (mm)"],
+    ["Lap vastagsága (mm)","Tile thickness (mm)","Fliesendicke (mm)"],["Fugaszélesség (mm)","Joint width (mm)","Fugenbreite (mm)"],["Fugamélység a lapvastagság %-ában","Joint depth as % of tile thickness","Fugentiefe in % der Fliesendicke"],
+    ["Fugázóanyag sűrűségi tényezője","Grout density factor","Dichtefaktor des Fugenmörtels"],["Csomag mérete (kg)","Pack size (kg)","Packungsgröße (kg)"],["Anyagveszteség","Material allowance","Materialzuschlag"],
+    ["5% – egyszerű, kevés vágás","5% – simple layout, few cuts","5 % – einfache Verlegung, wenige Schnitte"],["8% – általános","8% – typical","8 % – üblich"],["12% – sok vágás / mintázat","12% – many cuts / pattern","12 % – viele Schnitte / Muster"],["15% – bonyolult felület","15% – complex area","15 % – komplexe Fläche"],
+    ["Anyagigény kiszámítása","Calculate material requirement","Materialbedarf berechnen"],["Alapértékek visszaállítása","Reset defaults","Standardwerte wiederherstellen"],
+    ["Számított fugamélység","Calculated joint depth","Berechnete Fugentiefe"],["Nettó fugázóanyag","Net grout requirement","Netto-Fugenmörtelbedarf"],["Vásárolandó mennyiség","Quantity to purchase","Zu kaufende Menge"],["Szükséges csomag","Packs required","Benötigte Packungen"],
+    ["A fugamélység aránya legfeljebb 100% lehet.","The joint depth ratio must not exceed 100%.","Der Fugentiefenanteil darf höchstens 100 % betragen."],
+    ["Hasznos volt ez a kalkulátor?","Was this calculator useful?","War dieser Rechner hilfreich?"],["Ne keresd újra. Mentsd le. Használd.","Don't search again. Save it. Use it.","Nicht erneut suchen. Speichern. Wiederverwenden."],
+    ["Tedd el a Kalkulátor Bázist, hogy legközelebb egy mozdulattal visszatalálj ehhez a számításhoz – vagy oszd meg azzal, akinek szintén jól jöhet.","Save Kalkulátor Bázis so you can return to this calculation in one click, or share it with someone who may find it useful.","Speichere Kalkulátor Bázis, damit du mit einem Klick zu dieser Berechnung zurückkehren kannst, oder teile sie mit jemandem, für den sie nützlich sein könnte."],
+    ["Mentési, telepítési és megosztási műveletek","Bookmarking, installation and sharing actions","Aktionen zum Speichern, Installieren und Teilen"],["Könyvjelzőzöm","Bookmark","Lesezeichen"],["Telepítem","Install","Installieren"],["Megosztom","Share","Teilen"],
+    ["Nyisd meg a böngésződ menüjét, és keresd a Könyvjelző, Kedvencek vagy Mentés lehetőséget.","Open your browser menu and look for Bookmark, Favorites or Save.","Öffne das Browsermenü und suche nach Lesezeichen, Favoriten oder Speichern."],["Másold ki ezt a hivatkozást, és küldd tovább.","Copy this link and share it.","Kopiere diesen Link und teile ihn."],
+    ["Fugázóanyag-szükséglet előzetes becslése","Estimating grout requirements","Fugenmörtelbedarf vorab schätzen"],
+    ["A kalkulátor a burkolt felület, a lapok mérete, a fugaszélesség és a fugamélység alapján becsüli meg a szükséges fugázóanyag tömegét. Kisebb lapoknál ugyanakkora felületen több fugavonal található, ezért az anyagigény is nagyobb lehet.","The calculator estimates grout weight from the tiled area, tile dimensions, joint width and joint depth. Smaller tiles create more joint lines over the same area and may therefore require more material.","Der Rechner schätzt die Fugenmörtelmenge anhand der gefliesten Fläche, der Fliesenmaße, der Fugenbreite und der Fugentiefe. Kleinere Fliesen ergeben auf derselben Fläche mehr Fugen und können deshalb mehr Material erfordern."],
+    ["Az eredmény tájékoztató. A tényleges fogyást befolyásolja a termék sűrűsége, a lap éle, a valós fugamélység, az aljzat és a bedolgozási veszteség. Vásárlás előtt a konkrét fugázó gyártói fogyási táblázatát is ellenőrizd.","The result is an estimate. Actual consumption depends on product density, tile edges, the true joint depth, the substrate and application losses. Before buying, also check the selected grout manufacturer's consumption table.","Das Ergebnis ist eine Schätzung. Der tatsächliche Verbrauch hängt von Produktdichte, Fliesenkanten, tatsächlicher Fugentiefe, Untergrund und Verarbeitungsverlusten ab. Prüfe vor dem Kauf auch die Verbrauchstabelle des gewählten Fugenmörtels."],
+    ["Hogyan számol?","How does it calculate?","Wie wird gerechnet?"],["A becslés a lap hosszát és szélességét, a fuga keresztmetszetét és egy közelítő sűrűségi tényezőt kombinálja. Ezért ugyanakkora 20 m² felülethez mozaiknál jóval több anyag kellhet, mint nagyformátumú lapoknál.","The estimate combines tile length and width, the joint cross-section and an approximate density factor. A 20 m² mosaic area may therefore need far more grout than the same area covered with large-format tiles.","Die Schätzung kombiniert Fliesenlänge und -breite, den Fugenquerschnitt und einen angenäherten Dichtefaktor. Für 20 m² Mosaik kann daher deutlich mehr Material nötig sein als für dieselbe Fläche mit großformatigen Fliesen."],
+    ["Példa 30 × 30 cm-es lapokra","Example with 30 × 30 cm tiles","Beispiel mit 30 × 30 cm großen Fliesen"],["20 m² burkolatnál, 300 × 300 mm-es lappal, 3 mm széles és 8 mm mély fugával a becslés körülbelül 5,1 kg lehet. 5 kg-os kiszerelésből emiatt 2 csomaggal kell számolni.","For 20 m² of 300 × 300 mm tiles with 3 mm wide and 8 mm deep joints, the estimate is about 5.1 kg. You would therefore need 2 packs of 5 kg.","Für 20 m² mit 300 × 300 mm großen Fliesen sowie 3 mm breiten und 8 mm tiefen Fugen ergibt sich eine Schätzung von rund 5,1 kg. Bei 5-kg-Packungen sind daher 2 Packungen nötig."],
+    ["A fugamélység nem mindig a lapvastagság","Joint depth is not always the tile thickness","Die Fugentiefe entspricht nicht immer der Fliesendicke"],["A tényleges kitöltési mélységet befolyásolhatja a ragasztó, a lap élkialakítása és a fugatisztítás. Ha túl nagy mélységet adsz meg, a kalkulátor túlbecsülhet, ha túl kicsit, akkor alábecsülhet.","The actual fill depth may be affected by adhesive, tile-edge design and joint cleaning. Entering too great a depth can overestimate demand; too little can underestimate it.","Die tatsächliche Fülltiefe kann durch Kleber, Kantenausbildung und Fugenreinigung beeinflusst werden. Eine zu große Tiefe kann den Bedarf überschätzen, eine zu kleine ihn unterschätzen."],
+    ["Cementes és epoxi fuga","Cementitious and epoxy grout","Zementärer und Epoxid-Fugenmörtel"],["Eltérő terméktípusok sűrűsége és feldolgozási vesztesége különbözhet. Epoxi fugánál vagy speciális ipari terméknél a gyártói kalkulátor, adatlap és kiszerelés az elsődleges. A jelenlegi eredményt ilyenkor inkább ellenőrző becslésként használd.","Different products can have different densities and application losses. For epoxy grout or specialist industrial products, the manufacturer's calculator, data sheet and pack sizes take priority. Use this result only as a cross-check in those cases.","Verschiedene Produkte können unterschiedliche Dichten und Verarbeitungsverluste haben. Bei Epoxid-Fugenmörtel oder speziellen Industrieprodukten sind Herstellerrechner, Datenblatt und Packungsgrößen maßgeblich. Nutze dieses Ergebnis dann nur als Gegenprüfung."],
+    ["A dilatáció nem normál fuga","Movement joints are not ordinary grout joints","Bewegungsfugen sind keine normalen Fugen"],["Sarkoknál, szerkezeti mozgási hézagoknál és bizonyos csatlakozásoknál rugalmas tömítőanyagra lehet szükség. Ezeket nem szabad egyszerűen normál fugázóanyaggal kiváltani, és a kalkulátor a szilikon vagy más rugalmas tömítő mennyiségét nem számolja.","Corners, structural movement joints and certain connections may require a flexible sealant. Ordinary grout must not simply replace it, and this calculator does not estimate silicone or other flexible sealants.","An Ecken, konstruktiven Bewegungsfugen und bestimmten Anschlüssen kann ein elastischer Dichtstoff erforderlich sein. Normaler Fugenmörtel darf ihn nicht einfach ersetzen; Silikon oder andere elastische Dichtstoffe berechnet dieser Rechner nicht."],
+    ["Gyakori hibák","Common mistakes","Häufige Fehler"],["A lapméretet centiméterben írják be, miközben a mező millimétert kér.","Entering tile dimensions in centimetres even though the field requires millimetres.","Fliesenmaße in Zentimetern eingeben, obwohl das Feld Millimeter verlangt."],["A fugaszélességet és a mélységet felcserélik.","Swapping joint width and depth.","Fugenbreite und Fugentiefe verwechseln."],["Nem számolnak mosási és bedolgozási veszteséggel.","Ignoring washing and application losses.","Wasch- und Verarbeitungsverluste nicht berücksichtigen."],["A termék gyártói fogyási adatát nem ellenőrzik.","Not checking the manufacturer's consumption data.","Die Verbrauchsangabe des Herstellers nicht prüfen."],["Dilatációs hézaghoz normál fugázót terveznek.","Planning ordinary grout for a movement joint.","Normalen Fugenmörtel für eine Bewegungsfuge vorsehen."],
+    ["Gyakori kérdések","Frequently asked questions","Häufige Fragen"],["Miért kell több anyag kisebb laphoz?","Why do smaller tiles need more material?","Warum benötigen kleinere Fliesen mehr Material?"],["Mert ugyanakkora területen több lapél és több fugavonal található.","Because the same area contains more tile edges and joint lines.","Weil dieselbe Fläche mehr Fliesenkanten und Fugen enthält."],["Epoxi fugára is jó?","Does it work for epoxy grout?","Eignet er sich auch für Epoxid-Fugenmörtel?"],["Csak durva becslésként; a konkrét gyártói fogyási adat az elsődleges.","Only as a rough estimate; the manufacturer's specific consumption data takes priority.","Nur als grobe Schätzung; maßgeblich ist die konkrete Verbrauchsangabe des Herstellers."],["Mekkora tartalékot vegyek?","How much extra should I buy?","Wie viel Reserve sollte ich kaufen?"],["A felület bonyolultságától és a kivitelezéstől függ, de egy kisebb biztonsági tartalék általában életszerű.","It depends on the complexity and the work, but a modest safety allowance is usually reasonable.","Das hängt von der Komplexität und Ausführung ab; eine kleine Sicherheitsreserve ist meist sinnvoll."],["A szilikon is benne van?","Is silicone included?","Ist Silikon enthalten?"],["Nem. A rugalmas csatlakozások tömítőanyagát külön kell számolni.","No. Sealant for flexible connections must be calculated separately.","Nein. Dichtstoff für elastische Anschlüsse muss separat berechnet werden."],["Kültérre ugyanígy számoljak?","Should I calculate outdoor areas the same way?","Kann ich Außenbereiche genauso berechnen?"],["A mennyiség becslése hasonló lehet, de a megfelelő terméktípust, fugaszélességet és dilatációt külön ellenőrizni kell.","The quantity estimate may be similar, but product type, joint width and movement joints must be checked separately.","Die Mengenschätzung kann ähnlich sein; Produkttyp, Fugenbreite und Bewegungsfugen müssen jedoch separat geprüft werden."],
+    ["Kapcsolódó kalkulátorok","Related calculators","Verwandte Rechner"],["Csempe kalkulátor","Tile Calculator","Fliesenrechner"],["Padlóburkolat kalkulátor","Flooring Calculator","Bodenbelag-Rechner"],["Vakolat kalkulátor","Plaster Calculator","Putzrechner"],["Utolsó tartalmi frissítés:","Last content update:","Letzte inhaltliche Aktualisierung:"],["2026. augusztus 8.","8 August 2026","8. August 2026"],
+    ["Hitelesség és számítási korlátok","Reliability and calculation limits","Verlässlichkeit und Grenzen der Berechnung"],["Az eredmény a megadott méretek és anyagjellemzők alapján készült becslés. Beszerzés előtt ellenőrizd a gyártói kiadósságot, a helyszíni adottságokat és a szükséges ráhagyást.","The result is an estimate based on the dimensions and material properties entered. Before buying, check the manufacturer's coverage data, site conditions and the allowance required.","Das Ergebnis ist eine Schätzung anhand der eingegebenen Maße und Materialeigenschaften. Prüfe vor dem Kauf die Herstellerangaben zum Verbrauch, die Bedingungen vor Ort und den benötigten Zuschlag."],["A számítások módszertana és minőségbiztosítása","Calculation methodology and quality assurance","Berechnungsmethodik und Qualitätssicherung"],["Hibát találtál? Jelezd nekünk.","Found an error? Let us know.","Fehler gefunden? Melde ihn uns."],
+    ["Fugázási használati zóna","Grout application zone","Einsatzbereich des Fugenmörtels"],["Az anyagmennyiség mellett azt is döntsd el, milyen terhelést kap a fuga","Alongside quantity, decide what exposure the grout must withstand","Bestimme neben der Menge auch, welchen Belastungen die Fuge ausgesetzt ist"],["Felhasználási hely","Application area","Einsatzbereich"],["Száraz beltéri fal","Dry interior wall","Trockene Innenwand"],["Beltéri padló","Interior floor","Innenboden"],["Zuhany / vizes zóna","Shower / wet area","Dusche / Nassbereich"],["Kültéri burkolat","Outdoor tiling","Außenbelag"],
+    ["Száraz beltéri fal:","Dry interior wall:","Trockene Innenwand:"],["a szín és tisztíthatóság mellett a gyártói kompatibilitás a fő ellenőrzési pont.","alongside colour and cleanability, manufacturer compatibility is the main point to check.","neben Farbe und Reinigungsfähigkeit ist vor allem die Herstellerkompatibilität zu prüfen."],["Beltéri padló:","Interior floor:","Innenboden:"],["kopás, takaríthatóság és a burkolat mozgása miatt a megfelelő fugázó- és dilatációs rendszer fontos.","wear, cleanability and movement in the covering make the correct grout and movement-joint system important.","wegen Verschleiß, Reinigungsfähigkeit und Bewegung des Belags ist das richtige Fugen- und Bewegungsfugensystem wichtig."],["Vizes zóna:","Wet area:","Nassbereich:"],["a fuga nem helyettesíti a burkolat mögötti vízszigetelést; sarkok és csatlakozások külön csomópontok.","grout does not replace waterproofing behind the tiles; corners and connections require separate detailing.","Fugenmörtel ersetzt nicht die Abdichtung hinter den Fliesen; Ecken und Anschlüsse sind gesonderte Details."],["Kültér:","Outdoors:","Außenbereich:"],["fagy, víz, hőmozgás és dilatáció miatt csak a teljes kültéri burkolati rendszerrel együtt értelmezd.","because of frost, water, thermal movement and movement joints, assess it only as part of the complete outdoor tiling system.","wegen Frost, Wasser, Temperaturbewegung und Bewegungsfugen ist dies nur zusammen mit dem vollständigen Außenbelagssystem zu beurteilen."],
+    ["A fogyást a lapméret mellett a fugaszélesség és a tényleges kitöltési mélység is befolyásolja. Ugyanazon m²-en kis lapból több fugahossz adódik, mint nagy lapból.","Consumption depends not only on tile size, but also on joint width and actual fill depth. Small tiles produce more joint length per square metre than large tiles.","Der Verbrauch hängt neben dem Fliesenformat auch von Fugenbreite und tatsächlicher Fülltiefe ab. Kleine Fliesen ergeben pro Quadratmeter mehr Fugenlänge als große."],
+    ["Mitől változik a fugázóanyag mennyisége?","What changes the amount of grout required?","Wodurch verändert sich die benötigte Fugenmörtelmenge?"],["A burkolat felülete mellett a lap méretét, fugaszélességet, fugamélységet és a megadott anyagjellemzőt használja. Ezért ugyanazon m² mellett a kisebb lap és szélesebb/mélyebb fuga több anyagot igényelhet.","The calculation uses tile dimensions, joint width, joint depth and the entered material property as well as the tiled area. Smaller tiles and wider or deeper joints may therefore require more material for the same area.","Die Berechnung verwendet neben der Fläche auch Fliesenformat, Fugenbreite, Fugentiefe und die eingegebene Materialeigenschaft. Kleinere Fliesen sowie breitere oder tiefere Fugen können daher bei gleicher Fläche mehr Material benötigen."],
+    ["egyszerű, kevés vágás","simple, few cuts","einfach, wenige Schnitte"],["általános kiindulás","typical starting point","üblicher Ausgangswert"],["sok vágás vagy minta","many cuts or a pattern","viele Schnitte oder Muster"],["összetett felület","complex area","komplexe Fläche"],
+    ["Gyártói adatlap az elsődleges.","The manufacturer's data sheet takes priority.","Das Herstellerdatenblatt ist maßgeblich."],["Ellenőrzési alap:","Basis for verification:","Prüfgrundlage:"],["A fugázó sűrűségét vagy gyártói fogyási képletét a kiválasztott termék adatlapja alapján ellenőrizd. Speciális epoxi vagy más rendszer eltérő számítási alapot használhat.","Check grout density or the manufacturer's consumption formula against the selected product's data sheet. Specialist epoxy or other systems may use a different basis for calculation.","Prüfe die Dichte des Fugenmörtels oder die Verbrauchsformel des Herstellers anhand des Datenblatts des gewählten Produkts. Spezielle Epoxid- oder andere Systeme können eine abweichende Berechnungsgrundlage verwenden."],
+    ["Két példaszámítás","Two worked examples","Zwei Rechenbeispiele"],["1. példa","Example 1","Beispiel 1"],["20 m² felület, 60 × 30 cm-es lap, 3 mm fuga és 9 mm mélység mellett a fogyás jóval kisebb, mint apró mozaiklapnál.","For a 20 m² area with 60 × 30 cm tiles, a 3 mm joint and 9 mm depth, consumption is much lower than with small mosaic tiles.","Bei 20 m² Fläche, 60 × 30 cm großen Fliesen, 3 mm Fugenbreite und 9 mm Tiefe ist der Verbrauch deutlich geringer als bei kleinen Mosaikfliesen."],["2. példa","Example 2","Beispiel 2"],["Ha a fugát nem töltik ki a teljes lapvastagságig, a mélységi százalék csökkenthető, de a gyártói képletet kell követni.","If the joint is not filled to the full tile thickness, the depth percentage can be reduced, but the manufacturer's formula must be followed.","Wird die Fuge nicht über die gesamte Fliesendicke gefüllt, kann der Tiefenanteil reduziert werden; die Herstellerformel ist jedoch einzuhalten."],
+    ["A kalkulátor korlátai","Calculator limitations","Grenzen des Rechners"],["Nem méri a tényleges fugamélység helyszíni változását.","It does not measure variations in actual joint depth on site.","Er erfasst keine örtlichen Schwankungen der tatsächlichen Fugentiefe."],["Nem számol külön dilatációs és rugalmas hézagkitöltő anyaggal.","It does not separately calculate movement-joint or flexible joint filler.","Er berechnet Material für Bewegungsfugen oder elastische Fugenfüller nicht separat."],["A mosási és kivitelezési veszteség termék- és munkamódszerfüggő.","Washing and installation losses depend on the product and working method.","Wasch- und Ausführungsverluste hängen vom Produkt und der Arbeitsweise ab."],["Módszertani ellenőrzés:","Methodology reviewed:","Methodik geprüft:"],["2026. szeptember 16.","16 September 2026","16. September 2026"],["Hirdetés","Advertisement","Anzeige"]
+  ];
+  const dictionary = Object.freeze(Object.fromEntries(entries.map(([source, en, de]) => [source, [en, de]])));
+  const supported = Object.freeze(["hu", "en", "de"]), reverse = new Map();
+  for (const [source, pair] of Object.entries(dictionary)) for (const localized of pair) if (localized !== source && !reverse.has(localized)) reverse.set(localized, source);
+  const labels = { "Felület": ["Area", "Fläche"], "Laphossz": ["Tile length", "Fliesenlänge"], "Lapszélesség": ["Tile width", "Fliesenbreite"], "Fugamélység aránya": ["Joint depth ratio", "Fugentiefenanteil"], "Lapvastagság": ["Tile thickness", "Fliesendicke"], "Fugaszélesség": ["Joint width", "Fugenbreite"], "Sűrűségi tényező": ["Density factor", "Dichtefaktor"], "Anyagveszteség": ["Material allowance", "Materialzuschlag"], "Csomagméret": ["Pack size", "Packungsgröße"] };
+  const locale = language => language === "en" ? "en-GB" : "de-DE";
+  const parseHu = value => Number(value.replace(/[\s\u00a0]/gu, "").replace(/\./gu, "").replace(/,/gu, "."));
+  const format = (value, language, maximum = 2) => new Intl.NumberFormat(locale(language), { maximumFractionDigits: maximum }).format(value);
+  function translate(scope, value, language) {
+    if (scope !== page || typeof value !== "string" || !supported.includes(language)) return null;
+    const normalized = value.trim().replace(/\s+/gu, " ");
+    if (language === "hu") return reverse.get(normalized) ?? null;
+    const pair = dictionary[normalized] || dictionary[reverse.get(normalized)];
+    if (pair) return pair[language === "en" ? 0 : 1];
+    let match = /^(\d[\d.,\s]*) (mm|kg)$/u.exec(normalized);
+    if (match) return `${format(parseHu(match[1]), language, match[2] === "mm" ? 1 : 2)} ${match[2]}`;
+    match = /^(\d+) db$/u.exec(normalized);
+    if (match) return `${format(Number(match[1]), language, 0)} ${language === "en" ? (match[1] === "1" ? "pack" : "packs") : (match[1] === "1" ? "Packung" : "Packungen")}`;
+    match = /^(.+): adj meg nullánál nagyobb értéket\.$/u.exec(normalized);
+    if (match && labels[match[1]]) return `${labels[match[1]][language === "en" ? 0 : 1]}: ${language === "en" ? "enter a value greater than zero." : "Gib einen Wert größer als null ein."}`;
+    match = /^(.+): adj meg nulla vagy pozitív értéket\.$/u.exec(normalized);
+    if (match && labels[match[1]]) return `${labels[match[1]][language === "en" ? 0 : 1]}: ${language === "en" ? "enter zero or a positive value." : "Gib null oder einen positiven Wert ein."}`;
+    return null;
+  }
+  function localizeReportHref(sourceHref, language) {
+    if (language === "hu" || !supported.includes(language)) return sourceHref;
+    const url = new URL(sourceHref), copy = language === "en" ? {
+      subject: "Error report – Grout Calculator", body: "Calculator: Grout Calculator\nPage: https://kalkulatorbazis.hu/kalkulatorok/fuga-kalkulator.html\n\nBriefly describe the issue:\n"
+    } : { subject: "Fehlermeldung – Fugenmörtel-Rechner", body: "Rechner: Fugenmörtel-Rechner\nSeite: https://kalkulatorbazis.hu/kalkulatorok/fuga-kalkulator.html\n\nBeschreibe den Fehler kurz:\n" };
+    url.searchParams.set("subject", copy.subject); url.searchParams.set("body", copy.body); return url.toString();
+  }
+  return { pages: Object.freeze([page]), dictionaries: Object.freeze({ [page]: dictionary }), dictionary, supported, translate, localizeReportHref };
+});

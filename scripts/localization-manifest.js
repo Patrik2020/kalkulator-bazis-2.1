@@ -64,6 +64,7 @@ const detailPages = [
   { path: "kalkulatorok/uzemanyagar-kulonbseg-kalkulator.html", module: "js/autos/fuel-price-difference-locale.js", key: "uzemanyagar-kulonbseg-kalkulator" },
   { path: "kalkulatorok/feherje-szukseglet-kalkulator.html", module: "js/egeszseg/protein-needs-locale.js", key: "feherje-szukseglet-kalkulator" },
   { path: "kalkulatorok/festek-kalkulator.html", module: "js/epitoipari/festek-locale.js", key: "festek-kalkulator" },
+  { path: "kalkulatorok/fuga-kalkulator.html", module: "js/epitoipari/fuga-locale.js", key: "fuga-kalkulator" },
   { path: "kalkulatorok/co2-kibocsatas-kalkulator.html", module: "js/autos/co2-locale.js", key: "co2-kibocsatas-kalkulator" }
 ];
 
