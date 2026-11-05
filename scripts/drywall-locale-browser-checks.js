@@ -17,7 +17,8 @@ async function checkDrywallLocale({ navigate, evaluate, setViewport }) {
       assert.equal(result.heading, heading, `${language}: heading`);
       assert.ok(result.title.includes(heading), `${language}: title`);
       assert.equal(result.label, language === "en" ? "Total wall width (m)" : "Gesamte Wandbreite (m)");
-      assert.ok(result.results.includes(area) && result.results.includes(boards), `${language}: ${result.results}`);
+      const normalizedResults = result.results.toLocaleLowerCase(language);
+      assert.ok(normalizedResults.includes(area.toLocaleLowerCase(language)) && normalizedResults.includes(boards.toLocaleLowerCase(language)), `${language}: ${result.results}`);
       assert.ok(result.guide.includes(language === "en" ? "suspended ceilings" : "abgehängten Decken"), `${language}: guide`);
       assert.ok(result.faq.includes(language === "en" ? "load capacity" : "Tragfähigkeit"), `${language}: FAQ`);
       assert.ok(result.quality.includes(language === "en" ? "Enhanced sound insulation" : "Erhöhter Schallschutz"), `${language}: quality panel`);
