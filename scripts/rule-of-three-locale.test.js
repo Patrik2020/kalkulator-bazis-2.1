@@ -19,6 +19,8 @@ test("dynamic labels, errors and locale-aware numbers retain their meaning", () 
   assert.equal(locale.translate(page, "Szorzótényező A → C", "de"), "Skalierungsfaktor A → C");
   assert.equal(locale.translate(page, "A: adj meg érvényes számot.", "en"), "A: enter a valid number.");
   assert.equal(locale.translate(page, "A nem lehet nulla, mert osztóként szerepel a képletben.", "de"), "A darf nicht null sein, da es in der Formel als Divisor verwendet wird.");
+  assert.equal(locale.translate(page, "A : B = C : X", "en"), "A : B = C : X");
+  assert.equal(locale.translate(page, "X = B × C / A", "de"), "X = B × C / A");
   assert.equal(locale.formatNumber(7.5, "en"), "7.5");
   assert.equal(locale.formatNumber(7.5, "de"), "7,5");
   assert.equal(locale.formatNumber(7.5, "hu"), "7,5");
