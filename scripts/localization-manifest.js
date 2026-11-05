@@ -67,6 +67,7 @@ const detailPages = [
   { path: "kalkulatorok/fuga-kalkulator.html", module: "js/epitoipari/fuga-locale.js", key: "fuga-kalkulator" },
   { path: "kalkulatorok/futotempo-kalkulator.html", module: "js/egeszseg/running-pace-locale.js", key: "futotempo-kalkulator" },
   { path: "kalkulatorok/gipszkarton-kalkulator.html", module: "js/epitoipari/drywall-locale.js", key: "gipszkarton-kalkulator" },
+  { path: "kalkulatorok/harmasszabaly-kalkulator.html", module: "js/altalanos/rule-of-three-locale.js", key: "harmasszabaly-kalkulator" },
   { path: "kalkulatorok/co2-kibocsatas-kalkulator.html", module: "js/autos/co2-locale.js", key: "co2-kibocsatas-kalkulator" }
 ];
 
