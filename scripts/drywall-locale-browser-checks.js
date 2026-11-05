@@ -20,7 +20,7 @@ async function checkDrywallLocale({ navigate, evaluate, setViewport }) {
       const normalizedResults = result.results.toLocaleLowerCase(language);
       assert.ok(normalizedResults.includes(area.toLocaleLowerCase(language)) && normalizedResults.includes(boards.toLocaleLowerCase(language)), `${language}: ${result.results}`);
       assert.ok(result.guide.includes(language === "en" ? "suspended ceilings" : "abgehängten Decken"), `${language}: guide`);
-      assert.ok(result.faq.includes(language === "en" ? "load capacity" : "Tragfähigkeit"), `${language}: FAQ`);
+      assert.ok(result.faq.toLocaleLowerCase(language).includes(language === "en" ? "load capacity" : "tragfähigkeit"), `${language}: FAQ`);
       assert.ok(result.quality.includes(language === "en" ? "Enhanced sound insulation" : "Erhöhter Schallschutz"), `${language}: quality panel`);
       assert.ok(result.method.includes(language === "en" ? "manufacturer's documentation" : "Herstellerdokumentation"), `${language}: methodology`);
       assert.ok(result.meta.includes(language === "en" ? "Drywall calculator" : "Trockenbau-Rechner"), `${language}: metadata`);
