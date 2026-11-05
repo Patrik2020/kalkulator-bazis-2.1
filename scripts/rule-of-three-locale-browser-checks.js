@@ -6,14 +6,14 @@ async function checkRuleOfThreeLocale({ navigate, evaluate, setViewport }) {
   for (const width of [390, 1440]) {
     await setViewport(width, 1000);
     await navigate("/kalkulatorok/harmasszabaly-kalkulator.html");
-    const before = await evaluate(`JSON.stringify([...document.querySelectorAll('#kalkulator input')].map(x=>[x.id,x.value]))`);
+    const before = await evaluate(`JSON.stringify([...document.querySelectorAll('#ruleA,#ruleB,#ruleC')].map(x=>[x.id,x.value]))`);
     for (const [language, heading, value, factor, error] of [
       ["en", "Rule of Three Calculator", "7.5", "2.5", "A cannot be zero because it is the divisor in the formula."],
       ["de", "Dreisatz-Rechner", "7,5", "2,5", "A darf nicht null sein, da es in der Formel als Divisor verwendet wird."]
     ]) {
       await choose(language);
       await evaluate(`(()=>{for(const [id,value] of [['ruleA','4'],['ruleB','3'],['ruleC','10']]){const x=document.getElementById(id);x.value=value;x.dispatchEvent(new Event('input',{bubbles:true}))}})()`);
-      const result = JSON.parse(await evaluate(`JSON.stringify({title:document.title,heading:document.querySelector('main h1')?.textContent.trim(),label:document.querySelector('label[for="ruleA"]')?.textContent.trim(),output:document.getElementById('ruleResult')?.innerText,guide:document.querySelector('.calculator-guide')?.innerText,faq:document.querySelector('.faq-list')?.innerText,meta:document.querySelector('meta[name="description"]')?.content,schema:JSON.parse(document.getElementById('kb-structured-data').textContent),report:new URL(document.querySelector('main a[href^="mailto:"]').href).searchParams.get('subject'),inputs:[...document.querySelectorAll('#kalkulator input')].map(x=>[x.id,x.value]),width:document.documentElement.scrollWidth})`));
+      const result = JSON.parse(await evaluate(`JSON.stringify({title:document.title,heading:document.querySelector('main h1')?.textContent.trim(),label:document.querySelector('label[for="ruleA"]')?.textContent.trim(),output:document.getElementById('ruleResult')?.innerText,guide:document.querySelector('.calculator-guide')?.innerText,faq:document.querySelector('.faq-list')?.innerText,meta:document.querySelector('meta[name="description"]')?.content,schema:JSON.parse(document.getElementById('kb-structured-data').textContent),report:new URL(document.querySelector('main a[href^="mailto:"]').href).searchParams.get('subject'),inputs:[...document.querySelectorAll('#ruleA,#ruleB,#ruleC')].map(x=>[x.id,x.value]),width:document.documentElement.scrollWidth})`));
       assert.equal(result.heading, heading, `${language}: heading`);
       assert.ok(result.title.includes(heading), `${language}: title`);
       assert.equal(result.label, language === "en" ? "Value A" : "Wert A");
