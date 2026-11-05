@@ -34,7 +34,7 @@ async function checkDrywallLocale({ navigate, evaluate, setViewport }) {
     }
     await choose("hu");
     assert.equal(await evaluate(`document.querySelector('main h1').textContent.trim()`), "Gipszkarton kalkulátor");
-    assert.ok(await evaluate(`document.querySelector('.construction-results').innerText.includes('Vásárolandó lapfelület')`));
+    assert.ok(await evaluate(`document.querySelector('.construction-results').innerText.toLocaleLowerCase('hu').includes('vásárolandó lapfelület')`));
   }
   console.log("Drywall locale: EN/DE form, results, errors, guide, FAQ, quality panel, metadata, input preservation and HU restoration passed.");
 }
