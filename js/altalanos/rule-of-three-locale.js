@@ -57,7 +57,12 @@
     if (value && typeof value === "object") return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, localize(item)]));
     return value;
   }
-  function choose(next) { language = api.supported.includes(next) ? next : "hu"; api.setLanguage(language); render(); }
+  function choose(next) {
+    language = api.supported.includes(next) ? next : "hu";
+    api.setLanguage(language);
+    render();
+    queueMicrotask(() => doc.dispatchEvent(new Event("kb:rule-of-three-language-ready")));
+  }
   doc.addEventListener("kb:language-changed", event => choose(event.detail?.language || "hu"));
   choose(root.KB_SITE_LANGUAGE?.get?.() || "hu");
   new root.MutationObserver(changes => { if (changes.some(change => change.type === "childList" || change.type === "characterData")) render(); }).observe(main, { childList: true, characterData: true, subtree: true });
