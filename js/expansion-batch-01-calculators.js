@@ -33,9 +33,13 @@
       result: "ruleResult",
       calculate() {
         const result = api.harmasszabaly(parseInput("ruleA"), parseInput("ruleB"), parseInput("ruleC"));
+        const locale = root.KB_RULE_OF_THREE_LOCALE;
+        const language = locale?.language?.() || root.KB_SITE_LANGUAGE?.get?.() || "hu";
+        const translate = value => locale?.translate?.("harmasszabaly-kalkulator", value, language) ?? value;
+        const format = value => locale?.formatNumber?.(value, language, 4) ?? api.formatNumber(value, 4);
         return [
-          ["X értéke", api.formatNumber(result.x, 4)],
-          ["Szorzótényező A → C", api.formatNumber(result.multiplier, 4)]
+          [translate("X értéke"), format(result.x)],
+          [translate("Szorzótényező A → C"), format(result.multiplier)]
         ];
       }
     },
@@ -121,7 +125,10 @@
       try {
         render(result, binding.calculate());
       } catch (error) {
-        result.textContent = error instanceof Error ? error.message : "Adj meg érvényes adatokat a számításhoz.";
+        const message = error instanceof Error ? error.message : "Adj meg érvényes adatokat a számításhoz.";
+        const locale = page.dataset.batch01Calc === "harmasszabaly-kalkulator" ? root.KB_RULE_OF_THREE_LOCALE : null;
+        const language = locale?.language?.() || root.KB_SITE_LANGUAGE?.get?.() || "hu";
+        result.textContent = locale?.translate?.(page.dataset.batch01Calc, message, language) ?? message;
       }
     };
 
@@ -138,6 +145,10 @@
       input.addEventListener("input", changed);
       input.addEventListener("change", changed);
     });
+
+    if (page.dataset.batch01Calc === "harmasszabaly-kalkulator") {
+      document.addEventListener("kb:language-changed", run);
+    }
 
     run();
   };
