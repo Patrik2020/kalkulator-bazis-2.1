@@ -11,6 +11,9 @@ function requiresTranslation(text) {
   // A converted amount with ISO currency codes is meaningful in every locale;
   // decimal and grouping separators may also be identical in HU and DE.
   if (/^[\d\s.,+−-]+ [A-Z]{3} = [\d\s.,+−-]+ [A-Z]{3}$/u.test(text)) return false;
+  // Pace and speed readouts are language-neutral numeric values. Their labels
+  // are translated separately and the values must stay unchanged by locale.
+  if (/^[\d\s.,:+−-]+(?:km\/h|min\/km|\/km)$/u.test(text)) return false;
   return /\p{L}/u.test(text) && !neutral.has(text) && !/^[\d\s.,+−–×÷/%():=²³-]+(?:Ft|HUF|kg|g|ml|l|db)?$/u.test(text);
 }
 
@@ -81,5 +84,6 @@ async function checkLocalizationCoverage({ navigate, evaluate, setViewport }) {
   await require("./protein-needs-locale-browser-checks").checkProteinNeedsLocale({ navigate, evaluate, setViewport });
   await require("./paint-locale-browser-checks").checkPaintLocale({ navigate, evaluate, setViewport });
   await require("./grout-locale-browser-checks").checkGroutLocale({ navigate, evaluate, setViewport });
+  await require("./running-pace-locale-browser-checks").checkRunningPaceLocale({ navigate, evaluate, setViewport });
 }
 module.exports = { checkLocalizationCoverage, requiresTranslation, collectMainCopy };
