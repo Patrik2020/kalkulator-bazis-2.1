@@ -78,6 +78,7 @@ jobs:
           node --test scripts/running-pace-locale.test.js
           node --test scripts/drywall-locale.test.js
           node --test scripts/rule-of-three-locale.test.js
+          node --test scripts/insulation-locale.test.js
           node --test scripts/co2-locale.test.js
           node scripts/localization-inventory.js --check
 
