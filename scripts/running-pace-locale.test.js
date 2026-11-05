@@ -2,6 +2,7 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const { translate, localizeReportHref } = require("../js/egeszseg/running-pace-locale.js");
+const { requiresTranslation } = require("./localization-coverage-browser-checks.js");
 const page = "futotempo-kalkulator";
 
 test("running pace form, guide, FAQ and metadata are translated", () => {
@@ -20,4 +21,11 @@ test("dynamic pace labels and every validation branch retain their meaning", () 
   assert.equal(translate(page, "A perc és másodperc mező 0–59 közötti legyen.", "en"), "Minutes and seconds must be between 0 and 59.");
   const en = new URL(localizeReportHref("mailto:kalkulatorbazis@gmail.com?subject=Hibabejelent%C3%A9s", "en"));
   assert.equal(en.searchParams.get("subject"), "Error report – Running Pace Calculator");
+});
+
+
+test("numeric pace and speed values are language-neutral", () => {
+  assert.equal(requiresTranslation("5:00/km"), false);
+  assert.equal(requiresTranslation("12 km/h"), false);
+  assert.equal(requiresTranslation("Átlagtempó"), true);
 });
