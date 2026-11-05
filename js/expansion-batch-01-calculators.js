@@ -147,7 +147,7 @@
     });
 
     if (page.dataset.batch01Calc === "harmasszabaly-kalkulator") {
-      document.addEventListener("kb:language-changed", run);
+      document.addEventListener("kb:rule-of-three-language-ready", run);
     }
 
     run();
