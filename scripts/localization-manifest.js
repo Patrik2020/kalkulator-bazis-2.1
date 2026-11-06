@@ -69,6 +69,7 @@ const detailPages = [
   { path: "kalkulatorok/gipszkarton-kalkulator.html", module: "js/epitoipari/drywall-locale.js", key: "gipszkarton-kalkulator" },
   { path: "kalkulatorok/harmasszabaly-kalkulator.html", module: "js/altalanos/rule-of-three-locale.js", key: "harmasszabaly-kalkulator" },
   { path: "kalkulatorok/hoszigeteles-kalkulator.html", module: "js/epitoipari/insulation-locale.js", key: "hoszigeteles-kalkulator" },
+  { path: "kalkulatorok/idealis-testsuly-kalkulator.html", module: "js/egeszseg/ideal-weight-locale.js", key: "idealis-testsuly-kalkulator" },
   { path: "kalkulatorok/co2-kibocsatas-kalkulator.html", module: "js/autos/co2-locale.js", key: "co2-kibocsatas-kalkulator" }
 ];
 
