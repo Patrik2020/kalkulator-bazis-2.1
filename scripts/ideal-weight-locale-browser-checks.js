@@ -20,7 +20,7 @@ async function checkIdealWeightLocale({ navigate, evaluate, setViewport }) {
       assert.ok(result.meta.includes(language === "en" ? "Informative weight range" : "Orientierender Gewichtsbereichsrechner"));
       assert.equal(result.schema["@graph"][0].inLanguage, language === "en" ? "en-GB" : "de-DE");
       assert.equal(result.height, "177.4"); assert.equal(result.gender, "2"); assert.equal(result.rangeHeight, "169");
-      assert.ok(decodeURIComponent(result.href).includes(language === "en" ? "Weight Range Calculator" : "Gewichtsbereichsrechner"));
+      assert.ok(new URL(result.href).searchParams.get("subject").includes(language === "en" ? "Weight Range Calculator" : "Gewichtsbereichsrechner"));
       assert.ok(result.width <= width + 1, `${language}: overflow at ${width}px`);
       await evaluate(`(async()=>{const h=document.getElementById('height');h.value='152.3';h.dispatchEvent(new Event('input',{bubbles:true}));await new Promise(requestAnimationFrame);await new Promise(requestAnimationFrame)})()`);
       assert.equal(await evaluate(`document.getElementById('simpleCalcResults').textContent.trim()`), language === "en" ? "The Devine formula does not provide a reliable estimate below 152.4 cm." : "Die Devine-Formel liefert unter 152,4 cm keine verlässliche Schätzung.");
