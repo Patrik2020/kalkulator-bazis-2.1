@@ -4,7 +4,7 @@ const assert = require("node:assert/strict");
 const { translate, reportHref } = require("../js/egeszseg/calorie-locale");
 const page = "kaloria-kalkulator";
 test("calorie guidance, health boundaries, FAQ and metadata translate", () => {
-  for (const source of ["Kalória kalkulátor", "Mit jelent a napi kalóriaszükséglet?", "Fogyásnál mi fontosabb, mint a tökéletes szám?", "Pontosan megmondja, mennyit ehetek?", "Kalóriabecslés bizonytalansági térképe", "Hirdetés"]) {
+  for (const source of ["Kalória kalkulátor", "Mit jelent a napi kalóriaszükséglet?", "Fogyásnál mi fontosabb, mint a tökéletes szám?", "Pontosan megmondja, mennyit ehetek?", "Kalóriabecslés bizonytalansági térképe", "Bontsd le a napi energiakeretet használható tervre", "Hirdetés"]) {
     assert.ok(translate(page, source, "en"), source); assert.ok(translate(page, source, "de"), source);
   }
   assert.equal(translate(page, "hu-HU", "de"), "de-DE");
