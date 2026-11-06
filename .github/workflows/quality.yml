@@ -80,6 +80,7 @@ jobs:
           node --test scripts/rule-of-three-locale.test.js
           node --test scripts/insulation-locale.test.js
           node --test scripts/ideal-weight-locale.test.js
+          node --test scripts/calorie-locale.test.js
           node --test scripts/co2-locale.test.js
           node scripts/localization-inventory.js --check
 

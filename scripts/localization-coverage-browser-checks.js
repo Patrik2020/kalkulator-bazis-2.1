@@ -89,5 +89,6 @@ async function checkLocalizationCoverage({ navigate, evaluate, setViewport }) {
   await require("./rule-of-three-locale-browser-checks").checkRuleOfThreeLocale({ navigate, evaluate, setViewport });
   await require("./insulation-locale-browser-checks").checkInsulationLocale({ navigate, evaluate, setViewport });
   await require("./ideal-weight-locale-browser-checks").checkIdealWeightLocale({ navigate, evaluate, setViewport });
+  await require("./calorie-locale-browser-checks").checkCalorieLocale({ navigate, evaluate, setViewport });
 }
 module.exports = { checkLocalizationCoverage, requiresTranslation, collectMainCopy };
