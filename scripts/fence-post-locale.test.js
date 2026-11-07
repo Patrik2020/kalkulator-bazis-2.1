@@ -11,6 +11,7 @@ test("fence form, guide, FAQ and metadata translate naturally", () => {
 });
 test("fence results, validation and report link translate", () => {
   assert.equal(translate(page, "8 db", "en"), "8 pcs");
+  assert.equal(translate(page, "Kerítésmezők száma:", "en"), "Number of fence bays:");
   assert.equal(translate(page, "2,43 m", "en"), "2.43 m");
   assert.equal(translate(page, "2,43 m", "de"), "2,43 m");
   assert.equal(translate(page, "Kerítéshossz: az érték legyen nagyobb nullánál.", "de"), "Zaunlänge: Der Wert muss größer als null sein.");

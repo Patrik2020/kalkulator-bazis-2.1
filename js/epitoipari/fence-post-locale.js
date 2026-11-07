@@ -81,6 +81,10 @@
     const normalized = value.trim().replace(/\s+/gu, " ");
     if (language === "hu") return reverse.get(normalized) ?? null;
     const pair = dictionary[normalized] || dictionary[reverse.get(normalized)]; if (pair) return pair[language === "en" ? 0 : 1];
+    if (normalized.endsWith(":")) {
+      const base = normalized.slice(0, -1), basePair = dictionary[base] || dictionary[reverse.get(base)];
+      if (basePair) return `${basePair[language === "en" ? 0 : 1]}:`;
+    }
     let match = /^(\d+) db$/u.exec(normalized);
     if (match) return `${match[1]} ${language === "en" ? "pcs" : "Stk."}`;
     match = /^(\d[\d\s]*)(?:,([0-9]+))? m$/u.exec(normalized);
