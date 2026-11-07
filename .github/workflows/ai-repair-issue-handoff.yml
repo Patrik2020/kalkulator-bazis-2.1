@@ -15,7 +15,8 @@ permissions:
   issues: write
 
 concurrency:
-  group: ai-repair-handoff-${{ github.event.workflow_run.head_repository.id }}-${{ github.event.workflow_run.head_branch }}
+  # Serialize across PR branches to enforce the repository-wide daily assignment cap.
+  group: ai-repair-handoff-global
   cancel-in-progress: false
 
 jobs:
@@ -43,3 +44,14 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: node scripts/ci-repair-handoff.js
+      - name: Verify optional Copilot assignment safeguards
+        run: node --test scripts/copilot-auto-assignment.test.js
+
+      - name: Assign trusted repair issue to Copilot (explicit opt-in only)
+        if: ${{ vars.KB_COPILOT_AUTO_ASSIGN == 'true' }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          KB_COPILOT_AUTO_ASSIGN: ${{ vars.KB_COPILOT_AUTO_ASSIGN }}
+          KB_COPILOT_ASSIGNMENT_TOKEN: ${{ secrets.KB_COPILOT_ASSIGNMENT_TOKEN }}
+        run: node scripts/copilot-auto-assignment.js
+
