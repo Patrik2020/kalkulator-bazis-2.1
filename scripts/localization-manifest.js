@@ -71,6 +71,7 @@ const detailPages = [
   { path: "kalkulatorok/hoszigeteles-kalkulator.html", module: "js/epitoipari/insulation-locale.js", key: "hoszigeteles-kalkulator" },
   { path: "kalkulatorok/idealis-testsuly-kalkulator.html", module: "js/egeszseg/ideal-weight-locale.js", key: "idealis-testsuly-kalkulator" },
   { path: "kalkulatorok/kaloria-kalkulator.html", module: "js/egeszseg/calorie-locale.js", key: "kaloria-kalkulator" },
+  { path: "kalkulatorok/kerites-oszlop-kalkulator.html", module: "js/epitoipari/fence-post-locale.js", key: "kerites-oszlop-kalkulator" },
   { path: "kalkulatorok/co2-kibocsatas-kalkulator.html", module: "js/autos/co2-locale.js", key: "co2-kibocsatas-kalkulator" }
 ];
 
