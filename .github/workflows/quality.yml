@@ -82,6 +82,7 @@ jobs:
           node --test scripts/ideal-weight-locale.test.js
           node --test scripts/calorie-locale.test.js
           node --test scripts/fence-post-locale.test.js
+          node --test scripts/step-distance-locale.test.js
           node --test scripts/co2-locale.test.js
           node scripts/localization-inventory.js --check
 
