@@ -10,8 +10,8 @@ async function checkUnitConverterLocale({ navigate, evaluate, setViewport }) {
     await configure("time", "90", "min", "h");
     const before = await evaluate(`JSON.stringify(['measurementType','inputValue','fromUnit','toUnit'].map(id=>document.getElementById(id).value))`);
     for (const [language, heading, resultText, guideText, faqText] of [
-      ["en", "Unit Converter", "90 Minute = 1.5 Hour", "common base unit", "Are MB and MiB the same?"],
-      ["de", "Einheitenrechner", "90 Minute = 1,5 Stunde", "gemeinsame Basiseinheit", "Sind MB und MiB dasselbe?"]
+      ["en", "Unit Converter – Time, Length, Mass and Other Units", "90 Minute = 1.5 Hour", "common base unit", "Are MB and MiB the same?"],
+      ["de", "Einheitenrechner – Zeit, Länge, Masse und weitere Einheiten", "90 Minute = 1,5 Stunde", "gemeinsame Basiseinheit", "Sind MB und MiB dasselbe?"]
     ]) {
       await choose(language);
       const state = JSON.parse(await evaluate(`JSON.stringify({heading:document.querySelector('main h1')?.textContent.trim(),result:document.getElementById('result')?.textContent.trim(),guide:document.querySelector('.article')?.innerText,faq:document.querySelector('.faq-list')?.innerText,meta:document.querySelector('meta[name="description"]')?.content,schema:JSON.parse(document.getElementById('kb-structured-data').textContent),values:['measurementType','inputValue','fromUnit','toUnit'].map(id=>document.getElementById(id).value),width:document.documentElement.scrollWidth})`));
@@ -30,7 +30,7 @@ async function checkUnitConverterLocale({ navigate, evaluate, setViewport }) {
       await configure("time", "90", "min", "h");
     }
     await choose("hu");
-    assert.equal(await evaluate(`document.querySelector('main h1').textContent.trim()`), "Mértékegység átváltó");
+    assert.equal(await evaluate(`document.querySelector('main h1').textContent.trim()`), "Mértékegység átváltó – idő, hosszúság, tömeg és más egységek");
     assert.equal(await evaluate(`document.getElementById('result').textContent.trim()`), "90 Perc = 1,5 Óra");
     assert.equal(await evaluate(`JSON.stringify(['measurementType','inputValue','fromUnit','toUnit'].map(id=>document.getElementById(id).value))`), before);
   }
