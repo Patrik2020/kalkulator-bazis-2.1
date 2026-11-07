@@ -1,0 +1,45 @@
+name: AI repair issue handoff
+
+on:
+  workflow_run:
+    workflows:
+      - Site quality
+    types:
+      - completed
+
+# Only the trusted main branch code is executed. The upstream PR is never
+# checked out, and its artifacts or raw logs are never evaluated here.
+permissions:
+  actions: read
+  contents: read
+  issues: write
+
+concurrency:
+  group: ai-repair-handoff-${{ github.event.workflow_run.head_repository.id }}-${{ github.event.workflow_run.head_branch }}
+  cancel-in-progress: false
+
+jobs:
+  handoff:
+    name: Create narrowly scoped repair candidate
+    if: ${{ github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.event == 'pull_request' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out trusted main (no saved credentials)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: main
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: "24"
+
+      - name: Test repair issue eligibility and deduplication
+        run: node --test scripts/ci-repair-handoff.test.js
+
+      - name: Create issue only for eligible generated-asset failures
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/ci-repair-handoff.js
