@@ -34,6 +34,8 @@ test("metadata, guide, FAQ and quality guidance translate naturally", () => {
 });
 
 test("dynamic results, history, status and errors translate", () => {
+  assert.equal(api.translate(page, "Hirdetés", "en"), "Advertisement");
+  assert.equal(api.translate(page, "Hirdetés", "de"), "Anzeige");
   assert.equal(api.translate(page, "Eredmény: 1 234,5", "en"), "Result: 1,234.5");
   assert.equal(api.translate(page, "Eredmény: 1 234,5", "de"), "Ergebnis: 1.234,5");
   assert.equal(api.translate(page, "sin(30) = 0,5", "en"), "sin(30) = 0.5");
