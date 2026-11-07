@@ -92,6 +92,12 @@ async function assignCopilot({
   if (Array.isArray(issue.assignees) && issue.assignees.length > 0) {
     return { status: "skipped", reason: "assigned-to-human" };
   }
+  // Only freshly created handoffs may consume today's agent quota.
+  // This prevents older open repair issues from bypassing the daily cap.
+  if (typeof issue.created_at !== "string" ||
+      issue.created_at.slice(0, 10) !== now.toISOString().slice(0, 10)) {
+    return { status: "skipped", reason: "stale-issue" };
+  }
 
   const todayCount = await countAssignmentsToday(repository, readToken, { fetchImpl, now });
   if (todayCount >= DAILY_LIMIT) {
