@@ -98,6 +98,7 @@ async function findExistingHandoff(repository, prNumber, token, fetchImpl = fetc
       "/issues?state=open&per_page=100&page=" + page, { fetchImpl });
     if (!Array.isArray(issues)) throw new Error("Invalid issues API response");
     const match = issues.find(issue => !issue.pull_request &&
+      issue.user?.login === "github-actions[bot]" &&
       typeof issue.body === "string" && issue.body.includes(marker));
     if (match) return match;
     if (issues.length < 100) return null;
@@ -116,7 +117,7 @@ async function processFailure({
 
   const pr = await requestJson(repository, token, "/pulls/" + candidate.prNumber, { fetchImpl });
   if (pr.state !== "open" || pr.base?.ref !== "main" ||
-      pr.head?.repo?.full_name !== repository) {
+      pr.head?.repo?.full_name !== repository || pr.user?.type === "Bot") {
     log("[ai-handoff] PR is closed, has another base, or comes from a fork.");
     return { status: "skipped", reason: "pr" };
   }
