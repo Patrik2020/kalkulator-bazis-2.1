@@ -82,10 +82,20 @@ test("creates one repair issue for an eligible same-repository PR", async () => 
 });
 
 test("reuses the matching open issue instead of creating a duplicate", async () => {
-  const api = mockApi({ existing: [{ number: 777, body: markerFor(351) }] });
+  const api = mockApi({ existing: [{ number: 777, body: markerFor(351), user: { login: "github-actions[bot]" } }] });
   const result = await processFailure({ event: eventFor(), repository, token, fetchImpl: api.fetchImpl, log: () => {} });
   assert.deepEqual(result, { status: "existing", issueNumber: 777 });
   assert.equal(api.calls.filter(call => call.method === "POST").length, 0);
+});
+
+test("does not trust a handoff marker submitted by an unrelated user", async () => {
+  const api = mockApi({ existing: [{
+    number: 777, body: markerFor(351), user: { login: "untrusted" },
+  }] });
+  const result = await processFailure({
+    event: eventFor(), repository, token, fetchImpl: api.fetchImpl, log: () => {},
+  });
+  assert.deepEqual(result, { status: "created", issueNumber: 654 });
 });
 
 test("ignores failures outside the allowlisted category", async () => {
@@ -103,6 +113,7 @@ test("ignores closed, forked, or differently based PRs", async () => {
     { state: "closed", base: { ref: "main" }, head: { repo: { full_name: repository } } },
     { state: "open", base: { ref: "develop" }, head: { repo: { full_name: repository } } },
     { state: "open", base: { ref: "main" }, head: { repo: { full_name: "someone/fork" } } },
+    { state: "open", user: { type: "Bot" }, base: { ref: "main" }, head: { repo: { full_name: repository } } },
   ]) {
     const api = mockApi({ pr });
     const result = await processFailure({ event: eventFor(), repository, token, fetchImpl: api.fetchImpl, log: () => {} });
