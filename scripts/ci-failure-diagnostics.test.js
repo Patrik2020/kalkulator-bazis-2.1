@@ -76,7 +76,7 @@ test("rejects cross-repository, nonfailure, and invalid run events", () => {
 });
 
 test("strips multiline and HTML markers from untrusted step metadata", () => {
-  assert.equal(safeText("Build <script>\nfailed | again"), "Build  script failed again");
+  assert.equal(safeText("Build <script>\nfailed | again"), "Build script failed again");
   const report = reportForRun({
     repository, event: failedEvent(),
     jobs: [{
