@@ -67,6 +67,13 @@ const detailPages = [
   { path: "kalkulatorok/fuga-kalkulator.html", module: "js/epitoipari/fuga-locale.js", key: "fuga-kalkulator" },
   { path: "kalkulatorok/futotempo-kalkulator.html", module: "js/egeszseg/running-pace-locale.js", key: "futotempo-kalkulator" },
   { path: "kalkulatorok/gipszkarton-kalkulator.html", module: "js/epitoipari/drywall-locale.js", key: "gipszkarton-kalkulator" },
+  { path: "kalkulatorok/harmasszabaly-kalkulator.html", module: "js/altalanos/rule-of-three-locale.js", key: "harmasszabaly-kalkulator" },
+  { path: "kalkulatorok/hoszigeteles-kalkulator.html", module: "js/epitoipari/insulation-locale.js", key: "hoszigeteles-kalkulator" },
+  { path: "kalkulatorok/idealis-testsuly-kalkulator.html", module: "js/egeszseg/ideal-weight-locale.js", key: "idealis-testsuly-kalkulator" },
+  { path: "kalkulatorok/kaloria-kalkulator.html", module: "js/egeszseg/calorie-locale.js", key: "kaloria-kalkulator" },
+  { path: "kalkulatorok/kerites-oszlop-kalkulator.html", module: "js/epitoipari/fence-post-locale.js", key: "kerites-oszlop-kalkulator" },
+  { path: "kalkulatorok/lepesszam-tavolsag-kalkulator.html", module: "js/egeszseg/step-distance-locale.js", key: "lepesszam-tavolsag-kalkulator" },
+  { path: "kalkulatorok/makro-kalkulator.html", module: "js/egeszseg/macro-locale.js", key: "makro-kalkulator" },
   { path: "kalkulatorok/co2-kibocsatas-kalkulator.html", module: "js/autos/co2-locale.js", key: "co2-kibocsatas-kalkulator" }
 ];
 

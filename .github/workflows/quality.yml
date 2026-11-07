@@ -77,6 +77,13 @@ jobs:
           node --test scripts/grout-locale.test.js
           node --test scripts/running-pace-locale.test.js
           node --test scripts/drywall-locale.test.js
+          node --test scripts/rule-of-three-locale.test.js
+          node --test scripts/insulation-locale.test.js
+          node --test scripts/ideal-weight-locale.test.js
+          node --test scripts/calorie-locale.test.js
+          node --test scripts/fence-post-locale.test.js
+          node --test scripts/step-distance-locale.test.js
+          node --test scripts/macro-locale.test.js
           node --test scripts/co2-locale.test.js
           node scripts/localization-inventory.js --check
 

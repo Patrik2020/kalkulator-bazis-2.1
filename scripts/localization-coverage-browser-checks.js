@@ -86,5 +86,12 @@ async function checkLocalizationCoverage({ navigate, evaluate, setViewport }) {
   await require("./grout-locale-browser-checks").checkGroutLocale({ navigate, evaluate, setViewport });
   await require("./running-pace-locale-browser-checks").checkRunningPaceLocale({ navigate, evaluate, setViewport });
   await require("./drywall-locale-browser-checks").checkDrywallLocale({ navigate, evaluate, setViewport });
+  await require("./rule-of-three-locale-browser-checks").checkRuleOfThreeLocale({ navigate, evaluate, setViewport });
+  await require("./insulation-locale-browser-checks").checkInsulationLocale({ navigate, evaluate, setViewport });
+  await require("./ideal-weight-locale-browser-checks").checkIdealWeightLocale({ navigate, evaluate, setViewport });
+  await require("./calorie-locale-browser-checks").checkCalorieLocale({ navigate, evaluate, setViewport });
+  await require("./fence-post-locale-browser-checks").checkFencePostLocale({ navigate, evaluate, setViewport });
+  await require("./step-distance-locale-browser-checks").checkStepDistanceLocale({ navigate, evaluate, setViewport });
+  await require("./macro-locale-browser-checks").checkMacroLocale({ navigate, evaluate, setViewport });
 }
 module.exports = { checkLocalizationCoverage, requiresTranslation, collectMainCopy };
