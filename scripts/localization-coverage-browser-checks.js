@@ -92,5 +92,6 @@ async function checkLocalizationCoverage({ navigate, evaluate, setViewport }) {
   await require("./calorie-locale-browser-checks").checkCalorieLocale({ navigate, evaluate, setViewport });
   await require("./fence-post-locale-browser-checks").checkFencePostLocale({ navigate, evaluate, setViewport });
   await require("./step-distance-locale-browser-checks").checkStepDistanceLocale({ navigate, evaluate, setViewport });
+  await require("./macro-locale-browser-checks").checkMacroLocale({ navigate, evaluate, setViewport });
 }
 module.exports = { checkLocalizationCoverage, requiresTranslation, collectMainCopy };
