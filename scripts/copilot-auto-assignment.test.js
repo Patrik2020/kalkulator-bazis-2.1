@@ -133,6 +133,12 @@ test("never assigns if the generated-asset issue is missing, already assigned, o
   }
 });
 
+test("never assigns a stale repair issue from a previous day", async () => {
+  const api = mockApi({ issue: issueFor({ created_at: "2026-11-06T23:59:00Z" }) });
+  assert.deepEqual(await assignCopilot(options(api)), { status: "skipped", reason: "stale-issue" });
+  assert.equal(api.calls.filter(call => call.method === "POST").length, 0);
+});
+
 test("never assigns a non-generated-assets CI failure", async () => {
   const api = mockApi({ jobs: [{
     id: 99, name: "Site quality gate", conclusion: "failure",
