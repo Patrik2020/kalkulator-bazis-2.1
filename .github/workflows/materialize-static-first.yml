@@ -23,6 +23,7 @@ on:
       - "js/static-first-fallbacks.js"
       - "js/penzugyi/netto-brutto.js"
       - "js/penzugyi/netto-brutto-shadow.js"
+      - "css/pages/home-redesign-v17.css"
       - "css/layout/**"
       - "components/**"
       - "package.json"
