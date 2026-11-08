@@ -1,0 +1,49 @@
+name: JS CSS maintainability inventory
+
+on:
+  pull_request:
+    paths:
+      - "js/**"
+      - "css/**"
+      - "index.html"
+      - "scripts/js-css-maintainability-audit.js"
+      - "scripts/js-css-maintainability-audit.test.js"
+      - "docs/js-css-maintainability-audit-2026-11-08.md"
+      - ".github/workflows/js-css-maintainability.yml"
+  push:
+    branches: [main]
+    paths:
+      - "js/**"
+      - "css/**"
+      - "index.html"
+      - "scripts/js-css-maintainability-audit.js"
+      - "scripts/js-css-maintainability-audit.test.js"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    name: Read-only JS CSS inventory
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: "24"
+
+      - name: Run audit unit tests
+        run: node --test scripts/js-css-maintainability-audit.test.js
+
+      - name: Report review leads without modifying source
+        run: node scripts/js-css-maintainability-audit.js
+
+      - name: Verify source has not changed
+        run: git diff --exit-code
