@@ -54,6 +54,26 @@ A meglévő vizsgálati kapuk értékesek: a CSS-szerződés már figyeli a főo
 - A js/help-widget.js a kalkulátoroldali segítség-UI-t létrehozza, a js/home-redesign-help.js pedig a főoldalon már létező panelt működteti. A hasonló név itt **külön oldal-specifikus felelősség** is lehet.
 - A nyolc feature-modul statikusan definiált id attribútumai között a célzott forrásvizsgálat során nem találtunk azonos literális ID-t **két külön modul között**. Ez nem zárja ki a generált vagy runtime DOM-ütközést.
 
+## Teljes JS/CSS-készlet: tényleges GitHub CI-leltár
+
+A 363-as PR dedikált GitHub Actions munkája **sikeresen futtatta az új 4 unit tesztet**, a read-only szkennert, és ellenőrizte a tiszta munkafát. A javított (kép-URL-t nem CSS-osztálynak tekintő) szkenner tényleges CI-naplója:
+
+| Mutató | Eredmény | Jelentés |
+| --- | ---: | --- |
+| Vizsgált böngészős JavaScript-forrás | **139 fájl** | Minden követett js/ alatti .js fájl |
+| Vizsgált CSS-forrás | **81 fájl** | Minden követett css/ alatti .css fájl |
+| CSS !important-előfordulások | **484** | Ezekből **362** a home-redesign-v17.css-ben, **52** a help-widget.css-ben |
+| Többször előforduló szelektor-jelöltek | **368** | Nem 368 bizonyított felülírás: a médiafeltételek külön értékelendők |
+| CSS lokális url(...) hivatkozások | **38** | Közülük **11** nem létező célra utal, **10 külön célképpel**, valamennyi a home-redesign-v17.css-ben |
+| JS addEventListener hívási helyek | **411** | Nem 411 runtime-ban regisztrált listener; sok modul csak adott oldalon töltődik |
+| JS DOM-írási helyek | **221** | Nem 221 felülírás vagy hiba |
+| index.css statikus HTML-ben nem látott class jelölők | **64 / 68** | JavaScript / fallback is hozhat ilyen osztályt |
+| Két feature-családdal konfigurált oldal-slugok | **54 / 78** | Funkcionális átfedési vizsgálati lista, nem automatikus duplikáció |
+
+A legnagyobb eseményfigyelő-számot a priority-upgrades.js (**26**), a home-redesign-core.js (**17**) és a penzugyi/osztalek.js (**17**) tartalmazza. Ezek a mennyiségek forrásszintű hívási helyek, nem valós oldalon bizonyított párhuzamos callbackek.
+
+**Bizonyítottság:** a statikus mérő ténylegesen végrehajtott GitHub CI-futtatása sikeres. Ez nem pótolja a JavaScript runtime profilozást, a CSS cascade elemzést és a mobilos képi regressziót. A további normál GitHub PR-kapuk státusza az összeolvasztás előtt külön ellenőrizendő.
+
 ## Megismételhető ellenőrző
 
 Új, csak olvasó statikus szkenner:
