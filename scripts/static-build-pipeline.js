@@ -42,7 +42,6 @@ const pipeline = Object.freeze([
       "apply-average-hub-quality-blocks.js",
       "apply-average-hub-runtime-guard.js",
       "apply-adsense-eligibility-v2.js",
-      "apply-adsense-audit-policy-v2.js",
     ]),
   }),
   Object.freeze({
