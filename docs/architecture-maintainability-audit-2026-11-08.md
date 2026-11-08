@@ -9,6 +9,14 @@
 
 Nem új weboldalt építünk. A meglévő 2.1-es statikus-first rendszert tesszük biztonságosan továbbfejleszthetővé. E felmérés során a GitHubon ellenőriztük a belépőpontokat, kiválasztott főoldalt és kalkulátorokat, a JS/CSS-kötéseket, a `package.json` tesztparancsait, a statikus buildet, a korábbi takarítási dokumentációt és az aktív pull requesteket. Nem futtattunk helyi `npm ci`-t, buildet, böngészőteszteket vagy élő oldali end-to-end teszteket; az itt leírt ellenőrzések nem jelentenek zöld CI-állapotot.
 
+## Tárolóleltár – első teljes fájllista
+
+A GitHub `main` ágának teljes, nem csonkolt Git tree válaszából a felmérés pillanatában **855 követett fájl** számolható: **402 `.js`**, **161 `.html`**, **85 `.css`**. A `scripts/` mappában **271 fájl**, a weboldali `js/` mappában **139 fájl** található; a JavaScript-összeg **teszteket, build- és adminisztrációs szkripteket is tartalmaz**, tehát nem 402 böngészőben betöltött JS-t jelent. A `kalkulatorok/` mappa 102 fájlt tartalmaz; a korábbi dokumentáció 100 katalogizált plusz egy különálló kalkulátort rögzít.
+
+Git-blob SHA alapján a `.js`, `.css` és `.html` fájlok között nem találtunk *teljes byte-azonos fájlpárt*. Ez nem zárja ki a részleges, szemantikailag duplikált függvényeket, CSS-szelektorokat vagy rétegzett viselkedést; ezekhez tartalmi és futásidejű vizsgálat szükséges.
+
+A legnagyobb kiválasztott források: `js/altalanos/everyday-locale.js` (221230 bájt), `css/pages/home-redesign-v17.css` (77644 bájt), `js/priority-upgrades.js` (64404 bájt). **A nagy fájlméret önmagában nem hiba**, de karbantarthatósági és pontos változtatási szempontból külön áttekintendő.
+
 ## Ellenőrzött tények
 
 1. **Van érdemi minőségbiztosítási alap.** A `package.json` tartalmaz matematikai/invariáns teszteket, kalkulátorteszteket, böngészős ellenőrzéseket, `quality` láncot, `static:build` és `static:verify` parancsot. Az `AGENTS.md` már ma is külön PR-t, célzott tesztelést és felhasználói merge-jóváhagyást vár el. Ezt **meg kell tartani**, nem újra feltalálni.
