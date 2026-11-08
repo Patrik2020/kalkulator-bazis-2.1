@@ -1,6 +1,8 @@
 "use strict";
 const assert = require("node:assert/strict");
 const { test } = require("node:test");
+const fs = require("node:fs");
+const path = require("node:path");
 const api = require("../js/penzugyi/netto-brutto-locale");
 
 test("the detailed salary page exposes scoped locale coverage and translates its expanded guidance", () => {
@@ -61,4 +63,22 @@ test("net salary page recommendations, retention controls and contextual notices
     assert.equal(api.translate(page, hu, "en"), en, hu);
     assert.equal(api.translate(page, hu, "de"), de, hu);
   }
+});
+
+test("authored family inputs remain canonical while the active salary API client stays connected", () => {
+  const root = path.resolve(__dirname, "..");
+  const html = fs.readFileSync(path.join(root, "kalkulatorok/netto-brutto-kalkulator.html"), "utf8");
+  const shell = fs.readFileSync(path.join(root, "js/penzugyi/netto-brutto.js"), "utf8");
+  const client = fs.readFileSync(path.join(root, "js/penzugyi/netto-brutto-shadow.js"), "utf8");
+
+  assert.match(html, /class="family-box"/, "family benefit container must remain");
+  for (const id of ["family-dependants", "family-eligible"]) {
+    assert.match(html, new RegExp('id="' + id + '"[^>]*step="1"'), id + " must be an authored integer input");
+    assert.match(client, new RegExp('"' + id + '"'), id + " must still be read by the API client");
+  }
+  assert.doesNotMatch(html, /\\bid=(["'])family\\1/, "legacy family input must not return");
+  assert.doesNotMatch(shell, /upgradeFamilyFields|innerHTML\\s*=|getElementById\\(["']family["']\\)/,
+    "legacy DOM replacement must not be reintroduced");
+  assert.match(shell, /netto-brutto-shadow\\.js/, "keep the existing active salary API client");
+  assert.match(client, /https:\\/\\/api\\.kalkulatorbazis\\.hu/, "keep the real API integration");
 });
