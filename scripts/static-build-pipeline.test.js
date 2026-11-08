@@ -21,6 +21,9 @@ test("the canonical build has one render and no repeated repair step", () => {
 
 test("already-integrated AdSense audit policy is maintained in its canonical source, not re-patched by the build", () => {
   const adsenseAudit = fs.readFileSync(path.join(root, "scripts/adsense-quality-v2-audit.js"), "utf8");
+  const adsenseWorkflow = fs.readFileSync(path.join(root, ".github/workflows/adsense-quality-v2.yml"), "utf8");
+  assert.doesNotMatch(adsenseWorkflow, /node scripts\/apply-adsense-audit-policy-v2\.js/);
+  assert.match(adsenseWorkflow, /node scripts\/adsense-quality-v2-audit\.js --report --gate/);
   assert.ok(!flatSteps.includes("apply-adsense-audit-policy-v2.js"),
     "The build must not rewrite its own AdSense quality audit source");
   assert.match(adsenseAudit, /KB_ADSENSE_AUDIT_POLICY_V2/);
