@@ -52,7 +52,21 @@ A csak olvasó scripts/dependency-map-audit.js minden Git által követett, szá
 - A nulla statikusan visszavezetett felhasználású kód lehet szándékos teszteszköz, adminisztráció, tartalék kompatibilitás vagy dinamikusan betöltött modul.
 - Ez a dokumentum nem állít sikeres helyi buildet, teljes böngészős QA-t vagy élő éles API-ellenőrzést.
 
-## 5. Következő vizsgálati sorrend
+## 5. Első tényleges futtatás és kézzel ellenőrzött jelöltek
+
+A GitHub Site quality job a 362-es PR korábbi commitján végrehajtotta a diagnosztikát és a három új tesztet. **Mindhárom teszt sikeres**, a Site quality job is sikeresen zárult. A diagnosztika a PR-ben követett 860 fájlt elemezte (857 eredeti + 3 új fájl; a package.json módosult, nem új).
+
+- 11 571 felismert él / hivatkozásjelölt; 663 különböző feloldott célpont.
+- 1038 HTML script-hivatkozás; 328 HTML stílus-hivatkozás; 16 CSS import; 37 buildfázis-lépés; 17 SW precache utalás.
+- **0 erős, hiányzó, közvetlen HTML-script/CSS-import/manifest hivatkozás.** Ez nem jelent teljes működési bizonyítékot.
+- 226 egyéb feloldatlan jelölt a kezdeti heurisztikában; itt voltak téves pozitív URL-gyökér hivatkozások, például ./, amelynek feloldását a PR későbbi commitjában külön teszteltük és korrigáltuk.
+- 3 közvetlen bejövő, statikusan felismert JS/CSS kapcsolat nélküli jelölt: css/components/site-compatibility.css, css/pages/site-quality-final.css, js/site-compatibility.js. **Egyik sem minősíthető törölhetőnek** a dinamikus és generált fogyasztók ellenőrzése nélkül.
+
+**D-01: konkrét, rétegezett CSS és hiányzó régi képreferenciák.** A css/pages/home-redesign-v17.css 194–209. sorának korábbi szabályai 4 külön évszakos és 6 kategória-AVIF fájlra hivatkoznak, amelyek jelenleg nincsenek a Git tree-ben. A 251–268. sorban később két, ténylegesen létező season-atlas.avif és category-atlas.avif kerül beállításra, !important háttérkép-szabályokkal a home-redesign-v17 osztály alatt. A főoldal body eleme rendelkezik ezzel az osztállyal. Ez **igazoltan megmaradt régi/új réteg**, amely a felhasználó által kifogásolt módszerhez hasonlít; a CSS kaszkád és valamennyi képernyőméret tényleges viselkedése további vizsgálatot igényel. Törlés egyelőre nincs. **Prioritás: magas a CSS-auditban, nem igazolt produkciós incidens.**
+
+Az itt szereplő számok a korábbi, valós GitHub CI futásból származnak; a path-feloldás javítása után a végleges új kimenetet a PR későbbi ellenőrzése adja. A vizsgálati listát ennek alapján kell aktualizálni.
+
+## 6. Következő vizsgálati sorrend
 
 1. A jelenlegi nettó–bruttó HTML mellett a js/penzugyi/netto-brutto.js legacy upgradeFamilyFields működése.
 2. A finance-quality-upgrades.js, construction-quality-upgrades.js és priority-upgrades.js funkciógazda / DOM / event binding rétegei.
@@ -60,6 +74,6 @@ A csak olvasó scripts/dependency-map-audit.js minden Git által követett, szá
 4. A CSS importlánc, felülírt szelektorok és a főoldali vizuális rétegek.
 5. A global-head konfiguráció, theme.js, pwa.js és sw.js dinamikusan betöltött erőforrásai.
 
-## 6. Egyesítés előtt ellenőrizendő
+## 7. Egyesítés előtt ellenőrizendő
 
 A PR valódi GitHub Actions kimenete (az új analyzer és unit teszt), a jelzett hiányzó hivatkozások téves pozitív / tényleges probléma osztályozása, továbbá a régi CI kapuk változatlansága. **Semmilyen futó weboldalkódot nem módosítunk és semmit nem törlünk ebben a lépésben.**
