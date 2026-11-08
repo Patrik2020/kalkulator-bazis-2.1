@@ -26,6 +26,9 @@ test("Old home selectors unmatched in static HTML are only hints", () => {
   assert.equal(result.notInStaticHtml, 1);
   assert.ok(result.sampleUnmatched.includes("home-hero"));
   assert.match(result.warning, /not proven unused/);
+  const noUrlClass = activeHomeSelectorHints('<div class="hero"></div>', ".hero{background:url(\'/images/photo.avif\')}");
+  assert.equal(noUrlClass.cssClassTokens, 1);
+  assert.equal(noUrlClass.notInStaticHtml, 0);
 });
 
 test("Detect overlapping declared feature families conservatively", () => {
