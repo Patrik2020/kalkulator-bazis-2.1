@@ -72,6 +72,29 @@ test("insulation package guidance is authored and checked without a build-time p
   }
 });
 
+test("construction confirmation UX is guarded by canonical source and read-only tests", () => {
+  const code = fs.readFileSync(path.join(root, "js/construction-upgrades.js"), "utf8");
+  const audit = fs.readFileSync(path.join(root, "scripts/construction-confirmation-ux-audit.js"), "utf8");
+  const scripts = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8")).scripts;
+  assert.ok(!flatSteps.includes("apply-construction-confirmation-ux.js"));
+  assert.ok(!fs.existsSync(path.join(root, "scripts/apply-construction-confirmation-ux.js")));
+  assert.equal((code.match(/const confirmationNames = \["manufacturerConfirmed", "systemConfirmed"\]/g) || []).length, 1);
+  assert.match(code, /if \(pendingConfirmation\)/);
+  assert.match(code, /Addig nem készítünk rendelési mennyiséget/);
+  assert.equal(scripts["quality:construction-confirmation-ux"],
+    "node scripts/construction-confirmation-ux-audit.js");
+  assert.equal(scripts["test:construction:confirmation-ux"],
+    "node scripts/construction-confirmation-ux-audit.js");
+  assert.equal(scripts["construction:confirmation-ux:apply"], undefined);
+  assert.doesNotMatch(audit, /require\(["']\.\/apply-construction-confirmation-ux\.js["']\)/);
+  for (const name of fs.readdirSync(path.join(root, "scripts")).filter((item) => item.endsWith(".js"))) {
+    if (name === "static-build-pipeline.test.js") continue;
+    const source = fs.readFileSync(path.join(root, "scripts", name), "utf8");
+    assert.doesNotMatch(source, /require\(["']\.\/apply-construction-confirmation-ux\.js["']\)/,
+      name + " must not depend on the removed source patch");
+  }
+});
+
 test("every canonical build step is an existing, phase-appropriate script", () => {
   const phaseById = Object.fromEntries(pipeline.map((phase) => [phase.id, phase.steps]));
   assert.deepEqual(Object.keys(phaseById), ["source", "render", "finalize"]);
