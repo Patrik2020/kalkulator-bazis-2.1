@@ -21,6 +21,8 @@ on:
       - "js/global-head.js"
       - "js/global-head-config.js"
       - "js/static-first-fallbacks.js"
+      - "js/penzugyi/netto-brutto.js"
+      - "js/penzugyi/netto-brutto-shadow.js"
       - "css/layout/**"
       - "components/**"
       - "package.json"
