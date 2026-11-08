@@ -29,7 +29,6 @@ const pipeline = Object.freeze([
       "apply-plaster-consumption-mode.js",
       "apply-roof-purchase-mode.js",
       "apply-drywall-system-guidance.js",
-      "apply-construction-confirmation-ux.js",
       "apply-adsense-template-fingerprint-v2.js",
       "apply-adsense-domain-method-copy-v2.js",
       "apply-construction-manufacturer-first-v2.js",
