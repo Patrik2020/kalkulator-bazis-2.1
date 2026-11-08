@@ -34,6 +34,22 @@ test("already-integrated AdSense audit policy is maintained in its canonical sou
   assert.match(adsenseAudit, /az eredmények tájékoztató becslések/);
 });
 
+test("average hub guard is authored in runtime, never re-patched by a build step", () => {
+  const runtime = fs.readFileSync(path.join(root, "js/everyday-upgrades.js"), "utf8");
+  const page = fs.readFileSync(path.join(root, "kalkulatorok/atlag-kalkulator.html"), "utf8");
+
+  const materializeWorkflow = fs.readFileSync(path.join(root, ".github/workflows/materialize-static-first.yml"), "utf8");
+  assert.ok(materializeWorkflow.includes('      - "js/everyday-upgrades.js"'),
+    "Average hub runtime changes must trigger the full static materialization contract");
+  assert.ok(!flatSteps.includes("apply-average-hub-runtime-guard.js"),
+    "Obsolete source rewriter must stay out of the canonical build");
+  assert.match(runtime, /KB_PHASE2_BATCH2_AVERAGE_HUB_GUARD/);
+  assert.match(runtime, /if \(slug === "atlag-kalkulator" && document\.querySelector\('\[data-average-hub="true"\]'\)\) return;/);
+  assert.match(page, /<main\b[^>]*data-average-hub="true"/);
+  assert.ok(!fs.existsSync(path.join(root, "scripts/apply-average-hub-runtime-guard.js")),
+    "Superseded patch script must not be restored");
+});
+
 test("every canonical build step is an existing, phase-appropriate script", () => {
   const phaseById = Object.fromEntries(pipeline.map((phase) => [phase.id, phase.steps]));
   assert.deepEqual(Object.keys(phaseById), ["source", "render", "finalize"]);
