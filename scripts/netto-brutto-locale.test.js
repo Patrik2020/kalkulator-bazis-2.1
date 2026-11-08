@@ -76,9 +76,9 @@ test("authored family inputs remain canonical while the active salary API client
     assert.match(html, new RegExp('id="' + id + '"[^>]*step="1"'), id + " must be an authored integer input");
     assert.match(client, new RegExp('"' + id + '"'), id + " must still be read by the API client");
   }
-  assert.doesNotMatch(html, /\\bid=(["'])family\\1/, "legacy family input must not return");
-  assert.doesNotMatch(shell, /upgradeFamilyFields|innerHTML\\s*=|getElementById\\(["']family["']\\)/,
+  assert.doesNotMatch(html, /\bid=(["'])family\1/, "legacy family input must not return");
+  assert.doesNotMatch(shell, /upgradeFamilyFields|innerHTML\s*=|getElementById\(["']family["']\)/,
     "legacy DOM replacement must not be reintroduced");
-  assert.match(shell, /netto-brutto-shadow\\.js/, "keep the existing active salary API client");
-  assert.match(client, /https:\\/\\/api\\.kalkulatorbazis\\.hu/, "keep the real API integration");
+  assert.match(shell, /netto-brutto-shadow\.js/, "keep the existing active salary API client");
+  assert.match(client, /https:\/\/api\.kalkulatorbazis\.hu/, "keep the real API integration");
 });
