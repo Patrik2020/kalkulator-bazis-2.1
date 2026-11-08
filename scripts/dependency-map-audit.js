@@ -24,9 +24,12 @@ function resolveLocal(source, raw, files, mode = "relative") {
   if (/^[a-z][\w+.-]*:/i.test(value)) return null;
   const base = mode === "root" || value.startsWith("/") ? "" : path.posix.dirname(source);
   const target = path.posix.normalize(path.posix.join(base, value.replace(/^\/+/, "")));
-  if (target === ".") return { target: "index.html", exists: files.has("index.html") };
+  if (target === "." || target === "./" || target === "") {
+    return { target: "index.html", exists: files.has("index.html") };
+  }
   if (target.startsWith("../")) return { target, exists: false };
-  const options = [target, target + ".html", target + "/index.html"];
+  const withoutSlash = target.replace(/\/+$/, "");
+  const options = [target, withoutSlash + ".html", withoutSlash + "/index.html"];
   const actual = options.find((candidate) => files.has(candidate));
   return { target: actual || target, exists: Boolean(actual) };
 }
