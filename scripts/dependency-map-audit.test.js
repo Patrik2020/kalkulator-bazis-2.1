@@ -11,6 +11,8 @@ test("relative, root and extensionless URLs resolve; external URLs are ignored",
   assert.equal(resolveLocal("kalkulatorok/example.html", "../css/style.css?v=12", names).target, "css/style.css");
   assert.equal(resolveLocal("index.html", "/aktualis", names).target, "aktualis.html");
   assert.equal(resolveLocal("index.html", "/", names).target, "index.html");
+  assert.equal(resolveLocal("404.html", "./", names).target, "index.html");
+  assert.equal(resolveLocal("index.html", "/aktualis/", names).target, "aktualis.html");
   assert.equal(resolveLocal("index.html", "https://example.com/test", names), null);
   assert.equal(resolveLocal("index.html", "js/" + "$" + "{module}.js", names).dynamic, true);
 });
