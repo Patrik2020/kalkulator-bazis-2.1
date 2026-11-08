@@ -9,6 +9,17 @@ These rules apply throughout this repository. Follow the user's explicit task sc
 - Use Node.js **>=24.8.0**, `npm ci`, and scripts actually defined in `package.json`. Do not invent commands or report tests as passing unless executed successfully.
 - Keep changes minimal, explain their purpose, and avoid unrelated refactors. Keep generated files and their source changes together when required by CI.
 
+## Maintainability and no-layering contract (mandatory)
+
+Read and follow [docs/engineering-development-contract.md](docs/engineering-development-contract.md) before touching runtime code, layout, CSS, calculators, generators, or CI. Its checklist is part of the required PR handoff.
+
+- Before editing, trace the **current canonical implementation**, its callers/loads (including dynamic loads), generator outputs, other open PRs, and regression tests. Prefer modifying the existing owner rather than adding another overlay, `*-fix`, `*-upgrades`, CSS override, or duplicate event handler.
+- When replacing functionality, **assess the old implementation for removal**; remove it and its imports/tests/styles when proven unused and safely covered, or document why compatibility is still needed. Never call code dead solely because a static search did not find an import.
+- Do not solve a red check by silencing the check or masking an old implementation with another layer. Fix root causes, preserve the static build's source-of-truth and idempotence, and keep cleanup small and reviewable.
+- Each relevant PR must say **what was integrated, what was removed, what deliberately remains, and why**; state local test results, CI, merge, and production verification **separately**. No unfounded claims of success.
+
+The 2026-11-08 first-pass audit is [docs/architecture-maintainability-audit-2026-11-08.md](docs/architecture-maintainability-audit-2026-11-08.md). It is a read-only finding list, **not** permission for broad cleanup or an assertion that the site has passed live tests.
+
 ## Existing build and validation contracts
 
 - The canonical static build is `npm run static:build` (`scripts/static-build-pipeline.js`). Before making build-related changes, inspect its source, render, and finalize stages. Generated HTML, fingerprints, fragments, and sitemap must stay consistent.
