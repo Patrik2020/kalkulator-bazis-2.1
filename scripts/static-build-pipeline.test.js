@@ -19,6 +19,18 @@ test("the canonical build has one render and no repeated repair step", () => {
   assert.ok(flatSteps.indexOf("materialize-static-first.js") < flatSteps.indexOf("normalize-static-html.js"));
 });
 
+test("already-integrated AdSense audit policy is maintained in its canonical source, not re-patched by the build", () => {
+  const adsenseAudit = fs.readFileSync(path.join(root, "scripts/adsense-quality-v2-audit.js"), "utf8");
+  assert.ok(!flatSteps.includes("apply-adsense-audit-policy-v2.js"),
+    "The build must not rewrite its own AdSense quality audit source");
+  assert.match(adsenseAudit, /KB_ADSENSE_AUDIT_POLICY_V2/);
+  assert.match(adsenseAudit, /const editorialHtml = mainHtml/);
+  assert.match(adsenseAudit, /KB_ADSENSE:ymyl-trust:START/);
+  assert.match(adsenseAudit, /KB_STATIC:reliability:START/);
+  assert.match(adsenseAudit, /const benignSharedPatterns = \[/);
+  assert.match(adsenseAudit, /az eredmények tájékoztató becslések/);
+});
+
 test("every canonical build step is an existing, phase-appropriate script", () => {
   const phaseById = Object.fromEntries(pipeline.map((phase) => [phase.id, phase.steps]));
   assert.deepEqual(Object.keys(phaseById), ["source", "render", "finalize"]);
