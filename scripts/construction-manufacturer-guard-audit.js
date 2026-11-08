@@ -14,9 +14,8 @@ const read = (p) => fs.readFileSync(path.join(root, p), "utf8");
 const advancedPath = "js/construction-upgrades.js";
 
 // A tényleges build sorrendjével azonos végállapotot vizsgáljuk, fájlírás nélkül.
-// Ez azért fontos, mert a gyártói guard után további, ugyanazokat a mezőket
-// A tető rendelési mód transzformálható; a vakolat egységmód már a kanonikus forrásban él.
-// A hőszigetelés csomagfedés-guidance már a kanonikus forrásban él.
+// A tető rendelési mód régebbi transzformja még fut; a vakolat egységmód és
+// a hőszigetelés csomagfedési útmutatója már a kanonikus forrásban él.
 let source = baseTransforms[advancedPath](read(advancedPath));
 source = transformConstruction(source);
 source = roofModeTransform(source);
