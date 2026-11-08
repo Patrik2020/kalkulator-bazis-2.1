@@ -64,6 +64,12 @@ test("insulation package guidance is authored and checked without a build-time p
   assert.equal(packageScripts["test:construction:insulation-package"], "node scripts/insulation-package-guidance-audit.js");
   assert.equal(packageScripts["insulation:package:apply"], undefined);
   assert.doesNotMatch(audit, /apply-insulation-package-guidance/);
+  for (const scriptName of fs.readdirSync(path.join(root, "scripts")).filter((name) => name.endsWith(".js"))) {
+    if (scriptName === "static-build-pipeline.test.js") continue;
+    const script = fs.readFileSync(path.join(root, "scripts", scriptName), "utf8");
+    assert.doesNotMatch(script, /require\(["']\.\/apply-insulation-package-guidance\.js["']\)/,
+      scriptName + " must not import the deleted source patch");
+  }
 });
 
 test("every canonical build step is an existing, phase-appropriate script", () => {
