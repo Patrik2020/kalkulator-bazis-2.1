@@ -54,17 +54,17 @@ A csak olvasó scripts/dependency-map-audit.js minden Git által követett, szá
 
 ## 5. Első tényleges futtatás és kézzel ellenőrzött jelöltek
 
-A GitHub Site quality job a 362-es PR korábbi commitján végrehajtotta a diagnosztikát és a három új tesztet. **Mindhárom teszt sikeres**, a Site quality job is sikeresen zárult. A diagnosztika a PR-ben követett 860 fájlt elemezte (857 eredeti + 3 új fájl; a package.json módosult, nem új).
+A GitHub Site quality job a 362-es PR frissített ellenőrzőjén végrehajtotta a diagnosztikát és a három új tesztet. **Mindhárom teszt sikeres**, a Site quality job is sikeresen zárult (auditfejlesztési commit: ec8546e73769d2e39df17130533ec20207607ac3). A diagnosztika a PR-ben követett 860 fájlt elemezte (857 eredeti + 3 új fájl; a package.json módosult, nem új).
 
 - 11 571 felismert él / hivatkozásjelölt; 663 különböző feloldott célpont.
 - 1038 HTML script-hivatkozás; 328 HTML stílus-hivatkozás; 16 CSS import; 37 buildfázis-lépés; 17 SW precache utalás.
 - **0 erős, hiányzó, közvetlen HTML-script/CSS-import/manifest hivatkozás.** Ez nem jelent teljes működési bizonyítékot.
-- 226 egyéb feloldatlan jelölt a kezdeti heurisztikában; itt voltak téves pozitív URL-gyökér hivatkozások, például ./, amelynek feloldását a PR későbbi commitjában külön teszteltük és korrigáltuk.
+- **121 egyéb feloldatlan jelölt** a korrigált statikus futtatásban (a korábbi 226 helyett). A ./ és extensionless route feloldását külön regressziós teszt védte. A fennmaradó tételek között található 10 ténylegesen hiányzó, régi CSS-ben hivatkozott képfájl, valamint nem valódi fájlhivatkozások, például eslint globminták. A 121 darab nem 121 működési hiba.
 - 3 közvetlen bejövő, statikusan felismert JS/CSS kapcsolat nélküli jelölt: css/components/site-compatibility.css, css/pages/site-quality-final.css, js/site-compatibility.js. **Egyik sem minősíthető törölhetőnek** a dinamikus és generált fogyasztók ellenőrzése nélkül.
 
 **D-01: konkrét, rétegezett CSS és hiányzó régi képreferenciák.** A css/pages/home-redesign-v17.css 194–209. sorának korábbi szabályai 4 külön évszakos és 6 kategória-AVIF fájlra hivatkoznak, amelyek jelenleg nincsenek a Git tree-ben. A 251–268. sorban később két, ténylegesen létező season-atlas.avif és category-atlas.avif kerül beállításra, !important háttérkép-szabályokkal a home-redesign-v17 osztály alatt. A főoldal body eleme rendelkezik ezzel az osztállyal. Ez **igazoltan megmaradt régi/új réteg**, amely a felhasználó által kifogásolt módszerhez hasonlít; a CSS kaszkád és valamennyi képernyőméret tényleges viselkedése további vizsgálatot igényel. Törlés egyelőre nincs. **Prioritás: magas a CSS-auditban, nem igazolt produkciós incidens.**
 
-Az itt szereplő számok a korábbi, valós GitHub CI futásból származnak; a path-feloldás javítása után a végleges új kimenetet a PR későbbi ellenőrzése adja. A vizsgálati listát ennek alapján kell aktualizálni.
+Ezeket a számokat valódi GitHub Actions napló igazolja. Az audit továbbra is csak statikus heurisztika; az egyéb jelölteket források és runtime viselkedés alapján kell osztályozni. A CI státusz és az éles ellenőrzés két külön dolog.
 
 ## 6. Következő vizsgálati sorrend
 
