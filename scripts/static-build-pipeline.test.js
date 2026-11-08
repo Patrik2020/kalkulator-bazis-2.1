@@ -95,6 +95,31 @@ test("construction confirmation UX is guarded by canonical source and read-only 
   }
 });
 
+test("drywall system guidance is authored and tested without a legacy source patch", () => {
+  const runtime = fs.readFileSync(path.join(root, "js/construction-upgrades.js"), "utf8");
+  const audit = fs.readFileSync(path.join(root, "scripts/drywall-system-guidance-audit.js"), "utf8");
+  const materializeWorkflow = fs.readFileSync(path.join(root, ".github/workflows/materialize-static-first.yml"), "utf8");
+  const scripts = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8")).scripts;
+
+  assert.ok(!flatSteps.includes("apply-drywall-system-guidance.js"));
+  assert.ok(!fs.existsSync(path.join(root, "scripts/apply-drywall-system-guidance.js")));
+  assert.equal((runtime.match(/KB_CONSTRUCTION:drywall-system-guidance:START/g) || []).length, 1);
+  assert.equal((runtime.match(/KB_CONSTRUCTION:drywall-system-guidance:END/g) || []).length, 1);
+  assert.match(runtime, /Gipszkarton rendszer adatai ellenőrizve/);
+  assert.match(runtime, /values\.systemConfirmed !== "yes"/);
+  assert.match(materializeWorkflow, /- "js\/construction-upgrades\.js"/);
+  assert.equal(scripts["quality:drywall-guidance"], "node scripts/drywall-system-guidance-audit.js");
+  assert.equal(scripts["test:construction:drywall"], "node scripts/drywall-system-guidance-audit.js");
+  assert.equal(scripts["drywall:guidance:apply"], undefined);
+  assert.doesNotMatch(audit, /require\(["']\.\/apply-drywall-system-guidance\.js["']\)/);
+  for (const name of fs.readdirSync(path.join(root, "scripts")).filter((value) => value.endsWith(".js"))) {
+    if (name === "static-build-pipeline.test.js") continue;
+    const source = fs.readFileSync(path.join(root, "scripts", name), "utf8");
+    assert.doesNotMatch(source, /require\(["']\.\/apply-drywall-system-guidance\.js["']\)/,
+      name + " must not import the retired patcher");
+  }
+});
+
 test("every canonical build step is an existing, phase-appropriate script", () => {
   const phaseById = Object.fromEntries(pipeline.map((phase) => [phase.id, phase.steps]));
   assert.deepEqual(Object.keys(phaseById), ["source", "render", "finalize"]);

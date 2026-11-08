@@ -9,7 +9,6 @@ const { transforms: baseTransforms } = require("./apply-construction-model-upgra
 const { transformConstruction } = require("./apply-construction-manufacturer-guards.js");
 const { transform: plasterModeTransform } = require("./apply-plaster-consumption-mode.js");
 const { transform: roofModeTransform } = require("./apply-roof-purchase-mode.js");
-const { transform: drywallGuidanceTransform } = require("./apply-drywall-system-guidance.js");
 
 const root = path.resolve(__dirname, "..");
 const read = (p) => fs.readFileSync(path.join(root, p), "utf8");
@@ -18,7 +17,6 @@ let source = baseTransforms[advancedPath](read(advancedPath));
 source = transformConstruction(source);
 source = plasterModeTransform(source);
 source = roofModeTransform(source);
-source = drywallGuidanceTransform(source);
 source = source.replace(
   "  const config = configs[slug]; if (!config) return;",
   "  globalThis.__CONFIGS__ = configs;\n  return;\n  const config = configs[slug]; if (!config) return;"
@@ -33,6 +31,11 @@ vm.createContext(sandbox);
 vm.runInContext(source, sandbox, { filename: advancedPath });
 assert.equal((read(advancedPath).match(/KB_CONSTRUCTION:insulation-package-guidance:START/g) || []).length, 1,
   "A beépült hőszigetelési útmutatást a kanonikus forrásnak kell tartalmaznia");
+const authored = read(advancedPath);
+assert.equal((authored.match(/KB_CONSTRUCTION:drywall-system-guidance:START/g) || []).length, 1,
+  "A kanonikus gipszkarton útmutatás kezdete pontosan egyszer szerepeljen");
+assert.equal((authored.match(/KB_CONSTRUCTION:drywall-system-guidance:END/g) || []).length, 1,
+  "A kanonikus gipszkarton útmutatás lezárása pontosan egyszer szerepeljen");
 const drywall = sandbox.__CONFIGS__["gipszkarton-kalkulator"];
 assert.ok(drywall, "Gipszkarton konfiguráció hiányzik");
 const rows = (result) => Object.fromEntries(Array.from(result, ([key, value]) => [String(key), String(value)]));
