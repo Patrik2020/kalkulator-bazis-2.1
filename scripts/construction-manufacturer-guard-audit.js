@@ -7,7 +7,6 @@ const path = require("path");
 const vm = require("vm");
 const { transforms: baseTransforms } = require("./apply-construction-model-upgrades.js");
 const { transformConstruction } = require("./apply-construction-manufacturer-guards.js");
-const { transform: plasterModeTransform } = require("./apply-plaster-consumption-mode.js");
 const { transform: roofModeTransform } = require("./apply-roof-purchase-mode.js");
 
 const root = path.resolve(__dirname, "..");
@@ -16,14 +15,15 @@ const advancedPath = "js/construction-upgrades.js";
 
 // A tényleges build sorrendjével azonos végállapotot vizsgáljuk, fájlírás nélkül.
 // Ez azért fontos, mert a gyártói guard után további, ugyanazokat a mezőket
-// pontosító transzformok futnak (vakolat egységmód, tető rendelési mód).
+// A tető rendelési mód transzformálható; a vakolat egységmód már a kanonikus forrásban él.
 // A hőszigetelés csomagfedés-guidance már a kanonikus forrásban él.
 let source = baseTransforms[advancedPath](read(advancedPath));
 source = transformConstruction(source);
-source = plasterModeTransform(source);
 source = roofModeTransform(source);
 
 // A konfigurációkat kinyerjük anélkül, hogy a DOM-felület felépülne.
+assert.equal((read(advancedPath).match(/KB_CONSTRUCTION:plaster-consumption-mode:START/g) || []).length, 1,
+  "A vakolat fogyási mód útmutatásának egyszer kell szerepelnie a kanonikus forrásban");
 source = source.replace(
   "  const config = configs[slug]; if (!config) return;",
   "  globalThis.__CONFIGS__ = configs;\n  return;\n  const config = configs[slug]; if (!config) return;"
