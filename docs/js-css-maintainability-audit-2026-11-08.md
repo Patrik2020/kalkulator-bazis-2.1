@@ -3,7 +3,7 @@
 **Dátum:** 2026-11-08. **Kiinduló main:** f0589f988743deb83669adb693fd862f031e2e7a.  
 **Módszer:** GitHubon ellenőrzött statikus forrás, konfiguráció és célzott kódútvonalak; külön, ismételhető, csak olvasó JS/CSS-leltár és izolált egységtesztek. **Nem teljes böngészős regressziós bizonyítás és nem automatikus törlési lista.**
 
-Kapcsolódó: [kötelező fejlesztési szabályok](engineering-development-contract.md), [2. lépés függőségtérképe](dependency-map-2026-11-08.md) (a #362 PR-ben, a felméréskor még nem volt mergelve).
+Kapcsolódó: [kötelező fejlesztési szabályok](engineering-development-contract.md), [2. lépés függőségtérképe – PR #362](https://github.com/Patrik2020/kalkulator-bazis-2.1/pull/362) (a felméréskor még nem volt mergelve).
 
 ## Felső vezetői megállapítás
 
