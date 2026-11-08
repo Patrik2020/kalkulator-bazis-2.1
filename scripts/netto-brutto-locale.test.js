@@ -81,4 +81,9 @@ test("authored family inputs remain canonical while the active salary API client
     "legacy DOM replacement must not be reintroduced");
   assert.match(shell, /netto-brutto-shadow\.js/, "keep the existing active salary API client");
   assert.match(client, /https:\/\/api\.kalkulatorbazis\.hu/, "keep the real API integration");
+  const materializeWorkflow = fs.readFileSync(path.join(root, ".github/workflows/materialize-static-first.yml"), "utf8");
+  assert.match(materializeWorkflow, /- "js\\/penzugyi\\/netto-brutto\\.js"/,
+    "salary UI changes must trigger static materialization");
+  assert.match(materializeWorkflow, /- "js\\/penzugyi\\/netto-brutto-shadow\\.js"/,
+    "salary API-client changes must trigger static materialization");
 });
