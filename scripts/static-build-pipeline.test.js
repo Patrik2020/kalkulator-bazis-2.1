@@ -50,6 +50,28 @@ test("average hub guard is authored in runtime, never re-patched by a build step
     "Superseded patch script must not be restored");
 });
 
+test("insulation package guidance is authored and checked without a build-time patch", () => {
+  const construction = fs.readFileSync(path.join(root, "js/construction-upgrades.js"), "utf8");
+  const packageScripts = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8")).scripts;
+  const audit = fs.readFileSync(path.join(root, "scripts/insulation-package-guidance-audit.js"), "utf8");
+
+  assert.ok(!flatSteps.includes("apply-insulation-package-guidance.js"));
+  assert.ok(!fs.existsSync(path.join(root, "scripts/apply-insulation-package-guidance.js")));
+  assert.equal((construction.match(/KB_CONSTRUCTION:insulation-package-guidance:START/g) || []).length, 1);
+  assert.match(construction, /Konkrét termék csomagfedése \(m²\/csomag\)/);
+  assert.match(construction, /lapvastagságból önmagában nem talál ki csomagméretet/);
+  assert.equal(packageScripts["quality:insulation-package"], "node scripts/insulation-package-guidance-audit.js");
+  assert.equal(packageScripts["test:construction:insulation-package"], "node scripts/insulation-package-guidance-audit.js");
+  assert.equal(packageScripts["insulation:package:apply"], undefined);
+  assert.doesNotMatch(audit, /apply-insulation-package-guidance/);
+  for (const scriptName of fs.readdirSync(path.join(root, "scripts")).filter((name) => name.endsWith(".js"))) {
+    if (scriptName === "static-build-pipeline.test.js") continue;
+    const script = fs.readFileSync(path.join(root, "scripts", scriptName), "utf8");
+    assert.doesNotMatch(script, /require\(["']\.\/apply-insulation-package-guidance\.js["']\)/,
+      scriptName + " must not import the deleted source patch");
+  }
+});
+
 test("every canonical build step is an existing, phase-appropriate script", () => {
   const phaseById = Object.fromEntries(pipeline.map((phase) => [phase.id, phase.steps]));
   assert.deepEqual(Object.keys(phaseById), ["source", "render", "finalize"]);
