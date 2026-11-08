@@ -167,7 +167,10 @@ function main() {
   console.log("Strong unresolved candidates=" + result.unresolvedStrong.length);
   result.unresolvedStrong.slice(0,25).forEach((x) => console.log("  " + x.kind + " " + x.source + " -> " + x.target));
   console.log("Other unresolved candidates=" + result.unresolvedOtherCount);
+  result.unresolvedOtherSample.slice(0,15).forEach((x) =>
+    console.log("  candidate: " + x.kind + " " + x.source + " -> " + x.target));
   console.log("Zero-inbound JS/CSS candidates, NOT deletable=" + result.unreferencedCandidateCount);
+  result.unreferencedCandidateSample.forEach((x) => console.log("  investigate-only: " + x));
   console.log("Dynamic hints=" + result.dynamicHintFileCount);
   console.log(result.limitation);
 }
