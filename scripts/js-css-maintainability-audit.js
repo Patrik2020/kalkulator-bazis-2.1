@@ -64,8 +64,15 @@ function activeHomeSelectorHints(indexHtml, indexCss) {
   for (const match of indexHtml.matchAll(/\bclass\s*=\s*(["'])(.*?)\1/gi)) {
     for (const name of match[2].split(/\s+/).filter(Boolean)) inHtml.add(name);
   }
-  const fromCss = unique([...indexCss.matchAll(/\.([a-zA-Z_][\w-]*)/g)]
-    .map((match) => match[1]));
+  // Read selector preludes only: dots in image URLs (such as .avif) are not classes.
+  const selectorText = indexCss.replace(/\/\*[\s\S]*?\*\//g, "");
+  const classes = [];
+  for (const rule of selectorText.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+    const prelude = rule[1].trim();
+    if (prelude.startsWith("@")) continue;
+    for (const found of prelude.matchAll(/\.([a-zA-Z_][\w-]*)/g)) classes.push(found[1]);
+  }
+  const fromCss = unique(classes);
   const notInStaticDom = fromCss.filter((name) => !inHtml.has(name));
   return {
     cssClassTokens: fromCss.length,
