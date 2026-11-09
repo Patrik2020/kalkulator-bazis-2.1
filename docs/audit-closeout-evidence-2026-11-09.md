@@ -30,7 +30,7 @@ A #379 végső PR commitján öt GitHub Actions-csomag **success**:
 | --- | --- | --- |
 | Site quality (teljes npm quality, szabályok, HTML/JS, képletek, sitemap, lokalizációs tesztek) | [Run 42581791011](https://github.com/Patrik2020/kalkulator-bazis-2.1/actions/runs/42581791011): success | A tesztelt merge-commiton a meglévő CI-ellenőrzés sikeres. |
 | Repository security baseline | [Run 42581790868](https://github.com/Patrik2020/kalkulator-bazis-2.1/actions/runs/42581790868): success | A beállított repository security és high/critical npm audit kapu zöld. Nem független penetrációs teszt. |
-| Browser regression a `main`-en | [Run 42581790850](https://github.com/Patrik2020/kalkulator-bazis-2.1/actions/runs/42581790850): a lekérdezéskor in progress; smoke success, deep UI fut | **Nem jelenthető teljesen sikeresnek** a végleges run lezárásáig. A #379 PR azonos kódjára a browser regresszió sikeres volt. |
+| Browser regression a `main`-en | [Run 42581790850](https://github.com/Patrik2020/kalkulator-bazis-2.1/actions/runs/42581790850): success (scope, smoke, deep UI QA és browser gate) | A tesztelt merge-commit teljes automatikus böngészős regressziója sikeres. |
 | Oldalleltár, URL-ek, canonical és sitemap | [Final full-site audit](../scripts/final-fullsite-audit.js) a Site quality kapuban | 101 regisztrált kalkulátor (88 publikus, 13 kivezetett), +1 önálló HTML-eszköz; registry/tesztmanifest/sitemap/canonical kapcsolatot a CI vizsgálja. |
 | Static materialization, drift, idempotencia | [PR #379 Materialize run](https://github.com/Patrik2020/kalkulator-bazis-2.1/actions/runs/42576827309): success | A PR-en az összes meglévő generálási és idempotencia-ellenőrzés zöld volt. |
 | AdSense és CMP policy | [PR #379 AdSense quality](https://github.com/Patrik2020/kalkulator-bazis-2.1/actions/runs/42576827336): success; Site quality is success | Regressziós és policy tesztek sikeresek; valós, régiónkénti hirdetésmegjelenés vagy Google-fiókállapot ettől nem igazolt. |
@@ -55,7 +55,7 @@ Az ellenőrzések ellenőrző futásainak időpontja és a státuszok idővel v�
 ## 5. Nyitott feladatok és döntési sorrend
 
 1. **P0 – bizonyítható éles ellenőrzés:** [#256](https://github.com/Patrik2020/kalkulator-bazis-2.1/issues/256) nyitva. A 2026-11-09-i [Production smoke](https://github.com/Patrik2020/kalkulator-bazis-2.1/actions/runs/42581790882) naplója Cloudflare HTTP 403 választ és kihagyott auditot igazol. A korábban beállított UptimeRobot főoldali/nettó–bruttó monitor egy külön rendelkezésreállási jelzés, **nem** a GitHub teljes produkciós auditjának helyettesítője. A Cloudflare védelmet nem kapcsoljuk ki; célzott, hitelesített monitor-hozzáférés vagy megfelelő külön ellenőrző futtató kell, majd teljes éles audit.
-2. **P1 – végleges `main` browser workflow:** a [Run 42581790850](https://github.com/Patrik2020/kalkulator-bazis-2.1/actions/runs/42581790850) deep UI és browser gate végleges állapota ellenőrizendő. Hibát a gyökérokon javítunk, nem csendesítünk tesztet.
+2. **Megerősített `main` browser workflow:** a [Run 42581790850](https://github.com/Patrik2020/kalkulator-bazis-2.1/actions/runs/42581790850) végül **success** állapottal lezárult, beleértve a deep UI és browser gate ellenőrzéseket. Új merge után ismét az aktuális SHA-t kell vizsgálni.
 3. **P1 – külön szolgáltatások E2E ellenőrzése:** nettó–bruttó API és ChatGPT-bővítmény saját tesztadatokkal; éles/auth biztonsági követelmények szerint, külön repóban és külön PR-ben.
 4. **P2 – befejezetlen lokalizáció és tartalom:** [#259](https://github.com/Patrik2020/kalkulator-bazis-2.1/issues/259), [#360](https://github.com/Patrik2020/kalkulator-bazis-2.1/pull/360) fordítási munka; [#340](https://github.com/Patrik2020/kalkulator-bazis-2.1/pull/340), [#351](https://github.com/Patrik2020/kalkulator-bazis-2.1/pull/351), [#349](https://github.com/Patrik2020/kalkulator-bazis-2.1/pull/349) tartalom/folyamat PR-ek; [#343](https://github.com/Patrik2020/kalkulator-bazis-2.1/pull/343) kategória UI. Nem keverjük a záróaudit PR-jébe.
 5. **P2 – nyitott CI-jegyek triázsa:** [#369](https://github.com/Patrik2020/kalkulator-bazis-2.1/issues/369), [#371](https://github.com/Patrik2020/kalkulator-bazis-2.1/issues/371) a korábbi PR-ek generated asset-fingerprint hibáihoz kötődnek. A kapcsolódó PR-ek merge-állapotát és a javítás bizonyítékát külön ellenőrizni kell, mielőtt ezeket lezárnánk.
@@ -65,7 +65,7 @@ Az ellenőrzések ellenőrző futásainak időpontja és a státuszok idővel v�
 - [x] A #379-ig a kis, különálló 7. lépéses kódtisztító PR-ek beolvadtak; a #379 öt releváns CI-csomagja sikeres.
 - [x] `main` rögzített SHA, lépésszám és tesztlefedettségi bizonyítékok dokumentálva.
 - [x] A jelenlegi repository- és CI-védelem, a különválasztott átfedő PR-ek, valamint a produkciós monitoring hiányossága azonosítva.
-- [ ] A `main` adott SHA-ján a teljes Browser regression lezárult és sikeres.
+- [x] A `main` adott SHA-ján a teljes Browser regression lezárult és sikeres.
 - [ ] A `kalkulatorbazis.hu` éles, valós tartalmi és verzióellenőrzése teljes, nem Cloudflare által kihagyott.
 - [ ] Külön API/bővítmény-kockázat külön integrációs bizonyítékkal rendelkezik, ha a teljes termékcsalád auditját is le akarjuk zárni.
 
