@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-03",
+  "generatedAt": "2026-11-09",
   "pages": {
     "": {
-      "hash": "f256e695ec98cd75452294c6d66ee344235a738fbd208b9282336d1d69c9cc80",
-      "lastmod": "2026-11-03"
+      "hash": "3cc81e57499110dd21226174345bebee8665c663d0c25ec0abed7f3e132c370c",
+      "lastmod": "2026-11-09"
     },
     "penzugyi.html": {
       "hash": "1e11fa0b052e894329cd6bee91dccb8f01ee02e7704a458cb733aab39006c460",
@@ -91,8 +91,8 @@
       "lastmod": "2026-08-21"
     },
     "aktualis.html": {
-      "hash": "52d083ccf235c26c52894d7c571ca7eb1e2ab24de0a00e89ac62855f98f2c108",
-      "lastmod": "2026-11-03"
+      "hash": "500508ad9fb8254771fe774032ae36cd7c8577e67b8b15433ab908481218a923",
+      "lastmod": "2026-11-09"
     },
     "aktualis/adotorveny-javaslatok-2027-oktober.html": {
       "hash": "c7583230350fa35da5cb67899ad13ec2836c1b151b765dc2b9599d850900d4ff",
@@ -110,6 +110,10 @@
       "hash": "8daefc866cfe7209c37bdb9f99f719f5538e83bbfb0ad6986685511552a8d771",
       "lastmod": "2026-09-22"
     },
+    "aktualis/eurostat-inflacio-2026-oktober.html": {
+      "hash": "725eea939bc519d52d5d13de02ccc37b0f57ccf4b6f9b5493c8396aab68d67e2",
+      "lastmod": "2026-11-09"
+    },
     "aktualis/ksh-gdp-2026-harmadik-negyedev.html": {
       "hash": "0527c9a8b73d343bfc15917acb6591fbfa6d0074c78d8daee6c6fad46e8191f5",
       "lastmod": "2026-10-31"
@@ -121,6 +125,10 @@
     "aktualis/ksh-inflacio-2026-szeptember.html": {
       "hash": "fe5682b3073ad3526a54c9bba69cb18c3ee134ae9f8d5d4b7777178921b07724",
       "lastmod": "2026-10-11"
+    },
+    "aktualis/ksh-ipari-termeles-2026-szeptember.html": {
+      "hash": "d828cc51e777661c4b582e21f9eb87470143943c33eb122149cd855adc0c63dd",
+      "lastmod": "2026-11-09"
     },
     "aktualis/ksh-ipari-termeloi-arak-2026-szeptember.html": {
       "hash": "b8dd5e9bc4fa4518c8043a8ee002e770ab42db2f6fa4e859200b3b1ccdefb49d",
@@ -137,6 +145,10 @@
     "aktualis/ksh-keresetek-eloszlasa-2026-i-felev.html": {
       "hash": "1c21a5ac54d5a6e08166199a6d48e6c5c0acd6e094a9ef91955a344ed0ce088d",
       "lastmod": "2026-10-14"
+    },
+    "aktualis/ksh-kiskereskedelem-2026-szeptember.html": {
+      "hash": "9cfd5bc32f6e674c0cb7ac1b98711b4d905c6373b520f5a86838a57b448768ce",
+      "lastmod": "2026-11-09"
     },
     "aktualis/ksh-uzemanyagarak-2026-augusztus.html": {
       "hash": "a1a3ff4668d31424af88d65bd29396a60a2e858144c2576905b1bc08345a0544",
