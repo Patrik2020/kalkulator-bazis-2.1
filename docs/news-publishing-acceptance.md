@@ -1,23 +1,33 @@
-# News publishing acceptance criteria
+# Kalkulátor Bázis – gyors és biztonságos hírpublikálás: elfogadási feltételek
 
-Target: within 10 minutes of the owner's explicit approval, the approved article is publicly reachable on the production site. This is a target, not a guarantee until measured.
+**Cél:** a tulajdonos által jóváhagyott cikket indokolatlan, akár napokig tartó kézi várakozás nélkül lehessen publikálni. A korábban említett „10 perc” nem merev SLA; a tényleges előállítási, CI-, deployment- és ellenőrzési időt mérjük. Nincs olyan ígéret, hogy minden cikk azonos határidőre megjelenik.
 
-## Required workflow
-1. Draft article is stored separately from production and sent for review with a stable preview and unique article identifier.
-2. Approval is bound to that exact article revision; editing after approval requires renewed approval.
-3. An approved revision is queued once (idempotency key); retry must not duplicate the article.
-4. A publisher builds the article, homepage news listing, news index, sitemap, fragments, asset hashes and service-worker version using the canonical build.
-5. Required CI gates stay enabled. Never bypass tests to meet the time target.
-6. After deploy, probe the public article URL and the news index; only then report 'published'.
-7. On failure, notify with actionable error and retry transient failures safely. Report a missed 10-minute target instead of claiming success.
-8. Record approval time, queue time, CI duration, deployment time and successful public verification time. Alert before the target is missed.
+## Meglévő, kötelező ellenőrzési út
 
-## Verification before declaring done
-- Successful end-to-end test using an approved test article, with timestamps.
-- Repeated approval creates no duplicate publication.
-- CI failure does not mark an article published.
-- A new commit after approval cannot silently replace approved content.
-- Public URL and index both show the article after deployment.
-- Repeated trials meet the 10-minute target; document exceptions.
+A webrepo már rendelkezik a következő kanonikus parancsokkal. **Nem hozunk létre még egy, gyengébb news-preflight szkriptet.**
 
-Current state: acceptance criteria only. The existing news-preflight command is not a deployed publication service and does not yet implement this workflow.
+1. `npm run ai:prepare` – a teljes statikus buildből származó fájlok előállítása; az összes változás felülvizsgálata, csak a szándékos módosítások commitolása.
+2. `npm run ai:check` – tiszta munkafa ellenőrzése a build előtt és után, `npm run quality`, `npm run test:build-pipeline` és git diff-ellenőrzések. Hibánál megáll, nem „ment át” jelzést ad.
+3. A PR kötelező GitHub Actions kapui (Site quality, biztonság, szükség esetén böngészős regresszió és statikus materializáció) nem kerülhetők meg.
+4. Merge, deployment után **élő URL és aktuális hírlista tényleges ellenőrzése** szükséges. A sikeres CI nem egyenlő a nyilvános megjelenéssel.
+
+## Jövőbeli jóváhagyás → publikálás automatizmus elvárt szerződése
+
+1. A cikk vázlata a publikálttól elkülönítve, egyedi azonosítóval és stabil előnézettel legyen elérhető jóváhagyásra.
+2. A jóváhagyás egy konkrét verzióra vonatkozzon; tartalmi módosítás után ismételt jóváhagyás kell.
+3. A jóváhagyott verzió csak egyszer kerülhet sorba (`idempotency key`); újrapróbálkozás ne hozzon létre duplikált cikket.
+4. Az eredeti forrás és a generátor együtt frissítse a cikket, a főoldali hírblokkot, az `aktualis.html` listát, a sitemapet, a fragmenteket, az asset-hash-eket, a service-worker verziót és a sitemap tartalomállapotát.
+5. Hiba esetén a rendszer jelentsen pontos blokkolót; tranziens hibára korlátozott újrapróbálkozás lehetséges, CI-kapu lazítása nélkül.
+6. Naplózandó: jóváhagyás ideje, commit/queue, CI-idő, merge, deployment, a publikus URL és a rovat éles ellenőrzési időpontja.
+7. A felhasználónak csak tényleges éles verifikáció után szabad „publikálva” üzenetet küldeni.
+
+## Élesítési elfogadási teszt (még NEM végrehajtva)
+
+- Egy jóváhagyott próbacikk végigmegy az összes fenti állomáson, mérhető időkkel.
+- Dupla jóváhagyás nem hoz létre duplikátumot.
+- Hibás CI nem jelent sikeres publikációt.
+- A jóváhagyást követő újabb módosítás nem cserélhet tartalmat észrevétlenül.
+- A publikus cikkoldal és a hírlista egyaránt a várt verziót mutatja.
+- A visszajelzés az akadályokat és a tényleges időket jelzi; több próbafutás eredménye alapján határozható meg reális célérték.
+
+**Jelenlegi állapot:** ez egy elfogadási és fejlesztési szerződés, nem már működő automatikus jóváhagyás-publikálás szolgáltatás. A kézi/asszisztált PR-folyamatban a meglévő `ai:prepare` és `ai:check` használható; a teljes automatizmus későbbi külön tervezési és tesztelési feladat.
