@@ -7,7 +7,7 @@ const base=String(window.KB_PROJECT_ROOT||'').replace(/\/$/,'');
 const url=p=>`${base}/${String(p).replace(/^\//,'')}`.replace(/^\/$/,'./');
 document.body.classList.add('home-redesign-v17');
 document.querySelectorAll('link[data-home-professional-style],link[data-kb-seasonal-theme],script[data-kb-home-ia]').forEach(n=>n.remove());
-if(!document.querySelector('link[data-home-redesign-v17]')){const l=document.createElement('link');l.rel='stylesheet';l.href=url('css/pages/home-redesign-v17.css?v=6ada244efb8e');l.dataset.homeRedesignV17='';document.head.appendChild(l)}
+if(!document.querySelector('link[data-home-redesign-v17]')){const l=document.createElement('link');l.rel='stylesheet';l.href=url('css/pages/home-redesign-v17.css?v=57b33b567588');l.dataset.homeRedesignV17='';document.head.appendChild(l)}
 const fetchText=async p=>{const r=await fetch(url(p),{cache:'no-cache'});if(!r.ok)throw new Error(`${p}: HTTP ${r.status}`);return r.text()};
 const replace=(selector,html)=>{const current=document.querySelector(selector);if(!current)return;const t=document.createElement('template');t.innerHTML=html.trim();current.replaceWith(t.content)};
 const replaceHeader=html=>{

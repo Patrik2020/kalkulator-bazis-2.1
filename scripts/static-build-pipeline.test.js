@@ -19,6 +19,194 @@ test("the canonical build has one render and no repeated repair step", () => {
   assert.ok(flatSteps.indexOf("materialize-static-first.js") < flatSteps.indexOf("normalize-static-html.js"));
 });
 
+test("already-integrated AdSense audit policy is maintained in its canonical source, not re-patched by the build", () => {
+  const adsenseAudit = fs.readFileSync(path.join(root, "scripts/adsense-quality-v2-audit.js"), "utf8");
+  const adsenseWorkflow = fs.readFileSync(path.join(root, ".github/workflows/adsense-quality-v2.yml"), "utf8");
+  assert.doesNotMatch(adsenseWorkflow, /node scripts\/apply-adsense-audit-policy-v2\.js/);
+  assert.match(adsenseWorkflow, /node scripts\/adsense-quality-v2-audit\.js --report --gate/);
+  assert.ok(!flatSteps.includes("apply-adsense-audit-policy-v2.js"),
+    "The build must not rewrite its own AdSense quality audit source");
+  assert.match(adsenseAudit, /KB_ADSENSE_AUDIT_POLICY_V2/);
+  assert.match(adsenseAudit, /const editorialHtml = mainHtml/);
+  assert.match(adsenseAudit, /KB_ADSENSE:ymyl-trust:START/);
+  assert.match(adsenseAudit, /KB_STATIC:reliability:START/);
+  assert.match(adsenseAudit, /const benignSharedPatterns = \[/);
+  assert.match(adsenseAudit, /az eredmények tájékoztató becslések/);
+});
+
+test("average hub guard is authored in runtime, never re-patched by a build step", () => {
+  const runtime = fs.readFileSync(path.join(root, "js/everyday-upgrades.js"), "utf8");
+  const page = fs.readFileSync(path.join(root, "kalkulatorok/atlag-kalkulator.html"), "utf8");
+
+  const materializeWorkflow = fs.readFileSync(path.join(root, ".github/workflows/materialize-static-first.yml"), "utf8");
+  assert.ok(materializeWorkflow.includes('      - "js/everyday-upgrades.js"'),
+    "Average hub runtime changes must trigger the full static materialization contract");
+  assert.ok(!flatSteps.includes("apply-average-hub-runtime-guard.js"),
+    "Obsolete source rewriter must stay out of the canonical build");
+  assert.match(runtime, /KB_PHASE2_BATCH2_AVERAGE_HUB_GUARD/);
+  assert.match(runtime, /if \(slug === "atlag-kalkulator" && document\.querySelector\('\[data-average-hub="true"\]'\)\) return;/);
+  assert.match(page, /<main\b[^>]*data-average-hub="true"/);
+  assert.ok(!fs.existsSync(path.join(root, "scripts/apply-average-hub-runtime-guard.js")),
+    "Superseded patch script must not be restored");
+});
+
+test("insulation package guidance is authored and checked without a build-time patch", () => {
+  const construction = fs.readFileSync(path.join(root, "js/construction-upgrades.js"), "utf8");
+  const packageScripts = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8")).scripts;
+  const audit = fs.readFileSync(path.join(root, "scripts/insulation-package-guidance-audit.js"), "utf8");
+
+  assert.ok(!flatSteps.includes("apply-insulation-package-guidance.js"));
+  assert.ok(!fs.existsSync(path.join(root, "scripts/apply-insulation-package-guidance.js")));
+  assert.equal((construction.match(/KB_CONSTRUCTION:insulation-package-guidance:START/g) || []).length, 1);
+  assert.match(construction, /Konkrét termék csomagfedése \(m²\/csomag\)/);
+  assert.match(construction, /lapvastagságból önmagában nem talál ki csomagméretet/);
+  assert.equal(packageScripts["quality:insulation-package"], "node scripts/insulation-package-guidance-audit.js");
+  assert.equal(packageScripts["test:construction:insulation-package"], "node scripts/insulation-package-guidance-audit.js");
+  assert.equal(packageScripts["insulation:package:apply"], undefined);
+  assert.doesNotMatch(audit, /apply-insulation-package-guidance/);
+  for (const scriptName of fs.readdirSync(path.join(root, "scripts")).filter((name) => name.endsWith(".js"))) {
+    if (scriptName === "static-build-pipeline.test.js") continue;
+    const script = fs.readFileSync(path.join(root, "scripts", scriptName), "utf8");
+    assert.doesNotMatch(script, /require\(["']\.\/apply-insulation-package-guidance\.js["']\)/,
+      scriptName + " must not import the deleted source patch");
+  }
+});
+
+test("construction confirmation UX is guarded by canonical source and read-only tests", () => {
+  const code = fs.readFileSync(path.join(root, "js/construction-upgrades.js"), "utf8");
+  const audit = fs.readFileSync(path.join(root, "scripts/construction-confirmation-ux-audit.js"), "utf8");
+  const scripts = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8")).scripts;
+  assert.ok(!flatSteps.includes("apply-construction-confirmation-ux.js"));
+  assert.ok(!fs.existsSync(path.join(root, "scripts/apply-construction-confirmation-ux.js")));
+  assert.equal((code.match(/const confirmationNames = \["manufacturerConfirmed", "systemConfirmed"\]/g) || []).length, 1);
+  assert.match(code, /if \(pendingConfirmation\)/);
+  assert.match(code, /Addig nem készítünk rendelési mennyiséget/);
+  assert.equal(scripts["quality:construction-confirmation-ux"],
+    "node scripts/construction-confirmation-ux-audit.js");
+  assert.equal(scripts["test:construction:confirmation-ux"],
+    "node scripts/construction-confirmation-ux-audit.js");
+  assert.equal(scripts["construction:confirmation-ux:apply"], undefined);
+  assert.doesNotMatch(audit, /require\(["']\.\/apply-construction-confirmation-ux\.js["']\)/);
+  for (const name of fs.readdirSync(path.join(root, "scripts")).filter((item) => item.endsWith(".js"))) {
+    if (name === "static-build-pipeline.test.js") continue;
+    const source = fs.readFileSync(path.join(root, "scripts", name), "utf8");
+    assert.doesNotMatch(source, /require\(["']\.\/apply-construction-confirmation-ux\.js["']\)/,
+      name + " must not depend on the removed source patch");
+  }
+});
+
+test("drywall system guidance is authored and tested without a legacy source patch", () => {
+  const runtime = fs.readFileSync(path.join(root, "js/construction-upgrades.js"), "utf8");
+  const audit = fs.readFileSync(path.join(root, "scripts/drywall-system-guidance-audit.js"), "utf8");
+  const materializeWorkflow = fs.readFileSync(path.join(root, ".github/workflows/materialize-static-first.yml"), "utf8");
+  const scripts = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8")).scripts;
+
+  assert.ok(!flatSteps.includes("apply-drywall-system-guidance.js"));
+  assert.ok(!fs.existsSync(path.join(root, "scripts/apply-drywall-system-guidance.js")));
+  assert.equal((runtime.match(/KB_CONSTRUCTION:drywall-system-guidance:START/g) || []).length, 1);
+  assert.equal((runtime.match(/KB_CONSTRUCTION:drywall-system-guidance:END/g) || []).length, 1);
+  assert.match(runtime, /Gipszkarton rendszer adatai ellenőrizve/);
+  assert.match(runtime, /values\.systemConfirmed !== "yes"/);
+  assert.match(materializeWorkflow, /- "js\/construction-upgrades\.js"/);
+  assert.equal(scripts["quality:drywall-guidance"], "node scripts/drywall-system-guidance-audit.js");
+  assert.equal(scripts["test:construction:drywall"], "node scripts/drywall-system-guidance-audit.js");
+  assert.equal(scripts["drywall:guidance:apply"], undefined);
+  assert.doesNotMatch(audit, /require\(["']\.\/apply-drywall-system-guidance\.js["']\)/);
+  for (const name of fs.readdirSync(path.join(root, "scripts")).filter((value) => value.endsWith(".js"))) {
+    if (name === "static-build-pipeline.test.js") continue;
+    const source = fs.readFileSync(path.join(root, "scripts", name), "utf8");
+    assert.doesNotMatch(source, /require\(["']\.\/apply-drywall-system-guidance\.js["']\)/,
+      name + " must not import the retired patcher");
+  }
+});
+
+test("plaster consumption units come from authored construction source, not a build patch", () => {
+  const runtime = fs.readFileSync(path.join(root, "js/construction-upgrades.js"), "utf8");
+  const audit = fs.readFileSync(path.join(root, "scripts/plaster-consumption-mode-audit.js"), "utf8");
+  const workflow = fs.readFileSync(path.join(root, ".github/workflows/materialize-static-first.yml"), "utf8");
+  const scripts = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8")).scripts;
+  assert.ok(!flatSteps.includes("apply-plaster-consumption-mode.js"));
+  assert.ok(!fs.existsSync(path.join(root, "scripts/apply-plaster-consumption-mode.js")));
+  assert.equal((runtime.match(/KB_CONSTRUCTION:plaster-consumption-mode:START/g) || []).length, 1);
+  assert.equal((runtime.match(/KB_CONSTRUCTION:plaster-consumption-mode:END/g) || []).length, 1);
+  assert.match(runtime, /consumptionMode/);
+  assert.match(runtime, /mode === "per-area" \? \{ \.\.\.values, thickness: 1 \} : values/);
+  assert.match(runtime, /Ismeretlen vakolat-anyagszükséglet egység/);
+  assert.equal(scripts["quality:plaster-mode"], "node scripts/plaster-consumption-mode-audit.js");
+  assert.equal(scripts["test:construction:plaster"], "node scripts/plaster-consumption-mode-audit.js");
+  assert.equal(scripts["plaster:mode:apply"], undefined);
+  assert.ok(workflow.includes('      - "js/construction-upgrades.js"'));
+  assert.doesNotMatch(audit, /require\(["']\.\/apply-plaster-consumption-mode\.js["']\)/);
+  for (const file of fs.readdirSync(path.join(root, "scripts")).filter((name) => name.endsWith(".js"))) {
+    if (file === "static-build-pipeline.test.js") continue;
+    const source = fs.readFileSync(path.join(root, "scripts", file), "utf8");
+    assert.doesNotMatch(source, /require\(["']\.\/apply-plaster-consumption-mode\.js["']\)/,
+      file + " must not import the retired plaster patch");
+  }
+});
+
+test("roof ordering modes come from canonical construction source, not a patch", () => {
+  const source = fs.readFileSync(path.join(root, "js/construction-upgrades.js"), "utf8");
+  const workflow = fs.readFileSync(path.join(root, ".github/workflows/materialize-static-first.yml"), "utf8");
+  const scripts = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8")).scripts;
+
+  assert.ok(!flatSteps.includes("apply-roof-purchase-mode.js"));
+  assert.ok(!fs.existsSync(path.join(root, "scripts/apply-roof-purchase-mode.js")));
+  assert.equal((source.match(/KB_CONSTRUCTION:roof-purchase-mode:START/g) || []).length, 1);
+  assert.equal((source.match(/KB_CONSTRUCTION:roof-purchase-mode:END/g) || []).length, 1);
+  assert.match(source, /purchaseMode/);
+  assert.match(source, /mode !== "pieces" && mode !== "whole-pack"/);
+  assert.match(source, /if \(mode === "whole-pack" && !packIsValid\)/);
+  assert.match(source, /Math\.ceil\(minPieces \/ pack\)/);
+  assert.ok(workflow.includes('      - "js/construction-upgrades.js"'));
+  assert.equal(scripts["quality:roof-purchase"], "node scripts/roof-purchase-mode-audit.js");
+  assert.equal(scripts["test:construction:roof-ordering"], "node scripts/roof-purchase-mode-audit.js");
+  assert.equal(scripts["roof:purchase:apply"], undefined);
+  for (const name of fs.readdirSync(path.join(root, "scripts")).filter((item) => item.endsWith(".js"))) {
+    if (name === "static-build-pipeline.test.js") continue;
+    const text = fs.readFileSync(path.join(root, "scripts", name), "utf8");
+    assert.doesNotMatch(text, /require\(["']\.\/apply-roof-purchase-mode\.js["']\)/,
+      name + " must not import the removed patch");
+  }
+});
+
+test("manufacturer-first guidance is canonical, not re-patched during the static build", () => {
+  const phrase = "Gyártói adatlap az elsődleges.";
+  const runtime = fs.readFileSync(path.join(root, "js/construction-upgrades.js"), "utf8");
+  const retiredStep = "apply-construction-manufacturer-first-v2.js";
+  const slugs = [
+    "gipszkarton-kalkulator",
+    "tapeta-kalkulator",
+    "vakolat-kalkulator",
+    "hoszigeteles-kalkulator",
+    "terkovezes-kalkulator",
+    "tetocserep-kalkulator",
+    "fuga-kalkulator",
+    "padlo-burkolat-kalkulator",
+  ];
+
+  assert.ok(!flatSteps.includes(retiredStep), "The canonical build must not re-patch authored guidance");
+  assert.ok(!fs.existsSync(path.join(root, "scripts", retiredStep)), "Retired patcher must not return");
+  assert.equal(runtime.split(phrase).length - 1, 1, "The runtime must own the warning once");
+  assert.match(runtime, /<strong>Gyártói adatlap az elsődleges\.<\/strong> <strong>Ellenőrzési alap:<\/strong>/);
+
+  for (const slug of slugs) {
+    const html = fs.readFileSync(path.join(root, "kalkulatorok", slug + ".html"), "utf8");
+    const methodology = html.match(
+      /<!-- KB_STATIC:construction-methodology:START -->([\s\S]*?)<!-- KB_STATIC:construction-methodology:END -->/
+    );
+    assert.ok(methodology, slug + " must retain its static construction methodology");
+    assert.equal(html.split(phrase).length - 1, 1, slug + " must expose the warning exactly once");
+    assert.ok(methodology[1].includes(phrase), slug + " must show the warning in the fallback");
+  }
+
+  for (const name of fs.readdirSync(path.join(root, "scripts")).filter((value) => value.endsWith(".js"))) {
+    if (name === "static-build-pipeline.test.js") continue;
+    const source = fs.readFileSync(path.join(root, "scripts", name), "utf8");
+    assert.ok(!source.includes(retiredStep), name + " must not invoke the retired patcher");
+  }
+});
+
 test("every canonical build step is an existing, phase-appropriate script", () => {
   const phaseById = Object.fromEntries(pipeline.map((phase) => [phase.id, phase.steps]));
   assert.deepEqual(Object.keys(phaseById), ["source", "render", "finalize"]);
