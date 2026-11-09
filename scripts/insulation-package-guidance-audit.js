@@ -7,7 +7,6 @@ const path = require("path");
 const vm = require("vm");
 const { transforms: baseTransforms } = require("./apply-construction-model-upgrades.js");
 const { transformConstruction } = require("./apply-construction-manufacturer-guards.js");
-const { transform: plasterModeTransform } = require("./apply-plaster-consumption-mode.js");
 const { transform: roofModeTransform } = require("./apply-roof-purchase-mode.js");
 
 const root = path.resolve(__dirname, "..");
@@ -15,8 +14,9 @@ const read = (p) => fs.readFileSync(path.join(root, p), "utf8");
 const advancedPath = "js/construction-upgrades.js";
 let source = baseTransforms[advancedPath](read(advancedPath));
 source = transformConstruction(source);
-source = plasterModeTransform(source);
 source = roofModeTransform(source);
+assert.equal((read(advancedPath).match(/KB_CONSTRUCTION:plaster-consumption-mode:START/g) || []).length, 1,
+  "A vakolat fogyási módnak a kanonikus forrásban kell szerepelnie");
 source = source.replace(
   "  const config = configs[slug]; if (!config) return;",
   "  globalThis.__CONFIGS__ = configs;\n  return;\n  const config = configs[slug]; if (!config) return;"

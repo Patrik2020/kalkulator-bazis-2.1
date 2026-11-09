@@ -120,6 +120,31 @@ test("drywall system guidance is authored and tested without a legacy source pat
   }
 });
 
+test("plaster consumption units come from authored construction source, not a build patch", () => {
+  const runtime = fs.readFileSync(path.join(root, "js/construction-upgrades.js"), "utf8");
+  const audit = fs.readFileSync(path.join(root, "scripts/plaster-consumption-mode-audit.js"), "utf8");
+  const workflow = fs.readFileSync(path.join(root, ".github/workflows/materialize-static-first.yml"), "utf8");
+  const scripts = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8")).scripts;
+  assert.ok(!flatSteps.includes("apply-plaster-consumption-mode.js"));
+  assert.ok(!fs.existsSync(path.join(root, "scripts/apply-plaster-consumption-mode.js")));
+  assert.equal((runtime.match(/KB_CONSTRUCTION:plaster-consumption-mode:START/g) || []).length, 1);
+  assert.equal((runtime.match(/KB_CONSTRUCTION:plaster-consumption-mode:END/g) || []).length, 1);
+  assert.match(runtime, /consumptionMode/);
+  assert.match(runtime, /mode === "per-area" \? \{ \.\.\.values, thickness: 1 \} : values/);
+  assert.match(runtime, /Ismeretlen vakolat-anyagszükséglet egység/);
+  assert.equal(scripts["quality:plaster-mode"], "node scripts/plaster-consumption-mode-audit.js");
+  assert.equal(scripts["test:construction:plaster"], "node scripts/plaster-consumption-mode-audit.js");
+  assert.equal(scripts["plaster:mode:apply"], undefined);
+  assert.ok(workflow.includes('      - "js/construction-upgrades.js"'));
+  assert.doesNotMatch(audit, /require\(["']\.\/apply-plaster-consumption-mode\.js["']\)/);
+  for (const file of fs.readdirSync(path.join(root, "scripts")).filter((name) => name.endsWith(".js"))) {
+    if (file === "static-build-pipeline.test.js") continue;
+    const source = fs.readFileSync(path.join(root, "scripts", file), "utf8");
+    assert.doesNotMatch(source, /require\(["']\.\/apply-plaster-consumption-mode\.js["']\)/,
+      file + " must not import the retired plaster patch");
+  }
+});
+
 test("every canonical build step is an existing, phase-appropriate script", () => {
   const phaseById = Object.fromEntries(pipeline.map((phase) => [phase.id, phase.steps]));
   assert.deepEqual(Object.keys(phaseById), ["source", "render", "finalize"]);
