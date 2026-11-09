@@ -7,25 +7,22 @@ const path = require("path");
 const vm = require("vm");
 const { transforms: baseTransforms } = require("./apply-construction-model-upgrades.js");
 const { transformConstruction } = require("./apply-construction-manufacturer-guards.js");
-const { transform: plasterModeTransform } = require("./apply-plaster-consumption-mode.js");
-const { transform: roofModeTransform } = require("./apply-roof-purchase-mode.js");
-const { transform: insulationPackageTransform } = require("./apply-insulation-package-guidance.js");
 
 const root = path.resolve(__dirname, "..");
 const read = (p) => fs.readFileSync(path.join(root, p), "utf8");
 const advancedPath = "js/construction-upgrades.js";
 
 // A tényleges build sorrendjével azonos végállapotot vizsgáljuk, fájlírás nélkül.
-// Ez azért fontos, mert a gyártói guard után további, ugyanazokat a mezőket
-// pontosító transzformok futnak (vakolat egységmód, tető rendelési mód,
-// hőszigetelés csomagfedés-guidance).
+// A tető rendelési mód régebbi transzformja még fut; a vakolat egységmód és
+// a hőszigetelés csomagfedési útmutatója már a kanonikus forrásban él.
 let source = baseTransforms[advancedPath](read(advancedPath));
 source = transformConstruction(source);
-source = plasterModeTransform(source);
-source = roofModeTransform(source);
-source = insulationPackageTransform(source);
 
 // A konfigurációkat kinyerjük anélkül, hogy a DOM-felület felépülne.
+assert.equal((read(advancedPath).match(/KB_CONSTRUCTION:plaster-consumption-mode:START/g) || []).length, 1,
+  "A vakolat fogyási mód útmutatásának egyszer kell szerepelnie a kanonikus forrásban");
+assert.equal((read(advancedPath).match(/KB_CONSTRUCTION:roof-purchase-mode:START/g) || []).length, 1,
+  "A tetőcserép rendelési mód már a kanonikus forrás része");
 source = source.replace(
   "  const config = configs[slug]; if (!config) return;",
   "  globalThis.__CONFIGS__ = configs;\n  return;\n  const config = configs[slug]; if (!config) return;"
@@ -80,6 +77,8 @@ assert.equal(plasterOk["Nettó anyagigény"], "420–525 kg");
 assert.equal(plasterOk["Vásárolandó anyag"], "453,6–567 kg");
 assert.equal(plasterOk["Szükséges zsák"], "19–23 db");
 
+assert.equal((read(advancedPath).match(/KB_CONSTRUCTION:insulation-package-guidance:START/g) || []).length, 1,
+  "A hőszigetelés csomagfedés-guidance a kanonikus forrásban maradjon");
 const insulation = configs["hoszigeteles-kalkulator"];
 assert.ok(insulation.fields.some((f) => f.id === "systemConfirmed" && f.value === "no"), "Hőszigetelés rendszermegerősítés alapból nem tiltott");
 assert.ok(insulation.fields.some((f) => f.id === "packCoverage" && /Konkrét termék/.test(f.label) && /vastagság/.test(f.help) && /példa/.test(f.help)), "Hőszigetelés csomagfedés nincs konkrét termék/vastagság adatként jelölve");

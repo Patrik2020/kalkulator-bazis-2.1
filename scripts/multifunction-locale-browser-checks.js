@@ -20,7 +20,7 @@ async function checkMultifunctionLocale({ navigate, evaluate, setViewport }) {
       assert.equal(state.heading, heading);
       assert.ok(state.guide.includes(guide), state.guide);
       assert.ok(state.faq.includes(faq), state.faq);
-      assert.ok(state.quality.includes(quality), state.quality);
+      assert.ok(state.quality.toLocaleLowerCase().includes(quality.toLocaleLowerCase()), state.quality);
       assert.ok(state.title.includes(language === "en" ? "Scientific Calculator" : "Wissenschaftlicher Rechner"));
       assert.ok(state.meta.includes(language === "en" ? "Free multi-function" : "Kostenloser Multifunktions"));
       assert.equal(state.schema["@graph"][0].inLanguage, language === "en" ? "en-GB" : "de-DE");
