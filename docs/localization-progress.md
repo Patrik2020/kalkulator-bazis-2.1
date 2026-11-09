@@ -23,9 +23,9 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | aktualis/ksh-ipari-termeles-2026-szeptember.html | other | content-review |
 | aktualis/ksh-ipari-termeloi-arak-2026-szeptember.html | other | content-review |
 | aktualis/ksh-keresetek-2026-augusztus.html | other | content-review |
-| aktualis/ksh-kiskereskedelem-2026-szeptember.html | other | content-review |
 | aktualis/ksh-keresetek-2026-julius.html | other | content-review |
 | aktualis/ksh-keresetek-eloszlasa-2026-i-felev.html | other | content-review |
+| aktualis/ksh-kiskereskedelem-2026-szeptember.html | other | content-review |
 | aktualis/ksh-uzemanyagarak-2026-augusztus.html | other | content-review |
 | aktualis/ksh-uzemanyagarak-2026-szeptember.html | other | content-review |
 | aktualis/mnb-alapkamat-2026-oktober.html | other | content-review |
