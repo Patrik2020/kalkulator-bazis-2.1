@@ -4,7 +4,7 @@ Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőr
 
 Aktív kalkulátor: **89**; részletes fordításon átesett: **76**; hátralévő: **13**.
 
-Kivezetett kalkulátor: **13**; egyéb oldal: **56**.
+Kivezetett kalkulátor: **13**; egyéb oldal: **57**.
 
 A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Nem jelent teljes SEO-fordítást vagy minden lehetséges interakció lefedését. A `partial` részleges fordítást, a `content-review` további tartalmi felmérést és fordítást jelent. A kivezetett oldalakhoz előbb tartalmi döntés szükséges.
 
@@ -17,6 +17,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | aktualis/allampapir-kamatok-2026-szeptember.html | other | content-review |
 | aktualis/csaladi-potlek-2027-duplazas-tervezete.html | other | content-review |
 | aktualis/dizeltamogatas-2026.html | other | content-review |
+| aktualis/eurostat-inflacio-2026-oktober.html | other | content-review |
 | aktualis/ksh-gdp-2026-harmadik-negyedev.html | other | content-review |
 | aktualis/ksh-inflacio-2026-augusztus.html | other | content-review |
 | aktualis/ksh-inflacio-2026-szeptember.html | other | content-review |
