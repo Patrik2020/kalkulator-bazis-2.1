@@ -84,9 +84,43 @@ for (const [needle, label] of criticalContracts) {
   if (!canonical.includes(needle)) failures.push(`Hiányzik ${label}.`);
 }
 
+// The current homepage uses two atlases, not the missing per-season or
+// per-category images. Guard against reintroducing obsolete CSS overlays.
+const legacyImageRef = /\/images\/redesign\/(?:season-(?:spring|summer|autumn|winter)|category-(?:finance|home|auto|health|everyday|convert))\.avif\b/g;
+if (legacyImageRef.test(canonical)) {
+  failures.push("A főoldali CSS ismét hiányzó egyedi szezon- vagy kategóriaképre hivatkozik.");
+}
+if (/--(?:hero-photo|card-image)\s*:/.test(canonical)) {
+  failures.push("A régi --hero-photo/--card-image felülíró változók maradtak a kanonikus CSS-ben.");
+}
+for (const [asset, className] of [
+  ["season-atlas.avif", ".home-redesign-v17 .hero"],
+  ["category-atlas.avif", ".home-redesign-v17 .category-tile::before"],
+]) {
+  if (!fs.existsSync(path.join(root, "images", "redesign", asset))) {
+    failures.push("Hiányzik az aktív főoldali képatlasz: " + asset);
+  }
+  if (!canonical.includes(className) || !canonical.includes("/images/redesign/" + asset + "?")) {
+    failures.push("Hiányzó aktív főoldali képatlasz-hivatkozás: " + asset);
+  }
+}
+for (const season of ["spring", "summer", "autumn", "winter"]) {
+  if (!canonical.includes("html[data-season='" + season + "']{")) {
+    failures.push("Hiányzó évszakos atlaszpozíció: " + season);
+  }
+}
+for (const category of ["finance", "home", "auto", "health", "everyday", "convert"]) {
+  if (!canonical.includes(".home-redesign-v17 .category-" + category + "{--category-atlas-position:")) {
+    failures.push("Hiányzó kategóriakép-atlaszpozíció: " + category);
+  }
+}
+if (!canonical.includes("--season-action:") || !canonical.includes("--hero-accent:")) {
+  failures.push("A CSS-tisztítás eltávolította a megtartandó évszakos színtokeneket.");
+}
+
 const importantCount = (canonical.match(/!important/g) || []).length;
-if (importantCount > 362) {
-  failures.push(`Nőtt a főoldali !important használat: ${importantCount} (maximum 362).`);
+if (importantCount > 358) {
+  failures.push(`Nőtt a főoldali !important használat: ${importantCount} (maximum 358).`);
 }
 
 if (failures.length) {

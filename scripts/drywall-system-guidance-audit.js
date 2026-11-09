@@ -7,20 +7,16 @@ const path = require("path");
 const vm = require("vm");
 const { transforms: baseTransforms } = require("./apply-construction-model-upgrades.js");
 const { transformConstruction } = require("./apply-construction-manufacturer-guards.js");
-const { transform: plasterModeTransform } = require("./apply-plaster-consumption-mode.js");
-const { transform: roofModeTransform } = require("./apply-roof-purchase-mode.js");
-const { transform: insulationGuidanceTransform } = require("./apply-insulation-package-guidance.js");
-const { transform: drywallGuidanceTransform } = require("./apply-drywall-system-guidance.js");
 
 const root = path.resolve(__dirname, "..");
 const read = (p) => fs.readFileSync(path.join(root, p), "utf8");
 const advancedPath = "js/construction-upgrades.js";
 let source = baseTransforms[advancedPath](read(advancedPath));
 source = transformConstruction(source);
-source = plasterModeTransform(source);
-source = roofModeTransform(source);
-source = insulationGuidanceTransform(source);
-source = drywallGuidanceTransform(source);
+assert.equal((read(advancedPath).match(/KB_CONSTRUCTION:plaster-consumption-mode:START/g) || []).length, 1,
+  "A vakolat fogyási mód útmutatásának egyszer kell szerepelnie a kanonikus forrásban");
+assert.equal((read(advancedPath).match(/KB_CONSTRUCTION:roof-purchase-mode:START/g) || []).length, 1,
+  "A tetőcserép rendelési mód már a kanonikus forrás része");
 source = source.replace(
   "  const config = configs[slug]; if (!config) return;",
   "  globalThis.__CONFIGS__ = configs;\n  return;\n  const config = configs[slug]; if (!config) return;"
@@ -33,6 +29,13 @@ const sandbox = {
 };
 vm.createContext(sandbox);
 vm.runInContext(source, sandbox, { filename: advancedPath });
+assert.equal((read(advancedPath).match(/KB_CONSTRUCTION:insulation-package-guidance:START/g) || []).length, 1,
+  "A beépült hőszigetelési útmutatást a kanonikus forrásnak kell tartalmaznia");
+const authored = read(advancedPath);
+assert.equal((authored.match(/KB_CONSTRUCTION:drywall-system-guidance:START/g) || []).length, 1,
+  "A kanonikus gipszkarton útmutatás kezdete pontosan egyszer szerepeljen");
+assert.equal((authored.match(/KB_CONSTRUCTION:drywall-system-guidance:END/g) || []).length, 1,
+  "A kanonikus gipszkarton útmutatás lezárása pontosan egyszer szerepeljen");
 const drywall = sandbox.__CONFIGS__["gipszkarton-kalkulator"];
 assert.ok(drywall, "Gipszkarton konfiguráció hiányzik");
 const rows = (result) => Object.fromEntries(Array.from(result, ([key, value]) => [String(key), String(value)]));

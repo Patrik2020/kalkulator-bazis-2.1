@@ -83,6 +83,9 @@ jobs:
           node --test scripts/calorie-locale.test.js
           node --test scripts/fence-post-locale.test.js
           node --test scripts/step-distance-locale.test.js
+          node --test scripts/macro-locale.test.js
+          node --test scripts/unit-converter-locale.test.js
+          node --test scripts/mulch-locale.test.js
           node --test scripts/co2-locale.test.js
           node scripts/localization-inventory.js --check
 
@@ -139,6 +142,9 @@ jobs:
 
       - name: Verify shared navigation help and consent translations
         run: node --test scripts/shared-ui-locale.test.js
+
+      - name: Reject stale production smoke page markers
+        run: node --test scripts/production-smoke-audit.test.js
 
       - name: Test production monitoring classification and incident lifecycle
         run: node --test scripts/production-monitor-verdict.test.js scripts/production-monitor-incident.test.js
