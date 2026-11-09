@@ -145,6 +145,31 @@ test("plaster consumption units come from authored construction source, not a bu
   }
 });
 
+test("roof ordering modes come from canonical construction source, not a patch", () => {
+  const source = fs.readFileSync(path.join(root, "js/construction-upgrades.js"), "utf8");
+  const workflow = fs.readFileSync(path.join(root, ".github/workflows/materialize-static-first.yml"), "utf8");
+  const scripts = JSON.parse(fs.readFileSync(path.join(root, "package.json"), "utf8")).scripts;
+
+  assert.ok(!flatSteps.includes("apply-roof-purchase-mode.js"));
+  assert.ok(!fs.existsSync(path.join(root, "scripts/apply-roof-purchase-mode.js")));
+  assert.equal((source.match(/KB_CONSTRUCTION:roof-purchase-mode:START/g) || []).length, 1);
+  assert.equal((source.match(/KB_CONSTRUCTION:roof-purchase-mode:END/g) || []).length, 1);
+  assert.match(source, /purchaseMode/);
+  assert.match(source, /mode !== "pieces" && mode !== "whole-pack"/);
+  assert.match(source, /if \(mode === "whole-pack" && !packIsValid\)/);
+  assert.match(source, /Math\.ceil\(minPieces \/ pack\)/);
+  assert.ok(workflow.includes('      - "js/construction-upgrades.js"'));
+  assert.equal(scripts["quality:roof-purchase"], "node scripts/roof-purchase-mode-audit.js");
+  assert.equal(scripts["test:construction:roof-ordering"], "node scripts/roof-purchase-mode-audit.js");
+  assert.equal(scripts["roof:purchase:apply"], undefined);
+  for (const name of fs.readdirSync(path.join(root, "scripts")).filter((item) => item.endsWith(".js"))) {
+    if (name === "static-build-pipeline.test.js") continue;
+    const text = fs.readFileSync(path.join(root, "scripts", name), "utf8");
+    assert.doesNotMatch(text, /require\(["']\.\/apply-roof-purchase-mode\.js["']\)/,
+      name + " must not import the removed patch");
+  }
+});
+
 test("every canonical build step is an existing, phase-appropriate script", () => {
   const phaseById = Object.fromEntries(pipeline.map((phase) => [phase.id, phase.steps]));
   assert.deepEqual(Object.keys(phaseById), ["source", "render", "finalize"]);
