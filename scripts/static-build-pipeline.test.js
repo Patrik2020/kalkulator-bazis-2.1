@@ -170,6 +170,43 @@ test("roof ordering modes come from canonical construction source, not a patch",
   }
 });
 
+test("manufacturer-first guidance is canonical, not re-patched during the static build", () => {
+  const phrase = "Gyártói adatlap az elsődleges.";
+  const runtime = fs.readFileSync(path.join(root, "js/construction-upgrades.js"), "utf8");
+  const retiredStep = "apply-construction-manufacturer-first-v2.js";
+  const slugs = [
+    "gipszkarton-kalkulator",
+    "tapeta-kalkulator",
+    "vakolat-kalkulator",
+    "hoszigeteles-kalkulator",
+    "terkovezes-kalkulator",
+    "tetocserep-kalkulator",
+    "fuga-kalkulator",
+    "padlo-burkolat-kalkulator",
+  ];
+
+  assert.ok(!flatSteps.includes(retiredStep), "The canonical build must not re-patch authored guidance");
+  assert.ok(!fs.existsSync(path.join(root, "scripts", retiredStep)), "Retired patcher must not return");
+  assert.equal(runtime.split(phrase).length - 1, 1, "The runtime must own the warning once");
+  assert.match(runtime, /<strong>Gyártói adatlap az elsődleges\.<\/strong> <strong>Ellenőrzési alap:<\/strong>/);
+
+  for (const slug of slugs) {
+    const html = fs.readFileSync(path.join(root, "kalkulatorok", slug + ".html"), "utf8");
+    const methodology = html.match(
+      /<!-- KB_STATIC:construction-methodology:START -->([\s\S]*?)<!-- KB_STATIC:construction-methodology:END -->/
+    );
+    assert.ok(methodology, slug + " must retain its static construction methodology");
+    assert.equal(html.split(phrase).length - 1, 1, slug + " must expose the warning exactly once");
+    assert.ok(methodology[1].includes(phrase), slug + " must show the warning in the fallback");
+  }
+
+  for (const name of fs.readdirSync(path.join(root, "scripts")).filter((value) => value.endsWith(".js"))) {
+    if (name === "static-build-pipeline.test.js") continue;
+    const source = fs.readFileSync(path.join(root, "scripts", name), "utf8");
+    assert.ok(!source.includes(retiredStep), name + " must not invoke the retired patcher");
+  }
+});
+
 test("every canonical build step is an existing, phase-appropriate script", () => {
   const phaseById = Object.fromEntries(pipeline.map((phase) => [phase.id, phase.steps]));
   assert.deepEqual(Object.keys(phaseById), ["source", "render", "finalize"]);
