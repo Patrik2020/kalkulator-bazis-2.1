@@ -234,7 +234,7 @@
 
 if (document.body.classList.contains("home-page")) {
   const currentScript = document.createElement("script");
-  currentScript.src = "js/home-current.js?v=6ce12eccd9f7";
+  currentScript.src = "js/home-current.js?v=de02d8249e08";
   currentScript.defer = true;
   document.body.appendChild(currentScript);
 }

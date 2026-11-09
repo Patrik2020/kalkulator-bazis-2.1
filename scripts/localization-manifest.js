@@ -73,6 +73,9 @@ const detailPages = [
   { path: "kalkulatorok/kaloria-kalkulator.html", module: "js/egeszseg/calorie-locale.js", key: "kaloria-kalkulator" },
   { path: "kalkulatorok/kerites-oszlop-kalkulator.html", module: "js/epitoipari/fence-post-locale.js", key: "kerites-oszlop-kalkulator" },
   { path: "kalkulatorok/lepesszam-tavolsag-kalkulator.html", module: "js/egeszseg/step-distance-locale.js", key: "lepesszam-tavolsag-kalkulator" },
+  { path: "kalkulatorok/makro-kalkulator.html", module: "js/egeszseg/macro-locale.js", key: "makro-kalkulator" },
+  { path: "kalkulatorok/mertekegyseg-atvalto-kalkulator.html", module: "js/atvaltok/unit-converter-locale.js", key: "mertekegyseg-atvalto-kalkulator" },
+  { path: "kalkulatorok/mulcs-kalkulator.html", module: "js/epitoipari/mulch-locale.js", key: "mulcs-kalkulator" },
   { path: "kalkulatorok/co2-kibocsatas-kalkulator.html", module: "js/autos/co2-locale.js", key: "co2-kibocsatas-kalkulator" }
 ];
 

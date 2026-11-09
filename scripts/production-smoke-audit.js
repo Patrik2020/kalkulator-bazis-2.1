@@ -87,6 +87,43 @@ const assertExactSet = (actual, expected, label) => {
   }
 };
 
+// Single production contract: verified against authored HTML by production-smoke-audit.test.js.
+const pageChecks = [
+  {
+    path: "/",
+    markers: [
+      "Számolj egyszerűbben.",
+      "Dönts magabiztosabban.",
+      "Nettó–bruttó számítás ChatGPT-ben is",
+    ],
+    forbidden: [/Több mint\s+\d+\s+magyar nyelvű kalkulátor/i, /100\+\s*kalkulátor/i],
+  },
+  {
+    path: "/kalkulatorok/atlag-kalkulator",
+    markers: [
+      "data-average-hub=\"true\"",
+      "Számtani átlag + medián",
+      "Súlyozott átlag",
+      "Mértani átlag",
+    ],
+  },
+  {
+    path: "/kalkulatorok/mertekegyseg-atvalto-kalkulator",
+    markers: [
+      "Mértékegység átváltó – idő, hosszúság, tömeg és más egységek",
+      "id=\"measurementType\"",
+    ],
+  },
+  {
+    path: "/kalkulatorok/netto-brutto-kalkulator",
+    markers: ["google-adsense-account", "Nettó"],
+  },
+  {
+    path: "/aktualis",
+    markers: ["Friss számok és változások", "Aktuális közlemények"],
+  },
+];
+
 const runAudit = async () => {
   const [localSitemap, localRobots, localAds, redirectSource] = await Promise.all([
     fs.readFile("sitemap.xml", "utf8"),
@@ -100,41 +137,6 @@ const runAudit = async () => {
   const expectedVersion = serviceWorkerVersion(await fs.readFile("sw.js", "utf8"));
   const { body: liveWorker } = await fetchText("/sw.js", { accept: "application/javascript,text/javascript,*/*" });
   assertSameRelease({ expected: expectedVersion, actual: liveWorker });
-
-  const pageChecks = [
-    {
-      path: "/",
-      markers: [
-        "Magyar nyelvű kalkulátorok és döntési segédletek",
-        "A Kalkulátor Bázis már ChatGPT-bővítményként is elérhető",
-      ],
-      forbidden: [/Több mint\s+\d+\s+magyar nyelvű kalkulátor/i, /100\+\s*kalkulátor/i],
-    },
-    {
-      path: "/kalkulatorok/atlag-kalkulator",
-      markers: [
-        "data-average-hub=\"true\"",
-        "Számtani átlag + medián",
-        "Súlyozott átlag",
-        "Mértani átlag",
-      ],
-    },
-    {
-      path: "/kalkulatorok/mertekegyseg-atvalto-kalkulator",
-      markers: [
-        "Mértékegység átváltó – 11 kategória egy helyen",
-        "id=\"measurementType\"",
-      ],
-    },
-    {
-      path: "/kalkulatorok/netto-brutto-kalkulator",
-      markers: ["google-adsense-account", "Nettó"],
-    },
-    {
-      path: "/aktualis",
-      markers: ["Friss számok és változások", "Aktuális közlemények"],
-    },
-  ];
 
   for (const check of pageChecks) {
     const { response, body } = await fetchText(check.path);
@@ -208,7 +210,11 @@ async function main() {
   throw lastError || new Error("Production smoke failed");
 }
 
-main().catch((error) => {
-  console.error(error?.stack || error?.message || error);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(error?.stack || error?.message || error);
+    process.exit(1);
+  });
+}
+
+module.exports = { pageChecks };

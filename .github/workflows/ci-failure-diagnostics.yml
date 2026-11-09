@@ -1,0 +1,56 @@
+name: CI failure diagnostics
+
+on:
+  workflow_run:
+    workflows:
+      - Site quality
+      - Browser regression
+      - Repository security baseline
+      - Materialize static-first HTML
+      - URL consolidation
+    types:
+      - completed
+
+# workflow_run can have a privileged context. Keep this observer read-only.
+# Never check out the triggering PR's head or execute its artifacts/logs.
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: ci-failure-diagnostics-${{ github.event.workflow_run.id }}-${{ github.event.workflow_run.run_attempt }}
+  cancel-in-progress: false
+
+jobs:
+  diagnose:
+    name: Read-only CI failure report
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out trusted main only
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          ref: main
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
+        with:
+          node-version: "24"
+
+      - name: Verify diagnostic classifier
+        run: node --test scripts/ci-failure-diagnostics.test.js
+
+      - name: Generate structured failure report
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/ci-failure-diagnostics.js
+
+      - name: Upload safe, metadata-only report
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ci-failure-report-${{ github.event.workflow_run.id }}-${{ github.event.workflow_run.run_attempt }}
+          path: ci-failure-diagnostics/report.json
+          if-no-files-found: error
+          retention-days: 14
