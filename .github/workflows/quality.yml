@@ -86,6 +86,7 @@ jobs:
           node --test scripts/macro-locale.test.js
           node --test scripts/unit-converter-locale.test.js
           node --test scripts/mulch-locale.test.js
+          node --test scripts/multifunction-locale.test.js
           node --test scripts/co2-locale.test.js
           node scripts/localization-inventory.js --check
 
