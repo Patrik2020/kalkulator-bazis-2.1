@@ -76,6 +76,7 @@ const detailPages = [
   { path: "kalkulatorok/makro-kalkulator.html", module: "js/egeszseg/macro-locale.js", key: "makro-kalkulator" },
   { path: "kalkulatorok/mertekegyseg-atvalto-kalkulator.html", module: "js/atvaltok/unit-converter-locale.js", key: "mertekegyseg-atvalto-kalkulator" },
   { path: "kalkulatorok/mulcs-kalkulator.html", module: "js/epitoipari/mulch-locale.js", key: "mulcs-kalkulator" },
+  { path: "kalkulatorok/padlo-burkolat-kalkulator.html", module: "js/epitoipari/flooring-locale.js", key: "padlo-burkolat-kalkulator" },
   { path: "kalkulatorok/multifunkcios-szamologep.html", module: "js/multifunction-locale.js", key: "multifunkcios-szamologep" },
   { path: "kalkulatorok/co2-kibocsatas-kalkulator.html", module: "js/autos/co2-locale.js", key: "co2-kibocsatas-kalkulator" }
 ];
