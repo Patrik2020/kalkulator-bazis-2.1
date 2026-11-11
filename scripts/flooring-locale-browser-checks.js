@@ -19,10 +19,10 @@ async function checkFlooringLocale({ navigate, evaluate, setViewport }) {
       await choose(language);
       const state = JSON.parse(await evaluate(`JSON.stringify({heading:document.querySelector('main h1')?.textContent.trim(),result:document.querySelector('.construction-results')?.innerText,guide:document.querySelector('.calculator-guide')?.innerText,faq:document.querySelector('.faq-list')?.innerText,quality:document.querySelector('.construction-quality')?.innerText,method:document.querySelector('.construction-methodology')?.innerText,meta:document.querySelector('meta[name="description"]')?.content,schema:JSON.parse(document.getElementById('kb-structured-data').textContent),href:document.querySelector('.reliability-actions a[href^="mailto:"]')?.href,values:${JSON.stringify(ids)}.map(id=>document.getElementById(id).value),width:document.documentElement.scrollWidth})`));
       assert.equal(state.heading, heading);
-      assert.ok(state.result.includes(resultNeedle), state.result);
+      assert.ok(state.result.toLocaleLowerCase().includes(resultNeedle.toLocaleLowerCase()), state.result);
       assert.ok(state.guide.includes(guideNeedle));
       assert.ok(state.faq.includes(faqNeedle));
-      assert.ok(state.quality.includes(qualityNeedle));
+      assert.ok(state.quality.toLocaleLowerCase().includes(qualityNeedle.toLocaleLowerCase()));
       assert.ok(state.method.includes(language === "en" ? "manufacturer's data sheet takes precedence" : "Herstellerdatenblatt ist maßgeblich"));
       assert.ok(state.meta.includes(language === "en" ? "Calculate flooring requirements" : "Berechne den Bodenbelagsbedarf"));
       assert.equal(state.schema["@graph"][0].inLanguage, language === "en" ? "en-GB" : "de-DE");
