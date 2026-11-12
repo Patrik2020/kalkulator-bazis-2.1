@@ -30,7 +30,6 @@ const pipeline = Object.freeze([
       "apply-adsense-domain-method-copy-v2.js",
       "apply-adsense-ymyl-trust-v2.js",
       "apply-adsense-source-notes-v2.js",
-      "apply-adsense-current-moat-v2.js",
       "apply-adsense-phase2-consolidation.js",
       "apply-adsense-phase2-batch2.js",
       "apply-average-hub-quality-blocks.js",

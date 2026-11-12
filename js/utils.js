@@ -187,7 +187,7 @@ function isMaterializedHome() {
 function loadHomeRedesign() {
   if (!document.body?.classList.contains("home-page") || isMaterializedHome()) return Promise.resolve(null);
   const base = String(window.KB_PROJECT_ROOT || "").replace(/\/$/, "");
-  return loadScriptOnce(`${base}/js/home-ia.js?v=e0e1923a7752`);
+  return loadScriptOnce(`${base}/js/home-ia.js?v=cdd8e33f8c69`);
 }
 
 // =========================

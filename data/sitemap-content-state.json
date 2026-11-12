@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-09",
+  "generatedAt": "2026-11-12",
   "pages": {
     "": {
-      "hash": "39b8682b7b0aafc0f26afc38c5e00a0389a35daac847f9228613b72636c5c72a",
-      "lastmod": "2026-11-09"
+      "hash": "6ea777fefbaeae8982be82ee29995c3949c30cee24efead92cafa00e61946f47",
+      "lastmod": "2026-11-12"
     },
     "penzugyi.html": {
       "hash": "1e11fa0b052e894329cd6bee91dccb8f01ee02e7704a458cb733aab39006c460",
@@ -90,118 +90,6 @@
       "hash": "7f9e3d9f031062360054de829e6a9fb9cb9ba630d72a4ff4b956556ff7b825c0",
       "lastmod": "2026-08-21"
     },
-    "aktualis.html": {
-      "hash": "833c5655dafb228d367c8c119fdd7b3276d9a4f180ea9280e38a6760f0a416a7",
-      "lastmod": "2026-11-09"
-    },
-    "aktualis/adotorveny-javaslatok-2027-oktober.html": {
-      "hash": "c7583230350fa35da5cb67899ad13ec2836c1b151b765dc2b9599d850900d4ff",
-      "lastmod": "2026-10-31"
-    },
-    "aktualis/allampapir-kamatok-2026-szeptember.html": {
-      "hash": "7796f4dd3dc33afc0b1ae17f4f9a31431e9103099f0ccefa2f01fa1da48f7d09",
-      "lastmod": "2026-09-26"
-    },
-    "aktualis/csaladi-potlek-2027-duplazas-tervezete.html": {
-      "hash": "cfd1c794125ec9ac0c42ced9dac45e2e4eff84653d1e779f390755d4a96d2347",
-      "lastmod": "2026-11-02"
-    },
-    "aktualis/dizeltamogatas-2026.html": {
-      "hash": "8daefc866cfe7209c37bdb9f99f719f5538e83bbfb0ad6986685511552a8d771",
-      "lastmod": "2026-09-22"
-    },
-    "aktualis/eurostat-inflacio-2026-oktober.html": {
-      "hash": "725eea939bc519d52d5d13de02ccc37b0f57ccf4b6f9b5493c8396aab68d67e2",
-      "lastmod": "2026-11-09"
-    },
-    "aktualis/ksh-gdp-2026-harmadik-negyedev.html": {
-      "hash": "0527c9a8b73d343bfc15917acb6591fbfa6d0074c78d8daee6c6fad46e8191f5",
-      "lastmod": "2026-10-31"
-    },
-    "aktualis/ksh-inflacio-2026-augusztus.html": {
-      "hash": "131396f9436fb905079219bfb63eee7d3bf0c032d97b299de7a13d7c0572104a",
-      "lastmod": "2026-09-12"
-    },
-    "aktualis/ksh-inflacio-2026-szeptember.html": {
-      "hash": "fe5682b3073ad3526a54c9bba69cb18c3ee134ae9f8d5d4b7777178921b07724",
-      "lastmod": "2026-10-11"
-    },
-    "aktualis/ksh-ipari-termeles-2026-szeptember.html": {
-      "hash": "d828cc51e777661c4b582e21f9eb87470143943c33eb122149cd855adc0c63dd",
-      "lastmod": "2026-11-09"
-    },
-    "aktualis/ksh-ipari-termeloi-arak-2026-szeptember.html": {
-      "hash": "b8dd5e9bc4fa4518c8043a8ee002e770ab42db2f6fa4e859200b3b1ccdefb49d",
-      "lastmod": "2026-10-31"
-    },
-    "aktualis/ksh-keresetek-2026-augusztus.html": {
-      "hash": "5fef9873f807bc7858895a75675996a39b4776f1b418b75a052f2fba756ad52b",
-      "lastmod": "2026-10-19"
-    },
-    "aktualis/ksh-keresetek-2026-julius.html": {
-      "hash": "0872160abd6c5ce5f94460e897db784f3989b8f84b2ff9a515a5dba99053a3b4",
-      "lastmod": "2026-09-16"
-    },
-    "aktualis/ksh-keresetek-eloszlasa-2026-i-felev.html": {
-      "hash": "1c21a5ac54d5a6e08166199a6d48e6c5c0acd6e094a9ef91955a344ed0ce088d",
-      "lastmod": "2026-10-14"
-    },
-    "aktualis/ksh-kiskereskedelem-2026-szeptember.html": {
-      "hash": "9cfd5bc32f6e674c0cb7ac1b98711b4d905c6373b520f5a86838a57b448768ce",
-      "lastmod": "2026-11-09"
-    },
-    "aktualis/ksh-uzemanyagarak-2026-augusztus.html": {
-      "hash": "a1a3ff4668d31424af88d65bd29396a60a2e858144c2576905b1bc08345a0544",
-      "lastmod": "2026-09-13"
-    },
-    "aktualis/ksh-uzemanyagarak-2026-szeptember.html": {
-      "hash": "632649d4649fdf8baef5ee21233e72292dd808bdf75371414d35716e3c0ccafc",
-      "lastmod": "2026-10-13"
-    },
-    "aktualis/mnb-alapkamat-2026-oktober.html": {
-      "hash": "6ef7b10ca0487726d1cbbd6ec1ef10862e35f2b4cfd5a84a8e8cbc3ff790030d",
-      "lastmod": "2026-10-24"
-    },
-    "aktualis/mnb-alapkamat-inflacios-cel-2026-szeptember.html": {
-      "hash": "7c8d23a063bdf40b205050817c75ee306bb7343016f0d9b9763c7d951257955d",
-      "lastmod": "2026-09-23"
-    },
-    "aktualis/mnb-lakasarindex-2026-harmadik-negyedev.html": {
-      "hash": "98f422bd9ba68a79921bf96668b052711bf20d79eb90496668d072cccd5b5c3e",
-      "lastmod": "2026-10-31"
-    },
-    "aktualis/mnb-piacfelugyelet-befektetovedelem-2026-november.html": {
-      "hash": "38868a4f996b28a3370c290f8ca8bf918fea457b9c629304267530c90869b957",
-      "lastmod": "2026-11-03"
-    },
-    "aktualis/nav-eafa-anyk-atallas-2026.html": {
-      "hash": "1881997e1373fc130b1e4cb4916637ad3090394004297e91b0f5d51f98f97d73",
-      "lastmod": "2026-10-26"
-    },
-    "aktualis/nav-kata-kiva-adotartozas-2026-november.html": {
-      "hash": "d07fff1772058a0288a59bb454597271dce8602998654ff73bb7f0c306dbec4d",
-      "lastmod": "2026-11-09"
-    },
-    "aktualis/nav-unios-kezelesi-dij-2026-november.html": {
-      "hash": "7074cabc0c97a04713fcf084a1c638deb332ed94ae8fcca5a7325b3e0685a219",
-      "lastmod": "2026-10-15"
-    },
-    "aktualis/nav-uzemanyag-elszamolasi-arak-2026-november.html": {
-      "hash": "da2164ddb293d4adfbf4df21f5d0159a2196f23357ac171cd1f3bb5b361fc8ad",
-      "lastmod": "2026-10-31"
-    },
-    "aktualis/nav-uzemanyag-elszamolasi-arak-2026-oktober.html": {
-      "hash": "570d897f709279de412cd772cadd3562cb98359deb191f9223bfc850dbf19f0e",
-      "lastmod": "2026-09-27"
-    },
-    "aktualis/nav-uzemanyag-elszamolasi-arak-2026-szeptember.html": {
-      "hash": "cbdd095033b0a2cc62c873d14e780b2f716dbd31abcce75ac93ed64b38e6ce48",
-      "lastmod": "2026-09-11"
-    },
-    "aktualis/szja-2027-bejelentett-adocsokkentes.html": {
-      "hash": "0cafff4256eddc0ff12e4ca07232d1c5c7f5e8aee9a4ff6aa65e603db21c3356",
-      "lastmod": "2026-11-02"
-    },
     "landing-pages/elethelyzetek/lakasvasarlas.html": {
       "hash": "ba094e67c85a7facdbcb72fb28c2177441bb6eb080c6b6c8034d4b302b197160",
       "lastmod": "2026-08-21"
@@ -235,8 +123,8 @@
       "lastmod": "2026-09-14"
     },
     "kalkulatorok/netto-brutto-kalkulator.html": {
-      "hash": "3832d36ac77abc413d592d9e048d2400e550faf131b1dc80e272e336bcc3de2c",
-      "lastmod": "2026-10-19"
+      "hash": "092f07c757cfa59950c2e9d62af66cc86b91612d5b0c7b6ea6073a8eccf0c787",
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/hitel-torleszto-kalkulator.html": {
       "hash": "5d1cb8433cf1184a7dff0f0ebef3515e4e097104bf55be6b4f2191f5243f97a6",
@@ -255,16 +143,16 @@
       "lastmod": "2026-10-15"
     },
     "kalkulatorok/etf-kalkulator.html": {
-      "hash": "e36e7fe8853df0c476a2d6c7c8e72a6be86751e3a1ddb997b9090eaf81632964",
-      "lastmod": "2026-10-15"
+      "hash": "e4d643df10b7af0fe8e3335ad807ae254b93fee5d6b98ded5345cc8bef27e72f",
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/milliomos-kalkulator.html": {
       "hash": "557c362ebc15b895cc48554d050c897b7ba06a2ae34b935f6c8c6fe91fe121f1",
       "lastmod": "2026-10-15"
     },
     "kalkulatorok/inflacio-kalkulator.html": {
-      "hash": "394641be89e810710713b0cabdfd6cfedf8f89c0a25e852f44029e4b12ef0ca5",
-      "lastmod": "2026-10-15"
+      "hash": "d293461b7262cc65577d092f76b393a8e06de0988ba190c5a6f22742bbbbd6e0",
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/kamatos-kamat-kalkulator.html": {
       "hash": "c465a68a0194b8997759da6cb7327be066fcf0da01800741825cb6b785f605af",
@@ -275,16 +163,16 @@
       "lastmod": "2026-10-15"
     },
     "kalkulatorok/fizetesi-hatarido-kalkulator.html": {
-      "hash": "b830e559d9dfb7f8c8a2b6d60d9c223381debb93c738ef9fb9a11e333fed9f55",
-      "lastmod": "2026-10-21"
+      "hash": "2b1c55815adda3b25480b5ea74cfcc77c02e6012aeb212555abe1f2f1be5b8e9",
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/szamla-teljesites-kalkulator.html": {
-      "hash": "6a3b0c843a21c43a23169b88c89a6c67a7a19650e0e585142b73f3c2d36f4553",
-      "lastmod": "2026-10-21"
+      "hash": "3576ddd01ebbda67657b1f7d0e0df66ea042de9fbce36089ce169b6d90664ff3",
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/beton-kalkulator.html": {
-      "hash": "56be46b9cf36127bfa322c9dfa4c58ed70d696ad6f032da09a1f4b02dfad87be",
-      "lastmod": "2026-10-13"
+      "hash": "c43a24d82e9a275b0362fa99ad0185b2f358169545c643bc360eee71817840e3",
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/csempe-kalkulator.html": {
       "hash": "df6f96cd58f5cbfb1d15387199f61406358516383e50847e3ebe2ee793bc753a",
@@ -295,8 +183,8 @@
       "lastmod": "2026-09-14"
     },
     "kalkulatorok/tegla-kalkulator.html": {
-      "hash": "cbb6c2198ba1104de6f9d76a227a8aae00cde3d459f033c8cc0e63ea5799acfa",
-      "lastmod": "2026-10-13"
+      "hash": "593a404c46e6e4c0c2ea2263c39205c8950ba6d6f80b697449d6c8580c89dc24",
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/bmi-kalkulator.html": {
       "hash": "a5d93e0f230eccb9419265857ae3b1041f01b9389b4a6ba95e6daa9262156b44",
@@ -315,8 +203,8 @@
       "lastmod": "2026-10-18"
     },
     "kalkulatorok/auto-kalkulator.html": {
-      "hash": "05fc4a1a65b7152d625ab852420f80a50cba5bfe658f6af7fc4697c0e55ad0db",
-      "lastmod": "2026-10-30"
+      "hash": "9cfe2fbe2616e93fa2326651892df3a4b26810de9c1e810236cd70e7fe8daa93",
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/mertekegyseg-atvalto-kalkulator.html": {
       "hash": "2fa2672137d65cad334b6334b7ad5a62bdabbec841a2732a10be5aaa3a22517b",
@@ -328,35 +216,35 @@
     },
     "kalkulatorok/padlo-burkolat-kalkulator.html": {
       "hash": "f7fe1151318da7d5c17b53b3bfd26ab0ca3c0d25aee5a16f3fe6f29ffb219578",
-      "lastmod": "2026-09-16"
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/gipszkarton-kalkulator.html": {
       "hash": "0db239b7c30e43c8c97ca51a7f5ffc6a392c7ac7e33254aec494a5a294192de7",
-      "lastmod": "2026-09-16"
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/tapeta-kalkulator.html": {
       "hash": "b6add3a26344e1098f072f6a27a3c2063827b1ae7caecda49401bde0d21a619e",
-      "lastmod": "2026-09-16"
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/vakolat-kalkulator.html": {
       "hash": "01d2cb404f0c5c909a3d78d43bedad2986aa72aef1e648ae7c8a58c99833c5c1",
-      "lastmod": "2026-09-16"
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/hoszigeteles-kalkulator.html": {
       "hash": "9054df270d42e8bcef1580af158f45f5e532600db45f1b80874627cc1c836fe7",
-      "lastmod": "2026-09-16"
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/terkovezes-kalkulator.html": {
       "hash": "debecbf8b8e3027139c63caa1af09b4aa0a9b0f768fcc8e5a54e5a9ba7a7fa06",
-      "lastmod": "2026-09-16"
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/tetocserep-kalkulator.html": {
       "hash": "f0d128d3ce048544e1906a039ccada596569572cd43dd2859d1c3702b310ffd5",
-      "lastmod": "2026-09-16"
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/fuga-kalkulator.html": {
       "hash": "91df5ae65ccbb1e0ea3c136413d8dd87d6d7df6fa1e1b2e9fe7e2bdc5d396810",
-      "lastmod": "2026-09-16"
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/vizfogyasztas-kalkulator.html": {
       "hash": "2dd878ca43a6142b2e87fdba8d110e292f772462b1eeef72edc02e3285e446d5",
@@ -439,12 +327,12 @@
       "lastmod": "2026-10-23"
     },
     "kalkulatorok/uzemanyag-koltseg-kalkulator.html": {
-      "hash": "e9ba5be762d4d363a8d34234dd26aed8f8b699cc28268a733c65fff88ef5f1ff",
-      "lastmod": "2026-09-16"
+      "hash": "ba50930ce26d3db56f69071651c2f1d706b8f33bb14a71fd427778a4e20954ad",
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/auto-fogyasztas-kalkulator.html": {
-      "hash": "45c2af2fea809d81967f25e0e578687e4406c5300c74b5d80c58c1135fb73cec",
-      "lastmod": "2026-10-13"
+      "hash": "71705c96cc156e9c0b611f5cf209d51477e555c7ffdaa895da50915eea6f1fe1",
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/hatotav-kalkulator.html": {
       "hash": "3a267ae035573f00583d5a5ce5330f7eeba418c200125a2abd62b494478e628f",
@@ -527,8 +415,8 @@
       "lastmod": "2026-08-21"
     },
     "kalkulatorok/uzemanyagar-kulonbseg-kalkulator.html": {
-      "hash": "04cd7f4d658adb70b9a43c6ceadcd07e0b3e48a81fb8517555b947bfcae11af2",
-      "lastmod": "2026-08-21"
+      "hash": "719585c9b800a633537b7dd6250a541b4ff0f4a25e940b0074d3aa6f65afc732",
+      "lastmod": "2026-11-12"
     },
     "kalkulatorok/villanyfogyasztas-koltseg-kalkulator.html": {
       "hash": "06add00b6c481940c960bacca12f8f76130cd3d4ff802312269f465134bbc800",

@@ -4,9 +4,9 @@ const assert = require("node:assert/strict");
 const { translate, reportHref } = require("../js/autos/fuel-price-difference-locale");
 const page = "uzemanyagar-kulonbseg-kalkulator";
 
-test("fuel price guidance, FAQ, current-data note and metadata translate", () => {
+test("fuel price guidance, FAQ and metadata translate", () => {
   for (const source of ["Üzemanyagár-különbség kalkulátor", "Mire jó az üzemanyagár-különbség kalkulátor?",
-    "A kitérő költségét számolja?", "Kapcsolódó friss adat", "KSH üzemanyagárak: 2026. augusztus",
+    "A kitérő költségét számolja?",
     "Hirdetés"]) {
     assert.ok(translate(page, source, "en"), source);
     assert.ok(translate(page, source, "de"), source);

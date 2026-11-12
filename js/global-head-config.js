@@ -7,7 +7,6 @@
     eligibleExact: freezeList([
       "",
       "index",
-      "aktualis",
       "dontesek",
       "osszehasonlitas",
       "elethelyzetek",
@@ -15,7 +14,6 @@
     ]),
     eligiblePrefixes: freezeList([
       "kalkulatorok/",
-      "aktualis/",
       "landing-pages/elethelyzetek/",
     ]),
     excludedExact: Object.freeze({

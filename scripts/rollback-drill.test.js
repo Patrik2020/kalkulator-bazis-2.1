@@ -41,3 +41,20 @@ test("unknown, stale or dirty rollback targets are rejected", (t) => {
   fs.writeFileSync(path.join(r.root, "untracked.txt"), "dirty");
   assert.throws(() => verifyRollbackTarget(r.root, r.head), /clean/);
 });
+
+
+test("removing a legacy file can be rolled back to its exact original bytes", (t) => {
+  const r = repo(t);
+  fs.writeFileSync(path.join(r.root, "legacy.html"), "<p>Legacy page</p>  \n");
+  git(r.root, ["add", "legacy.html"]);
+  git(r.root, ["commit", "-qm", "legacy page with historical whitespace"]);
+  const previousTree = git(r.root, ["rev-parse", "HEAD^{tree}"]);
+  git(r.root, ["rm", "legacy.html"]);
+  git(r.root, ["commit", "-qm", "remove retired page"]);
+  const target = git(r.root, ["rev-parse", "HEAD"]);
+  const result = dryRunRollback({ root: r.root, target });
+  assert.deepEqual(result.affected, ["legacy.html"]);
+  assert.ok(previousTree);
+  assert.equal(fs.existsSync(path.join(r.root, "legacy.html")), false);
+  assert.equal(git(r.root, ["status", "--porcelain"]), "");
+});

@@ -132,9 +132,6 @@
     ["Állandó átlagfogyasztással készült összehasonlító becslés. A valós üzemanyagköltséget a tényleges fogyasztás és a megtett út határozza meg.","A comparison based on constant average fuel consumption. Actual fuel cost depends on the amount used and distance travelled.","Ein Vergleich auf Basis eines konstanten Durchschnittsverbrauchs. Die tatsächlichen Kraftstoffkosten hängen vom realen Verbrauch und der gefahrenen Strecke ab."],
     ["Számítási módszertan","Calculation methods","Berechnungsmethodik"],
     ["Hibát találtál? Jelezd.","Found an error? Let us know.","Fehler gefunden? Melde ihn uns."],
-    ["Kapcsolódó friss adat","Related recent data","Verwandte aktuelle Daten"],
-    ["KSH üzemanyagárak: 2026. augusztus","Hungarian Central Statistical Office fuel prices: August 2026","Kraftstoffpreise des ungarischen Statistikamts: August 2026"],
-    ["– hivatalos forrásból feldolgozott aktuális adat és gyakorlati értelmezés.","– figures from an official source with practical context.","– amtliche Daten mit praktischer Einordnung."],
     ["Hirdetés","Advertisement","Anzeige"]
   ];
   const dictionary = Object.freeze(Object.fromEntries(entries.map(([source, en, de]) => [source, [en, de]])));

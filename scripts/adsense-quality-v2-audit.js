@@ -89,7 +89,6 @@ const classify = (name, html) => {
   if (name === "404.html") return "hibaoldal";
   if (isRedirect(html)) return "átirányító";
   if (name.startsWith("kalkulatorok/")) return "kalkulátor";
-  if (name.startsWith("aktualis/")) return "aktuális cikk";
   if (name.startsWith("landing-pages/elethelyzetek/")) return "élethelyzet";
   if (name.startsWith("landing-pages/wise/")) return "partneroldal";
   if (name.startsWith("landing-pages/")) return "landing";

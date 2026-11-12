@@ -44,7 +44,12 @@ function dryRunRollback({ root, target }) {
     if (parents > 1) command.push("-m", "1");
     command.push(target);
     git(worktree, command);
-    git(worktree, ["diff", "--cached", "--check"]);
+    // A HEAD revert must restore the first parent's exact tree, including deleted
+    // files. Historical whitespace in that known tree is not a rollback defect.
+    const expectedTree = git(root, ["rev-parse", `${target}^1^{tree}`]);
+    const restoredTree = git(worktree, ["write-tree"]);
+    if (restoredTree !== expectedTree) throw new Error("Rollback did not restore the exact first-parent tree");
+    git(worktree, ["diff", "--cached", "--check", `${target}^1`, "--"]);
     const affected = git(worktree, ["diff", "--cached", "--name-only", "--"]).split(/\r?\n/).filter(Boolean);
     if (!affected.length) throw new Error("Rehearsed rollback produced no tracked changes");
     result = { sourceSha: head, revertedSha: target, affected, usedMainline: parents > 1 };

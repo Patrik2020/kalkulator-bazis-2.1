@@ -118,10 +118,6 @@ const pageChecks = [
     path: "/kalkulatorok/netto-brutto-kalkulator",
     markers: ["google-adsense-account", "Nettó"],
   },
-  {
-    path: "/aktualis",
-    markers: ["Friss számok és változások", "Aktuális közlemények"],
-  },
 ];
 
 const runAudit = async () => {

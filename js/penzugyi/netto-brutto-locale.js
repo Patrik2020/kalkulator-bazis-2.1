@@ -168,11 +168,6 @@
     "Infláció kalkulátor": ["Inflation calculator", "Inflationsrechner"],
     "Órabér kalkulátor": ["Hourly wage calculator", "Stundenlohn-Rechner"],
     "Források és tájékoztatás:": ["Sources and information:", "Quellen und Hinweise:"],
-    "FRISS HÍREK": ["LATEST NEWS", "AKTUELLE MELDUNGEN"],
-    "Bérek és pénzügyek": ["Pay and personal finance", "Gehalt und Finanzen"],
-    "Szeptemberi infláció: 1,6%": ["September inflation: 1.6%", "Inflation im September: 1,6 %"],
-    "Jegybanki alapkamat: 5,50%": ["Central bank base rate: 5.50%", "Leitzins: 5,50 %"],
-    "Összes friss hír →": ["All latest news →", "Alle aktuellen Meldungen →"],
     "Nettó–bruttó kalkulátor 2026": ["Gross to net salary calculator 2026", "Brutto-Netto-Rechner 2026"],
     "Net–gross salary calculator 2026": ["Gross to net salary calculator 2026", "Brutto-Netto-Rechner 2026"],
     "Netto-Brutto-Rechner 2026": ["Gross to net salary calculator 2026", "Brutto-Netto-Rechner 2026"],
@@ -242,7 +237,6 @@
     "Hirdetés": ["Advertisement", "Anzeige"],
     "Hitelképesség": ["Loan eligibility", "Kreditwürdigkeit"],
     "Kalkulátor Bázis ChatGPT-bővítmény": ["Kalkulátor Bázis ChatGPT app", "Kalkulátor Bázis ChatGPT-App"],
-    "Kapcsolódó friss hírek": ["Related news", "Passende aktuelle Meldungen"],
     "Külföldről kapsz fizetést vagy több pénznemben kezelnéd a pénzed?": [
       "Paid from abroad or managing money in several currencies?",
       "Wirst du aus dem Ausland bezahlt oder verwaltest du Geld in mehreren Währungen?"

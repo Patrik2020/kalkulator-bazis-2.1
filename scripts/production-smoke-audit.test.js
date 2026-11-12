@@ -12,7 +12,6 @@ const sourceByPublicPath = {
   "/kalkulatorok/atlag-kalkulator": "kalkulatorok/atlag-kalkulator.html",
   "/kalkulatorok/mertekegyseg-atvalto-kalkulator": "kalkulatorok/mertekegyseg-atvalto-kalkulator.html",
   "/kalkulatorok/netto-brutto-kalkulator": "kalkulatorok/netto-brutto-kalkulator.html",
-  "/aktualis": "aktualis.html",
 };
 
 test("every required live marker is present in the canonical committed HTML", () => {
