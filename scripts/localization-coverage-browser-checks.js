@@ -97,6 +97,7 @@ async function checkLocalizationCoverage({ navigate, evaluate, setViewport }) {
   await require("./unit-converter-locale-browser-checks").checkUnitConverterLocale({ navigate, evaluate, setViewport });
   await require("./mulch-locale-browser-checks").checkMulchLocale({ navigate, evaluate, setViewport });
   await require("./flooring-locale-browser-checks").checkFlooringLocale({ navigate, evaluate, setViewport });
+  await require("./skirting-locale-browser-checks").checkSkirtingLocale({ navigate, evaluate, setViewport });
   await require("./multifunction-locale-browser-checks").checkMultifunctionLocale({ navigate, evaluate, setViewport });
 }
 module.exports = { checkLocalizationCoverage, requiresTranslation, collectMainCopy };
