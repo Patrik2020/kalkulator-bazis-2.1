@@ -7,7 +7,10 @@ const page = "pulzus-zona-kalkulator";
 test("heart-rate guidance, safety boundaries, FAQ and metadata translate", () => {
   for (const source of ["Pulzus zóna kalkulátor", "Edzési pulzustartományok becslése",
     "Mikor ne hagyatkozz kalkulátorra?", "Mit tegyek szédülés vagy mellkasi fájdalom esetén?",
-    "Edzésintenzitás keresztellenőrző", "Pulzuszónák több maximálispulzus-becsléssel", "Hirdetés"]) {
+    "Edzésintenzitás keresztellenőrző", "Pulzuszónák több maximálispulzus-becsléssel",
+    "220 − életkor", "CDC – What Counts as Physical Activity for Adults",
+    "American Heart Association – Target Heart Rates", "HHS – Physical Activity Guidelines: relative intensity",
+    "Tanaka és mtsai. – életkor alapján becsült maximális pulzus", "Hirdetés"]) {
     assert.ok(translate(page, source, "en"), source);
     assert.ok(translate(page, source, "de"), source);
   }
