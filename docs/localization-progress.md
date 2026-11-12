@@ -4,7 +4,7 @@ Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőr
 
 Aktív kalkulátor: **89**; részletes fordításon átesett: **80**; hátralévő: **9**.
 
-Kivezetett kalkulátor: **13**; egyéb oldal: **60**.
+Kivezetett kalkulátor: **13**; egyéb oldal: **32**.
 
 A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Nem jelent teljes SEO-fordítást vagy minden lehetséges interakció lefedését. A `partial` részleges fordítást, a `content-review` további tartalmi felmérést és fordítást jelent. A kivezetett oldalakhoz előbb tartalmi döntés szükséges.
 
@@ -12,34 +12,6 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | --- | --- | --- |
 | 404.html | other | content-review |
 | adatvedelem.html | other | content-review |
-| aktualis.html | other | content-review |
-| aktualis/adotorveny-javaslatok-2027-oktober.html | other | content-review |
-| aktualis/allampapir-kamatok-2026-szeptember.html | other | content-review |
-| aktualis/csaladi-potlek-2027-duplazas-tervezete.html | other | content-review |
-| aktualis/dizeltamogatas-2026.html | other | content-review |
-| aktualis/eurostat-inflacio-2026-oktober.html | other | content-review |
-| aktualis/ksh-gdp-2026-harmadik-negyedev.html | other | content-review |
-| aktualis/ksh-inflacio-2026-augusztus.html | other | content-review |
-| aktualis/ksh-inflacio-2026-szeptember.html | other | content-review |
-| aktualis/ksh-ipari-termeles-2026-szeptember.html | other | content-review |
-| aktualis/ksh-ipari-termeloi-arak-2026-szeptember.html | other | content-review |
-| aktualis/ksh-keresetek-2026-augusztus.html | other | content-review |
-| aktualis/ksh-keresetek-2026-julius.html | other | content-review |
-| aktualis/ksh-keresetek-eloszlasa-2026-i-felev.html | other | content-review |
-| aktualis/ksh-kiskereskedelem-2026-szeptember.html | other | content-review |
-| aktualis/ksh-uzemanyagarak-2026-augusztus.html | other | content-review |
-| aktualis/ksh-uzemanyagarak-2026-szeptember.html | other | content-review |
-| aktualis/mnb-alapkamat-2026-oktober.html | other | content-review |
-| aktualis/mnb-alapkamat-inflacios-cel-2026-szeptember.html | other | content-review |
-| aktualis/mnb-lakasarindex-2026-harmadik-negyedev.html | other | content-review |
-| aktualis/mnb-piacfelugyelet-befektetovedelem-2026-november.html | other | content-review |
-| aktualis/nav-eafa-anyk-atallas-2026.html | other | content-review |
-| aktualis/nav-kata-kiva-adotartozas-2026-november.html | other | content-review |
-| aktualis/nav-unios-kezelesi-dij-2026-november.html | other | content-review |
-| aktualis/nav-uzemanyag-elszamolasi-arak-2026-november.html | other | content-review |
-| aktualis/nav-uzemanyag-elszamolasi-arak-2026-oktober.html | other | content-review |
-| aktualis/nav-uzemanyag-elszamolasi-arak-2026-szeptember.html | other | content-review |
-| aktualis/szja-2027-bejelentett-adocsokkentes.html | other | content-review |
 | atlathatosag-es-minoseg.html | other | content-review |
 | atvaltok.html | other | content-review |
 | auto.html | other | content-review |
