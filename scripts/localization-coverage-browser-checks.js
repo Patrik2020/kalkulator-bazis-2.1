@@ -82,6 +82,7 @@ async function checkLocalizationCoverage({ navigate, evaluate, setViewport }) {
   await require("./travel-time-locale-browser-checks").checkTravelTimeLocale({ navigate, evaluate, setViewport });
   await require("./fuel-price-difference-locale-browser-checks").checkFuelPriceDifferenceLocale({ navigate, evaluate, setViewport });
   await require("./protein-needs-locale-browser-checks").checkProteinNeedsLocale({ navigate, evaluate, setViewport });
+  await require("./heart-rate-locale-browser-checks").checkHeartRateLocale({ navigate, evaluate, setViewport });
   await require("./paint-locale-browser-checks").checkPaintLocale({ navigate, evaluate, setViewport });
   await require("./grout-locale-browser-checks").checkGroutLocale({ navigate, evaluate, setViewport });
   await require("./running-pace-locale-browser-checks").checkRunningPaceLocale({ navigate, evaluate, setViewport });

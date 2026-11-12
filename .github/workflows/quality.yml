@@ -73,6 +73,7 @@ jobs:
           node --test scripts/travel-time-locale.test.js
           node --test scripts/fuel-price-difference-locale.test.js
           node --test scripts/protein-needs-locale.test.js
+          node --test scripts/heart-rate-locale.test.js
           node --test scripts/paint-locale.test.js
           node --test scripts/grout-locale.test.js
           node --test scripts/running-pace-locale.test.js

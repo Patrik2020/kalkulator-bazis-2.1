@@ -63,6 +63,7 @@ const detailPages = [
   { path: "kalkulatorok/utazasi-ido-kalkulator.html", module: "js/autos/travel-time-locale.js", key: "utazasi-ido-kalkulator" },
   { path: "kalkulatorok/uzemanyagar-kulonbseg-kalkulator.html", module: "js/autos/fuel-price-difference-locale.js", key: "uzemanyagar-kulonbseg-kalkulator" },
   { path: "kalkulatorok/feherje-szukseglet-kalkulator.html", module: "js/egeszseg/protein-needs-locale.js", key: "feherje-szukseglet-kalkulator" },
+  { path: "kalkulatorok/pulzus-zona-kalkulator.html", module: "js/egeszseg/heart-rate-locale.js", key: "pulzus-zona-kalkulator" },
   { path: "kalkulatorok/festek-kalkulator.html", module: "js/epitoipari/festek-locale.js", key: "festek-kalkulator" },
   { path: "kalkulatorok/fuga-kalkulator.html", module: "js/epitoipari/fuga-locale.js", key: "fuga-kalkulator" },
   { path: "kalkulatorok/futotempo-kalkulator.html", module: "js/egeszseg/running-pace-locale.js", key: "futotempo-kalkulator" },
