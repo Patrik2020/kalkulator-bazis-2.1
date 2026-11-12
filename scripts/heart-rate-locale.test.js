@@ -22,7 +22,9 @@ test("dynamic ranges, validation and report link preserve the calculation", () =
   assert.equal(translate(page, "108–131 bpm", "en"), "108–131 bpm");
   assert.equal(translate(page, "135–165 bpm", "de"), "135–165 bpm");
   for (const source of ["Becsült max pulzus", "Közepes relatív intenzitás – 40–59% pulzustartalék",
-    "Intenzív relatív intenzitás – 60–84% pulzustartalék", "Becsült maximális pulzus",
+    "Intenzív relatív intenzitás – 60–84% pulzustartalék", "Becsült max pulzus:",
+    "Közepes relatív intenzitás – 40–59% pulzustartalék:",
+    "Intenzív relatív intenzitás – 60–84% pulzustartalék:", "Becsült maximális pulzus",
     "A felnőtt tervezőhöz 18+ életkort és a becsült maximumnál alacsonyabb pozitív nyugalmi pulzust adj meg.",
     "Ezt a pulzustartalékos tervezőt felnőtteknek (18+) használjuk",
     "A nyugalmi pulzus legyen kisebb a becsült maximális pulzusnál"]) {
