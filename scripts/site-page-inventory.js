@@ -31,7 +31,6 @@ const fixedRoutes = [
   "miert-bizhatsz-bennunk.html",
   "impresszum.html",
   "elethelyzetek.html",
-  "aktualis.html",
   "landing-pages/elethelyzetek/lakasvasarlas.html",
   "landing-pages/elethelyzetek/autofenntartas.html",
   "landing-pages/elethelyzetek/fizetes-munkaber.html",
@@ -60,16 +59,6 @@ function loadExpansionCalculators(root) {
   return calculators;
 }
 
-function currentArticleRoutes(root) {
-  const directory = path.join(root, "aktualis");
-  if (!fs.existsSync(directory)) return [];
-  return fs
-    .readdirSync(directory, { withFileTypes: true })
-    .filter((entry) => entry.isFile() && entry.name.endsWith(".html"))
-    .map((entry) => `aktualis/${entry.name}`)
-    .sort((left, right) => left.localeCompare(right, "hu"));
-}
-
 function sitePageRoutes(root = defaultRoot) {
   const { categories, calculators } = loadSiteData(root);
   const categoryById = new Map(categories.map((category) => [category.id, category]));
@@ -88,9 +77,7 @@ function sitePageRoutes(root = defaultRoot) {
     ...new Set([
       fixedRoutes[0],
       ...categoryRoutes,
-      ...fixedRoutes.slice(1, 17),
-      ...currentArticleRoutes(root),
-      ...fixedRoutes.slice(17),
+      ...fixedRoutes.slice(1),
       ...calculatorRoutes,
     ]),
   ];

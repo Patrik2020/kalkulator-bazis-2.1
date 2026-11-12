@@ -41,7 +41,7 @@ requireGroup(policy.groups.excludedExact.trustAndLegal,
   "hiányzó bizalmi/jogi kizárás");
 requireGroup(policy.groups.excludedPrefixes.partnerPages,
   ["landing-pages/wise/"], "hiányzó partneroldali kizárás");
-for (const route of ["/", "/index", "/aktualis", "/kalkulatorok/bmi-kalkulator"]) {
+for (const route of ["/", "/index", "/kalkulatorok/bmi-kalkulator"]) {
   if (!policy.isEligible(route)) failures.push(`hiányzó engedélyezett útvonal: ${route}`);
 }
 

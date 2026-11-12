@@ -55,7 +55,6 @@ test("net salary page recommendations, retention controls and contextual notices
     ["Nettó - bruttó kalkulátor", "Net-to-gross salary calculator", "Netto-Brutto-Rechner"],
     ["Hirdetés", "Advertisement", "Anzeige"],
     ["Az eredmény után", "After your result", "Nach deinem Ergebnis"],
-    ["Kapcsolódó friss hírek", "Related news", "Passende aktuelle Meldungen"],
     ["Külföldről kapsz fizetést vagy több pénznemben kezelnéd a pénzed?", "Paid from abroad or managing money in several currencies?", "Wirst du aus dem Ausland bezahlt oder verwaltest du Geld in mehreren Währungen?"],
     ["a kalkulátor a közzétett NAV és hivatalos adózási információk alapján készült. Az eredmény tájékoztató jellegű, nem minősül adó- vagy bérszámfejtési tanácsadásnak.", "The calculator is based on published NAV and official tax information. The result is for guidance only and is not tax or payroll advice.", "Der Rechner basiert auf veröffentlichten NAV- und offiziellen Steuerinformationen. Das Ergebnis dient nur zur Orientierung und ist keine Steuer- oder Lohnabrechnungsberatung."]
   ];

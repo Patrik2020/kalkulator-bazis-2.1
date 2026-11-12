@@ -11,8 +11,8 @@ const policy = loadAdsensePolicy(root);
 
 test("keeps the homepage and intended content routes eligible", () => {
   for (const route of [
-    "/", "/index", "/index.html", "/AKTUALIS.html",
-    "/kalkulatorok/bmi-kalkulator.html", "/aktualis/teszt-cikk",
+    "/", "/index", "/index.html",
+    "/kalkulatorok/bmi-kalkulator.html",
     "/landing-pages/elethelyzetek/lakasvasarlas.html",
   ]) {
     assert.equal(policy.isEligible(route), true, route);
@@ -34,7 +34,7 @@ test("explicit exclusions override broad calculator eligibility", () => {
 });
 
 test("uses default-deny behavior for unknown routes and malformed encoding", () => {
-  for (const route of ["/ismeretlen", "/penzugyi/valami", "/%E0%A4%A"]) {
+  for (const route of ["/aktualis", "/aktualis/teszt-cikk", "/ismeretlen", "/penzugyi/valami", "/%E0%A4%A"]) {
     assert.equal(policy.isEligible(route), false, route);
   }
 });
