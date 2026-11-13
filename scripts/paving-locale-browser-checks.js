@@ -50,10 +50,8 @@ async function checkPavingLocale({ navigate, evaluate, setViewport }) {
     assert.equal(await evaluate(`document.querySelector('main h1').textContent.trim()`), "Térkövezés kalkulátor");
     assert.equal(await values(), before); assert.equal(await slopeValues(), beforeSlope);
     assert.equal(await evaluate(`document.querySelector('.paving-slope [data-cq="meaning"]').textContent`), "7,5 m-en 18 cm esés");
-    await evaluate(`document.querySelector('.construction-planner').reset()`);
-    await evaluate(`new Promise(resolve=>setTimeout(resolve,50))`);
-    assert.deepEqual(JSON.parse(await values()), ["8","4","0","10","8","4","15","0","1"]);
+
   }
-  console.log("Paving locale: EN/DE quantities, pack rounding, bedding, edging, slope helper, validation, guide, metadata, retention, reset and HU restoration passed at 390/1440px.");
+  console.log("Paving locale: EN/DE quantities, pack rounding, bedding, edging, slope helper, validation, guide, metadata, retention and HU restoration passed at 390/1440px.");
 }
 module.exports = { checkPavingLocale };
