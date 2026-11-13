@@ -171,6 +171,11 @@
     if (match) return language === "en" ? `From a ${match[1]}-day average cycle` : `Aus einem durchschnittlichen ${match[1]}-Tage-Zyklus`;
     match = /^(\d+) napos embrió transzferéből$/u.exec(value);
     if (match) return language === "en" ? `From the transfer of a ${match[1]}-day embryo` : `Aus dem Transfer eines ${match[1]} Tage alten Embryos`;
+    match = /^(\d{4})\. (\d{2})\. (\d{2})\.$/u.exec(value);
+    if (match) {
+      const date = new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1, Number(match[3])));
+      return new Intl.DateTimeFormat(language === "en" ? "en-GB" : "de-DE", { year:"numeric", month:"long", day:"numeric", timeZone:"UTC" }).format(date);
+    }
     match = /^(\d{4})\. ([a-záéíóöőúüű]+) (\d{1,2})\.$/u.exec(value);
     if (match && Object.hasOwn(months, match[2])) {
       const date = new Date(Date.UTC(Number(match[1]), months[match[2]], Number(match[3])));
