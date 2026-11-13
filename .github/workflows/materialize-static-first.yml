@@ -25,6 +25,7 @@ on:
       - "js/multifunction-locale.js"
       - "js/epitoipari/crushed-stone-locale.js"
       - "js/epitoipari/paving-locale.js"
+      - "js/egeszseg/water-intake-locale.js"
       - "js/construction-upgrades.js"
       - "js/penzugyi/netto-brutto.js"
       - "js/penzugyi/netto-brutto-shadow.js"
