@@ -57,6 +57,8 @@ test("the pregnancy calculation remains unchanged and every model branch transla
 test("dynamic dates, IVF/cycle bases, metadata and report links localize naturally", () => {
   assert.equal(api.translate(page,"2027. május 9.","en"),"9 May 2027");
   assert.equal(api.translate(page,"2027. május 9.","de"),"9. Mai 2027");
+  assert.equal(api.translate(page,"2027. 05. 09.","en"),"9 May 2027");
+  assert.equal(api.translate(page,"2027. 05. 09.","de"),"9. Mai 2027");
   assert.equal(api.translate(page,"5 napos embrió transzferéből","en"),"From the transfer of a 5-day embryo");
   assert.equal(api.translate(page,"31 napos átlagos ciklusból","de"),"Aus einem durchschnittlichen 31-Tage-Zyklus");
   assert.equal(api.translate(page,"hu-HU","en"),"en-GB");
