@@ -116,7 +116,7 @@
     ["A kalkulátor korlátai", "Calculator limitations", "Grenzen des Rechners"],
     ["Módszertani ellenőrzés:", "Methodology reviewed:", "Methodik geprüft:"],
     ["2026. szeptember 16.", "16 September 2026", "16. September 2026"],
-    ["hu-HU", "en-US", "de-DE"],
+    ["hu-HU", "en-GB", "de-DE"],
     ["Számold ki térkő, szegélykő és ráhagyás becsült mennyiségét.", "Estimate how many paving stones and edging stones you need, including an allowance.", "Schätze den Bedarf an Pflaster- und Randsteinen einschließlich Zuschlag."],
     ["Otthon és felújítás kalkulátorok", "Home & renovation calculators", "Rechner für Bauen & Renovieren"],
     ["Főoldal", "Home", "Startseite"],

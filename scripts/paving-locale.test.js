@@ -61,6 +61,7 @@ test("all planner validation branches have translated errors", () => {
 
 test("metadata, reports, retention feedback, scoping and Hungarian restoration are complete", () => {
   assert.equal(api.translate(page, "hu-HU", "de"), "de-DE");
+  assert.equal(api.translate(page, "hu-HU", "en"), "en-GB");
   assert.equal(api.translate(page, "Paving Calculator", "hu"), "Térkövezés kalkulátor");
   assert.equal(api.translate("another-page", "Térkövezés kalkulátor", "en"), null);
   assert.equal(api.translate(page, "Hirdetés", "en"), "Advertisement");
