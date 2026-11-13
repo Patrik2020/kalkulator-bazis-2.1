@@ -90,6 +90,7 @@ jobs:
           node --test scripts/flooring-locale.test.js
           node --test scripts/skirting-locale.test.js
           node --test scripts/wallpaper-locale.test.js
+          node --test scripts/brick-locale.test.js
           node --test scripts/multifunction-locale.test.js
           node --test scripts/co2-locale.test.js
           node scripts/localization-inventory.js --check
