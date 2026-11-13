@@ -76,6 +76,7 @@ const detailPages = [
   { path: "kalkulatorok/lepesszam-tavolsag-kalkulator.html", module: "js/egeszseg/step-distance-locale.js", key: "lepesszam-tavolsag-kalkulator" },
   { path: "kalkulatorok/makro-kalkulator.html", module: "js/egeszseg/macro-locale.js", key: "makro-kalkulator" },
   { path: "kalkulatorok/mertekegyseg-atvalto-kalkulator.html", module: "js/atvaltok/unit-converter-locale.js", key: "mertekegyseg-atvalto-kalkulator" },
+  { path: "kalkulatorok/terkovezes-kalkulator.html", module: "js/epitoipari/paving-locale.js", key: "terkovezes-kalkulator" },
   { path: "kalkulatorok/zuzottko-kalkulator.html", module: "js/epitoipari/crushed-stone-locale.js", key: "zuzottko-kalkulator" },
   { path: "kalkulatorok/mulcs-kalkulator.html", module: "js/epitoipari/mulch-locale.js", key: "mulcs-kalkulator" },
   { path: "kalkulatorok/padlo-burkolat-kalkulator.html", module: "js/epitoipari/flooring-locale.js", key: "padlo-burkolat-kalkulator" },
