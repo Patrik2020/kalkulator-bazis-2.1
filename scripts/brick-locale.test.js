@@ -83,3 +83,8 @@ test("dictionary entries are complete reviewed HU/EN/DE pairs", () => {
     assert.equal(translate(page, source, "de"), pair[1], source);
   }
 });
+
+test("runtime advertising labels are localized", () => {
+  assert.equal(translate(page, "Hirdetés", "en"), "Advertisement");
+  assert.equal(translate(page, "Hirdetés", "de"), "Anzeige");
+});
