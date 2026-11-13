@@ -24,6 +24,7 @@ on:
       - "js/everyday-upgrades.js"
       - "js/multifunction-locale.js"
       - "js/epitoipari/crushed-stone-locale.js"
+      - "js/epitoipari/paving-locale.js"
       - "js/construction-upgrades.js"
       - "js/penzugyi/netto-brutto.js"
       - "js/penzugyi/netto-brutto-shadow.js"
