@@ -244,6 +244,7 @@
     ["A linket a vágólapra másoltuk.", "The link has been copied to the clipboard.", "Der Link wurde in die Zwischenablage kopiert."],
     ["Kalkulátor Bázis főoldal", "Kalkulátor Bázis home page", "Startseite von Kalkulátor Bázis"],
     ["Nyelv", "Language", "Sprache"],
+    ["Hirdetés", "Advertisement", "Anzeige"],
     ["pl. 5", "e.g. 5", "z. B. 5"],
     ["pl. 2.7", "e.g. 2.7", "z. B. 2,7"],
     ["pl. 900", "e.g. 900", "z. B. 900"],
