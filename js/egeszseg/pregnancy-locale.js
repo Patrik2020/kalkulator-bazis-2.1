@@ -59,6 +59,7 @@
   const entries = [
     ["hu-HU","en-GB","de-DE"],
     ["Terhességi kalkulátor","Pregnancy Due Date Calculator","Schwangerschaftsrechner"],
+    ["Pregnancy calculator","Pregnancy Due Date Calculator","Schwangerschaftsrechner"],
     ["Terhességi kalkulátor | Várható szülési idő becslése","Pregnancy Due Date Calculator | Estimate Your Due Date","Schwangerschaftsrechner | Geburtstermin schätzen"],
     ["Terhességi kalkulátor az utolsó menstruáció első napja és ciklushossz alapján. Becsüld meg a terhességi kort, a várható szülési dátumot és ismerd meg a számítás korlátait.","Estimate gestational age and the due date from the first day of the last menstrual period and average cycle length, and learn about the calculation's limitations.","Schätze Schwangerschaftsalter und Geburtstermin anhand des ersten Tages der letzten Periode und der durchschnittlichen Zykluslänge und informiere dich über die Grenzen der Berechnung."],
     ["Terhességi kor és várható szülési dátum becslése, a módszer korlátaival és gyakorlati magyarázattal.","Estimate gestational age and the due date, with practical explanations and the method's limitations.","Schätzung von Schwangerschaftsalter und Geburtstermin mit praktischen Erläuterungen und den Grenzen der Methode."],
