@@ -94,6 +94,7 @@ jobs:
           node --test scripts/crushed-stone-locale.test.js
           node --test scripts/paving-locale.test.js
           node --test scripts/water-intake-locale.test.js
+          node --test scripts/pregnancy-locale.test.js
           node --test scripts/multifunction-locale.test.js
           node --test scripts/co2-locale.test.js
           node scripts/localization-inventory.js --check
