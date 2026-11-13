@@ -19,8 +19,8 @@ async function checkPregnancyLocale({ navigate, evaluate, setViewport }) {
       const state = JSON.parse(await evaluate(`JSON.stringify({heading:document.querySelector('main h1').textContent.trim(),result:document.getElementById('simpleCalcResults').innerText,priority:document.querySelector('.priority-upgrade').innerText,guide:document.querySelector('.calculator-guide').innerText,faq:document.querySelector('.faq-list').innerText,note:document.querySelector('.reliability-note').innerText,title:document.title,description:document.querySelector('meta[name="description"]').content,schema:JSON.parse(document.getElementById('kb-structured-data').textContent),report:document.querySelector('.reliability-actions a[href^="mailto:"]').href,width:document.documentElement.scrollWidth})`));
       const heading = language === "en" ? "Pregnancy Due Date Calculator" : "Schwangerschaftsrechner";
       assert.equal(state.heading,heading);
-      assert.ok(state.result.includes(language === "en" ? "Estimated gestational age:" : "Geschätztes Schwangerschaftsalter:"),state.result);
-      assert.ok(state.result.includes(language === "en" ? "weeks" : "Wochen"),state.result);
+      assert.ok(state.result.includes(language === "en" ? "Estimated due date:" : "Voraussichtlicher Geburtstermin:"),state.result);
+      assert.ok(state.result.includes(language === "en" ? "9 May 2027" : "9. Mai 2027"),state.result);
       assert.ok(state.priority.includes(language === "en" ? "From the transfer of a 5-day embryo" : "Aus dem Transfer eines 5 Tage alten Embryos"),state.priority);
       assert.ok(state.priority.includes(language === "en" ? "clinical dating may supersede" : "klinische Datierung"),state.priority);
       assert.ok(state.guide.includes(language === "en" ? "not a guaranteed delivery date" : "kein garantiertes Geburtsdatum"),state.guide);
