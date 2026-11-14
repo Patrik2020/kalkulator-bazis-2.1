@@ -15,7 +15,8 @@ async function checkRoofTileLocale({navigate,evaluate,setViewport}) {
     for(const [key,value] of [["roofArea","120"],["openings","3"],["tilesMin","9.2"],["tilesMax","10"],["waste","8"],["packSize","192"],["purchaseMode","pieces"],["manufacturerConfirmed","no"]]) await input(key,value);
     await submit();
     const before=await values();
-    const pending=()=>evaluate(`document.querySelector('.construction-results').innerText`);
+    // Read semantic copy independently of CSS text-transform: uppercase.
+    const pending=()=>evaluate(`document.querySelector('.construction-results').textContent`);
     for(const language of ["en","de"]) {
       await choose(language);
       assert.equal(await values(),before);
