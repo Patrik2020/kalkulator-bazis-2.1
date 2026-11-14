@@ -144,7 +144,7 @@
           }
           pageAttributes.set(element, originals);
         }
-        const localize = value => typeof value === "string" ? api.translate(value, next) ?? value : Array.isArray(value) ? value.map(localize) : value && typeof value === "object" ? Object.fromEntries(Object.entries(value).map(([key, item]) => [key, localize(item)])) : value;
+        const localize = value => typeof value === "string" ? api.translate(value, next) ?? value : Array.isArray(value) ? value.map(localize) : value && typeof value === "object" ? Object.fromEntries(Object.entries(value).map(([key, item]) => [key, key === "inLanguage" && next !== "hu" ? (next === "en" ? "en-GB" : "de-DE") : localize(item)])) : value;
         for (const selector of ["title", 'meta[name="description"]', 'meta[property="og:title"]', 'meta[property="og:description"]', 'meta[name="twitter:title"]', 'meta[name="twitter:description"]', "#kb-structured-data"]) {
           const element = document.querySelector(selector);
           if (!element) continue;
