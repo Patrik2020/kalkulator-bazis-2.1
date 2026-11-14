@@ -164,8 +164,8 @@ if (isHomePage) appendStyles(headConfig.home.styles);
 
 if (isHomePage) appendScripts(headConfig.home.scriptsBeforeBase);
 appendScripts(headConfig.base.scripts);
-appendScripts(["js/shared-ui-locale.js?v=8a6e5cf28329"]);
-if (!isHomePage) appendScripts(["js/site-language-inner.js?v=542f7fa16647"]);
+appendScripts(["js/shared-ui-locale.js?v=ad4515a657e8"]);
+if (!isHomePage) appendScripts(["js/site-language-inner.js?v=c1907fac7d8b"]);
 
 if (isCalculatorPage) {
   document.documentElement.classList.add("kb-calculator-document");
