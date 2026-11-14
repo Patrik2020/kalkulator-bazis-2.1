@@ -162,3 +162,98 @@
 161|A budget supports decisions when savings are planned in advance rather than treated only as money left at month-end.|Ein Budget unterstützt Entscheidungen, wenn Sparen vorab geplant wird statt nur als Geldrest am Monatsende zu gelten.
 162|Family Budget Planning · Kalkulátor Bázis|Familienbudget planen · Kalkulátor Bázis
 163|Income, utilities, loans, saving and goals: build a clear monthly family budget with calculators.|Einnahmen, Nebenkosten, Kredit, Sparen und Ziele: Erstelle mit Rechnern ein übersichtliches Monatsbudget für die Familie.
+164|/ Renovation|/ Renovierung
+165|Plan renovations with material calculators|Renovierungen mit Materialrechnern planen
+166|Most unpleasant renovation surprises come from over- or underestimating quantities. The aim is a traceable baseline and reasonable allowance, not an order accurate to the millimetre.|Die meisten unangenehmen Überraschungen bei Renovierungen entstehen durch zu hoch oder zu niedrig geschätzte Mengen. Ziel sind eine nachvollziehbare Grundmenge und ein sinnvoller Zuschlag, keine millimetergenaue Bestellung.
+167|Surface measurement|Flächenmessung
+168|Material requirement|Materialbedarf
+169|Measurement|Messung
+170|Measure surfaces, openings and rooms.|Miss Flächen, Öffnungen und Räume aus.
+171|Calculate the baseline quantity with the appropriate tool.|Berechne die Grundmenge mit dem passenden Rechner.
+172|Add cutting, breakage or repair reserves according to the material.|Ergänze je nach Material Reserven für Zuschnitt, Bruch oder Reparaturen.
+173|Estimate how much paint is needed.|Schätze die benötigte Farbmenge.
+174|Tiles|Fliesen
+175|Calculate the quantity needed for the surface to be covered.|Berechne die benötigte Menge für die zu belegende Fläche.
+176|Estimate the required concrete volume.|Schätze das benötigte Betonvolumen.
+177|Plan board and material quantities.|Plane Platten- und Materialmengen.
+178|Include flooring and an allowance.|Plane Belag und Zuschlag ein.
+179|Wallpaper|Tapete
+180|Estimate the number of rolls needed.|Schätze die benötigte Rollenanzahl.
+181|Allowances vary by material|Zuschläge unterscheiden sich je nach Material
+182|Tile and flooring layout and cuts, wallpaper pattern matching and paint absorbency can all change actual requirements.|Verlegung und Zuschnitt bei Fliesen und Böden, Musteranschluss bei Tapeten und Saugfähigkeit beim Anstrich können den tatsächlichen Bedarf verändern.
+183|The calculator is a useful purchasing starting point|Der Rechner ist eine gute Grundlage für den Einkauf
+184|For larger projects, check product data sheets, contractor recommendations and pack sizes before ordering.|Prüfe bei größeren Projekten vor der Bestellung Datenblätter, Empfehlungen der Ausführenden und Verpackungseinheiten.
+185|Cuts, breakages, defective pieces and later repairs mean the theoretical minimum is rarely sufficient.|Wegen Zuschnitt, Bruch, fehlerhafter Teile oder späterer Reparaturen reicht das theoretische Minimum selten aus.
+186|Should I subtract doors and windows?|Soll ich Türen und Fenster abziehen?
+187|For larger openings, yes, but for smaller areas allowances and application losses can partly offset this.|Bei größeren Öffnungen ja. Bei kleinen Flächen können Zuschlag und Verarbeitungsverluste dies teilweise ausgleichen.
+188|Does the calculator replace a contractor’s survey?|Ersetzt der Rechner das Aufmaß eines Handwerkers?
+189|No. It is a starting point for cost and material planning.|Nein. Er ist ein Ausgangspunkt für Kosten- und Materialplanung.
+190|Practical example: from measurements to order quantities|Praxisbeispiel: Von der Messung zur Bestellmenge
+191|A 5 × 4 m room with a height of 2.7 m has 48.6 m² of gross wall area. Subtracting 4.5 m² of doors and windows leaves 44.1 m². Two coats at a manufacturer coverage of 10 m²/litre require 8.82 litres in theory. A 10% reserve gives about 9.7 litres, so round the order up to available bucket sizes.|Ein 5 × 4 m großer, 2,7 m hoher Raum hat 48,6 m² Bruttowandfläche. Nach Abzug von 4,5 m² Türen und Fenstern bleiben 44,1 m². Zwei Anstriche bei 10 m²/Liter Herstellerreichweite benötigen theoretisch 8,82 Liter. Mit 10 % Reserve ergeben sich rund 9,7 Liter; die Bestellung muss auf verfügbare Eimergrößen aufgerundet werden.
+192|Use the same sequence for other materials: net geometry, then coats or specific consumption, then allowance and pack size. Do not copy allowances blindly between tasks. Straight layouts and patterns with many cuts need different reserves; wallpaper repeats and actual plaster thickness can also change quantities.|Verwende bei anderen Materialien dieselbe Reihenfolge: Nettogeometrie, dann Schichten oder spezifischer Verbrauch, zuletzt Zuschlag und Verpackung. Übertrage Zuschläge nicht automatisch zwischen Arbeitsschritten. Gerade Verlegung und Muster mit vielen Zuschnitten brauchen unterschiedliche Reserven; auch Tapetenrapport und tatsächliche Putzdicke verändern den Bedarf.
+193|Create a measurement record|Erstelle ein Aufmaßprotokoll
+194|Record lengths, heights, openings and the material for each surface by room. Label every value with its unit. Mixing thickness in centimetres with lengths in metres can cause errors of several orders of magnitude.|Erfasse je Raum Längen, Höhen, Öffnungen und das Material jeder Fläche. Gib zu jedem Wert die Einheit an. Vermischte Dicken in Zentimetern und Seitenlängen in Metern können Größenordnungsfehler verursachen.
+195|Check the whole system before ordering|Prüfe vor der Bestellung das gesamte System
+196|Count more than the finish material: adhesive, primer, grout, profiles, fixings and losses may also be needed. Check compatibility, storage life and whether one production batch is required. For large or structural jobs, the calculator does not replace designers’ or contractors’ surveys.|Berechne nicht nur das Oberflächenmaterial: Kleber, Grundierung, Fugenmasse, Profile, Befestigungen und Verluste können dazugehören. Prüfe Kompatibilität, Lagerfähigkeit und die Notwendigkeit derselben Charge. Bei größeren oder tragenden Arbeiten ersetzt der Rechner kein planerisches oder handwerkliches Aufmaß.
+197|Always take specific consumption, layer thickness, curing time and application conditions from the selected product’s current data sheet. For work requiring permits, notification or regulatory compliance, the|Übernimm spezifischen Verbrauch, Schichtdicke, Abbindezeit und Verarbeitungsbedingungen stets aus dem aktuellen Datenblatt des gewählten Produkts. Bei genehmigungs-, anzeige- oder regelungspflichtigen Arbeiten bieten das
+198|Hungarian Construction Portal|Ungarische Bauportal
+199|and the appropriate professional provide current information. The example here is a planning illustration, not a manufacturer specification.|und die zuständigen Fachleute aktuelle Informationen. Das Beispiel ist eine Planungshilfe, keine Herstellervorgabe.
+200|Renovation quantity chain|Mengenkette für Renovierungen
+201|Geometric quantities and purchase quantities are rarely identical|Geometrische Menge und Einkaufsmenge sind selten gleich
+202|Survey|Aufmaß
+203|Measure actual surfaces and handle openings, corners and penetrations separately.|Miss die tatsächliche Fläche und behandle Öffnungen, Ecken und Durchdringungen getrennt.
+204|Net quantity|Nettomenge
+205|Calculate net surface area or volume.|Berechne die reine Fläche oder das Volumen.
+206|Allow for cuts, breakage, pattern repeats and uneven substrates with a justified reserve.|Plane für Zuschnitt, Bruch, Rapport oder unebenen Untergrund einen begründeten Zuschlag ein.
+207|Packaging|Verpackung
+208|Boards, bags, rolls, boxes and pallets can require rounding purchases up.|Platten, Säcke, Rollen, Kartons oder Paletten erfordern ein Aufrunden der Einkaufsmenge.
+209|Later replacements are separate from application losses.|Späterer Ersatz ist eine andere Frage als Verarbeitungsverluste.
+210|Do not make structural, waterproofing, fire-safety or load-bearing decisions from quantity calculators alone.|Triff konstruktive, Abdichtungs-, Brandschutz- oder statische Entscheidungen nicht allein anhand von Mengenrechnern.
+211|Plan Renovations with Material Calculators · Kalkulátor Bázis|Renovierungen mit Materialrechnern planen · Kalkulátor Bázis
+212|Paint, tiles, concrete, plasterboard, flooring and wallpaper: estimate material needs before renovating.|Farbe, Fliesen, Beton, Gipskarton, Boden und Tapeten: Schätze den Materialbedarf vor der Renovierung.
+213|/ Salary and wages|/ Gehalt und Arbeitslohn
+214|Salary and wage planning|Gehalt und Arbeitslohn planen
+215|A job offer is more than a gross or net monthly figure. Consider hourly value, working time and its effect on the household’s monthly flexibility.|Ein Gehaltsangebot ist mehr als ein monatlicher Brutto- oder Nettobetrag. Wichtig sind Stundenwert, Arbeitszeit und die Auswirkungen auf den monatlichen Haushaltsspielraum.
+216|Hourly pay|Stundenlohn
+217|Monthly budget|Monatsrahmen
+218|Estimate actual take-home pay.|Schätze den tatsächlich ausgezahlten Betrag.
+219|Check working hours and hourly pay.|Prüfe Arbeitszeit und Stundenlohn.
+220|Add net pay to your monthly budget.|Trage das Nettogehalt in dein Monatsbudget ein.
+221|Estimate the relationship between gross and net salary.|Schätze den Zusammenhang zwischen Brutto- und Nettogehalt.
+222|Calculate the value of an hour’s work.|Berechne den Wert einer Arbeitsstunde.
+223|Total your working time.|Summiere die geleistete Arbeitszeit.
+224|See what the salary means for monthly finances.|Prüfe, was das Gehalt für die Monatsfinanzen bedeutet.
+225|Estimate affordable monthly repayments.|Schätze die tragbare monatliche Kreditrate.
+226|Compare offers on the same basis|Vergleiche Angebote auf derselben Grundlage
+227|Higher take-home pay is not necessarily better if it requires many more hours, commuting or less predictable shifts.|Mehr Nettogehalt ist nicht unbedingt besser, wenn dafür erheblich mehr Arbeitszeit, Pendeln oder unplanbarere Dienste nötig sind.
+228|Assess a pay rise through your budget|Bewerte eine Gehaltserhöhung im Budget
+229|The real value of extra income depends on how much can be saved or used for goals.|Der tatsächliche Wert zusätzlichen Einkommens hängt davon ab, wie viel du sparen oder für Ziele verwenden kannst.
+230|Should I compare gross or net pay?|Soll ich Brutto- oder Nettogehälter vergleichen?
+231|Both. Gross is useful for employer offers; net matters for your monthly planning.|Beides. Brutto hilft beim Vergleich von Arbeitgeberangeboten, netto bei deiner Monatsplanung.
+232|Why calculate hourly pay too?|Warum auch den Stundenlohn berechnen?
+233|Two similar monthly salaries can involve very different working hours.|Hinter ähnlichen Monatsgehältern können sehr unterschiedliche Arbeitszeiten stehen.
+234|Does the calculator replace payroll processing?|Ersetzt der Rechner die Lohnabrechnung?
+235|No. It provides a planning estimate.|Nein. Er liefert eine Planungsschätzung.
+236|Practical example: compare two offers on the same basis|Praxisbeispiel: Zwei Angebote auf derselben Grundlage vergleichen
+237|Offer A pays HUF 600,000 gross for 160 hours per month; offer B pays HUF 650,000 for 184 hours. Gross hourly pay is HUF 3,750 for A and about HUF 3,533 for B. This alone does not decide which is better, but shows the extra time behind the higher monthly figure.|Angebot A zahlt monatlich 600.000 HUF brutto für 160 Stunden, Angebot B 650.000 HUF für 184 Stunden. Der Bruttostundenlohn beträgt bei A 3.750 HUF und bei B rund 3.533 HUF. Das entscheidet nicht allein, welches Angebot besser ist, zeigt aber die zusätzliche Arbeitszeit hinter dem höheren Monatsbetrag.
+238|Estimate net pay for both offers with identical allowance and eligibility settings. Subtract differences in commuting, meals, childcare and other regular work costs. Note leave, overtime arrangements, bonus conditions and benefits. Keep variable bonuses separate from reliable monthly income.|Schätze beide Nettogehälter mit denselben Vergünstigungs- und Anspruchseinstellungen. Ziehe Unterschiede bei Pendeln, Essen, Kinderbetreuung und anderen regelmäßigen Arbeitskosten ab. Notiere Urlaub, Überstundenregelung, Bonusbedingungen und Zusatzleistungen. Variable Boni gehören in eine eigene Zeile statt zum sicheren Monatseinkommen.
+239|Compare net hourly value too|Vergleiche auch den Nettostundenwert
+240|Divide monthly take-home pay by hours actually spent working and in required attendance. If commuting differs substantially, make a second comparison including regular travel time and costs. This supports personal decisions, not legal payroll calculation.|Teile das Monatsnetto durch die tatsächlich mit Arbeit und Pflichtanwesenheit verbrachten Stunden. Bei stark unterschiedlichem Pendeln kannst du zusätzlich regelmäßige Fahrzeit und Kosten einbeziehen. Das ist eine persönliche Entscheidungshilfe, keine rechtliche Lohnabrechnung.
+241|Test the household impact|Prüfe die Auswirkungen auf den Haushalt
+242|Enter each net figure separately in your monthly budget. Check what remains after fixed expenses, debt payments and planned savings. For probation, shift allowances or variable hours, also model a weaker month and take on commitments only while retaining a reserve.|Trage beide Nettobeträge getrennt in das Monatsbudget ein. Prüfe, was nach Fixkosten, Kredit und geplantem Sparen bleibt. Modelliere bei Probezeit, Schichtzuschlägen oder variablen Stunden auch einen schwächeren Monat und gehe nur Verpflichtungen ein, bei denen eine Reserve bleibt.
+243|Tax and allowance rules can change. Check eligibility and current terms on the|Steuer- und Vergünstigungsregeln können sich ändern. Prüfe Ansprüche und aktuelle Voraussetzungen auf der
+244|NAV income-tax allowances page|NAV-Seite zu Einkommensteuervergünstigungen
+245|, and employment-contract details in employer documents. The net–gross tool provides an estimate; payroll supplies the actual payslip.|und Vertragsdetails in den Arbeitgeberunterlagen. Der Netto-Brutto-Rechner schätzt; die tatsächliche Gehaltsabrechnung erstellt die Lohnbuchhaltung.
+246|Understanding salary|Arbeitslohn einordnen
+247|Monthly take-home pay and the real value of your time are different questions|Monatsnetto und tatsächlicher Zeitwert der Arbeit sind unterschiedliche Fragen
+248|The starting point for contractual salary and pay components.|Ausgangspunkt für Vertragsgehalt und Lohnbestandteile.
+249|An estimate of pay received after deductions and allowances.|Schätzung der tatsächlichen Auszahlung nach Abzügen und Vergünstigungen.
+250|Paid time|Bezahlte Zeit
+251|Working hours accounted for in pay.|Die dem Lohn zugeordneten abgerechneten Arbeitsstunden.
+252|Total time|Gesamte Zeit
+253|Adding travel, preparation or unpaid time can change effective hourly pay.|Fahrten, Vorbereitung oder unbezahlte Zeit können den effektiven Stundenlohn verändern.
+254|Household value|Wert für den Haushalt
+255|What ultimately matters is the amount left after fixed and variable monthly spending.|Letztlich zählt, was nach festen und variablen Monatsausgaben übrig bleibt.
+256|Current rules and the actual payslip govern tax and salary calculations; the calculator is a checking and planning tool.|Bei Steuer- und Lohnberechnungen sind aktuelle Regeln und die tatsächliche Abrechnung maßgeblich. Der Rechner dient Prüfung und Planung.
+257|Salary and Wage Planning · Kalkulátor Bázis|Gehalt und Arbeitslohn planen · Kalkulátor Bázis
+258|Gross–net pay, hourly wages, working time, monthly budgets and borrowing capacity connected for one life situation.|Brutto-Netto, Stundenlohn, Arbeitszeit, Monatsbudget und Kreditwürdigkeit für eine Lebenssituation verbunden.
