@@ -368,3 +368,135 @@
 367|For changing laws, exchange rates, tax rates, health thresholds or manufacturer data, dates and sources are particularly important. We do not automatically give every page the same review date, as that would create false confidence.|Bei veränderlichen Gesetzen, Wechselkursen, Steuersätzen, Gesundheitsgrenzen oder Herstellerdaten sind Datum und Quelle besonders wichtig. Wir vergeben nicht automatisch auf allen Seiten dasselbe Prüfdatum, da dies falsches Vertrauen schaffen würde.
 368|Sources and methodology|Quellen und Methodik
 369|A source cannot simply be “the internet” or “Google”. For finance, we seek official institutional information such as NAV, MNB or KSH data. For health, WHO, NIH, Mayo Clinic or Hungarian professional and official sources may be relevant. For construction, manufacturer data sheets and application losses often matter more than a general formula.|Eine Quelle kann nicht einfach „Internet“ oder „Google“ heißen. Bei Finanzthemen suchen wir amtliche Angaben wie NAV-, MNB- oder KSH-Daten. Bei Gesundheit können WHO, NIH, Mayo Clinic oder ungarische Fach- und Behördenquellen relevant sein. Beim Bauen sind Herstellerdatenblatt und Verarbeitungsverluste oft wichtiger als eine allgemeine Formel.
+370|Using these sources does not mean an institution or manufacturer has certified Kalkulátor Bázis. References support verification and inform users.|Die Nutzung dieser Quellen bedeutet keine Zertifizierung von Kalkulátor Bázis durch die jeweilige Institution oder den Hersteller. Verweise dienen der Nachprüfbarkeit und Nutzerinformation.
+371|Quality principles|Qualitätsgrundsätze
+372|Experience|Erfahrung
+373|We start from real uses: monthly budgets, renovation, travel, shopping, body weight and time planning.|Wir gehen von echten Nutzungssituationen aus: Monatsbudget, Renovierung, Reisen, Einkauf, Körpergewicht und Zeitplanung.
+374|Expertise|Fachwissen
+375|We separately explain formulas, rounding and limitations so results are more than isolated numbers.|Wir erklären Formeln, Rundungen und Grenzen gesondert, damit Ergebnisse nicht bloß isolierte Zahlen sind.
+376|Authoritativeness|Fachliche Autorität
+377|We seek primary, official or professionally reliable sources and avoid exaggerated promises of accuracy.|Wir suchen primäre, amtliche oder fachlich zuverlässige Quellen und vermeiden überzogene Genauigkeitsversprechen.
+378|Trustworthiness|Vertrauenswürdigkeit
+379|We provide open contact, bug reporting, privacy information and clear legal and usage frameworks.|Wir ermöglichen direkten Kontakt, Fehlermeldungen, Datenschutzinformationen und klare rechtliche sowie nutzungsbezogene Rahmenbedingungen.
+380|When can a result be wrong or misleading?|Wann kann ein Ergebnis falsch oder irreführend sein?
+381|Results depend on inputs. Wrong units, outdated data, incorrect prices, different contract terms or special circumstances can make the calculation differ from reality.|Ergebnisse beruhen auf Eingaben. Falsche Einheiten, veraltete Daten, fehlerhafte Preise, abweichende Vertragsbedingungen oder besondere Umstände können zu Abweichungen von der Realität führen.
+382|For financial, tax, legal, medical or construction decisions, results are therefore starting points, not final decisions. Where large sums, health risks or legal consequences are involved, consult official sources or professionals.|Bei Finanz-, Steuer-, Rechts-, Medizin- oder Bauentscheidungen sind Ergebnisse daher Ausgangspunkte, keine endgültigen Entscheidungen. Bei großen Beträgen, Gesundheitsrisiken oder rechtlichen Folgen sollten amtliche Quellen oder Fachleute einbezogen werden.
+383|Privacy and free access|Datenschutz und kostenlose Nutzung
+384|Calculators need no registration. Most calculations run in the browser; we do not collect inputs through account registration. Separate notices explain cookies, measurement tools and advertising consent.|Die Rechner benötigen keine Registrierung. Die meisten Berechnungen laufen im Browser; wir erheben Eingaben nicht über eine Kontoregistrierung. Separate Hinweise erläutern Cookies, Messwerkzeuge und Werbeeinwilligungen.
+385|Are Kalkulátor Bázis results official interpretations?|Sind die Ergebnisse von Kalkulátor Bázis amtliche Stellungnahmen?
+386|No. Results are indicative estimates and do not replace checks by banking, accounting, legal, medical or other professionals.|Nein. Ergebnisse sind unverbindliche Schätzungen und ersetzen keine Prüfung durch Bank-, Buchhaltungs-, Rechts-, Medizin- oder andere Fachleute.
+387|What sources do the calculators use?|Auf welche Quellen stützen sich die Rechner?
+388|Where relevant, we use primary or professionally reliable sources, such as official authority, professional or manufacturer data.|Wo es zum Thema passt, verwenden wir primäre oder fachlich zuverlässige Quellen, etwa amtliche Behörden-, Fach- oder Herstellerangaben.
+389|What can I do if I find a fault?|Was kann ich bei einem Fehler tun?
+390|Email kalkulatorbazis@gmail.com with the page URL, input data and result.|Schreibe an kalkulatorbazis@gmail.com und nenne Seiten-URL, Eingaben und Ergebnis.
+391|Fixing faults|Fehlerkorrektur
+392|Help improve accuracy|Hilf, die Genauigkeit zu verbessern
+393|Tell us about inaccurate results, outdated data, broken links or unclear explanations. We use feedback to correct and update pages.|Melde ungenaue Ergebnisse, veraltete Daten, defekte Links oder unklare Erklärungen. Auf Grundlage der Rückmeldungen korrigieren und aktualisieren wir die Seiten.
+394|It is useful to include|Hilfreich sind
+395|the page URL;|Die URL der betroffenen Seite;
+396|the inputs entered;|Die eingegebenen Werte;
+397|the result obtained;|Das erhaltene Ergebnis;
+398|a brief description of what seems wrong.|Eine kurze Beschreibung dessen, was falsch erscheint.
+399|A verifiable chain of trust|Eine überprüfbare Vertrauenskette
+400|Instead of “trust us”, show where a result came from|Statt „Vertrau uns“ nachvollziehbar machen, woher das Ergebnis kommt
+401|Source|Quelle
+402|Which formula, rule, standard or manufacturer data underlies the calculation?|Auf welcher Formel, Regel, Norm oder Herstellerangabe beruht die Berechnung?
+403|Implementation|Implementierung
+404|Does the code apply the same logic the page describes?|Führt der Code dieselbe Logik aus, die die Seite beschreibt?
+405|Test|Test
+406|Does it behave understandably for reference examples, extreme values and invalid inputs?|Funktioniert es auch bei bekannten Beispielen, Extremwerten und ungültigen Eingaben nachvollziehbar?
+407|Limitation|Grenze
+408|Is it clear when the calculator is insufficient and other sources or professionals are needed?|Ist erkennbar, wann der Rechner nicht ausreicht und andere Quellen oder Fachleute nötig sind?
+409|Update|Aktualisierung
+410|When time-sensitive data change, are the formula, wording and date updated together?|Werden bei Änderungen zeitabhängiger Daten Formel, Text und Datum gemeinsam aktualisiert?
+411|Why Trust Us? · Kalkulátor Bázis|Warum uns vertrauen? · Kalkulátor Bázis
+412|Learn about trust at Kalkulátor Bázis: methods, sources, checks, updates, privacy and bug reporting.|Erfahre mehr über Vertrauen bei Kalkulátor Bázis: Berechnungsmethoden, Quellen, Prüfungen, Aktualisierungen, Datenschutz und Fehlermeldungen.
+413|Introduction|Vorstellung
+414|Kalkulátor Bázis aims to provide free online calculators in Hungarian for everyday, financial, car, construction, health and unit-conversion questions.|Kalkulátor Bázis möchte kostenlose Online-Rechner auf Ungarisch für Alltags-, Finanz-, Auto-, Bau-, Gesundheits- und Einheitenfragen anbieten.
+415|The website aims to offer more than numbers. Key calculators include short explanations, interpretation, limitations and bug-reporting options.|Die Website möchte mehr als Zahlen bieten. Bei wichtigen Rechnern helfen kurze Erklärungen, Einordnungen, Grenzen und Fehlermeldemöglichkeiten.
+416|Who makes the website?|Wer erstellt die Website?
+417|Kalkulátor Bázis was created and is developed by Kovács Patrik. The aim is a clear calculator portal where visitors can quickly find common calculations and understand what each result can and cannot be used for.|Kalkulátor Bázis wurde von Kovács Patrik gegründet und wird von ihm entwickelt. Ziel ist ein übersichtliches Rechnerportal, auf dem Besucher gängige Berechnungen schnell finden und erkennen, wofür das jeweilige Ergebnis geeignet ist und wofür nicht.
+418|We do not claim every calculator has been reviewed by a doctor, accountant, lawyer or financial adviser. Depending on the topic, calculations use public formulas, official data, professional sources or simple mathematical relationships.|Wir behaupten nicht, dass jeder Rechner von Ärzten, Buchhaltern, Anwälten oder Finanzberatern geprüft wurde. Je nach Thema beruhen Berechnungen auf öffentlich verfügbaren Formeln, amtlichen Daten, Fachquellen oder einfachen mathematischen Zusammenhängen.
+419|How do we aim to help?|Wobei möchten wir helfen?
+420|The website is designed for quick checks and approximate estimates, such as paint needed for a room, percentage price changes, a trip’s fuel cost or long-term investment scenarios.|Die Website dient schnellen Prüfungen und groben Schätzungen, etwa zur Farbmenge für ein Zimmer, prozentualen Preisänderungen, Kraftstoffkosten einer Fahrt oder langfristigen Anlageszenarien.
+421|Calculator results are for information only. For important decisions, health, tax or legal matters, before borrowing or making larger financial decisions, consult official sources or appropriate professionals.|Rechenergebnisse dienen der Orientierung. Bei wichtigen Entscheidungen, Gesundheits-, Steuer- oder Rechtsfragen, vor Krediten und größeren Finanzentscheidungen sollten amtliche Quellen oder geeignete Fachleute einbezogen werden.
+422|How is the website developing?|Wie entwickelt sich die Website weiter?
+423|Calculators and explanations are continually expanded. Development focuses on mobile usability, clear forms, original content, source references and making calculation limitations visible.|Rechner und Erklärungen werden laufend ergänzt. Im Mittelpunkt stehen mobile Nutzbarkeit, verständliche Formulare, eigenständige Inhalte, Quellenangaben und sichtbare Berechnungsgrenzen.
+424|Report faults, inaccurate data, outdated text or missing explanations to|Melde Fehler, ungenaue Daten, veraltete Texte oder fehlende Erklärungen an
+425|.|.
+426|Want to send feedback?|Möchtest du einen Hinweis senden?
+427|Briefly describe a malfunction, confusing wording or new idea.|Beschreibe kurz eine Fehlfunktion, einen unklaren Text oder eine neue Idee.
+428|Get in touch|Kontakt aufnehmen
+429|Project identity|Projektidentität
+430|What does Kalkulátor Bázis commit to, and what does it not claim?|Wozu verpflichtet sich Kalkulátor Bázis und was behauptet es nicht?
+431|Our commitments|Unser Anspruch
+432|understandable calculations, visible assumptions, fixable faults, sources where needed and mobile usability|Verständliche Berechnungen, sichtbare Annahmen, korrigierbare Fehler, nötige Quellenangaben und mobile Nutzbarkeit
+433|We do not claim|Wir behaupten nicht
+434|that every result is official, personalised or professionally certified|Dass jedes Ergebnis amtlich, individuell zugeschnitten oder fachlich zertifiziert ist
+435|Development principle|Entwicklungsgrundsatz
+436|calculation functionality and explanations should answer the same real user question|Rechnerfunktion und Erklärung sollen dieselbe tatsächliche Nutzerfrage beantworten
+437|Feedback loop|Rückkopplung
+438|faults and confusing results should be reportable with specific inputs and a URL|Fehler und unklare Ergebnisse sollen mit konkreten Eingaben und URL meldbar sein
+439|Details of how the project operates can be found on the|Einzelheiten zum Projektbetrieb stehen auf der
+440|trust page|Vertrauensseite
+441|methodology page|Methodikseite
+442|.|.
+443|About Us · Kalkulátor Bázis|Über uns · Kalkulátor Bázis
+444|This page explains formula selection, changing data, checks and why calculator results should be treated as indicative estimates.|Diese Seite erläutert Formelauswahl, veränderliche Daten, Prüfungen und warum Rechenergebnisse als unverbindliche Schätzungen zu behandeln sind.
+445|Formulas and inputs|Formeln und Eingaben
+446|First we decide what question a calculator must answer, then choose its inputs, units and formula. For simple mathematics, the formula follows directly from the relationship, such as ratios, percentages, area or consumption.|Zuerst bestimmen wir die Frage, die ein Rechner beantworten soll, dann Eingaben, Einheiten und Formel. Bei einfacher Mathematik folgt die Formel direkt aus dem Zusammenhang, etwa bei Verhältnis, Prozent, Fläche oder Verbrauch.
+447|Topics tied to laws, tax rates, currency data or professional guidelines need official or professionally accepted sources. Examples include NAV, the Hungarian National Bank, KSH, legal texts, manufacturer data sheets and medical guidelines.|Themen mit Bezug zu Gesetzen, Steuersätzen, Währungsdaten oder Fachleitlinien benötigen amtliche oder fachlich anerkannte Quellen. Beispiele sind NAV, die Ungarische Nationalbank, KSH, Gesetzestexte, technische Herstellerdatenblätter oder medizinische Empfehlungen.
+448|Checks and testing|Prüfung und Tests
+449|During development we check expected results using manual calculations, reference examples and extreme values. Important cases include zero, empty fields, decimal commas, units, very large or small inputs and readable output.|Bei der Entwicklung prüfen wir erwartete Ergebnisse durch manuelle Berechnungen, bekannte Beispiele und Extremwerte. Wichtig sind null, leere Felder, Dezimalkomma, Einheiten, sehr große oder kleine Eingaben und lesbare Ausgabe.
+450|Checks do not amount to comprehensive professional certification. For financial, tax, legal or health decisions, a result is only a starting point, not an official interpretation or personalised advice.|Prüfungen bedeuten keine umfassende fachliche Zertifizierung. Bei Finanz-, Steuer-, Rechts- oder Gesundheitsentscheidungen ist ein Ergebnis nur Ausgangspunkt, keine amtliche Stellungnahme oder individuelle Beratung.
+451|Updates and changing data|Aktualisierungen und veränderliche Daten
+452|For changing data, pages should clearly state the year or rules used. We do not automatically replace update dates every day; dates should change only when a page’s content, formula or underlying data actually changes.|Bei veränderlichen Daten soll die Rechnerseite das verwendete Jahr oder Regelwerk erkennen lassen. Wir ersetzen Aktualisierungsdaten nicht automatisch täglich, sondern nur bei tatsächlichen Änderungen an Inhalt, Formel oder Grunddaten.
+453|When correcting wrong or outdated values, explanatory text should follow the formula. A correct formula alone is insufficient if users cannot interpret the result.|Bei der Korrektur falscher oder veralteter Werte sollte auch die Erklärung zur Formel passen. Eine richtige Formel allein reicht nicht, wenn Nutzer das Ergebnis nicht verstehen.
+454|Rounding and interpreting results|Rundung und Ergebnisdeutung
+455|Most calculators display results readably, often rounding forints to integers and litres or percentages to one or two decimals. Rounding improves readability but may cause small differences from manual calculations or other calculators.|Die meisten Rechner zeigen Ergebnisse lesbar an, Forintbeträge oft ganzzahlig und Liter oder Prozente mit ein bis zwei Dezimalstellen. Rundung verbessert die Verständlichkeit, kann aber kleine Abweichungen zu Handrechnungen oder anderen Rechnern verursachen.
+456|Where possible, results include interpretation: intended uses, assumptions and situations requiring official sources or professional advice.|Ergebnisse enthalten möglichst eine Einordnung: Verwendung, Annahmen und Situationen, die amtliche Quellen oder Fachleute erfordern.
+457|Bug reporting|Fehlermeldung
+458|If you find a wrong formula, inaccurate explanation, outdated data, broken link or confusing result, send the page URL, inputs and result to|Sende bei falscher Formel, ungenauer Erklärung, veralteten Daten, defektem Link oder unklarem Ergebnis die Seiten-URL, Eingaben und das Ergebnis an
+459|.|.
+460|Calculators do not replace official calculations, professional advice, medical examinations, bank offers or accounting or legal opinions.|Die Rechner ersetzen keine amtlichen Berechnungen, fachliche Beratung, ärztliche Untersuchung, Bankangebote oder buchhalterischen beziehungsweise rechtlichen Stellungnahmen.
+461|Calculation lifecycle|Lebenszyklus einer Berechnung
+462|Updating a calculator can mean five different things|Eine Rechneraktualisierung kann fünf verschiedene Dinge bedeuten
+463|The mathematical relationship or rule changes.|Der mathematische oder regelbasierte Zusammenhang ändert sich.
+464|Input|Eingabe
+465|A new field, unit or default assumption is needed.|Ein neues Feld, eine neue Einheit oder eine andere Standardannahme wird benötigt.
+466|Data|Daten
+467|Exchange rates, tax rates, thresholds or other time-sensitive data change.|Wechselkurse, Steuersätze, Grenzwerte oder andere zeitabhängige Daten werden aktualisiert.
+468|Explanation|Erklärung
+469|The formula stays the same, but interpretation or limitations need clarification.|Die Formel bleibt unverändert, aber Einordnung oder Grenzen müssen präzisiert werden.
+470|Regression checks need expanding because of a new boundary case or earlier fault.|Wegen eines neuen Grenzfalls oder früheren Fehlers muss die Regressionsprüfung erweitert werden.
+471|A last-updated date is therefore useful only when it reflects actual content or technical checks, not automatic date replacement.|Ein Aktualisierungsdatum ist daher nur aussagekräftig, wenn es eine tatsächliche inhaltliche oder technische Prüfung und keinen automatischen Datumswechsel anzeigt.
+472|Calculation Methodology · Kalkulátor Bázis|Berechnungsmethodik · Kalkulátor Bázis
+473|Contact details|Erreichbarkeit
+474|Found a fault, inaccurate wording, an unclear result, have a suggestion or want a new calculator? Contact Kalkulátor Bázis at the email address below.|Fehler gefunden, ungenauer Text, unklares Ergebnis, ein Vorschlag oder Wunsch nach einem neuen Rechner? Kontaktiere Kalkulátor Bázis unter der folgenden E-Mail-Adresse.
+475|We usually review incoming messages within 24–48 hours. Complex calculations or source checks may take longer to resolve.|Eingehende Nachrichten prüfen wir in der Regel innerhalb von 24–48 Stunden. Bei komplexeren Berechnungen oder Quellenprüfungen kann die tatsächliche Korrektur länger dauern.
+476|Email|E-Mail
+477|To speed up checks, provide the page URL, inputs, result and a short description of what seems wrong or confusing.|Nenne für eine schnellere Prüfung die Seiten-URL, Eingaben, Ergebnis und eine kurze Beschreibung dessen, was falsch oder unklar erscheint.
+478|What can you contact us about?|Wozu kannst du uns schreiben?
+479|incorrect or seemingly inaccurate results;|Fehlerhafte oder ungenau erscheinende Rechenergebnisse;
+480|outdated data, sources or legal references;|Veraltete Daten, Quellen oder Rechtsverweise;
+481|broken internal or external links;|Defekte interne oder externe Links;
+482|confusing content or missing explanations;|Missverständliche Inhalte oder fehlende Erklärungen;
+483|new calculator suggestions or missing topics;|Vorschläge für neue Rechner oder fehlende Themen;
+484|privacy, cookie or legal questions;|Datenschutz-, Cookie- oder Rechtsfragen;
+485|affiliate or collaboration enquiries.|Partner- oder Kooperationsanfragen.
+486|Important information|Wichtige Hinweise
+487|Contacting us is not official advice, a request for an offer or an expert consultation. Financial, tax, legal or health decisions may require official sources or appropriate professionals.|Die Kontaktaufnahme ist keine offizielle Beratung, Angebotsanfrage oder Fachkonsultation. Bei Finanz-, Steuer-, Rechts- oder Gesundheitsentscheidungen können amtliche Quellen oder geeignete Fachleute nötig sein.
+488|Useful details|Hilfreiche Angaben
+489|page title or URL;|Seitentitel oder URL;
+490|input values;|Eingabewerte;
+491|result obtained;|Erhaltenes Ergebnis;
+492|a brief description of the problem.|Kurze Problembeschreibung.
+493|Faster bug fixes|Schnellere Fehlerkorrektur
+494|What makes a useful bug report?|Was gehört in eine gute Fehlermeldung?
+495|The exact page URL or calculator name.|Die genaue Seiten-URL oder der Rechnername.
+496|The input values and units.|Die eingegebenen Werte und Einheiten.
+497|The result and why it seems wrong or unclear.|Das Ergebnis und warum es falsch oder unklar erscheint.
+498|A reference source or manual calculation, if available.|Wenn vorhanden eine Vergleichsquelle oder Handrechnung.
+499|The device and browser for display or functional problems.|Gerät und Browser bei Darstellungs- oder Funktionsfehlern.
+500|Do not send personal or sensitive data merely to reproduce a calculation fault; most issues can be described with anonymous example data.|Sende keine persönlichen oder sensiblen Daten nur zur Reproduktion eines Rechenfehlers. Die meisten Probleme lassen sich mit anonymen Beispieldaten beschreiben.
+501|Contact and Bug Reports · Kalkulátor Bázis|Kontakt und Fehlermeldungen · Kalkulátor Bázis
