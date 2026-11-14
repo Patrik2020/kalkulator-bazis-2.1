@@ -1515,6 +1515,394 @@
     "Eredmény": [
       "Result",
       "Ergebnis"
+    ],
+    "Tankolás, éves fenntartás, értékvesztés, kilométerköltség és gumiméret: tervezd meg az autózás teljes költségét.": [
+      "Fuel, annual running costs, depreciation, cost per kilometre and tyres: plan the full cost of driving.",
+      "Tanken, Jahresunterhalt, Wertverlust, Kilometerkosten und Reifen: Plane die gesamten Autokosten."
+    ],
+    "Autófenntartás valódi költségei": [
+      "The real cost of owning a car",
+      "Die tatsächlichen Kosten der Autohaltung"
+    ],
+    "ETF, kamatos kamat, infláció, osztalék és célösszeg kalkulátorok egy kezdő befektetési útvonalban.": [
+      "ETFs, compound interest, inflation, dividends and target amounts in a beginner’s investment pathway.",
+      "ETFs, Zinseszins, Inflation, Dividenden und Zielbeträge in einem Anlageleitfaden für Einsteiger."
+    ],
+    "Befektetés kezdőknek": [
+      "Investing for beginners",
+      "Anlegen für Einsteiger"
+    ],
+    "Bevétel, rezsi, hitel, megtakarítás és célok: építs áttekinthető családi havi költségvetést kalkulátorokkal.": [
+      "Income, utilities, loans, saving and goals: build a clear monthly family budget with calculators.",
+      "Einnahmen, Nebenkosten, Kredit, Sparen und Ziele: Erstelle mit Rechnern ein übersichtliches Monatsbudget für die Familie."
+    ],
+    "Családi költségvetés": [
+      "Family budget",
+      "Familienbudget"
+    ],
+    "Festék, csempe, beton, gipszkarton, padló és tapéta: becsüld meg az anyagszükségletet felújítás előtt.": [
+      "Paint, tiles, concrete, plasterboard, flooring and wallpaper: estimate material needs before renovating.",
+      "Farbe, Fliesen, Beton, Gipskarton, Boden und Tapeten: Schätze den Materialbedarf vor der Renovierung."
+    ],
+    "Felújítás tervezése anyagkalkulátorokkal": [
+      "Plan renovations with material calculators",
+      "Renovierungen mit Materialrechnern planen"
+    ],
+    "Bruttó-nettó, órabér, munkaidő, havi költségvetés és hitelképesség egy élethelyzetben összekötve.": [
+      "Gross–net pay, hourly wages, working time, monthly budgets and borrowing capacity connected for one life situation.",
+      "Brutto-Netto, Stundenlohn, Arbeitszeit, Monatsbudget und Kreditwürdigkeit für eine Lebenssituation verbunden."
+    ],
+    "Fizetés és munkabér tervezése": [
+      "Salary and wage planning",
+      "Gehalt und Arbeitslohn planen"
+    ],
+    "Lakásvásárlás előtt számold végig az önerőt, a hitelt, a törlesztőt és a havi mozgásteredet egy helyen.": [
+      "Before buying, calculate deposits, loans, repayments and monthly flexibility together.",
+      "Berechne vor dem Wohnungskauf Eigenkapital, Kredit, Rate und monatlichen Spielraum gemeinsam."
+    ],
+    "Lakásvásárlás tervezése kalkulátorokkal": [
+      "Plan buying a home with calculators",
+      "Wohnungskauf mit Rechnern planen"
+    ],
+    "Pénzügyi tudatosság kezdőknek: költségvetés, vésztartalék, hitelek, célok, kockázat és befektetési alapok érthetően, a befektetés előtti felkészüléshez.": [
+      "Financial awareness for beginners: budgeting, emergency reserves, loans, goals, risk and investment basics explained before investing.",
+      "Finanzbewusstsein für Einsteiger: Budget, Notfallreserve, Kredite, Ziele, Risiko und Anlagegrundlagen verständlich zur Vorbereitung auf das Anlegen."
+    ],
+    "Pénzügyi tudatosság alapjai - befektetés előtt": [
+      "Financial Awareness Basics – Before Investing",
+      "Grundlagen des Finanzbewusstseins – Vor dem Anlegen"
+    ],
+    "Kalkulátor Bázis főoldal": [
+      "Kalkulátor Bázis home",
+      "Kalkulátor Bázis Startseite"
+    ],
+    "Önellenőrzés": [
+      "Self-check",
+      "Selbstprüfung"
+    ],
+    "Kalkulátorok": [
+      "Calculators",
+      "Rechner"
+    ],
+    "Pénzügyi alapozó térkép": [
+      "Financial foundations map",
+      "Übersicht der finanziellen Grundlagen"
+    ],
+    "A befektetés előtti három kérdés": [
+      "Three questions before investing",
+      "Drei Fragen vor dem Anlegen"
+    ],
+    "kalkulatorbazis@gmail.com": [
+      "kalkulatorbazis@gmail.com",
+      "kalkulatorbazis@gmail.com"
+    ],
+    "Információ": [
+      "Information",
+      "Informationen"
+    ],
+    "Felhasználási feltételek": [
+      "Terms of use",
+      "Nutzungsbedingungen"
+    ],
+    "Sütikezelési tájékoztató": [
+      "Cookie notice",
+      "Cookie-Hinweise"
+    ],
+    "Sütibeállítások": [
+      "Cookie settings",
+      "Cookie-Einstellungen"
+    ],
+    "Kapcsolat": [
+      "Contact",
+      "Kontakt"
+    ],
+    "Független Wise bemutató magyarul: nemzetközi pénzküldés, többdevizás számla, kártyás költés, biztonság, gyakori kérdések és hasznos Kalkulátor Bázis eszközök.": [
+      "Independent Wise overview: international transfers, multi-currency accounts, card spending, security, FAQ and useful Kalkulátor Bázis tools.",
+      "Unabhängiger Wise-Überblick: internationale Überweisungen, Mehrwährungskonto, Kartenausgaben, Sicherheit, häufige Fragen und hilfreiche Werkzeuge von Kalkulátor Bázis."
+    ],
+    "Wise bemutató magyarul - pénzküldés, deviza és kártya": [
+      "Wise Overview – Transfers, Currencies and Cards",
+      "Wise-Überblick – Überweisungen, Währungen und Karte"
+    ],
+    "Fő navigáció": [
+      "Main navigation",
+      "Hauptnavigation"
+    ],
+    "Wise megnyitása": [
+      "Open Wise",
+      "Wise öffnen"
+    ],
+    "Wise rövid áttekintés": [
+      "Wise at a glance",
+      "Wise im Überblick"
+    ],
+    "Wise partner banner megnyitása": [
+      "Open Wise affiliate banner",
+      "Wise-Partnerbanner öffnen"
+    ],
+    "Wise főbb jellemzők": [
+      "Key Wise features",
+      "Wichtige Wise-Merkmale"
+    ],
+    "Süti tájékoztató": [
+      "Cookie notice",
+      "Cookie-Hinweise"
+    ],
+    "Deviza átváltó": [
+      "Currency converter",
+      "Währungsrechner"
+    ],
+    "Mire használható a Wise?": [
+      "What can Wise be used for?",
+      "Wofür lässt sich Wise nutzen?"
+    ],
+    "Kalkulátor Bázis": [
+      "Kalkulátor Bázis",
+      "Kalkulátor Bázis"
+    ],
+    "A számítások becslések; a tényleges autóköltségek használattól és járműtől függnek.": [
+      "Calculations are estimates; actual car costs depend on use and the vehicle.",
+      "Die Berechnungen sind Schätzungen. Tatsächliche Autokosten hängen von Nutzung und Fahrzeug ab."
+    ],
+    "A kalkulátorok nem minősülnek befektetési tanácsadásnak.": [
+      "Calculators do not constitute investment advice.",
+      "Die Rechner stellen keine Anlageberatung dar."
+    ],
+    "A cél az átlátható tervezés, nem a tökéletes előrejelzés.": [
+      "The aim is transparent planning, not a perfect forecast.",
+      "Ziel ist eine transparente Planung, keine perfekte Vorhersage."
+    ],
+    "Nagyobb munka előtt ellenőrizd a gyártói adatokat és a kivitelezői felmérést.": [
+      "Before larger jobs, check manufacturer data and the contractor’s survey.",
+      "Prüfe vor größeren Arbeiten Herstellerangaben und das Aufmaß des Ausführenden."
+    ],
+    "A munkabérrel kapcsolatos számítások tájékoztató jellegű becslések.": [
+      "Salary calculations are indicative estimates.",
+      "Gehaltsberechnungen sind unverbindliche Schätzungen."
+    ],
+    "Tájékoztató tervezést segítő oldal, nem banki ajánlat.": [
+      "A page for indicative planning, not a bank offer.",
+      "Eine Seite zur unverbindlichen Planung, kein Bankangebot."
+    ],
+    "Pénzügyi tudatosság oldalon belüli navigáció": [
+      "Financial awareness page navigation",
+      "Seitennavigation zum Finanzbewusstsein"
+    ],
+    "Alapok": [
+      "Foundations",
+      "Grundlagen"
+    ],
+    "Lépések": [
+      "Steps",
+      "Schritte"
+    ],
+    "Mobil menü megnyitása": [
+      "Open mobile menu",
+      "Mobiles Menü öffnen"
+    ],
+    "Egyszerű számítások tudatosabb döntésekhez, közérthető magyarázatokkal és gyakorlati pénzügyi alapozással.": [
+      "Simple calculations for more informed decisions, with clear explanations and practical financial foundations.",
+      "Einfache Berechnungen für bewusstere Entscheidungen mit verständlichen Erklärungen und praktischen Finanzgrundlagen."
+    ],
+    "Pénzügyi tudatosság információk": [
+      "Financial awareness information",
+      "Informationen zum Finanzbewusstsein"
+    ],
+    "Adatkezelési tájékoztató": [
+      "Privacy notice",
+      "Datenschutzhinweise"
+    ],
+    "Pénzügyi tudatosság lábléc-navigáció": [
+      "Financial awareness footer navigation",
+      "Footer-Navigation zum Finanzbewusstsein"
+    ],
+    "Navigáció": [
+      "Navigation",
+      "Navigation"
+    ],
+    "Kapcsolódó kalkulátorok": [
+      "Related calculators",
+      "Verwandte Rechner"
+    ],
+    "Ha hibát találsz a pénzügyi alapozóban vagy valamelyik kapcsolódó kalkulátorban, írd meg, és javítjuk.": [
+      "Report errors in the financial guide or related calculators so we can correct them.",
+      "Melde Fehler im Finanzleitfaden oder zugehörigen Rechnern, damit wir sie korrigieren können."
+    ],
+    "© 2026 Kalkulátor Bázis": [
+      "© 2026 Kalkulátor Bázis",
+      "© 2026 Kalkulátor Bázis"
+    ],
+    "Az oktatási tartalom nem személyre szabott pénzügyi tanácsadás.": [
+      "Educational content is not personalised financial advice.",
+      "Die Bildungsinhalte sind keine individuelle Finanzberatung."
+    ],
+    "Gyakorlati útmutató a költségvetés, vésztartalék, adósságok, célok és befektetés előtti felkészülés megértéséhez.": [
+      "A practical guide to budgets, emergency reserves, debts, goals and preparation before investing.",
+      "Praktischer Leitfaden für Budget, Notfallreserve, Schulden, Ziele und die Vorbereitung vor dem Anlegen."
+    ],
+    "hu": [
+      "en",
+      "de"
+    ],
+    "Pénzügyi tudatosság alapjai": [
+      "Financial awareness foundations",
+      "Grundlagen des Finanzbewusstseins"
+    ],
+    "Wise bemutató kezdőlap": [
+      "Wise overview homepage",
+      "Startseite des Wise-Überblicks"
+    ],
+    "W": [
+      "W",
+      "W"
+    ],
+    "Előnyök": [
+      "Benefits",
+      "Vorteile"
+    ],
+    "Kinek jó?": [
+      "Who is it for?",
+      "Für wen ist es geeignet?"
+    ],
+    "Wise partner ajánlat": [
+      "Wise affiliate offer",
+      "Wise-Partnerangebot"
+    ],
+    "A Wise bemutató a Kalkulátor Bázis tájékoztató, partnerlinket is tartalmazó oldala. A díjakat és feltételeket mindig a Wise hivatalos felületén ellenőrizd.": [
+      "This Wise overview is a Kalkulátor Bázis information page with affiliate links. Always check fees and terms on Wise’s official website.",
+      "Dieser Wise-Überblick ist eine Informationsseite von Kalkulátor Bázis mit Partnerlinks. Prüfe Gebühren und Bedingungen stets auf der offiziellen Wise-Website."
+    ],
+    "Wise információk": [
+      "Wise information",
+      "Wise-Informationen"
+    ],
+    "Wise navigáció": [
+      "Wise navigation",
+      "Wise-Navigation"
+    ],
+    "Hibajelzés, partneri kérdés vagy adatkezelési megkeresés esetén ezen az e-mail címen tudsz írni.": [
+      "Use this email address for bug reports, partnership questions or privacy enquiries.",
+      "Nutze diese E-Mail-Adresse für Fehlermeldungen, Partnerfragen oder Datenschutzanfragen."
+    ],
+    "Az oldalon affiliate linkek is előfordulhatnak, ez neked nem jelent automatikusan plusz költséget.": [
+      "This page may contain affiliate links, which do not automatically add costs for you.",
+      "Diese Seite kann Partnerlinks enthalten, die für dich nicht automatisch Mehrkosten verursachen."
+    ],
+    "A Wise többek között nemzetközi pénzküldésre, devizák közötti váltásra, többdevizás pénzkezelésre, pénzfogadásra és külföldi kártyás költésre használható.": [
+      "Wise can be used for international transfers, currency exchange, multi-currency management, receiving money and card spending abroad.",
+      "Wise lässt sich unter anderem für internationale Überweisungen, Währungswechsel, Mehrwährungsverwaltung, Geldempfang und Kartenausgaben im Ausland nutzen."
+    ],
+    "Van plusz költsége annak, ha erről az oldalról kattintok?": [
+      "Does clicking through from this page add a cost?",
+      "Entstehen Mehrkosten, wenn ich von dieser Seite weiterklicke?"
+    ],
+    "Az oldalon található Wise hivatkozások ajánlói linkek lehetnek. Ez neked nem jelent automatikusan plusz költséget, de az aktuális díjakat és feltételeket mindig a Wise hivatalos oldalán kell ellenőrizni.": [
+      "Wise links here may be affiliate links. They do not automatically add costs, but always check current fees and terms on Wise’s official website.",
+      "Wise-Verweise können Partnerlinks sein. Das verursacht nicht automatisch Mehrkosten. Aktuelle Gebühren und Bedingungen sind aber stets auf der offiziellen Wise-Website zu prüfen."
+    ],
+    "Helyettesíti ez az oldal a Wise hivatalos díjait?": [
+      "Does this page replace Wise’s official fee information?",
+      "Ersetzt diese Seite die offiziellen Wise-Gebührenangaben?"
+    ],
+    "Nem. Ez egy független, tájékoztató jellegű bemutató. A díjak, elérhető szolgáltatások, limitek és feltételek változhatnak, ezért döntés előtt mindig a Wise hivatalos felületén látható információ az irányadó.": [
+      "No. This is an independent informational overview. Fees, services, limits and terms can change, so Wise’s official information is authoritative before any decision.",
+      "Nein. Dies ist ein unabhängiger Informationsüberblick. Gebühren, Dienste, Limits und Bedingungen können sich ändern. Vor Entscheidungen sind daher stets die offiziellen Wise-Angaben maßgeblich."
+    ],
+    "Külföldi utalás": [
+      "International transfer",
+      "Auslandsüberweisung"
+    ],
+    "Nemzetközi pénzküldésnél az összköltséget nézd.": [
+      "Compare the total cost of sending money internationally.",
+      "Betrachte bei internationalen Überweisungen die Gesamtkosten."
+    ],
+    "Hasonlítsd össze az árfolyamot, az utalási díjat és a címzetthez ténylegesen megérkező összeget.": [
+      "Compare exchange rates, transfer fees and the amount actually received.",
+      "Vergleiche Wechselkurs, Überweisungsgebühr und den tatsächlich empfangenen Betrag."
+    ],
+    "Wise utalási feltételek": [
+      "Wise transfer terms",
+      "Wise-Überweisungsbedingungen"
+    ],
+    "Utazás": [
+      "Travel",
+      "Reisen"
+    ],
+    "Külföldi költésnél a kártyadíj és a limitek is számítanak.": [
+      "Card fees and limits also matter when spending abroad.",
+      "Bei Ausgaben im Ausland zählen auch Kartengebühren und Limits."
+    ],
+    "Ellenőrizd a kártyás fizetés, készpénzfelvétel és devizaváltás aktuális feltételeit.": [
+      "Check current terms for card payments, cash withdrawals and currency exchange.",
+      "Prüfe die aktuellen Bedingungen für Kartenzahlungen, Bargeldabhebungen und Währungswechsel."
+    ],
+    "Wise utazási feltételek": [
+      "Wise travel terms",
+      "Wise-Reisebedingungen"
+    ],
+    "Külföldi pénzfogadás": [
+      "Receiving money internationally",
+      "Geld aus dem Ausland empfangen"
+    ],
+    "Külföldi bevételnél a pénzfogadás módja is fontos.": [
+      "How you receive international income matters too.",
+      "Bei Auslandseinnahmen zählt auch die Art des Geldempfangs."
+    ],
+    "Nézd meg, milyen pénznemben kapsz számlaadatot, és mennyibe kerül később átváltani vagy továbbutalni.": [
+      "Check available account-detail currencies and later exchange or onward-transfer costs.",
+      "Prüfe verfügbare Kontodatenwährungen und spätere Kosten für Wechsel oder Weiterüberweisung."
+    ],
+    "Wise pénzfogadási lehetőségek": [
+      "Wise receiving options",
+      "Wise-Möglichkeiten für den Geldempfang"
+    ],
+    "Több pénznem kezelése": [
+      "Managing several currencies",
+      "Mehrere Währungen verwalten"
+    ],
+    "Több devizánál az átlátható elkülönítés lehet a fő előny.": [
+      "Clear separation can be a key advantage with several currencies.",
+      "Bei mehreren Währungen kann übersichtliche Trennung der Hauptvorteil sein."
+    ],
+    "Ellenőrizd, mely pénznemek támogatottak, milyen díjjal válthatsz, és milyen limitek vonatkoznak rád.": [
+      "Check supported currencies, exchange fees and your applicable limits.",
+      "Prüfe unterstützte Währungen, Wechselgebühren und geltende Limits."
+    ],
+    "Wise devizás lehetőségek": [
+      "Wise currency options",
+      "Wise-Währungsmöglichkeiten"
+    ],
+    "Gyors irányválasztó": [
+      "Quick choice guide",
+      "Schnelle Auswahlhilfe"
+    ],
+    "Mire használnád a Wise-t?": [
+      "What would you use Wise for?",
+      "Wofür würdest du Wise nutzen?"
+    ],
+    "Válaszd ki a helyzetedet, és megmutatjuk, mit érdemes ellenőrizned.": [
+      "Choose your situation to see what to check.",
+      "Wähle deine Situation und sieh, was du prüfen solltest."
+    ],
+    "Wise használati cél kiválasztása": [
+      "Choose a Wise use case",
+      "Wise-Nutzungszweck auswählen"
+    ],
+    "Wise utalási feltételek →": [
+      "Wise transfer terms →",
+      "Wise-Überweisungsbedingungen →"
+    ],
+    "Wise utazási feltételek →": [
+      "Wise travel terms →",
+      "Wise-Reisebedingungen →"
+    ],
+    "Wise pénzfogadási lehetőségek →": [
+      "Wise receiving options →",
+      "Wise-Möglichkeiten für den Geldempfang →"
+    ],
+    "Wise devizás lehetőségek →": [
+      "Wise currency options →",
+      "Wise-Währungsmöglichkeiten →"
     ]
   },
   "missing": [
