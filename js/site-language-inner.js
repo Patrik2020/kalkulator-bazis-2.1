@@ -13,7 +13,7 @@
   if (new URLSearchParams(global.location.search).has("__kb_static_export")) return;
 
   function ready() {
-    const header = document.querySelector(".header-actions");
+    const header = document.querySelector(".header-actions, .hub-topbar .hub-shell");
     if (!header || document.getElementById("kbInternalLanguage")) return;
     const control = document.createElement("label");
     control.className = "kb-inner-language";
