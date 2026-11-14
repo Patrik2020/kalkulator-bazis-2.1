@@ -29,10 +29,12 @@ function inventory() {
 function report(pages) {
   const active = pages.filter(p => p.type === "calculator" && !p.retired);
   const reviewed = active.filter(p => p.status === "detail-reviewed");
+  const other = pages.filter(p => p.type === "other");
+  const reviewedOther = other.filter(p => p.status === "detail-reviewed");
   return "# Fordítási nyilvántartás\n\n" +
     "Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőrzi, hogy naprakész-e.\n\n" +
     `Aktív kalkulátor: **${active.length}**; részletes fordításon átesett: **${reviewed.length}**; hátralévő: **${active.length - reviewed.length}**.\n\n` +
-    `Kivezetett kalkulátor: **${pages.filter(p => p.retired).length}**; egyéb oldal: **${pages.filter(p => p.type === "other").length}**.\n\n` +
+    `Kivezetett kalkulátor: **${pages.filter(p => p.retired).length}**; egyéb oldal: **${other.length}**; részletes fordításon átesett egyéb oldal: **${reviewedOther.length}**; hátralévő egyéb oldal: **${other.length - reviewedOther.length}**.\n\n` +
     "A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Nem jelent teljes SEO-fordítást vagy minden lehetséges interakció lefedését. A `partial` részleges fordítást, a `content-review` további tartalmi felmérést és fordítást jelent. A kivezetett oldalakhoz előbb tartalmi döntés szükséges.\n\n" +
     "| Oldal | Kategória | Állapot |\n| --- | --- | --- |\n" +
     pages.map(p => `| ${p.path} | ${p.category} | ${p.status} |`).join("\n") + "\n";

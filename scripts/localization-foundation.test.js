@@ -14,7 +14,8 @@ test("reviewed pages exist, load their locale module, and use valid dictionary k
   for (const page of detailPages) {
     assert.ok(pages.some(p => p.path === page.path && !p.retired), page.path);
     const html = fs.readFileSync(path.join(__dirname, "..", page.path), "utf8");
-    assert.ok(html.includes(`src="../${page.module}?v=`), `${page.path}: missing locale script`);
+    const relativeModule = path.posix.relative(path.posix.dirname(page.path), page.module);
+    assert.ok(html.includes(`src="${relativeModule}?v=`), `${page.path}: missing locale script`);
     const api = require("../" + page.module);
     assert.ok(Object.hasOwn(api.dictionaries, page.key), `${page.path}: invalid dictionary key`);
   }

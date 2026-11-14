@@ -89,7 +89,8 @@ const detailPages = [
   { path: "kalkulatorok/tapeta-kalkulator.html", module: "js/epitoipari/wallpaper-locale.js", key: "tapeta-kalkulator" },
   { path: "kalkulatorok/tegla-kalkulator.html", module: "js/epitoipari/tegla-locale.js", key: "tegla-kalkulator" },
   { path: "kalkulatorok/multifunkcios-szamologep.html", module: "js/multifunction-locale.js", key: "multifunkcios-szamologep" },
-  { path: "kalkulatorok/co2-kibocsatas-kalkulator.html", module: "js/autos/co2-locale.js", key: "co2-kibocsatas-kalkulator" }
+  { path: "kalkulatorok/co2-kibocsatas-kalkulator.html", module: "js/autos/co2-locale.js", key: "co2-kibocsatas-kalkulator" },
+  { path: "impresszum.html", module: "js/legal/impressum-locale.js", key: "impresszum" }
 ];
 
 module.exports = { detailPages };
