@@ -130,3 +130,92 @@
 129|.|verwalten.
 130|Managing cookies|Cookies verwalten
 131|Users can change or withdraw their analytics and marketing consent at any time through Cookie settings in the footer. The browser stores this choice for up to 180 days, including categories, consent version, decision time and expiry. Invalid, expired or unknown-version records leave these tags blocked. AdSense choices can be changed or withdrawn on pages showing ads through Google’s Privacy and cookie settings link.|Nutzer können ihre Analyse- und Marketing-Einwilligung jederzeit über Cookie-Einstellungen im Footer ändern oder widerrufen. Der Browser speichert diese Entscheidung höchstens 180 Tage, einschließlich Kategorien, Einwilligungsversion, Entscheidungszeit und Ablauf. Bei ungültigen, abgelaufenen oder unbekannten Versionen bleiben diese Tags gesperrt. AdSense-Entscheidungen können auf Seiten mit Anzeigen über Googles Link Datenschutz- und Cookie-Einstellungen geändert oder widerrufen werden.
+132|How consent works|Funktionsweise der Einwilligung
+133|Not every cookie serves the same purpose|Nicht jedes Cookie dient demselben Zweck
+134|Necessary|Notwendig
+135|Technical functionality related to basic website operation or security.|Technische Funktion für den Grundbetrieb oder die Sicherheit der Website.
+136|Functional|Funktional
+137|A convenience or preference feature, where specified in the notice.|Eine Komfort- oder Einstellungsfunktion, sofern sie in den Hinweisen genannt ist.
+138|Analytics|Analyse
+139|Usage measurement; consent settings and the notice determine its actual operation.|Nutzungsmessung; Einwilligungseinstellungen und Hinweise bestimmen den tatsächlichen Betrieb.
+140|Advertising|Werbung
+141|Advertising-related storage or signals only according to the rules of the consent system used.|Werbebezogene Speicherung oder Signale nur nach den Regeln des verwendeten Einwilligungssystems.
+142|These categories aid understanding. The detailed table or text specifies providers, cookies, retention periods and legal bases.|Diese Kategorien dienen der Verständlichkeit. Die genaue Bedeutung von Anbieter, Cookie, Speicherdauer und Rechtsgrundlage ergibt sich aus der ausführlichen Tabelle oder dem Text.
+143|Cookie notice|Cookie-Hinweise
+144|Information about cookies and choices relating to Kalkulátor Bázis operation, measurement and advertising.|Informationen über Cookies und Auswahlmöglichkeiten für Betrieb, Messung und Werbung bei Kalkulátor Bázis.
+145|By using the Kalkulátor Bázis website, you accept the following terms.|Mit der Nutzung der Website Kalkulátor Bázis akzeptieren Sie die folgenden Bedingungen.
+146|Service|Dienstleistung
+147|Website calculators perform indicative calculations. Depending on the feature, calculation takes place in the browser or through the associated Kalkulátor Bázis API service. Inputs are not treated as formal requests for offers. The Privacy notice explains data processing.|Die Rechner der Website führen unverbindliche Berechnungen durch. Je nach Funktion geschieht dies im Browser oder über den verbundenen API-Dienst von Kalkulátor Bázis. Eingaben gelten nicht als förmliche Angebotsanfragen. Einzelheiten zur Datenverarbeitung stehen in den Datenschutzhinweisen.
+148|Legal notice and disclaimer|Rechtlicher Hinweis und Haftungsausschluss
+149|The operator accepts no liability for calculation accuracy or damage arising from use of the calculations.|Der Betreiber übernimmt keine Haftung für die Genauigkeit der Berechnungen oder für Schäden aus ihrer Verwendung.
+150|Accuracy|Genauigkeit
+151|Calculator results are indicative and do not constitute financial, legal or tax advice.|Rechenergebnisse dienen der Orientierung und stellen keine Finanz-, Rechts- oder Steuerberatung dar.
+152|Prohibited use|Unzulässige Nutzung
+153|unlawful use|Rechtswidrige Nutzung
+154|overloading the system|Überlastung des Systems
+155|automated queries (bots)|Automatisierte Anfragen (Bots)
+156|Copyright|Urheberrecht
+157|Website content is protected by copyright.|Die Inhalte der Website sind urheberrechtlich geschützt.
+158|Changes|Änderungen
+159|The operator reserves the right to change these terms.|Der Betreiber behält sich vor, diese Bedingungen zu ändern.
+160|Last updated: 12 August 2026.|Zuletzt aktualisiert: 12. August 2026.
+161|Limits of use|Nutzungsgrenzen
+162|What is a calculator result useful for in legal terms?|Wozu ist ein Rechenergebnis rechtlich nutzbar?
+163|Quick checks|Schnelle Prüfung
+164|Yes: personal planning, comparisons and approximate estimates.|Ja: für eigene Planung, Vergleiche und grobe Schätzungen.
+165|Official evidence|Offizieller Nachweis
+166|Not automatically: a contract, authority, bank, employer or professional may require its own calculation.|Nicht automatisch: Maßgeblich kann die eigene Berechnung eines Vertrags, einer Behörde, Bank, eines Arbeitgebers oder Fachkundigen sein.
+167|Personalised advice|Individuelle Beratung
+168|No: the calculator does not know every individual circumstance.|Nein: Der Rechner kennt nicht alle individuellen Umstände.
+169|Final decisions|Endgültige Entscheidung
+170|Check inputs, sources and necessary professional requirements in proportion to the decision’s risk.|Prüfe Eingaben, Quellen und nötige fachliche Voraussetzungen entsprechend dem Risiko der Entscheidung.
+171|Kalkulátor Bázis terms of use, result limitations, liability rules and use of content.|Nutzungsbedingungen von Kalkulátor Bázis, Ergebnisgrenzen, Haftungsregeln und Inhaltsnutzung.
+172|The following information identifies the Kalkulátor Bázis website operator and hosting provider and provides direct contact details.|Die folgenden Angaben dienen der Identifizierung und direkten Erreichbarkeit des Websitebetreibers und Hostinganbieters von Kalkulátor Bázis.
+173|Service provider / operator details|Angaben zum Diensteanbieter / Betreiber
+174|Name:|Name:
+175|Kovács Patrik|Kovács Patrik
+176|Address:|Anschrift:
+177|1181 Budapest, Havanna utca 73.|1181 Budapest, Havanna utca 73.
+178|Email:|E-Mail:
+179|Website:|Website:
+180|https://kalkulatorbazis.hu/|https://kalkulatorbazis.hu/
+181|The website currently provides free online calculators and related information. Results are indicative; the detailed usage and liability rules are set out in the|Die Website bietet derzeit kostenlose Online-Rechner und zugehörige Informationen. Die Ergebnisse dienen der Orientierung; die ausführlichen Nutzungs- und Haftungsregeln stehen in den
+182|.|.
+183|Hosting provider|Hostinganbieter
+184|Provider:|Anbieter:
+185|Cloudflare, Inc.|Cloudflare, Inc.
+186|Registered office:|Sitz:
+187|101 Townsend St., San Francisco, CA 94107, United States|101 Townsend St., San Francisco, CA 94107, United States
+188|Electronic contact:|Elektronischer Kontakt:
+189|Cloudflare Support|Cloudflare Support
+190|https://www.cloudflare.com/|https://www.cloudflare.com/
+191|Cloudflare Pages serves the static Kalkulátor Bázis website. Cloudflare services provide network delivery, HTTPS and associated infrastructure; its own documentation and privacy notice contain detailed processing terms.|Cloudflare Pages stellt die statische Website Kalkulátor Bázis bereit. Cloudflare-Dienste liefern Netzwerkauslieferung, HTTPS und zugehörige Infrastruktur. Einzelheiten zur Datenverarbeitung stehen in der eigenen Dokumentation und den Datenschutzhinweisen von Cloudflare.
+192|Enquiries about the website, content, legal information or bugs can be sent to|Anfragen zur Website, zu Inhalten, rechtlichen Informationen oder Fehlern können an
+193|.|gesendet werden.
+194|Last updated: 13 August 2026.|Zuletzt aktualisiert: 13. August 2026.
+195|Operator information|Betreiberangaben
+196|What can you find on this page?|Was findest du auf dieser Seite?
+197|Who operates or is responsible for the website?|Wer betreibt die Website oder ist dafür verantwortlich?
+198|Which direct contact options are available?|Welche direkten Kontaktmöglichkeiten gibt es?
+199|Where are privacy, usage and legal terms available?|Wo stehen Datenschutz-, Nutzungs- und rechtliche Bedingungen?
+200|How can errors or legal and content concerns be reported?|Wie lassen sich Fehler oder rechtliche und inhaltliche Anmerkungen melden?
+201|The imprint identifies the operator. Separate pages explain calculation methods and quality assurance.|Das Impressum dient der Identifizierbarkeit des Betreibers. Berechnungsmethoden und Qualitätssicherung erläutern separate Seiten.
+202|Imprint · Kalkulátor Bázis|Impressum · Kalkulátor Bázis
+203|Kalkulátor Bázis imprint and provider details, including hosting-provider contacts.|Impressum und Anbieterangaben von Kalkulátor Bázis sowie Kontaktdaten des Hostinganbieters.
+204|Kalkulátor Bázis service-provider and hosting-provider details.|Angaben zum Diensteanbieter und Hostinganbieter von Kalkulátor Bázis.
+205|Liability information|Haftungsinformationen
+206|Calculators and explanations on Kalkulátor Bázis provide general information and estimates. Results do not replace official calculations, professional advice or individual case decisions.|Die Rechner und Erklärungen von Kalkulátor Bázis bieten allgemeine Informationen und Schätzungen. Ergebnisse ersetzen keine amtliche Berechnung, fachliche Beratung oder Einzelfallentscheidung.
+207|Calculators and results|Rechner und Ergebnisse
+208|Calculators use user-provided data. Incorrect, incomplete, outdated or wrongly unit-labelled inputs can produce incorrect or misleading results.|Die Rechner arbeiten mit Nutzereingaben. Falsche, unvollständige, veraltete oder in ungeeigneten Einheiten angegebene Eingaben können falsche oder irreführende Ergebnisse erzeugen.
+209|The website aims to present understandable formulas, updateable data and useful explanations, but cannot guarantee accuracy, completeness or applicability to every situation.|Die Website bemüht sich um verständliche Formeln, aktualisierbare Daten und hilfreiche Erklärungen. Genauigkeit, Vollständigkeit und Anwendbarkeit auf jede Lebenssituation können jedoch nicht garantiert werden.
+210|Not professional advice|Keine Beratung
+211|Financial, investment, loan, tax, legal and health calculator results are not personalised advice, offers, diagnoses or official interpretations.|Ergebnisse von Finanz-, Anlage-, Kredit-, Steuer-, Rechts- und Gesundheitsrechnern sind keine individuelle Beratung, Angebote, Diagnosen oder amtlichen Stellungnahmen.
+212|Before important decisions, check current official information and, where needed, consult a bank, accountant, tax adviser, lawyer, doctor or other appropriate professional.|Prüfe vor wichtigen Entscheidungen aktuelle amtliche Angaben und wende dich bei Bedarf an eine Bank, Buchhaltungs-, Steuer- oder Rechtsberatung, einen Arzt oder andere geeignete Fachleute.
+213|External links and affiliate content|Externe Links und Partnerinhalte
+214|The website may include external and affiliate links. An affiliate relationship may mean the website receives a commission when a visitor uses a service through that link. This generally adds no cost for the visitor.|Die Website kann externe Links und Partnerlinks enthalten. Eine Partnerschaft kann bedeuten, dass die Website eine Provision erhält, wenn ein Besucher über den Link einen Dienst nutzt. Für den Besucher entstehen dadurch normalerweise keine Mehrkosten.
+215|External providers are responsible for their websites’ content, fees, terms and data processing.|Für Inhalte, Gebühren, Bedingungen und Datenverarbeitung externer Websites ist der jeweilige Anbieter verantwortlich.
+216|Related pages|Verwandte Seiten
+217|Transparent use|Transparente Nutzung
+218|Risk decision matrix|Risikomatrix für Entscheidungen
+219|The greater the consequences, the more checking is needed|Je größer die Folgen, desto mehr Prüfung ist nötig
+220|Low risk|Geringes Risiko
