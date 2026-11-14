@@ -136,15 +136,15 @@
         notice.textContent = "";
       }
       if (reviewed) {
-        for (const element of main?.querySelectorAll("[aria-label],[title],[placeholder]") || []) {
+        for (const element of main?.querySelectorAll("[aria-label],[title],[placeholder],[alt]") || []) {
           const originals = pageAttributes.get(element) || {};
-          for (const attr of ["aria-label", "title", "placeholder"]) if (element.hasAttribute(attr)) {
+          for (const attr of ["aria-label", "title", "placeholder", "alt"]) if (element.hasAttribute(attr)) {
             if (!Object.hasOwn(originals, attr)) originals[attr] = element.getAttribute(attr);
             element.setAttribute(attr, api.translate(originals[attr], next) ?? originals[attr]);
           }
           pageAttributes.set(element, originals);
         }
-        const localize = value => typeof value === "string" ? api.translate(value, next) ?? value : Array.isArray(value) ? value.map(localize) : value && typeof value === "object" ? Object.fromEntries(Object.entries(value).map(([key, item]) => [key, localize(item)])) : value;
+        const localize = value => typeof value === "string" ? api.translate(value, next) ?? value : Array.isArray(value) ? value.map(localize) : value && typeof value === "object" ? Object.fromEntries(Object.entries(value).map(([key, item]) => [key, key === "inLanguage" && next !== "hu" ? (next === "en" ? "en-GB" : "de-DE") : localize(item)])) : value;
         for (const selector of ["title", 'meta[name="description"]', 'meta[property="og:title"]', 'meta[property="og:description"]', 'meta[name="twitter:title"]', 'meta[name="twitter:description"]', "#kb-structured-data"]) {
           const element = document.querySelector(selector);
           if (!element) continue;
@@ -156,6 +156,11 @@
             try { value = JSON.stringify(localize(JSON.parse(source))); } catch { value = source; }
           }
           if (isText) element.textContent = value; else element.content = value;
+        }
+        for (const element of document.querySelectorAll('script[type="application/ld+json"]')) {
+          if (element.id === "kb-structured-data") continue;
+          if (!metadata.has(element)) metadata.set(element, element.textContent);
+          try { element.textContent = JSON.stringify(localize(JSON.parse(metadata.get(element)))); } catch { /* Preserve unrecognised source JSON. */ }
         }
       }
       // Keep html lang=hu: not all page body copy and dynamic calculators are
@@ -175,7 +180,7 @@
   else ready();
 })(typeof window !== "undefined" ? window : null, function (host) {
   "use strict";
-  const nodeData = typeof module === "object" && module.exports ? [require("./locales/support-categories"), require("./locales/support-information")] : null;
+  const nodeData = typeof module === "object" && module.exports ? [require("./locales/support-categories"), require("./locales/support-information"), require("./locales/support-guides")] : null;
   const nodeSupport = nodeData ? { pages: nodeData.flatMap(data => data.pages), dictionary: Object.assign({}, ...nodeData.map(data => data.dictionary)) } : null;
   const supportData = () => nodeSupport || host?.KB_SUPPORT_PAGE_LOCALE;
   const isSupportPage = pathname => {

@@ -6,7 +6,7 @@ Aktív kalkulátor: **89**; részletes fordításon átesett: **89**; hátralév
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **32**.
 
-Egyéb oldalak részletes fordítása: **20/32**; hátralévő: **12**.
+Egyéb oldalak részletes fordítása: **28/32**; hátralévő: **4**.
 
 A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Nem jelent teljes SEO-fordítást vagy minden lehetséges interakció lefedését. A `partial` részleges fordítást, a `content-review` további tartalmi felmérést és fordítást jelent. A kivezetett oldalakhoz előbb tartalmi döntés szükséges.
 
@@ -130,14 +130,14 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/vizfogyasztas-koltseg-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/zuzottko-kalkulator.html | epitoipari | detail-reviewed |
 | kapcsolat.html | other | detail-reviewed |
-| landing-pages/elethelyzetek/autofenntartas.html | other | content-review |
-| landing-pages/elethelyzetek/befektetes-kezdoknek.html | other | content-review |
-| landing-pages/elethelyzetek/csaladi-koltsegvetes.html | other | content-review |
-| landing-pages/elethelyzetek/felujitas-tervezese.html | other | content-review |
-| landing-pages/elethelyzetek/fizetes-munkaber.html | other | content-review |
-| landing-pages/elethelyzetek/lakasvasarlas.html | other | content-review |
-| landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html | other | content-review |
-| landing-pages/wise/wise.html | other | content-review |
+| landing-pages/elethelyzetek/autofenntartas.html | other | detail-reviewed |
+| landing-pages/elethelyzetek/befektetes-kezdoknek.html | other | detail-reviewed |
+| landing-pages/elethelyzetek/csaladi-koltsegvetes.html | other | detail-reviewed |
+| landing-pages/elethelyzetek/felujitas-tervezese.html | other | detail-reviewed |
+| landing-pages/elethelyzetek/fizetes-munkaber.html | other | detail-reviewed |
+| landing-pages/elethelyzetek/lakasvasarlas.html | other | detail-reviewed |
+| landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html | other | detail-reviewed |
+| landing-pages/wise/wise.html | other | detail-reviewed |
 | miert-bizhatsz-bennunk.html | other | detail-reviewed |
 | mindennapi.html | other | detail-reviewed |
 | osszehasonlitas.html | other | content-review |

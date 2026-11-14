@@ -23,6 +23,7 @@ on:
       - "js/static-first-fallbacks.js"
       - "js/everyday-upgrades.js"
       - "js/site-language-inner.js"
+      - "js/shared-ui-locale.js"
       - "js/site-ui.js"
       - "js/locales/**"
       - "js/multifunction-locale.js"
