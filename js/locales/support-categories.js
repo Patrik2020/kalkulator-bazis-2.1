@@ -11,9 +11,18 @@
   return {
     pages: ["atvaltok.html", "auto.html", "egeszseg.html", "epitoipari.html", "mindennapi.html", "penzugyi.html", "kalkulatorok.html"],
     dictionary: {
-      "Kiemelt kalkulátorok": ["Featured calculators", "Ausgewählte Rechner"],
-      "Írj be legalább két karaktert.": ["Enter at least two characters.", "Gib mindestens zwei Zeichen ein."],
-      "Nincs találat. Próbálj másik kifejezést vagy válassz kategóriát.": ["No results. Try another phrase or choose a category.", "Keine Treffer. Versuche einen anderen Suchbegriff oder wähle eine Kategorie."],
+  "Kiemelt kalkulátorok": [
+    "Featured calculators",
+    "Ausgewählte Rechner"
+  ],
+  "Írj be legalább két karaktert.": [
+    "Enter at least two characters.",
+    "Gib mindestens zwei Zeichen ein."
+  ],
+  "Nincs találat. Próbálj másik kifejezést vagy válassz kategóriát.": [
+    "No results. Try another phrase or choose a category.",
+    "Keine Treffer. Versuche einen anderen Suchbegriff oder wähle eine Kategorie."
+  ],
   "Morzsamenü": [
     "Breadcrumb navigation",
     "Brotkrümelnavigation"
@@ -2689,6 +2698,82 @@
   "hu-HU": [
     "en-GB",
     "de-DE"
+  ],
+  "Devizás helyzethez": [
+    "For foreign-currency needs",
+    "Für Fremdwährungsfragen"
+  ],
+  "Külföldi pénzt váltanál vagy utalnál?": [
+    "Need to exchange or transfer money internationally?",
+    "Möchtest du Geld ins Ausland überweisen oder eine Währung wechseln?"
+  ],
+  "Nézd meg a Wise aktuális lehetőségeit több pénznem, nemzetközi utalás és devizás költés esetén.": [
+    "Explore Wise's current options for holding multiple currencies, making international transfers and spending abroad.",
+    "Sieh dir die aktuellen Möglichkeiten von Wise für mehrere Währungen, internationale Überweisungen und Ausgaben im Ausland an."
+  ],
+  "Pénzügyi tervezéshez": [
+    "For financial planning",
+    "Für deine Finanzplanung"
+  ],
+  "Külföldről kapsz fizetést vagy több pénznemben kezelnéd a pénzed?": [
+    "Paid from abroad or managing money in several currencies?",
+    "Wirst du aus dem Ausland bezahlt oder verwaltest du Geld in mehreren Währungen?"
+  ],
+  "Ellenőrizd a Wise aktuális díjait, feltételeit és elérhető funkcióit.": [
+    "Check Wise's current fees, terms and available features.",
+    "Prüfe die aktuellen Gebühren, Bedingungen und Funktionen von Wise."
+  ],
+  "Wise feltételek": [
+    "Wise terms",
+    "Wise-Bedingungen"
+  ],
+  "Partnerlink. Az aktuális díjakat és feltételeket a Wise oldalán ellenőrizd.": [
+    "Partner link. Check Wise's website for current fees and terms.",
+    "Partnerlink. Die aktuellen Gebühren und Bedingungen findest du auf der Wise-Website."
+  ],
+  "Wise megnyitása →": [
+    "Open Wise →",
+    "Wise öffnen →"
+  ],
+  "Wise feltételek →": [
+    "Wise terms →",
+    "Wise-Bedingungen →"
+  ],
+  "Wise megnyitása": [
+    "Open Wise",
+    "Wise öffnen"
+  ],
+  "Külföldi utazáshoz": [
+    "For international travel",
+    "Für Auslandsreisen"
+  ],
+  "Utazást tervezel és devizában fizetnél?": [
+    "Planning a trip and paying in another currency?",
+    "Planst du eine Reise und möchtest in Fremdwährung zahlen?"
+  ],
+  "Nézd meg a Wise kártyás fizetéshez, pénzváltáshoz és külföldi költéshez kapcsolódó aktuális feltételeit.": [
+    "Check Wise’s current terms for card payments, currency exchange and spending abroad.",
+    "Prüfe die aktuellen Wise-Bedingungen für Kartenzahlungen, Währungswechsel und Ausgaben im Ausland."
+  ],
+  "Wise utazáshoz": [
+    "Wise for travel",
+    "Wise für Reisen"
+  ],
+  "Nemzetközi pénzügyekhez": [
+    "For international finances",
+    "Für internationale Finanzen"
+  ],
+  "Deviza, utalás vagy külföldi költés?": [
+    "Currency exchange, transfers or spending abroad?",
+    "Währungswechsel, Überweisungen oder Ausgaben im Ausland?"
+  ],
+  "Nézd meg a Wise aktuális lehetőségeit és feltételeit.": [
+    "Check Wise’s current features and terms.",
+    "Prüfe die aktuellen Möglichkeiten und Bedingungen von Wise."
+  ],
+  "Wise utazáshoz →": [
+    "Wise for travel →",
+    "Wise für Reisen →"
   ]
 }
   };

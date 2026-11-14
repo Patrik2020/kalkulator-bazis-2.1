@@ -36,3 +36,11 @@ test("search messages and all reviewed pairs have English and German copy",()=>{
   assert.equal(api.translate('Nincs találat. Próbálj másik kifejezést vagy válassz kategóriát.','en'),'No results. Try another phrase or choose a category.');
   assert.equal(api.translate('Felhasználó egyedi bevitele: 123,45','en'),null);
 });
+
+test("all runtime Wise banner variants and action labels translate after consent changes",()=>{
+  const source=fs.readFileSync(require.resolve('../js/wise-banner-enhancer'),'utf8');
+  const values=[...source.matchAll(/(?:eyebrow|title|text|action): "([^"]+)"/gu)].map(m=>m[1]);
+  values.push(...[...source.matchAll(/action: "([^"]+)"/gu)].map(m=>m[1]+' →'));
+  values.push('Partnerlink. Az aktuális díjakat és feltételeket a Wise oldalán ellenőrizd.');
+  for(const text of values)for(const language of ['en','de'])assert.ok(api.translate(text,language),language+': '+text);
+});
