@@ -28,6 +28,7 @@ on:
       - "js/egeszseg/water-intake-locale.js"
       - "js/egeszseg/body-fat-locale.js"
       - "js/epitoipari/roof-tile-locale.js"
+      - "js/epitoipari/plaster-locale.js"
       - "js/construction-upgrades.js"
       - "js/penzugyi/netto-brutto.js"
       - "js/penzugyi/netto-brutto-shadow.js"
