@@ -12,6 +12,8 @@
  "use strict";
  const pages=["dontesek.html", "elethelyzetek.html", "osszehasonlitas.html", "index.html"];
  const dictionary={
+  "Facebook": ["Facebook", "Facebook"],
+  "f": ["f", "f"],
   "Főoldal": [
     "Home",
     "Startseite"

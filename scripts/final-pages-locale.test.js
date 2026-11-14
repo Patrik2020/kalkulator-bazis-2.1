@@ -34,6 +34,8 @@ test('reviewed final-page templates preserve numeric readouts and reject arbitra
   assert.equal(data.translate(source,'de'),de.replace(/\{(\d+)\}/gu,(_,i)=>args[i]));
  }
  assert.equal(data.translate('A és B a megadott fő mutató alapján gyakorlatilag azonos.','en'),'A and B are effectively equal on the main indicator entered.');
+ assert.equal(data.translate('Facebook','en'),'Facebook');
+ assert.equal(data.translate('f','de'),'f');
  assert.equal(data.translate('egyedi felhasználói szöveg havi változás','en'),null);
  assert.equal(data.translate('123 éves megtakarítási terv!','en'),null);
  for(const[source,pair]of Object.entries(data.dictionary)){
