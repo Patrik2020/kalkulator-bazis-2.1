@@ -49,3 +49,84 @@
 48|Visitors may object to processing based on legitimate interests using the contact details below. For such processing, the controller regularly reviews the necessity of the purpose, impact on individuals and safeguards applied.|Besucher können der Verarbeitung aufgrund berechtigter Interessen über die unten genannte Kontaktadresse widersprechen. Der Verantwortliche prüft dabei regelmäßig die Erforderlichkeit des Zwecks, Auswirkungen auf Betroffene und angewandte Schutzmaßnahmen.
 49|Cookies|Cookies
 50|The website uses local browser storage for its operation. Our analytics and marketing tags are blocked by default and load only after the relevant consent. AdSense uses a separate Google message: its code may load to open the consent interface while ad requests remain paused until the decision is resolved.|Die Website verwendet lokalen Browserspeicher für ihren Betrieb. Unsere Analyse- und Marketing-Tags sind standardmäßig gesperrt und werden erst nach entsprechender Einwilligung geladen. AdSense verwendet eine separate Google-Nachricht: Der Code kann die Einwilligungsoberfläche laden, während Anzeigenanfragen bis zur Klärung der Entscheidung pausieren.
+51|: versioned consent decision, for up to 180 days|: versionierte Einwilligungsentscheidung, höchstens 180 Tage
+52|: light or dark theme preference, until changed or local storage is cleared|: Einstellung für helles oder dunkles Design, bis zur Änderung oder Löschung des lokalen Speichers
+53|Google Analytics: analytics cookies and full measurement only after analytics consent|Google Analytics: Analyse-Cookies und vollständige Messung erst nach Analyse-Einwilligung
+54|Google Ads measurement tag and affiliate creatives: only after our marketing consent|Google-Ads-Mess-Tag und Partner-Werbemittel: erst nach unserer Marketing-Einwilligung
+55|Google AdSense: on designated pages, based on Google’s separate consent interface|Google AdSense: auf vorgesehenen Seiten gemäß Googles separater Einwilligungsoberfläche
+56|Our analytics and marketing choices can be changed or withdrawn at any time using Cookie settings in the footer. On pages displaying ads, AdSense choices can be reopened using Google’s Privacy and cookie settings link. Details are in the|Unsere Analyse- und Marketingentscheidungen können jederzeit über Cookie-Einstellungen im Footer geändert oder widerrufen werden. Auf Seiten mit Anzeigen lassen sich AdSense-Entscheidungen über Googles Link Datenschutz- und Cookie-Einstellungen erneut öffnen. Einzelheiten stehen in den
+57|cookie notice|Cookie-Hinweisen
+58|Third-party services|Dienste Dritter
+59|Cloudflare, Inc. / Cloudflare Pages (website hosting and network delivery)|Cloudflare, Inc. / Cloudflare Pages (Website-Hosting und Netzwerkauslieferung)
+60|Render Services, Inc. (Kalkulátor Bázis API infrastructure)|Render Services, Inc. (Infrastruktur der Kalkulátor-Bázis-API)
+61|Google Analytics (visitor measurement)|Google Analytics (Besuchsmessung)
+62|Google AdSense (ad display)|Google AdSense (Anzeigenauslieferung)
+63|Google Ads (conversion measurement)|Google Ads (Conversion-Messung)
+64|Formspree (forwarding help and bug reports)|Formspree (Weiterleitung von Hilfe- und Fehlermeldungen)
+65|Wise affiliate links and affiliate creatives|Wise-Partnerlinks und Partner-Werbemittel
+66|Google and other advertising partners listed in its consent interface may use cookies or other identifiers to display and measure ads and, depending on the visitor’s choice, personalise them based on previous visits. Non-personalised ads may also use cookies, for example for frequency capping and aggregate reporting. To learn how Google handles data collected on partner sites, see|Google und weitere in der Einwilligungsoberfläche aufgeführte Werbepartner können Cookies oder andere Kennungen zur Anzeige und Messung von Werbung sowie je nach Besucherentscheidung zur Personalisierung anhand früherer Besuche einsetzen. Auch nicht personalisierte Anzeigen können Cookies nutzen, etwa zur Häufigkeitsbegrenzung und für zusammengefasste Berichte. Wie Google auf Partnerseiten erfasste Daten verarbeitet, erläutern die
+67|Google’s information|Informationen von Google
+68|. You can also control personalised Google ads in|. Personalisierte Google-Werbung kannst du auch im
+69|Google My Ad Center|Google My Ad Center
+70|.|steuern.
+71|Some providers may process data outside the EEA. In such cases, legally recognised transfer safeguards used by the provider apply. Further details are in providers’ own privacy notices.|Einige Anbieter können Daten außerhalb des EWR verarbeiten. In diesem Fall gelten die vom Anbieter verwendeten gesetzlich anerkannten Übermittlungsgarantien. Weitere Einzelheiten stehen in den Datenschutzhinweisen der Anbieter.
+72|Affiliate links|Partnerlinks (Affiliate-Links)
+73|Some links on the website may be affiliate links.|Einige Links auf der Website können Partnerlinks (Affiliate-Links) sein.
+74|If a user registers or uses a service through such a link, the website operator may receive a commission.|Wenn ein Nutzer sich über einen solchen Link registriert oder einen Dienst nutzt, kann der Websitebetreiber eine Provision erhalten.
+75|This does not add any cost for the user.|Für den Nutzer entstehen dadurch keine zusätzlichen Kosten.
+76|Help and bug-reporting system|Hilfe- und Fehlermeldesystem
+77|When using the help and bug-report interface in the bottom-right corner, the submitted description, description of expected behaviour and input data, optional email address, current page title and URL, referring page, IP address, basic browser and device data, language, screen and viewport size, submission time and time spent on the page may be transmitted.|Bei Nutzung der Hilfe- und Fehleroberfläche rechts unten können die eingegebene Beschreibung, die Beschreibung des erwarteten Verhaltens und der Eingaben, die optionale E-Mail-Adresse sowie Seitentitel und URL, verweisende Seite, IP-Adresse, grundlegende Browser- und Gerätedaten, Sprache, Bildschirm- und Ansichtsgröße, Absendezeit und Aufenthaltsdauer übermittelt werden.
+78|Processing is for answering questions, investigating faults and improving the website. Reports are submitted through Formspree, which forwards them to the controller. Processing relies on consent given before submission, which can be withdrawn at any time. Please do not include sensitive personal, health, banking or login data. Formspree’s own notice is available on its|Die Verarbeitung dient der Beantwortung von Fragen, Untersuchung von Fehlern und Verbesserung der Website. Meldungen werden über Formspree an den Verantwortlichen weitergeleitet. Rechtsgrundlage ist die vor dem Absenden erteilte, jederzeit widerrufliche Einwilligung. Bitte übermittle keine sensiblen persönlichen Daten, Gesundheits-, Bank- oder Zugangsdaten. Die eigenen Hinweise von Formspree stehen auf der
+79|Formspree privacy page|Datenschutzseite von Formspree
+80|.|zur Verfügung.
+81|We process submitted data until the report is closed, for no more than 12 months after submission, unless legal claims justify longer retention. Consent withdrawal and deletion requests can be sent to|Wir verarbeiten die Angaben bis zum Abschluss der Meldung, höchstens jedoch 12 Monate ab Eingang, sofern Rechtsansprüche keine längere Aufbewahrung rechtfertigen. Widerrufs- und Löschanfragen können an
+82|. Withdrawing consent does not affect the lawfulness of earlier processing.|gesendet werden. Der Widerruf berührt nicht die Rechtmäßigkeit früherer Verarbeitung.
+83|User rights|Betroffenenrechte
+84|request access to and information about processed data|Auskunft und Informationen über verarbeitete Daten verlangen
+85|request correction of inaccurate data|Berichtigung unrichtiger Daten verlangen
+86|request erasure or restriction of processing|Löschung oder Einschränkung der Verarbeitung verlangen
+87|withdraw consent|Einwilligung widerrufen
+88|request data portability where legal requirements are met|Datenübertragbarkeit verlangen, sofern die gesetzlichen Voraussetzungen erfüllt sind
+89|object to processing based on legitimate interests|Der Verarbeitung aufgrund berechtigter Interessen widersprechen
+90|We respond without undue delay, normally within one month. For remedies, you may contact a court or the|Wir antworten unverzüglich, grundsätzlich innerhalb eines Monats. Für Rechtsbehelfe kannst du dich an ein Gericht oder die
+91|Hungarian National Authority for Data Protection and Freedom of Information (NAIH)|Ungarische Nationale Behörde für Datenschutz und Informationsfreiheit (NAIH)
+92|.|wenden.
+93|For questions about data processing, contact us at the following email address:|Bei Fragen zur Datenverarbeitung erreichst du uns unter folgender E-Mail-Adresse:
+94|Last updated: 17 October 2026.|Zuletzt aktualisiert: 17. Oktober 2026.
+95|Privacy reading guide|Lesehilfe zum Datenschutz
+96|Find the relevant section more quickly with three questions|Finde den passenden Abschnitt schneller anhand von drei Fragen
+97|What am I providing?|Was gebe ich an?
+98|Calculator inputs, contact details, technical cookie information or an analytics event?|Rechnereingaben, Kontaktdaten, technische Cookie-Informationen oder ein Analyseereignis?
+99|Where does it happen?|Wo geschieht es?
+100|Locally in the browser, while serving the website, or through an external service?|Lokal im Browser, beim Bereitstellen der Website oder unter Einbeziehung eines externen Dienstes?
+101|Why is it needed?|Wozu ist es nötig?
+102|Basic operation, security, measurement, consent-based features or contacting us?|Grundbetrieb, Sicherheit, Messung, einwilligungspflichtige Funktionen oder Kontaktaufnahme?
+103|For how long and how?|Wie lange und auf welche Weise?
+104|The relevant section of the notice provides the detailed retention, consent and data-subject rules.|Die Einzelheiten zu Aufbewahrung, Einwilligung und Betroffenenrechten stehen im jeweiligen Abschnitt dieser Hinweise.
+105|This block aids navigation and does not override legal content. The detailed processing terms in the main text of this page remain authoritative.|Dieser Block dient der Orientierung und überschreibt keine rechtlichen Inhalte. Maßgeblich bleiben die ausführlichen Verarbeitungsbedingungen im Haupttext dieser Seite.
+106|Kalkulátor Bázis privacy notice covering processed data, cookies, external providers and visitor rights.|Datenschutzhinweise von Kalkulátor Bázis zu verarbeiteten Daten, Cookies, externen Anbietern und Besucherrechten.
+107|Cookie notice|Cookie-Hinweise
+108|Kalkulátor Bázis uses local browser storage for website operation. Our cookie settings manage Google Analytics and Google Ads measurement tags and affiliate content. In relevant regions, a separate Google-certified consent interface manages Google AdSense advertising consent.|Kalkulátor Bázis verwendet lokalen Browserspeicher für den Websitebetrieb. Unsere Cookie-Einstellungen verwalten Mess-Tags von Google Analytics und Google Ads sowie Partnerinhalte. Die Werbeeinwilligung für Google AdSense wird in den betroffenen Regionen über eine separate Google-zertifizierte Oberfläche verwaltet.
+109|What are cookies?|Was sind Cookies?
+110|Cookies and local storage store data in the browser so websites can remember settings. On this website, the consent decision is stored under the|Cookies und lokale Speicherlösungen speichern Daten im Browser, damit Websites Einstellungen merken können. Auf dieser Website wird die Einwilligungsentscheidung unter dem
+111|localStorage key.|localStorage-Schlüssel gespeichert.
+112|Which cookies do we use?|Welche Cookies verwenden wir?
+113|Necessary operation:|Notwendiger Betrieb:
+114|local storage necessary for basic website operation, such as remembering theme and consent choices.|Für den Grundbetrieb erforderlicher lokaler Speicher, etwa zum Merken von Design- und Einwilligungsentscheidungen.
+115|Analytics:|Analyse:
+116|the external Google Analytics tag loads and starts measurement only after analytics consent.|Das externe Google-Analytics-Tag wird erst nach Analyse-Einwilligung geladen und beginnt dann mit der Messung.
+117|Affiliate content and marketing:|Partnerinhalte und Marketing:
+118|the Google Ads measurement tag and external affiliate creatives load only after website marketing consent. AdSense code may load earlier on designated pages to show Google’s consent message, while ad requests remain paused until Google’s consent state is resolved. Depending on the visitor’s choices, Google may show personalised, non-personalised or limited ads. Non-personalised ads may also use cookies or identifiers, for example for frequency capping and aggregate reporting.|Das Google-Ads-Mess-Tag und externe Partner-Werbemittel werden erst nach der Marketing-Einwilligung der Website geladen. AdSense-Code kann auf vorgesehenen Seiten schon früher laden, um Googles Einwilligungsnachricht anzuzeigen; Anzeigenanfragen bleiben bis zur Klärung des Google-Status pausiert. Je nach Besucherentscheidung kann Google personalisierte, nicht personalisierte oder eingeschränkte Anzeigen ausliefern. Auch nicht personalisierte Anzeigen können Cookies oder Kennungen nutzen, etwa zur Häufigkeitsbegrenzung und für zusammengefasste Berichte.
+119|Our analytics and marketing tags do not load before the relevant consent. Google manages AdSense choices separately; the website’s own Cookie settings button does not change them.|Unsere Analyse- und Marketing-Tags laden nicht vor der entsprechenden Einwilligung. Google verwaltet AdSense-Entscheidungen separat; der eigene Button Cookie-Einstellungen der Website verändert diese nicht.
+120|The website may use the following services:|Die Website kann folgende Dienste verwenden:
+121|Google Analytics|Google Analytics
+122|Google AdSense|Google AdSense
+123|Google Ads conversion measurement|Google-Ads-Conversion-Messung
+124|Wise affiliate creatives and links|Wise-Partner-Werbemittel und Partnerlinks
+125|These providers may place their own cookies or technical identifiers on the user’s device according to the applicable consent choices. Details of Google’s data use are in|Diese Anbieter können entsprechend den jeweiligen Einwilligungsentscheidungen eigene Cookies oder technische Kennungen auf dem Gerät ablegen. Einzelheiten zur Google-Datennutzung erläutern die
+126|Google’s partner-site information|Google-Informationen zu Partnerseiten
+127|; personalised Google advertising can also be managed in|; die Personalisierung von Google-Werbung lässt sich auch im
+128|My Ad Center|My Ad Center
+129|.|verwalten.
+130|Managing cookies|Cookies verwalten
+131|Users can change or withdraw their analytics and marketing consent at any time through Cookie settings in the footer. The browser stores this choice for up to 180 days, including categories, consent version, decision time and expiry. Invalid, expired or unknown-version records leave these tags blocked. AdSense choices can be changed or withdrawn on pages showing ads through Google’s Privacy and cookie settings link.|Nutzer können ihre Analyse- und Marketing-Einwilligung jederzeit über Cookie-Einstellungen im Footer ändern oder widerrufen. Der Browser speichert diese Entscheidung höchstens 180 Tage, einschließlich Kategorien, Einwilligungsversion, Entscheidungszeit und Ablauf. Bei ungültigen, abgelaufenen oder unbekannten Versionen bleiben diese Tags gesperrt. AdSense-Entscheidungen können auf Seiten mit Anzeigen über Googles Link Datenschutz- und Cookie-Einstellungen geändert oder widerrufen werden.
