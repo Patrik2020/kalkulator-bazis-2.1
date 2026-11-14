@@ -99,6 +99,7 @@ async function checkLocalizationCoverage({ navigate, evaluate, setViewport }) {
   await require("./flooring-locale-browser-checks").checkFlooringLocale({ navigate, evaluate, setViewport });
   await require("./skirting-locale-browser-checks").checkSkirtingLocale({ navigate, evaluate, setViewport });
   await require("./wallpaper-locale-browser-checks").checkWallpaperLocale({ navigate, evaluate, setViewport });
+  await require("./plaster-locale-browser-checks").checkPlasterLocale({ navigate, evaluate, setViewport });
   await require("./roof-tile-locale-browser-checks").checkRoofTileLocale({ navigate, evaluate, setViewport });
   await require("./body-fat-locale-browser-checks").checkBodyFatLocale({ navigate, evaluate, setViewport });
   await require("./water-intake-locale-browser-checks").checkWaterIntakeLocale({ navigate, evaluate, setViewport });

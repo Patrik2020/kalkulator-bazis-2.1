@@ -3,6 +3,7 @@
 // A reviewed detail page is not a claim that metadata, every interaction or the
 // entire site is localized. Browser and calculation checks remain separate.
 const detailPages = [
+  { path: "kalkulatorok/vakolat-kalkulator.html", module: "js/epitoipari/plaster-locale.js", key: "vakolat-kalkulator" },
   ...["lakas-hitel-onero-kalkulator", "hitel-elotorlesztes-kalkulator"].map(key => ({
     path: `kalkulatorok/${key}.html`, module: "js/penzugyi/mortgage-tools-locale.js", key
   })),
