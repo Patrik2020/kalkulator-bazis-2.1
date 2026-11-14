@@ -1,0 +1,51 @@
+0|404 – Page not found|404 – Seite nicht gefunden
+1|The page may have moved, been removed, or the link may be incorrect. Search for a calculator or choose a category.|Die Seite wurde möglicherweise verschoben oder entfernt, oder der Link ist fehlerhaft. Suche nach einem Rechner oder wähle eine Kategorie.
+2|Calculator categories|Rechnerkategorien
+3|Where next?|Wie geht es weiter?
+4|The homepage brings together financial, construction, health, car, everyday and unit-conversion calculators.|Auf der Startseite findest du alle Finanz-, Bau-, Gesundheits-, Auto-, Alltags- und Einheitenrechner.
+5|Back to the homepage|Zurück zur Startseite
+6|404 – Page Not Found · Kalkulátor Bázis|404 – Seite nicht gefunden · Kalkulátor Bázis
+7|The requested page was not found. Search for a calculator or return to the Kalkulátor Bázis homepage.|Die gesuchte Seite wurde nicht gefunden. Suche nach einem Rechner oder kehre zur Startseite von Kalkulátor Bázis zurück.
+8|Privacy notice|Datenschutzhinweise
+9|Kalkulátor Bázis is committed to protecting personal data. Transparency and security are particularly important when using our calculators and financial content. This notice explains what data we process, for what purposes and for how long.|Kalkulátor Bázis setzt sich für den Schutz personenbezogener Daten ein. Bei der Nutzung unserer Rechner und Finanzinhalte sind Transparenz und Sicherheit besonders wichtig. Diese Hinweise erläutern, welche Daten wir zu welchen Zwecken und wie lange verarbeiten.
+10|Controller details|Angaben zum Verantwortlichen
+11|Name: Kovács Patrik|Name: Kovács Patrik
+12|Email:|E-Mail:
+13|kalkulatorbazis@gmail.com|kalkulatorbazis@gmail.com
+14|Country: Hungary|Land: Ungarn
+15|What data do we process?|Welche Daten verarbeiten wir?
+16|Most calculators process input values exclusively in the visitor’s browser. Certain features specifically using an API may also transmit the values needed for calculation to the Kalkulátor Bázis API over HTTPS.|Die meisten Rechner verarbeiten Eingaben ausschließlich im Browser des Besuchers. Bei bestimmten ausdrücklich API-gestützten Funktionen können die für die Berechnung nötigen Werte auch per HTTPS an die Kalkulátor-Bázis-API übermittelt werden.
+17|input values in locally running calculators do not leave the browser|Eingaben in lokal ausgeführten Rechnern verlassen den Browser nicht
+18|API requests transmit only the data needed for the calculation|API-Anfragen übertragen nur die für die Berechnung nötigen Daten
+19|Kalkulátor Bázis API application logs deliberately do not record calculator request-body contents|Die Anwendungsprotokolle der Kalkulátor-Bázis-API erfassen bewusst keine Inhalte der Rechner-Anfragekörper
+20|calculator data are not used for profiling or advertising|Rechnerdaten werden nicht für Profilbildung oder Werbung verwendet
+21|Alongside its immediate browser-based calculation, the net–gross salary calculator also uses the Kalkulátor Bázis API. The entered salary, calculation direction and selected allowance parameters are sent to the API over HTTPS to perform the calculation. If the API is unavailable or does not respond in time, the browser-based fallback calculation remains visible.|Der Netto-Brutto-Rechner nutzt neben der sofortigen Browserberechnung auch die Kalkulátor-Bázis-API. Der eingegebene Lohn, die Berechnungsrichtung und die ausgewählten Freibetragsparameter werden zur Berechnung per HTTPS an die API gesendet. Ist die API nicht erreichbar oder antwortet sie nicht rechtzeitig, bleibt die Ersatzberechnung im Browser sichtbar.
+22|When serving the website, the hosting provider may process technically necessary connection data, such as IP address, time and browser identifier, to ensure secure operation and prevent abuse.|Bei der Bereitstellung der Website kann der Hostinganbieter technisch notwendige Verbindungsdaten wie IP-Adresse, Zeitpunkt und Browserkennung verarbeiten, um einen sicheren Betrieb zu gewährleisten und Missbrauch zu verhindern.
+23|Calculator API and technical logs|Rechner-API und technische Protokolle
+24|Render Services, Inc. provides the API infrastructure. When the API is used, the provider may process connection-related technical data such as IP address, time, requested path, HTTP method and response code. The Kalkulátor Bázis API does not create user profiles, and we do not log calculator request bodies at application level.|Render Services, Inc. stellt die API-Infrastruktur bereit. Bei API-Nutzung kann der Anbieter technische Verbindungsdaten wie IP-Adresse, Zeitpunkt, angeforderten Pfad, HTTP-Methode und Antwortcode verarbeiten. Die Kalkulátor-Bázis-API erstellt keine Nutzerprofile; Rechner-Anfragekörper werden auf Anwendungsebene nicht protokolliert.
+25|Retention of Render’s technical logs depends on the plan. According to the provider’s documentation, logs on the current Hobby workspace are available for up to 7 days. Render’s processing terms and safeguards for international transfers are set out in its own privacy documentation.|Die Aufbewahrung technischer Render-Protokolle hängt vom Tarif ab. Laut Anbieterdokumentation sind Protokolle im derzeitigen Hobby-Arbeitsbereich bis zu 7 Tage verfügbar. Auftragsverarbeitungsbedingungen und Garantien für internationale Übermittlungen stehen in den eigenen Datenschutzunterlagen von Render.
+26|Google Analytics and Google Ads measurement tags load only after the relevant consent is given in our cookie settings. On designated pages, AdSense code may load before a decision to display Google’s consent message; ad requests remain paused until Google’s consent state is resolved. In the EEA, the UK and Switzerland, a Google-certified consent interface manages choices relating to AdSense ads.|Mess-Tags von Google Analytics und Google Ads werden erst nach der entsprechenden Einwilligung in unseren Cookie-Einstellungen geladen. Auf vorgesehenen Seiten kann AdSense-Code schon vor der Entscheidung laden, um Googles Einwilligungsnachricht anzuzeigen; Anzeigenanfragen bleiben bis zur Klärung des Google-Einwilligungsstatus pausiert. Im EWR, Vereinigten Königreich und in der Schweiz verwaltet eine Google-zertifizierte Oberfläche die Entscheidungen zu AdSense-Anzeigen.
+27|With analytics consent, technical data for statistical purposes may be recorded during visits:|Bei erteilter Analyse-Einwilligung können beim Besuch technische Daten zu statistischen Zwecken erfasst werden:
+28|device and browser information|Geräte- und Browserdaten
+29|pages viewed and events|aufgerufene Seiten und Ereignisse
+30|approximate location and connection data|ungefähre Standort- und Verbindungsdaten
+31|Purposes of processing|Zwecke der Verarbeitung
+32|providing website functionality|Bereitstellung der Website-Funktionen
+33|operating and assuring the quality of calculators and API-based calculations|Betrieb und Qualitätssicherung der Rechner und API-gestützten Berechnungen
+34|improving the user experience|Verbesserung der Nutzererfahrung
+35|compiling visitor statistics|Erstellung von Besuchsstatistiken
+36|displaying ads and measuring their performance according to visitors’ choices|Anzeige von Werbung und Leistungsmessung entsprechend den Entscheidungen der Besucher
+37|measuring advertising and affiliate conversions according to consent status|Messung von Werbe- und Partner-Conversions entsprechend dem Einwilligungsstatus
+38|answering and investigating questions and bug reports|Beantwortung und Untersuchung von Fragen und Fehlermeldungen
+39|Legal bases for processing|Rechtsgrundlagen der Verarbeitung
+40|Necessary technical operation and security:|Notwendiger technischer Betrieb und Sicherheit:
+41|the controller’s legitimate interest in operating a secure and reliable service (GDPR Article 6(1)(f)).|Das berechtigte Interesse des Verantwortlichen am sicheren und zuverlässigen Betrieb des Dienstes (Art. 6 Abs. 1 Buchst. f DSGVO).
+42|API-based calculations and quality assurance:|API-gestützte Berechnungen und Qualitätssicherung:
+43|the controller’s legitimate interest in providing the calculator service and ensuring accurate, reliable calculations, with data minimisation and without profiling (GDPR Article 6(1)(f)).|Das berechtigte Interesse des Verantwortlichen am Betrieb des Rechnerdienstes sowie an genauen und zuverlässigen Berechnungen, unter Datenminimierung und ohne Profilbildung (Art. 6 Abs. 1 Buchst. f DSGVO).
+44|Analytics, advertising and marketing:|Analyse, Werbung und Marketing:
+45|consent-based analytics and marketing processing relies on the visitor’s consent (GDPR Article 6(1)(a)). Website cookie settings govern our measurement and affiliate tools; Google’s consent interface governs AdSense advertising processing.|Einwilligungspflichtige Analyse- und Marketingverarbeitung beruht auf der Einwilligung des Besuchers (Art. 6 Abs. 1 Buchst. a DSGVO). Über unsere Mess- und Partnerwerkzeuge wird in den Cookie-Einstellungen entschieden; über die Werbeverarbeitung von AdSense in Googles Einwilligungsoberfläche.
+46|Help and bug reports:|Hilfe- und Fehlermeldungen:
+47|consent given before submission (GDPR Article 6(1)(a)).|Die vor dem Absenden erteilte Einwilligung (Art. 6 Abs. 1 Buchst. a DSGVO).
+48|Visitors may object to processing based on legitimate interests using the contact details below. For such processing, the controller regularly reviews the necessity of the purpose, impact on individuals and safeguards applied.|Besucher können der Verarbeitung aufgrund berechtigter Interessen über die unten genannte Kontaktadresse widersprechen. Der Verantwortliche prüft dabei regelmäßig die Erforderlichkeit des Zwecks, Auswirkungen auf Betroffene und angewandte Schutzmaßnahmen.
+49|Cookies|Cookies
+50|The website uses local browser storage for its operation. Our analytics and marketing tags are blocked by default and load only after the relevant consent. AdSense uses a separate Google message: its code may load to open the consent interface while ad requests remain paused until the decision is resolved.|Die Website verwendet lokalen Browserspeicher für ihren Betrieb. Unsere Analyse- und Marketing-Tags sind standardmäßig gesperrt und werden erst nach entsprechender Einwilligung geladen. AdSense verwendet eine separate Google-Nachricht: Der Code kann die Einwilligungsoberfläche laden, während Anzeigenanfragen bis zur Klärung der Entscheidung pausieren.
