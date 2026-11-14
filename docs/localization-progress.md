@@ -4,7 +4,7 @@ Generált lista: `node scripts/localization-inventory.js --write`. A CI ellenőr
 
 Aktív kalkulátor: **89**; részletes fordításon átesett: **89**; hátralévő: **0**.
 
-Kivezetett kalkulátor: **13**; egyéb oldal: **32**.
+Kivezetett kalkulátor: **13**; egyéb oldal: **32**; részletes fordításon átesett egyéb oldal: **1**; hátralévő egyéb oldal: **31**.
 
 A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Nem jelent teljes SEO-fordítást vagy minden lehetséges interakció lefedését. A `partial` részleges fordítást, a `content-review` további tartalmi felmérést és fordítást jelent. A kivezetett oldalakhoz előbb tartalmi döntés szükséges.
 
@@ -21,7 +21,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | elethelyzetek.html | other | content-review |
 | epitoipari.html | other | content-review |
 | felhasznalasi-feltetelek.html | other | content-review |
-| impresszum.html | other | content-review |
+| impresszum.html | other | detail-reviewed |
 | index.html | other | content-review |
 | jogi-nyilatkozat.html | other | content-review |
 | kalkulatorok.html | other | content-review |
