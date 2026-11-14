@@ -17,7 +17,10 @@ async function checkSupportPagesLocale({navigate,evaluate,setViewport,collectMai
       const state=JSON.parse(await evaluate(`JSON.stringify({title:document.title,description:document.querySelector('meta[name="description"]').content,schema:JSON.parse(document.getElementById('kb-structured-data').textContent),width:document.documentElement.scrollWidth})`));
       assert.equal(state.title,api.translate(before.title,language));
       assert.equal(state.description,api.translate(before.description,language));
-      assert.equal(state.schema['@graph'][0].inLanguage,language==='en'?'en-GB':'de-DE');
+      const pageSchema=state.schema['@graph'].find(node=>['CollectionPage','WebPage'].includes(node['@type']));
+      assert.ok(pageSchema,`${path}/${language}: missing page schema`);
+      assert.equal(pageSchema.inLanguage,language==='en'?'en-GB':'de-DE',`${path}: page schema language`);
+      for(const node of state.schema['@graph'].filter(node=>Object.hasOwn(node,'inLanguage')))assert.equal(node.inLanguage,language==='en'?'en-GB':'de-DE',`${path}: ${node['@type']} language`);
       assert.ok(state.width<=width+1,`${path}/${language}: overflow at ${width}px`);
       const query=language==='en'?'concrete':'Beton';
       await evaluate(`(async()=>{const el=document.getElementById('calculatorSearch');el.value=${JSON.stringify(query)};el.dispatchEvent(new Event('input',{bubbles:true}));await new Promise(requestAnimationFrame);await new Promise(requestAnimationFrame)})()`);
@@ -30,6 +33,7 @@ async function checkSupportPagesLocale({navigate,evaluate,setViewport,collectMai
     }
     await choose('hu');assert.deepEqual(await copy(),original,path+': HU restoration');
     assert.equal(await evaluate('document.title'),before.title);
+    assert.deepEqual(JSON.parse(await evaluate(`document.getElementById('kb-structured-data').textContent`)),JSON.parse(before.schema),path+': HU schema restoration');
   }
   console.log('Support pages: 7 category/catalogue pages, EN/DE full copy, localized search, metadata, HU restoration and 390/1440px widths passed.');
 }
