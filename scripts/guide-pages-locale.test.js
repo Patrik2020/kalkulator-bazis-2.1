@@ -6,6 +6,7 @@ const decode=s=>s.replace(/&amp;/gu,'&').replace(/&quot;/gu,'"').replace(/&#39;/
 const known=s=>!requiresTranslation(s)||api.translate(s,'en')!==null;
 test('eight guides translate source copy, accessible labels, metadata and all existing schema blocks',()=>{
  assert.equal(data.pages.length,8);
+ for(const lang of ['en','de'])assert.ok(api.translate('Hirdetés',lang));
  for(const page of data.pages){
   assert.ok(api.isSupportPage('/'+page));
   const html=fs.readFileSync(require.resolve('../'+page),'utf8');

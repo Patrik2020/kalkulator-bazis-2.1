@@ -4,10 +4,12 @@
   const data = factory();
   if (typeof module === "object" && module.exports) module.exports = data;
   if (!root?.document) return;
-  const previous = root.KB_SUPPORT_PAGE_LOCALE || { pages: [], dictionary: {} };
+  const previous = root.KB_SUPPORT_PAGE_LOCALE || { pages: [], dictionary: {
+  "Hirdetés": ["Advertisement", "Anzeige"],} };
   root.KB_SUPPORT_PAGE_LOCALE = {
     pages: [...new Set([...previous.pages, ...data.pages])],
-    dictionary: { ...previous.dictionary, ...data.dictionary }
+    dictionary: {
+  "Hirdetés": ["Advertisement", "Anzeige"], ...previous.dictionary, ...data.dictionary }
   };
   root.document.dispatchEvent(new root.CustomEvent("kb:locale-data-ready"));
 })(typeof window === "undefined" ? null : window, function () {
@@ -15,6 +17,7 @@
   return {
     pages: ["landing-pages/elethelyzetek/autofenntartas.html", "landing-pages/elethelyzetek/befektetes-kezdoknek.html", "landing-pages/elethelyzetek/csaladi-koltsegvetes.html", "landing-pages/elethelyzetek/felujitas-tervezese.html", "landing-pages/elethelyzetek/fizetes-munkaber.html", "landing-pages/elethelyzetek/lakasvasarlas.html", "landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html", "landing-pages/wise/wise.html"],
     dictionary: {
+  "Hirdetés": ["Advertisement", "Anzeige"],
   "Főoldal": [
     "Home",
     "Startseite"
