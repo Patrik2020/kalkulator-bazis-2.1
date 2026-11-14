@@ -219,3 +219,152 @@
 218|Risk decision matrix|Risikomatrix für Entscheidungen
 219|The greater the consequences, the more checking is needed|Je größer die Folgen, desto mehr Prüfung ist nötig
 220|Low risk|Geringes Risiko
+221|Everyday percentages, unit conversions or estimates: checking inputs and formulas is usually sufficient.|Alltägliche Prozentrechnung, Einheiten oder Schätzungen: Meist reicht eine Prüfung von Eingaben und Formel.
+222|Finance / tax|Finanzen / Steuern
+223|For larger sums or legal consequences, use current official sources and professional advice where needed.|Bei größeren Beträgen oder rechtlichen Folgen sind aktuelle amtliche Quellen und bei Bedarf Fachleute nötig.
+224|A formula-based estimate is not a diagnosis. Symptoms, illness, medication or special circumstances may need individual professional assessment.|Eine Formelschätzung ist keine Diagnose. Beschwerden, Erkrankungen, Medikamente oder besondere Lebenssituationen können eine eigene fachliche Beurteilung erfordern.
+225|Technical / construction|Technik / Bauausführung
+226|Quantity calculations do not replace structural, fire-safety, electrical or other specialist design.|Mengenberechnungen ersetzen keine Tragwerks-, Brandschutz-, Elektro- oder andere Fachplanung.
+227|Legal Notice and Disclaimer · Kalkulátor Bázis|Rechtliche Hinweise und Haftung · Kalkulátor Bázis
+228|← Kalkulátor Bázis|← Kalkulátor Bázis
+229|Kalkulátor Bázis plugin – privacy notice|Kalkulátor-Bázis-Plugin – Datenschutzhinweise
+230|This notice specifically explains data processing by the MCP-based Kalkulátor Bázis plugin compatible with ChatGPT and Codex. The website’s general privacy notice is available separately.|Diese Hinweise erläutern speziell die Datenverarbeitung durch das MCP-basierte, mit ChatGPT und Codex kompatible Plugin von Kalkulátor Bázis. Die allgemeinen Datenschutzhinweise der Website stehen auf einer separaten Seite.
+231|Controller|Verantwortlicher
+232|How the plugin works|Funktionsweise des Plugins
+233|The plugin’s public MCP endpoint is|Der öffentliche MCP-Endpunkt des Plugins ist
+234|. When a user uses a Kalkulátor Bázis calculation tool in ChatGPT or another supported OpenAI interface, OpenAI sends the required tool input to this MCP endpoint. The MCP Worker forwards the calculation request to the production Kalkulátor Bázis Salary API.|. Nutzt ein Anwender in ChatGPT oder einer anderen unterstützten OpenAI-Oberfläche ein Kalkulátor-Bázis-Werkzeug, übermittelt OpenAI die für die Berechnung nötige Werkzeugeingabe an diesen MCP-Endpunkt. Der MCP Worker leitet die Anfrage an die produktive Salary API von Kalkulátor Bázis weiter.
+235|What data can the plugin receive?|Welche Daten kann das Plugin erhalten?
+236|The current 2026 salary tools accept only calculation-related parameters, for example:|Die aktuellen Gehaltswerkzeuge für 2026 nehmen nur berechnungsrelevante Parameter entgegen, zum Beispiel:
+237|gross salary or desired net amount;|Bruttogehalt oder gewünschter Nettobetrag;
+238|the supported tax year;|Das unterstützte Steuerjahr;
+239|allowance switches explicitly provided by the user;|Vom Nutzer ausdrücklich angegebene Schalter für Vergünstigungen;
+240|counts and claim proportions needed for family tax allowances.|Für Familienvergünstigungen nötige Anzahlen und Anteile der Inanspruchnahme.
+241|The plugin does not request names, email or postal addresses, telephone numbers, bank details, passwords, identity documents, health records or other identifiers unnecessary for the calculation. Please do not provide such data.|Das Plugin fragt nicht nach Namen, E-Mail- oder Postadressen, Telefonnummern, Bankdaten, Passwörtern, Ausweisen, Gesundheitsunterlagen oder anderen für die Berechnung unnötigen Identifikationsdaten. Bitte gib solche Daten nicht an.
+242|How do we use tool inputs?|Wofür verwenden wir Werkzeugeingaben?
+243|Transmitted values are used solely for the requested calculation, secure service operation and troubleshooting. Plugin inputs are not used for advertising, profiling or linking users to each other.|Übermittelte Werte werden ausschließlich für die angeforderte Berechnung, den sicheren Betrieb und die Fehlerbehebung verwendet. Plugin-Eingaben dienen nicht der Werbung, Profilbildung oder Verknüpfung von Nutzern.
+244|Storage and technical logs|Speicherung und technische Protokolle
+245|The application code of the Kalkulátor Bázis MCP Worker and Salary API does not create user profiles and deliberately does not persist calculator-tool request bodies. Service infrastructure may keep technical logs such as time, IP address, requested path, HTTP method and response code for security, debugging and abuse prevention.|Der Anwendungscode des Kalkulátor-Bázis-MCP-Workers und der Salary API erstellt keine Nutzerprofile und speichert bewusst keine Anfragekörper der Rechnerwerkzeuge dauerhaft. Die Infrastruktur kann für Sicherheit, Fehlersuche und Missbrauchsprävention technische Protokolle mit Zeitpunkt, IP-Adresse, Pfad, HTTP-Methode und Antwortcode führen.
+246|Service providers involved|Beteiligte Dienstleister
+247|Cloudflare:|Cloudflare:
+248|the MCP Worker and associated network delivery.|Der MCP Worker und die zugehörige Netzwerkauslieferung.
+249|Render:|Render:
+250|hosting the Kalkulátor Bázis Salary API infrastructure.|Bereitstellung der Infrastruktur der Kalkulátor-Bázis-Salary-API.
+251|OpenAI:|OpenAI:
+252|the ChatGPT/Codex interface, conversation handling and forwarding tool calls to the MCP server.|Die ChatGPT-/Codex-Oberfläche, die Unterhaltung und die Weiterleitung von Werkzeugaufrufen an den MCP-Server.
+253|OpenAI may process data under its own privacy and service terms when its services are used. Kalkulátor Bázis does not control the user’s ChatGPT conversation history, retention settings or OpenAI’s processing for its own services.|OpenAI kann bei Nutzung seiner Dienste Daten nach eigenen Datenschutz- und Nutzungsbedingungen verarbeiten. Kalkulátor Bázis kontrolliert weder den ChatGPT-Unterhaltungsverlauf und dessen Aufbewahrungseinstellungen noch die Datenverarbeitung von OpenAI für eigene Dienste.
+254|Processing purposes and legal basis|Verarbeitungszwecke und Rechtsgrundlage
+255|On the Kalkulátor Bázis side, technically necessary processing serves the requested calculation, secure operation, debugging and abuse prevention. Such processing relies on the controller’s legitimate interests (GDPR Article 6(1)(f)). Plugin use does not require registration with Kalkulátor Bázis.|Bei Kalkulátor Bázis dient die technisch notwendige Verarbeitung der angeforderten Berechnung, dem sicheren Betrieb, der Fehlersuche und Missbrauchsprävention. Sie beruht auf berechtigten Interessen des Verantwortlichen (Art. 6 Abs. 1 Buchst. f DSGVO). Eine Registrierung bei Kalkulátor Bázis ist für das Plugin nicht erforderlich.
+256|Eligibility for allowances|Anspruch auf Vergünstigungen
+257|The plugin does not automatically determine whether the user legally qualifies for a tax or family allowance. Calculations use only parameters explicitly provided or confirmed by the user.|Das Plugin stellt nicht automatisch fest, ob der Nutzer rechtlich Anspruch auf Steuer- oder Familienvergünstigungen hat. Es berechnet ausschließlich anhand der ausdrücklich angegebenen oder bestätigten Parameter.
+258|Data-subject rights and contact|Betroffenenrechte und Kontakt
+259|For privacy questions or access, erasure, restriction or objection requests, write to|Bei Datenschutzfragen sowie Auskunfts-, Löschungs-, Einschränkungs- oder Widerspruchsanfragen schreibe an
+260|. Requests about conversation data stored by OpenAI’s own services must be handled through OpenAI’s privacy interfaces.|. Anfragen zu Unterhaltungsdaten in OpenAI-Diensten sind über die Datenschutzoberflächen von OpenAI abzuwickeln.
+261|Further information|Weitere Informationen
+262|General privacy notice:|Allgemeine Datenschutzhinweise:
+263|kalkulatorbazis.hu/adatvedelem|kalkulatorbazis.hu/adatvedelem
+264|Contact:|Kontakt:
+265|kalkulatorbazis.hu/kapcsolat|kalkulatorbazis.hu/kapcsolat
+266|Plugin terms of use:|Plugin-Nutzungsbedingungen:
+267|kalkulatorbazis.hu/plugin-felhasznalasi-feltetelek|kalkulatorbazis.hu/plugin-felhasznalasi-feltetelek
+268|Last updated: 6 September 2026.|Zuletzt aktualisiert: 6. September 2026.
+269|Plugin Privacy Notice · Kalkulátor Bázis|Plugin-Datenschutzhinweise · Kalkulátor Bázis
+270|Privacy notice for the Kalkulátor Bázis ChatGPT and Codex plugin.|Datenschutzhinweise für das ChatGPT- und Codex-Plugin von Kalkulátor Bázis.
+271|Kalkulátor Bázis plugin – terms of use|Kalkulátor-Bázis-Plugin – Nutzungsbedingungen
+272|These terms apply to use of the MCP-based Kalkulátor Bázis plugin compatible with ChatGPT and Codex.|Diese Bedingungen gelten für die Nutzung des MCP-basierten, mit ChatGPT und Codex kompatiblen Plugins von Kalkulátor Bázis.
+273|The plugin currently provides indicative calculations for Hungarian monthly salary in 2026: retrieving the supported rules, estimating net pay from gross salary and estimating gross salary needed for a desired net amount.|Das Plugin bietet derzeit unverbindliche Berechnungen für ungarische Monatsgehälter im Jahr 2026: Abruf der unterstützten Regeln, Nettoschätzung aus Bruttogehalt und Schätzung des für einen gewünschten Nettobetrag nötigen Bruttogehalts.
+274|For information only|Unverbindliche Orientierung
+275|Plugin results are indicative estimates. They are not official payroll calculations, tax or legal advice, official interpretations or employer certificates. Before important financial or tax decisions, check current official rules or seek suitable professional help.|Die Plugin-Ergebnisse sind unverbindliche Schätzungen. Sie sind keine offizielle Lohnabrechnung, Steuer- oder Rechtsberatung, behördliche Stellungnahme oder Arbeitgeberbescheinigung. Prüfe vor wichtigen Finanz- oder Steuerentscheidungen die aktuellen amtlichen Regeln oder hole geeignete fachliche Hilfe ein.
+276|Specifying eligibility|Angabe von Anspruchsvoraussetzungen
+277|The plugin does not automatically establish entitlement to an allowance. It takes allowances into account only when explicitly provided or confirmed by the user. Verifying actual entitlement is the user’s responsibility.|Das Plugin stellt Ansprüche auf Vergünstigungen nicht automatisch fest. Es berücksichtigt sie nur bei ausdrücklicher Angabe oder Bestätigung durch den Nutzer. Die Prüfung des tatsächlichen Anspruchs liegt in der Verantwortung des Nutzers.
+278|Supported scope|Unterstützter Anwendungsbereich
+279|The current version supports only the plugin’s declared 2026 Hungarian salary model. It must not be treated as providing official results for other tax years, countries, retired employees, CSED/GYED benefits, individual payroll items or situations unsupported by the tool metadata.|Die aktuelle Version unterstützt ausschließlich das vom Plugin ausgewiesene ungarische Gehaltsmodell für 2026. Sie darf nicht als Quelle offizieller Ergebnisse für andere Steuerjahre, Länder, Beschäftigte im Ruhestand, CSED-/GYED-Leistungen, individuelle Abrechnungsposten oder laut Werkzeug-Metadaten nicht unterstützte Situationen verwendet werden.
+280|Automated use|Automatisierte Nutzung
+281|Automated tool calls through MCP/plugin integrations published and approved by Kalkulátor Bázis are permitted. Overloading the service, bypassing rate limits, abusive scraping, evading security restrictions or deliberately disrupting the service is prohibited.|Automatisierte Werkzeugaufrufe über von Kalkulátor Bázis veröffentlichte und genehmigte MCP-/Plugin-Integrationen sind zulässig. Verboten sind Überlastung, Umgehen von Ratenbegrenzungen, missbräuchliches Scraping, Aushebeln von Sicherheitsbeschränkungen und absichtliche Betriebsstörungen.
+282|The plugin’s data processing is explained in the separate|Die Datenverarbeitung des Plugins erläutern die separaten
+283|plugin privacy notice|Plugin-Datenschutzhinweise
+284|. Using the plugin does not require registration with Kalkulátor Bázis.|. Eine Registrierung bei Kalkulátor Bázis ist für die Nutzung des Plugins nicht erforderlich.
+285|Limitation of liability|Haftungsbeschränkung
+286|Kalkulátor Bázis aims for accurate calculation rules and service operation, but does not guarantee coverage of every individual circumstance, legal interpretation, employer practice or later change. Users rely on results at their own risk.|Kalkulátor Bázis bemüht sich um genaue Berechnungsregeln und einen zuverlässigen Dienst, garantiert jedoch nicht, dass Ergebnisse jeden Einzelfall, jede Rechtsauslegung, Arbeitgeberpraxis oder spätere Änderung abdecken. Die Nutzung der Ergebnisse erfolgt auf eigene Verantwortung.
+287|Intellectual property|Geistiges Eigentum
+288|The Kalkulátor Bázis name, original content, calculation implementation and related material may be protected by copyright and other applicable rights. Plugin use does not grant permission to misleadingly copy the service or brand or to falsely present it as endorsed by OpenAI.|Der Name Kalkulátor Bázis, eigene Inhalte, Berechnungsimplementierungen und zugehörige Materialien können urheberrechtlich und anderweitig geschützt sein. Die Plugin-Nutzung berechtigt nicht zur irreführenden Nachahmung von Dienst oder Marke oder zur unberechtigten Darstellung als von OpenAI unterstützt.
+289|Changes and availability|Änderungen und Verfügbarkeit
+290|Plugin features, supported rules and these terms may change as the service develops. The published document is updated for significant changes.|Funktionen, unterstützte Regeln und diese Bedingungen können sich mit der Weiterentwicklung des Dienstes ändern. Bei wesentlichen Änderungen wird das veröffentlichte Dokument aktualisiert.
+291|Contact page:|Kontaktseite:
+292|Plugin Terms of Use · Kalkulátor Bázis|Plugin-Nutzungsbedingungen · Kalkulátor Bázis
+293|Terms of use for the Kalkulátor Bázis ChatGPT and Codex plugin.|Nutzungsbedingungen für das ChatGPT- und Codex-Plugin von Kalkulátor Bázis.
+294|Operation, sources and limitations|Betrieb, Quellen und Grenzen
+295|Kalkulátor Bázis aims to provide free, understandable and transparent online calculators for financial, health, car, construction and everyday calculations.|Kalkulátor Bázis möchte kostenlose, verständliche und transparente Online-Rechner für Finanz-, Gesundheits-, Auto-, Bau- und Alltagsberechnungen bereitstellen.
+296|We want visitors not only to receive a result, but also to understand how it was calculated, what data it uses and what limitations may apply.|Besucher sollen nicht nur ein Ergebnis erhalten, sondern auch verstehen, wie es berechnet wurde, auf welchen Daten es beruht und welche Grenzen gelten können.
+297|Secure connection|Sichere Verbindung
+298|The public website uses HTTPS, so browser-to-site traffic travels through an encrypted channel. This protects the connection but does not itself verify the professional accuracy of calculations.|Die öffentliche Website verwendet HTTPS; der Datenverkehr zwischen Browser und Website läuft daher verschlüsselt. Dies schützt die Verbindung, bestätigt aber nicht die fachliche Genauigkeit einer Berechnung.
+299|An external security or trust badge may indicate technical status at a moment in time. It does not mean its provider has certified calculator formulas, professional content or results.|Ein externes Sicherheits- oder Vertrauenssiegel kann den momentanen technischen Zustand anzeigen. Es bedeutet nicht, dass der Anbieter Formeln, fachliche Inhalte oder Rechenergebnisse zertifiziert hat.
+300|How calculators work|Funktionsweise der Rechner
+301|Calculators use formulas, calculation rules and publicly available data. Where relevant, a page may explain the formula, calculation logic, interpretation and limitations.|Die Rechner verwenden Formeln, Berechnungsregeln und öffentlich verfügbare Daten. Wo es zum Thema passt, erläutert die Seite Formel, Berechnungslogik, Ergebnisdeutung und Methodengrenzen.
+302|Results use the data supplied by the user. Incorrect, incomplete or wrongly unit-labelled values can lead to different results. Calculators tied to legislation, tax rates or other changing data require regular review.|Ergebnisse beruhen auf den Nutzereingaben. Falsche, unvollständige oder in ungeeigneten Einheiten angegebene Werte können zu abweichenden Ergebnissen führen. Rechner zu Rechtsvorschriften, Steuersätzen oder anderen veränderlichen Daten müssen regelmäßig geprüft werden.
+303|We also explain our trust and quality-assurance principles on a separate page:|Unsere Vertrauens- und Qualitätssicherungsgrundsätze erläutern wir auch auf einer eigenen Seite:
+304|why trust Kalkulátor Bázis?|Warum Kalkulátor Bázis vertrauen?
+305|Updates and checks|Aktualisierungen und Prüfungen
+306|Calculators and explanatory content are continuously developed. We work to correct technical faults, inaccurate data, broken links and ambiguous wording.|Rechner und Erläuterungen werden laufend weiterentwickelt. Wir bemühen uns, technische Fehler, ungenaue Daten, defekte Links und missverständliche Formulierungen zu korrigieren.
+307|For rules that change periodically, pages may show the year used, the underlying rule or source, and a review date after an actual content check. We do not automatically apply the same update date to every page.|Bei regelmäßig veränderlichen Regeln können das verwendete Jahr, die zugrunde liegende Regel oder Quelle und nach einer tatsächlichen Inhaltsprüfung deren Datum erscheinen. Wir setzen nicht automatisch auf allen Seiten dasselbe Aktualisierungsdatum.
+308|Privacy and cookie handling|Datenschutz und Cookie-Verwaltung
+309|Calculators generally require no registration. Separate notices explain data processing relating to operation, measurement and advertising.|Die Rechner sind grundsätzlich ohne Registrierung nutzbar. Separate Hinweise erläutern die Datenverarbeitung für Betrieb, Messung und Werbung.
+310|Cookie notice|Cookie-Hinweise
+311|Professional limitations|Fachliche Grenzen
+312|Financial results are indicative estimates. They are not personalised financial or investment advice, loan offers, tax advice or guaranteed financial outcomes.|Finanzergebnisse sind unverbindliche Schätzungen. Sie sind keine individuelle Finanz- oder Anlageberatung, Kreditangebote, Steuerberatung oder garantierten finanziellen Ergebnisse.
+313|Before an actual decision, checks by banking, accounting, tax or other appropriate professionals may be needed.|Vor einer tatsächlichen Entscheidung kann eine Prüfung durch Bank-, Buchhaltungs-, Steuer- oder andere geeignete Fachleute erforderlich sein.
+314|Health calculators|Gesundheitsrechner
+315|Health calculators provide general information. Results are not diagnoses, do not replace medical examinations or individual treatment recommendations, and cannot assess emergencies.|Gesundheitsrechner liefern allgemeine Informationen. Ergebnisse sind keine Diagnosen, ersetzen weder ärztliche Untersuchungen noch individuelle Behandlungsempfehlungen und eignen sich nicht zur Beurteilung von Notfällen.
+316|For symptoms or uncertainty, seek help from an appropriate healthcare professional.|Suche bei Beschwerden oder Unsicherheit Hilfe bei geeigneten medizinischen Fachleuten.
+317|Independence and affiliate content|Unabhängigkeit und Partnerinhalte
+318|The website may display partner or affiliate links. If a visitor registers or uses a service through one, Kalkulátor Bázis may receive a commission. This generally does not increase the visitor’s price.|Die Website kann Partner- oder Affiliate-Links anzeigen. Registriert sich ein Besucher darüber oder nutzt einen Dienst, kann Kalkulátor Bázis eine Provision erhalten. Der Preis erhöht sich dadurch normalerweise nicht.
+319|We clearly label affiliate recommendations. An affiliate relationship alone does not mean a service is suitable for every visitor’s situation or goals.|Partnerempfehlungen werden eindeutig gekennzeichnet. Eine Partnerschaft allein bedeutet nicht, dass ein Dienst für die Situation oder Ziele jedes Besuchers geeignet ist.
+320|Technical quality|Technische Qualität
+321|Development aims for mobile-friendly operation, fast loading, standards-compliant HTML and CSS, improved accessibility, understandable forms, visible feedback and working internal links.|Bei der Entwicklung streben wir mobile Nutzbarkeit, schnelle Ladezeiten, standardkonformes HTML und CSS, bessere Barrierefreiheit, verständliche Formulare, sichtbare Rückmeldungen und funktionierende interne Links an.
+322|We maintain clear page structure, unique metadata and correct canonical links for search engines. External checking tools show a snapshot and do not constitute comprehensive professional or legal certification.|Für Suchmaschinen pflegen wir eine klare Seitenstruktur, individuelle Metadaten und korrekte Canonical-Links. Externe Prüfwerkzeuge zeigen eine Momentaufnahme und sind keine umfassende fachliche oder rechtliche Zertifizierung.
+323|Feedback|Rückmeldung
+324|Bug reports, comments and complaints|Fehlermeldungen, Hinweise und Beschwerden
+325|Despite careful checks, technical faults, inaccurate data and ambiguous wording may occur.|Trotz sorgfältiger Prüfung können technische Fehler, ungenaue Daten oder missverständliche Formulierungen vorkommen.
+326|Write to us if a calculator fails, a result appears wrong, data are outdated, wording is unclear, a link is broken, or you have comments or complaints.|Schreibe uns, wenn ein Rechner nicht funktioniert, ein Ergebnis falsch erscheint, Daten veraltet, Texte unklar oder Links defekt sind oder du Hinweise oder Beschwerden hast.
+327|It helps if you provide|Hilfreich sind
+328|the calculator’s name;|Der Name des betroffenen Rechners;
+329|the page URL;|Die Seiten-URL;
+330|the inputs and result;|Die Eingaben und das Ergebnis;
+331|a short description of the suspected problem;|Eine kurze Beschreibung des vermuteten Fehlers;
+332|a screenshot if possible.|Wenn möglich ein Bildschirmfoto.
+333|Send email|E-Mail senden
+334|Page last updated:|Seite zuletzt aktualisiert:
+335|23 June 2026.|23. Juni 2026.
+336|What should you check about a result?|Was solltest du beim Ergebnis prüfen?
+337|A calculator result is easier to interpret when inputs, assumptions and limitations are clear.|Ein Rechenergebnis lässt sich gut einordnen, wenn Eingaben, Annahmen und mögliche Grenzen klar sind.
+338|Check the values and units entered.|Prüfe die eingegebenen Werte und Einheiten.
+339|For rule- or data-dependent calculations, check the year and cited source.|Prüfe bei regel- oder datenabhängigen Berechnungen das Jahr und die angegebene Quelle.
+340|Allow for rounding or estimation in the result.|Beachte, ob das Ergebnis gerundet oder geschätzt ist.
+341|For individual circumstances, check what the calculator does not account for.|Prüfe bei besonderen Lebenssituationen, welche Umstände der Rechner nicht berücksichtigt.
+342|The relevant calculator page provides its formula, sources and limitations.|Die konkrete Formel, Quellen und Grenzen stehen auf der jeweiligen Rechnerseite.
+343|Quality control|Qualitätskontrolle
+344|Different pages need different quality checks|Nicht jede Seite benötigt dieselbe Qualitätsprüfung
+345|Basic mathematics|Einfache Mathematik
+346|Accuracy, units, rounding, invalid inputs and an understandable example.|Genauigkeit, Einheiten, Rundung, fehlerhafte Eingaben und ein verständliches Beispiel.
+347|Finance / tax|Finanzen / Steuern
+348|Sources, year, rule changes, assumptions and liability limits.|Quellen, Jahr, Regeländerungen, Annahmen und Haftungsgrenzen.
+349|The method’s original purpose, population, uncertainty and a clear non-diagnostic framework.|Ursprünglicher Methodenzweck, Zielpopulation, Unsicherheit und eine klare Abgrenzung zur Diagnose.
+350|Construction / cars|Bau / Auto
+351|Manufacturer or vehicle differences, allowances, compatibility and construction safety limits.|Hersteller- oder fahrzeugspezifische Abweichungen, Zuschläge, Kompatibilität und Sicherheitsgrenzen der Ausführung.
+352|Converter|Umrechner
+353|Unit definitions, linear or offset scales, precision and conceptual misunderstandings.|Einheitendefinitionen, lineare oder verschobene Skalen, Genauigkeit und begriffliche Missverständnisse.
+354|Landing page / guide|Themenseite / Leitfaden
+355|Do not repeat calculators; arrange them in a practical decision sequence.|Rechner nicht wiederholen, sondern in eine echte Entscheidungsreihenfolge bringen.
+356|Transparency and Quality · Kalkulátor Bázis|Transparenz und Qualität · Kalkulátor Bázis
+357|Learn how Kalkulátor Bázis calculators are built and how we handle updates, security, bug reports and affiliate content.|Erfahre, wie die Rechner von Kalkulátor Bázis entstehen und wie wir Aktualisierungen, Sicherheit, Fehlermeldungen und Partnerinhalte handhaben.
+358|Trust and methodology|Vertrauen und Methodik
+359|Why trust Kalkulátor Bázis?|Warum Kalkulátor Bázis vertrauen?
+360|Kalkulátor Bázis aims to make calculations understandable rather than a black box. Pages explain inputs, formula logic, rounding and situations where results need caution, as well as displaying results.|Kalkulátor Bázis möchte Berechnungen nachvollziehbar statt undurchsichtig machen. Die Seiten zeigen nicht nur Ergebnisse, sondern erklären Eingaben, Formellogik, Rundungen und Situationen, in denen Ergebnisse vorsichtig zu verwenden sind.
+361|Trust here means traceable operation, not a badge or marketing promise: transparent methods, references aiming at primary sources, bug reporting, privacy information and ongoing improvements.|Vertrauen bedeutet hier nachvollziehbaren Betrieb statt Siegel oder Werbeversprechen: transparente Methodik, möglichst primäre Quellen, Fehlermeldungen, Datenschutzhinweise und laufende Verbesserungen.
+362|How are calculators created?|Wie entstehen die Rechner?
+363|For every new or revised calculator, we first identify the visitor’s decision. Monthly affordability may be central for a loan page, material waste for construction, or method limitations for health topics.|Bei jedem neuen oder überarbeiteten Rechner klären wir zuerst die Entscheidungssituation. Bei Krediten kann die monatliche Tragfähigkeit entscheidend sein, beim Bauen der Materialverlust und bei Gesundheitsthemen die Methodengrenze.
+364|Development separates calculation logic from explanatory content. A working formula is not replaced merely because it could be written differently. The aim is reliable, understandable and comfortable mobile use.|Die Entwicklung trennt Berechnungslogik von erklärenden Inhalten. Eine funktionierende Formel wird nicht nur deshalb ersetzt, weil man sie anders schreiben könnte. Ziel ist eine zuverlässige, verständliche und auch mobil bequeme Nutzung.
+365|How do we check them?|Wie prüfen wir sie?
+366|After changes, we perform static audits, internal-link and structured-data checks, and browser functionality tests. We particularly monitor canonical URLs, sitemaps, mobile usability, console errors and calculation results.|Nach Änderungen erfolgen statische Audits, Prüfungen interner Links und strukturierter Daten sowie Browser-Funktionstests. Besonders beachten wir Canonical-URLs, Sitemap, mobile Nutzbarkeit, Konsolenfehler und Rechenergebnisse.
+367|For changing laws, exchange rates, tax rates, health thresholds or manufacturer data, dates and sources are particularly important. We do not automatically give every page the same review date, as that would create false confidence.|Bei veränderlichen Gesetzen, Wechselkursen, Steuersätzen, Gesundheitsgrenzen oder Herstellerdaten sind Datum und Quelle besonders wichtig. Wir vergeben nicht automatisch auf allen Seiten dasselbe Prüfdatum, da dies falsches Vertrauen schaffen würde.
+368|Sources and methodology|Quellen und Methodik
+369|A source cannot simply be “the internet” or “Google”. For finance, we seek official institutional information such as NAV, MNB or KSH data. For health, WHO, NIH, Mayo Clinic or Hungarian professional and official sources may be relevant. For construction, manufacturer data sheets and application losses often matter more than a general formula.|Eine Quelle kann nicht einfach „Internet“ oder „Google“ heißen. Bei Finanzthemen suchen wir amtliche Angaben wie NAV-, MNB- oder KSH-Daten. Bei Gesundheit können WHO, NIH, Mayo Clinic oder ungarische Fach- und Behördenquellen relevant sein. Beim Bauen sind Herstellerdatenblatt und Verarbeitungsverluste oft wichtiger als eine allgemeine Formel.
