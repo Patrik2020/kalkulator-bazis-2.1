@@ -1,7 +1,7 @@
 /* global module */
 (function (root, factory) {
   "use strict";
-  const api = factory();
+  const api = factory(root);
   if (typeof module === "object" && module.exports) module.exports = api;
   if (!root?.document || new URLSearchParams(root.location.search).has("__kb_static_export")) return;
   const document = root.document;
@@ -55,7 +55,7 @@
           translated ||= next.source !== next.rendered;
         }
         const records = attributeRecords.get(element) || {};
-        for (const attribute of ["aria-label", "title", "placeholder"]) {
+        for (const attribute of ["aria-label", "title", "placeholder", "alt"]) {
           if (!element.hasAttribute(attribute) || element.hasAttribute("data-i18n-" + (attribute === "aria-label" ? "aria" : attribute))) continue;
           const value = element.getAttribute(attribute);
           const next = resolve(value, records[attribute]);
@@ -68,7 +68,7 @@
       }
     } finally {
       observer?.observe(document.body, { subtree: true, childList: true, characterData: true,
-        attributes: true, attributeFilter: ["aria-label", "title", "placeholder"] });
+        attributes: true, attributeFilter: ["aria-label", "title", "placeholder", "alt"] });
     }
   }
   function ready() {
@@ -86,9 +86,10 @@
     language = api.supported.includes(event.detail?.language) ? event.detail.language : "hu";
     if (document.body) render();
   });
+  document.addEventListener("kb:locale-data-ready", () => { if (document.body) render(); });
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ready, { once: true });
   else ready();
-})(typeof window === "undefined" ? null : window, function () {
+})(typeof window === "undefined" ? null : window, function (host) {
   "use strict";
   const dictionary = {
     "Morzsamenü": ["Breadcrumb navigation", "Brotkrümelnavigation"],
@@ -611,10 +612,10 @@
     ]
   };
   const normalize = (text) => text.replace(/\s+/g, " ").trim();
-  function translate(text, language) {
+  function translate(text, language, extraDictionary = host?.KB_SUPPORT_PAGE_LOCALE?.dictionary || {}) {
     if (language !== "en" && language !== "de") return null;
     const match = /^(\s*)([\s\S]*?)(\s*)$/.exec(text);
-    const pair = dictionary[normalize(match[2])];
+    const pair = dictionary[normalize(match[2])] || extraDictionary[normalize(match[2])];
     return pair ? match[1] + pair[language === "en" ? 0 : 1] + match[3] : null;
   }
   return { dictionary, translate, supported: ["hu", "en", "de"] };
