@@ -92,7 +92,7 @@
     function apply(lang, persist) {
       rendering = true;
       const next = api.supported.includes(lang) ? lang : "hu";
-      if (persist && !global.KB_SITE_LANGUAGE?.set(next)) { rendering = false; return; }
+      if (persist && global.KB_SITE_LANGUAGE && !global.KB_SITE_LANGUAGE.set(next)) { rendering = false; return; }
       const reviewed = api.isSupportPage(global.location.pathname);
       restore();
       select.value = next;
@@ -175,7 +175,9 @@
   else ready();
 })(typeof window !== "undefined" ? window : null, function (host) {
   "use strict";
-  const supportData = () => typeof module === "object" && module.exports ? require("./locales/support-categories") : host?.KB_SUPPORT_PAGE_LOCALE;
+  const nodeData = typeof module === "object" && module.exports ? [require("./locales/support-categories"), require("./locales/support-information")] : null;
+  const nodeSupport = nodeData ? { pages: nodeData.flatMap(data => data.pages), dictionary: Object.assign({}, ...nodeData.map(data => data.dictionary)) } : null;
+  const supportData = () => nodeSupport || host?.KB_SUPPORT_PAGE_LOCALE;
   const isSupportPage = pathname => {
     const route = String(pathname).replace(/\.html$/u, "").replace(/\/+$/u, "");
     return (supportData()?.pages || []).some(page => route.endsWith("/" + page.replace(/\.html$/u, "")));
