@@ -92,4 +92,6 @@ const detailPages = [
   { path: "kalkulatorok/co2-kibocsatas-kalkulator.html", module: "js/autos/co2-locale.js", key: "co2-kibocsatas-kalkulator" }
 ];
 
-module.exports = { detailPages };
+const supportPages = require("../js/locales/support-categories").pages;
+
+module.exports = { detailPages, supportPages };
