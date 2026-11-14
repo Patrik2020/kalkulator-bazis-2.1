@@ -14,6 +14,8 @@
  const dictionary={
   "Facebook": ["Facebook", "Facebook"],
   "f": ["f", "f"],
+  "Kalkulátor Bázis × ChatGPT": ["Kalkulátor Bázis × ChatGPT", "Kalkulátor Bázis × ChatGPT"],
+  "Előnézeti számítás": ["Preview calculation", "Vorschauberechnung"],
   "Főoldal": [
     "Home",
     "Startseite"
