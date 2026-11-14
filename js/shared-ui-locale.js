@@ -16,7 +16,7 @@
   let language = root.KB_SITE_LANGUAGE?.get() || "hu";
   let observer;
   const scopes = () => common + (document.getElementById("langPop")
-    ? ',.kb-help-links,.kb-help-honeypot'
+    ? ',.kb-help-links,.kb-help-honeypot' + (root.KB_FINAL_PAGE_LOCALE ? ',main' : '')
     : ',.kb-help-launcher,#kbHelpPanel,.theme-toggle-floating');
   const resolve = (value, previous) => {
     const source = previous?.rendered === value ? previous.source : value;

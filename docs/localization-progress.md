@@ -6,7 +6,7 @@ Aktív kalkulátor: **89**; részletes fordításon átesett: **89**; hátralév
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **32**.
 
-Egyéb oldalak részletes fordítása: **28/32**; hátralévő: **4**.
+Egyéb oldalak részletes fordítása: **32/32**; hátralévő: **0**.
 
 A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Nem jelent teljes SEO-fordítást vagy minden lehetséges interakció lefedését. A `partial` részleges fordítást, a `content-review` további tartalmi felmérést és fordítást jelent. A kivezetett oldalakhoz előbb tartalmi döntés szükséges.
 
@@ -18,13 +18,13 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | atvaltok.html | other | detail-reviewed |
 | auto.html | other | detail-reviewed |
 | cookie.html | other | detail-reviewed |
-| dontesek.html | other | content-review |
+| dontesek.html | other | detail-reviewed |
 | egeszseg.html | other | detail-reviewed |
-| elethelyzetek.html | other | content-review |
+| elethelyzetek.html | other | detail-reviewed |
 | epitoipari.html | other | detail-reviewed |
 | felhasznalasi-feltetelek.html | other | detail-reviewed |
 | impresszum.html | other | detail-reviewed |
-| index.html | other | content-review |
+| index.html | other | detail-reviewed |
 | jogi-nyilatkozat.html | other | detail-reviewed |
 | kalkulatorok.html | other | detail-reviewed |
 | kalkulatorok/adatmeret-atvalto-kalkulator.html | atvaltok | retired-review |
@@ -140,7 +140,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | landing-pages/wise/wise.html | other | detail-reviewed |
 | miert-bizhatsz-bennunk.html | other | detail-reviewed |
 | mindennapi.html | other | detail-reviewed |
-| osszehasonlitas.html | other | content-review |
+| osszehasonlitas.html | other | detail-reviewed |
 | penzugyi.html | other | detail-reviewed |
 | plugin-adatvedelem.html | other | detail-reviewed |
 | plugin-felhasznalasi-feltetelek.html | other | detail-reviewed |

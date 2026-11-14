@@ -3,6 +3,7 @@
 
   const STORAGE_KEY = "kb-decision-summaries-v1";
   const MAX_SAVED = 10;
+  const translated = text => window.KB_FINAL_PAGE_LOCALE?.translate(text, window.KB_SITE_LANGUAGE?.get() || document.documentElement.dataset.language || "hu") ?? text;
   const money = new Intl.NumberFormat("hu-HU", {
     style: "currency",
     currency: "HUF",
@@ -341,18 +342,18 @@
   const shareResult = async (result, statusNode) => {
     const payload = buildPayload(result);
     const text = [
-      payload.title,
+      translated(payload.title),
       "",
-      ...payload.metrics.map((entry) => `${entry.label}: ${entry.value}`),
+      ...payload.metrics.map((entry) => `${translated(entry.label)}: ${translated(entry.value)}`),
       "",
-      payload.signal,
+      translated(payload.signal),
       "",
-      "Kalkulátor Bázis – tájékoztató tervezési becslés",
+      translated("Kalkulátor Bázis – tájékoztató tervezési becslés"),
     ].join("\n");
 
     try {
       if (navigator.share) {
-        await navigator.share({ title: payload.title, text, url: window.location.href });
+        await navigator.share({ title: translated(payload.title), text, url: window.location.href });
         statusNode.textContent = "Megosztási felület megnyitva.";
         return;
       }
