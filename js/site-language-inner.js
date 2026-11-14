@@ -180,7 +180,7 @@
   else ready();
 })(typeof window !== "undefined" ? window : null, function (host) {
   "use strict";
-  const nodeData = typeof module === "object" && module.exports ? [require("./locales/support-categories"), require("./locales/support-information"), require("./locales/support-guides")] : null;
+  const nodeData = typeof module === "object" && module.exports ? [require("./locales/support-categories"), require("./locales/support-information"), require("./locales/support-guides"), require("./locales/support-final-pages")] : null;
   const nodeSupport = nodeData ? { pages: nodeData.flatMap(data => data.pages), dictionary: Object.assign({}, ...nodeData.map(data => data.dictionary)) } : null;
   const supportData = () => nodeSupport || host?.KB_SUPPORT_PAGE_LOCALE;
   const isSupportPage = pathname => {
@@ -336,7 +336,7 @@
     if (!["en", "de"].includes(lang)) return null;
     const extra = supportData()?.dictionary || {};
     const entry = Object.prototype.hasOwnProperty.call(dictionary, text) ? dictionary[text] : Object.prototype.hasOwnProperty.call(extra, text) ? extra[text] : null;
-    return entry ? entry[lang === "en" ? 0 : 1] : null;
+    return entry ? entry[lang === "en" ? 0 : 1] : nodeData?.find(data => data.translate?.(text, lang))?.translate(text, lang) ?? supportData()?.translate?.(text, lang) ?? null;
   }
   return { supported: ["hu", "en", "de"], translate, fallback, dictionary, isSupportPage };
 });
