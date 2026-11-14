@@ -1,0 +1,522 @@
+{
+  "Kalkulátorok": [
+    "Calculators",
+    "Rechner"
+  ],
+  "Kategóriák": [
+    "Categories",
+    "Kategorien"
+  ],
+  "Miért bízhatsz bennünk?": [
+    "Why trust us?",
+    "Warum uns vertrauen?"
+  ],
+  "Magyar kalkulátorok · érthetően": [
+    "Hungarian calculators · clearly explained",
+    "Ungarische Rechner · verständlich erklärt"
+  ],
+  "Számolj egyszerűbben.": [
+    "Calculate more simply.",
+    "Einfacher rechnen."
+  ],
+  "Dönts magabiztosabban.": [
+    "Decide with confidence.",
+    "Sicherer entscheiden."
+  ],
+  "Mennyi marad a bruttódból? Mennyibe kerül az út? Hány liter festék kell? Add meg az adataidat, és számold ki ingyen, regisztráció nélkül.": [
+    "Fast, free calculators for finance, home, driving, health and everyday life — with transparent methods and sources.",
+    "Schnelle, kostenlose Rechner für Finanzen, Wohnen, Auto, Gesundheit und Alltag — mit transparenten Methoden und Quellen."
+  ],
+  "Mit szeretnél kiszámolni?": [
+    "What would you like to calculate?",
+    "Was möchten Sie berechnen?"
+  ],
+  "Keresés": [
+    "Search",
+    "Suche"
+  ],
+  "Népszerű:": [
+    "Popular:",
+    "Beliebt:"
+  ],
+  "Nettó–bruttó": [
+    "Net–gross salary",
+    "Netto–Brutto"
+  ],
+  "ÁFA": [
+    "VAT",
+    "MwSt."
+  ],
+  "Százalék": [
+    "Percentage",
+    "Prozent"
+  ],
+  "Deviza": [
+    "Currency",
+    "Währung"
+  ],
+  "Regisztráció nélkül": [
+    "No registration",
+    "Ohne Registrierung"
+  ],
+  "Magyar fejlesztés": [
+    "Built in Hungary",
+    "In Ungarn entwickelt"
+  ],
+  "Forrásokkal": [
+    "Backed by sources",
+    "Mit Quellen"
+  ],
+  "ETF példa": [
+    "ETF example",
+    "ETF-Beispiel"
+  ],
+  "2026 · Nettó–bruttó": [
+    "2026 · Net–gross salary",
+    "2026 · Netto–Brutto"
+  ],
+  "Bruttó munkabér": [
+    "Gross monthly salary",
+    "Bruttogehalt"
+  ],
+  "Kedvezmény nélküli demonstráció": [
+    "Example without tax allowances",
+    "Beispiel ohne Steuervergünstigungen"
+  ],
+  "Nettó–bruttó számítás ChatGPT-ben is": [
+    "Now available in ChatGPT",
+    "Jetzt auch in ChatGPT verfügbar"
+  ],
+  "A weboldal mellett a Kalkulátor Bázis ChatGPT-bővítményével is kiszámolhatod a fizetésed.": [
+    "Kalkulátor Bázis net–gross salary calculations are available through our own Salary API.",
+    "Die Netto–Brutto-Berechnungen von Kalkulátor Bázis sind über unsere eigene Salary API verfügbar."
+  ],
+  "Mutasd": [
+    "Show me",
+    "Anzeigen"
+  ],
+  "Gyors kezdés": [
+    "Quick start",
+    "Schnellstart"
+  ],
+  "Kezdd azzal, amit most kiszámolnál": [
+    "Most used right now",
+    "Derzeit am häufigsten genutzt"
+  ],
+  "Fizetés, kedvezmény vagy áfa? Ezeket egy kattintással eléred. Más számításhoz használd a keresőt vagy a témaköröket.": [
+    "The most important calculations are available instantly, with everything else organised by category.",
+    "Die wichtigsten Berechnungen sind sofort verfügbar, alles Weitere ist nach Kategorien geordnet."
+  ],
+  "Pénzügy": [
+    "Finance",
+    "Finanzen"
+  ],
+  "Nettó–bruttó kalkulátor": [
+    "Net–gross salary calculator",
+    "Netto–Brutto-Rechner"
+  ],
+  "Nézd meg, mennyi maradhat a bruttódból, vagy mekkora bruttót kérj a kívánt nettóhoz.": [
+    "2026 Hungarian salary calculation with tax allowances.",
+    "Ungarische Gehaltsberechnung 2026 mit Steuervergünstigungen."
+  ],
+  "Mindennapi": [
+    "Everyday",
+    "Alltag"
+  ],
+  "Százalék kalkulátor": [
+    "Percentage calculator",
+    "Prozentrechner"
+  ],
+  "Mennyi a kedvezmény forintban? Hány százalékkal változott az ár? Számold ki itt.": [
+    "Fast percentage calculations for everyday situations.",
+    "Schnelle Prozentberechnungen für Alltagssituationen."
+  ],
+  "ÁFA kalkulátor": [
+    "VAT calculator",
+    "MwSt.-Rechner"
+  ],
+  "Add meg a nettó vagy bruttó összeget, és nézd meg a hozzá tartozó áfát.": [
+    "Quick conversion between net, gross and VAT amounts.",
+    "Schnelle Umrechnung zwischen Netto, Brutto und Mehrwertsteuer."
+  ],
+  "Számolok": [
+    "Calculate",
+    "Berechnen"
+  ],
+  "Válassz témakört.": [
+    "Choose a topic.",
+    "Thema auswählen."
+  ],
+  "Pénzügyi kalkulátorok": [
+    "Financial calculators",
+    "Finanzrechner"
+  ],
+  "Hasonlíts össze fizetéseket, becsülj törlesztőt, vagy tervezz havi megtakarítást.": [
+    "Salary, loans, savings, investments and household calculations.",
+    "Gehalt, Kredite, Ersparnisse, Anlagen und Haushaltsberechnungen."
+  ],
+  "Fizetés · Hitel · Befektetés": [
+    "Salary · Loans · Investments",
+    "Gehalt · Kredite · Anlagen"
+  ],
+  "Otthon & felújítás": [
+    "Home & renovation",
+    "Wohnen & Renovierung"
+  ],
+  "Otthon és építkezés": [
+    "Home and construction",
+    "Wohnen und Bauen"
+  ],
+  "Számold ki, mennyi festékre, burkolatra vagy betonra lehet szükséged a munkához.": [
+    "Materials, tiling, painting, concrete and renovation estimates.",
+    "Materialbedarf, Fliesen, Farbe, Beton und Renovierungsschätzungen."
+  ],
+  "Festék · Burkolat · Anyagigény": [
+    "Paint · Tiling · Materials",
+    "Farbe · Fliesen · Material"
+  ],
+  "Autó & közlekedés": [
+    "Cars & transport",
+    "Auto & Verkehr"
+  ],
+  "Autós kalkulátorok": [
+    "Automotive calculators",
+    "Autorechner"
+  ],
+  "Tervezd meg az út üzemanyagköltségét, ellenőrizd a fogyasztást, és becsüld meg a hatótávot.": [
+    "Fuel, consumption, trip costs, range and technical comparisons.",
+    "Kraftstoff, Verbrauch, Reisekosten, Reichweite und technische Vergleiche."
+  ],
+  "Üzemanyag · Fogyasztás · Hatótáv": [
+    "Fuel · Consumption · Range",
+    "Kraftstoff · Verbrauch · Reichweite"
+  ],
+  "Egészség & sport": [
+    "Health & sport",
+    "Gesundheit & Sport"
+  ],
+  "Egészség és sport": [
+    "Health and sport",
+    "Gesundheit und Sport"
+  ],
+  "Számíts BMI-t vagy napi energiaigényt, és olvasd el, mit jelent a kapott becslés.": [
+    "BMI, energy needs, body composition, nutrition and training estimates.",
+    "BMI, Energiebedarf, Körperzusammensetzung, Ernährung und Trainingsschätzungen."
+  ],
+  "BMI · Kalória · Sport": [
+    "BMI · Calories · Sport",
+    "BMI · Kalorien · Sport"
+  ],
+  "Mindennapok": [
+    "Everyday",
+    "Alltag"
+  ],
+  "Mindennapi számítások": [
+    "Everyday calculations",
+    "Alltagsberechnungen"
+  ],
+  "Ellenőrizz egy akciós árat, ossz fel egy összeget, vagy számolj napokat és munkaórákat.": [
+    "Prices, discounts, dates, working time and common everyday maths.",
+    "Preise, Rabatte, Termine, Arbeitszeit und häufige Alltagsmathematik."
+  ],
+  "Kedvezmény · Dátum · Munkaidő": [
+    "Discounts · Dates · Working time",
+    "Rabatte · Termine · Arbeitszeit"
+  ],
+  "Átváltók": [
+    "Converters",
+    "Umrechner"
+  ],
+  "Mértékegység-átváltók": [
+    "Unit converters",
+    "Einheitenumrechner"
+  ],
+  "Válts pénznemet, vagy számolj át hosszt, tömeget, térfogatot és más mértékegységeket.": [
+    "Currency, length, weight, volume and other unit conversions.",
+    "Währung, Länge, Gewicht, Volumen und weitere Einheiten schnell umrechnen."
+  ],
+  "Deviza · Hossz · Tömeg": [
+    "Currency · Length · Weight",
+    "Währung · Länge · Gewicht"
+  ],
+  "Kalkulátor Bázis × ChatGPT": [
+    "Kalkulátor Bázis × ChatGPT",
+    "Kalkulátor Bázis × ChatGPT"
+  ],
+  "A fizetésedről kérdezel ChatGPT-ben?": [
+    "Calculations now go beyond the website.",
+    "Berechnungen gehen jetzt über die Website hinaus."
+  ],
+  "A Kalkulátor Bázis bővítményével ott is kiszámolhatod a bruttó vagy nettó béredet. A számítást a saját bérkalkulátorunk API-ja végzi. A webes változatot az alábbi gombbal éred el.": [
+    "The Salary API lets Kalkulátor Bázis calculations be used directly in ChatGPT. Here we present it as a clear product experience rather than a simple announcement.",
+    "Mit der Salary API können Berechnungen von Kalkulátor Bázis direkt in ChatGPT genutzt werden. Hier zeigen wir dies als klares Produkterlebnis statt nur als Hinweis."
+  ],
+  "2026-os szabályok": [
+    "2026 Hungarian rules",
+    "Ungarische Regeln 2026"
+  ],
+  "Azonnali eredmény": [
+    "Instant result",
+    "Sofortiges Ergebnis"
+  ],
+  "Mennyi 650 000 Ft bruttónak a nettója 2026-ban, kedvezmény nélkül?": [
+    "What is the net salary from HUF 650,000 gross in 2026 without tax allowances?",
+    "Wie hoch ist das Nettogehalt bei 650.000 HUF brutto im Jahr 2026 ohne Steuervergünstigungen?"
+  ],
+  "becsült nettó munkabér": [
+    "estimated net salary",
+    "geschätztes Nettogehalt"
+  ],
+  "Példaszámítás": [
+    "API connection active",
+    "API-Verbindung aktiv"
+  ],
+  "650 000 Ft bruttó alapján": [
+    "Response time: <1 sec",
+    "Antwortzeit: <1 Sek."
+  ],
+  "Miért jó ez?": [
+    "Why is this useful?",
+    "Warum ist das nützlich?"
+  ],
+  "ugyanaz a számítási logika, mint a weboldalon": [
+    "the same calculation logic as on the website",
+    "dieselbe Berechnungslogik wie auf der Website"
+  ],
+  "közvetlenül használható ChatGPT-ben is": [
+    "can be used directly in ChatGPT",
+    "direkt in ChatGPT nutzbar"
+  ],
+  "a beállított kedvezményekkel számol": [
+    "clear answer with source indication",
+    "klare Antwort mit Quellenhinweis"
+  ],
+  "Megnézem a kalkulátort": [
+    "View the calculator",
+    "Rechner ansehen"
+  ],
+  "Bizalom": [
+    "Trust",
+    "Vertrauen"
+  ],
+  "Miért Kalkulátor Bázis?": [
+    "Why Kalkulátor Bázis?",
+    "Warum Kalkulátor Bázis?"
+  ],
+  "Nem csak az eredmény számít. Az is, hogy érthető legyen, honnan jött.": [
+    "The result matters, but so does understanding where it came from.",
+    "Nicht nur das Ergebnis zählt, sondern auch, dass nachvollziehbar ist, woher es kommt."
+  ],
+  "Hazai felhasználókra és élethelyzetekre építve.": [
+    "Designed for Hungarian users and real-life situations.",
+    "Für ungarische Nutzer und reale Lebenssituationen entwickelt."
+  ],
+  "Ellenőrzött számítások": [
+    "Verified calculations",
+    "Geprüfte Berechnungen"
+  ],
+  "Tesztek, módszertan és folyamatos hibajavítás.": [
+    "Tests, methodology and continuous fixes.",
+    "Tests, Methodik und kontinuierliche Fehlerbehebung."
+  ],
+  "A fontos szabályok mögött ellenőrizhető források állnak.": [
+    "Important rules are supported by verifiable sources.",
+    "Wichtige Regeln werden durch überprüfbare Quellen gestützt."
+  ],
+  "A legtöbb eszköz azonnal használható.": [
+    "Most tools are available immediately.",
+    "Die meisten Tools sind sofort verfügbar."
+  ],
+  "Ingyenes magyar kalkulátorok, közérthető számításokkal, ellenőrizhető forrásokkal és átlátható módszertannal.": [
+    "Free Hungarian calculators with clear calculations, verifiable sources and transparent methodology.",
+    "Kostenlose ungarische Rechner mit verständlichen Berechnungen, überprüfbaren Quellen und transparenter Methodik."
+  ],
+  "Tudástár": [
+    "Knowledge base",
+    "Wissensbereich"
+  ],
+  "Élethelyzetek": [
+    "Life situations",
+    "Lebenssituationen"
+  ],
+  "Pénzügyi tudatosság": [
+    "Financial awareness",
+    "Finanzwissen"
+  ],
+  "Számítási módszertan": [
+    "Calculation methodology",
+    "Berechnungsmethodik"
+  ],
+  "Átláthatóság és minőség": [
+    "Transparency and quality",
+    "Transparenz und Qualität"
+  ],
+  "Oldal": [
+    "Site",
+    "Seite"
+  ],
+  "Rólunk": [
+    "About us",
+    "Über uns"
+  ],
+  "Kapcsolat": [
+    "Contact",
+    "Kontakt"
+  ],
+  "Döntések": [
+    "Decisions",
+    "Entscheidungen"
+  ],
+  "Összehasonlítás": [
+    "Comparison",
+    "Vergleich"
+  ],
+  "Jogi és partner": [
+    "Legal & partners",
+    "Rechtliches & Partner"
+  ],
+  "Impresszum": [
+    "Imprint",
+    "Impressum"
+  ],
+  "Adatkezelési tájékoztató": [
+    "Privacy notice",
+    "Datenschutzhinweise"
+  ],
+  "Felhasználási feltételek": [
+    "Terms of use",
+    "Nutzungsbedingungen"
+  ],
+  "Sütikezelési tájékoztató": [
+    "Cookie notice",
+    "Cookie-Hinweise"
+  ],
+  "Jogi nyilatkozat": [
+    "Legal disclaimer",
+    "Rechtlicher Hinweis"
+  ],
+  "Partnerinformációk": [
+    "Partner information",
+    "Partnerinformationen"
+  ],
+  "Magyar fejlesztés · Regisztráció nélkül használható": [
+    "Built in Hungary · Available without registration",
+    "In Ungarn entwickelt · Ohne Registrierung nutzbar"
+  ],
+  "Gyors számológép": [
+    "Quick calculator",
+    "Schnellrechner"
+  ],
+  "Mindig kéznél": [
+    "Always available",
+    "Immer verfügbar"
+  ],
+  "A gyors számológépet a lebegő panelen nyithatod meg.": [
+    "In this prototype the calculator no longer occupies a full homepage section; it is available anytime as a floating panel.",
+    "Im Prototyp nimmt der Rechner keinen vollständigen Startseitenbereich mehr ein; er ist jederzeit als schwebendes Panel verfügbar."
+  ],
+  "Akadálymentes": [
+    "Accessible",
+    "Barrierearm"
+  ],
+  "Nyelv": [
+    "Language",
+    "Sprache"
+  ],
+  "Évszak előnézet": [
+    "Season preview",
+    "Jahreszeit-Vorschau"
+  ],
+  "Automatikus évszak": [
+    "Automatic season",
+    "Automatische Jahreszeit"
+  ],
+  "Tavasz": [
+    "Spring",
+    "Frühling"
+  ],
+  "Nyár": [
+    "Summer",
+    "Sommer"
+  ],
+  "Ősz": [
+    "Autumn",
+    "Herbst"
+  ],
+  "Tél": [
+    "Winter",
+    "Winter"
+  ],
+  "Sötét": [
+    "Dark",
+    "Dunkel"
+  ],
+  "Világos": [
+    "Light",
+    "Hell"
+  ],
+  "Sötét mód": [
+    "Dark mode",
+    "Dunkler Modus"
+  ],
+  "Világos mód": [
+    "Light mode",
+    "Heller Modus"
+  ],
+  "Akadálymentes nézet": [
+    "Accessible view",
+    "Barrierearme Ansicht"
+  ],
+  "Normál nézet": [
+    "Standard view",
+    "Standardansicht"
+  ],
+  "Próbáld ki ↓": [
+    "Try it ↓",
+    "Ausprobieren ↓"
+  ],
+  "Bruttó → Nettó": [
+    "Gross → Net",
+    "Brutto → Netto"
+  ],
+  "Nettó → Bruttó": [
+    "Net → Gross",
+    "Netto → Brutto"
+  ],
+  "Nettó munkabér": [
+    "Net monthly salary",
+    "Nettogehalt"
+  ],
+  "Becsült nettó": [
+    "Estimated net",
+    "Geschätztes Netto"
+  ],
+  "Szükséges bruttó": [
+    "Required gross",
+    "Erforderliches Brutto"
+  ],
+  "Salary API kész": [
+    "Salary API ready",
+    "Salary API bereit"
+  ],
+  "API eredmény": [
+    "API result",
+    "API-Ergebnis"
+  ],
+  "Előnézeti számítás": [
+    "Preview calculation",
+    "Vorschauberechnung"
+  ],
+  "Kedvezmény nélkül": [
+    "No tax allowances",
+    "Ohne Steuervergünstigungen"
+  ],
+  "Adj meg egy érvényes összeget": [
+    "Enter a valid amount",
+    "Bitte einen gültigen Betrag eingeben"
+  ],
+  "A számítás most nem érhető el": [
+    "Calculation is currently unavailable",
+    "Berechnung derzeit nicht verfügbar"
+  ]
+}

@@ -1,0 +1,127 @@
+Kalkulátor Bázis – tájékoztató becslés|Kalkulátor Bázis – estimate for guidance|Kalkulátor Bázis – orientierende Schätzung
+Megosztási felület megnyitva.|Sharing interface opened.|Teilen-Dialog geöffnet.
+Az összefoglalót a vágólapra másoltuk.|Summary copied to the clipboard.|Zusammenfassung in die Zwischenablage kopiert.
+A megosztás nem érhető el ebben a böngészőben.|Sharing is unavailable in this browser.|Teilen ist in diesem Browser nicht verfügbar.
+Összefoglaló elmentve ezen az eszközön.|Summary saved on this device.|Zusammenfassung auf diesem Gerät gespeichert.
+A böngésző nem engedte a helyi mentést.|The browser did not allow local saving.|Der Browser hat das lokale Speichern nicht zugelassen.
+Mentett eredmény|Saved result|Gespeichertes Ergebnis
+Becsült végösszeg|Estimated final value|Geschätzter Endwert
+Saját befizetés|Your contributions|Eigene Einzahlungen
+Becsült hozamrész|Estimated investment gain|Geschätzter Ertragsanteil
+Mai pénzen|In today's money|In heutiger Kaufkraft
+A hosszú időtáv miatt a feltételezett hozam már a végeredmény jelentős részét adja. A hozamfeltételezés kis változása is nagy eltérést okozhat.|Over this long period, assumed returns make up a significant part of the final value. Even a small change in assumed returns can make a large difference.|Über diesen langen Zeitraum macht die angenommene Rendite einen erheblichen Teil des Endwerts aus. Schon eine kleine Änderung der Renditeannahme kann große Unterschiede verursachen.
+Ebben az időtávban még főleg a saját befizetésed mozgatja a végeredményt; a havi összeg emelése erős hatású változó.|Over this period, your own contributions still drive most of the result; increasing the monthly amount has a strong effect.|In diesem Zeitraum bestimmen vor allem eigene Einzahlungen das Ergebnis. Eine höhere monatliche Rate wirkt sich stark aus.
+Ez nem hozamígéret. A számítás állandó éves hozammal és inflációval készült, költségek és adózás nélkül.|This is not a promise of returns. The calculation assumes constant annual returns and inflation, excluding costs and taxes.|Dies ist kein Renditeversprechen. Die Berechnung nimmt konstante jährliche Rendite und Inflation an, ohne Kosten und Steuern.
+Részletes ETF kalkulátor →|Detailed ETF calculator →|Ausführlicher ETF-Rechner →
+Autó éves valós költségképe|Annual car cost overview|Jährliche Autokosten im Überblick
+Autó|Car|Auto
+Üzemanyag / év|Fuel / year|Kraftstoff / Jahr
+Teljes éves költség|Total annual cost|Gesamte Jahreskosten
+Havi átlag|Monthly average|Monatlicher Durchschnitt
+Költség kilométerenként|Cost per kilometre|Kosten pro Kilometer
+A megadott adatok alapján az értékvesztés nagyobb tétel, mint az éves üzemanyag. Autócserénél ezért a fogyasztáskülönbség önmagában félrevezető lehet.|With these inputs, depreciation exceeds annual fuel costs. Comparing fuel consumption alone can therefore mislead when changing cars.|Mit diesen Angaben übersteigt der Wertverlust die jährlichen Kraftstoffkosten. Beim Autowechsel kann der reine Verbrauchsvergleich deshalb irreführen.
+A megadott használat mellett az üzemanyag az egyik legerősebb költségtényező; fogyasztás- vagy üzemanyagár-változás érezhetően módosítja az éves összeget.|For this usage, fuel is a major cost factor; changes in consumption or fuel prices noticeably affect the annual total.|Bei dieser Nutzung gehört Kraftstoff zu den stärksten Kostentreibern. Änderungen bei Verbrauch oder Kraftstoffpreis beeinflussen die Jahressumme deutlich.
+A becslés csak a megadott költségekkel számol; finanszírozás, parkolás, váratlan javítás és egyéb egyedi tételek külön kezelendők.|The estimate includes only the costs entered. Financing, parking, unexpected repairs and other individual costs need separate treatment.|Die Schätzung berücksichtigt nur eingegebene Kosten. Finanzierung, Parken, unerwartete Reparaturen und weitere individuelle Posten sind getrennt zu behandeln.
+Részletes autóköltség kalkulátor →|Detailed car cost calculator →|Ausführlicher Autokostenrechner →
+Adj meg nettó havi jövedelmet is, hogy a törlesztő arányát meg tudjuk mutatni.|Enter monthly net income too so we can show the repayment-to-income ratio.|Gib auch das monatliche Nettoeinkommen an, damit wir das Verhältnis der Rate zum Einkommen zeigen können.
+Lakásvásárlási gyorskép|Home-buying summary|Kurzüberblick zum Wohnungskauf
+Lakás|Home|Wohnung
+Szükséges hitel|Loan required|Benötigter Kredit
+Becsült havi törlesztő|Estimated monthly repayment|Geschätzte Monatsrate
+Saját forrás aránya|Own-funds share|Eigenmittelanteil
+Becsült teljes visszafizetés|Estimated total repayment|Geschätzte Gesamtrückzahlung
+Ez tervezési becslés, nem banki hitelbírálat vagy JTM/önerő-jogszabályi megfelelőségi vizsgálat. A konkrét ajánlat díjakat és eltérő feltételeket is tartalmazhat.|This is a planning estimate, not a bank credit assessment or a check of Hungarian JTM/own-funds legal compliance. An actual offer may include fees and different conditions.|Dies ist eine Planungsschätzung, keine Bankprüfung oder Prüfung ungarischer JTM-/Eigenmittelvorschriften. Ein konkretes Angebot kann Gebühren und andere Bedingungen enthalten.
+Részletes hitelkalkulátor →|Detailed loan calculator →|Ausführlicher Kreditrechner →
+Hitel A/B összehasonlítás|Loan A/B comparison|Kreditvergleich A/B
+A havi törlesztő|A monthly repayment|A Monatsrate
+B havi törlesztő|B monthly repayment|B Monatsrate
+Havi eltérés|Monthly difference|Monatlicher Unterschied
+Teljes visszafizetés eltérése|Difference in total repayment|Unterschied der Gesamtrückzahlung
+A két hitel teljes visszafizetése a megadott feltételekkel azonos.|Both loans have the same total repayment under these assumptions.|Unter diesen Annahmen haben beide Kredite dieselbe Gesamtrückzahlung.
+Egyszerű annuitásos becslés, díjak, biztosítások és egyéb banki költségek nélkül.|Simple annuity estimate, excluding fees, insurance and other bank costs.|Einfache Annuitätenschätzung ohne Gebühren, Versicherungen und andere Bankkosten.
+Megtakarítás A/B összehasonlítás|Savings A/B comparison|Sparvergleich A/B
+A becsült végösszeg|A estimated final value|A geschätzter Endwert
+B becsült végösszeg|B estimated final value|B geschätzter Endwert
+Végösszeg eltérése|Difference in final value|Unterschied im Endwert
+Saját befizetés eltérése|Difference in contributions|Unterschied der Einzahlungen
+A számítás állandó éves hozammal dolgozik, nem hozamígéret; költségeket és adózást nem modellez.|The calculation assumes constant annual returns. It is not a return promise and does not model costs or taxes.|Die Berechnung verwendet eine konstante Jahresrendite. Sie ist kein Renditeversprechen und bildet Kosten und Steuern nicht ab.
+Autó A/B összehasonlítás|Car A/B comparison|Autovergleich A/B
+A éves költség|A annual cost|A Jahreskosten
+B éves költség|B annual cost|B Jahreskosten
+Éves eltérés|Annual difference|Jährlicher Unterschied
+A két autó becsült éves költsége azonos.|The estimated annual costs of both cars are the same.|Die geschätzten Jahreskosten beider Autos sind gleich.
+A modell csak a megadott üzemanyag-, fix és értékvesztési költségeket hasonlítja össze.|The model compares only the fuel, fixed and depreciation costs entered.|Das Modell vergleicht nur die eingegebenen Kraftstoff-, Fix- und Wertverlustkosten.
+Állásajánlat A/B összehasonlítás|Job offer A/B comparison|Stellenangebotsvergleich A/B
+A éves nettó|A annual net pay|A Jahresnetto
+B éves nettó|B annual net pay|B Jahresnetto
+Éves nettó eltérés|Difference in annual net pay|Unterschied im Jahresnetto
+Effektív órabér eltérése|Difference in effective hourly pay|Unterschied im effektiven Stundenlohn
+A két ajánlat effektív nettó órabére a megadott adatokkal azonos.|Both offers have the same effective net hourly pay with these inputs.|Mit diesen Angaben haben beide Angebote denselben effektiven Nettostundenlohn.
+Itt már nettó havi összegeket hasonlítunk, ezért adó- és kedvezményszabályokat ez a gyors A/B mód nem számol újra.|This quick A/B mode compares monthly net amounts, so it does not recalculate tax or allowance rules.|Dieser A/B-Kurzmodus vergleicht monatliche Nettobeträge und berechnet daher Steuern und Freibeträge nicht erneut.
+Nettó–bruttó kalkulátor →|Net–gross calculator →|Netto-Brutto-Rechner →
+Kockázatosabb|Higher risk|Riskanter
+A megadott keretek között kevés a havi vagy készpénzes mozgástér. A vásárlás előtt érdemes az önerőt, a vételárat vagy a havi terheket újratervezni.|These inputs leave little monthly or cash flexibility. Reconsider own funds, purchase price or monthly commitments before buying.|Diese Angaben lassen wenig monatlichen oder liquiden Spielraum. Plane Eigenmittel, Kaufpreis oder monatliche Belastungen vor dem Kauf neu.
+Kényelmesebb|More comfortable|Entspannter
+A megadott adatok alapján marad havi mozgástér és érdemi tartalék is. A kamatstressz mellett is kezelhetőbbnek látszik a terv.|These inputs leave monthly flexibility and meaningful reserves. The plan also appears more manageable under the interest-rate stress test.|Diese Angaben lassen monatlichen Spielraum und nennenswerte Rücklagen. Auch unter Zinsstress erscheint der Plan besser tragbar.
+Feszes|Tight|Knapp
+A terv működhet, de a havi keret vagy a tartalék már érzékenyebb. Érdemes külön megnézni a magasabb kamat és a nagyobb önerő hatását.|The plan may work, but the monthly budget or reserves are more sensitive. Examine higher interest rates and more own funds separately.|Der Plan kann funktionieren, aber Monatsbudget oder Rücklagen sind empfindlicher. Prüfe höhere Zinsen und mehr Eigenmittel gesondert.
+Kamat +2 százalékpont|Interest +2 percentage points|Zins +2 Prozentpunkte
+Rövidebb futamidő|Shorter term|Kürzere Laufzeit
+Több önerő|More own funds|Mehr Eigenmittel
+A megadott megtakarításból most nincs plusz önerőre szabad tartalék.|The savings entered leave no free reserve for additional own funds.|Die eingegebenen Ersparnisse lassen keine freien Rücklagen für zusätzliche Eigenmittel.
+Adj meg pozitív ingatlanárat.|Enter a positive property price.|Gib einen positiven Immobilienpreis an.
+Adj meg pozitív havi nettó háztartási jövedelmet.|Enter positive monthly net household income.|Gib ein positives monatliches Nettohaushaltseinkommen an.
+A futamidő 1 és 40 év közé essen.|The term must be between 1 and 40 years.|Die Laufzeit muss zwischen 1 und 40 Jahren liegen.
+A vásárlásra szánt saját forrás nem lehet nagyobb az ingatlan áránál.|Own funds allocated to the purchase cannot exceed the property price.|Für den Kauf vorgesehene Eigenmittel dürfen den Immobilienpreis nicht übersteigen.
+A vásárlásra szánt saját forrás nem lehet nagyobb az összes rendelkezésre álló megtakarításnál.|Own funds allocated to the purchase cannot exceed total available savings.|Für den Kauf vorgesehene Eigenmittel dürfen die gesamten verfügbaren Ersparnisse nicht übersteigen.
+Az önerő + egyszeri költségek meghaladják a megadott megtakarítást.|Own funds plus one-off costs exceed the savings entered.|Eigenmittel und einmalige Kosten übersteigen die eingegebenen Ersparnisse.
+megélhetés + meglévő hitelek + új törlesztő után|after living costs, existing loans and the new repayment|nach Lebenshaltung, bestehenden Krediten und neuer Rate
+Teljes havi hitelteher aránya|Total monthly debt-to-income ratio|Gesamte monatliche Kreditbelastungsquote
+meglévő + új hiteltörlesztés / nettó jövedelem|existing plus new repayments / net income|bestehende und neue Kreditraten / Nettoeinkommen
+Vásárlás után maradó tartalék|Reserves after purchase|Rücklagen nach dem Kauf
+Becsült finanszírozási többlet|Estimated financing cost above principal|Geschätzte Finanzierungskosten über dem Kapital
+ tőke feletti összeg, egyszerű annuitásos becsléssel|amount above principal, using a simple annuity estimate|Betrag über dem Kapital nach einfacher Annuitätenschätzung
++2 százalékpont|+2 percentage points|+2 Prozentpunkte
+nincs rövidíthető 5 év|cannot shorten by 5 years|keine Kürzung um 5 Jahre möglich
+−5 év|−5 years|−5 Jahre
+nincs szabad plusz tartalék|no additional free reserves|keine zusätzlichen freien Rücklagen
+Lakásvásárlási döntési mód v2|Home-buying decision mode v2|Entscheidungsmodus Wohnungskauf v2
+Havi törlesztő|Monthly repayment|Monatsrate
+A lakásvásárlási összefoglalót elmentettük ezen az eszközön.|Home-buying summary saved on this device.|Zusammenfassung zum Wohnungskauf auf diesem Gerät gespeichert.
+Kalkulátor Bázis – tájékoztató tervezési becslés|Kalkulátor Bázis – planning estimate for guidance|Kalkulátor Bázis – orientierende Planungsschätzung
+Még nincs elmentett döntési vagy összehasonlítási eredmény ezen az eszközön.|No decision or comparison results have been saved on this device yet.|Auf diesem Gerät sind noch keine Entscheidungs- oder Vergleichsergebnisse gespeichert.
+Törlés|Delete|Löschen
+Döntési összefoglaló|Decision summary|Entscheidungszusammenfassung
+Mentés ezen az eszközön|Save on this device|Auf diesem Gerät speichern
+Megosztás|Share|Teilen
+Munka|Work|Arbeit
+Megengedhetem magamnak ezt a lakást?|Can I afford this home?|Kann ich mir diese Wohnung leisten?
+Mi történik, ha…?|What happens if…?|Was passiert, wenn …?
+Három gyors stresszteszt|Three quick stress tests|Drei schnelle Stresstests
+Ugyanazt a helyzetet módosítjuk egyetlen változóval, hogy lásd, mi érzékeny a legjobban.|We change one variable in the same situation to show which has the greatest impact.|Wir ändern eine Variable derselben Situation, damit du die größte Empfindlichkeit erkennst.
+Forgatókönyv|Scenario|Szenario
+Havi szabad keret|Monthly free budget|Monatlich freies Budget
+Hitelteher|Loan burden|Kreditbelastung
+Teljes visszafizetés|Total repayment|Gesamtrückzahlung
+Alaphelyzet|Base case|Ausgangslage
+Kritikus változók|Critical variables|Kritische Einflussgrößen
+Mi mozgatja legjobban a havi keretedet?|What affects your monthly budget most?|Was beeinflusst dein Monatsbudget am stärksten?
+Fontos:|Important:|Wichtig:
+A „kényelmesebb / feszes / kockázatosabb” jelzés belső tervezési heurisztika, nem banki hitelbírálat, nem JTM- vagy HFM-megfelelőségi döntés. A járulékos költségeket te becsülöd meg, a konkrét banki ajánlat díjai és feltételei eltérhetnek.|The “more comfortable / tight / higher risk” rating is an internal planning heuristic, not a bank credit assessment or a Hungarian JTM/HFM compliance decision. You estimate additional costs; actual bank fees and conditions may differ.|Die Einstufung „entspannter / knapp / riskanter“ ist eine interne Planungsheuristik, keine Bankprüfung oder Entscheidung über ungarische JTM/HFM-Vorgaben. Nebenkosten schätzt du selbst; Bankgebühren und Bedingungen können abweichen.
+Önerő kalkulátor|Own-funds calculator|Eigenmittelrechner
+Hitelképesség|Borrowing capacity|Kredittragfähigkeit
+Részletes törlesztő|Detailed repayment calculator|Ausführlicher Ratenrechner
+Havi költségvetés|Monthly budget|Monatsbudget
+A döntési képhez még javítani kell néhány adatot:|Some inputs need correcting before we can show the decision overview:|Für den Entscheidungsüberblick müssen noch einige Angaben korrigiert werden:
+Nincs találat. Próbálj másik kifejezést.|No results. Try another phrase.|Keine Treffer. Versuche einen anderen Suchbegriff.
+Σ|Σ|Σ
+ChatGPT / API|ChatGPT / API|ChatGPT / API
+Aa|Aa|Aa
+HU|HU|HU
+Menü|Menu|Menü
+Sütibeállítások megnyitása|Open cookie settings|Cookie-Einstellungen öffnen
+Interaktív döntési útvonalak több kapcsolódó Kalkulátor Bázis eszközzel.|Interactive decision guides connecting several Kalkulátor Bázis tools.|Interaktive Entscheidungswege mit mehreren verknüpften Werkzeugen von Kalkulátor Bázis.
+Kalkulátor Bázis – ingyenes online kalkulátorok érthető összefüggésekben.|Kalkulátor Bázis – free online calculators with clear connections.|Kalkulátor Bázis – kostenlose Online-Rechner mit verständlichen Zusammenhängen.
+Élethelyzetek – Kalkulátor Bázis|Life situations – Kalkulátor Bázis|Lebenssituationen – Kalkulátor Bázis
+Kalkulátorok és útmutatók gyakori élethelyzetekhez.|Calculators and guides for common life situations.|Rechner und Wegweiser für häufige Lebenssituationen.
+Interaktív A/B összehasonlítás több döntési forgatókönyvhöz.|Interactive A/B comparison for several decision scenarios.|Interaktiver A/B-Vergleich für mehrere Entscheidungsszenarien.
