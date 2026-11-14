@@ -39,5 +39,7 @@ test('standalone plugin information uses the existing selector without adding gl
     assert.ok(html.includes('class="header-actions"'));
     assert.ok(html.includes('src="js/site-language-inner.js'));
     assert.ok(!html.includes('src="js/global-head.js'));
+    assert.ok(html.includes('rel="icon" href="favicon/favicon.ico"'));
+    assert.ok(fs.existsSync(require.resolve("../favicon/favicon.ico")));
   }
 });
