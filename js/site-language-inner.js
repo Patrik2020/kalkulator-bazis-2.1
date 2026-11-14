@@ -1,10 +1,10 @@
-/* global module */
+/* global module, require */
 /* Language support for internal pages. This deliberately translates only covered
    text: the Hungarian source remains the canonical language for untranslated
    calculator logic, tax explanations and dynamic results. */
 (function (global, factory) {
   "use strict";
-  const api = factory();
+  const api = factory(global);
   if (typeof module === "object" && module.exports) module.exports = api;
   if (!global || !global.document) return;
   const document = global.document;
@@ -82,9 +82,18 @@
       });
     }
 
+    let rendering = false;
+    const pageAttributes = new WeakMap(), metadata = new Map();
+    const observer = new global.MutationObserver(() => {
+      if (!rendering && api.isSupportPage(global.location.pathname)) apply(select.value, false);
+    });
+    if (main) observer.observe(main, { childList: true, characterData: true, subtree: true });
+
     function apply(lang, persist) {
+      rendering = true;
       const next = api.supported.includes(lang) ? lang : "hu";
-      if (persist && !global.KB_SITE_LANGUAGE?.set(next)) return;
+      if (persist && global.KB_SITE_LANGUAGE && !global.KB_SITE_LANGUAGE.set(next)) { rendering = false; return; }
+      const reviewed = api.isSupportPage(global.location.pathname);
       restore();
       select.value = next;
       const caption = { hu: "Nyelv", en: "Language", de: "Sprache" };
@@ -98,10 +107,10 @@
           while (walker.nextNode()) nodes.push(walker.currentNode);
           for (const node of nodes) {
             const parent = node.parentElement;
-            if (!parent || parent.closest(blocked)) continue;
+            if (!parent || parent.closest(reviewed ? blocked.replace("option,", "") : blocked)) continue;
             // Critical calculation outputs are dynamic; never change displayed
             // numbers, legal warnings or free-form calculation results.
-            if (parent.closest('[role="status"],[aria-live],.result-box,.priority-results,[data-results]')) continue;
+            if (!reviewed && parent.closest('[role="status"],[aria-live],.result-box,.priority-results,[data-results]')) continue;
             const oldText = node.nodeValue;
             const whitespace = /^(\s*)([\s\S]*?)(\s*)$/.exec(oldText);
             if (!whitespace) continue;
@@ -118,7 +127,7 @@
           }
         }
         if (notice) {
-          notice.hidden = false;
+          notice.hidden = reviewed;
           notice.lang = next;
           notice.textContent = api.fallback[next];
         }
@@ -126,20 +135,53 @@
         notice.hidden = true;
         notice.textContent = "";
       }
+      if (reviewed) {
+        for (const element of main?.querySelectorAll("[aria-label],[title],[placeholder]") || []) {
+          const originals = pageAttributes.get(element) || {};
+          for (const attr of ["aria-label", "title", "placeholder"]) if (element.hasAttribute(attr)) {
+            if (!Object.hasOwn(originals, attr)) originals[attr] = element.getAttribute(attr);
+            element.setAttribute(attr, api.translate(originals[attr], next) ?? originals[attr]);
+          }
+          pageAttributes.set(element, originals);
+        }
+        const localize = value => typeof value === "string" ? api.translate(value, next) ?? value : Array.isArray(value) ? value.map(localize) : value && typeof value === "object" ? Object.fromEntries(Object.entries(value).map(([key, item]) => [key, localize(item)])) : value;
+        for (const selector of ["title", 'meta[name="description"]', 'meta[property="og:title"]', 'meta[property="og:description"]', 'meta[name="twitter:title"]', 'meta[name="twitter:description"]', "#kb-structured-data"]) {
+          const element = document.querySelector(selector);
+          if (!element) continue;
+          const isText = selector === "title" || selector === "#kb-structured-data";
+          if (!metadata.has(selector)) metadata.set(selector, isText ? element.textContent : element.content);
+          const source = metadata.get(selector);
+          let value = api.translate(source, next) ?? source;
+          if (selector === "#kb-structured-data") {
+            try { value = JSON.stringify(localize(JSON.parse(source))); } catch { value = source; }
+          }
+          if (isText) element.textContent = value; else element.content = value;
+        }
+      }
       // Keep html lang=hu: not all page body copy and dynamic calculators are
       // translated. A preference is NOT proof of complete language coverage.
       document.documentElement.lang = "hu";
       document.dispatchEvent(new CustomEvent("kb:language-changed", { detail: { language: next, partial: next !== "hu" } }));
+      observer.takeRecords();
+      rendering = false;
     }
 
+    document.addEventListener("kb:locale-data-ready", () => apply(select.value, false));
     select.addEventListener("change", () => apply(select.value, true));
     document.addEventListener("kb:page-ui-rendered", () => apply(select.value, false));
     apply(global.KB_SITE_LANGUAGE?.get() || "hu", false);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", ready, { once: true });
   else ready();
-})(typeof window !== "undefined" ? window : null, function () {
+})(typeof window !== "undefined" ? window : null, function (host) {
   "use strict";
+  const nodeData = typeof module === "object" && module.exports ? [require("./locales/support-categories"), require("./locales/support-information")] : null;
+  const nodeSupport = nodeData ? { pages: nodeData.flatMap(data => data.pages), dictionary: Object.assign({}, ...nodeData.map(data => data.dictionary)) } : null;
+  const supportData = () => nodeSupport || host?.KB_SUPPORT_PAGE_LOCALE;
+  const isSupportPage = pathname => {
+    const route = String(pathname).replace(/\.html$/u, "").replace(/\/+$/u, "");
+    return (supportData()?.pages || []).some(page => route.endsWith("/" + page.replace(/\.html$/u, "")));
+  };
   const dictionary = {
     "Főoldal": ["Home", "Startseite"],
     "Kalkulátorok": ["Calculators", "Rechner"],
@@ -284,9 +326,12 @@
     de: "Spracheinstellung: Deutsch. Navigation und ausgewählte Bedienelemente sind übersetzt. Rechnererklärungen, rechtliche Hinweise und einige Ergebnisse bleiben auf Ungarisch und folgen ungarischen Regeln."
   };
   function translate(text, lang) {
+    if (typeof text !== "string") return null;
+    text = text.trim().replace(/\s+/gu, " ");
     if (!["en", "de"].includes(lang)) return null;
-    const entry = Object.prototype.hasOwnProperty.call(dictionary, text) ? dictionary[text] : null;
+    const extra = supportData()?.dictionary || {};
+    const entry = Object.prototype.hasOwnProperty.call(dictionary, text) ? dictionary[text] : Object.prototype.hasOwnProperty.call(extra, text) ? extra[text] : null;
     return entry ? entry[lang === "en" ? 0 : 1] : null;
   }
-  return { supported: ["hu", "en", "de"], translate, fallback, dictionary };
+  return { supported: ["hu", "en", "de"], translate, fallback, dictionary, isSupportPage };
 });

@@ -107,9 +107,13 @@
 
   const getCalculatorSearchText = (calculator) => {
     const category = getCategory(calculator.category);
+    const dictionary = window.KB_SUPPORT_PAGE_LOCALE?.dictionary || {};
+    const translated = [calculator.title, calculator.description, category?.title, category?.shortTitle]
+      .flatMap(text => dictionary[text] || []);
 
     return normalizeText(
       [
+        ...translated,
         calculator.title,
         calculator.description,
         calculator.keywords,

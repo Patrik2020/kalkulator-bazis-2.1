@@ -97,6 +97,8 @@ jobs:
           node --test scripts/body-fat-locale.test.js
           node --test scripts/roof-tile-locale.test.js
           node --test scripts/plaster-locale.test.js
+          node --test scripts/support-pages-locale.test.js
+          node --test scripts/information-pages-locale.test.js
           node --test scripts/pregnancy-locale.test.js
           node --test scripts/multifunction-locale.test.js
           node --test scripts/co2-locale.test.js

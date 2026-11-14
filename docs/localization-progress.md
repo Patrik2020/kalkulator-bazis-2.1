@@ -6,25 +6,27 @@ Aktív kalkulátor: **89**; részletes fordításon átesett: **89**; hátralév
 
 Kivezetett kalkulátor: **13**; egyéb oldal: **32**.
 
+Egyéb oldalak részletes fordítása: **20/32**; hátralévő: **12**.
+
 A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Nem jelent teljes SEO-fordítást vagy minden lehetséges interakció lefedését. A `partial` részleges fordítást, a `content-review` további tartalmi felmérést és fordítást jelent. A kivezetett oldalakhoz előbb tartalmi döntés szükséges.
 
 | Oldal | Kategória | Állapot |
 | --- | --- | --- |
-| 404.html | other | content-review |
-| adatvedelem.html | other | content-review |
-| atlathatosag-es-minoseg.html | other | content-review |
-| atvaltok.html | other | content-review |
-| auto.html | other | content-review |
-| cookie.html | other | content-review |
+| 404.html | other | detail-reviewed |
+| adatvedelem.html | other | detail-reviewed |
+| atlathatosag-es-minoseg.html | other | detail-reviewed |
+| atvaltok.html | other | detail-reviewed |
+| auto.html | other | detail-reviewed |
+| cookie.html | other | detail-reviewed |
 | dontesek.html | other | content-review |
-| egeszseg.html | other | content-review |
+| egeszseg.html | other | detail-reviewed |
 | elethelyzetek.html | other | content-review |
-| epitoipari.html | other | content-review |
-| felhasznalasi-feltetelek.html | other | content-review |
-| impresszum.html | other | content-review |
+| epitoipari.html | other | detail-reviewed |
+| felhasznalasi-feltetelek.html | other | detail-reviewed |
+| impresszum.html | other | detail-reviewed |
 | index.html | other | content-review |
-| jogi-nyilatkozat.html | other | content-review |
-| kalkulatorok.html | other | content-review |
+| jogi-nyilatkozat.html | other | detail-reviewed |
+| kalkulatorok.html | other | detail-reviewed |
 | kalkulatorok/adatmeret-atvalto-kalkulator.html | atvaltok | retired-review |
 | kalkulatorok/afa-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/aljzatkiegyenlito-kalkulator.html | epitoipari | detail-reviewed |
@@ -127,7 +129,7 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | kalkulatorok/vizfogyasztas-kalkulator.html | egeszseg | detail-reviewed |
 | kalkulatorok/vizfogyasztas-koltseg-kalkulator.html | mindennapi | detail-reviewed |
 | kalkulatorok/zuzottko-kalkulator.html | epitoipari | detail-reviewed |
-| kapcsolat.html | other | content-review |
+| kapcsolat.html | other | detail-reviewed |
 | landing-pages/elethelyzetek/autofenntartas.html | other | content-review |
 | landing-pages/elethelyzetek/befektetes-kezdoknek.html | other | content-review |
 | landing-pages/elethelyzetek/csaladi-koltsegvetes.html | other | content-review |
@@ -136,11 +138,11 @@ A `detail-reviewed` a fő tartalom korábbi HU/EN/DE ellenőrzését jelöli. Ne
 | landing-pages/elethelyzetek/lakasvasarlas.html | other | content-review |
 | landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html | other | content-review |
 | landing-pages/wise/wise.html | other | content-review |
-| miert-bizhatsz-bennunk.html | other | content-review |
-| mindennapi.html | other | content-review |
+| miert-bizhatsz-bennunk.html | other | detail-reviewed |
+| mindennapi.html | other | detail-reviewed |
 | osszehasonlitas.html | other | content-review |
-| penzugyi.html | other | content-review |
-| plugin-adatvedelem.html | other | content-review |
-| plugin-felhasznalasi-feltetelek.html | other | content-review |
-| rolunk.html | other | content-review |
-| szamitasi-modszertan.html | other | content-review |
+| penzugyi.html | other | detail-reviewed |
+| plugin-adatvedelem.html | other | detail-reviewed |
+| plugin-felhasznalasi-feltetelek.html | other | detail-reviewed |
+| rolunk.html | other | detail-reviewed |
+| szamitasi-modszertan.html | other | detail-reviewed |
