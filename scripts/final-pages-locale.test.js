@@ -42,3 +42,22 @@ test('reviewed final-page templates preserve numeric readouts and reject arbitra
   assert.equal(pair.length,2);assert.ok(pair.every(s=>typeof s==='string'&&s.trim()),source);
  }
 });
+test('homepage salary preserves integer amounts through HU EN DE formatting and rejects fractions',async()=>{
+ const vm=require('node:vm');
+ const root={dataset:{language:'hu'}},events={},requests=[];
+ const element=()=>({value:'',textContent:'',dataset:{},classList:{add(){},remove(){}},addEventListener(name,handler){this[name]=handler;}});
+ const ids=Object.fromEntries(['heroSalaryWidget','heroSalaryForm','heroSalaryAmount','heroSalaryInputLabel','heroSalaryResultLabel','heroSalaryResult','heroSalaryApiStatus','heroSalaryTaxRate','heroSalaryTaxRateLabel','heroSalaryRateNote'].map(id=>[id,element()]));
+ ids.heroSalaryAmount.value='650 000';ids.heroSalaryTaxRate.value='15';ids.heroSalaryTaxRate.options=[{},{}];
+ const document={documentElement:root,getElementById:id=>ids[id],querySelectorAll:()=>[],addEventListener:(name,fn)=>{events[name]=fn;}};
+ vm.runInNewContext(fs.readFileSync(require.resolve('../js/home-redesign-salary'),'utf8'),{document,window:{},Intl,setTimeout,clearTimeout,fetch:async(_url,options)=>{requests.push(JSON.parse(options.body));return{ok:true,json:async()=>({data:{net:432250}})};}});
+ await new Promise(setImmediate);
+ for(const language of ['en','de','hu','de','en','hu']){
+  root.dataset.language=language;events['kb:language-changed']();
+  ids.heroSalaryAmount.focus();assert.equal(ids.heroSalaryAmount.value,'650000');
+  ids.heroSalaryAmount.blur();await new Promise(setImmediate);
+  assert.equal(requests.at(-1).gross,650000);
+ }
+ ids.heroSalaryAmount.value='650000,5';await ids.heroSalaryForm.submit({preventDefault(){}});
+ assert.equal(ids.heroSalaryResult.textContent,'Adj meg egy érvényes egész forintösszeget');
+ assert.equal(requests.length,7);
+});

@@ -17,9 +17,10 @@ const copy={
 };
 const text=()=>copy[root.dataset.language]||copy.hu;
 const rate=()=>rateSelect.value==='9'?9:15;
-const parse=v=>{const n=Number(String(v||'').replace(/[^0-9,-]/g,'').replace(',','.'));return Number.isFinite(n)?n:NaN};
+let inputLocale=locale();
+const parse=v=>{const group=new Intl.NumberFormat(inputLocale).formatToParts(1000).find(p=>p.type==='group')?.value;const raw=String(v||'').replace(/\s/gu,'');const ungrouped=group?raw.split(group).join(''):raw;const n=Number(ungrouped.replace(',','.'));return Number.isFinite(n)?n:NaN};
 const format=n=>`${Math.round(n).toLocaleString(locale())} Ft`;
-const formatInput=n=>Math.round(n).toLocaleString(locale());
+const formatInput=n=>{inputLocale=locale();return Math.round(n).toLocaleString(inputLocale)};
 function labels(){
  const d=dict(),t=text();
  inputLabel.textContent=direction==='gross-to-net'?(d.salaryInputGross||'Bruttó munkabér'):(d.salaryInputNet||'Nettó munkabér');
