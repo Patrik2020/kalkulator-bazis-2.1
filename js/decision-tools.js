@@ -3,6 +3,7 @@
 
   const STORAGE_KEY = "kb-decision-summaries-v1";
   const MAX_SAVED = 10;
+  const translated = text => window.KB_FINAL_PAGE_LOCALE?.translate(text, window.KB_SITE_LANGUAGE?.get() || document.documentElement.dataset.language || "hu") ?? text;
   const money = new Intl.NumberFormat("hu-HU", {
     style: "currency",
     currency: "HUF",
@@ -96,10 +97,10 @@
   };
 
   const buildShareText = (payload) => {
-    const lines = [payload.title, ""];
-    payload.metrics.forEach((item) => lines.push(`${item.label}: ${item.value}`));
-    if (payload.signal) lines.push("", payload.signal);
-    lines.push("", "Kalkulátor Bázis – tájékoztató becslés");
+    const lines = [translated(payload.title), ""];
+    payload.metrics.forEach((item) => lines.push(`${translated(item.label)}: ${translated(item.value)}`));
+    if (payload.signal) lines.push("", translated(payload.signal));
+    lines.push("", translated("Kalkulátor Bázis – tájékoztató becslés"));
     return lines.join("\n");
   };
 
@@ -107,7 +108,7 @@
     const text = buildShareText(payload);
     try {
       if (navigator.share) {
-        await navigator.share({ title: payload.title, text, url: window.location.href });
+        await navigator.share({ title: translated(payload.title), text, url: window.location.href });
         if (statusNode) statusNode.textContent = "Megosztási felület megnyitva.";
         return;
       }

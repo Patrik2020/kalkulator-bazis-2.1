@@ -72,6 +72,7 @@ async function checkLocalizationCoverage({ navigate, evaluate, setViewport }) {
   await require("./support-pages-locale-browser-checks").checkSupportPagesLocale({ navigate, evaluate, setViewport, collectMainCopy, requiresTranslation });
   await require("./information-pages-locale-browser-checks").checkInformationPagesLocale({ navigate, evaluate, setViewport, collectMainCopy, requiresTranslation });
   await require("./guide-pages-locale-browser-checks").checkGuidePagesLocale({ navigate, evaluate, setViewport, requiresTranslation });
+  await require("./final-pages-locale-browser-checks").checkFinalPagesLocale({ navigate, evaluate, setViewport, requiresTranslation });
   await checkTileCalculatorLocale({ navigate, evaluate, setViewport });
   await require("./csemperagaszto-locale-browser-checks").checkAdhesiveLocale({ navigate, evaluate, setViewport });
   await require("./derek-csipo-locale-browser-checks").checkWaistHipLocale({ navigate, evaluate, setViewport });
