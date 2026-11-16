@@ -1,0 +1,3847 @@
+{
+  "pages": 121,
+  "metadataGaps": 390,
+  "schemaCopyGaps": 190,
+  "pagesWithAlternateUrls": 0,
+  "results": [
+    {
+      "path": "kalkulatorok/vakolat-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/lakas-hitel-onero-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Lakáshitel önerő kalkulátor | Ingatlanvásárlás tervezése"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Lakáshitel önerő kalkulátor | Ingatlanvásárlás tervezése"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Lakáshitel önerő kalkulátor: számold ki mekkora önerő szükséges és mekkora hitelt vehetsz fel."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Lakáshitel önerő kalkulátor: számold ki mekkora önerő szükséges és mekkora hitelt vehetsz fel."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Lakáshitel önerő kalkulátor | Ingatlanvásárlás tervezése"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Lakáshitel önerő kalkulátor | Ingatlanvásárlás tervezése"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Lakáshitel önerő kalkulátor: számold ki mekkora önerő szükséges és mekkora hitelt vehetsz fel."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Lakáshitel önerő kalkulátor: számold ki mekkora önerő szükséges és mekkora hitelt vehetsz fel."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Lakáshitel önerő kalkulátor | Ingatlanvásárlás tervezése"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Lakáshitel önerő kalkulátor | Ingatlanvásárlás tervezése"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Lakáshitel önerő kalkulátor: számold ki mekkora önerő szükséges és mekkora hitelt vehetsz fel."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Lakáshitel önerő kalkulátor: számold ki mekkora önerő szükséges és mekkora hitelt vehetsz fel."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Lakáshitel önerő kalkulátor | Ingatlanvásárlás tervezése"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Lakáshitel önerő kalkulátor | Ingatlanvásárlás tervezése"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Lakáshitel önerő kalkulátor: számold ki mekkora önerő szükséges és mekkora hitelt vehetsz fel."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Lakáshitel önerő kalkulátor: számold ki mekkora önerő szükséges és mekkora hitelt vehetsz fel."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "en",
+          "source": "Szükséges önerő kiszámítása lakásvásárláshoz."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "de",
+          "source": "Szükséges önerő kiszámítása lakásvásárláshoz."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/hitel-elotorlesztes-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Hitel előtörlesztés kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Hitel előtörlesztés kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Hitel előtörlesztés kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Hitel előtörlesztés kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Hitel előtörlesztés kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Hitel előtörlesztés kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/hitel-torleszto-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Hitel törlesztő kalkulátor | Havi részlet és teljes visszafizetés"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Hitel törlesztő kalkulátor | Havi részlet és teljes visszafizetés"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Hitel törlesztő kalkulátor havi részlet, teljes visszafizetés és kamatteher becsléséhez. Hasonlíts össze hitelösszeget, kamatot, THM-et és futamidőt."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Hitel törlesztő kalkulátor havi részlet, teljes visszafizetés és kamatteher becsléséhez. Hasonlíts össze hitelösszeget, kamatot, THM-et és futamidőt."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Hitel törlesztő kalkulátor | Havi részlet és teljes visszafizetés"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Hitel törlesztő kalkulátor | Havi részlet és teljes visszafizetés"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Hitel törlesztő kalkulátor havi részlet, teljes visszafizetés és kamatteher becsléséhez. Hasonlíts össze hitelösszeget, kamatot, THM-et és futamidőt."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Hitel törlesztő kalkulátor havi részlet, teljes visszafizetés és kamatteher becsléséhez. Hasonlíts össze hitelösszeget, kamatot, THM-et és futamidőt."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Hitel törlesztő kalkulátor | Havi részlet és teljes visszafizetés"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Hitel törlesztő kalkulátor | Havi részlet és teljes visszafizetés"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Hitel törlesztő kalkulátor havi részlet, teljes visszafizetés és kamatteher becsléséhez. Hasonlíts össze hitelösszeget, kamatot, THM-et és futamidőt."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Hitel törlesztő kalkulátor havi részlet, teljes visszafizetés és kamatteher becsléséhez. Hasonlíts össze hitelösszeget, kamatot, THM-et és futamidőt."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Hitel törlesztő kalkulátor | Havi részlet és teljes visszafizetés"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Hitel törlesztő kalkulátor | Havi részlet és teljes visszafizetés"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Hitel törlesztő kalkulátor havi részlet, teljes visszafizetés és kamatteher becsléséhez. Hasonlíts össze hitelösszeget, kamatot, THM-et és futamidőt."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Hitel törlesztő kalkulátor havi részlet, teljes visszafizetés és kamatteher becsléséhez. Hasonlíts össze hitelösszeget, kamatot, THM-et és futamidőt."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/hitelkepesseg-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Hitelképesség kalkulátor | Jövedelmi teherbírás"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Hitelképesség kalkulátor | Jövedelmi teherbírás"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Hitelképesség kalkulátor jövedelmi teherbírás becsléséhez. Nézd meg, mekkora havi részlet és hitelösszeg adódik a rögzített tervezési aránnyal."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Hitelképesség kalkulátor jövedelmi teherbírás becsléséhez. Nézd meg, mekkora havi részlet és hitelösszeg adódik a rögzített tervezési aránnyal."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Hitelképesség kalkulátor | Jövedelmi teherbírás"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Hitelképesség kalkulátor | Jövedelmi teherbírás"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Hitelképesség kalkulátor jövedelmi teherbírás becsléséhez. Nézd meg, mekkora havi részlet és hitelösszeg adódik a rögzített tervezési aránnyal."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Hitelképesség kalkulátor jövedelmi teherbírás becsléséhez. Nézd meg, mekkora havi részlet és hitelösszeg adódik a rögzített tervezési aránnyal."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Hitelképesség kalkulátor | Jövedelmi teherbírás"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Hitelképesség kalkulátor | Jövedelmi teherbírás"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Hitelképesség kalkulátor jövedelmi teherbírás becsléséhez. Nézd meg, mekkora havi részlet és hitelösszeg adódik a rögzített tervezési aránnyal."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Hitelképesség kalkulátor jövedelmi teherbírás becsléséhez. Nézd meg, mekkora havi részlet és hitelösszeg adódik a rögzített tervezési aránnyal."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Hitelképesség kalkulátor | Jövedelmi teherbírás"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Hitelképesség kalkulátor | Jövedelmi teherbírás"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Hitelképesség kalkulátor jövedelmi teherbírás becsléséhez. Nézd meg, mekkora havi részlet és hitelösszeg adódik a rögzített tervezési aránnyal."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Hitelképesség kalkulátor jövedelmi teherbírás becsléséhez. Nézd meg, mekkora havi részlet és hitelösszeg adódik a rögzített tervezési aránnyal."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "en",
+          "source": "Becsüld meg, mekkora hitel férhet bele a jövedelmedbe."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "de",
+          "source": "Becsüld meg, mekkora hitel férhet bele a jövedelmedbe."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/etf-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "ETF kalkulátor | Befektetés, célösszeg, TER és infláció"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "ETF kalkulátor | Befektetés, célösszeg, TER és infláció"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "ETF kalkulátor | Befektetés, célösszeg, TER és infláció"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "ETF kalkulátor | Befektetés, célösszeg, TER és infláció"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "ETF kalkulátor | Befektetés, célösszeg, TER és infláció"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "ETF kalkulátor | Befektetés, célösszeg, TER és infláció"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "ETF kalkulátor | Befektetés, célösszeg, TER és infláció"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "ETF kalkulátor | Befektetés, célösszeg, TER és infláció"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "en",
+          "source": "ETF befektetés, célösszeg, TER és infláció becslése."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "de",
+          "source": "ETF befektetés, célösszeg, TER és infláció becslése."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/inflacio-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Infláció kalkulátor | Vásárlóerő és pénzromlás becslése"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Infláció kalkulátor | Vásárlóerő és pénzromlás becslése"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Infláció kalkulátor: számold ki pénzed értékének változását az infláció hatására."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Infláció kalkulátor: számold ki pénzed értékének változását az infláció hatására."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Infláció kalkulátor | Vásárlóerő és pénzromlás becslése"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Infláció kalkulátor | Vásárlóerő és pénzromlás becslése"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Infláció kalkulátor: számold ki pénzed értékének változását az infláció hatására."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Infláció kalkulátor: számold ki pénzed értékének változását az infláció hatására."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Infláció kalkulátor | Vásárlóerő és pénzromlás becslése"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Infláció kalkulátor | Vásárlóerő és pénzromlás becslése"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Infláció kalkulátor: számold ki pénzed értékének változását az infláció hatására."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Infláció kalkulátor: számold ki pénzed értékének változását az infláció hatására."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Infláció kalkulátor | Vásárlóerő és pénzromlás becslése"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Infláció kalkulátor | Vásárlóerő és pénzromlás becslése"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Infláció kalkulátor: számold ki pénzed értékének változását az infláció hatására."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Infláció kalkulátor: számold ki pénzed értékének változását az infláció hatására."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/kamatos-kamat-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Kamatos kamat kalkulátor | Megtakarítás és hozam"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Kamatos kamat kalkulátor | Megtakarítás és hozam"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Kamatos kamat kalkulátor kezdőtőkéhez és havi megtakarításhoz. Számold ki a várható végösszeget, saját befizetést és hozamot több időtávon."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Kamatos kamat kalkulátor kezdőtőkéhez és havi megtakarításhoz. Számold ki a várható végösszeget, saját befizetést és hozamot több időtávon."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Kamatos kamat kalkulátor | Megtakarítás és hozam"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Kamatos kamat kalkulátor | Megtakarítás és hozam"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Kamatos kamat kalkulátor kezdőtőkéhez és havi megtakarításhoz. Számold ki a várható végösszeget, saját befizetést és hozamot több időtávon."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Kamatos kamat kalkulátor kezdőtőkéhez és havi megtakarításhoz. Számold ki a várható végösszeget, saját befizetést és hozamot több időtávon."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Kamatos kamat kalkulátor | Megtakarítás és hozam"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Kamatos kamat kalkulátor | Megtakarítás és hozam"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Kamatos kamat kalkulátor kezdőtőkéhez és havi megtakarításhoz. Számold ki a várható végösszeget, saját befizetést és hozamot több időtávon."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Kamatos kamat kalkulátor kezdőtőkéhez és havi megtakarításhoz. Számold ki a várható végösszeget, saját befizetést és hozamot több időtávon."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Kamatos kamat kalkulátor | Megtakarítás és hozam"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Kamatos kamat kalkulátor | Megtakarítás és hozam"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Kamatos kamat kalkulátor kezdőtőkéhez és havi megtakarításhoz. Számold ki a várható végösszeget, saját befizetést és hozamot több időtávon."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Kamatos kamat kalkulátor kezdőtőkéhez és havi megtakarításhoz. Számold ki a várható végösszeget, saját befizetést és hozamot több időtávon."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/milliomos-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Mikor leszek milliomos? | Célösszeg kalkulátor"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Mikor leszek milliomos? | Célösszeg kalkulátor"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Célösszeg-kalkulátor induló megtakarításhoz, havi befizetéshez és becsült hozamhoz. Nézd meg, várhatóan mikor érheted el a pénzügyi célt."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Célösszeg-kalkulátor induló megtakarításhoz, havi befizetéshez és becsült hozamhoz. Nézd meg, várhatóan mikor érheted el a pénzügyi célt."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Mikor leszek milliomos? | Célösszeg kalkulátor"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Mikor leszek milliomos? | Célösszeg kalkulátor"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Célösszeg-kalkulátor induló megtakarításhoz, havi befizetéshez és becsült hozamhoz. Nézd meg, várhatóan mikor érheted el a pénzügyi célt."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Célösszeg-kalkulátor induló megtakarításhoz, havi befizetéshez és becsült hozamhoz. Nézd meg, várhatóan mikor érheted el a pénzügyi célt."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Mikor leszek milliomos? | Célösszeg kalkulátor"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Mikor leszek milliomos? | Célösszeg kalkulátor"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Célösszeg-kalkulátor induló megtakarításhoz, havi befizetéshez és becsült hozamhoz. Nézd meg, várhatóan mikor érheted el a pénzügyi célt."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Célösszeg-kalkulátor induló megtakarításhoz, havi befizetéshez és becsült hozamhoz. Nézd meg, várhatóan mikor érheted el a pénzügyi célt."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Mikor leszek milliomos? | Célösszeg kalkulátor"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Mikor leszek milliomos? | Célösszeg kalkulátor"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Célösszeg-kalkulátor induló megtakarításhoz, havi befizetéshez és becsült hozamhoz. Nézd meg, várhatóan mikor érheted el a pénzügyi célt."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Célösszeg-kalkulátor induló megtakarításhoz, havi befizetéshez és becsült hozamhoz. Nézd meg, várhatóan mikor érheted el a pénzügyi célt."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "en",
+          "source": "Számold ki, mennyi idő kell a célösszeg eléréséhez."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "de",
+          "source": "Számold ki, mennyi idő kell a célösszeg eléréséhez."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/fizetesi-hatarido-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Fizetési határidő kalkulátor 2026 – naptári és munkanap"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Fizetési határidő kalkulátor 2026 – naptári és munkanap"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Fizetési határidő kalkulátor 2026 – naptári és munkanap"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Fizetési határidő kalkulátor 2026 – naptári és munkanap"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Fizetési határidő kalkulátor 2026 – naptári és munkanap"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Fizetési határidő kalkulátor 2026 – naptári és munkanap"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Fizetési határidő kalkulátor 2026 – naptári és munkanap"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Fizetési határidő kalkulátor 2026 – naptári és munkanap"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "en",
+          "source": "Fizetési határidő kiszámítása számlázáshoz."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "de",
+          "source": "Fizetési határidő kiszámítása számlázáshoz."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/szamla-teljesites-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Teljesítési dátum és folyamatos teljesítés kalkulátor számlákhoz: számold ki az időszakos elszámolás tipikus teljesítési időpontját az Áfa tv. 58. § szerint."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Teljesítési dátum és folyamatos teljesítés kalkulátor számlákhoz: számold ki az időszakos elszámolás tipikus teljesítési időpontját az Áfa tv. 58. § szerint."
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Teljesítési dátum és folyamatos teljesítés kalkulátor számlákhoz: számold ki az időszakos elszámolás tipikus teljesítési időpontját az Áfa tv. 58. § szerint."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Teljesítési dátum és folyamatos teljesítés kalkulátor számlákhoz: számold ki az időszakos elszámolás tipikus teljesítési időpontját az Áfa tv. 58. § szerint."
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Teljesítési dátum és folyamatos teljesítés kalkulátor számlákhoz: számold ki az időszakos elszámolás tipikus teljesítési időpontját az Áfa tv. 58. § szerint."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Teljesítési dátum és folyamatos teljesítés kalkulátor számlákhoz: számold ki az időszakos elszámolás tipikus teljesítési időpontját az Áfa tv. 58. § szerint."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Teljesítési dátum és folyamatos teljesítés kalkulátor számlákhoz: számold ki az időszakos elszámolás tipikus teljesítési időpontját az Áfa tv. 58. § szerint."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Teljesítési dátum és folyamatos teljesítés kalkulátor számlákhoz: számold ki az időszakos elszámolás tipikus teljesítési időpontját az Áfa tv. 58. § szerint."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "en",
+          "source": "Számla teljesítési dátumának kiszámítása."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "de",
+          "source": "Számla teljesítési dátumának kiszámítása."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/havi-koltsegvetes-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod."
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod."
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/ar-kedvezmeny-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Árkedvezmény kalkulátor | Akciós ár és megtakarítás"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Árkedvezmény kalkulátor | Akciós ár és megtakarítás"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Árkedvezmény kalkulátor akciós árhoz: add meg az eredeti árat és a kedvezmény százalékát, majd lásd a fizetendő összeget és megtakarítást."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Árkedvezmény kalkulátor akciós árhoz: add meg az eredeti árat és a kedvezmény százalékát, majd lásd a fizetendő összeget és megtakarítást."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Árkedvezmény kalkulátor | Akciós ár és megtakarítás"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Árkedvezmény kalkulátor | Akciós ár és megtakarítás"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Árkedvezmény kalkulátor akciós árhoz: add meg az eredeti árat és a kedvezmény százalékát, majd lásd a fizetendő összeget és megtakarítást."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Árkedvezmény kalkulátor akciós árhoz: add meg az eredeti árat és a kedvezmény százalékát, majd lásd a fizetendő összeget és megtakarítást."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Árkedvezmény kalkulátor | Akciós ár és megtakarítás"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Árkedvezmény kalkulátor | Akciós ár és megtakarítás"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Árkedvezmény kalkulátor akciós árhoz: add meg az eredeti árat és a kedvezmény százalékát, majd lásd a fizetendő összeget és megtakarítást."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Árkedvezmény kalkulátor akciós árhoz: add meg az eredeti árat és a kedvezmény százalékát, majd lásd a fizetendő összeget és megtakarítást."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Árkedvezmény kalkulátor | Akciós ár és megtakarítás"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Árkedvezmény kalkulátor | Akciós ár és megtakarítás"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Árkedvezmény kalkulátor akciós árhoz: add meg az eredeti árat és a kedvezmény százalékát, majd lásd a fizetendő összeget és megtakarítást."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Árkedvezmény kalkulátor akciós árhoz: add meg az eredeti árat és a kedvezmény százalékát, majd lásd a fizetendő összeget és megtakarítást."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/egysegar-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Egységár kalkulátor | Kiszerelések összehasonlítása"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Egységár kalkulátor | Kiszerelések összehasonlítása"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Egységár kalkulátor | Kiszerelések összehasonlítása"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Egységár kalkulátor | Kiszerelések összehasonlítása"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Egységár kalkulátor | Kiszerelések összehasonlítása"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Egységár kalkulátor | Kiszerelések összehasonlítása"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Egységár kalkulátor | Kiszerelések összehasonlítása"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Egységár kalkulátor | Kiszerelések összehasonlítása"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/atlag-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Számtani, súlyozott és mértani átlag egy helyen. Számolj számlistából, súlyokkal vagy pozitív növekedési tényezőkkel, mediánnal és ellenőrző adatokkal."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Számtani, súlyozott és mértani átlag egy helyen. Számolj számlistából, súlyokkal vagy pozitív növekedési tényezőkkel, mediánnal és ellenőrző adatokkal."
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Számtani, súlyozott és mértani átlag egy helyen. Számolj számlistából, súlyokkal vagy pozitív növekedési tényezőkkel, mediánnal és ellenőrző adatokkal."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Számtani, súlyozott és mértani átlag egy helyen. Számolj számlistából, súlyokkal vagy pozitív növekedési tényezőkkel, mediánnal és ellenőrző adatokkal."
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Számtani, súlyozott és mértani átlag egy helyen. Számolj számlistából, súlyokkal vagy pozitív növekedési tényezőkkel, mediánnal és ellenőrző adatokkal."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Számtani, súlyozott és mértani átlag egy helyen. Számolj számlistából, súlyokkal vagy pozitív növekedési tényezőkkel, mediánnal és ellenőrző adatokkal."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Számtani, súlyozott és mértani átlag egy helyen. Számolj számlistából, súlyokkal vagy pozitív növekedési tényezőkkel, mediánnal és ellenőrző adatokkal."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Számtani, súlyozott és mértani átlag egy helyen. Számolj számlistából, súlyokkal vagy pozitív növekedési tényezőkkel, mediánnal és ellenőrző adatokkal."
+        },
+        {
+          "field": "schema[0].@graph[1].name",
+          "language": "en",
+          "source": "Átlag kalkulátor központ"
+        },
+        {
+          "field": "schema[0].@graph[1].name",
+          "language": "de",
+          "source": "Átlag kalkulátor központ"
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "en",
+          "source": "Számtani, súlyozott és mértani átlag számítása egy közös eszközben."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "de",
+          "source": "Számtani, súlyozott és mértani átlag számítása egy közös eszközben."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/arany-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Arány kalkulátor | Rész, egész és százalék"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Arány kalkulátor | Rész, egész és százalék"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Arány kalkulátor egy rész és az egész kapcsolatának meghatározásához. Számíts százalékos arányt két megadott értékből."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Arány kalkulátor egy rész és az egész kapcsolatának meghatározásához. Számíts százalékos arányt két megadott értékből."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Arány kalkulátor | Rész, egész és százalék"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Arány kalkulátor | Rész, egész és százalék"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Arány kalkulátor egy rész és az egész kapcsolatának meghatározásához. Számíts százalékos arányt két megadott értékből."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Arány kalkulátor egy rész és az egész kapcsolatának meghatározásához. Számíts százalékos arányt két megadott értékből."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Arány kalkulátor | Rész, egész és százalék"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Arány kalkulátor | Rész, egész és százalék"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Arány kalkulátor egy rész és az egész kapcsolatának meghatározásához. Számíts százalékos arányt két megadott értékből."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Arány kalkulátor egy rész és az egész kapcsolatának meghatározásához. Számíts százalékos arányt két megadott értékből."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Arány kalkulátor | Rész, egész és százalék"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Arány kalkulátor | Rész, egész és százalék"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Arány kalkulátor egy rész és az egész kapcsolatának meghatározásához. Számíts százalékos arányt két megadott értékből."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Arány kalkulátor egy rész és az egész kapcsolatának meghatározásához. Számíts százalékos arányt két megadott értékből."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/szazalekos-valtozas-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Százalékos változás kalkulátor | Növekedés és csökkenés"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Százalékos változás kalkulátor | Növekedés és csökkenés"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Százalékos változás kalkulátor növekedés és csökkenés kiszámításához. Hasonlíts össze régi és új értéket, lásd a különbséget és a változás irányát."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Százalékos változás kalkulátor növekedés és csökkenés kiszámításához. Hasonlíts össze régi és új értéket, lásd a különbséget és a változás irányát."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Százalékos változás kalkulátor | Növekedés és csökkenés"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Százalékos változás kalkulátor | Növekedés és csökkenés"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Számold ki, hány százalékkal nőtt vagy csökkent egy érték."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Számold ki, hány százalékkal nőtt vagy csökkent egy érték."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Százalékos változás kalkulátor | Növekedés és csökkenés"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Százalékos változás kalkulátor | Növekedés és csökkenés"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Százalékos változás kalkulátor növekedés és csökkenés kiszámításához. Hasonlíts össze régi és új értéket, lásd a különbséget és a változás irányát."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Százalékos változás kalkulátor növekedés és csökkenés kiszámításához. Hasonlíts össze régi és új értéket, lásd a különbséget és a változás irányát."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "en",
+          "source": "Számold ki két érték közötti növekedést vagy csökkenést százalékban."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "de",
+          "source": "Számold ki két érték közötti növekedést vagy csökkenést százalékban."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/borravalo-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Borravaló kalkulátor | Számla és fejenkénti összeg"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Borravaló kalkulátor | Számla és fejenkénti összeg"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Borravaló kalkulátor éttermi számlához. Válassz százalékot, add meg a létszámot, és számold ki a teljes és fejenként fizetendő összeget."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Borravaló kalkulátor éttermi számlához. Válassz százalékot, add meg a létszámot, és számold ki a teljes és fejenként fizetendő összeget."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Borravaló kalkulátor | Számla és fejenkénti összeg"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Borravaló kalkulátor | Számla és fejenkénti összeg"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Borravaló kalkulátor éttermi számlához. Válassz százalékot, add meg a létszámot, és számold ki a teljes és fejenként fizetendő összeget."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Borravaló kalkulátor éttermi számlához. Válassz százalékot, add meg a létszámot, és számold ki a teljes és fejenként fizetendő összeget."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Borravaló kalkulátor | Számla és fejenkénti összeg"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Borravaló kalkulátor | Számla és fejenkénti összeg"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Borravaló kalkulátor éttermi számlához. Válassz százalékot, add meg a létszámot, és számold ki a teljes és fejenként fizetendő összeget."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Borravaló kalkulátor éttermi számlához. Válassz százalékot, add meg a létszámot, és számold ki a teljes és fejenként fizetendő összeget."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Borravaló kalkulátor | Számla és fejenkénti összeg"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Borravaló kalkulátor | Számla és fejenkénti összeg"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Borravaló kalkulátor éttermi számlához. Válassz százalékot, add meg a létszámot, és számold ki a teljes és fejenként fizetendő összeget."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Borravaló kalkulátor éttermi számlához. Válassz százalékot, add meg a létszámot, és számold ki a teljes és fejenként fizetendő összeget."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/arres-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Árrés kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Árrés kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Árrés kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Árrés kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Árrés kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Árrés kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/haszonkulcs-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Haszonkulcs kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Haszonkulcs kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Haszonkulcs kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Haszonkulcs kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Haszonkulcs kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Haszonkulcs kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/fedezeti-pont-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Fedezeti pont kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Fedezeti pont kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Fedezeti pont kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Fedezeti pont kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Fedezeti pont kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Fedezeti pont kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/datum-hozzaadas-kivonas-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Határidő számítás – dátum hozzáadás és kivonás kalkulátor"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Határidő számítás – dátum hozzáadás és kivonás kalkulátor"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Határidő számítás naptári napokkal: adj hozzá vagy vonj ki napokat egy dátumból, és lásd a cél dátumot. Általános dátum- és határidőtervezéshez."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Határidő számítás naptári napokkal: adj hozzá vagy vonj ki napokat egy dátumból, és lásd a cél dátumot. Általános dátum- és határidőtervezéshez."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Határidő számítás – dátum hozzáadás és kivonás kalkulátor"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Határidő számítás – dátum hozzáadás és kivonás kalkulátor"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Határidő számítás naptári napokkal: adj hozzá vagy vonj ki napokat egy dátumból, és lásd a cél dátumot. Általános dátum- és határidőtervezéshez."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Határidő számítás naptári napokkal: adj hozzá vagy vonj ki napokat egy dátumból, és lásd a cél dátumot. Általános dátum- és határidőtervezéshez."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Határidő számítás – dátum hozzáadás és kivonás kalkulátor"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Határidő számítás – dátum hozzáadás és kivonás kalkulátor"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Határidő számítás naptári napokkal: adj hozzá vagy vonj ki napokat egy dátumból, és lásd a cél dátumot. Általános dátum- és határidőtervezéshez."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Határidő számítás naptári napokkal: adj hozzá vagy vonj ki napokat egy dátumból, és lásd a cél dátumot. Általános dátum- és határidőtervezéshez."
+        },
+        {
+          "field": "schema[0].@graph[1].name",
+          "language": "en",
+          "source": "Dátum hozzáadás és kivonás kalkulátor"
+        },
+        {
+          "field": "schema[0].@graph[1].name",
+          "language": "de",
+          "source": "Dátum hozzáadás és kivonás kalkulátor"
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "en",
+          "source": "Napok hozzáadása egy dátumhoz vagy kivonása belőle, a cél dátum és a hét napjának megjelenítésével."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "de",
+          "source": "Napok hozzáadása egy dátumhoz vagy kivonása belőle, a cél dátum és a hét napjának megjelenítésével."
+        },
+        {
+          "field": "schema[0].@graph[2].itemListElement[2].name",
+          "language": "en",
+          "source": "Dátum hozzáadás és kivonás kalkulátor"
+        },
+        {
+          "field": "schema[0].@graph[2].itemListElement[2].name",
+          "language": "de",
+          "source": "Dátum hozzáadás és kivonás kalkulátor"
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/eletkor-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Életkor kalkulátor | Pontos kor évben, hónapban, napban"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Életkor kalkulátor | Pontos kor évben, hónapban, napban"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Életkor kalkulátor születési dátumból. Nézd meg a betöltött éveket, valamint a pontos életkort években, hónapokban és napokban."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Életkor kalkulátor születési dátumból. Nézd meg a betöltött éveket, valamint a pontos életkort években, hónapokban és napokban."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Életkor kalkulátor | Pontos kor évben, hónapban, napban"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Életkor kalkulátor | Pontos kor évben, hónapban, napban"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Életkor kalkulátor születési dátumból. Nézd meg a betöltött éveket, valamint a pontos életkort években, hónapokban és napokban."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Életkor kalkulátor születési dátumból. Nézd meg a betöltött éveket, valamint a pontos életkort években, hónapokban és napokban."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Életkor kalkulátor | Pontos kor évben, hónapban, napban"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Életkor kalkulátor | Pontos kor évben, hónapban, napban"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Életkor kalkulátor születési dátumból. Nézd meg a betöltött éveket, valamint a pontos életkort években, hónapokban és napokban."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Életkor kalkulátor születési dátumból. Nézd meg a betöltött éveket, valamint a pontos életkort években, hónapokban és napokban."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Életkor kalkulátor | Pontos kor évben, hónapban, napban"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Életkor kalkulátor | Pontos kor évben, hónapban, napban"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Életkor kalkulátor születési dátumból. Nézd meg a betöltött éveket, valamint a pontos életkort években, hónapokban és napokban."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Életkor kalkulátor születési dátumból. Nézd meg a betöltött éveket, valamint a pontos életkort években, hónapokban és napokban."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/datum-kulonbseg-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Dátumkülönbség kalkulátor | Napok két dátum között"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Dátumkülönbség kalkulátor | Napok két dátum között"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Dátumkülönbség kalkulátor két időpont távolságához. Válassz kezdő- és záródátumot, majd nézd meg a közöttük eltelt napok számát."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Dátumkülönbség kalkulátor két időpont távolságához. Válassz kezdő- és záródátumot, majd nézd meg a közöttük eltelt napok számát."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Dátumkülönbség kalkulátor | Napok két dátum között"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Dátumkülönbség kalkulátor | Napok két dátum között"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Dátumkülönbség kalkulátor két időpont távolságához. Válassz kezdő- és záródátumot, majd nézd meg a közöttük eltelt napok számát."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Dátumkülönbség kalkulátor két időpont távolságához. Válassz kezdő- és záródátumot, majd nézd meg a közöttük eltelt napok számát."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Dátumkülönbség kalkulátor | Napok két dátum között"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Dátumkülönbség kalkulátor | Napok két dátum között"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Dátumkülönbség kalkulátor két időpont távolságához. Válassz kezdő- és záródátumot, majd nézd meg a közöttük eltelt napok számát."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Dátumkülönbség kalkulátor két időpont távolságához. Válassz kezdő- és záródátumot, majd nézd meg a közöttük eltelt napok számát."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Dátumkülönbség kalkulátor | Napok két dátum között"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Dátumkülönbség kalkulátor | Napok két dátum között"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Dátumkülönbség kalkulátor két időpont távolságához. Válassz kezdő- és záródátumot, majd nézd meg a közöttük eltelt napok számát."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Dátumkülönbség kalkulátor két időpont távolságához. Válassz kezdő- és záródátumot, majd nézd meg a közöttük eltelt napok számát."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/munkaido-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Munkaidő kalkulátor | Heti és havi óraszám"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Munkaidő kalkulátor | Heti és havi óraszám"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Munkaidő kalkulátor heti és havi munkaórák becsléséhez. Hasonlíts össze teljes és részmunkaidős beosztásokat, és értsd meg a 4,33 hetes havi átlag korlátait."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Munkaidő kalkulátor heti és havi munkaórák becsléséhez. Hasonlíts össze teljes és részmunkaidős beosztásokat, és értsd meg a 4,33 hetes havi átlag korlátait."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Munkaidő kalkulátor | Heti és havi óraszám"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Munkaidő kalkulátor | Heti és havi óraszám"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Munkaidő kalkulátor heti és havi munkaórák becsléséhez. Hasonlíts össze teljes és részmunkaidős beosztásokat, és értsd meg a 4,33 hetes havi átlag korlátait."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Munkaidő kalkulátor heti és havi munkaórák becsléséhez. Hasonlíts össze teljes és részmunkaidős beosztásokat, és értsd meg a 4,33 hetes havi átlag korlátait."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Munkaidő kalkulátor | Heti és havi óraszám"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Munkaidő kalkulátor | Heti és havi óraszám"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Munkaidő kalkulátor heti és havi munkaórák becsléséhez. Hasonlíts össze teljes és részmunkaidős beosztásokat, és értsd meg a 4,33 hetes havi átlag korlátait."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Munkaidő kalkulátor heti és havi munkaórák becsléséhez. Hasonlíts össze teljes és részmunkaidős beosztásokat, és értsd meg a 4,33 hetes havi átlag korlátait."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Munkaidő kalkulátor | Heti és havi óraszám"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Munkaidő kalkulátor | Heti és havi óraszám"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Munkaidő kalkulátor heti és havi munkaórák becsléséhez. Hasonlíts össze teljes és részmunkaidős beosztásokat, és értsd meg a 4,33 hetes havi átlag korlátait."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Munkaidő kalkulátor heti és havi munkaórák becsléséhez. Hasonlíts össze teljes és részmunkaidős beosztásokat, és értsd meg a 4,33 hetes havi átlag korlátait."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/munkanap-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Munkanap kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Munkanap kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Munkanap kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Munkanap kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Munkanap kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Munkanap kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/tulora-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Túlóra díj kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Túlóra díj kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Túlóra díj kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Túlóra díj kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Túlóra díj kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Túlóra díj kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/oraber-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Órabér kalkulátor | Havi fizetésből óradíj"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Órabér kalkulátor | Havi fizetésből óradíj"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Órabér kalkulátor havi bér és munkaóra alapján. Számold ki a becsült óradíjat, és hasonlíts össze állásajánlatokat bruttó vagy nettó alapon."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Órabér kalkulátor havi bér és munkaóra alapján. Számold ki a becsült óradíjat, és hasonlíts össze állásajánlatokat bruttó vagy nettó alapon."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Órabér kalkulátor | Havi fizetésből óradíj"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Órabér kalkulátor | Havi fizetésből óradíj"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Órabér kalkulátor havi bér és munkaóra alapján. Számold ki a becsült óradíjat, és hasonlíts össze állásajánlatokat bruttó vagy nettó alapon."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Órabér kalkulátor havi bér és munkaóra alapján. Számold ki a becsült óradíjat, és hasonlíts össze állásajánlatokat bruttó vagy nettó alapon."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Órabér kalkulátor | Havi fizetésből óradíj"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Órabér kalkulátor | Havi fizetésből óradíj"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Órabér kalkulátor havi bér és munkaóra alapján. Számold ki a becsült óradíjat, és hasonlíts össze állásajánlatokat bruttó vagy nettó alapon."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Órabér kalkulátor havi bér és munkaóra alapján. Számold ki a becsült óradíjat, és hasonlíts össze állásajánlatokat bruttó vagy nettó alapon."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Órabér kalkulátor | Havi fizetésből óradíj"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Órabér kalkulátor | Havi fizetésből óradíj"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Órabér kalkulátor havi bér és munkaóra alapján. Számold ki a becsült óradíjat, és hasonlíts össze állásajánlatokat bruttó vagy nettó alapon."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Órabér kalkulátor havi bér és munkaóra alapján. Számold ki a becsült óradíjat, és hasonlíts össze állásajánlatokat bruttó vagy nettó alapon."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/rezsi-megosztas-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Rezsi megosztás kalkulátor | Közös költségek elosztása"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Rezsi megosztás kalkulátor | Közös költségek elosztása"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Rezsi megosztás kalkulátor lakótársaknak és családoknak. Oszd el a közös kiadásokat egyenlően vagy a megadott létszám szerint."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Rezsi megosztás kalkulátor lakótársaknak és családoknak. Oszd el a közös kiadásokat egyenlően vagy a megadott létszám szerint."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Rezsi megosztás kalkulátor | Közös költségek elosztása"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Rezsi megosztás kalkulátor | Közös költségek elosztása"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Rezsi megosztás kalkulátor lakótársaknak és családoknak. Oszd el a közös kiadásokat egyenlően vagy a megadott létszám szerint."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Rezsi megosztás kalkulátor lakótársaknak és családoknak. Oszd el a közös kiadásokat egyenlően vagy a megadott létszám szerint."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Rezsi megosztás kalkulátor | Közös költségek elosztása"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Rezsi megosztás kalkulátor | Közös költségek elosztása"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Rezsi megosztás kalkulátor lakótársaknak és családoknak. Oszd el a közös kiadásokat egyenlően vagy a megadott létszám szerint."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Rezsi megosztás kalkulátor lakótársaknak és családoknak. Oszd el a közös kiadásokat egyenlően vagy a megadott létszám szerint."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Rezsi megosztás kalkulátor | Közös költségek elosztása"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Rezsi megosztás kalkulátor | Közös költségek elosztása"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Rezsi megosztás kalkulátor lakótársaknak és családoknak. Oszd el a közös kiadásokat egyenlően vagy a megadott létszám szerint."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Rezsi megosztás kalkulátor lakótársaknak és családoknak. Oszd el a közös kiadásokat egyenlően vagy a megadott létszám szerint."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/recept-adag-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Recept adag átszámító kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Recept adag átszámító kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Recept adag átszámító kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Recept adag átszámító kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Recept adag átszámító kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Recept adag átszámító kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/villanyfogyasztas-koltseg-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Villanyfogyasztás költség kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Villanyfogyasztás költség kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Villanyfogyasztás költség kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Villanyfogyasztás költség kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Villanyfogyasztás költség kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Villanyfogyasztás költség kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/vizfogyasztas-koltseg-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Vízfogyasztás költség kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Vízfogyasztás költség kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Vízfogyasztás költség kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Vízfogyasztás költség kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Vízfogyasztás költség kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Vízfogyasztás költség kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/megtakaritasi-cel-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Megtakarítási cél kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Megtakarítási cél kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Megtakarítási cél kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Megtakarítási cél kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Megtakarítási cél kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Megtakarítási cél kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/vesztartalek-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Vésztartalék kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Vésztartalék kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Vésztartalék kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Vésztartalék kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Vésztartalék kalkulátor | Kalkulátor Bázis"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Vésztartalék kalkulátor | Kalkulátor Bázis"
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/afa-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "ÁFA kalkulátor | Nettó–bruttó ár és adótartalom"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "ÁFA kalkulátor | Nettó–bruttó ár és adótartalom"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "ÁFA kalkulátor | Nettó–bruttó ár és adótartalom"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "ÁFA kalkulátor | Nettó–bruttó ár és adótartalom"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "ÁFA kalkulátor | Nettó–bruttó ár és adótartalom"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "ÁFA kalkulátor | Nettó–bruttó ár és adótartalom"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "ÁFA kalkulátor | Nettó–bruttó ár és adótartalom"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "ÁFA kalkulátor | Nettó–bruttó ár és adótartalom"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/szazalek-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Százalék kalkulátor | Kedvezmény, növekedés és arány"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Százalék kalkulátor | Kedvezmény, növekedés és arány"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Százalék kalkulátor kedvezmény, növekedés, csökkenés és arányszámításhoz. Gyors számítások képletekkel, példákkal és gyakori kérdésekkel."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Százalék kalkulátor kedvezmény, növekedés, csökkenés és arányszámításhoz. Gyors számítások képletekkel, példákkal és gyakori kérdésekkel."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Százalék kalkulátor | Kedvezmény, növekedés és arány"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Százalék kalkulátor | Kedvezmény, növekedés és arány"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Százalék kalkulátor kedvezmény, növekedés, csökkenés és arányszámításhoz. Gyors számítások képletekkel, példákkal és gyakori kérdésekkel."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Százalék kalkulátor kedvezmény, növekedés, csökkenés és arányszámításhoz. Gyors számítások képletekkel, példákkal és gyakori kérdésekkel."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Százalék kalkulátor | Kedvezmény, növekedés és arány"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Százalék kalkulátor | Kedvezmény, növekedés és arány"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Százalék kalkulátor kedvezmény, növekedés, csökkenés és arányszámításhoz. Gyors számítások képletekkel, példákkal és gyakori kérdésekkel."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Százalék kalkulátor kedvezmény, növekedés, csökkenés és arányszámításhoz. Gyors számítások képletekkel, példákkal és gyakori kérdésekkel."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Százalék kalkulátor | Kedvezmény, növekedés és arány"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Százalék kalkulátor | Kedvezmény, növekedés és arány"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Százalék kalkulátor kedvezmény, növekedés, csökkenés és arányszámításhoz. Gyors számítások képletekkel, példákkal és gyakori kérdésekkel."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Százalék kalkulátor kedvezmény, növekedés, csökkenés és arányszámításhoz. Gyors számítások képletekkel, példákkal és gyakori kérdésekkel."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/osztalek-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Osztalék kalkulátor - havi és éves nettó bevétel"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Osztalék kalkulátor - havi és éves nettó bevétel"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Osztalék kalkulátor - havi és éves nettó bevétel"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Osztalék kalkulátor - havi és éves nettó bevétel"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Osztalék kalkulátor - havi és éves nettó bevétel"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Osztalék kalkulátor - havi és éves nettó bevétel"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Osztalék kalkulátor - havi és éves nettó bevétel"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Osztalék kalkulátor - havi és éves nettó bevétel"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "en",
+          "source": "Osztalékbevétel, céljövedelemhez szükséges tőke és hosszú távú újrabefektetés becslése."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "de",
+          "source": "Osztalékbevétel, céljövedelemhez szükséges tőke és hosszú távú újrabefektetés becslése."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/netto-brutto-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Nettó–bruttó kalkulátor 2026 | Bruttó és nettó fizetés"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Nettó–bruttó kalkulátor 2026 | Bruttó és nettó fizetés"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Nettó–bruttó kalkulátor 2026: számold ki a bruttó fizetés nettóját vagy a kívánt nettóhoz szükséges bruttót. Kedvezmények és munkáltatói költség."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Nettó–bruttó kalkulátor 2026: számold ki a bruttó fizetés nettóját vagy a kívánt nettóhoz szükséges bruttót. Kedvezmények és munkáltatói költség."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Nettó–bruttó kalkulátor 2026 | Bruttó és nettó fizetés"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Nettó–bruttó kalkulátor 2026 | Bruttó és nettó fizetés"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Nettó–bruttó kalkulátor 2026: számold ki a bruttó fizetés nettóját vagy a kívánt nettóhoz szükséges bruttót. Kedvezmények és munkáltatói költség."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Nettó–bruttó kalkulátor 2026: számold ki a bruttó fizetés nettóját vagy a kívánt nettóhoz szükséges bruttót. Kedvezmények és munkáltatói költség."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Nettó–bruttó kalkulátor 2026 | Bruttó és nettó fizetés"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Nettó–bruttó kalkulátor 2026 | Bruttó és nettó fizetés"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Nettó–bruttó kalkulátor 2026: számold ki a bruttó fizetés nettóját vagy a kívánt nettóhoz szükséges bruttót. Kedvezmények és munkáltatói költség."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Nettó–bruttó kalkulátor 2026: számold ki a bruttó fizetés nettóját vagy a kívánt nettóhoz szükséges bruttót. Kedvezmények és munkáltatói költség."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Nettó–bruttó kalkulátor 2026 | Bruttó és nettó fizetés"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Nettó–bruttó kalkulátor 2026 | Bruttó és nettó fizetés"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Nettó–bruttó kalkulátor 2026: számold ki a bruttó fizetés nettóját vagy a kívánt nettóhoz szükséges bruttót. Kedvezmények és munkáltatói költség."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Nettó–bruttó kalkulátor 2026: számold ki a bruttó fizetés nettóját vagy a kívánt nettóhoz szükséges bruttót. Kedvezmények és munkáltatói költség."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "en",
+          "source": "Fizetés nettó vagy bruttó összegének kiszámítása."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "de",
+          "source": "Fizetés nettó vagy bruttó összegének kiszámítása."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/auto-fogyasztas-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "en",
+          "source": "Számold ki a valós fogyasztást tankolás és megtett kilométer alapján."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "de",
+          "source": "Számold ki a valós fogyasztást tankolás és megtett kilométer alapján."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/uzemanyag-koltseg-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Üzemanyagköltség kalkulátor | Útiköltség számítás"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Üzemanyagköltség kalkulátor | Útiköltség számítás"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Üzemanyagköltség kalkulátor | Útiköltség számítás"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Üzemanyagköltség kalkulátor | Útiköltség számítás"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Üzemanyagköltség kalkulátor | Útiköltség számítás"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Üzemanyagköltség kalkulátor | Útiköltség számítás"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Üzemanyagköltség kalkulátor | Útiköltség számítás"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Üzemanyagköltség kalkulátor | Útiköltség számítás"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "en",
+          "source": "Számold ki egy út várható üzemanyagköltségét."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "de",
+          "source": "Számold ki egy út várható üzemanyagköltségét."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/hatotav-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Autó hatótáv kalkulátor | Megtehető kilométer"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Autó hatótáv kalkulátor | Megtehető kilométer"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Autó hatótáv kalkulátor üzemanyag és átlagfogyasztás alapján. Becsüld meg a megtehető távolságot, számolj biztonsági tartalékkal, és értsd meg a fogyasztási eltéréseket."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Autó hatótáv kalkulátor üzemanyag és átlagfogyasztás alapján. Becsüld meg a megtehető távolságot, számolj biztonsági tartalékkal, és értsd meg a fogyasztási eltéréseket."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Autó hatótáv kalkulátor | Megtehető kilométer"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Autó hatótáv kalkulátor | Megtehető kilométer"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Becsüld meg a megtehető távolságot üzemanyag és átlagfogyasztás alapján, fontos biztonsági korlátokkal."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Becsüld meg a megtehető távolságot üzemanyag és átlagfogyasztás alapján, fontos biztonsági korlátokkal."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Autó hatótáv kalkulátor | Megtehető kilométer"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Autó hatótáv kalkulátor | Megtehető kilométer"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Becsüld meg a megtehető távolságot üzemanyag és átlagfogyasztás alapján, fontos biztonsági korlátokkal."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Becsüld meg a megtehető távolságot üzemanyag és átlagfogyasztás alapján, fontos biztonsági korlátokkal."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Autó hatótáv kalkulátor | Megtehető kilométer"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Autó hatótáv kalkulátor | Megtehető kilométer"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Autó hatótáv kalkulátor üzemanyag és átlagfogyasztás alapján. Becsüld meg a megtehető távolságot, számolj biztonsági tartalékkal, és értsd meg a fogyasztási eltéréseket."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Autó hatótáv kalkulátor üzemanyag és átlagfogyasztás alapján. Becsüld meg a megtehető távolságot, számolj biztonsági tartalékkal, és értsd meg a fogyasztási eltéréseket."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/tankolas-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Tankolás kalkulátor | Hány liter fér a keretbe?"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Tankolás kalkulátor | Hány liter fér a keretbe?"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Tankolás kalkulátor tankolási kerethez és literenkénti üzemanyagárhoz. Számold ki, hány liter benzint vagy dízelt kapsz a megadott összegből."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Tankolás kalkulátor tankolási kerethez és literenkénti üzemanyagárhoz. Számold ki, hány liter benzint vagy dízelt kapsz a megadott összegből."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Tankolás kalkulátor | Hány liter fér a keretbe?"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Tankolás kalkulátor | Hány liter fér a keretbe?"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Tankolás kalkulátor tankolási kerethez és literenkénti üzemanyagárhoz. Számold ki, hány liter benzint vagy dízelt kapsz a megadott összegből."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Tankolás kalkulátor tankolási kerethez és literenkénti üzemanyagárhoz. Számold ki, hány liter benzint vagy dízelt kapsz a megadott összegből."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Tankolás kalkulátor | Hány liter fér a keretbe?"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Tankolás kalkulátor | Hány liter fér a keretbe?"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Tankolás kalkulátor tankolási kerethez és literenkénti üzemanyagárhoz. Számold ki, hány liter benzint vagy dízelt kapsz a megadott összegből."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Tankolás kalkulátor tankolási kerethez és literenkénti üzemanyagárhoz. Számold ki, hány liter benzint vagy dízelt kapsz a megadott összegből."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Tankolás kalkulátor | Hány liter fér a keretbe?"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Tankolás kalkulátor | Hány liter fér a keretbe?"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Tankolás kalkulátor tankolási kerethez és literenkénti üzemanyagárhoz. Számold ki, hány liter benzint vagy dízelt kapsz a megadott összegből."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Tankolás kalkulátor tankolási kerethez és literenkénti üzemanyagárhoz. Számold ki, hány liter benzint vagy dízelt kapsz a megadott összegből."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/autopalyadij-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [
+        {
+          "field": "title",
+          "language": "en",
+          "source": "Autópályadíj megosztó | Költség utasonként"
+        },
+        {
+          "field": "title",
+          "language": "de",
+          "source": "Autópályadíj megosztó | Költség utasonként"
+        },
+        {
+          "field": "description",
+          "language": "en",
+          "source": "Autópályadíj-megosztó közös utazáshoz: oszd el a matrica vagy útdíj költségét az utasok között, és tervezz igazságosabb költségmegosztást."
+        },
+        {
+          "field": "description",
+          "language": "de",
+          "source": "Autópályadíj-megosztó közös utazáshoz: oszd el a matrica vagy útdíj költségét az utasok között, és tervezz igazságosabb költségmegosztást."
+        },
+        {
+          "field": "og:title",
+          "language": "en",
+          "source": "Autópályadíj megosztó | Költség utasonként"
+        },
+        {
+          "field": "og:title",
+          "language": "de",
+          "source": "Autópályadíj megosztó | Költség utasonként"
+        },
+        {
+          "field": "og:description",
+          "language": "en",
+          "source": "Autópályadíj-megosztó közös utazáshoz: oszd el a matrica vagy útdíj költségét az utasok között, és tervezz igazságosabb költségmegosztást."
+        },
+        {
+          "field": "og:description",
+          "language": "de",
+          "source": "Autópályadíj-megosztó közös utazáshoz: oszd el a matrica vagy útdíj költségét az utasok között, és tervezz igazságosabb költségmegosztást."
+        },
+        {
+          "field": "twitter:title",
+          "language": "en",
+          "source": "Autópályadíj megosztó | Költség utasonként"
+        },
+        {
+          "field": "twitter:title",
+          "language": "de",
+          "source": "Autópályadíj megosztó | Költség utasonként"
+        },
+        {
+          "field": "twitter:description",
+          "language": "en",
+          "source": "Autópályadíj-megosztó közös utazáshoz: oszd el a matrica vagy útdíj költségét az utasok között, és tervezz igazságosabb költségmegosztást."
+        },
+        {
+          "field": "twitter:description",
+          "language": "de",
+          "source": "Autópályadíj-megosztó közös utazáshoz: oszd el a matrica vagy útdíj költségét az utasok között, és tervezz igazságosabb költségmegosztást."
+        }
+      ],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "en",
+          "source": "Autópályadíj megosztó | Költség utasonként"
+        },
+        {
+          "field": "schema[0].@graph[0].name",
+          "language": "de",
+          "source": "Autópályadíj megosztó | Költség utasonként"
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "Autópályadíj-megosztó közös utazáshoz: oszd el a matrica vagy útdíj költségét az utasok között, és tervezz igazságosabb költségmegosztást."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "Autópályadíj-megosztó közös utazáshoz: oszd el a matrica vagy útdíj költségét az utasok között, és tervezz igazságosabb költségmegosztást."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "en",
+          "source": "Oszd el az autópályadíjat utasok között."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "de",
+          "source": "Oszd el az autópályadíjat utasok között."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/auto-ertekvesztes-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "en",
+          "source": "Számold ki, mennyit veszíthet az autó az értékéből évente."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "de",
+          "source": "Számold ki, mennyit veszíthet az autó az értékéből évente."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/aljzatkiegyenlito-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/alvasciklus-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/auto-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "en",
+          "source": "Fogyasztás, üzemanyagköltség és becsült hatótáv egy összetett eszközben."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "de",
+          "source": "Fogyasztás, üzemanyagköltség és becsült hatótáv egy összetett eszközben."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/beton-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "en",
+          "source": "Szükséges beton mennyiségének kiszámítása."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "de",
+          "source": "Szükséges beton mennyiségének kiszámítása."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/csempe-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/csemperagaszto-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/bmi-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "en",
+          "source": "Testtömegindex kiszámítása testsúly és magasság alapján."
+        },
+        {
+          "field": "schema[0].@graph[1].description",
+          "language": "de",
+          "source": "Testtömegindex kiszámítása testsúly és magasság alapján."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/bmr-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/derek-csipo-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/deviza-atvalto-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/egyszeri-max-1rm-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/ev-toltesi-koltseg-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/eves-auto-koltseg-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/kilometerdij-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/gumi-meret-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/fektav-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/utazasi-ido-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/uzemanyagar-kulonbseg-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/feherje-szukseglet-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/pulzus-zona-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/festek-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/fuga-kalkulator.html",
+      "metadataFields": 2,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/futotempo-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/gipszkarton-kalkulator.html",
+      "metadataFields": 2,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/harmasszabaly-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/hoszigeteles-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/idealis-testsuly-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/kaloria-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/kerites-oszlop-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/lepesszam-tavolsag-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/makro-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/mertekegyseg-atvalto-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/tetocserep-kalkulator.html",
+      "metadataFields": 2,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/testzsir-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/vizfogyasztas-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/terhessegi-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/terkovezes-kalkulator.html",
+      "metadataFields": 2,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/zuzottko-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/mulcs-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/padlo-burkolat-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/szegolec-kalkulator.html",
+      "metadataFields": 4,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/tapeta-kalkulator.html",
+      "metadataFields": 2,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/tegla-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/multifunkcios-szamologep.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok/co2-kibocsatas-kalkulator.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "atvaltok.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "auto.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "egeszseg.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "epitoipari.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "mindennapi.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "penzugyi.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kalkulatorok.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "404.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "adatvedelem.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "cookie.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "felhasznalasi-feltetelek.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "impresszum.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "jogi-nyilatkozat.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "plugin-adatvedelem.html",
+      "metadataFields": 2,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "plugin-felhasznalasi-feltetelek.html",
+      "metadataFields": 2,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "atlathatosag-es-minoseg.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "A Kalkulátor Bázis számítási, frissítési, adatvédelmi és hibakezelési alapelvei."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "A Kalkulátor Bázis számítási, frissítési, adatvédelmi és hibakezelési alapelvei."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "miert-bizhatsz-bennunk.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "A Kalkulátor Bázis minőségi, forráskezelési, ellenőrzési és hibajavítási alapelvei."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "A Kalkulátor Bázis minőségi, forráskezelési, ellenőrzési és hibajavítási alapelvei."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "rolunk.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "en",
+          "source": "A Kalkulátor Bázis bemutatkozó oldala."
+        },
+        {
+          "field": "schema[0].@graph[0].description",
+          "language": "de",
+          "source": "A Kalkulátor Bázis bemutatkozó oldala."
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "szamitasi-modszertan.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "kapcsolat.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "landing-pages/elethelyzetek/autofenntartas.html",
+      "metadataFields": 2,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "landing-pages/elethelyzetek/befektetes-kezdoknek.html",
+      "metadataFields": 2,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "landing-pages/elethelyzetek/csaladi-koltsegvetes.html",
+      "metadataFields": 2,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "landing-pages/elethelyzetek/felujitas-tervezese.html",
+      "metadataFields": 2,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "landing-pages/elethelyzetek/fizetes-munkaber.html",
+      "metadataFields": 2,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "landing-pages/elethelyzetek/lakasvasarlas.html",
+      "metadataFields": 2,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "landing-pages/penzugyi-tudatossag/penzugyi-tudatossag.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [
+        {
+          "field": "schema[0].headline",
+          "language": "en",
+          "source": "Pénzügyi tudatosság alapjai - ne befektetéssel kezdj"
+        },
+        {
+          "field": "schema[0].headline",
+          "language": "de",
+          "source": "Pénzügyi tudatosság alapjai - ne befektetéssel kezdj"
+        }
+      ],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "landing-pages/wise/wise.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "dontesek.html",
+      "metadataFields": 4,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "elethelyzetek.html",
+      "metadataFields": 4,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "osszehasonlitas.html",
+      "metadataFields": 4,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    },
+    {
+      "path": "index.html",
+      "metadataFields": 6,
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
+      "alternateLanguageUrls": []
+    }
+  ]
+}
