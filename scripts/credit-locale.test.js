@@ -6,6 +6,8 @@ const api = require("../js/penzugyi/credit-locale");
 test("loan repayment wording, APR handling and values are localized", () => {
   const page = "hitel-torleszto-kalkulator";
   assert.equal(api.translate(page, "Hitel törlesztő kalkulátor", "en"), "Loan repayment calculator");
+  assert.equal(api.translate(page, "Hitel törlesztő kalkulátor | Havi részlet és teljes visszafizetés", "en"), "Loan Repayment Calculator | Monthly Payment and Total Repayment");
+  assert.equal(api.translate(page, "Hitel törlesztő kalkulátor havi részlet, teljes visszafizetés és kamatteher becsléséhez. Hasonlíts össze hitelösszeget, kamatot, THM-et és futamidőt.", "de"), "Kreditratenrechner zur Schätzung von Monatsrate, Gesamtrückzahlung und Zinskosten. Vergleiche Kreditbetrag, Zinssatz, effektiven Jahreszins und Laufzeit.");
   assert.equal(api.translate(page, "THM (%)", "de"), "Effektiver Jahreszins (%)");
   assert.equal(api.translate(page, "pl. 5 000 000", "en"), "e.g. 5 000 000");
   assert.equal(api.translate(page, "A havi törlesztő: 149 115 Ft", "en"), "Monthly payment: 149 115 HUF");
