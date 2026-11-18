@@ -1,7 +1,7 @@
 {
   "pages": 121,
-  "metadataGaps": 390,
-  "schemaCopyGaps": 190,
+  "metadataGaps": 374,
+  "schemaCopyGaps": 182,
   "pagesWithAlternateUrls": 0,
   "results": [
     {
@@ -14,139 +14,15 @@
     {
       "path": "kalkulatorok/lakas-hitel-onero-kalkulator.html",
       "metadataFields": 6,
-      "missingMetadata": [
-        {
-          "field": "title",
-          "language": "en",
-          "source": "Lakáshitel önerő kalkulátor | Ingatlanvásárlás tervezése"
-        },
-        {
-          "field": "title",
-          "language": "de",
-          "source": "Lakáshitel önerő kalkulátor | Ingatlanvásárlás tervezése"
-        },
-        {
-          "field": "description",
-          "language": "en",
-          "source": "Lakáshitel önerő kalkulátor: számold ki mekkora önerő szükséges és mekkora hitelt vehetsz fel."
-        },
-        {
-          "field": "description",
-          "language": "de",
-          "source": "Lakáshitel önerő kalkulátor: számold ki mekkora önerő szükséges és mekkora hitelt vehetsz fel."
-        },
-        {
-          "field": "og:title",
-          "language": "en",
-          "source": "Lakáshitel önerő kalkulátor | Ingatlanvásárlás tervezése"
-        },
-        {
-          "field": "og:title",
-          "language": "de",
-          "source": "Lakáshitel önerő kalkulátor | Ingatlanvásárlás tervezése"
-        },
-        {
-          "field": "og:description",
-          "language": "en",
-          "source": "Lakáshitel önerő kalkulátor: számold ki mekkora önerő szükséges és mekkora hitelt vehetsz fel."
-        },
-        {
-          "field": "og:description",
-          "language": "de",
-          "source": "Lakáshitel önerő kalkulátor: számold ki mekkora önerő szükséges és mekkora hitelt vehetsz fel."
-        },
-        {
-          "field": "twitter:title",
-          "language": "en",
-          "source": "Lakáshitel önerő kalkulátor | Ingatlanvásárlás tervezése"
-        },
-        {
-          "field": "twitter:title",
-          "language": "de",
-          "source": "Lakáshitel önerő kalkulátor | Ingatlanvásárlás tervezése"
-        },
-        {
-          "field": "twitter:description",
-          "language": "en",
-          "source": "Lakáshitel önerő kalkulátor: számold ki mekkora önerő szükséges és mekkora hitelt vehetsz fel."
-        },
-        {
-          "field": "twitter:description",
-          "language": "de",
-          "source": "Lakáshitel önerő kalkulátor: számold ki mekkora önerő szükséges és mekkora hitelt vehetsz fel."
-        }
-      ],
-      "missingSchemaCopy": [
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "en",
-          "source": "Lakáshitel önerő kalkulátor | Ingatlanvásárlás tervezése"
-        },
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "de",
-          "source": "Lakáshitel önerő kalkulátor | Ingatlanvásárlás tervezése"
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "en",
-          "source": "Lakáshitel önerő kalkulátor: számold ki mekkora önerő szükséges és mekkora hitelt vehetsz fel."
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "de",
-          "source": "Lakáshitel önerő kalkulátor: számold ki mekkora önerő szükséges és mekkora hitelt vehetsz fel."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "en",
-          "source": "Szükséges önerő kiszámítása lakásvásárláshoz."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "de",
-          "source": "Szükséges önerő kiszámítása lakásvásárláshoz."
-        }
-      ],
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
       "alternateLanguageUrls": []
     },
     {
       "path": "kalkulatorok/hitel-elotorlesztes-kalkulator.html",
       "metadataFields": 4,
-      "missingMetadata": [
-        {
-          "field": "title",
-          "language": "en",
-          "source": "Hitel előtörlesztés kalkulátor | Kalkulátor Bázis"
-        },
-        {
-          "field": "title",
-          "language": "de",
-          "source": "Hitel előtörlesztés kalkulátor | Kalkulátor Bázis"
-        },
-        {
-          "field": "og:title",
-          "language": "en",
-          "source": "Hitel előtörlesztés kalkulátor | Kalkulátor Bázis"
-        },
-        {
-          "field": "og:title",
-          "language": "de",
-          "source": "Hitel előtörlesztés kalkulátor | Kalkulátor Bázis"
-        }
-      ],
-      "missingSchemaCopy": [
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "en",
-          "source": "Hitel előtörlesztés kalkulátor | Kalkulátor Bázis"
-        },
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "de",
-          "source": "Hitel előtörlesztés kalkulátor | Kalkulátor Bázis"
-        }
-      ],
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
       "alternateLanguageUrls": []
     },
     {

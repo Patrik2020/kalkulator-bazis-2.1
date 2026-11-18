@@ -10,8 +10,8 @@ A teljes, oldalankénti bizonyíték: [localization-seo-audit-findings.json](loc
 
 | Vizsgálat | Eredmény |
 | --- | --- |
-| Title, description, meglévő OG/Twitter cím és leírás EN/DE szótárlefedettsége | 42 érintett oldal, 390 mező–nyelv hiány |
-| Ékezetes magyar name/headline/description/text JSON-LD mezők fordítása, márkanév kivételével | 50 érintett oldal, 190 mező–nyelv hiányjelölt |
+| Title, description, meglévő OG/Twitter cím és leírás EN/DE szótárlefedettsége | 40 érintett oldal, 374 mező–nyelv hiány |
+| Ékezetes magyar name/headline/description/text JSON-LD mezők fordítása, márkanév kivételével | 48 érintett oldal, 182 mező–nyelv hiányjelölt |
 | HTML-ben szereplő hreflang hivatkozás | 0/121 oldalon |
 
 A darabszámok nem egyedi mondatok számai: ugyanaz a szöveg több metahelyen és két célnyelven is szerepelhet. A szótári hiány nem önmagában böngészős bizonyíték: a tényleges runtime módosítást külön kell ellenőrizni. A JSON-LD vizsgálat ékezetes magyar szövegre szűrt hiányjelölt-lista, ezért nem teljes nyelvfelismerés. A már meglévő mezőket vizsgálja, nem ír elő minden oldalon Twitter mezőt. Nincs automatikus sikeres/bukott kilépőkód a tartalmi hiányokra; ez leltár, nem kötelező kapu.
@@ -38,6 +38,12 @@ Példák: a lakáshitel-önerő oldal „Lakáshitel önerő kalkulátor | Ingat
 
 1. A meta-/sémahiányokat természetes EN/DE szöveggel pótolni az eredeti gazdamodulokban; minden érintett oldalt és a dinamikus fejgenerálást ellenőrizni.
 2. Működő böngészőkörnyezetben a 121 oldalon megvizsgálni a megjelenő metaadatokat, sémákat, dokumentumnyelvet, teljes mondatokat, bezárt GYIK-et, hozzáférhető feliratokat és HU-visszaállítást; 390/1440 px és nyelvenként rögzített bizonyíték.
+
+## Javítási előrehaladás
+
+- `lakas-hitel-onero-kalkulator.html`: a title, description, Open Graph, Twitter és JSON-LD szövegek EN/DE szótárlefedettsége teljes.
+- `hitel-elotorlesztes-kalkulator.html`: a title, Open Graph és JSON-LD név EN/DE szótárlefedettsége teljes.
+- A célzott audit ezeken az oldalakon egyaránt 0 metaadat- és 0 strukturáltadat-hiányt jelez.
 3. A meglévő összes célzott eredmény-/hiba-/számítási tesztet és teljes böngészős regressziót futtatni; megőrzött felhasználói bemenetek és számértékek.
 4. Az összes egyedi szótári EN/DE párt oldalanként nyelvileg végigolvasni, a tagolt mondatokat böngészőben is. Az automatizált egyezés ezt nem igazolja.
 5. Külön indexelhető EN/DE SEO-kiadás megvalósítása és ellenőrzése; csak valós nyelvi URL-ekhez hreflangot hozzáadni.
