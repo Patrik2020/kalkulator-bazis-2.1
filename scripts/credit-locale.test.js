@@ -1,7 +1,28 @@
 "use strict";
+const fs = require("node:fs");
+const vm = require("node:vm");
 const assert = require("node:assert/strict");
 const { test } = require("node:test");
 const api = require("../js/penzugyi/credit-locale");
+
+test("browser metadata and schema switch EN/DE and restore the original HU source", () => {
+  const title = { tagName: "TITLE", textContent: "Hitelképesség kalkulátor | Jövedelmi teherbírás" };
+  const source = JSON.stringify({ name: title.textContent, inLanguage: "hu-HU", url: "https://kalkulatorbazis.hu/unchanged" });
+  const schema = { tagName: "SCRIPT", textContent: source };
+  const listeners = {};
+  const main = { classList: { contains: () => false }, querySelectorAll: () => [] };
+  const document = { readyState: "complete", querySelector: () => main, querySelectorAll: () => [title, schema], createTreeWalker: () => ({ nextNode: () => false }), addEventListener: (name, fn) => { listeners[name] = fn; } };
+  vm.runInNewContext(fs.readFileSync(require.resolve("../js/penzugyi/credit-locale"), "utf8"), { window: { document, location: { search: "" } }, URLSearchParams, NodeFilter: { SHOW_TEXT: 4 }, MutationObserver: class { observe() {} disconnect() {} } });
+  for (const language of ["en", "de"]) {
+    listeners["kb:language-changed"]({ detail: { language } });
+    assert.equal(title.textContent, api.translate("hitelkepesseg-kalkulator", "Hitelképesség kalkulátor | Jövedelmi teherbírás", language));
+    assert.equal(JSON.parse(schema.textContent).inLanguage, language);
+    assert.equal(JSON.parse(schema.textContent).url, "https://kalkulatorbazis.hu/unchanged");
+  }
+  listeners["kb:language-changed"]({ detail: { language: "hu" } });
+  assert.equal(schema.textContent, source);
+  assert.equal(title.textContent, "Hitelképesség kalkulátor | Jövedelmi teherbírás");
+});
 
 test("loan repayment wording, APR handling and values are localized", () => {
   const page = "hitel-torleszto-kalkulator";

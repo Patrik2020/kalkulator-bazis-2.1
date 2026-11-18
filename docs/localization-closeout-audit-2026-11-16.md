@@ -10,8 +10,8 @@ A teljes, oldalankénti bizonyíték: [localization-seo-audit-findings.json](loc
 
 | Vizsgálat | Eredmény |
 | --- | --- |
-| Title, description, meglévő OG/Twitter cím és leírás EN/DE szótárlefedettsége | 39 érintett oldal, 362 mező–nyelv hiány |
-| Ékezetes magyar name/headline/description/text JSON-LD mezők fordítása, márkanév kivételével | 47 érintett oldal, 178 mező–nyelv hiányjelölt |
+| Title, description, meglévő OG/Twitter cím és leírás EN/DE szótárlefedettsége | 38 érintett oldal, 350 mező–nyelv hiány |
+| Ékezetes magyar name/headline/description/text JSON-LD mezők fordítása, márkanév kivételével | 46 érintett oldal, 172 mező–nyelv hiányjelölt |
 | HTML-ben szereplő hreflang hivatkozás | 0/121 oldalon |
 
 A darabszámok nem egyedi mondatok számai: ugyanaz a szöveg több metahelyen és két célnyelven is szerepelhet. A szótári hiány nem önmagában böngészős bizonyíték: a tényleges runtime módosítást külön kell ellenőrizni. A JSON-LD vizsgálat ékezetes magyar szövegre szűrt hiányjelölt-lista, ezért nem teljes nyelvfelismerés. A már meglévő mezőket vizsgálja, nem ír elő minden oldalon Twitter mezőt. Nincs automatikus sikeres/bukott kilépőkód a tartalmi hiányokra; ez leltár, nem kötelező kapu.
@@ -45,6 +45,8 @@ Példák a még nyitott tételekre: a bruttó–nettó oldal jelenlegi 2026-os m
 6. Javítások után kötelező quality/build/idempotencia és PR CI; merge után Pages, élő elérhetőség és tényleges production tartalomaudit. A teljes záróaudit csak e bizonyítékokkal kész.
 
 ## Javítási előrehaladás
+
+- `hitelkepesseg-kalkulator.html`: a metaadat- és JSON-LD-szótárhiányok pótolva. A két hitelkalkulátor meglévő `credit-locale.js` modulja most a fejlécet és a JSON-LD szövegmezőit is fordítja; HU-visszaállítás és változatlan séma-URL célzott futtatási teszttel ellenőrizve.
 
 - `lakas-hitel-onero-kalkulator.html`: a title, description, Open Graph, Twitter és JSON-LD szövegek EN/DE szótárlefedettsége teljes.
 - `hitel-elotorlesztes-kalkulator.html`: a title, Open Graph és JSON-LD név EN/DE szótárlefedettsége teljes.
