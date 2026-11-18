@@ -7,6 +7,9 @@ test("mortgage down-payment guidance and calculator copy is translated", () => {
   const page = "lakas-hitel-onero-kalkulator";
   assert.ok(api.pages.includes(page));
   assert.equal(api.translate(page, "Lakáshitel önerő kalkulátor", "en"), "Mortgage down payment calculator");
+  assert.equal(api.translate(page, "Lakáshitel önerő kalkulátor | Ingatlanvásárlás tervezése", "en"), "Mortgage Down Payment Calculator | Plan Your Home Purchase");
+  assert.equal(api.translate(page, "Lakáshitel önerő kalkulátor: számold ki mekkora önerő szükséges és mekkora hitelt vehetsz fel.", "de"), "Eigenkapitalrechner für Immobilienkredite: Schätze, wie viel Eigenkapital du benötigst und wie hoch dein Darlehen sein könnte.");
+  assert.equal(api.translate(page, "Szükséges önerő kiszámítása lakásvásárláshoz.", "en"), "Calculate the down payment required to buy a home.");
   assert.equal(api.translate(page, "Banki forgalmi érték", "de"), "Von der Bank ermittelter Marktwert");
   assert.match(api.translate(page, "A HFM a bank által hitelbírálatkor megállapított forgalmi értékhez kötődik. Ha ez alacsonyabb a vételárnál, a szükséges saját pénz magasabb lehet, mint egy egyszerű 10% vagy 20%-os számítás.", "en"), /LTV limit is based/u);
   assert.equal(api.translate(page, "Finanszírozandó összeg: 32 000 000 Ft", "en"), "Amount to finance: 32 000 000 HUF");
@@ -18,6 +21,7 @@ test("early repayment results, validation and terminology are translated", () =>
   const page = "hitel-elotorlesztes-kalkulator";
   assert.ok(api.pages.includes(page));
   assert.equal(api.translate(page, "Hitel előtörlesztés kalkulátor", "en"), "Early loan repayment calculator");
+  assert.equal(api.translate(page, "Hitel előtörlesztés kalkulátor | Kalkulátor Bázis", "de"), "Kredit-Sondertilgungsrechner | Kalkulátor Bázis");
   assert.equal(api.translate(page, "Fennálló tőketartozás (Ft)", "en"), "Outstanding principal (HUF)");
   assert.equal(api.translate(page, "Becsült nettó megtakarítás: 705 151 Ft", "en"), "Estimated net savings: 705 151 HUF");
   assert.equal(api.translate(page, "A futamidő egész hónap legyen.", "de"), "Die Laufzeit muss in ganzen Monaten angegeben werden.");
