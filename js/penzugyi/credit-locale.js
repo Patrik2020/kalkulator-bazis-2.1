@@ -13,9 +13,33 @@
   let language = root.KB_SITE_LANGUAGE?.get() || "hu";
   let observer;
   const excluded = 'script,style,textarea,pre,code,input,[contenteditable],[translate="no"]';
+  const headSources = new Map();
+  function renderMetadata() {
+    const translate = value => api.translate(page, value, language) ?? value;
+    for (const element of doc.querySelectorAll('title,meta[name="description"],meta[property="og:title"],meta[property="og:description"],meta[name="twitter:title"],meta[name="twitter:description"],script[type="application/ld+json"]')) {
+      const isMeta = element.tagName === "META";
+      if (!headSources.has(element)) headSources.set(element, isMeta ? element.content : element.textContent);
+      const source = headSources.get(element);
+      if (element.tagName !== "SCRIPT") {
+        if (isMeta) element.content = translate(source);
+        else element.textContent = translate(source);
+        continue;
+      }
+      const localize = value => {
+        if (Array.isArray(value)) return value.map(localize);
+        if (!value || typeof value !== "object") return value;
+        return Object.fromEntries(Object.entries(value).map(([key, item]) => [key,
+          key === "inLanguage" ? ({ hu: "hu-HU", en: "en", de: "de" })[language] :
+            typeof item === "string" && ["name", "headline", "description", "text", "about"].includes(key) ? translate(item) :
+              item && typeof item === "object" ? localize(item) : item]));
+      };
+      try { element.textContent = language === "hu" ? source : JSON.stringify(localize(JSON.parse(source))); } catch { /* Preserve invalid source JSON for the schema audit. */ }
+    }
+  }
   function render() {
     observer?.disconnect();
     try {
+      renderMetadata();
       const walker = doc.createTreeWalker(main, NodeFilter.SHOW_TEXT);
       while (walker.nextNode()) {
         const node = walker.currentNode;
@@ -60,6 +84,9 @@
 })(typeof window === "undefined" ? null : window, function () {
   "use strict";
   const rows = [
+    ["Hitelképesség kalkulátor | Jövedelmi teherbírás", "Borrowing Capacity Calculator | Income-Based Affordability", "Kreditrechner | Tragbarkeit anhand deines Einkommens"],
+    ["Hitelképesség kalkulátor jövedelmi teherbírás becsléséhez. Nézd meg, mekkora havi részlet és hitelösszeg adódik a rögzített tervezési aránnyal.", "Estimate your borrowing capacity based on your income. See the monthly payment and loan amount implied by the fixed planning ratio.", "Schätze, wie viel Kredit du dir anhand deines Einkommens leisten kannst. Sieh dir Monatsrate und Kreditbetrag beim festgelegten Planungsanteil an."],
+    ["Becsüld meg, mekkora hitel férhet bele a jövedelmedbe.", "Estimate how much you could afford to borrow based on your income.", "Schätze, wie viel Kredit du dir mit deinem Einkommen leisten könntest."],
     ["Hitel törlesztő kalkulátor | Havi részlet és teljes visszafizetés", "Loan Repayment Calculator | Monthly Payment and Total Repayment", "Kreditratenrechner | Monatsrate und Gesamtrückzahlung"],
     ["Hitel törlesztő kalkulátor havi részlet, teljes visszafizetés és kamatteher becsléséhez. Hasonlíts össze hitelösszeget, kamatot, THM-et és futamidőt.", "Loan repayment calculator for estimating the monthly payment, total repayment and interest cost. Compare loan amounts, interest rates, APRs and terms.", "Kreditratenrechner zur Schätzung von Monatsrate, Gesamtrückzahlung und Zinskosten. Vergleiche Kreditbetrag, Zinssatz, effektiven Jahreszins und Laufzeit."],
     ["Hitel törlesztő kalkulátor", "Loan repayment calculator", "Kreditratenrechner"], ["Hitelképesség kalkulátor", "Borrowing capacity calculator", "Kreditrechner für die Tragbarkeit"], ["Hitel törlesztés számítása döntés előtt", "Estimate loan repayments before making a decision", "Kreditraten vor der Entscheidung berechnen"], ["Számold ki a várható havi törlesztőt, a teljes visszafizetést és a kamatterhet.", "Estimate your monthly payment, total repayment and interest cost.", "Schätze deine Monatsrate, die Gesamtrückzahlung und die Zinskosten."], ["Számold ki, mekkora hitelt engedhetsz meg magadnak.", "Estimate how much you may be able to borrow.", "Schätze, wie viel Kredit du dir leisten kannst."], ["Hitel összege (Ft)", "Loan amount (HUF)", "Kreditbetrag (HUF)"], ["Hitelösszeg", "Loan amount", "Kreditbetrag"], ["Kamat (%)", "Interest rate (%)", "Zinssatz (%)"], ["Kamat", "Interest", "Zinsen"], ["Éves kamat (%)", "Annual interest rate (%)", "Jährlicher Zinssatz (%)"], ["Futamidő (év)", "Loan term (years)", "Laufzeit (Jahre)"], ["Futamidő", "Loan term", "Laufzeit"], ["Év", "Year", "Jahr"], ["THM (%)", "APR (%)", "Effektiver Jahreszins (%)"], ["THM mező megjelenítése", "Use APR", "Effektiven Jahreszins verwenden"], ["Alap havi részlet", "Base monthly payment", "Monatliche Basisrate"], ["Havi törlesztő", "Monthly payment", "Monatsrate"], ["Havi részlet", "Monthly payment", "Monatsrate"], ["Teljes kamat", "Total interest", "Gesamtzinsen"], ["Díjakkal teljes teher", "Total cost including fees", "Gesamtkosten inklusive Gebühren"], ["Előtörlesztéssel kamat", "Interest after early repayment", "Zinsen nach Sondertilgung"], ["Stresszelt havi részlet", "Monthly payment under stress", "Monatsrate im Stresstest"], ["Teljes többlet a futamidő alatt", "Total cost over the loan term", "Gesamtkosten über die Laufzeit"], ["Törlesztési stresszteszt", "Repayment stress test", "Raten-Stresstest"], ["Stresszteszt kamata (%)", "Stress-test interest rate (%)", "Stresstest-Zinssatz (%)"], ["Stresszteszt kamata", "Stress-test interest rate", "Stresstest-Zinssatz"], ["Stresszelt havi részlet", "Monthly payment under stress", "Monatsrate im Stresstest"], ["Előtörlesztés hatását számolja?", "Include an early repayment?", "Sondertilgung berücksichtigen?"], ["Előtörlesztés hónapja", "Month of early repayment", "Monat der Sondertilgung"], ["Előtörlesztés összege", "Early repayment amount", "Sondertilgungsbetrag"], ["Előtörlesztés:", "Early repayment:", "Sondertilgung:"], ["Előtörlesztéssel kamat", "Interest after early repayment", "Zinsen nach Sondertilgung"], ["Három hitelajánlat összehasonlítása", "Compare three loan offers", "Drei Kreditangebote vergleichen"], ["Ajánlat", "Offer", "Angebot"], ["A ajánlat éves tőke–kamat bontása", "Annual principal and interest breakdown for offer A", "Jährliche Aufteilung von Tilgung und Zinsen für Angebot A"], ["Tőketörlesztés", "Principal repaid", "Tilgung"], ["Év végi tartozás", "Balance at year end", "Restschuld zum Jahresende"], ["Egyszeri díjak", "One-time fees", "Einmalige Gebühren"], ["Havi különbség", "Monthly difference", "Monatliche Differenz"], ["Havi törlesztő:", "Monthly payment:", "Monatsrate:"], ["Kamatteher", "Interest cost", "Zinskosten"], ["Becsült teljes finanszírozási költség", "Estimated total financing cost", "Geschätzte Gesamtfinanzierungskosten"], ["Teljes visszafizetés", "Total repayment", "Gesamtrückzahlung"], ["Teljes visszafizetés:", "Total repayment:", "Gesamtrückzahlung:"], ["Tőketartozás", "Outstanding principal", "Restschuld"],
