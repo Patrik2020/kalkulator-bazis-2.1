@@ -1,7 +1,7 @@
 {
   "pages": 121,
-  "metadataGaps": 350,
-  "schemaCopyGaps": 172,
+  "metadataGaps": 338,
+  "schemaCopyGaps": 166,
   "pagesWithAlternateUrls": 0,
   "results": [
     {
@@ -42,100 +42,8 @@
     {
       "path": "kalkulatorok/etf-kalkulator.html",
       "metadataFields": 6,
-      "missingMetadata": [
-        {
-          "field": "title",
-          "language": "en",
-          "source": "ETF kalkulátor | Befektetés, célösszeg, TER és infláció"
-        },
-        {
-          "field": "title",
-          "language": "de",
-          "source": "ETF kalkulátor | Befektetés, célösszeg, TER és infláció"
-        },
-        {
-          "field": "description",
-          "language": "en",
-          "source": "ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással."
-        },
-        {
-          "field": "description",
-          "language": "de",
-          "source": "ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással."
-        },
-        {
-          "field": "og:title",
-          "language": "en",
-          "source": "ETF kalkulátor | Befektetés, célösszeg, TER és infláció"
-        },
-        {
-          "field": "og:title",
-          "language": "de",
-          "source": "ETF kalkulátor | Befektetés, célösszeg, TER és infláció"
-        },
-        {
-          "field": "og:description",
-          "language": "en",
-          "source": "ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással."
-        },
-        {
-          "field": "og:description",
-          "language": "de",
-          "source": "ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással."
-        },
-        {
-          "field": "twitter:title",
-          "language": "en",
-          "source": "ETF kalkulátor | Befektetés, célösszeg, TER és infláció"
-        },
-        {
-          "field": "twitter:title",
-          "language": "de",
-          "source": "ETF kalkulátor | Befektetés, célösszeg, TER és infláció"
-        },
-        {
-          "field": "twitter:description",
-          "language": "en",
-          "source": "ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással."
-        },
-        {
-          "field": "twitter:description",
-          "language": "de",
-          "source": "ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással."
-        }
-      ],
-      "missingSchemaCopy": [
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "en",
-          "source": "ETF kalkulátor | Befektetés, célösszeg, TER és infláció"
-        },
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "de",
-          "source": "ETF kalkulátor | Befektetés, célösszeg, TER és infláció"
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "en",
-          "source": "ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással."
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "de",
-          "source": "ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "en",
-          "source": "ETF befektetés, célösszeg, TER és infláció becslése."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "de",
-          "source": "ETF befektetés, célösszeg, TER és infláció becslése."
-        }
-      ],
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
       "alternateLanguageUrls": []
     },
     {

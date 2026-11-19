@@ -13,9 +13,33 @@
   let language = root.KB_SITE_LANGUAGE?.get() || "hu";
   let observer;
   const excluded = 'script,style,textarea,pre,code,input,[contenteditable],[translate="no"]';
+  const headSources = new Map();
+  function renderMetadata() {
+    const translate = value => api.translate(page, value, language) ?? value;
+    for (const element of doc.querySelectorAll('title,meta[name="description"],meta[property="og:title"],meta[property="og:description"],meta[name="twitter:title"],meta[name="twitter:description"],script[type="application/ld+json"]')) {
+      const isMeta = element.tagName === "META";
+      if (!headSources.has(element)) headSources.set(element, isMeta ? element.content : element.textContent);
+      const source = headSources.get(element);
+      if (element.tagName !== "SCRIPT") {
+        if (isMeta) element.content = translate(source);
+        else element.textContent = translate(source);
+        continue;
+      }
+      const localize = value => {
+        if (Array.isArray(value)) return value.map(localize);
+        if (!value || typeof value !== "object") return value;
+        return Object.fromEntries(Object.entries(value).map(([key, item]) => [key,
+          key === "inLanguage" ? ({ hu: "hu-HU", en: "en", de: "de" })[language] :
+            typeof item === "string" && ["name", "headline", "description", "text", "about"].includes(key) ? translate(item) :
+              item && typeof item === "object" ? localize(item) : item]));
+      };
+      try { element.textContent = language === "hu" ? source : JSON.stringify(localize(JSON.parse(source))); } catch { /* Preserve invalid source JSON for the schema audit. */ }
+    }
+  }
   function render() {
     observer?.disconnect();
     try {
+      renderMetadata();
       const walker = doc.createTreeWalker(main, NodeFilter.SHOW_TEXT);
       while (walker.nextNode()) {
         const node = walker.currentNode;
@@ -60,6 +84,9 @@
 })(typeof window === "undefined" ? null : window, function () {
   "use strict";
   const rows = [
+    ["ETF kalkulátor | Befektetés, célösszeg, TER és infláció", "ETF Calculator | Investments, Savings Target, TER and Inflation", "ETF-Rechner | Anlage, Sparziel, TER und Inflation"],
+    ["ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással.", "ETF calculator for regular investing and savings targets, with TER, inflation, scenarios, a chart and an annual breakdown.", "ETF-Rechner für regelmäßige Anlagen und Sparziele mit TER, Inflation, Szenarien, Diagramm und jährlicher Aufschlüsselung."],
+    ["ETF befektetés, célösszeg, TER és infláció becslése.", "Estimate ETF investment growth and savings targets, accounting for TER and inflation.", "Schätze die Entwicklung deiner ETF-Anlage und deines Sparziels unter Berücksichtigung von TER und Inflation."],
     ["FRISS HÍREK", "LATEST NEWS", "AKTUELLE NACHRICHTEN"], ["Megtakarítás és gazdaság", "Savings and the economy", "Sparen und Wirtschaft"], ["Állampapír-kamatok 2026-ban", "Government bond rates in 2026", "Staatsanleihezinsen 2026"], ["Szeptemberi infláció: 1,6%", "September inflation: 1.6%", "Inflation im September: 1,6 %"], ["Összes friss hír →", "All the latest news →", "Alle aktuellen Nachrichten →"],
     ["ETF tervező", "ETF planner", "ETF-Planer"], ["ETF kalkulátor", "ETF calculator", "ETF-Rechner"], ["Infláció kalkulátor", "Inflation calculator", "Inflationsrechner"], ["Nézd meg, mennyit ér a pénzed az idő múlásával.", "See how the purchasing power of your money may change over time.", "Sieh dir an, wie sich die Kaufkraft deines Geldes im Laufe der Zeit verändern kann."],
     ["Becsüld meg, mennyit érhet a rendszeres ETF-befektetésed, vagy számold ki, mekkora kezdő havi összeg kell egy pénzügyi cél eléréséhez.", "Estimate how your regular ETF investment could grow, or calculate the initial monthly contribution needed to reach a financial goal.", "Schätze, wie sich deine regelmäßige ETF-Anlage entwickeln könnte, oder berechne die anfängliche monatliche Einzahlung, die zum Erreichen eines finanziellen Ziels nötig ist."],
