@@ -84,6 +84,8 @@
 })(typeof window === "undefined" ? null : window, function () {
   "use strict";
   const rows = [
+    ["Infláció kalkulátor | Vásárlóerő és pénzromlás becslése", "Inflation Calculator | Estimate Purchasing Power and Loss of Value", "Inflationsrechner | Kaufkraft und Geldentwertung schätzen"],
+    ["Infláció kalkulátor: számold ki pénzed értékének változását az infláció hatására.", "Inflation calculator: estimate how inflation changes the value of your money.", "Inflationsrechner: Berechne, wie sich der Wert deines Geldes durch Inflation verändert."],
     ["ETF kalkulátor | Befektetés, célösszeg, TER és infláció", "ETF Calculator | Investments, Savings Target, TER and Inflation", "ETF-Rechner | Anlage, Sparziel, TER und Inflation"],
     ["ETF kalkulátor rendszeres befektetéshez, célösszeghez, TER-rel, inflációval, forgatókönyvekkel, grafikonnal és éves bontással.", "ETF calculator for regular investing and savings targets, with TER, inflation, scenarios, a chart and an annual breakdown.", "ETF-Rechner für regelmäßige Anlagen und Sparziele mit TER, Inflation, Szenarien, Diagramm und jährlicher Aufschlüsselung."],
     ["ETF befektetés, célösszeg, TER és infláció becslése.", "Estimate ETF investment growth and savings targets, accounting for TER and inflation.", "Schätze die Entwicklung deiner ETF-Anlage und deines Sparziels unter Berücksichtigung von TER und Inflation."],
