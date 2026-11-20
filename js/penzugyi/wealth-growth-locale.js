@@ -13,9 +13,33 @@
   let language = root.KB_SITE_LANGUAGE?.get() || "hu";
   let observer;
   const excluded = 'script,style,textarea,pre,code,input,[contenteditable],[translate="no"]';
+  const headSources = new Map();
+  function renderMetadata() {
+    const translate = value => api.translate(page, value, language) ?? value;
+    for (const element of doc.querySelectorAll('title,meta[name="description"],meta[property="og:title"],meta[property="og:description"],meta[name="twitter:title"],meta[name="twitter:description"],script[type="application/ld+json"]')) {
+      const isMeta = element.tagName === "META";
+      if (!headSources.has(element)) headSources.set(element, isMeta ? element.content : element.textContent);
+      const source = headSources.get(element);
+      if (element.tagName !== "SCRIPT") {
+        if (isMeta) element.content = translate(source);
+        else element.textContent = translate(source);
+        continue;
+      }
+      const localize = value => {
+        if (Array.isArray(value)) return value.map(localize);
+        if (!value || typeof value !== "object") return value;
+        return Object.fromEntries(Object.entries(value).map(([key, item]) => [key,
+          key === "inLanguage" ? ({ hu: "hu-HU", en: "en", de: "de" })[language] :
+            typeof item === "string" && ["name", "headline", "description", "text", "about"].includes(key) ? translate(item) :
+              item && typeof item === "object" ? localize(item) : item]));
+      };
+      try { element.textContent = language === "hu" ? source : JSON.stringify(localize(JSON.parse(source))); } catch { /* Preserve invalid source JSON for the schema audit. */ }
+    }
+  }
   function render() {
     observer?.disconnect();
     try {
+      renderMetadata();
       const walker = doc.createTreeWalker(main, NodeFilter.SHOW_TEXT);
       while (walker.nextNode()) {
         const node = walker.currentNode;
@@ -61,6 +85,8 @@
 })(typeof window === "undefined" ? null : window, function () {
   "use strict";
   const rows = [
+    ["Kamatos kamat kalkulátor | Megtakarítás és hozam", "Compound Interest Calculator | Savings and Returns", "Zinseszinsrechner | Sparen und Erträge"],
+    ["Kamatos kamat kalkulátor kezdőtőkéhez és havi megtakarításhoz. Számold ki a várható végösszeget, saját befizetést és hozamot több időtávon.", "Compound interest calculator for an initial investment and monthly savings. Estimate the final balance, your contributions and returns over different periods.", "Zinseszinsrechner für Startkapital und monatliche Sparraten. Berechne den voraussichtlichen Endbetrag, deine Einzahlungen und die Erträge für verschiedene Zeiträume."],
     ["Kamatos kamat kalkulátor", "Compound interest calculator", "Zinseszins-Rechner"],
     ["Mikor leszek milliomos?", "When will I become a millionaire?", "Wann werde ich Millionär?"],
     ["Számold ki, hogyan növekedhet a kezdőtőkéd és a rendszeres havi megtakarításod az idő múlásával.", "Estimate how your starting capital and regular monthly savings could grow over time.", "Berechne, wie dein Startkapital und regelmäßige monatliche Sparbeiträge mit der Zeit wachsen könnten."],
