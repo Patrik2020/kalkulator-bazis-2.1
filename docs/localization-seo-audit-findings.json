@@ -1,7 +1,7 @@
 {
   "pages": 121,
-  "metadataGaps": 326,
-  "schemaCopyGaps": 162,
+  "metadataGaps": 314,
+  "schemaCopyGaps": 158,
   "pagesWithAlternateUrls": 0,
   "results": [
     {
@@ -56,90 +56,8 @@
     {
       "path": "kalkulatorok/kamatos-kamat-kalkulator.html",
       "metadataFields": 6,
-      "missingMetadata": [
-        {
-          "field": "title",
-          "language": "en",
-          "source": "Kamatos kamat kalkulátor | Megtakarítás és hozam"
-        },
-        {
-          "field": "title",
-          "language": "de",
-          "source": "Kamatos kamat kalkulátor | Megtakarítás és hozam"
-        },
-        {
-          "field": "description",
-          "language": "en",
-          "source": "Kamatos kamat kalkulátor kezdőtőkéhez és havi megtakarításhoz. Számold ki a várható végösszeget, saját befizetést és hozamot több időtávon."
-        },
-        {
-          "field": "description",
-          "language": "de",
-          "source": "Kamatos kamat kalkulátor kezdőtőkéhez és havi megtakarításhoz. Számold ki a várható végösszeget, saját befizetést és hozamot több időtávon."
-        },
-        {
-          "field": "og:title",
-          "language": "en",
-          "source": "Kamatos kamat kalkulátor | Megtakarítás és hozam"
-        },
-        {
-          "field": "og:title",
-          "language": "de",
-          "source": "Kamatos kamat kalkulátor | Megtakarítás és hozam"
-        },
-        {
-          "field": "og:description",
-          "language": "en",
-          "source": "Kamatos kamat kalkulátor kezdőtőkéhez és havi megtakarításhoz. Számold ki a várható végösszeget, saját befizetést és hozamot több időtávon."
-        },
-        {
-          "field": "og:description",
-          "language": "de",
-          "source": "Kamatos kamat kalkulátor kezdőtőkéhez és havi megtakarításhoz. Számold ki a várható végösszeget, saját befizetést és hozamot több időtávon."
-        },
-        {
-          "field": "twitter:title",
-          "language": "en",
-          "source": "Kamatos kamat kalkulátor | Megtakarítás és hozam"
-        },
-        {
-          "field": "twitter:title",
-          "language": "de",
-          "source": "Kamatos kamat kalkulátor | Megtakarítás és hozam"
-        },
-        {
-          "field": "twitter:description",
-          "language": "en",
-          "source": "Kamatos kamat kalkulátor kezdőtőkéhez és havi megtakarításhoz. Számold ki a várható végösszeget, saját befizetést és hozamot több időtávon."
-        },
-        {
-          "field": "twitter:description",
-          "language": "de",
-          "source": "Kamatos kamat kalkulátor kezdőtőkéhez és havi megtakarításhoz. Számold ki a várható végösszeget, saját befizetést és hozamot több időtávon."
-        }
-      ],
-      "missingSchemaCopy": [
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "en",
-          "source": "Kamatos kamat kalkulátor | Megtakarítás és hozam"
-        },
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "de",
-          "source": "Kamatos kamat kalkulátor | Megtakarítás és hozam"
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "en",
-          "source": "Kamatos kamat kalkulátor kezdőtőkéhez és havi megtakarításhoz. Számold ki a várható végösszeget, saját befizetést és hozamot több időtávon."
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "de",
-          "source": "Kamatos kamat kalkulátor kezdőtőkéhez és havi megtakarításhoz. Számold ki a várható végösszeget, saját befizetést és hozamot több időtávon."
-        }
-      ],
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
       "alternateLanguageUrls": []
     },
     {
