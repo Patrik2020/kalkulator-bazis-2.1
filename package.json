@@ -110,6 +110,6 @@
     "acorn": "8.19.0",
     "eslint": "10.14.0",
     "globals": "17.14.0",
-    "html-validate": "11.18.0"
+    "html-validate": "11.21.1"
   }
 }
