@@ -1,7 +1,7 @@
 {
   "pages": 121,
-  "metadataGaps": 314,
-  "schemaCopyGaps": 158,
+  "metadataGaps": 302,
+  "schemaCopyGaps": 152,
   "pagesWithAlternateUrls": 0,
   "results": [
     {
@@ -63,100 +63,8 @@
     {
       "path": "kalkulatorok/milliomos-kalkulator.html",
       "metadataFields": 6,
-      "missingMetadata": [
-        {
-          "field": "title",
-          "language": "en",
-          "source": "Mikor leszek milliomos? | Célösszeg kalkulátor"
-        },
-        {
-          "field": "title",
-          "language": "de",
-          "source": "Mikor leszek milliomos? | Célösszeg kalkulátor"
-        },
-        {
-          "field": "description",
-          "language": "en",
-          "source": "Célösszeg-kalkulátor induló megtakarításhoz, havi befizetéshez és becsült hozamhoz. Nézd meg, várhatóan mikor érheted el a pénzügyi célt."
-        },
-        {
-          "field": "description",
-          "language": "de",
-          "source": "Célösszeg-kalkulátor induló megtakarításhoz, havi befizetéshez és becsült hozamhoz. Nézd meg, várhatóan mikor érheted el a pénzügyi célt."
-        },
-        {
-          "field": "og:title",
-          "language": "en",
-          "source": "Mikor leszek milliomos? | Célösszeg kalkulátor"
-        },
-        {
-          "field": "og:title",
-          "language": "de",
-          "source": "Mikor leszek milliomos? | Célösszeg kalkulátor"
-        },
-        {
-          "field": "og:description",
-          "language": "en",
-          "source": "Célösszeg-kalkulátor induló megtakarításhoz, havi befizetéshez és becsült hozamhoz. Nézd meg, várhatóan mikor érheted el a pénzügyi célt."
-        },
-        {
-          "field": "og:description",
-          "language": "de",
-          "source": "Célösszeg-kalkulátor induló megtakarításhoz, havi befizetéshez és becsült hozamhoz. Nézd meg, várhatóan mikor érheted el a pénzügyi célt."
-        },
-        {
-          "field": "twitter:title",
-          "language": "en",
-          "source": "Mikor leszek milliomos? | Célösszeg kalkulátor"
-        },
-        {
-          "field": "twitter:title",
-          "language": "de",
-          "source": "Mikor leszek milliomos? | Célösszeg kalkulátor"
-        },
-        {
-          "field": "twitter:description",
-          "language": "en",
-          "source": "Célösszeg-kalkulátor induló megtakarításhoz, havi befizetéshez és becsült hozamhoz. Nézd meg, várhatóan mikor érheted el a pénzügyi célt."
-        },
-        {
-          "field": "twitter:description",
-          "language": "de",
-          "source": "Célösszeg-kalkulátor induló megtakarításhoz, havi befizetéshez és becsült hozamhoz. Nézd meg, várhatóan mikor érheted el a pénzügyi célt."
-        }
-      ],
-      "missingSchemaCopy": [
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "en",
-          "source": "Mikor leszek milliomos? | Célösszeg kalkulátor"
-        },
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "de",
-          "source": "Mikor leszek milliomos? | Célösszeg kalkulátor"
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "en",
-          "source": "Célösszeg-kalkulátor induló megtakarításhoz, havi befizetéshez és becsült hozamhoz. Nézd meg, várhatóan mikor érheted el a pénzügyi célt."
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "de",
-          "source": "Célösszeg-kalkulátor induló megtakarításhoz, havi befizetéshez és becsült hozamhoz. Nézd meg, várhatóan mikor érheted el a pénzügyi célt."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "en",
-          "source": "Számold ki, mennyi idő kell a célösszeg eléréséhez."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "de",
-          "source": "Számold ki, mennyi idő kell a célösszeg eléréséhez."
-        }
-      ],
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
       "alternateLanguageUrls": []
     },
     {
