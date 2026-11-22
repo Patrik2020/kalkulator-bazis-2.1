@@ -85,6 +85,9 @@
 })(typeof window === "undefined" ? null : window, function () {
   "use strict";
   const rows = [
+    ["Mikor leszek milliomos? | Célösszeg kalkulátor", "When Will I Be a Millionaire? | Savings Goal Calculator", "Wann werde ich Millionär? | Sparzielrechner"],
+    ["Célösszeg-kalkulátor induló megtakarításhoz, havi befizetéshez és becsült hozamhoz. Nézd meg, várhatóan mikor érheted el a pénzügyi célt.", "Savings goal calculator using your initial savings, monthly contributions and estimated return. Estimate when you could reach your financial target.", "Sparzielrechner mit Startguthaben, monatlichen Einzahlungen und geschätzter Rendite. Schätze, wann du dein finanzielles Ziel erreichen könntest."],
+    ["Számold ki, mennyi idő kell a célösszeg eléréséhez.", "Calculate how long it could take to reach your savings goal.", "Berechne, wie lange es dauern könnte, dein Sparziel zu erreichen."],
     ["Kamatos kamat kalkulátor | Megtakarítás és hozam", "Compound Interest Calculator | Savings and Returns", "Zinseszinsrechner | Sparen und Erträge"],
     ["Kamatos kamat kalkulátor kezdőtőkéhez és havi megtakarításhoz. Számold ki a várható végösszeget, saját befizetést és hozamot több időtávon.", "Compound interest calculator for an initial investment and monthly savings. Estimate the final balance, your contributions and returns over different periods.", "Zinseszinsrechner für Startkapital und monatliche Sparraten. Berechne den voraussichtlichen Endbetrag, deine Einzahlungen und die Erträge für verschiedene Zeiträume."],
     ["Kamatos kamat kalkulátor", "Compound interest calculator", "Zinseszins-Rechner"],
