@@ -8,6 +8,11 @@ on:
       - "scripts/url-paths.js"
       - "scripts/extensionless-url-audit.js"
       - "scripts/generate-cloudflare-bulk-redirects.js"
+      - "scripts/gsc-indexing-regression.test.js"
+      - "auto.html"
+      - "penzugyi.html"
+      - "epitoipari.html"
+      - "mindennapi.html"
       - ".github/workflows/url-consolidation.yml"
   workflow_dispatch:
 
@@ -31,6 +36,9 @@ jobs:
 
       - name: Audit extensionless URLs
         run: node scripts/extensionless-url-audit.js
+
+      - name: Check redirect targets and GSC discovery links
+        run: node --test scripts/gsc-indexing-regression.test.js
 
       - name: Generate Cloudflare redirect CSV
         run: node scripts/generate-cloudflare-bulk-redirects.js --output /tmp/cloudflare-bulk-redirects.csv

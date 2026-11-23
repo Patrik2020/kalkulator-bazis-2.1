@@ -1,5 +1,10 @@
 # AdSense Phase 2 – consolidated measurement converters
 # Keep both extensionless and .html forms because historical links may use either.
+# Historical landing-page links reported by Google Search Console.
+/landing-pages/wise/cookie-tajekoztato /cookie 301
+/landing-pages/wise/cookie-tajekoztato.html /cookie 301
+/landing_pages/etf-landing /kalkulatorok/etf-kalkulator 301
+/landing_pages/etf-landing.html /kalkulatorok/etf-kalkulator 301
 /kalkulatorok/hosszusag-atvalto-kalkulator /kalkulatorok/mertekegyseg-atvalto-kalkulator 301
 /kalkulatorok/hosszusag-atvalto-kalkulator.html /kalkulatorok/mertekegyseg-atvalto-kalkulator 301
 /kalkulatorok/terulet-atvalto-kalkulator /kalkulatorok/mertekegyseg-atvalto-kalkulator 301
