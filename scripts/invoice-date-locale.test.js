@@ -6,6 +6,18 @@ const api = require("../js/penzugyi/szamlazasi/invoice-date-locale");
 test("payment deadline guidance is available in English and German", () => {
   const page = "fizetesi-hatarido-kalkulator";
   assert.ok(api.pages.includes(page));
+  assert.equal(
+    api.translate(page, "Fizetési határidő kalkulátor 2026 – naptári és munkanap", "en"),
+    "Payment Due Date Calculator 2026 – Calendar and Working Days"
+  );
+  assert.equal(
+    api.translate(page, "Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján.", "de"),
+    "Zahlungsfristrechner für Rechnungen und Verträge im Jahr 2026. Rechne mit Kalender- oder Arbeitstagen anhand des ungarischen Arbeitskalenders."
+  );
+  assert.equal(
+    api.translate(page, "Fizetési határidő kiszámítása számlázáshoz.", "en"),
+    "Calculate the payment due date for an invoice."
+  );
   assert.equal(api.translate(page, "Naptári napok", "en"), "Calendar days");
   assert.equal(api.translate(page, "Munkanapok", "de"), "Arbeitstage");
   assert.match(api.translate(page, "A támogatott 2026-os naptárnál igen, a beépített munkarend szerint. Más évnél a kalkulátor működését külön ellenőrizd.", "en"), /supported 2026 calendar/);

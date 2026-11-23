@@ -17,9 +17,33 @@
   let observer;
   const excluded = 'script,style,textarea,pre,code,input,[contenteditable],[translate="no"]';
 
+  const headSources = new Map();
+  function renderMetadata() {
+    const translate = value => api.translate(page, value, language) ?? value;
+    for (const element of doc.querySelectorAll('title,meta[name="description"],meta[property="og:title"],meta[property="og:description"],meta[name="twitter:title"],meta[name="twitter:description"],script[type="application/ld+json"]')) {
+      const isMeta = element.tagName === "META";
+      if (!headSources.has(element)) headSources.set(element, isMeta ? element.content : element.textContent);
+      const source = headSources.get(element);
+      if (element.tagName !== "SCRIPT") {
+        if (isMeta) element.content = translate(source);
+        else element.textContent = translate(source);
+        continue;
+      }
+      const localize = value => {
+        if (Array.isArray(value)) return value.map(localize);
+        if (!value || typeof value !== "object") return value;
+        return Object.fromEntries(Object.entries(value).map(([key, item]) => [key,
+          key === "inLanguage" ? ({ hu: "hu-HU", en: "en", de: "de" })[language] :
+            typeof item === "string" && ["name", "headline", "description", "text", "about"].includes(key) ? translate(item) :
+              item && typeof item === "object" ? localize(item) : item]));
+      };
+      try { element.textContent = language === "hu" ? source : JSON.stringify(localize(JSON.parse(source))); } catch { /* Preserve invalid source JSON for the schema audit. */ }
+    }
+  }
   function render() {
     observer?.disconnect();
     try {
+      renderMetadata();
       const walker = doc.createTreeWalker(main, NodeFilter.SHOW_TEXT);
       while (walker.nextNode()) {
         const node = walker.currentNode;
@@ -75,6 +99,9 @@
 })(typeof window === "undefined" ? null : window, function () {
   "use strict";
   const rows = [
+    ["Fizetési határidő kalkulátor 2026 – naptári és munkanap", "Payment Due Date Calculator 2026 – Calendar and Working Days", "Zahlungsfristrechner 2026 – Kalender- und Arbeitstage"],
+    ["Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján.", "Payment due date calculator for invoices and contracts in 2026. Count calendar or working days using the Hungarian working-day calendar.", "Zahlungsfristrechner für Rechnungen und Verträge im Jahr 2026. Rechne mit Kalender- oder Arbeitstagen anhand des ungarischen Arbeitskalenders."],
+    ["Fizetési határidő kiszámítása számlázáshoz.", "Calculate the payment due date for an invoice.", "Berechne das Zahlungsziel einer Rechnung."],
     ["FRISS HÍREK", "LATEST NEWS", "AKTUELLE NACHRICHTEN"],
     ["Pénzügyi változások", "Financial updates", "Finanzielle Entwicklungen"],
     ["Pénzügyi aktualitások", "Financial news", "Finanznachrichten"],

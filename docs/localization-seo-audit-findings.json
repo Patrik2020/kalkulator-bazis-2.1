@@ -1,7 +1,7 @@
 {
   "pages": 121,
-  "metadataGaps": 302,
-  "schemaCopyGaps": 152,
+  "metadataGaps": 290,
+  "schemaCopyGaps": 146,
   "pagesWithAlternateUrls": 0,
   "results": [
     {
@@ -70,100 +70,8 @@
     {
       "path": "kalkulatorok/fizetesi-hatarido-kalkulator.html",
       "metadataFields": 6,
-      "missingMetadata": [
-        {
-          "field": "title",
-          "language": "en",
-          "source": "Fizetési határidő kalkulátor 2026 – naptári és munkanap"
-        },
-        {
-          "field": "title",
-          "language": "de",
-          "source": "Fizetési határidő kalkulátor 2026 – naptári és munkanap"
-        },
-        {
-          "field": "description",
-          "language": "en",
-          "source": "Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján."
-        },
-        {
-          "field": "description",
-          "language": "de",
-          "source": "Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján."
-        },
-        {
-          "field": "og:title",
-          "language": "en",
-          "source": "Fizetési határidő kalkulátor 2026 – naptári és munkanap"
-        },
-        {
-          "field": "og:title",
-          "language": "de",
-          "source": "Fizetési határidő kalkulátor 2026 – naptári és munkanap"
-        },
-        {
-          "field": "og:description",
-          "language": "en",
-          "source": "Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján."
-        },
-        {
-          "field": "og:description",
-          "language": "de",
-          "source": "Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján."
-        },
-        {
-          "field": "twitter:title",
-          "language": "en",
-          "source": "Fizetési határidő kalkulátor 2026 – naptári és munkanap"
-        },
-        {
-          "field": "twitter:title",
-          "language": "de",
-          "source": "Fizetési határidő kalkulátor 2026 – naptári és munkanap"
-        },
-        {
-          "field": "twitter:description",
-          "language": "en",
-          "source": "Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján."
-        },
-        {
-          "field": "twitter:description",
-          "language": "de",
-          "source": "Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján."
-        }
-      ],
-      "missingSchemaCopy": [
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "en",
-          "source": "Fizetési határidő kalkulátor 2026 – naptári és munkanap"
-        },
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "de",
-          "source": "Fizetési határidő kalkulátor 2026 – naptári és munkanap"
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "en",
-          "source": "Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján."
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "de",
-          "source": "Fizetési határidő kalkulátor 2026 számlákhoz és szerződésekhez. Számolj naptári vagy munkanapokkal a magyar munkarend alapján."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "en",
-          "source": "Fizetési határidő kiszámítása számlázáshoz."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "de",
-          "source": "Fizetési határidő kiszámítása számlázáshoz."
-        }
-      ],
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
       "alternateLanguageUrls": []
     },
     {
