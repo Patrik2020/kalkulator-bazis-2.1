@@ -11,6 +11,22 @@
   return {
     pages: ["atvaltok.html", "auto.html", "egeszseg.html", "epitoipari.html", "mindennapi.html", "penzugyi.html", "kalkulatorok.html"],
     dictionary: {
+  "Autófenntartás valódi költségei": [
+    "The true cost of owning a car",
+    "Die tatsächlichen Kosten der Autohaltung"
+  ],
+  "Döntési mód": [
+    "Decision planner",
+    "Entscheidungsplaner"
+  ],
+  "Lakásvásárlás tervezése": [
+    "Planning a home purchase",
+    "Einen Immobilienkauf planen"
+  ],
+  "Felújítás tervezése": [
+    "Planning a renovation",
+    "Eine Renovierung planen"
+  ],
   "Kiemelt kalkulátorok": [
     "Featured calculators",
     "Ausgewählte Rechner"
