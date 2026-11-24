@@ -1,7 +1,7 @@
 {
   "pages": 121,
-  "metadataGaps": 282,
-  "schemaCopyGaps": 136,
+  "metadataGaps": 270,
+  "schemaCopyGaps": 130,
   "pagesWithAlternateUrls": 0,
   "results": [
     {
@@ -1709,100 +1709,8 @@
     {
       "path": "kalkulatorok/osztalek-kalkulator.html",
       "metadataFields": 6,
-      "missingMetadata": [
-        {
-          "field": "title",
-          "language": "en",
-          "source": "Osztalék kalkulátor - havi és éves nettó bevétel"
-        },
-        {
-          "field": "title",
-          "language": "de",
-          "source": "Osztalék kalkulátor - havi és éves nettó bevétel"
-        },
-        {
-          "field": "description",
-          "language": "en",
-          "source": "Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
-        },
-        {
-          "field": "description",
-          "language": "de",
-          "source": "Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
-        },
-        {
-          "field": "og:title",
-          "language": "en",
-          "source": "Osztalék kalkulátor - havi és éves nettó bevétel"
-        },
-        {
-          "field": "og:title",
-          "language": "de",
-          "source": "Osztalék kalkulátor - havi és éves nettó bevétel"
-        },
-        {
-          "field": "og:description",
-          "language": "en",
-          "source": "Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
-        },
-        {
-          "field": "og:description",
-          "language": "de",
-          "source": "Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
-        },
-        {
-          "field": "twitter:title",
-          "language": "en",
-          "source": "Osztalék kalkulátor - havi és éves nettó bevétel"
-        },
-        {
-          "field": "twitter:title",
-          "language": "de",
-          "source": "Osztalék kalkulátor - havi és éves nettó bevétel"
-        },
-        {
-          "field": "twitter:description",
-          "language": "en",
-          "source": "Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
-        },
-        {
-          "field": "twitter:description",
-          "language": "de",
-          "source": "Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
-        }
-      ],
-      "missingSchemaCopy": [
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "en",
-          "source": "Osztalék kalkulátor - havi és éves nettó bevétel"
-        },
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "de",
-          "source": "Osztalék kalkulátor - havi és éves nettó bevétel"
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "en",
-          "source": "Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "de",
-          "source": "Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "en",
-          "source": "Osztalékbevétel, céljövedelemhez szükséges tőke és hosszú távú újrabefektetés becslése."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "de",
-          "source": "Osztalékbevétel, céljövedelemhez szükséges tőke és hosszú távú újrabefektetés becslése."
-        }
-      ],
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
       "alternateLanguageUrls": []
     },
     {

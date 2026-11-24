@@ -27,6 +27,21 @@ async function checkDividendLocale({ navigate, evaluate, setViewport }) {
       for (const [language, expected] of [['en', english], ['de', german]]) {
         await choose(language);
         assert.ok((await read('#result-heading')).includes(expected), `${language}: ${value} heading`);
+        const metadata = JSON.parse(await evaluate(`JSON.stringify((() => {
+          const schema = JSON.parse(document.getElementById('kb-structured-data').textContent);
+          return {
+            title: document.title,
+            description: document.querySelector('meta[name="description"]').content,
+            schemaTitle: schema['@graph'][0].name,
+            schemaLanguage: schema['@graph'][0].inLanguage,
+            applicationDescription: schema['@graph'][1].description
+          };
+        })())`));
+        assert.equal(metadata.title, language === 'en' ? 'Dividend Calculator – Monthly and Annual Net Income' : 'Dividendenrechner – monatliches und jährliches Nettoeinkommen');
+        assert.ok(metadata.description.includes(language === 'en' ? 'target income' : 'Einkommensziel'), metadata.description);
+        assert.equal(metadata.schemaTitle, metadata.title);
+        assert.equal(metadata.schemaLanguage, language);
+        assert.ok(metadata.applicationDescription.includes(language === 'en' ? 'capital needed' : 'benötigte Kapital'), metadata.applicationDescription);
         assert.deepEqual(await inputs(), originalInputs, `${language}: ${value} values changed`);
         assert.ok(await evaluate('document.documentElement.scrollWidth <= innerWidth + 1'), `dividend calculator overflow at ${width}px (${language}/${value})`);
       }
@@ -43,6 +58,8 @@ async function checkDividendLocale({ navigate, evaluate, setViewport }) {
     assert.match(await read('#result-interpretation'), /Nach deinen Angaben/u);
     assert.match(await read('#result-interpretation'), /Nettodividende/u);
     assert.match(await read('#chartLegend'), /Portfoliowert/u);
+    await choose('hu');
+    assert.equal(await evaluate('document.title'), 'Osztalék kalkulátor - havi és éves nettó bevétel');
   }
 }
 
