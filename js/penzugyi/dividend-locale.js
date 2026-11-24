@@ -13,9 +13,33 @@
   let language = root.KB_SITE_LANGUAGE?.get() || "hu";
   let observer;
   const excluded = 'script,style,textarea,pre,code,input,[contenteditable],[translate="no"]';
+  const headSources = new Map();
+  function renderMetadata() {
+    const translate = value => api.translate("osztalek-kalkulator", value, language) ?? value;
+    for (const element of doc.querySelectorAll('title,meta[name="description"],meta[property="og:title"],meta[property="og:description"],meta[name="twitter:title"],meta[name="twitter:description"],script[type="application/ld+json"]')) {
+      const isMeta = element.tagName === "META";
+      if (!headSources.has(element)) headSources.set(element, isMeta ? element.content : element.textContent);
+      const source = headSources.get(element);
+      if (element.tagName !== "SCRIPT") {
+        if (isMeta) element.content = translate(source);
+        else element.textContent = translate(source);
+        continue;
+      }
+      const localize = value => {
+        if (Array.isArray(value)) return value.map(localize);
+        if (!value || typeof value !== "object") return value;
+        return Object.fromEntries(Object.entries(value).map(([key, item]) => [key,
+          key === "inLanguage" ? ({ hu: "hu-HU", en: "en", de: "de" })[language] :
+            typeof item === "string" && ["name", "headline", "description", "text", "about"].includes(key) ? translate(item) :
+              item && typeof item === "object" ? localize(item) : item]));
+      };
+      try { element.textContent = language === "hu" ? source : JSON.stringify(localize(JSON.parse(source))); } catch { /* Preserve invalid source JSON for the schema audit. */ }
+    }
+  }
   function render() {
     observer?.disconnect();
     try {
+      renderMetadata();
       const walker = doc.createTreeWalker(main, NodeFilter.SHOW_TEXT);
       while (walker.nextNode()) {
         const node = walker.currentNode;
@@ -60,6 +84,9 @@
 })(typeof window === "undefined" ? null : window, function (commonRows) {
   "use strict";
   const ownRows = [
+    ["Osztalék kalkulátor - havi és éves nettó bevétel", "Dividend Calculator – Monthly and Annual Net Income", "Dividendenrechner – monatliches und jährliches Nettoeinkommen"],
+    ["Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez.", "Dividend calculator for annual and monthly net income, the capital needed for a target income, long-term reinvestment and inflation estimates.", "Dividendenrechner für jährliches und monatliches Nettoeinkommen, das für ein Einkommensziel benötigte Kapital, langfristige Wiederanlage und Inflationsschätzungen."],
+    ["Osztalékbevétel, céljövedelemhez szükséges tőke és hosszú távú újrabefektetés becslése.", "Estimate dividend income, the capital needed for a target income and long-term reinvestment.", "Schätze Dividendeneinnahmen, das für ein Einkommensziel benötigte Kapital und die langfristige Wiederanlage."],
     [", különösen az osztalékból származó jövedelemre vonatkozó rendelkezések, valamint a", ", particularly the provisions on income from dividends, as well as", ", insbesondere die Bestimmungen zu Einkünften aus Dividenden sowie"],
     [". A kalkulátor nem feltételez automatikusan minden élethelyzetre érvényes adómértéket: a levonásokat a felhasználó által megadott adatokkal modellezi.", ". The calculator does not assume a tax rate that applies to every situation; it models deductions using the information you provide.", ". Der Rechner unterstellt keinen Steuersatz, der für alle Situationen gilt, sondern modelliert Abzüge anhand deiner Angaben."],
     ["1 és 60 év közötti időtávval érdemes becsülni.", "Use a time horizon between 1 and 60 years.", "Schätze mit einem Zeitraum zwischen 1 und 60 Jahren."],

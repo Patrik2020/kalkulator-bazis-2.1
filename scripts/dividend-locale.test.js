@@ -18,6 +18,9 @@ test("dividend calculator is wired into the reviewed HU EN DE page inventory", (
 });
 
 test("long-form dividend guidance and calculator terminology are translated", () => {
+  assert.equal(api.translate(page, "Osztalék kalkulátor - havi és éves nettó bevétel", "en"), "Dividend Calculator – Monthly and Annual Net Income");
+  assert.match(api.translate(page, "Osztalék kalkulátor éves és havi nettó bevételhez, céljövedelemhez szükséges tőkéhez, hosszú távú újrabefektetéshez és inflációs becsléshez.", "de"), /langfristige Wiederanlage/u);
+  assert.match(api.translate(page, "Osztalékbevétel, céljövedelemhez szükséges tőke és hosszú távú újrabefektetés becslése.", "en"), /capital needed for a target income/u);
   assert.match(api.translate(page, "A kalkulátor eredménye becslés, nem minősül befektetési, adózási vagy pénzügyi tanácsadásnak. Az osztalék nem garantált, a vállalat csökkentheti vagy megszüntetheti. Az árfolyam, az adózás, a forrásadó, a devizaárfolyam és a költségek miatt a tényleges eredmény eltérhet a számított értéktől.", "en"), /not investment, tax or financial advice/u);
   assert.match(api.translate(page, "A kalkulátor eredménye becslés, nem minősül befektetési, adózási vagy pénzügyi tanácsadásnak. Az osztalék nem garantált, a vállalat csökkentheti vagy megszüntetheti. Az árfolyam, az adózás, a forrásadó, a devizaárfolyam és a költségek miatt a tényleges eredmény eltérhet a számított értéktől.", "de"), /keine Anlage-, Steuer- oder Finanzberatung/u);
   assert.equal(api.translate(page, "3 M Ft", "en"), "HUF 3m");
