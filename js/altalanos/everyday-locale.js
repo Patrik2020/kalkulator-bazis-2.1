@@ -13,8 +13,32 @@
   const record = new WeakMap();
   const langRecords = new WeakMap();
   const attributeRecords = new WeakMap();
+  const metadataSources = new Map();
   let selected = "hu";
   let rendering = false;
+
+  function renderMetadata() {
+    const translate = value => api.translate(page, value, selected) ?? value;
+    const localize = value => {
+      if (Array.isArray(value)) return value.map(localize);
+      if (!value || typeof value !== "object") return value;
+      return Object.fromEntries(Object.entries(value).map(([key, item]) => [key,
+        key === "inLanguage" ? ({ hu: "hu-HU", en: "en", de: "de" })[selected] :
+          typeof item === "string" && ["name", "headline", "description", "text", "about"].includes(key) ? translate(item) :
+            item && typeof item === "object" ? localize(item) : item]));
+    };
+    for (const element of document.querySelectorAll('title,meta[name="description"],meta[property="og:title"],meta[property="og:description"],meta[name="twitter:title"],meta[name="twitter:description"],script[type="application/ld+json"]')) {
+      const isMeta = element.tagName === "META";
+      if (!metadataSources.has(element)) metadataSources.set(element, isMeta ? element.content : element.textContent);
+      const source = metadataSources.get(element);
+      if (element.tagName !== "SCRIPT") {
+        if (isMeta) element.content = translate(source);
+        else element.textContent = translate(source);
+        continue;
+      }
+      try { element.textContent = selected === "hu" ? source : JSON.stringify(localize(JSON.parse(source))); } catch { /* Preserve invalid source JSON for the schema audit. */ }
+    }
+  }
 
   function updateNode(node) {
     // Preserve option values used by the calculator. Options without an explicit
@@ -45,6 +69,7 @@
     if (rendering) return;
     rendering = true;
     try {
+      renderMetadata();
       // Product names are user data, even if they happen to match a UI phrase.
       if (page === "egysegar-kalkulator") {
         main.querySelectorAll("#kalkulator .everyday-result li strong").forEach((name) => name.setAttribute("translate", "no"));
@@ -1484,6 +1509,11 @@
     ]
   });
   const dateAdd = Object.freeze({
+    "Határidő számítás – dátum hozzáadás és kivonás kalkulátor": ["Deadline Calculator – Add or Subtract Days", "Fristenrechner – Tage addieren oder subtrahieren"],
+    "Határidő számítás naptári napokkal: adj hozzá vagy vonj ki napokat egy dátumból, és lásd a cél dátumot. Általános dátum- és határidőtervezéshez.": ["Calculate deadlines in calendar days: add or subtract days from a date and see the target date. For general date and deadline planning.", "Fristen mit Kalendertagen berechnen: Addiere Tage zu einem Datum oder ziehe sie davon ab und ermittle das Zieldatum. Für die allgemeine Datums- und Fristenplanung."],
+    "Dátum hozzáadás és kivonás kalkulátor": ["Date Addition and Subtraction Calculator", "Rechner zum Addieren und Subtrahieren von Tagen"],
+    "Napok hozzáadása egy dátumhoz vagy kivonása belőle, a cél dátum és a hét napjának megjelenítésével.": ["Add days to or subtract them from a date and display the target date and day of the week.", "Addiere Tage zu einem Datum oder ziehe sie davon ab und zeige das Zieldatum sowie den Wochentag an."],
+    "Mindennapi kalkulátorok": ["Everyday calculators", "Alltagsrechner"],
     "Dátum hozzáadás/kivonás": ["Date addition/subtraction", "Datum addieren/subtrahieren"],
     "Dátum különbség kalkulátor": ["Date difference calculator", "Datumsdifferenz-Rechner"],
     "Életkor kalkulátor": ["Age calculator", "Altersrechner"],
