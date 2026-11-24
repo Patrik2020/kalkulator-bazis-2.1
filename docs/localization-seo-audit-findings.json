@@ -1,7 +1,7 @@
 {
   "pages": 121,
-  "metadataGaps": 290,
-  "schemaCopyGaps": 146,
+  "metadataGaps": 282,
+  "schemaCopyGaps": 136,
   "pagesWithAlternateUrls": 0,
   "results": [
     {
@@ -806,100 +806,8 @@
     {
       "path": "kalkulatorok/datum-hozzaadas-kivonas-kalkulator.html",
       "metadataFields": 4,
-      "missingMetadata": [
-        {
-          "field": "title",
-          "language": "en",
-          "source": "Határidő számítás – dátum hozzáadás és kivonás kalkulátor"
-        },
-        {
-          "field": "title",
-          "language": "de",
-          "source": "Határidő számítás – dátum hozzáadás és kivonás kalkulátor"
-        },
-        {
-          "field": "description",
-          "language": "en",
-          "source": "Határidő számítás naptári napokkal: adj hozzá vagy vonj ki napokat egy dátumból, és lásd a cél dátumot. Általános dátum- és határidőtervezéshez."
-        },
-        {
-          "field": "description",
-          "language": "de",
-          "source": "Határidő számítás naptári napokkal: adj hozzá vagy vonj ki napokat egy dátumból, és lásd a cél dátumot. Általános dátum- és határidőtervezéshez."
-        },
-        {
-          "field": "og:title",
-          "language": "en",
-          "source": "Határidő számítás – dátum hozzáadás és kivonás kalkulátor"
-        },
-        {
-          "field": "og:title",
-          "language": "de",
-          "source": "Határidő számítás – dátum hozzáadás és kivonás kalkulátor"
-        },
-        {
-          "field": "og:description",
-          "language": "en",
-          "source": "Határidő számítás naptári napokkal: adj hozzá vagy vonj ki napokat egy dátumból, és lásd a cél dátumot. Általános dátum- és határidőtervezéshez."
-        },
-        {
-          "field": "og:description",
-          "language": "de",
-          "source": "Határidő számítás naptári napokkal: adj hozzá vagy vonj ki napokat egy dátumból, és lásd a cél dátumot. Általános dátum- és határidőtervezéshez."
-        }
-      ],
-      "missingSchemaCopy": [
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "en",
-          "source": "Határidő számítás – dátum hozzáadás és kivonás kalkulátor"
-        },
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "de",
-          "source": "Határidő számítás – dátum hozzáadás és kivonás kalkulátor"
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "en",
-          "source": "Határidő számítás naptári napokkal: adj hozzá vagy vonj ki napokat egy dátumból, és lásd a cél dátumot. Általános dátum- és határidőtervezéshez."
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "de",
-          "source": "Határidő számítás naptári napokkal: adj hozzá vagy vonj ki napokat egy dátumból, és lásd a cél dátumot. Általános dátum- és határidőtervezéshez."
-        },
-        {
-          "field": "schema[0].@graph[1].name",
-          "language": "en",
-          "source": "Dátum hozzáadás és kivonás kalkulátor"
-        },
-        {
-          "field": "schema[0].@graph[1].name",
-          "language": "de",
-          "source": "Dátum hozzáadás és kivonás kalkulátor"
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "en",
-          "source": "Napok hozzáadása egy dátumhoz vagy kivonása belőle, a cél dátum és a hét napjának megjelenítésével."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "de",
-          "source": "Napok hozzáadása egy dátumhoz vagy kivonása belőle, a cél dátum és a hét napjának megjelenítésével."
-        },
-        {
-          "field": "schema[0].@graph[2].itemListElement[2].name",
-          "language": "en",
-          "source": "Dátum hozzáadás és kivonás kalkulátor"
-        },
-        {
-          "field": "schema[0].@graph[2].itemListElement[2].name",
-          "language": "de",
-          "source": "Dátum hozzáadás és kivonás kalkulátor"
-        }
-      ],
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
       "alternateLanguageUrls": []
     },
     {

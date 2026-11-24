@@ -97,10 +97,26 @@ async function checkEverydayLocales({ navigate, evaluate, setViewport }) {
       const translated = await result("#dateResult");
       assert.ok(translated.includes(date), translated);
       assert.ok(translated.includes(weekday), translated);
+      const metadata = await evaluate(`(() => {
+        const schema = JSON.parse(document.querySelector('#kb-structured-data').textContent);
+        return {
+          title: document.title,
+          description: document.querySelector('meta[name="description"]').content,
+          schemaTitle: schema['@graph'][0].name,
+          schemaLanguage: schema['@graph'][0].inLanguage,
+          applicationName: schema['@graph'][1].name
+        };
+      })()`);
+      assert.equal(metadata.title, language === "en" ? "Deadline Calculator – Add or Subtract Days" : "Fristenrechner – Tage addieren oder subtrahieren");
+      assert.ok(metadata.description.includes(language === "en" ? "calendar days" : "Kalendertagen"), metadata.description);
+      assert.equal(metadata.schemaTitle, metadata.title);
+      assert.equal(metadata.schemaLanguage, language);
+      assert.ok(metadata.applicationName.includes(language === "en" ? "Date Addition" : "Addieren"), metadata.applicationName);
       assert.equal(await evaluate("document.querySelector('#dateBase').value"), dateInput);
       assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `date add: overflow at ${width}`);
     }
     await choose("hu");
+    assert.equal(await evaluate("document.title"), "Határidő számítás – dátum hozzáadás és kivonás kalkulátor");
 
     await navigate("/kalkulatorok/eletkor-kalkulator");
     await choose("hu");

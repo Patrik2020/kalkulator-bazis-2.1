@@ -7,6 +7,12 @@ test("date, age and date difference calculators translate labels and calendar va
   const datePage = "datum-hozzaadas-kivonas-kalkulator";
   const agePage = "eletkor-kalkulator";
   const diffPage = "datum-kulonbseg-kalkulator";
+  assert.equal(api.translate(datePage, "Határidő számítás – dátum hozzáadás és kivonás kalkulátor", "en"),
+    "Deadline Calculator – Add or Subtract Days");
+  assert.equal(api.translate(datePage, "Határidő számítás naptári napokkal: adj hozzá vagy vonj ki napokat egy dátumból, és lásd a cél dátumot. Általános dátum- és határidőtervezéshez.", "de"),
+    "Fristen mit Kalendertagen berechnen: Addiere Tage zu einem Datum oder ziehe sie davon ab und ermittle das Zieldatum. Für die allgemeine Datums- und Fristenplanung.");
+  assert.equal(api.translate(datePage, "Dátum hozzáadás és kivonás kalkulátor", "de"),
+    "Rechner zum Addieren und Subtrahieren von Tagen");
   assert.equal(api.translate(datePage, "2026. szeptember 20.", "en"), "20 September 2026");
   assert.equal(api.translate(datePage, "2026. szeptember 20.", "de"), "20. September 2026");
   assert.equal(api.translate(datePage, "vasárnap", "en"), "Sunday");
