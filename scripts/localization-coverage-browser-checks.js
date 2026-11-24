@@ -6,7 +6,7 @@ const { checkTileCalculatorLocale } = require("./csempe-locale-browser-checks");
 
 // Deliberate language-neutral names/units only. Do not whitelist sentences or
 // detect Hungarian only by accents: "Minimum" can be valid in all languages.
-const neutral = new Set(["Kalkulátor Bázis", "Ft", "HUF", "A", "B", "C", "kg", "g", "l", "ml", "db", "EU"]);
+const neutral = new Set(["Kalkulátor Bázis", "Wise", "Ft", "HUF", "A", "B", "C", "kg", "g", "l", "ml", "db", "EU"]);
 function requiresTranslation(text) {
   // A converted amount with ISO currency codes is meaningful in every locale;
   // decimal and grouping separators may also be identical in HU and DE.
