@@ -5,7 +5,7 @@
 <span class="logo-text">Kalkulátor Bázis</span>
 </a>
 <nav aria-label="Fő navigáció" class="nav" id="primaryNav">
-<a data-i18n="navCalculators" href="#popular">Kalkulátorok</a><a data-i18n="navCategories" href="#categories">Kategóriák</a><a href="#api">ChatGPT / API</a><a data-i18n="navTrust" href="#trust">Miért bízhatsz bennünk?</a>
+<a data-i18n="navCalculators" href="#popular">Kalkulátorok</a><a data-i18n="navCategories" href="#categories">Kategóriák</a><a href="#api">ChatGPT / API</a><a data-i18n="navTrust" href="/miert-bizhatsz-bennunk">Miért bízhatsz bennünk?</a><a href="/landing-pages/wise/wise">Wise</a>
 </nav>
 <div class="head-actions">
 <a aria-label="Keresés" class="icon-btn" data-i18n-aria="searchAria" href="#calculatorSearch">⌕</a>
