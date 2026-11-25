@@ -57,6 +57,9 @@ test("refuelling budget page translates both calculator panels", () => {
 });
 
 test("toll-splitting page translates its calculator and vignette comparison", () => {
+  assert.equal(api.translate("autopalyadij-kalkulator", "Autópályadíj megosztó | Költség utasonként", "en"), "Motorway Toll Splitter | Cost per Person");
+  assert.match(api.translate("autopalyadij-kalkulator", "Autópályadíj-megosztó közös utazáshoz: oszd el a matrica vagy útdíj költségét az utasok között, és tervezz igazságosabb költségmegosztást.", "de"), /fairere Kostenverteilung/u);
+  assert.equal(api.translate("autopalyadij-kalkulator", "Oszd el az autópályadíjat utasok között.", "de"), "Teile die Autobahnmaut unter den Mitfahrenden auf.");
   assert.equal(api.translate("autopalyadij-kalkulator", "Autópályadíj (Ft)", "en"), "Road toll (HUF)");
   assert.equal(api.translate("autopalyadij-kalkulator", "Egy főre jutó díj:", "de"), "Kosten pro Person:");
   assert.equal(api.translate("autopalyadij-kalkulator", "Matricaválasztás nullszaldó", "en"), "Vignette break-even comparison");

@@ -441,6 +441,9 @@
     "Ha a kedvezményért kerülőt teszel, a plusz kilométer üzemanyag- és időigénye csökkentheti vagy el is viheti az előnyt.": ["If you drive out of your way for a discount, the extra fuel and time may reduce or even cancel the savings.", "Wenn du für einen Rabatt einen Umweg fährst, können zusätzlicher Kraftstoff und Zeit den Vorteil verringern oder ganz aufheben."]
   });
   const toll = Object.freeze({
+    "Autópályadíj megosztó | Költség utasonként": ["Motorway Toll Splitter | Cost per Person", "Autobahnmaut teilen | Kosten pro Person"],
+    "Autópályadíj-megosztó közös utazáshoz: oszd el a matrica vagy útdíj költségét az utasok között, és tervezz igazságosabb költségmegosztást.": ["Motorway toll splitter for shared trips: divide vignette or road-toll costs among the passengers and plan a fairer way to share expenses.", "Autobahnmaut-Rechner für gemeinsame Fahrten: Teile Vignetten- oder Mautkosten unter den Mitfahrenden auf und plane eine fairere Kostenverteilung."],
+    "Oszd el az autópályadíjat utasok között.": ["Split motorway tolls among the passengers.", "Teile die Autobahnmaut unter den Mitfahrenden auf."],
     "Oszd el az autópályadíjat vagy útdíjat az utasok között.": ["Split motorway tolls or other road charges among the passengers.", "Teile Autobahnmaut oder andere Straßengebühren unter den Mitfahrenden auf."],
     "Autópályadíj (Ft)": ["Road toll (HUF)", "Mautgebühr (HUF)"],
     "Utasok száma": ["Number of passengers", "Anzahl der Mitfahrenden"],

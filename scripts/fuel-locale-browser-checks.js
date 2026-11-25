@@ -161,6 +161,9 @@ async function checkFuelLocales({ navigate, evaluate, setViewport }) {
         result: document.getElementById('simpleCalcResults')?.textContent,
         guide: document.querySelector('.calculator-guide h2')?.textContent,
         breakEven: document.querySelector('.auto-converter-quality h2')?.textContent,
+        title: document.title,
+        description: document.querySelector('meta[name="description"]')?.content,
+        schema: JSON.parse(document.getElementById('kb-structured-data').textContent),
         state: {fee: document.getElementById('fee')?.value, people: document.getElementById('people')?.value},
         width: document.documentElement.scrollWidth
       })`);
@@ -168,11 +171,17 @@ async function checkFuelLocales({ navigate, evaluate, setViewport }) {
       assert.equal(result.label, label, `${language}: toll field label`);
       assert.match(result.result, /1[\s\u00a0\u202f]?655/u, `${language}: cost per person`);
       assert.ok(result.guide && result.breakEven, `${language}: toll guidance and vignette comparison localized`);
+      assert.equal(result.title, language === "en" ? "Motorway Toll Splitter | Cost per Person" : "Autobahnmaut teilen | Kosten pro Person");
+      assert.ok(result.description.includes(language === "en" ? "fairer way to share expenses" : "fairere Kostenverteilung"), result.description);
+      assert.equal(result.schema["@graph"][0].name, result.title);
+      assert.equal(result.schema["@graph"][0].inLanguage, language);
+      assert.ok(result.schema["@graph"][1].description.includes(language === "en" ? "among the passengers" : "unter den Mitfahrenden"), result.schema["@graph"][1].description);
       assert.deepEqual(result.state, JSON.parse(tollBefore), `${language}: toll inputs changed`);
       assert.ok(result.width <= width + 1, `toll calculator overflow at ${width}px (${language})`);
     }
     await choose("hu");
     assert.match(await evaluate('document.querySelector(\'label[for="fee"]\')?.textContent || ""'), /Autópályadíj/u);
+    assert.equal(await evaluate("document.title"), "Autópályadíj megosztó | Költség utasonként");
   }
   console.log("Fuel locales: HU/EN/DE labels, calculation results and input preservation passed at 390/1440px.");
 }

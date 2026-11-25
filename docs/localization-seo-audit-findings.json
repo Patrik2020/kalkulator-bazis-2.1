@@ -1,7 +1,7 @@
 {
   "pages": 121,
-  "metadataGaps": 258,
-  "schemaCopyGaps": 124,
+  "metadataGaps": 246,
+  "schemaCopyGaps": 118,
   "pagesWithAlternateUrls": 0,
   "results": [
     {
@@ -2099,100 +2099,8 @@
     {
       "path": "kalkulatorok/autopalyadij-kalkulator.html",
       "metadataFields": 6,
-      "missingMetadata": [
-        {
-          "field": "title",
-          "language": "en",
-          "source": "Autópályadíj megosztó | Költség utasonként"
-        },
-        {
-          "field": "title",
-          "language": "de",
-          "source": "Autópályadíj megosztó | Költség utasonként"
-        },
-        {
-          "field": "description",
-          "language": "en",
-          "source": "Autópályadíj-megosztó közös utazáshoz: oszd el a matrica vagy útdíj költségét az utasok között, és tervezz igazságosabb költségmegosztást."
-        },
-        {
-          "field": "description",
-          "language": "de",
-          "source": "Autópályadíj-megosztó közös utazáshoz: oszd el a matrica vagy útdíj költségét az utasok között, és tervezz igazságosabb költségmegosztást."
-        },
-        {
-          "field": "og:title",
-          "language": "en",
-          "source": "Autópályadíj megosztó | Költség utasonként"
-        },
-        {
-          "field": "og:title",
-          "language": "de",
-          "source": "Autópályadíj megosztó | Költség utasonként"
-        },
-        {
-          "field": "og:description",
-          "language": "en",
-          "source": "Autópályadíj-megosztó közös utazáshoz: oszd el a matrica vagy útdíj költségét az utasok között, és tervezz igazságosabb költségmegosztást."
-        },
-        {
-          "field": "og:description",
-          "language": "de",
-          "source": "Autópályadíj-megosztó közös utazáshoz: oszd el a matrica vagy útdíj költségét az utasok között, és tervezz igazságosabb költségmegosztást."
-        },
-        {
-          "field": "twitter:title",
-          "language": "en",
-          "source": "Autópályadíj megosztó | Költség utasonként"
-        },
-        {
-          "field": "twitter:title",
-          "language": "de",
-          "source": "Autópályadíj megosztó | Költség utasonként"
-        },
-        {
-          "field": "twitter:description",
-          "language": "en",
-          "source": "Autópályadíj-megosztó közös utazáshoz: oszd el a matrica vagy útdíj költségét az utasok között, és tervezz igazságosabb költségmegosztást."
-        },
-        {
-          "field": "twitter:description",
-          "language": "de",
-          "source": "Autópályadíj-megosztó közös utazáshoz: oszd el a matrica vagy útdíj költségét az utasok között, és tervezz igazságosabb költségmegosztást."
-        }
-      ],
-      "missingSchemaCopy": [
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "en",
-          "source": "Autópályadíj megosztó | Költség utasonként"
-        },
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "de",
-          "source": "Autópályadíj megosztó | Költség utasonként"
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "en",
-          "source": "Autópályadíj-megosztó közös utazáshoz: oszd el a matrica vagy útdíj költségét az utasok között, és tervezz igazságosabb költségmegosztást."
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "de",
-          "source": "Autópályadíj-megosztó közös utazáshoz: oszd el a matrica vagy útdíj költségét az utasok között, és tervezz igazságosabb költségmegosztást."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "en",
-          "source": "Oszd el az autópályadíjat utasok között."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "de",
-          "source": "Oszd el az autópályadíjat utasok között."
-        }
-      ],
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
       "alternateLanguageUrls": []
     },
     {
