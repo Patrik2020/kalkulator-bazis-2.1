@@ -32,17 +32,26 @@ async function checkFuelLocales({ navigate, evaluate, setViewport }) {
       const actual = await evaluate(`JSON.stringify({
         label: document.querySelector('label[for="liters"]')?.textContent.trim(),
         result: document.getElementById('simpleCalcResults')?.textContent,
+        title: document.title,
+        description: document.querySelector('meta[name="description"]')?.content,
+        schema: JSON.parse(document.getElementById('kb-structured-data').textContent),
         state: { liters: document.getElementById('liters')?.value, distance: document.getElementById('distance')?.value },
         width: document.documentElement.scrollWidth
       })`);
       const result = JSON.parse(actual);
       assert.ok(result.label.includes(label), `${language}: consumption field label`);
       assert.match(result.result, /6,46 l\/100 km/u, `${language}: calculated consumption`);
+      assert.equal(result.title, language === "en" ? "Average Fuel Consumption Calculator – Car Fuel Use in L/100 km" : "Durchschnittsverbrauch-Rechner – Autoverbrauch in l/100 km");
+      assert.ok(result.description.includes(language === "en" ? "real-world consumption" : "tatsächlichen Verbrauch"), result.description);
+      assert.equal(result.schema["@graph"][0].name, result.title);
+      assert.equal(result.schema["@graph"][0].inLanguage, language);
+      assert.ok(result.schema["@graph"][1].description.includes(language === "en" ? "fuel added" : "getankten Menge"), result.schema["@graph"][1].description);
       assert.deepEqual(result.state, JSON.parse(consumptionBefore), `${language}: consumption inputs changed`);
       assert.ok(result.width <= width + 1, `fuel consumption calculator overflow at ${width}px (${language})`);
     }
     await choose("hu");
     assert.match(await evaluate('document.querySelector(\'label[for="liters"]\')?.textContent || ""'), /Tankolt mennyiség/u);
+    assert.equal(await evaluate("document.title"), "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km");
 
     await navigate("/kalkulatorok/uzemanyag-koltseg-kalkulator");
     await evaluate(`(async () => {

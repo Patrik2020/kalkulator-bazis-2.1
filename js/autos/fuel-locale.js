@@ -11,6 +11,29 @@
   if (!api.pages.includes(page)) return;
   const textState = new WeakMap(), attributeState = new WeakMap(), langState = new WeakMap();
   let language = "hu", rendering = false;
+  const headSources = new Map();
+  function renderMetadata() {
+    const translate = value => api.translate(page, value, language) ?? value;
+    for (const element of document.querySelectorAll('title,meta[name="description"],meta[property="og:title"],meta[property="og:description"],meta[name="twitter:title"],meta[name="twitter:description"],script[type="application/ld+json"]')) {
+      const isMeta = element.tagName === "META";
+      if (!headSources.has(element)) headSources.set(element, isMeta ? element.content : element.textContent);
+      const source = headSources.get(element);
+      if (element.tagName !== "SCRIPT") {
+        if (isMeta) element.content = translate(source);
+        else element.textContent = translate(source);
+        continue;
+      }
+      const localize = value => {
+        if (Array.isArray(value)) return value.map(localize);
+        if (!value || typeof value !== "object") return value;
+        return Object.fromEntries(Object.entries(value).map(([key, item]) => [key,
+          key === "inLanguage" ? ({ hu: "hu-HU", en: "en", de: "de" })[language] :
+            typeof item === "string" && ["name", "headline", "description", "text", "about"].includes(key) ? translate(item) :
+              item && typeof item === "object" ? localize(item) : item]));
+      };
+      try { element.textContent = language === "hu" ? source : JSON.stringify(localize(JSON.parse(source))); } catch { /* Preserve invalid source JSON for the schema audit. */ }
+    }
+  }
   function renderText(node) {
     const current = node.nodeValue, previous = textState.get(node);
     const source = previous && previous.rendered === current ? previous.source : current;
@@ -34,6 +57,7 @@
     if (rendering) return;
     rendering = true;
     try {
+      renderMetadata();
       const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT), nodes = [];
       while (walker.nextNode()) nodes.push(walker.currentNode);
       for (const node of nodes) {
@@ -147,6 +171,9 @@
     "A kalkulátorok az aktuális szabályok és körülmények mellett adnak tájékoztató becslést.": ["The calculators provide an informational estimate based on current rules and conditions.", "Die Rechner liefern eine unverbindliche Schätzung auf Grundlage der aktuellen Regeln und Bedingungen."]
   });
   const consumption = Object.freeze({
+    "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km": ["Average Fuel Consumption Calculator – Car Fuel Use in L/100 km", "Durchschnittsverbrauch-Rechner – Autoverbrauch in l/100 km"],
+    "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben.": ["Average fuel consumption calculator for cars: enter the fuel added and distance travelled to calculate real-world consumption in litres per 100 km.", "Rechner für den durchschnittlichen Autoverbrauch: Gib die getankte Menge und die gefahrene Strecke ein, um den tatsächlichen Verbrauch in Litern pro 100 km zu berechnen."],
+    "Számold ki a valós fogyasztást tankolás és megtett kilométer alapján.": ["Calculate real-world fuel consumption from the fuel added and distance travelled.", "Berechne den tatsächlichen Kraftstoffverbrauch anhand der getankten Menge und der gefahrenen Strecke."],
     "Átlagfogyasztás és autó fogyasztás kalkulátor": ["Average car fuel consumption calculator", "Rechner für den durchschnittlichen Kraftstoffverbrauch"],
     "Számold ki a valós átlagfogyasztást tankolt üzemanyag és megtett kilométer alapján.": ["Calculate real-world average fuel consumption from the fuel added and distance travelled.", "Berechne den tatsächlichen Durchschnittsverbrauch anhand der getankten Kraftstoffmenge und der gefahrenen Strecke."],
     "Tankolt mennyiség (l)": ["Fuel added (L)", "Getankte Menge (l)"],

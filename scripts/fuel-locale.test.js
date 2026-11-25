@@ -9,6 +9,9 @@ test("fuel calculator pages expose scoped English and German copy", () => {
   assert.equal(api.translate("uzemanyag-koltseg-kalkulator", "Fogyasztás (l/100 km)", "de"), "Verbrauch (l/100 km)");
   assert.equal(api.translate("other-page", "Tankolt mennyiség (l)", "en"), null);
   assert.equal(api.translate("auto-fogyasztas-kalkulator", "Tankolt mennyiség (l)", "hu"), null);
+  assert.equal(api.translate("auto-fogyasztas-kalkulator", "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km", "en"), "Average Fuel Consumption Calculator – Car Fuel Use in L/100 km");
+  assert.match(api.translate("auto-fogyasztas-kalkulator", "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben.", "de"), /tatsächlichen Verbrauch/u);
+  assert.match(api.translate("auto-fogyasztas-kalkulator", "Számold ki a valós fogyasztást tankolás és megtett kilométer alapján.", "en"), /fuel added and distance travelled/u);
 });
 
 test("fuel results retain numeric values and units in both languages", () => {
