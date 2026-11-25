@@ -1,7 +1,7 @@
 {
   "pages": 121,
-  "metadataGaps": 270,
-  "schemaCopyGaps": 130,
+  "metadataGaps": 258,
+  "schemaCopyGaps": 124,
   "pagesWithAlternateUrls": 0,
   "results": [
     {
@@ -1815,100 +1815,8 @@
     {
       "path": "kalkulatorok/auto-fogyasztas-kalkulator.html",
       "metadataFields": 6,
-      "missingMetadata": [
-        {
-          "field": "title",
-          "language": "en",
-          "source": "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km"
-        },
-        {
-          "field": "title",
-          "language": "de",
-          "source": "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km"
-        },
-        {
-          "field": "description",
-          "language": "en",
-          "source": "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben."
-        },
-        {
-          "field": "description",
-          "language": "de",
-          "source": "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben."
-        },
-        {
-          "field": "og:title",
-          "language": "en",
-          "source": "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km"
-        },
-        {
-          "field": "og:title",
-          "language": "de",
-          "source": "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km"
-        },
-        {
-          "field": "og:description",
-          "language": "en",
-          "source": "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben."
-        },
-        {
-          "field": "og:description",
-          "language": "de",
-          "source": "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben."
-        },
-        {
-          "field": "twitter:title",
-          "language": "en",
-          "source": "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km"
-        },
-        {
-          "field": "twitter:title",
-          "language": "de",
-          "source": "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km"
-        },
-        {
-          "field": "twitter:description",
-          "language": "en",
-          "source": "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben."
-        },
-        {
-          "field": "twitter:description",
-          "language": "de",
-          "source": "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben."
-        }
-      ],
-      "missingSchemaCopy": [
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "en",
-          "source": "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km"
-        },
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "de",
-          "source": "Átlagfogyasztás kalkulátor – autó fogyasztás l/100 km"
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "en",
-          "source": "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben."
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "de",
-          "source": "Átlagfogyasztás kalkulátor autóhoz: add meg a tankolt litert és a megtett kilométert, és számold ki a valós fogyasztást liter/100 km értékben."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "en",
-          "source": "Számold ki a valós fogyasztást tankolás és megtett kilométer alapján."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "de",
-          "source": "Számold ki a valós fogyasztást tankolás és megtett kilométer alapján."
-        }
-      ],
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
       "alternateLanguageUrls": []
     },
     {
