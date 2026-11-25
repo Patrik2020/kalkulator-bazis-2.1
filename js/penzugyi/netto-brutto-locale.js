@@ -97,6 +97,20 @@
     "Nettóból bruttó": ["Net to gross", "Netto zu Brutto"],
     "Bruttó fizetés (Ft)": ["Gross salary (HUF)", "Bruttogehalt (HUF)"],
     "Nettó fizetés (Ft)": ["Net salary (HUF)", "Nettogehalt (HUF)"],
+    "Adóév": ["Tax year", "Steuerjahr"],
+    "Nettó–bruttó kalkulátor": ["Gross to net salary calculator", "Brutto-Netto-Rechner"],
+    "A nettó–bruttó számításokat a saját Kalkulátor Bázis Salary API végzi, így ugyanez a számítás közvetlenül ChatGPT-ből is használható.": [
+      "Calculations use the Kalkulátor Bázis Salary API and are also available in ChatGPT.",
+      "Die Berechnungen nutzen die Kalkulátor Bázis Salary API und sind auch in ChatGPT verfügbar."
+    ],
+    "A számítás 15% SZJA-, 18,5% TB-járulék- és 13% munkáltatói szocho-kulccsal indul. A kedvezményeket a kiválasztott adóév szabályai szerint számoljuk.": [
+      "The base calculation uses 15% income tax, 18.5% employee social security and 13% employer social tax. Relief follows the selected tax year's rules.",
+      "Die Berechnung geht von 15 % Einkommensteuer, 18,5 % Sozialversicherungsbeitrag und 13 % Arbeitgeber-Sozialsteuer aus. Vergünstigungen richten sich nach dem gewählten Steuerjahr."
+    ],
+    "2027-es havi becslés az elfogadott adócsomag és a minimálbér-megállapodás alapján. A számítás a havi adójóváírás igénybevételével számol.": [
+      "Monthly estimate for 2027 based on the adopted tax package and minimum-wage agreement. It assumes the monthly tax credit is claimed.",
+      "Monatliche Schätzung für 2027 auf Grundlage des verabschiedeten Steuerpakets und der Mindestlohnvereinbarung. Sie setzt voraus, dass die monatliche Steuergutschrift beantragt wird."
+    ],
     "SZJA-kulcs": ["Income tax rate", "Einkommensteuersatz"],
     "15% – 2026-os szabály": ["15% – 2026 rate", "15 % – Steuersatz 2026"],
     "9% – összehasonlítás": ["9% – comparison only", "9 % – nur zum Vergleich"],

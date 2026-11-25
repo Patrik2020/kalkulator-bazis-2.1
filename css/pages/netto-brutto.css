@@ -35,6 +35,9 @@
   display: grid;
   gap: 6px;
 }
+.page-netto .tax-rate-choice[hidden] {
+  display: none;
+}
 .page-netto .tax-rate-choice label {
   font-weight: 700;
 }

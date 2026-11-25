@@ -6,10 +6,10 @@ const checkOnly = process.argv.includes("--check");
 
 const overrides = {
   "kalkulatorok/netto-brutto-kalkulator.html": {
-    title: "Nettó–bruttó kalkulátor 2026 | Bruttó és nettó fizetés",
+    title: "Nettó–bruttó kalkulátor | Bruttó és nettó fizetés",
     description:
-      "Nettó–bruttó kalkulátor 2026: számold ki a bruttó fizetés nettóját vagy a kívánt nettóhoz szükséges bruttót. Kedvezmények és munkáltatói költség.",
-    h1: "Nettó–bruttó kalkulátor 2026",
+      "Nettó–bruttó kalkulátor: számold ki a bruttó fizetés nettóját vagy a kívánt nettóhoz szükséges bruttót. Kedvezmények és munkáltatói költség.",
+    h1: "Nettó–bruttó kalkulátor",
     heroLead:
       "Új állásajánlatot kaptál, vagy fizetésemelésre készülsz? Add meg a havi bruttó béredet, és nézd meg a becsült nettót. Ha a kézhez kapott összegből indulnál ki, válaszd a Nettóból bruttó módot.",
   },
