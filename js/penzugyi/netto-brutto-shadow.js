@@ -100,7 +100,24 @@
     resultDiff.textContent = message;
   }
 
+  const taxYearSelect = document.getElementById("salary-tax-year");
+  const transition = Date.parse("2027-01-01T00:00:00+01:00");
+
+  function syncTaxYear() {
+    if (Date.now() >= transition) {
+      taxYearSelect?.querySelector('option[value="2026"]')?.remove();
+      if (taxYearSelect) taxYearSelect.value = "2027";
+    }
+    const year = taxYearSelect?.value === "2027" ? 2027 : 2026;
+    const scenarios = document.getElementById("salary-rate-scenarios");
+    const help = document.getElementById("salary-tax-year-help");
+    if (scenarios) scenarios.hidden = year === 2027;
+    if (help) help.hidden = year !== 2027;
+    return year;
+  }
+
   function currentJob() {
+    const taxYear = syncTaxYear();
     const direction = document.querySelector("input[name='calc-type']:checked")?.value || "gross-to-net";
     const amountElement = direction === "gross-to-net"
       ? document.getElementById("gross")
@@ -125,7 +142,8 @@
     }
 
     const common = {
-      szjaRatePercent: Number(document.getElementById("salary-tax-rate")?.value) === 9 ? 9 : 15,
+      taxYear,
+      szjaRatePercent: taxYear === 2026 && Number(document.getElementById("salary-tax-rate")?.value) === 9 ? 9 : 15,
       under25: Boolean(document.getElementById("under25")?.checked),
       firstMarried: Boolean(document.getElementById("first-married")?.checked),
       motherBenefit: "none",
@@ -154,6 +172,7 @@
 
   function renderApiResult(job, data) {
     if (!data || !data.taxes || !data.benefits || !data.employer) return false;
+    if (job.payload.taxYear === 2027 && data.taxYear !== 2027) return false;
     const expectedRate = job.payload.szjaRatePercent;
     const confirmedRate = data.taxes.szjaRatePercent;
     if (confirmedRate !== undefined && confirmedRate !== expectedRate) return false;
@@ -181,6 +200,7 @@
     resultEmployer.textContent = `Becsült teljes munkáltatói költség: ${format(data.employer.totalCost)} Ft`;
 
     const notes = Array.isArray(data.warnings) ? [...data.warnings] : [];
+    if (job.payload.taxYear === 2027) notes.unshift(`Adójóváírás: ${format(data.taxes.wageTaxCredit)} Ft`);
     if (job.payload.szjaRatePercent === 9) notes.unshift("9%-os összehasonlító számítás – nem a hatályos 2026-os és nem a végleges 2027-es adószabály.");
     if (family?.unusedTaxEffect > 0) {
       notes.push(
@@ -305,7 +325,7 @@
     timer = window.setTimeout(() => run(job, jobSequence), DEBOUNCE_MS);
   }
 
-  ["gross", "net-input", "salary-tax-rate", "under25", "first-married", "family-dependants", "family-eligible"].forEach((id) => {
+  ["gross", "net-input", "salary-tax-year", "salary-tax-rate", "under25", "first-married", "family-dependants", "family-eligible"].forEach((id) => {
     const element = document.getElementById(id);
     element?.addEventListener("input", scheduleFromUi);
     element?.addEventListener("change", scheduleFromUi);
@@ -314,6 +334,16 @@
   document.querySelectorAll("input[name='calc-type']").forEach((radio) => {
     radio.addEventListener("change", scheduleFromUi);
   });
+
+  const remaining = transition - Date.now();
+  if (remaining > 0) {
+    const refreshAtTransition = () => {
+      const delay = transition - Date.now();
+      if (delay <= 0) scheduleFromUi();
+      else window.setTimeout(refreshAtTransition, Math.min(delay, 2_147_483_647));
+    };
+    refreshAtTransition();
+  }
 
   window.KBSalaryApi = Object.freeze({ scheduleFromUi, cancel });
   scheduleFromUi();

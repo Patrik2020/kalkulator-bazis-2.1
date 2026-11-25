@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-11-23",
+  "generatedAt": "2026-11-25",
   "pages": {
     "": {
       "hash": "6ea777fefbaeae8982be82ee29995c3949c30cee24efead92cafa00e61946f47",
@@ -123,8 +123,8 @@
       "lastmod": "2026-09-14"
     },
     "kalkulatorok/netto-brutto-kalkulator.html": {
-      "hash": "092f07c757cfa59950c2e9d62af66cc86b91612d5b0c7b6ea6073a8eccf0c787",
-      "lastmod": "2026-11-12"
+      "hash": "ed9254a0300065b967b2d2bc3b844af0dcc3d541a92ca7fcacc6e6b7de887ee5",
+      "lastmod": "2026-11-25"
     },
     "kalkulatorok/hitel-torleszto-kalkulator.html": {
       "hash": "5d1cb8433cf1184a7dff0f0ebef3515e4e097104bf55be6b4f2191f5243f97a6",
