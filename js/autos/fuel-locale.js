@@ -235,6 +235,9 @@
     "A hosszabb etap automatikusan nagyobb súlyt kap. Így egy rövid, városi tankolás nem torzítja ugyanannyira az átlagot, mint egy több száz kilométeres szakasz.": ["Longer legs automatically carry more weight. A short city fill-up therefore has less influence than a journey of several hundred kilometres.", "Längere Streckenabschnitte werden automatisch stärker gewichtet. So beeinflusst eine kurze Tankfüllung im Stadtverkehr den Durchschnitt weniger als eine Fahrt über mehrere hundert Kilometer."]
   });
   const fuelCost = Object.freeze({
+    "Üzemanyagköltség kalkulátor | Útiköltség számítás": ["Fuel Cost Calculator | Trip Cost Estimate", "Kraftstoffkosten-Rechner | Fahrtkosten berechnen"],
+    "Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét.": ["Fuel cost calculator based on distance, average consumption and price per litre. Estimate the petrol cost of a one-way or return trip.", "Kraftstoffkosten-Rechner anhand von Strecke, Durchschnittsverbrauch und Literpreis. Berechne die voraussichtlichen Benzinkosten für eine einfache Fahrt oder Hin- und Rückfahrt."],
+    "Számold ki egy út várható üzemanyagköltségét.": ["Estimate the expected fuel cost of a trip.", "Berechne die voraussichtlichen Kraftstoffkosten einer Fahrt."],
     "Üzemanyagköltség kalkulátor": ["Fuel cost calculator", "Kraftstoffkosten-Rechner"],
     "Számold ki egy út várható benzinköltségét vagy dízelköltségét távolság, fogyasztás és literár alapján.": ["Estimate the petrol or diesel cost of a trip from its distance, fuel consumption and price per litre.", "Schätze die Benzin- oder Dieselkosten einer Fahrt anhand von Strecke, Verbrauch und Literpreis."],
     "Gyakori kérdések": ["Frequently asked questions", "Häufige Fragen"],
