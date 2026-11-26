@@ -39,6 +39,11 @@ async function checkVatPercentLocales({ navigate, evaluate, setViewport }) {
     }
     await navigate('/kalkulatorok/afa-kalkulator');
     await choose('en');
+    assert.equal(await evaluate("document.title"), 'VAT Calculator | Net Price, Gross Price and VAT');
+    assert.match(await evaluate("document.querySelector('meta[name=description]').content"), /custom VAT rate/);
+    let schema = await evaluate("JSON.parse(document.getElementById('kb-structured-data').textContent)");
+    assert.equal(schema['@graph'][0].name, 'VAT Calculator | Net Price, Gross Price and VAT');
+    assert.equal(schema['@graph'][0].inLanguage, 'en');
     const options = await evaluate("[...document.querySelectorAll('#housingVatScenario2027 option')].map(o => [o.value, o.textContent])");
     assert.deepEqual(options.map(o => o[0]), ['manual', 'housing-standard', 'housing-transition', 'housing-rust']);
     assert.equal(options[1][1], 'New residential property – 27% calculation');
@@ -46,6 +51,11 @@ async function checkVatPercentLocales({ navigate, evaluate, setViewport }) {
     assert.equal(await read('#result-value'), 'Net: 10 000 Ft VAT (5%): 500 Ft Gross: 10 500 Ft');
     assert.match(await read('#housingVatScenarioNote2027'), /statutory transitional conditions/);
     await choose('de');
+    assert.equal(await evaluate("document.title"), 'Mehrwertsteuer-Rechner | Netto, Brutto und Steueranteil');
+    assert.match(await evaluate("document.querySelector('meta[name=description]').content"), /individuellen Steuersatz/);
+    schema = await evaluate("JSON.parse(document.getElementById('kb-structured-data').textContent)");
+    assert.equal(schema['@graph'][0].name, 'Mehrwertsteuer-Rechner | Netto, Brutto und Steueranteil');
+    assert.equal(schema['@graph'][0].inLanguage, 'de');
     assert.equal(await read('#result-value'), 'Netto: 10 000 Ft MwSt. (5%): 500 Ft Brutto: 10 500 Ft');
     assert.match(await read('#housingVatScenarioNote2027'), /Übergangsbedingungen/);
     assert.equal(await evaluate("document.querySelector('#housingVatScenario2027').value"), 'housing-transition');
@@ -59,6 +69,9 @@ async function checkVatPercentLocales({ navigate, evaluate, setViewport }) {
     assert.equal(await read('#result-value'), 'Bitte einen gültigen Betrag eingeben.');
     await choose('en');
     assert.equal(await read('#result-value'), 'Please enter a valid amount.');
+    await choose('hu');
+    assert.equal(await evaluate("document.title"), 'ÁFA kalkulátor | Nettó–bruttó ár és adótartalom');
+    await choose('en');
     await navigate('/kalkulatorok/szazalek-kalkulator');
     assert.equal(await evaluate("document.querySelector('#kbInternalLanguage').value"), 'en');
     await edit({ '#a': '30000', '#b': '15', '#c': '50', '#d': '200', '#e': '120000', '#f': '129600' });

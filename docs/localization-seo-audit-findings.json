@@ -1,7 +1,7 @@
 {
   "pages": 121,
-  "metadataGaps": 234,
-  "schemaCopyGaps": 112,
+  "metadataGaps": 222,
+  "schemaCopyGaps": 108,
   "pagesWithAlternateUrls": 0,
   "results": [
     {
@@ -1531,90 +1531,8 @@
     {
       "path": "kalkulatorok/afa-kalkulator.html",
       "metadataFields": 6,
-      "missingMetadata": [
-        {
-          "field": "title",
-          "language": "en",
-          "source": "ÁFA kalkulátor | Nettó–bruttó ár és adótartalom"
-        },
-        {
-          "field": "title",
-          "language": "de",
-          "source": "ÁFA kalkulátor | Nettó–bruttó ár és adótartalom"
-        },
-        {
-          "field": "description",
-          "language": "en",
-          "source": "ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal."
-        },
-        {
-          "field": "description",
-          "language": "de",
-          "source": "ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal."
-        },
-        {
-          "field": "og:title",
-          "language": "en",
-          "source": "ÁFA kalkulátor | Nettó–bruttó ár és adótartalom"
-        },
-        {
-          "field": "og:title",
-          "language": "de",
-          "source": "ÁFA kalkulátor | Nettó–bruttó ár és adótartalom"
-        },
-        {
-          "field": "og:description",
-          "language": "en",
-          "source": "ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal."
-        },
-        {
-          "field": "og:description",
-          "language": "de",
-          "source": "ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal."
-        },
-        {
-          "field": "twitter:title",
-          "language": "en",
-          "source": "ÁFA kalkulátor | Nettó–bruttó ár és adótartalom"
-        },
-        {
-          "field": "twitter:title",
-          "language": "de",
-          "source": "ÁFA kalkulátor | Nettó–bruttó ár és adótartalom"
-        },
-        {
-          "field": "twitter:description",
-          "language": "en",
-          "source": "ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal."
-        },
-        {
-          "field": "twitter:description",
-          "language": "de",
-          "source": "ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal."
-        }
-      ],
-      "missingSchemaCopy": [
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "en",
-          "source": "ÁFA kalkulátor | Nettó–bruttó ár és adótartalom"
-        },
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "de",
-          "source": "ÁFA kalkulátor | Nettó–bruttó ár és adótartalom"
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "en",
-          "source": "ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal."
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "de",
-          "source": "ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal."
-        }
-      ],
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
       "alternateLanguageUrls": []
     },
     {
