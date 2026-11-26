@@ -1,7 +1,7 @@
 {
   "pages": 121,
-  "metadataGaps": 246,
-  "schemaCopyGaps": 118,
+  "metadataGaps": 234,
+  "schemaCopyGaps": 112,
   "pagesWithAlternateUrls": 0,
   "results": [
     {
@@ -1822,100 +1822,8 @@
     {
       "path": "kalkulatorok/uzemanyag-koltseg-kalkulator.html",
       "metadataFields": 6,
-      "missingMetadata": [
-        {
-          "field": "title",
-          "language": "en",
-          "source": "Üzemanyagköltség kalkulátor | Útiköltség számítás"
-        },
-        {
-          "field": "title",
-          "language": "de",
-          "source": "Üzemanyagköltség kalkulátor | Útiköltség számítás"
-        },
-        {
-          "field": "description",
-          "language": "en",
-          "source": "Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét."
-        },
-        {
-          "field": "description",
-          "language": "de",
-          "source": "Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét."
-        },
-        {
-          "field": "og:title",
-          "language": "en",
-          "source": "Üzemanyagköltség kalkulátor | Útiköltség számítás"
-        },
-        {
-          "field": "og:title",
-          "language": "de",
-          "source": "Üzemanyagköltség kalkulátor | Útiköltség számítás"
-        },
-        {
-          "field": "og:description",
-          "language": "en",
-          "source": "Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét."
-        },
-        {
-          "field": "og:description",
-          "language": "de",
-          "source": "Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét."
-        },
-        {
-          "field": "twitter:title",
-          "language": "en",
-          "source": "Üzemanyagköltség kalkulátor | Útiköltség számítás"
-        },
-        {
-          "field": "twitter:title",
-          "language": "de",
-          "source": "Üzemanyagköltség kalkulátor | Útiköltség számítás"
-        },
-        {
-          "field": "twitter:description",
-          "language": "en",
-          "source": "Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét."
-        },
-        {
-          "field": "twitter:description",
-          "language": "de",
-          "source": "Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét."
-        }
-      ],
-      "missingSchemaCopy": [
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "en",
-          "source": "Üzemanyagköltség kalkulátor | Útiköltség számítás"
-        },
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "de",
-          "source": "Üzemanyagköltség kalkulátor | Útiköltség számítás"
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "en",
-          "source": "Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét."
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "de",
-          "source": "Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "en",
-          "source": "Számold ki egy út várható üzemanyagköltségét."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "de",
-          "source": "Számold ki egy út várható üzemanyagköltségét."
-        }
-      ],
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
       "alternateLanguageUrls": []
     },
     {

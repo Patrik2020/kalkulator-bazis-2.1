@@ -26,6 +26,12 @@ test("fuel results retain numeric values and units in both languages", () => {
   }
 });
 
+test("fuel cost page translates metadata and structured-data copy", () => {
+  assert.equal(api.translate("uzemanyag-koltseg-kalkulator", "Üzemanyagköltség kalkulátor | Útiköltség számítás", "en"), "Fuel Cost Calculator | Trip Cost Estimate");
+  assert.match(api.translate("uzemanyag-koltseg-kalkulator", "Üzemanyagköltség kalkulátor távolság, átlagfogyasztás és literár alapján. Számold ki egy út vagy oda-vissza utazás várható benzinköltségét.", "de"), /Hin- und Rückfahrt/u);
+  assert.equal(api.translate("uzemanyag-koltseg-kalkulator", "Számold ki egy út várható üzemanyagköltségét.", "de"), "Berechne die voraussichtlichen Kraftstoffkosten einer Fahrt.");
+});
+
 test("multiline copy is normalized and Hungarian content is restored safely", () => {
   assert.match(api.translate("auto-fogyasztas-kalkulator", "Tedd el a Kalkulátor Bázist, hogy legközelebb egy mozdulattal visszatalálj\n ehhez a számításhoz – vagy oszd meg azzal, akinek szintén jól jöhet.", "en"), /^Save Kalkulátor Bázis/u);
   assert.equal(api.translate("auto-fogyasztas-kalkulator", "6,5 l/100 km", "en"), null);

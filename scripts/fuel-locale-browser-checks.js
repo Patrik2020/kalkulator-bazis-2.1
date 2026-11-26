@@ -71,17 +71,26 @@ async function checkFuelLocales({ navigate, evaluate, setViewport }) {
       const actual = await evaluate(`JSON.stringify({
         label: document.querySelector('.card-calculator form.ac-grid label')?.textContent,
         result: document.querySelector('.card-calculator form.ac-grid .ac-result')?.textContent,
+        title: document.title,
+        description: document.querySelector('meta[name="description"]')?.content,
+        schema: JSON.parse(document.getElementById('kb-structured-data').textContent),
         state: [...document.querySelectorAll('.card-calculator form.ac-grid input')].map(input => [input.name, input.value]),
         width: document.documentElement.scrollWidth
       })`);
       const result = JSON.parse(actual);
       assert.ok(result.label.includes(label), `${language}: trip distance label`);
       assert.match(result.result, /9[\s\u00a0\u202f]?984/u, `${language}: calculated trip cost`);
+      assert.equal(result.title, language === "en" ? "Fuel Cost Calculator | Trip Cost Estimate" : "Kraftstoffkosten-Rechner | Fahrtkosten berechnen");
+      assert.ok(result.description.includes(language === "en" ? "one-way or return trip" : "Hin- und Rückfahrt"), result.description);
+      assert.equal(result.schema["@graph"][0].name, result.title);
+      assert.equal(result.schema["@graph"][0].inLanguage, language);
+      assert.ok(result.schema["@graph"][1].description.includes(language === "en" ? "expected fuel cost" : "voraussichtlichen Kraftstoffkosten"), result.schema["@graph"][1].description);
       assert.deepEqual(result.state, JSON.parse(costBefore), `${language}: trip inputs changed`);
       assert.ok(result.width <= width + 1, `fuel cost calculator overflow at ${width}px (${language})`);
     }
     await choose("hu");
     assert.match(await evaluate('document.querySelector(\'.card-calculator form.ac-grid label\')?.textContent || ""'), /Távolság/u);
+    assert.equal(await evaluate("document.title"), "Üzemanyagköltség kalkulátor | Útiköltség számítás");
 
     await navigate("/kalkulatorok/hatotav-kalkulator");
     await evaluate(`(async () => {
