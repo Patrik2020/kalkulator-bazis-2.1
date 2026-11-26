@@ -4,6 +4,8 @@ const { test } = require("node:test");
 const api = require("../js/altalanos/vat-percent-locale");
 
 test("VAT form, 2027 scenario and eligibility caveats have reviewed translations", () => {
+  assert.equal(api.translate("vat", "ÁFA kalkulátor | Nettó–bruttó ár és adótartalom", "en"), "VAT Calculator | Net Price, Gross Price and VAT");
+  assert.match(api.translate("vat", "ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal.", "de"), /individuellen Steuersatz/u);
   assert.equal(api.translate("vat", "Összeg (Ft)", "en"), "Amount (HUF)");
   assert.equal(api.translate("vat", "ÁFA (%)", "de"), "MwSt. (%)");
   assert.match(api.translate("vat", "A kiválasztott lehetőség számítási forgatókönyv, nem automatikus jogosultságvizsgálat. Az alkalmazandó kulcsot a konkrét ügylet és a hatályos jogszabály alapján ellenőrizni kell.", "en"), /not an automatic eligibility assessment/);

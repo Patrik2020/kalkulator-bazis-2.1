@@ -12,6 +12,7 @@
   const records = new WeakMap();
   const attrRecords = new WeakMap();
   const elementLanguages = new WeakMap();
+  const headSources = new Map();
   let active = "hu";
   let rendering = false;
 
@@ -57,10 +58,34 @@
     });
   }
 
+  function translateMetadata() {
+    const translate = value => api.translate(page, value, active) ?? value;
+    for (const element of doc.querySelectorAll('title,meta[name="description"],meta[property="og:title"],meta[property="og:description"],meta[name="twitter:title"],meta[name="twitter:description"],script[type="application/ld+json"]')) {
+      const isMeta = element.tagName === "META";
+      if (!headSources.has(element)) headSources.set(element, isMeta ? element.content : element.textContent);
+      const source = headSources.get(element);
+      if (element.tagName !== "SCRIPT") {
+        if (isMeta) element.content = translate(source);
+        else element.textContent = translate(source);
+        continue;
+      }
+      const localize = value => {
+        if (Array.isArray(value)) return value.map(localize);
+        if (!value || typeof value !== "object") return value;
+        return Object.fromEntries(Object.entries(value).map(([key, item]) => [key,
+          key === "inLanguage" ? ({ hu: "hu-HU", en: "en", de: "de" })[active] :
+            typeof item === "string" && ["name", "headline", "description", "text", "about"].includes(key) ? translate(item) :
+              item && typeof item === "object" ? localize(item) : item]));
+      };
+      try { element.textContent = active === "hu" ? source : JSON.stringify(localize(JSON.parse(source))); } catch { /* Preserve invalid source JSON for the schema audit. */ }
+    }
+  }
+
   function render() {
     if (rendering) return;
     rendering = true;
     try {
+      translateMetadata();
       const walker = doc.createTreeWalker(main, NodeFilter.SHOW_TEXT);
       const nodes = [];
       while (walker.nextNode()) nodes.push(walker.currentNode);
@@ -109,6 +134,8 @@
     "Források és tájékoztatás:": ["Sources and information:", "Quellen und Hinweise:"]
   });
   const vat = Object.freeze({
+    "ÁFA kalkulátor | Nettó–bruttó ár és adótartalom": ["VAT Calculator | Net Price, Gross Price and VAT", "Mehrwertsteuer-Rechner | Netto, Brutto und Steueranteil"],
+    "ÁFA kalkulátor nettó és bruttó ár átváltásához, valamint az adótartalom kiszámításához. Használható 5%, 18%, 27% vagy egyedi áfakulccsal.": ["VAT calculator for converting net and gross prices and calculating the VAT amount. Use a 5%, 18%, 27% or custom VAT rate.", "Mehrwertsteuer-Rechner zum Umrechnen von Netto- und Bruttopreisen sowie zum Berechnen des Steueranteils. Nutzbar mit 5 %, 18 %, 27 % oder einem individuellen Steuersatz."],
     "ÁFA kalkulátor": ["VAT calculator", "Mehrwertsteuer-Rechner"],
     "Számold ki nettó árból a bruttót, bruttóból a nettót, valamint az ÁFA összegét.": [
       "Calculate the gross price from net, the net price from gross, and the VAT amount.",
