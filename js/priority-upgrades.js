@@ -102,10 +102,8 @@
     if (!section) return;
 
     const legalRatio = (income, fixation) => {
-      const highIncome = income >= 800000;
-      if (fixation === "short") return highIncome ? 0.30 : 0.25;
-      if (fixation === "medium") return highIncome ? 0.40 : 0.35;
-      return highIncome ? 0.60 : 0.50;
+      const type = fixation === "short" ? "lt5" : fixation === "medium" ? "5to10" : "10plus";
+      return window.KB_JTM_RULES.ratioFor(income, type);
     };
     const calculate = () => {
       const income = numberValue(section, "pc-income");

@@ -133,6 +133,12 @@
         ["js/wise-banner-enhancer.js?v=233abb185f4e"]
       ),
       slugFeature(
+        "jtm-rules",
+        ["hitelkepesseg-kalkulator"],
+        [],
+        ["js/penzugyi/jtm-rules.js"]
+      ),
+      slugFeature(
         "priority-upgrade",
         [
           "hitelkepesseg-kalkulator", "lakas-hitel-onero-kalkulator", "hitel-torleszto-kalkulator",

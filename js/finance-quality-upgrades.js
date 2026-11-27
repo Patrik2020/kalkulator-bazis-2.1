@@ -126,14 +126,7 @@
       <div class="quality-note"><strong>2026-os változás:</strong> a JTM jövedelmi küszöb 600 000 Ft-ról 800 000 Ft-ra emelkedett. A bank emellett saját, szigorúbb hitelbírálati szabályt is alkalmazhat.</div>
     `);
     const select = node.querySelector('[data-q="jtm-type"]');
-    const ratioFor = (income, type) => {
-      const high = income >= 800000;
-      if (type === 'green') return 0.60;
-      if (type === 'unsecured') return high ? 0.60 : 0.50;
-      if (type === 'lt5') return high ? 0.30 : 0.25;
-      if (type === '5to10') return high ? 0.40 : 0.35;
-      return high ? 0.60 : 0.50;
-    };
+    const { ratioFor } = window.KB_JTM_RULES;
     const update = () => {
       const income = parse(document.getElementById('income')?.value);
       const existing = Math.max(0, parse(document.getElementById('existing')?.value));
