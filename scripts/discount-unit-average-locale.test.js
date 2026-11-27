@@ -12,6 +12,18 @@ test("supported calculators translate form labels without changing input and pri
   assert.equal(api.translate("atlag-kalkulator", "Súlyok összege:", "en"), "Sum of weights:");
 });
 
+test("discount metadata and schema copy have natural English and German translations", () => {
+  const title = "Árkedvezmény kalkulátor | Akciós ár és megtakarítás";
+  const description = "Árkedvezmény kalkulátor akciós árhoz: add meg az eredeti árat és a kedvezmény százalékát, majd lásd a fizetendő összeget és megtakarítást.";
+  assert.equal(api.translate("ar-kedvezmeny-kalkulator", title, "en"),
+    "Discount Calculator | Sale Price and Savings");
+  assert.equal(api.translate("ar-kedvezmeny-kalkulator", title, "de"),
+    "Rabattrechner | Angebotspreis und Ersparnis");
+  assert.match(api.translate("ar-kedvezmeny-kalkulator", description, "en"), /amount to pay and how much you save/);
+  assert.match(api.translate("ar-kedvezmeny-kalkulator", description, "de"), /wie viel du zahlst und sparst/);
+  assert.equal(api.translate("ar-kedvezmeny-kalkulator", title, "hu"), null);
+});
+
 test("dynamic product rankings preserve prices, amounts and units", () => {
   assert.equal(api.translate("egysegar-kalkulator", "1. termék", "en"), "1. product");
   assert.equal(api.translate("egysegar-kalkulator", "2. termék", "de"), "2. Produkt");

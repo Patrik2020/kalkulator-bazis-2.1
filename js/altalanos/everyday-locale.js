@@ -135,6 +135,14 @@
     "Számítási módszertan": ["Calculation methodology", "Berechnungsmethodik"]
   });
   const discount = Object.freeze({
+    "Árkedvezmény kalkulátor | Akciós ár és megtakarítás": [
+      "Discount Calculator | Sale Price and Savings",
+      "Rabattrechner | Angebotspreis und Ersparnis"
+    ],
+    "Árkedvezmény kalkulátor akciós árhoz: add meg az eredeti árat és a kedvezmény százalékát, majd lásd a fizetendő összeget és megtakarítást.": [
+      "Discount calculator for sale prices: enter the original price and discount percentage to see the amount to pay and how much you save.",
+      "Rabattrechner für Angebotspreise: Gib den ursprünglichen Preis und den Rabattsatz ein und sieh, wie viel du zahlst und sparst."
+    ],
     "Számold ki az akciós árat, kedvezményt és megtakarítást.": [
       "Calculate the sale price, discount and amount saved.",
       "Berechne den Angebotspreis, den Rabatt und die Ersparnis."
