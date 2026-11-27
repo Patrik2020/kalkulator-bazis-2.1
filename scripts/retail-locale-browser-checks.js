@@ -33,11 +33,27 @@ async function checkRetailLocales({ navigate, evaluate, setViewport }) {
     assert.equal(await evaluate("document.getElementById('kbInternalLanguage').value"), "en");
     await navigate("/kalkulatorok/ar-kedvezmeny-kalkulator");
     assert.equal(await evaluate("document.getElementById('kbInternalLanguage').value"), "en");
+    assert.equal(await evaluate("document.title"), "Discount Calculator | Sale Price and Savings");
+    assert.match(await evaluate("document.querySelector('meta[name=description]').content"), /amount to pay and how much you save/);
+    assert.deepEqual(await evaluate(`(() => {
+      const page = JSON.parse(document.getElementById('kb-structured-data').textContent)['@graph'][0];
+      return [page.name, page.inLanguage, page.description];
+    })()`), [
+      "Discount Calculator | Sale Price and Savings",
+      "en",
+      "Discount calculator for sale prices: enter the original price and discount percentage to see the amount to pay and how much you save."
+    ]);
     await edit({ '[name=price]': '25000', '[name=discount1]': '20', '[name=discount2]': '10', '[name=coupon]': '1000', '[name=cap]': '0' }, true);
     assert.equal(await result("#kalkulator .everyday-result"), "Final price 17 000 Ft Total savings 8000 Ft Effective discount 32%");
     await choose("de");
+    assert.equal(await evaluate("document.title"), "Rabattrechner | Angebotspreis und Ersparnis");
+    assert.match(await evaluate("document.querySelector('meta[property=\"og:description\"]').content"), /wie viel du zahlst und sparst/);
+    assert.equal(await evaluate("JSON.parse(document.getElementById('kb-structured-data').textContent)['@graph'][0].inLanguage"), "de");
     assert.equal(await result("#kalkulator .everyday-result"), "Endpreis 17 000 Ft Gesamtersparnis 8000 Ft Effektiver Rabatt 32%");
     await choose("hu");
+    assert.equal(await evaluate("document.title"), "Árkedvezmény kalkulátor | Akciós ár és megtakarítás");
+    assert.match(await evaluate("document.querySelector('meta[name=description]').content"), /^Árkedvezmény kalkulátor akciós árhoz/);
+    assert.equal(await evaluate("JSON.parse(document.getElementById('kb-structured-data').textContent)['@graph'][0].inLanguage"), "hu-HU");
     assert.equal(await result("#kalkulator .everyday-result"), "Végső ár 17 000 Ft Teljes megtakarítás 8000 Ft Tényleges kedvezmény 32%");
     await choose("de");
     await navigate("/kalkulatorok/ar-kedvezmeny-kalkulator");
