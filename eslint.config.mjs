@@ -73,6 +73,7 @@ export default [
       "js/expansion-batch-*-calculators.js",
       "js/expansion-batch-*-data.js",
       "js/penzugyi/hitel-torleszto.js",
+      "js/penzugyi/jtm-rules.js",
       "js/penzugyi/szamlazasi/szamla-teljesites.js",
     ],
     languageOptions: { globals: { module: "readonly" } },

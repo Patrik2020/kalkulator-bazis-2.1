@@ -32,6 +32,26 @@ async function checkCreditLocales({ navigate, evaluate, setViewport }) {
     await navigate("/kalkulatorok/hitelkepesseg-kalkulator");
     await choose("hu");
     await evaluate(`(() => { for(const [id,value] of [['income','600000'],['existing','50000'],['rate','7'],['years','20']]) { const e=document.getElementById(id); e.value=value; e.dispatchEvent(new Event('input',{bubbles:true})); } })()`);
+    // Exercise both actual panels at the shared model's inclusive threshold.
+    for (const [income, fixation, type, expected] of [
+      [799999, "short", "lt5", "25%"], [800000, "short", "lt5", "30%"],
+      [799999, "medium", "5to10", "35%"], [800000, "medium", "5to10", "40%"],
+      [799999, "long", "10plus", "50%"], [800000, "long", "10plus", "60%"],
+    ]) {
+      const ratios = await evaluate(`(() => {
+        const set = (element, value, event) => {
+          element.value = value;
+          element.dispatchEvent(new Event(event, { bubbles: true }));
+        };
+        set(document.getElementById('pc-income'), '${income}', 'input');
+        set(document.getElementById('pc-fix'), '${fixation}', 'input');
+        set(document.getElementById('income'), '${income}', 'input');
+        set(document.querySelector('.jtm-lab [data-q="jtm-type"]'), '${type}', 'change');
+        const text = (selector) => document.querySelector(selector)?.textContent.replace(/\\s/g, '') || '';
+        return [text('.priority-upgrade [data-results] strong'), text('.jtm-lab [data-q="ratio"]')];
+      })()`);
+      assert.deepEqual(ratios, [expected, expected], `JTM panels at ${income}, ${type}, ${width}px`);
+    }
     const capacityValues = await evaluate("['income','existing','rate','years'].map(id=>document.getElementById(id)?.value)");
     assert.ok((await read("#result-loan")).includes("Ft"));
     for (const [language, title, panel] of [["en", "Borrowing capacity calculator", "Debt service capacity and interest-rate stress test"], ["de", "Kreditrechner für die Tragbarkeit", "Tragbarkeit der Kreditrate und Zinsstresstest"]]) {
