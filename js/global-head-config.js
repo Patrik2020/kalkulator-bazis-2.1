@@ -136,7 +136,7 @@
         "jtm-rules",
         ["hitelkepesseg-kalkulator"],
         [],
-        ["js/penzugyi/jtm-rules.js"]
+        ["js/penzugyi/jtm-rules.js?v=e46905b4b1aa"]
       ),
       slugFeature(
         "priority-upgrade",
@@ -150,7 +150,7 @@
           "makro-kalkulator", "feherje-szukseglet-kalkulator",
         ],
         ["css/pages/priority-upgrades.css?v=81c0bc5b23c0"],
-        ["js/priority-upgrades.js?v=a42b306341eb"]
+        ["js/priority-upgrades.js?v=5f48e0b05b95"]
       ),
       slugFeature(
         "construction-upgrade",
@@ -192,7 +192,7 @@
           "fizetesi-hatarido-kalkulator", "szamla-teljesites-kalkulator",
         ],
         ["css/pages/finance-quality-upgrades.css?v=1a287df3a970"],
-        ["js/finance-quality-upgrades.js?v=896040debb7b"]
+        ["js/finance-quality-upgrades.js?v=0891c2038477"]
       ),
       slugFeature(
         "construction-quality",
