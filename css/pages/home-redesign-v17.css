@@ -27,19 +27,35 @@
 }
 html[data-season="spring"]{
   --hero-a:#102923;--hero-b:#17473d;--hero-c:#456e58;
-  --season:#4f8f62;--season-2:#91bf77;--season-3:#d58ca0;--season-soft:#eef7ed;--season-rgb:79,143,98;
+  --season:#4f7d61;
+  --season-2:#d9a5b4;
+  --season-3:#294c3c;
+  --season-soft:#eef7ed;
+  --season-rgb:79,125,97;
 }
 html[data-season="summer"]{
   --hero-a:#062a49;--hero-b:#0c5f89;--hero-c:#d5882f;
-  --season:#e79b2f;--season-2:#59b9d8;--season-3:#f2c15d;--season-soft:#fff7e7;--season-rgb:231,155,47;
+  --season:#cf8428;
+  --season-2:#f1ca68;
+  --season-3:#0e7597;
+  --season-soft:#fff7e7;
+  --season-rgb:207,132,40;
 }
 html[data-season="autumn"]{
   --hero-a:#101d2e;--hero-b:#172b43;--hero-c:#5b3a32;
-  --season:#c56a32;--season-2:#e09a3e;--season-3:#743b46;--season-soft:#f5efe6;--season-rgb:197,106,50;
+  --season:#c56a32;
+  --season-2:#e09a3e;
+  --season-3:#743b46;
+  --season-soft:#f5efe6;
+  --season-rgb:197,106,50;
 }
 html[data-season="winter"]{
   --hero-a:#0a1730;--hero-b:#173252;--hero-c:#405875;
-  --season:#7eb7df;--season-2:#c8e6f5;--season-3:#7a91be;--season-soft:#edf6fb;--season-rgb:126,183,223;
+  --season:#7eb7df;
+  --season-2:#c8e6f5;
+  --season-3:#7a91be;
+  --season-soft:#edf6fb;
+  --season-rgb:126,183,223;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -105,8 +121,8 @@ footer{padding:60px 0 80px;background:#fff;border-top:1px solid var(--line)}.foo
 :root{--season-page:#f5efe6;--season-alt:#fffaf4;--season-glass:rgba(255,255,255,.86);--season-border:rgba(var(--season-rgb),.18)}
 html[data-season="spring"]{--season-glass:rgba(248,253,247,.88)}
 html[data-season="summer"]{--season-glass:rgba(255,251,238,.88)}
-html[data-season="autumn"]{--season-page:#f5e8d8;--season-alt:#fff8ef;--season-glass:rgba(255,247,236,.88)}
-html[data-season="winter"]{--season-page:#eaf3f9;--season-alt:#f5faff;--season-glass:rgba(245,251,255,.88)}
+html[data-season="autumn"]{--season-alt:#fff8ef;--season-glass:rgba(255,247,236,.88)}
+html[data-season="winter"]{--season-alt:#f5faff;--season-glass:rgba(245,251,255,.88)}
 body{position:relative;background:linear-gradient(180deg,var(--season-page),var(--paper) 760px);transition:background .5s ease,color .35s ease}
 body::before{content:"";position:fixed;inset:0;z-index:-20;pointer-events:none;opacity:.62;transition:.55s ease;background:radial-gradient(circle at 8% 28%,rgba(var(--season-rgb),.10),transparent 28%),radial-gradient(circle at 92% 70%,rgba(var(--season-rgb),.08),transparent 30%)}
 .section.alt{background:linear-gradient(180deg,var(--season-alt),var(--surface))}
@@ -173,7 +189,8 @@ html[data-theme="dark"] footer{background:#050b13;color:#dce7f5}
 .season-particle{z-index:-1;font-size:0;width:18px;height:12px;opacity:.22;filter:none;animation:seasonFloat 18s linear infinite;transform-origin:center}.season-particle::before{content:"";display:block;width:100%;height:100%;background:rgba(255,255,255,.5);border-radius:70% 20% 70% 20%;box-shadow:0 4px 18px rgba(0,0,0,.08)}
 .p1{left:7%;top:17%}.p2{left:18%;top:52%}.p3{left:33%;top:23%}.p4{left:46%;top:72%}.p5{left:58%;top:16%}.p6{left:69%;top:42%}.p7{left:79%;top:24%}.p8{left:89%;top:62%}.p9{left:12%;top:76%;animation-delay:-14s}.p10{left:41%;top:10%;animation-delay:-8s}.p11{left:73%;top:78%;animation-delay:-4s}.p12{left:94%;top:32%;animation-delay:-11s}
 @keyframes seasonFloat{0%{transform:translate3d(-10px,-40px,0) rotate(-25deg)}45%{transform:translate3d(25px,20px,0) rotate(120deg)}100%{transform:translate3d(-15px,100px,0) rotate(285deg)}}
-html[data-season="spring"]{--season-page:#e8f1e8;--season-alt:#f4f8f2;--season:#4f7d61;--season-2:#d9a5b4;--season-3:#294c3c;--season-rgb:79,125,97}
+/* Retain the existing cascade order of seasonal and dark-mode surfaces. */
+html[data-season="spring"]{--season-alt:#f4f8f2}
 html[data-season="spring"] .hero{background:linear-gradient(122deg,#0c2723 0%,#285a48 38%,#7f9580 68%,#d8aab6 100%)}
 html[data-season="spring"] .season-orb{right:9%;top:9%;background:radial-gradient(circle,#fff9df 0 16%,#efd9b0 34%,rgba(239,217,176,.18) 61%,transparent 69%);box-shadow:0 0 160px rgba(245,218,171,.30)}
 html[data-season="spring"] .season-horizon{height:35%;background:radial-gradient(75% 120% at 10% 112%,#1e4938 0 54%,transparent 55%),radial-gradient(75% 120% at 54% 116%,#315e46 0 59%,transparent 60%),radial-gradient(60% 100% at 92% 112%,#557762 0 54%,transparent 55%),linear-gradient(to top,#153a2e 0 24%,transparent 25%)}
@@ -182,7 +199,7 @@ html[data-season="spring"] .season-veil{background:linear-gradient(180deg,transp
 html[data-season="spring"] .season-foreground{background:radial-gradient(ellipse at -4% 102%,rgba(5,27,21,.72) 0 28%,transparent 29%),radial-gradient(ellipse at 104% 108%,rgba(9,38,28,.55) 0 25%,transparent 26%)}
 html[data-season="spring"] .season-particle{width:11px;height:17px;opacity:.34;animation-duration:21s}
 html[data-season="spring"] .season-particle::before{background:linear-gradient(145deg,#fff2f5,#dca9b8);border-radius:80% 15% 80% 15%;box-shadow:0 5px 16px rgba(73,35,48,.10)}
-html[data-season="summer"]{--season-page:#f8f3df;--season-alt:#fffaf0;--season:#cf8428;--season-2:#f1ca68;--season-3:#0e7597;--season-rgb:207,132,40}
+html[data-season="summer"]{--season-alt:#fffaf0}
 html[data-season="summer"] .hero{background:linear-gradient(126deg,#042e4a 0%,#086f91 42%,#2fa2b6 65%,#eaa146 100%)}
 html[data-season="summer"] .season-orb{right:8%;top:5%;background:radial-gradient(circle,#fffef0 0 18%,#ffe491 34%,rgba(255,218,116,.20) 62%,transparent 69%);box-shadow:0 0 190px rgba(255,220,114,.42)}
 html[data-season="summer"] .season-horizon{height:31%;background:linear-gradient(to bottom,rgba(255,255,255,.10) 0 3%,transparent 4%),repeating-linear-gradient(to bottom,rgba(255,255,255,.08) 0 2px,transparent 3px 14px),linear-gradient(to top,#034d70 0 48%,#0d7f9f 49% 100%)}
