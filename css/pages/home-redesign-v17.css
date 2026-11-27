@@ -494,9 +494,6 @@ button,input,select,textarea{max-width:100%}
 
 /* Language picker contrast must not inherit light/active text from unrelated
    button states. Keep the selected language readable in both themes. */
-.home-redesign-v17 .lang-pop{
-  color:#111827!important;
-}
 .home-redesign-v17 .lang-pop b,
 .home-redesign-v17 .lang-pop button,
 .home-redesign-v17 .lang-pop button.active{
@@ -507,8 +504,6 @@ button,input,select,textarea{max-width:100%}
   background:#e7eef6!important;
 }
 html[data-theme="dark"] .home-redesign-v17 .lang-pop{
-  background:#0f1b2a!important;
-  color:#f8fafc!important;
   border:1px solid rgba(255,255,255,.12)!important;
 }
 html[data-theme="dark"] .home-redesign-v17 .lang-pop b,
@@ -654,11 +649,9 @@ html[data-theme="dark"] .home-redesign-v17 .lang-pop button.active{
     font-size:.72rem!important;
   }
   .home-redesign-v17 .hero-copy h1{
+    /* Viewport-unit fallback for browsers without container query units. */
     font-size:clamp(2.35rem,10.8vw,3.15rem)!important;
-    line-height:1.04!important;
-    letter-spacing:-.05em!important;
     margin:14px 0 18px!important;
-    overflow:visible!important;
   }
   .home-redesign-v17 .hero-copy h1 .accent{
     margin-top:.12em!important;
@@ -703,11 +696,6 @@ html[data-theme="dark"] .home-redesign-v17 .lang-pop button.active{
 @media (max-width:520px){
   .home-redesign-v17 .hero-copy h1{
     font-size:clamp(2rem,10vw,2.7rem)!important;
-    line-height:1.045!important;
-  }
-  .home-redesign-v17 .hero-copy h1 span{
-    overflow-wrap:normal!important;
-    word-break:normal!important;
   }
   .home-redesign-v17 .hero-lead{
     font-size:.95rem!important;
@@ -737,7 +725,6 @@ html[data-theme="dark"] .home-redesign-v17 .lang-pop button.active{
   }
   .home-redesign-v17 .hero-copy h1{
     font-size:clamp(1.95rem,10vw,2.45rem)!important;
-    letter-spacing:-.045em!important;
   }
   .home-redesign-v17 .eyebrow{
     font-size:.68rem!important;
@@ -761,12 +748,13 @@ html[data-theme="dark"] .home-redesign-v17 .lang-pop button.active{
   .home-redesign-v17 .hero{
     background-size:100% 100%,100% 100%,auto 200%!important;
     background-position:center,center,var(--hero-atlas-mobile-position)!important;
-    background-repeat:no-repeat!important;
   }
 }
 
 /* === Interactive controls === */
-/* Scope homepage controls so shared calculator button colors cannot leak in. */
+/* Scope homepage controls so shared calculator button colors cannot leak in.
+   The shared heading metrics below apply at every viewport width. Earlier vw
+   font-size declarations remain as fallbacks for browsers without cqw units. */
 .home-redesign-v17 .hero-copy{container-type:inline-size}
 .home-redesign-v17 .hero-copy h1{
  font-size:clamp(1.8rem,10.5cqw,5.25rem)!important;
