@@ -32,6 +32,7 @@ async function checkInvoiceDateLocales({ navigate, evaluate, setViewport }) {
 
     await navigate("/kalkulatorok/szamla-teljesites-kalkulator");
     await choose("hu");
+    const hungarianDescription = await evaluate("document.querySelector('meta[name=description]').content");
     await evaluate(`(() => {
       for(const [id,value] of [['issueDate','2026-06-02'],['performanceDate','2026-06-01'],['days','30'],['periodEnd','2026-06-30'],['periodicIssueDate','2026-06-20'],['periodicDueDate','2026-08-10']]){
         const input=document.getElementById(id); input.value=value; input.dispatchEvent(new Event('input',{bubbles:true}));
@@ -43,6 +44,10 @@ async function checkInvoiceDateLocales({ navigate, evaluate, setViewport }) {
     const invoiceInputs = await evaluate("[...document.querySelectorAll('main input[type=date],main input[type=number]')].map(e=>e.value)");
     for (const [language, panelTitle, ruleText] of [["en", "Continuous-supply calculator", "within 60 days"], ["de", "Rechner für Dauerleistungen", "innerhalb von 60 Tagen"]]) {
       await choose(language);
+      const expectedLanguage = language === "en" ? "en" : "de";
+      assert.ok((await evaluate("document.querySelector('meta[name=description]').content")).includes(language === "en" ? "periodic settlement under Section 58" : "periodischen Abrechnung nach § 58"));
+      assert.equal(await evaluate("JSON.parse(document.getElementById('kb-structured-data').textContent)['@graph'][0].inLanguage"), expectedLanguage);
+      assert.equal(await evaluate("JSON.parse(document.getElementById('kb-structured-data').textContent)['@graph'][1].description"), language === "en" ? "Calculate the invoice tax point." : "Berechne das Leistungsdatum der Rechnung.");
       assert.ok((await read("#result-info")).includes(language === "en" ? "tax point and invoice issue date" : "Leistungsdatum und Rechnungsdatum"));
       assert.ok((await read("#result-periodic-rule")).includes(ruleText));
       assert.ok((await read("#periodic-settlement-calculator h2")).includes(panelTitle));
@@ -50,6 +55,8 @@ async function checkInvoiceDateLocales({ navigate, evaluate, setViewport }) {
       assert.ok(await evaluate("document.documentElement.scrollWidth <= innerWidth + 1"), `invoice tax point overflow at ${width}px (${language})`);
     }
     await choose("hu");
+    assert.equal(await evaluate("document.querySelector('meta[name=description]').content"), hungarianDescription);
+    assert.equal(await evaluate("JSON.parse(document.getElementById('kb-structured-data').textContent)['@graph'][0].inLanguage"), "hu-HU");
     assert.match(await read("#result-info"), /dátuma eltér/u);
   }
   console.log("Invoice date locales: EN/DE guidance, working-day result and VAT tax-point output passed at 390px and 1440px.");

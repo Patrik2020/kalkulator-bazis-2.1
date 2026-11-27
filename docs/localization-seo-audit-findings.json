@@ -1,7 +1,7 @@
 {
   "pages": 121,
-  "metadataGaps": 210,
-  "schemaCopyGaps": 104,
+  "metadataGaps": 204,
+  "schemaCopyGaps": 100,
   "pagesWithAlternateUrls": 0,
   "results": [
     {
@@ -77,60 +77,8 @@
     {
       "path": "kalkulatorok/szamla-teljesites-kalkulator.html",
       "metadataFields": 6,
-      "missingMetadata": [
-        {
-          "field": "description",
-          "language": "en",
-          "source": "Teljesítési dátum és folyamatos teljesítés kalkulátor számlákhoz: számold ki az időszakos elszámolás tipikus teljesítési időpontját az Áfa tv. 58. § szerint."
-        },
-        {
-          "field": "description",
-          "language": "de",
-          "source": "Teljesítési dátum és folyamatos teljesítés kalkulátor számlákhoz: számold ki az időszakos elszámolás tipikus teljesítési időpontját az Áfa tv. 58. § szerint."
-        },
-        {
-          "field": "og:description",
-          "language": "en",
-          "source": "Teljesítési dátum és folyamatos teljesítés kalkulátor számlákhoz: számold ki az időszakos elszámolás tipikus teljesítési időpontját az Áfa tv. 58. § szerint."
-        },
-        {
-          "field": "og:description",
-          "language": "de",
-          "source": "Teljesítési dátum és folyamatos teljesítés kalkulátor számlákhoz: számold ki az időszakos elszámolás tipikus teljesítési időpontját az Áfa tv. 58. § szerint."
-        },
-        {
-          "field": "twitter:description",
-          "language": "en",
-          "source": "Teljesítési dátum és folyamatos teljesítés kalkulátor számlákhoz: számold ki az időszakos elszámolás tipikus teljesítési időpontját az Áfa tv. 58. § szerint."
-        },
-        {
-          "field": "twitter:description",
-          "language": "de",
-          "source": "Teljesítési dátum és folyamatos teljesítés kalkulátor számlákhoz: számold ki az időszakos elszámolás tipikus teljesítési időpontját az Áfa tv. 58. § szerint."
-        }
-      ],
-      "missingSchemaCopy": [
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "en",
-          "source": "Teljesítési dátum és folyamatos teljesítés kalkulátor számlákhoz: számold ki az időszakos elszámolás tipikus teljesítési időpontját az Áfa tv. 58. § szerint."
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "de",
-          "source": "Teljesítési dátum és folyamatos teljesítés kalkulátor számlákhoz: számold ki az időszakos elszámolás tipikus teljesítési időpontját az Áfa tv. 58. § szerint."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "en",
-          "source": "Számla teljesítési dátumának kiszámítása."
-        },
-        {
-          "field": "schema[0].@graph[1].description",
-          "language": "de",
-          "source": "Számla teljesítési dátumának kiszámítása."
-        }
-      ],
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
       "alternateLanguageUrls": []
     },
     {
