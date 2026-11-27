@@ -5,7 +5,7 @@ if(window.KB_SITE_RUNTIME?.isMaterializedHome())return;
 if(document.querySelector('script[data-kb-home-redesign-v17]'))return;
 const root=String(window.KB_PROJECT_ROOT||'').replace(/\/$/,'');
 const script=document.createElement('script');
-script.src=`${root}/js/home-current.js?v=f275011aded9`.replace(/\/{2,}/g,'/');
+script.src=`${root}/js/home-current.js?v=a817f18d1847`.replace(/\/{2,}/g,'/');
 script.async=false;
 script.dataset.kbHomeRedesignV17='';
 document.body.appendChild(script);
