@@ -42,13 +42,20 @@ function attributes(tag) {
   return found;
 }
 
-function dependencyMap(directory = root, paths = tracked(directory)) {
+function dependencyMap(directory = root, paths = tracked(directory), target = null) {
   const files = new Set(paths);
+  if (target !== null && !files.has(target)) {
+    throw new Error("Target must be a tracked repository-relative path: " + target);
+  }
   const edges = [];
   const dynamicFiles = new Set();
   const unreadable = [];
   const add = (source, kind, raw, mode = "relative") => {
-    const ref = resolveLocal(source, raw, files, mode);
+    // Homepage recovery fragments are derived from index.html and rendered there.
+    // Keep their actual source path in the edge, but resolve against the host page.
+    const baseSource = /^fragments\/home-redesign-v17-(?:header|main|footer)\.inc$/.test(source)
+      ? "index.html" : source;
+    const ref = resolveLocal(baseSource, raw, files, mode);
     if (!ref) return;
     if (ref.dynamic) { dynamicFiles.add(source); return; }
     edges.push({ source, kind, target: ref.target, exists: ref.exists });
@@ -157,13 +164,24 @@ function dependencyMap(directory = root, paths = tracked(directory)) {
     unreferencedCandidateSample: candidateFiles.slice(0,25),
     dynamicHintFileCount: dynamicFiles.size,
     unreadable,
+    ...(target === null ? {} : {
+      target,
+      targetReferences: edges.filter((edge) => edge.exists && edge.target === target),
+      targetLimitation: "Includes static and heuristic edges, not a complete runtime usage proof.",
+    }),
     limitation: "Heuristic only: dynamic scripts, generators, Cloudflare routes and usage by tests may not be proven. No deletion verdict.",
   };
 }
 
 function main() {
-  const result = dependencyMap();
-  if (process.argv.includes("--json")) return console.log(JSON.stringify(result, null, 2));
+  const args = process.argv.slice(2);
+  const targetIndex = args.indexOf("--target");
+  const target = targetIndex === -1 ? null : args[targetIndex + 1];
+  if (targetIndex !== -1 && (!target || target.startsWith("--"))) {
+    throw new Error("Usage: node scripts/dependency-map-audit.js --target <tracked-path>");
+  }
+  const result = dependencyMap(root, tracked(root), target);
+  if (args.includes("--json") || target !== null) return console.log(JSON.stringify(result, null, 2));
   console.log("Read-only dependency inventory");
   console.log("Files=" + result.tracked + " edges=" + result.edges + " targets=" + result.resolvedTargets);
   console.log("Reference kinds: " + JSON.stringify(result.edgesByKind));
