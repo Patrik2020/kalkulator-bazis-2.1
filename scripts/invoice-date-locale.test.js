@@ -38,3 +38,13 @@ test("invoice tax point guidance preserves the Hungarian legal scope and calcula
   assert.equal(api.translate(page, "2026. július 15.", "de"), "15. Juli 2026");
   assert.equal(api.translate(page, "Nem létező mondat", "en"), null);
 });
+
+test("invoice tax point metadata and schema descriptions are localized", () => {
+  const page = "szamla-teljesites-kalkulator";
+  const description = "Teljesítési dátum és folyamatos teljesítés kalkulátor számlákhoz: számold ki az időszakos elszámolás tipikus teljesítési időpontját az Áfa tv. 58. § szerint.";
+  assert.match(api.translate(page, description, "en"), /periodic settlement under Section 58/u);
+  assert.match(api.translate(page, description, "de"), /periodischen Abrechnung nach § 58/u);
+  assert.equal(api.translate(page, "Számla teljesítési dátumának kiszámítása.", "en"), "Calculate the invoice tax point.");
+  assert.equal(api.translate(page, "Számla teljesítési dátumának kiszámítása.", "de"), "Berechne das Leistungsdatum der Rechnung.");
+  assert.equal(api.translate(page, description, "hu"), null);
+});
