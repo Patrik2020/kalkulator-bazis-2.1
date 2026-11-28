@@ -1,7 +1,7 @@
 {
   "pages": 121,
-  "metadataGaps": 198,
-  "schemaCopyGaps": 98,
+  "metadataGaps": 186,
+  "schemaCopyGaps": 94,
   "pagesWithAlternateUrls": 0,
   "results": [
     {
@@ -98,90 +98,8 @@
     {
       "path": "kalkulatorok/egysegar-kalkulator.html",
       "metadataFields": 6,
-      "missingMetadata": [
-        {
-          "field": "title",
-          "language": "en",
-          "source": "Egységár kalkulátor | Kiszerelések összehasonlítása"
-        },
-        {
-          "field": "title",
-          "language": "de",
-          "source": "Egységár kalkulátor | Kiszerelések összehasonlítása"
-        },
-        {
-          "field": "description",
-          "language": "en",
-          "source": "Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként."
-        },
-        {
-          "field": "description",
-          "language": "de",
-          "source": "Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként."
-        },
-        {
-          "field": "og:title",
-          "language": "en",
-          "source": "Egységár kalkulátor | Kiszerelések összehasonlítása"
-        },
-        {
-          "field": "og:title",
-          "language": "de",
-          "source": "Egységár kalkulátor | Kiszerelések összehasonlítása"
-        },
-        {
-          "field": "og:description",
-          "language": "en",
-          "source": "Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként."
-        },
-        {
-          "field": "og:description",
-          "language": "de",
-          "source": "Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként."
-        },
-        {
-          "field": "twitter:title",
-          "language": "en",
-          "source": "Egységár kalkulátor | Kiszerelések összehasonlítása"
-        },
-        {
-          "field": "twitter:title",
-          "language": "de",
-          "source": "Egységár kalkulátor | Kiszerelések összehasonlítása"
-        },
-        {
-          "field": "twitter:description",
-          "language": "en",
-          "source": "Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként."
-        },
-        {
-          "field": "twitter:description",
-          "language": "de",
-          "source": "Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként."
-        }
-      ],
-      "missingSchemaCopy": [
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "en",
-          "source": "Egységár kalkulátor | Kiszerelések összehasonlítása"
-        },
-        {
-          "field": "schema[0].@graph[0].name",
-          "language": "de",
-          "source": "Egységár kalkulátor | Kiszerelések összehasonlítása"
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "en",
-          "source": "Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként."
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "de",
-          "source": "Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként."
-        }
-      ],
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
       "alternateLanguageUrls": []
     },
     {

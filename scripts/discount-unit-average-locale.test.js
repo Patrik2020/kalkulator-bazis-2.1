@@ -24,6 +24,17 @@ test("discount metadata and schema copy have natural English and German translat
   assert.equal(api.translate("ar-kedvezmeny-kalkulator", title, "hu"), null);
 });
 
+test("unit price metadata and WebPage schema copy have natural English and German translations", () => {
+  const page = "egysegar-kalkulator";
+  const title = "Egységár kalkulátor | Kiszerelések összehasonlítása";
+  const description = "Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként.";
+  assert.equal(api.translate(page, title, "en"), "Unit Price Calculator | Compare Pack Sizes");
+  assert.equal(api.translate(page, title, "de"), "Grundpreisrechner | Packungsgrößen vergleichen");
+  assert.match(api.translate(page, description, "en"), /costs less per kilogram or litre/u);
+  assert.match(api.translate(page, description, "de"), /pro Kilogramm oder Liter günstiger/u);
+  assert.equal(api.translate(page, title, "hu"), null);
+});
+
 test("dynamic product rankings preserve prices, amounts and units", () => {
   assert.equal(api.translate("egysegar-kalkulator", "1. termék", "en"), "1. product");
   assert.equal(api.translate("egysegar-kalkulator", "2. termék", "de"), "2. Produkt");
