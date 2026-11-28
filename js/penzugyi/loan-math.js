@@ -60,7 +60,27 @@
     return { monthly, interestTotal, total: principal + interestTotal, annual, months: actualMonths };
   }
 
-  const model = Object.freeze({ annuityPayment, monthlyRateFromAnnual, principalFromPayment, collateralFinancing, amortization });
+  // JTM ratios are supplied by the rules module. This is a planning model,
+  // not a bank's underwriting decision; the caller validates form inputs.
+  function creditCapacity({ income, existing, card, overdraft, rate, stress, years, buffer, custom, legal }) {
+    const assumedLimits = (card + overdraft) * 0.05;
+    const obligations = existing + assumedLimits;
+    const cautious = Math.max(0.10, legal - buffer / 100);
+    const customRatio = Math.min(legal, Math.max(0.05, custom / 100));
+    const legalPayment = Math.max(0, income * legal - obligations);
+    const cautiousPayment = Math.max(0, income * cautious - obligations);
+    const customPayment = Math.max(0, income * customRatio - obligations);
+    const months = Math.max(1, Math.round(years * 12));
+    const loanAtRate = (annualRate) => Number.isFinite(cautiousPayment) && cautiousPayment > 0
+      ? principalFromPayment(cautiousPayment, monthlyRateFromAnnual(annualRate), months)
+      : 0;
+    return {
+      assumedLimits, legalPayment, cautiousPayment, customPayment,
+      baseLoan: loanAtRate(rate), stressLoan: loanAtRate(stress),
+    };
+  }
+
+  const model = Object.freeze({ annuityPayment, monthlyRateFromAnnual, principalFromPayment, collateralFinancing, amortization, creditCapacity });
   if (typeof module !== "undefined" && module.exports) module.exports = model;
   if (typeof window !== "undefined") window.KB_LOAN_MATH = model;
 })();

@@ -4,6 +4,7 @@ const {
   monthlyRateFromAnnual,
   principalFromPayment,
   amortization,
+  creditCapacity,
 } = require("../js/penzugyi/loan-math.js");
 
 function close(actual, expected, tolerance, message) {
@@ -85,6 +86,41 @@ const prepaid = amortization(10_000_000, 6, 10, 12, 1_000_000);
 close(normal.monthly, tenYear6, 0.001, "schedule monthly payment");
 assert(prepaid.interestTotal < normal.interestTotal && prepaid.months < normal.months);
 
+// The primary capacity result and example rows share one pure calculation.
+const capacityDefaults = { income: 600_000, existing: 50_000, card: 100_000, overdraft: 200_000,
+  rate: 0, stress: 0, years: 20, buffer: 15, custom: 30, legal: 0.50 };
+assert.deepStrictEqual(creditCapacity(capacityDefaults), {
+  assumedLimits: 15_000, legalPayment: 235_000, cautiousPayment: 145_000,
+  customPayment: 115_000, baseLoan: 34_800_000, stressLoan: 34_800_000,
+});
+for (const income of [400_000, 600_000, 799_999, 800_000, 1_500_000]) {
+  for (const fixation of ["lt5", "5to10", "10plus"]) {
+    for (const existing of [0, 50_000, 1_000_000]) {
+      for (const buffer of [-10, 0, 15, 80]) {
+        for (const custom of [0, 30, 100]) {
+          for (const rate of [0, 0.0001, 7, 25]) {
+            const input = { ...capacityDefaults, income, existing, buffer, custom, rate, stress: rate + 3, legal: ratioFor(income, fixation) };
+            const assumedLimits = (input.card + input.overdraft) * 0.05;
+            const obligations = existing + assumedLimits;
+            const cautious = Math.max(0.10, input.legal - buffer / 100);
+            const customRatio = Math.min(input.legal, Math.max(0.05, custom / 100));
+            const legalPayment = Math.max(0, income * input.legal - obligations);
+            const cautiousPayment = Math.max(0, income * cautious - obligations);
+            const customPayment = Math.max(0, income * customRatio - obligations);
+            const oldLoan = (annual) => cautiousPayment > 0
+              ? principalFromPayment(cautiousPayment, monthlyRateFromAnnual(annual), Math.max(1, Math.round(input.years * 12)))
+              : 0;
+            assert.deepStrictEqual(creditCapacity(input), {
+              assumedLimits, legalPayment, cautiousPayment, customPayment,
+              baseLoan: oldLoan(rate), stressLoan: oldLoan(input.stress),
+            });
+          }
+        }
+      }
+    }
+  }
+}
+
 // Verify browser registration and loader order, not just the Node export.
 const fs = require("node:fs");
 const path = require("node:path");
@@ -94,6 +130,10 @@ const context = { window: {} };
 const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
 vm.runInNewContext(read("js/penzugyi/loan-math.js"), context);
 assert.strictEqual(context.window.KB_LOAN_MATH.amortization(1200, 0, 1).months, 12);
+assert.strictEqual(context.window.KB_LOAN_MATH.creditCapacity(capacityDefaults).baseLoan, 34_800_000);
+assert.ok(read("js/priority-upgrades.js").includes("creditCapacity(inputs)"));
+assert.ok(read("js/priority-upgrades.js").includes("creditCapacity({ ...inputs, income: exampleIncome"));
+assert.ok(!read("js/priority-upgrades.js").includes("const principalFromPayment ="));
 assert.ok(!read("js/priority-upgrades.js").includes("function amortization("));
 assert.ok(read("js/priority-upgrades.js").includes("const { amortization } = window.KB_LOAN_MATH;"));
 assert.strictEqual(context.window.KB_LOAN_MATH.annuityPayment(1200, 0, 12), 100);

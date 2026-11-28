@@ -23,12 +23,6 @@
     const { annuityPayment, monthlyRateFromAnnual } = window.KB_LOAN_MATH;
     return annuityPayment(principal, monthlyRateFromAnnual(annualRate), months);
   };
-  const principalFromPayment = (monthlyPayment, annualRate, years) => {
-    const months = Math.max(1, Math.round(years * 12));
-    if (!Number.isFinite(monthlyPayment) || monthlyPayment <= 0) return 0;
-    const model = window.KB_LOAN_MATH;
-    return model.principalFromPayment(monthlyPayment, model.monthlyRateFromAnnual(annualRate), months);
-  };
   const addSection = (html, anchor = document.querySelector("main")) => {
     if (!anchor || document.querySelector("[data-priority-upgrade]")) return null;
     const wrapper = document.createElement("section");
@@ -97,16 +91,10 @@
       const fixation = selectValue(section, "pc-fix", "long");
       if (income <= 0 || years <= 0 || rate < 0 || stress < 0) return error(section, "Adj meg érvényes, pozitív jövedelmet és futamidőt.");
       error(section, "");
-      const assumedLimits = (card + overdraft) * 0.05;
-      const obligations = existing + assumedLimits;
       const legal = legalRatio(income, fixation);
-      const cautious = Math.max(0.10, legal - buffer / 100);
-      const customRatio = Math.min(legal, Math.max(0.05, custom / 100));
-      const legalPayment = Math.max(0, income * legal - obligations);
-      const cautiousPayment = Math.max(0, income * cautious - obligations);
-      const customPayment = Math.max(0, income * customRatio - obligations);
-      const baseLoan = principalFromPayment(cautiousPayment, rate, years);
-      const stressLoan = principalFromPayment(cautiousPayment, stress, years);
+      const { creditCapacity } = window.KB_LOAN_MATH;
+      const inputs = { income, existing, card, overdraft, rate, stress, years, buffer, custom, legal };
+      const { assumedLimits, legalPayment, cautiousPayment, customPayment, baseLoan, stressLoan } = creditCapacity(inputs);
       section.querySelector("[data-results]").innerHTML = resultCards([
         ["JTM szerinti felső arány", decimal(legal * 100, 0) + "%"],
         ["Keretek becsült havi terhe", money(assumedLimits)],
@@ -118,11 +106,8 @@
         ["Stressz miatti különbség", money(Math.max(0, baseLoan - stressLoan))]
       ]);
       section.querySelector("[data-examples]").innerHTML = [400000, 600000, 800000].map((exampleIncome) => {
-        const ratio = legalRatio(exampleIncome, fixation);
-        const safeRatio = Math.max(0.10, ratio - buffer / 100);
-        const legalP = Math.max(0, exampleIncome * ratio - obligations);
-        const safeP = Math.max(0, exampleIncome * safeRatio - obligations);
-        return `<tr><td>${money(exampleIncome)}</td><td>${money(legalP)}</td><td>${money(safeP)}</td><td>${money(principalFromPayment(safeP, rate, years))}</td><td>${money(principalFromPayment(safeP, stress, years))}</td></tr>`;
+        const example = creditCapacity({ ...inputs, income: exampleIncome, legal: legalRatio(exampleIncome, fixation) });
+        return `<tr><td>${money(exampleIncome)}</td><td>${money(example.legalPayment)}</td><td>${money(example.cautiousPayment)}</td><td>${money(example.baseLoan)}</td><td>${money(example.stressLoan)}</td></tr>`;
       }).join("");
     };
     section.addEventListener("input", calculate);
