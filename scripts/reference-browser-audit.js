@@ -331,8 +331,13 @@ const cases = [
   `),
   test("kalkulatorok/kamatos-kamat-kalkulator.html", "Kamatos kamat", `
     set('initial', 100000); set('monthly', 0); set('rate', 12); set('years', 1);
-    const actual = number('#result-final'); const valid = actual === 112000;
-    set('rate', 0); const boundary = number('#result-final') === 100000;
+    const actual = number('#result-final');
+    if (!await waitFor(() => element('.compound-breakdown-lab [data-q="final"]') && element('#cc-initial'))) throw new Error('Kamatos kamat panelek hiányoznak');
+    set('cc-initial', 100000); set('cc-contribution', 0); set('cc-return', 12); set('cc-fee', 0); set('cc-tax', 0); set('cc-inflation', 0); set('cc-years', 1);
+    const priorityBalance = () => number('[data-priority-upgrade] [data-results] .priority-result:nth-child(2) strong');
+    const valid = actual === 112000 && number('.compound-breakdown-lab [data-q="final"]') === 112000 && priorityBalance() === 112000;
+    set('rate', 0); set('cc-return', 0);
+    const boundary = number('#result-final') === 100000 && number('.compound-breakdown-lab [data-q="final"]') === 100000 && priorityBalance() === 100000;
     set('initial', 0); set('monthly', 0); const invalid = text('#result-final') === '–' && noInvalidNumber();
     return { valid, boundary, invalid, actual };
   `),
@@ -359,8 +364,12 @@ const cases = [
   `),
   test("kalkulatorok/milliomos-kalkulator.html", "Milliomos", `
     set('initial', 0); set('monthly', 100000); set('rate', 0); set('goal', 1000000);
-    const actual = text('#result-time'); const valid = actual === '0 év 10 hónap';
-    set('initial', 1000000); const boundary = /cél már teljesült/i.test(text('#result-time'));
+    const actual = text('#result-time');
+    if (!await waitFor(() => element('.goal-milestone-lab [data-q="m100"]') && element('#mi-target'))) throw new Error('Megtakarítási panelek hiányoznak');
+    set('mi-target', 1000000); set('mi-initial', 0); set('mi-monthly', 100000); set('mi-increase', 0); set('mi-inflation', 0);
+    const scenarioYears = [...document.querySelectorAll('[data-scenarios] tr td:nth-child(3)')].map(item => item.textContent.trim());
+    const valid = actual === '0 év 10 hónap' && text('.goal-milestone-lab [data-q="m100"]') === '10 hó' && scenarioYears.length === 3 && scenarioYears.every(value => value === '1 év');
+    set('initial', 1000000); const boundary = /cél már teljesült/i.test(text('#result-time')) && text('.goal-milestone-lab [data-q="m100"]') === 'már elérted';
     set('initial', 0); set('monthly', 0); set('rate', 0);
     const invalid = /nem érhető el/i.test(text('#result-time')) && noInvalidNumber();
     return { valid, boundary, invalid, actual };

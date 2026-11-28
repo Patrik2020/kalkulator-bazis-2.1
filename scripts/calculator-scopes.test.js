@@ -13,9 +13,9 @@ const fixtures = [
   { name: "hitel-torleszto", dependencies: ["js/penzugyi/loan-math.js"], values: { amount: "1 200 000", rate: "1,5", years: "1", thm: "12" }, result: "result-monthly", expected: "100 814 Ft", invalid: { rate: "-1" }, invalidExpected: "Adj meg 0% és 100% közötti éves értéket." },
   { name: "hitelkepesseg", dependencies: ["js/penzugyi/loan-math.js"], values: { income: "500 000", existing: "50 000", rate: "1,5", years: "1" }, result: "result-loan", expected: "Becsült hitelösszeg: 1 785 460 Ft", invalid: { income: "" }, invalidResult: "result-monthly", invalidExpected: "–" },
   { name: "inflacio", values: { amount: "1 200 000", rate: "1,5", years: "1" }, result: "result-final", expected: "1 182 266 Ft", invalid: { rate: "" }, invalidExpected: "–" },
-  { name: "kamatos-kamat", values: { initial: "1 200 000", monthly: "10 000", rate: "1,5", years: "1" }, result: "result-final", expected: "1 338 823 Ft", invalid: { years: "101" }, invalidExpected: "–" },
+  { name: "kamatos-kamat", dependencies: ["js/penzugyi/savings-math.js"], values: { initial: "1 200 000", monthly: "10 000", rate: "1,5", years: "1" }, result: "result-final", expected: "1 338 823 Ft", invalid: { years: "101" }, invalidExpected: "–" },
   { name: "lakashitel-onero", values: { price: "50 000 000", percent: "20,5" }, result: "result-down", expected: "10 250 000 Ft", invalid: { percent: "101" }, invalidExpected: "–" },
-  { name: "milliomos", values: { initial: "0", monthly: "100 000", rate: "0", goal: "1 200 000" }, result: "result-time", expected: "1 év 0 hónap", invalid: { rate: "-100" }, invalidExpected: "–" },
+  { name: "milliomos", dependencies: ["js/penzugyi/savings-math.js"], values: { initial: "0", monthly: "100 000", rate: "0", goal: "1 200 000" }, result: "result-time", expected: "1 év 0 hónap", invalid: { rate: "-100" }, invalidExpected: "–" },
 ];
 
 function browserStub(values = {}) {

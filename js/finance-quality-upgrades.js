@@ -236,11 +236,11 @@
     const monthsToGoal = (initial, monthly, annualRate, goal) => {
       if (initial >= goal) return 0;
       if (monthly <= 0 && annualRate <= 0) return null;
-      const r = Math.pow(1 + annualRate / 100, 1 / 12) - 1;
+      const { effectiveMonthlyRate, advanceMonth } = window.KB_SAVINGS_MATH;
+      const r = effectiveMonthlyRate(annualRate);
       let balance = initial;
       for (let m = 1; m <= 1200; m += 1) {
-        balance *= (1 + r);
-        balance += monthly;
+        balance = advanceMonth(balance, r, monthly);
         if (balance >= goal) return m;
       }
       return null;
@@ -314,12 +314,8 @@
       const years = parse(document.getElementById('years')?.value);
       if (!(initial >= 0 && monthly >= 0 && years >= 0 && rate > -100)) return;
       const months = Math.round(years * 12);
-      const r = Math.pow(1 + rate / 100, 1 / 12) - 1;
-      let balance = initial;
-      for (let i = 0; i < months; i += 1) {
-        balance *= (1 + r);
-        balance += monthly;
-      }
+      const { effectiveMonthlyRate, compoundBalance } = window.KB_SAVINGS_MATH;
+      const balance = compoundBalance(initial, effectiveMonthlyRate(rate), monthly, months);
       const contributed = initial + monthly * months;
       const growth = balance - contributed;
       node.querySelector('[data-q="contributed"]').textContent = money(contributed);

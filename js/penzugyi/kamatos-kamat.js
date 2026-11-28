@@ -33,11 +33,9 @@ function calc() {
 
   // Az éves hozamot effektív éves rátának tekintjük, majd matematikailag
   // egyenértékű havi rátára bontjuk. A havi befizetés hónap végén történik.
-  const monthlyRate = Math.pow(1 + annualRate / 100, 1 / 12) - 1;
-  let total = principal;
-  for (let month = 0; month < months; month += 1) {
-    total = total * (1 + monthlyRate) + contribution;
-  }
+  const { effectiveMonthlyRate, compoundBalance } = window.KB_SAVINGS_MATH;
+  const monthlyRate = effectiveMonthlyRate(annualRate);
+  const total = compoundBalance(principal, monthlyRate, contribution, months);
 
   if (!Number.isFinite(total)) {
     resultFinal.textContent = "–";

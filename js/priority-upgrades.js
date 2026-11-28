@@ -31,15 +31,14 @@
   };
   const futureValue = ({ initial = 0, monthly = 0, annual = 0, years = 0, annualIncrease = 0, annualFee = 0 }) => {
     const months = Math.max(0, Math.round(years * 12));
-    const netAnnual = (annual - annualFee) / 100;
-    const monthlyRate = Math.pow(1 + netAnnual, 1 / 12) - 1;
+    const { effectiveMonthlyRate, advanceMonth } = window.KB_SAVINGS_MATH;
+    const monthlyRate = effectiveMonthlyRate(annual - annualFee);
     let balance = initial;
     let contribution = monthly;
     const rows = [];
     let invested = initial;
     for (let month = 1; month <= months; month += 1) {
-      balance *= 1 + monthlyRate;
-      balance += contribution;
+      balance = advanceMonth(balance, monthlyRate, contribution);
       invested += contribution;
       if (month % 12 === 0) {
         rows.push({ year: month / 12, balance, invested });
