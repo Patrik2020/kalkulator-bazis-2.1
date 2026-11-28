@@ -29,24 +29,6 @@
     const model = window.KB_LOAN_MATH;
     return model.principalFromPayment(monthlyPayment, model.monthlyRateFromAnnual(annualRate), months);
   };
-  const futureValue = ({ initial = 0, monthly = 0, annual = 0, years = 0, annualIncrease = 0, annualFee = 0 }) => {
-    const months = Math.max(0, Math.round(years * 12));
-    const { effectiveMonthlyRate, advanceMonth } = window.KB_SAVINGS_MATH;
-    const monthlyRate = effectiveMonthlyRate(annual - annualFee);
-    let balance = initial;
-    let contribution = monthly;
-    const rows = [];
-    let invested = initial;
-    for (let month = 1; month <= months; month += 1) {
-      balance = advanceMonth(balance, monthlyRate, contribution);
-      invested += contribution;
-      if (month % 12 === 0) {
-        rows.push({ year: month / 12, balance, invested });
-        contribution *= 1 + annualIncrease / 100;
-      }
-    }
-    return { balance, invested, rows };
-  };
   const addSection = (html, anchor = document.querySelector("main")) => {
     if (!anchor || document.querySelector("[data-priority-upgrade]")) return null;
     const wrapper = document.createElement("section");
@@ -204,39 +186,6 @@
     calculate();
   }
 
-  function amortization(principal, annualRate, years, prepaymentMonth = 0, prepaymentAmount = 0) {
-    const months = Math.max(1, Math.round(years * 12));
-    const rate = window.KB_LOAN_MATH.monthlyRateFromAnnual(annualRate);
-    let monthly = payment(principal, annualRate, years);
-    let balance = principal;
-    let interestTotal = 0;
-    const annual = [];
-    let yearPrincipal = 0;
-    let yearInterest = 0;
-    let actualMonths = 0;
-    for (let month = 1; month <= months && balance > 0.5; month += 1) {
-      const interest = balance * rate;
-      let principalPart = Math.min(balance, monthly - interest);
-      if (principalPart < 0) principalPart = 0;
-      balance -= principalPart;
-      yearPrincipal += principalPart;
-      yearInterest += interest;
-      interestTotal += interest;
-      actualMonths = month;
-      if (month === prepaymentMonth && prepaymentAmount > 0) {
-        const extra = Math.min(balance, prepaymentAmount);
-        balance -= extra;
-        yearPrincipal += extra;
-      }
-      if (month % 12 === 0 || balance <= 0.5) {
-        annual.push({ year: Math.ceil(month / 12), principal: yearPrincipal, interest: yearInterest, balance: Math.max(0, balance) });
-        yearPrincipal = 0;
-        yearInterest = 0;
-      }
-    }
-    return { monthly, interestTotal, total: principal + interestTotal, annual, months: actualMonths };
-  }
-
   function upgradeLoanComparison() {
     const offerFields = (letter, rate, years) => `
       <fieldset class="priority-fieldset"><legend>${letter}. ajánlat</legend><div class="priority-grid">
@@ -275,6 +224,7 @@
         const rate = numberValue(section, `lc-${letter}-rate`);
         const years = numberValue(section, `lc-${letter}-years`);
         const fees = numberValue(section, `lc-${letter}-fees`);
+        const { amortization } = window.KB_LOAN_MATH;
         const base = amortization(amount, rate, years);
         const prepaid = amortization(amount, rate, years, preMonth, preAmount);
         const stressMonthly = payment(amount, stress, years);
@@ -307,6 +257,7 @@
       const monthly = numberValue(section, "mi-monthly");
       const increase = numberValue(section, "mi-increase");
       const inflation = numberValue(section, "mi-inflation");
+      const { futureValue } = window.KB_SAVINGS_MATH;
       const scenarios = [["Óvatos", 3], ["Közép", 6], ["Kedvező", 9]];
       section.querySelector("[data-scenarios]").innerHTML = scenarios.map(([name, rate]) => {
         let reached = null;
@@ -407,7 +358,7 @@
       const tax = numberValue(section, "cc-tax");
       const inflation = numberValue(section, "cc-inflation");
       const years = Math.max(1, Math.round(numberValue(section, "cc-years")));
-      const result = futureValue({ initial, monthly, annual, years, annualFee: fee });
+      const result = window.KB_SAVINGS_MATH.futureValue({ initial, monthly, annual, years, annualFee: fee });
       const grossGain = Math.max(0, result.balance - result.invested);
       const taxAmount = grossGain * tax / 100;
       const afterTax = result.balance - taxAmount;

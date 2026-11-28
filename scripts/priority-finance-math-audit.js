@@ -3,6 +3,7 @@ const {
   annuityPayment,
   monthlyRateFromAnnual,
   principalFromPayment,
+  amortization,
 } = require("../js/penzugyi/loan-math.js");
 
 function close(actual, expected, tolerance, message) {
@@ -71,6 +72,19 @@ for (const principal of [1, 100_000, 1_200_000, 20_000_000]) {
   }
 }
 
+// The amortization schedule belongs to the loan model, not the DOM controller.
+const zeroSchedule = amortization(1_200_000, 0, 1);
+assert.deepStrictEqual(zeroSchedule, { monthly: 100_000, interestTotal: 0, total: 1_200_000,
+  annual: [{ year: 1, principal: 1_200_000, interest: 0, balance: 0 }], months: 12 });
+const early = amortization(1_200_000, 0, 1, 1, 1_200_000);
+assert.strictEqual(early.months, 1);
+assert.strictEqual(early.annual[0].balance, 0);
+assert.strictEqual(early.annual[0].principal, 1_200_000);
+const normal = amortization(10_000_000, 6, 10);
+const prepaid = amortization(10_000_000, 6, 10, 12, 1_000_000);
+close(normal.monthly, tenYear6, 0.001, "schedule monthly payment");
+assert(prepaid.interestTotal < normal.interestTotal && prepaid.months < normal.months);
+
 // Verify browser registration and loader order, not just the Node export.
 const fs = require("node:fs");
 const path = require("node:path");
@@ -79,6 +93,9 @@ const root = path.resolve(__dirname, "..");
 const context = { window: {} };
 const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
 vm.runInNewContext(read("js/penzugyi/loan-math.js"), context);
+assert.strictEqual(context.window.KB_LOAN_MATH.amortization(1200, 0, 1).months, 12);
+assert.ok(!read("js/priority-upgrades.js").includes("function amortization("));
+assert.ok(read("js/priority-upgrades.js").includes("const { amortization } = window.KB_LOAN_MATH;"));
 assert.strictEqual(context.window.KB_LOAN_MATH.annuityPayment(1200, 0, 12), 100);
 assert.strictEqual(context.window.KB_LOAN_MATH.principalFromPayment(100, 0, 12), 1200);
 for (const [page, script] of [
