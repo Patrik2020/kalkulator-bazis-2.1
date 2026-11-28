@@ -2,7 +2,8 @@ const assert = require("assert");
 const {
   annuityPayment,
   monthlyRateFromAnnual,
-} = require("../js/penzugyi/hitel-torleszto.js");
+  principalFromPayment,
+} = require("../js/penzugyi/loan-math.js");
 
 function close(actual, expected, tolerance, message) {
   assert(Number.isFinite(actual), `${message}: az eredmény nem véges szám.`);
@@ -53,6 +54,23 @@ for (const [type, below, atOrAbove] of [
   assert.strictEqual(ratioFor(800_001, type), atOrAbove, type + ": above threshold");
 }
 
+// Compare the existing nominal/effective and inverse formulas without changing their arithmetic.
+for (const principal of [1, 100_000, 1_200_000, 20_000_000]) {
+  for (const annual of [0, 0.0001, 3, 6.5, 12, 100]) {
+    for (const months of [1, 12, 120, 240, 360]) {
+      for (const effective of [false, true]) {
+        const rate = effective ? Math.pow(1 + annual / 100, 1 / 12) - 1 : annual / 100 / 12;
+        assert.strictEqual(monthlyRateFromAnnual(annual, effective), rate);
+        const expected = rate === 0 ? principal / months : principal * rate / (1 - Math.pow(1 + rate, -months));
+        assert.strictEqual(annuityPayment(principal, rate, months), expected);
+        const inverse = rate === 0 ? expected * months : expected * (1 - Math.pow(1 + rate, -months)) / rate;
+        assert.strictEqual(principalFromPayment(expected, rate, months), inverse);
+        close(inverse, principal, Math.max(1e-9, principal * 1e-12), "annuity inverse");
+      }
+    }
+  }
+}
+
 // Verify browser registration and loader order, not just the Node export.
 const fs = require("node:fs");
 const path = require("node:path");
@@ -60,6 +78,19 @@ const vm = require("node:vm");
 const root = path.resolve(__dirname, "..");
 const context = { window: {} };
 const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
+vm.runInNewContext(read("js/penzugyi/loan-math.js"), context);
+assert.strictEqual(context.window.KB_LOAN_MATH.annuityPayment(1200, 0, 12), 100);
+assert.strictEqual(context.window.KB_LOAN_MATH.principalFromPayment(100, 0, 12), 1200);
+for (const [page, script] of [
+  ["hitel-torleszto-kalkulator", "hitel-torleszto"],
+  ["hitelkepesseg-kalkulator", "hitelkepesseg"],
+]) {
+  const html = read("kalkulatorok/" + page + ".html");
+  const modelTag = html.match(/<script src="\.\.\/js\/penzugyi\/loan-math\.js(?:\?[^"]*)?"><\/script>/);
+  assert.ok(modelTag, page + ": synchronous model tag");
+  assert.ok(modelTag.index < html.indexOf("js/global-head.js"), page + ": before panel loader");
+  assert.ok(modelTag.index < html.indexOf("js/penzugyi/" + script + ".js"), page + ": before primary calculator");
+}
 vm.runInNewContext(read("js/penzugyi/jtm-rules.js"), context);
 assert.strictEqual(context.window.KB_JTM_RULES.ratioFor(800_000, "lt5"), 0.30);
 vm.runInNewContext(read("js/global-head-config.js"), context);

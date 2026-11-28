@@ -279,15 +279,18 @@ const cases = [
   `),
   test("kalkulatorok/hitel-torleszto-kalkulator.html", "Hiteltörlesztő", `
     checked('use-thm', false); set('amount', 1200000); set('rate', 0); set('years', 1);
-    const actual = number('#result-monthly'); const valid = actual === 100000;
-    const boundary = number('#result-interest') === 0;
+    const actual = number('#result-monthly'); const boundary = number('#result-interest') === 0;
+    set('amount', 10000000); set('rate', 6); set('years', 10);
+    const valid = actual === 100000 && number('#result-monthly') === 111021;
     set('amount', 0); const invalid = text('#result-monthly') === '–' && noInvalidNumber();
     return { valid, boundary, invalid, actual };
   `),
   test("kalkulatorok/hitelkepesseg-kalkulator.html", "Hitelképesség", `
     set('income', 500000); set('existing', 0); set('rate', 0); set('years', 1);
     const actual = number('#result-loan');
-    const valid = actual === 2400000 && number('#result-monthly') === 200000;
+    const zeroRateValid = actual === 2400000 && number('#result-monthly') === 200000;
+    set('rate', 6); set('years', 10);
+    const valid = zeroRateValid && number('#result-loan') === 18014691;
     set('existing', 200000); const boundary = number('#result-monthly') === 0;
     set('income', 0); const invalid = text('#result-monthly') === '–' && noInvalidNumber();
     return { valid, boundary, invalid, actual };

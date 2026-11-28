@@ -23,6 +23,7 @@ on:
       - "js/global-head.js"
       - "js/global-head-config.js"
       - "js/penzugyi/jtm-rules.js"
+      - "js/penzugyi/loan-math.js"
       - "js/priority-upgrades.js"
       - "js/finance-quality-upgrades.js"
       - "js/static-first-fallbacks.js"
