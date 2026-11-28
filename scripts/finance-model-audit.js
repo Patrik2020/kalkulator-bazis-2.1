@@ -10,18 +10,10 @@ function close(actual, expected, tolerance = 1e-9, label = "érték") {
   assert.ok(Math.abs(actual - expected) <= tolerance, `${label}: ${actual} != ${expected}`);
 }
 
-function effectiveMonthly(annualPercent) {
-  return Math.pow(1 + annualPercent / 100, 1 / 12) - 1;
-}
+const { effectiveMonthlyRate, advanceMonth, compoundBalance } = require("../js/penzugyi/savings-math.js");
 
 function compoundFuture({ initial, monthly, annualRate, years }) {
-  const months = Math.round(years * 12);
-  const monthlyRate = effectiveMonthly(annualRate);
-  let total = initial;
-  for (let month = 0; month < months; month += 1) {
-    total = total * (1 + monthlyRate) + monthly;
-  }
-  return total;
+  return compoundBalance(initial, effectiveMonthlyRate(annualRate), monthly, Math.round(years * 12));
 }
 
 function etfFuture({ initial, monthly, annualRate, ter, years }) {
@@ -37,11 +29,11 @@ function etfFuture({ initial, monthly, annualRate, ter, years }) {
 }
 
 function monthsToGoal({ initial, monthly, annualRate, goal, maxMonths = 1200 }) {
-  const rate = effectiveMonthly(annualRate);
+  const rate = effectiveMonthlyRate(annualRate);
   let total = initial;
   let months = 0;
   while (total < goal && months < maxMonths) {
-    total = total * (1 + rate) + monthly;
+    total = advanceMonth(total, rate, monthly);
     months += 1;
   }
   return total >= goal ? months : null;
@@ -64,10 +56,34 @@ close(1_000_000 / Math.pow(0.98, 5), 1_106_291.6170754486, 1e-6, "2%-os defláci
 
 // Kamatos kamat: effektív éves ráta -> havi egyenérték, hónap végi befizetéssel.
 const compoundSource = read("js/penzugyi/kamatos-kamat.js");
-assert.ok(compoundSource.includes("Math.pow(1 + annualRate / 100, 1 / 12) - 1"), "Kamatos kamat havi ráta eltért");
-assert.ok(compoundSource.includes("total = total * (1 + monthlyRate) + contribution"), "Kamatos kamat befizetési időzítés eltért");
+assert.ok(compoundSource.includes("effectiveMonthlyRate(annualRate)"), "Kamatos kamat közös havi ráta hiányzik");
+assert.ok(compoundSource.includes("compoundBalance(principal, monthlyRate, contribution, months)"), "Kamatos kamat közös befizetési modell hiányzik");
 close(compoundFuture({ initial: 0, monthly: 50_000, annualRate: 6, years: 20 }), 22_671_931.62745605, 0.01, "50k/hó / 20 év / 6%");
 close(compoundFuture({ initial: 1_000_000, monthly: 0, annualRate: 5, years: 10 }), 1_628_894.626777442, 0.01, "1 M kezdőtőke / 10 év / 5%");
+
+// Compare the actual shared model to the previous arithmetic without rounding.
+for (const initial of [0, 100_000, 1_234_567.89]) {
+  for (const monthly of [0, 1, 50_000, 123_456.78]) {
+    for (const annual of [-99.9, -10, 0, 0.0001, 6, 12, 100]) {
+      for (const months of [0, 1, 12, 120, 1200]) {
+        const rate = Math.pow(1 + annual / 100, 1 / 12) - 1;
+        assert.strictEqual(effectiveMonthlyRate(annual), rate);
+        let expected = initial;
+        for (let m = 0; m < months; m += 1) expected = expected * (1 + rate) + monthly;
+        assert.strictEqual(compoundBalance(initial, rate, monthly, months), expected);
+      }
+    }
+  }
+}
+const vm = require("node:vm");
+const savingsContext = { window: {} };
+vm.runInNewContext(read("js/penzugyi/savings-math.js"), savingsContext);
+assert.strictEqual(savingsContext.window.KB_SAVINGS_MATH.advanceMonth(100, 0.1, 10), advanceMonth(100, 0.1, 10));
+for (const [page, primary] of [["kamatos-kamat", "kamatos-kamat"], ["milliomos", "milliomos"]]) {
+  const html = read("kalkulatorok/" + page + "-kalkulator.html");
+  const tag = html.match(/<script src="\.\.\/js\/penzugyi\/savings-math\.js(?:\?[^"]*)?"><\/script>/);
+  assert.ok(tag && tag.index < html.indexOf("js/global-head.js") && tag.index < html.indexOf("js/penzugyi/" + primary + ".js"));
+}
 
 // ETF: éves hozam és TER multiplikatív éves faktorából képzett havi ráta, hónap végi befizetés.
 const etfSource = read("js/penzugyi/etf.js");
@@ -81,7 +97,8 @@ close(etfFuture({ initial: 1_000_000, monthly: 0, annualRate: 0, ter: 0, years: 
 
 // Milliomos: ugyanaz az effektív havi kamatos modell, 100 éves életszerűségi plafonnal.
 const millionaireSource = read("js/penzugyi/milliomos.js");
-assert.ok(millionaireSource.includes("Math.pow(1 + annualRate / 100, 1 / 12) - 1"), "Milliomos havi ráta eltért");
+assert.ok(millionaireSource.includes("effectiveMonthlyRate(annualRate)"), "Milliomos közös havi ráta hiányzik");
+assert.ok(millionaireSource.includes("advanceMonth(total, monthlyRate, contribution)"), "Milliomos közös befizetési modell hiányzik");
 assert.ok(millionaireSource.includes("const maximumMonths = 1_200"), "Milliomos 100 éves plafon eltért");
 assert.strictEqual(monthsToGoal({ initial: 0, monthly: 100_000, annualRate: 0, goal: 1_000_000 }), 10, "1 M cél 100k/hó 0%-nál");
 const month5 = monthsToGoal({ initial: 0, monthly: 50_000, annualRate: 5, goal: 10_000_000 });
