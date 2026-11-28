@@ -10,7 +10,7 @@ function close(actual, expected, tolerance = 1e-9, label = "érték") {
   assert.ok(Math.abs(actual - expected) <= tolerance, `${label}: ${actual} != ${expected}`);
 }
 
-const { effectiveMonthlyRate, advanceMonth, compoundBalance, futureValue } = require("../js/penzugyi/savings-math.js");
+const { effectiveMonthlyRate, advanceMonth, compoundBalance, futureValue, monthsToGoal } = require("../js/penzugyi/savings-math.js");
 
 function compoundFuture({ initial, monthly, annualRate, years }) {
   return compoundBalance(initial, effectiveMonthlyRate(annualRate), monthly, Math.round(years * 12));
@@ -26,17 +26,6 @@ function etfFuture({ initial, monthly, annualRate, ter, years }) {
     total += monthly;
   }
   return total;
-}
-
-function monthsToGoal({ initial, monthly, annualRate, goal, maxMonths = 1200 }) {
-  const rate = effectiveMonthlyRate(annualRate);
-  let total = initial;
-  let months = 0;
-  while (total < goal && months < maxMonths) {
-    total = advanceMonth(total, rate, monthly);
-    months += 1;
-  }
-  return total >= goal ? months : null;
 }
 
 function dividendIncome({ capital, yieldPercent, deductionPercent, annualFixedCost }) {
@@ -99,7 +88,8 @@ const projection = futureValue({ initial: 100_000, monthly: 0, annual: 7, annual
 close(projection.balance, 106_000, 1e-6, "annual fee projection");
 assert.strictEqual(projection.rows.length, 1);
 assert.strictEqual(projection.invested, 100_000);
-assert.ok(quality.includes("advanceMonth(balance, r, monthly)"));
+assert.ok(quality.includes("monthsToGoal(initial, effectiveMonthlyRate(rate), monthly, target, { allowInfiniteBalance: true })"));
+assert.ok(!quality.includes("const monthsToGoal ="));
 assert.ok(quality.includes("compoundBalance(initial, effectiveMonthlyRate(rate), monthly, months)"));
 
 // ETF: éves hozam és TER multiplikatív éves faktorából képzett havi ráta, hónap végi befizetés.
@@ -115,12 +105,50 @@ close(etfFuture({ initial: 1_000_000, monthly: 0, annualRate: 0, ter: 0, years: 
 // Milliomos: ugyanaz az effektív havi kamatos modell, 100 éves életszerűségi plafonnal.
 const millionaireSource = read("js/penzugyi/milliomos.js");
 assert.ok(millionaireSource.includes("effectiveMonthlyRate(annualRate)"), "Milliomos közös havi ráta hiányzik");
-assert.ok(millionaireSource.includes("advanceMonth(total, monthlyRate, contribution)"), "Milliomos közös befizetési modell hiányzik");
-assert.ok(millionaireSource.includes("const maximumMonths = 1_200"), "Milliomos 100 éves plafon eltért");
-assert.strictEqual(monthsToGoal({ initial: 0, monthly: 100_000, annualRate: 0, goal: 1_000_000 }), 10, "1 M cél 100k/hó 0%-nál");
-const month5 = monthsToGoal({ initial: 0, monthly: 50_000, annualRate: 5, goal: 10_000_000 });
-const month8 = monthsToGoal({ initial: 0, monthly: 50_000, annualRate: 8, goal: 10_000_000 });
+assert.ok(millionaireSource.includes("monthsToGoal(principal, monthlyRate, contribution, target)"), "Milliomos közös célmodell hiányzik");
+assert.strictEqual(monthsToGoal(0, 0, 100_000, 1_000_000), 10, "1 M cél 100k/hó 0%-nál");
+assert.strictEqual(monthsToGoal(0, 0, 1, 1200), 1200);
+assert.strictEqual(monthsToGoal(0, 0, 1, 1201), null);
+assert.strictEqual(monthsToGoal(100, 0, 0, 100), 0);
+assert.strictEqual(monthsToGoal(100, 0, 0, 101), null);
+assert.strictEqual(monthsToGoal(1e308, 2, 0, 1.7e308), null);
+assert.strictEqual(monthsToGoal(1e308, 2, 0, 1.7e308, { allowInfiniteBalance: true }), 1);
+assert.strictEqual(savingsContext.window.KB_SAVINGS_MATH.monthsToGoal(0, 0, 100, 500), 5);
+const month5 = monthsToGoal(0, effectiveMonthlyRate(5), 50_000, 10_000_000);
+const month8 = monthsToGoal(0, effectiveMonthlyRate(8), 50_000, 10_000_000);
 assert.ok(month8 < month5, "Magasabb pozitív hozamnak gyorsabban kell elérnie ugyanazt a célt");
+
+// Compare both former search loops, preserving their overflow distinction.
+for (const initial of [0, 1, 100_000, 1_234_567.89, 1e308]) {
+  for (const monthly of [0, 1, 50_000, 123_456.78, 1e308]) {
+    for (const annual of [-99.9, -10, 0, 0.0001, 6, 12, 100, 1e308]) {
+      for (const target of [1, 100_000, 1_000_000, 100_000_000, 1.7e308]) {
+        const rate = effectiveMonthlyRate(annual);
+        let balance = initial;
+        let count = 0;
+        while (balance < target && count < 1200) {
+          balance = balance * (1 + rate) + monthly;
+          count += 1;
+          if (!Number.isFinite(balance) || balance < 0) break;
+        }
+        const primaryExpected = balance < target || !Number.isFinite(balance) ? null : count;
+        assert.strictEqual(monthsToGoal(initial, rate, monthly, target), primaryExpected);
+        let milestoneExpected = initial >= target ? 0 : null;
+        if (initial < target) {
+          balance = initial;
+          for (let month = 1; month <= 1200; month += 1) {
+            balance = balance * (1 + rate) + monthly;
+            if (balance >= target) {
+              milestoneExpected = month;
+              break;
+            }
+          }
+        }
+        assert.strictEqual(monthsToGoal(initial, rate, monthly, target, { allowInfiniteBalance: true }), milestoneExpected);
+      }
+    }
+  }
+}
 
 // Osztalék: éves bruttó hozam, százalékos levonás és éves fix költség algebra.
 const dividendSource = read("js/penzugyi/osztalek.js");
