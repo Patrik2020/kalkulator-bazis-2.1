@@ -43,7 +43,7 @@ function calc() {
     return;
   }
 
-  const { effectiveMonthlyRate, advanceMonth } = window.KB_SAVINGS_MATH;
+  const { effectiveMonthlyRate, monthsToGoal } = window.KB_SAVINGS_MATH;
   const monthlyRate = effectiveMonthlyRate(annualRate);
   if (contribution === 0 && monthlyRate <= 0) {
     resultTime.textContent = "A cél ezekkel a feltételekkel nem érhető el.";
@@ -51,16 +51,9 @@ function calc() {
     return;
   }
 
-  let total = principal;
-  let months = 0;
-  const maximumMonths = 1_200; // 100 év: ezen túl a becslés már nem életszerű.
-  while (total < target && months < maximumMonths) {
-    total = advanceMonth(total, monthlyRate, contribution);
-    months += 1;
-    if (!Number.isFinite(total) || total < 0) break;
-  }
+  const months = monthsToGoal(principal, monthlyRate, contribution, target);
 
-  if (total < target || !Number.isFinite(total)) {
+  if (months === null) {
     resultTime.textContent = "A cél 100 éven belül nem érhető el a megadott feltételekkel.";
     resultDate.textContent = "Próbálj magasabb havi megtakarítást vagy más célösszeget.";
     return;
