@@ -1,7 +1,7 @@
 {
   "pages": 121,
-  "metadataGaps": 204,
-  "schemaCopyGaps": 100,
+  "metadataGaps": 198,
+  "schemaCopyGaps": 98,
   "pagesWithAlternateUrls": 0,
   "results": [
     {
@@ -84,50 +84,8 @@
     {
       "path": "kalkulatorok/havi-koltsegvetes-kalkulator.html",
       "metadataFields": 6,
-      "missingMetadata": [
-        {
-          "field": "description",
-          "language": "en",
-          "source": "Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod."
-        },
-        {
-          "field": "description",
-          "language": "de",
-          "source": "Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod."
-        },
-        {
-          "field": "og:description",
-          "language": "en",
-          "source": "Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod."
-        },
-        {
-          "field": "og:description",
-          "language": "de",
-          "source": "Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod."
-        },
-        {
-          "field": "twitter:description",
-          "language": "en",
-          "source": "Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod."
-        },
-        {
-          "field": "twitter:description",
-          "language": "de",
-          "source": "Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod."
-        }
-      ],
-      "missingSchemaCopy": [
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "en",
-          "source": "Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod."
-        },
-        {
-          "field": "schema[0].@graph[0].description",
-          "language": "de",
-          "source": "Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod."
-        }
-      ],
+      "missingMetadata": [],
+      "missingSchemaCopy": [],
       "alternateLanguageUrls": []
     },
     {

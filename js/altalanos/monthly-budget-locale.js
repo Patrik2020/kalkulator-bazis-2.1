@@ -12,9 +12,33 @@
   let language = root.KB_SITE_LANGUAGE?.get() || "hu";
   let observer;
   const blocked = 'script,style,textarea,pre,code,input,select,[contenteditable],[translate="no"]';
+  const headSources = new Map();
+  function renderMetadata() {
+    const translate = value => api.translate(value, language) ?? value;
+    for (const element of document.querySelectorAll('title,meta[name="description"],meta[property="og:title"],meta[property="og:description"],meta[name="twitter:title"],meta[name="twitter:description"],script[type="application/ld+json"]')) {
+      const isMeta = element.tagName === "META";
+      if (!headSources.has(element)) headSources.set(element, isMeta ? element.content : element.textContent);
+      const source = headSources.get(element);
+      if (element.tagName !== "SCRIPT") {
+        if (isMeta) element.content = translate(source);
+        else element.textContent = translate(source);
+        continue;
+      }
+      const localize = value => {
+        if (Array.isArray(value)) return value.map(localize);
+        if (!value || typeof value !== "object") return value;
+        return Object.fromEntries(Object.entries(value).map(([key, item]) => [key,
+          key === "inLanguage" ? ({ hu: "hu-HU", en: "en", de: "de" })[language] :
+            typeof item === "string" && ["name", "headline", "description", "text", "about"].includes(key) ? translate(item) :
+              item && typeof item === "object" ? localize(item) : item]));
+      };
+      try { element.textContent = language === "hu" ? source : JSON.stringify(localize(JSON.parse(source))); } catch { /* Preserve invalid source JSON for the schema audit. */ }
+    }
+  }
   function render() {
     observer?.disconnect();
     try {
+      renderMetadata();
       const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
       while (walker.nextNode()) {
         const node = walker.currentNode;
@@ -66,6 +90,7 @@
   "use strict";
   const dictionary = Object.freeze({
     "Havi költségvetés kalkulátor": ["Monthly budget calculator", "Monatsbudget-Rechner"],
+    "Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod.": ["Monthly budget calculator: calculate your income, expenses, monthly balance and savings rate.", "Monatsbudget-Rechner: Berechne deine Einnahmen, Ausgaben, deinen monatlichen Saldo und deine Sparquote."],
     "ETF kalkulátor": ["ETF calculator", "ETF-Rechner"], "Hitelképesség": ["Borrowing capacity", "Kreditfähigkeit"],
     "Az eredmény után": ["After your result", "Nach deinem Ergebnis"],
     "Használd fel a havi maradványt tudatosan": ["Put your monthly remainder to work", "Nutze deinen monatlichen Überschuss bewusst"],
