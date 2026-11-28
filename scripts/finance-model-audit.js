@@ -10,7 +10,7 @@ function close(actual, expected, tolerance = 1e-9, label = "érték") {
   assert.ok(Math.abs(actual - expected) <= tolerance, `${label}: ${actual} != ${expected}`);
 }
 
-const { effectiveMonthlyRate, advanceMonth, compoundBalance } = require("../js/penzugyi/savings-math.js");
+const { effectiveMonthlyRate, advanceMonth, compoundBalance, futureValue } = require("../js/penzugyi/savings-math.js");
 
 function compoundFuture({ initial, monthly, annualRate, years }) {
   return compoundBalance(initial, effectiveMonthlyRate(annualRate), monthly, Math.round(years * 12));
@@ -87,8 +87,18 @@ for (const [page, primary] of [["kamatos-kamat", "kamatos-kamat"], ["milliomos",
 
 const priority = read("js/priority-upgrades.js");
 const quality = read("js/finance-quality-upgrades.js");
-assert.ok(priority.includes("effectiveMonthlyRate(annual - annualFee)"));
-assert.ok(priority.includes("advanceMonth(balance, monthlyRate, contribution)"));
+assert.ok(!priority.includes("const futureValue ="));
+assert.ok(priority.includes("const { futureValue } = window.KB_SAVINGS_MATH"));
+assert.ok(priority.includes("window.KB_SAVINGS_MATH.futureValue("));
+assert.deepStrictEqual(futureValue({ initial: 100_000, monthly: 10_000, years: 2, annualIncrease: 10 }),
+  { balance: 352_000, invested: 352_000, rows: [
+    { year: 1, balance: 220_000, invested: 220_000 },
+    { year: 2, balance: 352_000, invested: 352_000 },
+  ] });
+const projection = futureValue({ initial: 100_000, monthly: 0, annual: 7, annualFee: 1, years: 1 });
+close(projection.balance, 106_000, 1e-6, "annual fee projection");
+assert.strictEqual(projection.rows.length, 1);
+assert.strictEqual(projection.invested, 100_000);
 assert.ok(quality.includes("advanceMonth(balance, r, monthly)"));
 assert.ok(quality.includes("compoundBalance(initial, effectiveMonthlyRate(rate), monthly, months)"));
 
