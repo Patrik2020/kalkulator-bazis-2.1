@@ -17,12 +17,6 @@
     return Number.isFinite(value) ? value : fallback;
   };
   const selectValue = (container, id, fallback = "") => container.querySelector(`#${id}`)?.value || fallback;
-  const payment = (principal, annualRate, years) => {
-    const months = Math.max(1, Math.round(years * 12));
-    if (!Number.isFinite(principal) || principal <= 0) return 0;
-    const { annuityPayment, monthlyRateFromAnnual } = window.KB_LOAN_MATH;
-    return annuityPayment(principal, monthlyRateFromAnnual(annualRate), months);
-  };
   const addSection = (html, anchor = document.querySelector("main")) => {
     if (!anchor || document.querySelector("[data-priority-upgrade]")) return null;
     const wrapper = document.createElement("section");
@@ -202,22 +196,22 @@
       const stress = numberValue(section, "lc-stress");
       const preMonth = Math.round(numberValue(section, "lc-pre-month"));
       const preAmount = numberValue(section, "lc-pre-amount");
-      const letters = ["A", "B", "C"];
-      const rows = [];
-      let first = null;
-      letters.forEach((letter) => {
-        const rate = numberValue(section, `lc-${letter}-rate`);
-        const years = numberValue(section, `lc-${letter}-years`);
-        const fees = numberValue(section, `lc-${letter}-fees`);
-        const { amortization } = window.KB_LOAN_MATH;
-        const base = amortization(amount, rate, years);
-        const prepaid = amortization(amount, rate, years, preMonth, preAmount);
-        const stressMonthly = payment(amount, stress, years);
-        rows.push(`<tr><td>${letter}</td><td>${money(base.monthly)}</td><td>${money(base.interestTotal)}</td><td>${money(base.total + fees)}</td><td>${money(prepaid.interestTotal)}</td><td>${money(stressMonthly)}</td></tr>`);
-        if (letter === "A") first = base;
-      });
-      section.querySelector("[data-offers]").innerHTML = rows.join("");
-      section.querySelector("[data-amortization]").innerHTML = (first?.annual || []).map((row) => `<tr><td>${row.year}.</td><td>${money(row.principal)}</td><td>${money(row.interest)}</td><td>${money(row.balance)}</td></tr>`).join("");
+      const { compareLoanOffer } = window.KB_LOAN_MATH;
+      const offers = ["A", "B", "C"].map((letter) => ({
+        letter,
+        ...compareLoanOffer({
+          amount, stress, preMonth, preAmount,
+          rate: numberValue(section, `lc-${letter}-rate`),
+          years: numberValue(section, `lc-${letter}-years`),
+          fees: numberValue(section, `lc-${letter}-fees`),
+        }),
+      }));
+      section.querySelector("[data-offers]").innerHTML = offers.map((offer) =>
+        `<tr><td>${offer.letter}</td><td>${money(offer.monthly)}</td><td>${money(offer.interestTotal)}</td><td>${money(offer.totalWithFees)}</td><td>${money(offer.prepaidInterest)}</td><td>${money(offer.stressMonthly)}</td></tr>`
+      ).join("");
+      section.querySelector("[data-amortization]").innerHTML = offers[0].annual.map((row) =>
+        `<tr><td>${row.year}.</td><td>${money(row.principal)}</td><td>${money(row.interest)}</td><td>${money(row.balance)}</td></tr>`
+      ).join("");
     };
     section.addEventListener("input", calculate);
     calculate();

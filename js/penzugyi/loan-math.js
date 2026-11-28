@@ -60,6 +60,24 @@
     return { monthly, interestTotal, total: principal + interestTotal, annual, months: actualMonths };
   }
 
+  function compareLoanOffer({ amount, rate, years, fees, stress, preMonth, preAmount }) {
+    const base = amortization(amount, rate, years);
+    const prepaid = amortization(amount, rate, years, preMonth, preAmount);
+    const months = Math.max(1, Math.round(years * 12));
+    const stressMonthly = Number.isFinite(amount) && amount > 0
+      ? annuityPayment(amount, monthlyRateFromAnnual(stress), months)
+      : 0;
+
+    return {
+      monthly: base.monthly,
+      interestTotal: base.interestTotal,
+      totalWithFees: base.total + fees,
+      prepaidInterest: prepaid.interestTotal,
+      stressMonthly,
+      annual: base.annual,
+    };
+  }
+
   // JTM ratios are supplied by the rules module. This is a planning model,
   // not a bank's underwriting decision; the caller validates form inputs.
   function creditCapacity({ income, existing, card, overdraft, rate, stress, years, buffer, custom, legal }) {
@@ -80,7 +98,7 @@
     };
   }
 
-  const model = Object.freeze({ annuityPayment, monthlyRateFromAnnual, principalFromPayment, collateralFinancing, amortization, creditCapacity });
+  const model = Object.freeze({ annuityPayment, monthlyRateFromAnnual, principalFromPayment, collateralFinancing, amortization, compareLoanOffer, creditCapacity });
   if (typeof module !== "undefined" && module.exports) module.exports = model;
   if (typeof window !== "undefined") window.KB_LOAN_MATH = model;
 })();

@@ -281,7 +281,16 @@ const cases = [
     checked('use-thm', false); set('amount', 1200000); set('rate', 0); set('years', 1);
     const actual = number('#result-monthly'); const boundary = number('#result-interest') === 0;
     set('amount', 10000000); set('rate', 6); set('years', 10);
-    const valid = actual === 100000 && number('#result-monthly') === 111021;
+    const primaryValid = actual === 100000 && number('#result-monthly') === 111021;
+    set('lc-amount', 1200000); set('lc-A-rate', 0); set('lc-A-years', 1);
+    set('lc-A-fees', 50000); set('lc-stress', 0);
+    set('lc-pre-month', 1); set('lc-pre-amount', 100000);
+    const offerCells = [...document.querySelectorAll('[data-offers] tr:first-child td')];
+    const offerValid = offerCells.map((cell) => cell.textContent.replace(/[^0-9A]/g, '')).join(',')
+      === 'A,100000,0,1250000,0,100000'
+      && document.querySelectorAll('[data-offers] tr').length === 3
+      && number('[data-amortization] tr:last-child td:last-child') === 0;
+    const valid = primaryValid && offerValid;
     set('amount', 0); const invalid = text('#result-monthly') === '–' && noInvalidNumber();
     return { valid, boundary, invalid, actual };
   `),
