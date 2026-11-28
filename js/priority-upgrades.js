@@ -184,11 +184,8 @@
       const extras = ["dp-lawyer", "dp-valuation", "dp-renovation", "dp-moving", "dp-reserve"].reduce((sum, id) => sum + numberValue(section, id), 0);
       if (price <= 0 || appraisal <= 0 || equityPercent < 0 || equityPercent >= 100) return;
       const ltv = 1 - equityPercent / 100;
-      const collateralLoan = appraisal * ltv;
-      const targetLoan = price * ltv;
-      const loan = Math.max(0, Math.min(collateralLoan, targetLoan));
+      const { loan, cash: ownForPrice } = window.KB_LOAN_MATH.collateralFinancing(price, appraisal, ltv, price * ltv);
       const appraisalGap = Math.max(0, price - appraisal);
-      const ownForPrice = price - loan;
       const dutyAmount = price * duty / 100;
       const totalCash = ownForPrice + dutyAmount + extras;
       section.querySelector("[data-results]").innerHTML = resultCards([

@@ -44,20 +44,42 @@ assert.ok(downPayment.includes("több adósnál ezt mindegyiküknek teljesíteni
 assert.ok(downPayment.includes("már nincs életkori korlátja"), "Az eltörölt elsőlakás-vásárlói életkori korlát nincs tisztázva.");
 assert.ok(downPayment.includes("nem automatikus banki finanszírozási ígéret"), "A 90%-os HFM szabályozói maximum jellege nincs tisztázva.");
 
-const financeQualityPath = path.join(root, "js/finance-quality-upgrades.js");
-const rawFinanceQuality = fs.readFileSync(financeQualityPath, "utf8");
-const financeQuality = transformed("js/finance-quality-upgrades.js");
+// Test the canonical runtime model, not a parallel copy or a build-time repair.
+const { collateralFinancing } = require("../js/penzugyi/loan-math.js");
+const financeQuality = fs.readFileSync(path.join(root, "js/finance-quality-upgrades.js"), "utf8");
+const priority = fs.readFileSync(path.join(root, "js/priority-upgrades.js"), "utf8");
+assert.ok(!transforms["js/finance-quality-upgrades.js"], "A beépített HFM számítást a build nem írhatja felül.");
 assert.ok(financeQuality.includes('data-q="regulatory-loan"'), "A HFM fedezeti plafon nincs külön megjelenítve.");
-assert.ok(financeQuality.includes("const regulatoryCap = estimated * hfm;"), "A HFM szabályozói plafon nincs a banki forgalmi értékből számolva.");
-assert.ok(financeQuality.includes("const usableLoan = Math.min(price, regulatoryCap);"), "A vásárlási HFM widget vételár fölötti hitelt mutathat.");
-assert.ok(financeQuality.includes("const cash = Math.max(0, price - usableLoan);"), "Az önerő nem a vételárhoz felhasználható hitelből számolódik.");
-assert.ok(rawFinanceQuality.includes("const usableLoan = Math.min(price, regulatoryCap);"), "A HFM vételár-cap nincs fizikailag materializálva a runtime forrásba.");
-const price = 50_000_000;
-const regulatoryCap = 60_000_000 * 0.90;
-const usableLoan = Math.min(price, regulatoryCap);
-assert.equal(regulatoryCap, 54_000_000);
-assert.equal(usableLoan, 50_000_000);
-assert.equal(Math.max(0, price - usableLoan), 0);
+assert.ok(financeQuality.includes("collateralFinancing(price, estimated, hfm, price)"), "A HFM panelnek a teljes vételár a finanszírozási plafonja.");
+assert.ok(priority.includes("collateralFinancing(price, appraisal, ltv, price * ltv)"), "Az önerőtervezőnek a tervezett önerőből következő hitelplafont kell megőriznie.");
+assert.ok(!financeQuality.includes("const regulatoryCap = estimated * hfm;"));
+assert.ok(!priority.includes("const collateralLoan = appraisal * ltv;"));
+assert.deepStrictEqual(collateralFinancing(50_000_000, 60_000_000, 0.90, 50_000_000),
+  { collateralCap: 54_000_000, loan: 50_000_000, cash: 0 });
+assert.deepStrictEqual(collateralFinancing(50_000_000, 60_000_000, 0.80, 40_000_000),
+  { collateralCap: 48_000_000, loan: 40_000_000, cash: 10_000_000 });
+for (const price of [1, 100_000, 50_000_000, 89_123_456.78]) {
+  for (const valuation of [1, price * 0.8, price, price * 1.2, price * 2]) {
+    for (const equity of [0, 10, 20, 30, 33.33, 99.99]) {
+      const ltv = 1 - equity / 100;
+      const cap = valuation * ltv;
+      const target = price * ltv;
+      const oldLoan = Math.max(0, Math.min(cap, target));
+      assert.deepStrictEqual(collateralFinancing(price, valuation, ltv, target),
+        { collateralCap: cap, loan: oldLoan, cash: price - oldLoan });
+      const oldHfmLoan = Math.min(price, cap);
+      assert.deepStrictEqual(collateralFinancing(price, valuation, ltv, price),
+        { collateralCap: cap, loan: oldHfmLoan, cash: Math.max(0, price - oldHfmLoan) });
+    }
+  }
+}
+const vm = require("node:vm");
+const modelContext = { window: {} };
+vm.runInNewContext(fs.readFileSync(path.join(root, "js/penzugyi/loan-math.js"), "utf8"), modelContext);
+assert.strictEqual(modelContext.window.KB_LOAN_MATH.collateralFinancing(50_000_000, 40_000_000, 0.8, 50_000_000).cash, 18_000_000);
+const rawDownPayment = fs.readFileSync(path.join(root, "kalkulatorok/lakas-hitel-onero-kalkulator.html"), "utf8");
+const modelTag = rawDownPayment.match(/<script src="\.\.\/js\/penzugyi\/loan-math\.js(?:\?[^"]*)?"><\/script>/);
+assert.ok(modelTag && modelTag.index < rawDownPayment.indexOf("js/global-head.js"), "A közös fedezeti modellnek a panelek előtt kell betöltődnie.");
 
 const browserReferencePath = path.join(root, "scripts/reference-browser-audit.js");
 const rawBrowserReference = fs.readFileSync(browserReferencePath, "utf8");

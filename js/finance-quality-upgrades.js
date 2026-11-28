@@ -179,9 +179,7 @@
       const estimated = parse(valuation.value) || price;
       const hfm = parse(type.value);
       if (!(price > 0 && estimated > 0 && hfm > 0)) return;
-      const regulatoryCap = estimated * hfm;
-      const usableLoan = Math.min(price, regulatoryCap);
-      const cash = Math.max(0, price - usableLoan);
+      const { collateralCap: regulatoryCap, loan: usableLoan, cash } = window.KB_LOAN_MATH.collateralFinancing(price, estimated, hfm, price);
       node.querySelector('[data-q="regulatory-loan"]').textContent = money(regulatoryCap);
       node.querySelector('[data-q="loan"]').textContent = money(usableLoan);
       node.querySelector('[data-q="cash"]').textContent = money(cash);
