@@ -150,7 +150,7 @@
           "makro-kalkulator", "feherje-szukseglet-kalkulator",
         ],
         ["css/pages/priority-upgrades.css?v=81c0bc5b23c0"],
-        ["js/priority-upgrades.js?v=d2f9385e1911"]
+        ["js/priority-upgrades.js?v=778c7027439c"]
       ),
       slugFeature(
         "construction-upgrade",

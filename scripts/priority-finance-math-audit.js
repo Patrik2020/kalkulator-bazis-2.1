@@ -4,6 +4,7 @@ const {
   monthlyRateFromAnnual,
   principalFromPayment,
   amortization,
+  compareLoanOffer,
   creditCapacity,
 } = require("../js/penzugyi/loan-math.js");
 
@@ -86,6 +87,15 @@ const prepaid = amortization(10_000_000, 6, 10, 12, 1_000_000);
 close(normal.monthly, tenYear6, 0.001, "schedule monthly payment");
 assert(prepaid.interestTotal < normal.interestTotal && prepaid.months < normal.months);
 
+// An offer uses the original term for the stress payment and the base schedule.
+const offer = compareLoanOffer({
+  amount: 10_000_000, rate: 6, years: 10, fees: 50_000, stress: 8, preMonth: 12, preAmount: 1_000_000,
+});
+assert.deepStrictEqual(offer, {
+  monthly: normal.monthly, interestTotal: normal.interestTotal, totalWithFees: normal.total + 50_000,
+  prepaidInterest: prepaid.interestTotal, stressMonthly: annuityPayment(10_000_000, monthlyRateFromAnnual(8), 120), annual: normal.annual,
+});
+
 // The primary capacity result and example rows share one pure calculation.
 const capacityDefaults = { income: 600_000, existing: 50_000, card: 100_000, overdraft: 200_000,
   rate: 0, stress: 0, years: 20, buffer: 15, custom: 30, legal: 0.50 };
@@ -135,7 +145,10 @@ assert.ok(read("js/priority-upgrades.js").includes("creditCapacity(inputs)"));
 assert.ok(read("js/priority-upgrades.js").includes("creditCapacity({ ...inputs, income: exampleIncome"));
 assert.ok(!read("js/priority-upgrades.js").includes("const principalFromPayment ="));
 assert.ok(!read("js/priority-upgrades.js").includes("function amortization("));
-assert.ok(read("js/priority-upgrades.js").includes("const { amortization } = window.KB_LOAN_MATH;"));
+assert.ok(read("js/priority-upgrades.js").includes("...compareLoanOffer({"));
+assert.strictEqual(context.window.KB_LOAN_MATH.compareLoanOffer({
+  amount: 0, rate: 0, years: 0, fees: 100, stress: 10, preMonth: 1, preAmount: 0,
+}).totalWithFees, 100);
 assert.strictEqual(context.window.KB_LOAN_MATH.annuityPayment(1200, 0, 12), 100);
 assert.strictEqual(context.window.KB_LOAN_MATH.principalFromPayment(100, 0, 12), 1200);
 for (const [page, script] of [
