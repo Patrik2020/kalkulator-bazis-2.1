@@ -37,7 +37,21 @@
     return { balance, invested, rows };
   }
 
-  const model = Object.freeze({ effectiveMonthlyRate, advanceMonth, compoundBalance, futureValue });
+  // The 100-year horizon is shared. The legacy milestone panel accepts an
+  // overflow as reaching the target; the primary calculator rejects it.
+  function monthsToGoal(initial, monthlyRate, contribution, goal, { allowInfiniteBalance = false } = {}) {
+    if (initial >= goal) return 0;
+    let balance = initial;
+    const maximumMonths = 1_200;
+    for (let month = 1; month <= maximumMonths; month += 1) {
+      balance = advanceMonth(balance, monthlyRate, contribution);
+      if (!allowInfiniteBalance && (!Number.isFinite(balance) || balance < 0)) return null;
+      if (balance >= goal) return month;
+    }
+    return null;
+  }
+
+  const model = Object.freeze({ effectiveMonthlyRate, advanceMonth, compoundBalance, futureValue, monthsToGoal });
   if (typeof module !== "undefined" && module.exports) module.exports = model;
   if (typeof window !== "undefined") window.KB_SAVINGS_MATH = model;
 })();
