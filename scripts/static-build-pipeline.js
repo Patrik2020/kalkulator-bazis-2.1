@@ -3,6 +3,7 @@
 
 const crypto = require("node:crypto");
 const fs = require("node:fs");
+const os = require("node:os");
 const path = require("node:path");
 const { spawnSync } = require("node:child_process");
 
@@ -80,8 +81,8 @@ function runPipeline({ root = defaultRoot, runStep = executeStep } = {}) {
   console.log(`\n[static:build] Egyetlen kanonikus buildkör kész (${seconds} s).`);
 }
 
-function git(root, args) {
-  const result = spawnSync("git", args, { cwd: root, encoding: "buffer" });
+function git(root, args, stdout = "pipe") {
+  const result = spawnSync("git", args, { cwd: root, stdio: ["ignore", stdout, "pipe"] });
   if (result.error) throw result.error;
   if (result.status !== 0) {
     throw new Error(`git ${args.join(" ")} hibakóddal állt le: ${result.status}`);
@@ -89,11 +90,32 @@ function git(root, args) {
   return result.stdout;
 }
 
+function hashGitDiff(hash, root, args) {
+  const directory = fs.mkdtempSync(path.join(os.tmpdir(), "kb-static-diff-"));
+  try {
+    const diff = fs.openSync(path.join(directory, "diff"), "w+");
+    try {
+      git(root, args, diff);
+      const buffer = Buffer.alloc(64 * 1024);
+      let position = 0;
+      let bytesRead;
+      while ((bytesRead = fs.readSync(diff, buffer, 0, buffer.length, position)) > 0) {
+        hash.update(buffer.subarray(0, bytesRead));
+        position += bytesRead;
+      }
+    } finally {
+      fs.closeSync(diff);
+    }
+  } finally {
+    fs.rmSync(directory, { recursive: true, force: true });
+  }
+}
+
 function workingTreeFingerprint(root = defaultRoot) {
   const hash = crypto.createHash("sha256");
   hash.update(git(root, ["status", "--porcelain=v1", "-z", "--untracked-files=all"]));
-  hash.update(git(root, ["diff", "--binary", "--no-ext-diff", "HEAD", "--", "."]));
-  hash.update(git(root, ["diff", "--binary", "--no-ext-diff", "--cached", "HEAD", "--", "."]));
+  hashGitDiff(hash, root, ["diff", "--binary", "--no-ext-diff", "HEAD", "--", "."]);
+  hashGitDiff(hash, root, ["diff", "--binary", "--no-ext-diff", "--cached", "HEAD", "--", "."]);
 
   const untracked = git(root, ["ls-files", "--others", "--exclude-standard", "-z"])
     .toString("utf8")
