@@ -17,6 +17,7 @@ async function checkMonthlyBudgetLocale({ navigate, evaluate, setViewport }) {
     await setViewport(width, 1000);
     await navigate("/kalkulatorok/havi-koltsegvetes-kalkulator");
     await choose("hu");
+    const hungarianDescription = await evaluate("document.querySelector('meta[name=description]').content");
     const values = { "#income": "850000", "#housing": "220000", "#utilities": "65000", "#food": "120000", "#transport": "35000", "#debt": "60000", "#other": "70000", "#savings": "50000" };
     await evaluate(`(async () => {
       for (const [selector, value] of ${JSON.stringify(Object.entries(values))}) {
@@ -41,6 +42,11 @@ async function checkMonthlyBudgetLocale({ navigate, evaluate, setViewport }) {
     const inputs = await evaluate("[...document.querySelectorAll('main input')].map(input => input.value)");
     for (const [language, total, label] of [["en", "Total expenses including savings", "Monthly remainder"], ["de", "Gesamtausgaben einschließlich Ersparnis", "Monatlicher Überschuss"]]) {
       await choose(language);
+      const schema = await evaluate("JSON.parse(document.getElementById('kb-structured-data').textContent)['@graph']");
+      assert.equal(await evaluate("document.querySelector('meta[name=description]').content"), language === "en" ? "Monthly budget calculator: calculate your income, expenses, monthly balance and savings rate." : "Monatsbudget-Rechner: Berechne deine Einnahmen, Ausgaben, deinen monatlichen Saldo und deine Sparquote.");
+      assert.equal(schema[0].inLanguage, language);
+      assert.equal(schema[0].description, language === "en" ? "Monthly budget calculator: calculate your income, expenses, monthly balance and savings rate." : "Monatsbudget-Rechner: Berechne deine Einnahmen, Ausgaben, deinen monatlichen Saldo und deine Sparquote.");
+      assert.equal(schema[1].description, language === "en" ? "Plan your monthly income, expenses and savings rate." : "Plane deine monatlichen Einnahmen, Ausgaben und Sparquote.");
       assert.match(await read("#expenseResult"), new RegExp(total, "u"));
       assert.match(await read("#balanceResult"), /HUF/u);
       const cards = await read(".priority-results");
@@ -70,6 +76,9 @@ async function checkMonthlyBudgetLocale({ navigate, evaluate, setViewport }) {
       assert.ok(csv.content.includes(language === "en" ? "Category;Monthly amount" : "Kategorie;Monatsbetrag"), csv.content);
       assert.ok(csv.content.includes(language === "en" ? "Housing" : "Wohnen"), csv.content);
     }
+    await choose("hu");
+    assert.equal(await evaluate("document.querySelector('meta[name=description]').content"), hungarianDescription);
+    assert.equal(await evaluate("JSON.parse(document.getElementById('kb-structured-data').textContent)['@graph'][0].inLanguage"), "hu-HU");
   }
   console.log("Monthly budget locales: calculator, occasional-expense and reserve panels, and CSV export passed at 390px and 1440px.");
 }

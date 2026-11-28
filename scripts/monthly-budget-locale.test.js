@@ -14,6 +14,15 @@ test("monthly budget page translates its headings, guidance and methodology", ()
   assert.equal(api.translate(page, "2026. július 15.", "en"), "15 July 2026");
 });
 
+test("monthly budget metadata and schema descriptions are localized", () => {
+  const page = "havi-koltsegvetes-kalkulator";
+  const description = "Havi költségvetés kalkulátor: számold ki a bevételeid, kiadásaid, havi egyenleged és megtakarítási arányod.";
+  assert.equal(api.translate(page, description, "en"), "Monthly budget calculator: calculate your income, expenses, monthly balance and savings rate.");
+  assert.equal(api.translate(page, description, "de"), "Monatsbudget-Rechner: Berechne deine Einnahmen, Ausgaben, deinen monatlichen Saldo und deine Sparquote.");
+  assert.equal(api.translate(page, "Tervezd meg a havi bevételeidet, kiadásaidat és megtakarítási arányodat.", "en"), "Plan your monthly income, expenses and savings rate.");
+  assert.equal(api.translate(page, description, "hu"), null);
+});
+
 test("budget outputs localize labels and currency while preserving amounts", () => {
   const page = "havi-koltsegvetes-kalkulator";
   assert.equal(api.translate(page, "Összes kiadás megtakarítással együtt: 685 000 Ft", "en"), "Total expenses including savings: 685 000 HUF");
