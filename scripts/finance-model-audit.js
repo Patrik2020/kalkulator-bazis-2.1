@@ -85,6 +85,13 @@ for (const [page, primary] of [["kamatos-kamat", "kamatos-kamat"], ["milliomos",
   assert.ok(tag && tag.index < html.indexOf("js/global-head.js") && tag.index < html.indexOf("js/penzugyi/" + primary + ".js"));
 }
 
+const priority = read("js/priority-upgrades.js");
+const quality = read("js/finance-quality-upgrades.js");
+assert.ok(priority.includes("effectiveMonthlyRate(annual - annualFee)"));
+assert.ok(priority.includes("advanceMonth(balance, monthlyRate, contribution)"));
+assert.ok(quality.includes("advanceMonth(balance, r, monthly)"));
+assert.ok(quality.includes("compoundBalance(initial, effectiveMonthlyRate(rate), monthly, months)"));
+
 // ETF: éves hozam és TER multiplikatív éves faktorából képzett havi ráta, hónap végi befizetés.
 const etfSource = read("js/penzugyi/etf.js");
 assert.ok(etfSource.includes("const netAnnualFactor = grossAnnualFactor * costAnnualFactor"), "ETF TER éves faktor eltért");

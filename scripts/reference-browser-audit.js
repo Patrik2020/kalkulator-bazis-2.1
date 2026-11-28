@@ -331,22 +331,45 @@ const cases = [
   `),
   test("kalkulatorok/kamatos-kamat-kalkulator.html", "Kamatos kamat", `
     set('initial', 100000); set('monthly', 0); set('rate', 12); set('years', 1);
-    const actual = number('#result-final'); const valid = actual === 112000;
-    set('rate', 0); const boundary = number('#result-final') === 100000;
+    const actual = number('#result-final');
+    if (!await waitFor(() => element('.compound-breakdown-lab [data-q="final"]') && element('#cc-initial'))) throw new Error('Kamatos kamat panelek hiányoznak');
+    set('cc-initial', 100000); set('cc-contribution', 0); set('cc-return', 12); set('cc-fee', 0); set('cc-tax', 0); set('cc-inflation', 0); set('cc-years', 1);
+    const priorityBalance = () => number('[data-priority-upgrade] [data-results] .priority-result:nth-child(2) strong');
+    const valid = actual === 112000 && number('.compound-breakdown-lab [data-q="final"]') === 112000 && priorityBalance() === 112000;
+    set('rate', 0); set('cc-return', 0);
+    const boundary = number('#result-final') === 100000 && number('.compound-breakdown-lab [data-q="final"]') === 100000 && priorityBalance() === 100000;
     set('initial', 0); set('monthly', 0); const invalid = text('#result-final') === '–' && noInvalidNumber();
     return { valid, boundary, invalid, actual };
   `),
   test("kalkulatorok/lakas-hitel-onero-kalkulator.html", "Lakáshitel önerő", `
     set('price', 50000000); set('percent', 20);
-    const actual = number('#result-down'); const valid = actual === 10000000;
-    set('percent', 0); const boundary = number('#result-down') === 0 && number('#result-loan') === 50000000;
+    const actual = number('#result-down');
+    if (!await waitFor(() => element('#dp-price') && element('.hfm-lab [data-q="valuation"]'))) throw new Error('Önerő/HFM panel hiányzik');
+    set('dp-price', 50000000); set('dp-appraisal', 60000000); set('dp-equity', 20);
+    const plannedLoan = () => number('[data-priority-upgrade] [data-results] .priority-result:first-child strong');
+    const valuation = element('.hfm-lab [data-q="valuation"]');
+    const hfmType = element('.hfm-lab [data-q="hfm-type"]');
+    valuation.value = '60000000'; valuation.dispatchEvent(new Event('input', { bubbles: true }));
+    hfmType.value = '0.90'; hfmType.dispatchEvent(new Event('change', { bubbles: true }));
+    const hfmCap = number('.hfm-lab [data-q="regulatory-loan"]');
+    const hfmLoan = number('.hfm-lab [data-q="loan"]');
+    const valid = actual === 10000000 && plannedLoan() === 40000000 && hfmCap === 54000000 && hfmLoan === 50000000 && number('.hfm-lab [data-q="cash"]') === 0;
+    set('dp-appraisal', 40000000);
+    valuation.value = '40000000'; valuation.dispatchEvent(new Event('input', { bubbles: true }));
+    hfmType.value = '0.80'; hfmType.dispatchEvent(new Event('change', { bubbles: true }));
+    set('percent', 0);
+    const boundary = number('#result-down') === 0 && number('#result-loan') === 50000000 && plannedLoan() === 32000000 && number('.hfm-lab [data-q="loan"]') === 32000000 && number('.hfm-lab [data-q="cash"]') === 18000000;
     set('percent', 101); const invalid = text('#result-down') === '–' && /legfeljebb 100/.test(text('#result-loan'));
     return { valid, boundary, invalid, actual };
   `),
   test("kalkulatorok/milliomos-kalkulator.html", "Milliomos", `
     set('initial', 0); set('monthly', 100000); set('rate', 0); set('goal', 1000000);
-    const actual = text('#result-time'); const valid = actual === '0 év 10 hónap';
-    set('initial', 1000000); const boundary = /cél már teljesült/i.test(text('#result-time'));
+    const actual = text('#result-time');
+    if (!await waitFor(() => element('.goal-milestone-lab [data-q="m100"]') && element('#mi-target'))) throw new Error('Megtakarítási panelek hiányoznak');
+    set('mi-target', 1000000); set('mi-initial', 0); set('mi-monthly', 100000); set('mi-increase', 0); set('mi-inflation', 0);
+    const scenarioYears = [...document.querySelectorAll('[data-scenarios] tr td:nth-child(3)')].map(item => item.textContent.trim());
+    const valid = actual === '0 év 10 hónap' && text('.goal-milestone-lab [data-q="m100"]') === '10 hó' && scenarioYears.length === 3 && scenarioYears.every(value => value === '1 év');
+    set('initial', 1000000); const boundary = /cél már teljesült/i.test(text('#result-time')) && text('.goal-milestone-lab [data-q="m100"]') === 'már elérted';
     set('initial', 0); set('monthly', 0); set('rate', 0);
     const invalid = /nem érhető el/i.test(text('#result-time')) && noInvalidNumber();
     return { valid, boundary, invalid, actual };

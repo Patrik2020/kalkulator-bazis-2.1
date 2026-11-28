@@ -31,15 +31,14 @@
   };
   const futureValue = ({ initial = 0, monthly = 0, annual = 0, years = 0, annualIncrease = 0, annualFee = 0 }) => {
     const months = Math.max(0, Math.round(years * 12));
-    const netAnnual = (annual - annualFee) / 100;
-    const monthlyRate = Math.pow(1 + netAnnual, 1 / 12) - 1;
+    const { effectiveMonthlyRate, advanceMonth } = window.KB_SAVINGS_MATH;
+    const monthlyRate = effectiveMonthlyRate(annual - annualFee);
     let balance = initial;
     let contribution = monthly;
     const rows = [];
     let invested = initial;
     for (let month = 1; month <= months; month += 1) {
-      balance *= 1 + monthlyRate;
-      balance += contribution;
+      balance = advanceMonth(balance, monthlyRate, contribution);
       invested += contribution;
       if (month % 12 === 0) {
         rows.push({ year: month / 12, balance, invested });
@@ -184,11 +183,8 @@
       const extras = ["dp-lawyer", "dp-valuation", "dp-renovation", "dp-moving", "dp-reserve"].reduce((sum, id) => sum + numberValue(section, id), 0);
       if (price <= 0 || appraisal <= 0 || equityPercent < 0 || equityPercent >= 100) return;
       const ltv = 1 - equityPercent / 100;
-      const collateralLoan = appraisal * ltv;
-      const targetLoan = price * ltv;
-      const loan = Math.max(0, Math.min(collateralLoan, targetLoan));
+      const { loan, cash: ownForPrice } = window.KB_LOAN_MATH.collateralFinancing(price, appraisal, ltv, price * ltv);
       const appraisalGap = Math.max(0, price - appraisal);
-      const ownForPrice = price - loan;
       const dutyAmount = price * duty / 100;
       const totalCash = ownForPrice + dutyAmount + extras;
       section.querySelector("[data-results]").innerHTML = resultCards([
