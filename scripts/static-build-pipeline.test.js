@@ -3,6 +3,8 @@
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+const os = require("node:os");
+const { execFileSync } = require("node:child_process");
 const { test } = require("node:test");
 const { addAttributeToOpeningTag, mergeRenderedPage } = require("./materialize-static-first");
 const { materializationPages, sitePageRoutes } = require("./site-page-inventory");
@@ -17,6 +19,42 @@ test("the canonical build has one render and no repeated repair step", () => {
   assert.equal(flatSteps.at(-2), "cache-bust-assets.js");
   assert.equal(flatSteps.at(-1), "generate-sitemap.js");
   assert.ok(flatSteps.indexOf("materialize-static-first.js") < flatSteps.indexOf("normalize-static-html.js"));
+});
+
+test("head config preserves valid fingerprinted pages and repairs only invalid placement", (t) => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "kb-head-config-"));
+  t.after(() => fs.rmSync(tmp, { recursive: true, force: true }));
+  const script = "scripts/apply-global-head-config.js";
+  const config = '<script src="js/global-head-config.js"></script>';
+  const boot = '<script src="js/global-head.js"></script>';
+  const valid = '<script src="js/global-head-config.js?v=0123456789ab"></script>\n' + boot + "\n";
+  const nested = '<script src="../js/global-head-config.js?v=abcdef012345"></script>\r\n' +
+    '<script src="../js/static-first-fallbacks.js?v=123456789abc"></script>\r\n' +
+    '<script src="../js/global-head.js"></script>\r\n';
+  const fixtures = {
+    [script]: fs.readFileSync(path.join(root, script), "utf8"),
+    "index.html": valid,
+    "nested/valid.html": nested,
+    "missing.html": boot + "\n",
+    "misplaced.html": boot + "\n" + config + "\n" + config + "\n",
+  };
+  for (const [file, source] of Object.entries(fixtures)) {
+    fs.mkdirSync(path.dirname(path.join(tmp, file)), { recursive: true });
+    fs.writeFileSync(path.join(tmp, file), source);
+  }
+  const run = (...args) => execFileSync(process.execPath, [path.join(tmp, script), ...args], {
+    cwd: tmp, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"],
+  });
+  const read = (file) => fs.readFileSync(path.join(tmp, file), "utf8");
+  assert.throws(() => run("--check"), /global-head-config\.js előfordulások száma/);
+  assert.equal(read("missing.html"), fixtures["missing.html"]);
+  assert.match(run(), /2 HTML fájl frissítve, 4 bootstrap oldal/);
+  assert.equal(read("index.html"), valid);
+  assert.equal(read("nested/valid.html"), nested);
+  assert.equal(read("missing.html"), config + "\n" + boot + "\n");
+  assert.equal(read("misplaced.html"), config + "\n" + boot + "\n");
+  assert.match(run("--check"), /4 oldal ellenőrizve/);
+  assert.match(run(), /0 HTML fájl frissítve, 4 bootstrap oldal/);
 });
 
 test("already-integrated AdSense audit policy is maintained in its canonical source, not re-patched by the build", () => {

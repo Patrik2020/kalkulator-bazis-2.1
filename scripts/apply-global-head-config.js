@@ -85,11 +85,15 @@ for (const htmlFile of htmlFiles) {
   const initialBootstrapMatch = lines[bootstrapIndexes[0]].match(bootstrapLinePattern);
   const [, indent, , quote, prefix] = initialBootstrapMatch;
 
+  const placementFailure = inspectConfigPlacement(lines, bootstrapIndexes[0], prefix);
   if (checkOnly) {
-    const placementFailure = inspectConfigPlacement(lines, bootstrapIndexes[0], prefix);
     if (placementFailure) failures.push(`${relative}: ${placementFailure}`);
     continue;
   }
+
+  // The existing tag already satisfies the placement contract. Preserve its
+  // content fingerprint; the final asset-version stage owns version updates.
+  if (!placementFailure) continue;
 
   lines = lines.filter((line) => !configLinePattern.test(line));
 
