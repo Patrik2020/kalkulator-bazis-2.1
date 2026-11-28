@@ -150,7 +150,7 @@
           "makro-kalkulator", "feherje-szukseglet-kalkulator",
         ],
         ["css/pages/priority-upgrades.css?v=81c0bc5b23c0"],
-        ["js/priority-upgrades.js?v=5f48e0b05b95"]
+        ["js/priority-upgrades.js?v=719e6b1b2d7b"]
       ),
       slugFeature(
         "construction-upgrade",
@@ -192,7 +192,7 @@
           "fizetesi-hatarido-kalkulator", "szamla-teljesites-kalkulator",
         ],
         ["css/pages/finance-quality-upgrades.css?v=1a287df3a970"],
-        ["js/finance-quality-upgrades.js?v=0891c2038477"]
+        ["js/finance-quality-upgrades.js?v=7de1a3fda49c"]
       ),
       slugFeature(
         "construction-quality",

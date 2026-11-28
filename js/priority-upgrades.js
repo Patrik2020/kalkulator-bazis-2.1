@@ -19,17 +19,15 @@
   const selectValue = (container, id, fallback = "") => container.querySelector(`#${id}`)?.value || fallback;
   const payment = (principal, annualRate, years) => {
     const months = Math.max(1, Math.round(years * 12));
-    const monthlyRate = annualRate / 100 / 12;
     if (!Number.isFinite(principal) || principal <= 0) return 0;
-    if (monthlyRate === 0) return principal / months;
-    return principal * monthlyRate / (1 - Math.pow(1 + monthlyRate, -months));
+    const { annuityPayment, monthlyRateFromAnnual } = window.KB_LOAN_MATH;
+    return annuityPayment(principal, monthlyRateFromAnnual(annualRate), months);
   };
   const principalFromPayment = (monthlyPayment, annualRate, years) => {
     const months = Math.max(1, Math.round(years * 12));
-    const monthlyRate = annualRate / 100 / 12;
     if (!Number.isFinite(monthlyPayment) || monthlyPayment <= 0) return 0;
-    if (monthlyRate === 0) return monthlyPayment * months;
-    return monthlyPayment * (1 - Math.pow(1 + monthlyRate, -months)) / monthlyRate;
+    const model = window.KB_LOAN_MATH;
+    return model.principalFromPayment(monthlyPayment, model.monthlyRateFromAnnual(annualRate), months);
   };
   const futureValue = ({ initial = 0, monthly = 0, annual = 0, years = 0, annualIncrease = 0, annualFee = 0 }) => {
     const months = Math.max(0, Math.round(years * 12));
@@ -212,7 +210,7 @@
 
   function amortization(principal, annualRate, years, prepaymentMonth = 0, prepaymentAmount = 0) {
     const months = Math.max(1, Math.round(years * 12));
-    const rate = annualRate / 100 / 12;
+    const rate = window.KB_LOAN_MATH.monthlyRateFromAnnual(annualRate);
     let monthly = payment(principal, annualRate, years);
     let balance = principal;
     let interestTotal = 0;

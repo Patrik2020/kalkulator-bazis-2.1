@@ -10,8 +10,8 @@ const { declaredGlobals, auditRepository } = require("./calculator-scope-audit")
 const root = path.resolve(__dirname, "..");
 const read = (file) => fs.readFileSync(path.join(root, file), "utf8");
 const fixtures = [
-  { name: "hitel-torleszto", values: { amount: "1 200 000", rate: "1,5", years: "1", thm: "12" }, result: "result-monthly", expected: "100 814 Ft", invalid: { rate: "-1" }, invalidExpected: "Adj meg 0% és 100% közötti éves értéket." },
-  { name: "hitelkepesseg", values: { income: "500 000", existing: "50 000", rate: "1,5", years: "1" }, result: "result-loan", expected: "Becsült hitelösszeg: 1 785 460 Ft", invalid: { income: "" }, invalidResult: "result-monthly", invalidExpected: "–" },
+  { name: "hitel-torleszto", dependencies: ["js/penzugyi/loan-math.js"], values: { amount: "1 200 000", rate: "1,5", years: "1", thm: "12" }, result: "result-monthly", expected: "100 814 Ft", invalid: { rate: "-1" }, invalidExpected: "Adj meg 0% és 100% közötti éves értéket." },
+  { name: "hitelkepesseg", dependencies: ["js/penzugyi/loan-math.js"], values: { income: "500 000", existing: "50 000", rate: "1,5", years: "1" }, result: "result-loan", expected: "Becsült hitelösszeg: 1 785 460 Ft", invalid: { income: "" }, invalidResult: "result-monthly", invalidExpected: "–" },
   { name: "inflacio", values: { amount: "1 200 000", rate: "1,5", years: "1" }, result: "result-final", expected: "1 182 266 Ft", invalid: { rate: "" }, invalidExpected: "–" },
   { name: "kamatos-kamat", values: { initial: "1 200 000", monthly: "10 000", rate: "1,5", years: "1" }, result: "result-final", expected: "1 338 823 Ft", invalid: { years: "101" }, invalidExpected: "–" },
   { name: "lakashitel-onero", values: { price: "50 000 000", percent: "20,5" }, result: "result-down", expected: "10 250 000 Ft", invalid: { percent: "101" }, invalidExpected: "–" },
@@ -52,7 +52,13 @@ for (const fixture of fixtures) {
       const { context, elements } = browserStub(fixture.values);
       const file = `js/penzugyi/${fixture.name}.js`;
       assert.equal(declaredGlobals(read(file)).size, 0, "Calculator bindings must stay private");
-      const sources = order === "shared-first" ? ["js/utils.js", file] : [file, "js/utils.js"];
+      // Load required model dependencies first, as on the real calculator pages.
+      // Both permutations still test the relative order of utils and calculator.
+      const dependencies = fixture.dependencies || [];
+      for (const dependency of dependencies) {
+        assert.equal(declaredGlobals(read(dependency)).size, 0, "Model bindings must stay private");
+      }
+      const sources = [...dependencies, ...(order === "shared-first" ? ["js/utils.js", file] : [file, "js/utils.js"])];
       for (const source of sources) vm.runInContext(read(source), context, { filename: source });
       assert.equal(text(elements.get(fixture.result)), fixture.expected);
 
