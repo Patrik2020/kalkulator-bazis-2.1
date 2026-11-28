@@ -338,8 +338,22 @@ const cases = [
   `),
   test("kalkulatorok/lakas-hitel-onero-kalkulator.html", "Lakáshitel önerő", `
     set('price', 50000000); set('percent', 20);
-    const actual = number('#result-down'); const valid = actual === 10000000;
-    set('percent', 0); const boundary = number('#result-down') === 0 && number('#result-loan') === 50000000;
+    const actual = number('#result-down');
+    if (!await waitFor(() => element('#dp-price') && element('.hfm-lab [data-q="valuation"]'))) throw new Error('Önerő/HFM panel hiányzik');
+    set('dp-price', 50000000); set('dp-appraisal', 60000000); set('dp-equity', 20);
+    const plannedLoan = () => number('[data-priority-upgrade] [data-results] .priority-result:first-child strong');
+    const valuation = element('.hfm-lab [data-q="valuation"]');
+    const hfmType = element('.hfm-lab [data-q="hfm-type"]');
+    valuation.value = '60000000'; valuation.dispatchEvent(new Event('input', { bubbles: true }));
+    hfmType.value = '0.90'; hfmType.dispatchEvent(new Event('change', { bubbles: true }));
+    const hfmCap = number('.hfm-lab [data-q="regulatory-loan"]');
+    const hfmLoan = number('.hfm-lab [data-q="loan"]');
+    const valid = actual === 10000000 && plannedLoan() === 40000000 && hfmCap === 54000000 && hfmLoan === 50000000 && number('.hfm-lab [data-q="cash"]') === 0;
+    set('dp-appraisal', 40000000);
+    valuation.value = '40000000'; valuation.dispatchEvent(new Event('input', { bubbles: true }));
+    hfmType.value = '0.80'; hfmType.dispatchEvent(new Event('change', { bubbles: true }));
+    set('percent', 0);
+    const boundary = number('#result-down') === 0 && number('#result-loan') === 50000000 && plannedLoan() === 32000000 && number('.hfm-lab [data-q="loan"]') === 32000000 && number('.hfm-lab [data-q="cash"]') === 18000000;
     set('percent', 101); const invalid = text('#result-down') === '–' && /legfeljebb 100/.test(text('#result-loan'));
     return { valid, boundary, invalid, actual };
   `),

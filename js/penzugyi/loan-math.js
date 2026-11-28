@@ -19,7 +19,15 @@
     return monthlyPayment * (1 - Math.pow(1 + monthlyRate, -months)) / monthlyRate;
   }
 
-  const model = Object.freeze({ annuityPayment, monthlyRateFromAnnual, principalFromPayment });
+  // Both callers supply a validated positive valuation and price. The purchase
+  // limit is deliberately explicit: a planning target is not the HFM ceiling.
+  function collateralFinancing(price, valuation, financingRatio, purchaseLimit) {
+    const collateralCap = valuation * financingRatio;
+    const loan = Math.max(0, Math.min(collateralCap, purchaseLimit));
+    return { collateralCap, loan, cash: Math.max(0, price - loan) };
+  }
+
+  const model = Object.freeze({ annuityPayment, monthlyRateFromAnnual, principalFromPayment, collateralFinancing });
   if (typeof module !== "undefined" && module.exports) module.exports = model;
   if (typeof window !== "undefined") window.KB_LOAN_MATH = model;
 })();
