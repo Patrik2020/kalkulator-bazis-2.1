@@ -8,7 +8,7 @@ const { execFileSync } = require("node:child_process");
 const { test } = require("node:test");
 const { addAttributeToOpeningTag, mergeRenderedPage } = require("./materialize-static-first");
 const { materializationPages, sitePageRoutes } = require("./site-page-inventory");
-const { pipeline, runPipeline, verifyIdempotence } = require("./static-build-pipeline");
+const { pipeline, runPipeline, verifyIdempotence, workingTreeFingerprint } = require("./static-build-pipeline");
 
 const root = path.resolve(__dirname, "..");
 const flatSteps = pipeline.flatMap((phase) => phase.steps);
@@ -299,6 +299,31 @@ test("idempotence verification compares state around one validation build", () =
     }),
     /nem idempotens/
   );
+});
+
+test("idempotence handles large staged and working tree diffs", (t) => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "kb-large-static-diff-"));
+  t.after(() => fs.rmSync(tmp, { recursive: true, force: true }));
+  const git = (...args) => execFileSync("git", args, { cwd: tmp, stdio: "pipe" });
+  const generated = path.join(tmp, "generated.html");
+  git("init", "-q");
+  fs.writeFileSync(generated, "original\n");
+  git("add", "generated.html");
+  git("-c", "user.name=Test", "-c", "user.email=test@example.com", "commit", "-qm", "baseline");
+
+  const largeOutput = "<p>Generated calculator content</p>\n".repeat(40_000);
+  fs.writeFileSync(generated, largeOutput);
+  const unstaged = workingTreeFingerprint(tmp);
+  assert.equal(workingTreeFingerprint(tmp), unstaged);
+
+  git("add", "generated.html");
+  const staged = workingTreeFingerprint(tmp);
+  assert.notEqual(staged, unstaged);
+  verifyIdempotence({ root: tmp, run: () => {} });
+  assert.throws(() => verifyIdempotence({
+    root: tmp,
+    run: () => fs.appendFileSync(generated, "<p>Build drift</p>\n"),
+  }), /nem idempotens/);
 });
 
 test("materialization preserves canonical schema and the authored average hub", () => {
