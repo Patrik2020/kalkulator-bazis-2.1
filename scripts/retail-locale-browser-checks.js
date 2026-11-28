@@ -80,11 +80,27 @@ async function checkRetailLocales({ navigate, evaluate, setViewport }) {
 
     await navigate("/kalkulatorok/egysegar-kalkulator");
     await choose("en");
+    assert.equal(await evaluate("document.title"), "Unit Price Calculator | Compare Pack Sizes");
+    assert.match(await evaluate("document.querySelector('meta[name=description]').content"), /costs less per kilogram or litre/u);
+    assert.deepEqual(await evaluate(`(() => {
+      const page = JSON.parse(document.getElementById('kb-structured-data').textContent)['@graph'][0];
+      return [page.name, page.inLanguage, page.description];
+    })()`), [
+      "Unit Price Calculator | Compare Pack Sizes",
+      "en",
+      "Unit price calculator for products with different prices and pack sizes. Compare which offer costs less per kilogram or litre."
+    ]);
     await edit({ '[name=name1]': 'Példa', '[name=price1]': '1000', '[name=qty1]': '500', '[name=unit1]': '1000', '[name=name2]': 'ÁFA kalkulátor', '[name=price2]': '600', '[name=qty2]': '500', '[name=unit2]': '1000', '[name=qty3]': '0', '[name=qty4]': '0', '[name=qty5]': '0' }, true);
     assert.equal(await result("#kalkulator .everyday-result"), "ÁFA kalkulátor: 1200 Ft / selected quantity – best price Példa: 2000 Ft / selected quantity");
     await choose("de");
+    assert.equal(await evaluate("document.title"), "Grundpreisrechner | Packungsgrößen vergleichen");
+    assert.match(await evaluate("document.querySelector('meta[property=\"og:description\"]').content"), /pro Kilogramm oder Liter günstiger/u);
+    assert.equal(await evaluate("JSON.parse(document.getElementById('kb-structured-data').textContent)['@graph'][0].inLanguage"), "de");
     assert.equal(await result("#kalkulator .everyday-result"), "ÁFA kalkulátor: 1200 Ft / Vergleichsmenge – günstigster Preis Példa: 2000 Ft / Vergleichsmenge");
     await choose("hu");
+    assert.equal(await evaluate("document.title"), "Egységár kalkulátor | Kiszerelések összehasonlítása");
+    assert.match(await evaluate("document.querySelector('meta[name=description]').content"), /^Egységár kalkulátor eltérő árú/u);
+    assert.equal(await evaluate("JSON.parse(document.getElementById('kb-structured-data').textContent)['@graph'][0].inLanguage"), "hu-HU");
     assert.equal(await result("#kalkulator .everyday-result"), "ÁFA kalkulátor: 1200 Ft / megadott egység – legjobb ár Példa: 2000 Ft / megadott egység");
     assert.equal(await evaluate("document.querySelector('[name=name1]').value"), "Példa");
     await choose("en");

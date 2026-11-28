@@ -198,6 +198,13 @@
     ]
   });
   const unit = Object.freeze({
+    "Egységár kalkulátor | Kiszerelések összehasonlítása": [
+      "Unit Price Calculator | Compare Pack Sizes", "Grundpreisrechner | Packungsgrößen vergleichen"
+    ],
+    "Egységár kalkulátor eltérő árú és kiszerelésű termékekhez. Hasonlítsd össze, melyik ajánlat kerül kevesebbe kilogrammonként vagy literenként.": [
+      "Unit price calculator for products with different prices and pack sizes. Compare which offer costs less per kilogram or litre.",
+      "Grundpreisrechner für Produkte mit unterschiedlichen Preisen und Packungsgrößen. Vergleiche, welches Angebot pro Kilogramm oder Liter günstiger ist."
+    ],
     "Hasonlítsd össze termékek egységárát kiszerelés alapján.": [
       "Compare unit prices for products sold in different pack sizes.",
       "Vergleiche Grundpreise von Produkten mit unterschiedlichen Packungsgrößen."
