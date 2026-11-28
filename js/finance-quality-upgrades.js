@@ -80,9 +80,8 @@
     `);
     const annuity = (principal, annualRate, months) => {
       if (months <= 0) return 0;
-      const r = annualRate / 100 / 12;
-      if (r === 0) return principal / months;
-      return principal * r / (1 - Math.pow(1 + r, -months));
+      const { annuityPayment, monthlyRateFromAnnual } = window.KB_LOAN_MATH;
+      return annuityPayment(principal, monthlyRateFromAnnual(annualRate), months);
     };
     const update = () => {
       const principal = parse(document.getElementById('amount')?.value);

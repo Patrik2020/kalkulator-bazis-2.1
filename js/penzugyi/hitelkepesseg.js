@@ -39,10 +39,8 @@ function calc() {
     return;
   }
 
-  const monthlyRate = annualRate / 100 / 12;
-  const loan = monthlyRate === 0
-    ? maxMonthly * months
-    : maxMonthly * (1 - Math.pow(1 + monthlyRate, -months)) / monthlyRate;
+  const { monthlyRateFromAnnual, principalFromPayment } = window.KB_LOAN_MATH;
+  const loan = principalFromPayment(maxMonthly, monthlyRateFromAnnual(annualRate), months);
 
   resultMonthly.textContent = `${format(maxMonthly)} Ft`;
   resultLoan.textContent = `Becsült hitelösszeg: ${format(loan)} Ft`;

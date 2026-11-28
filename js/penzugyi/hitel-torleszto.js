@@ -15,22 +15,8 @@ function formatInput(input) {
   });
 }
 
-function annuityPayment(principal, monthlyRate, months) {
-  if (monthlyRate === 0) return principal / months;
-  return principal * monthlyRate / (1 - Math.pow(1 + monthlyRate, -months));
-}
-
-function monthlyRateFromAnnual(annualRate, useThm = false) {
-  return useThm
-    ? Math.pow(1 + annualRate / 100, 1 / 12) - 1
-    : annualRate / 100 / 12;
-}
-
-if (typeof module !== "undefined" && module.exports) {
-  module.exports = { annuityPayment, monthlyRateFromAnnual };
-}
-
 if (typeof document !== "undefined") {
+  const { annuityPayment, monthlyRateFromAnnual } = window.KB_LOAN_MATH;
   const amount = document.getElementById("amount");
   const rate = document.getElementById("rate");
   const years = document.getElementById("years");

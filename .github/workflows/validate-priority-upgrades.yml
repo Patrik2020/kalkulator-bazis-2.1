@@ -6,6 +6,7 @@ on:
       - "js/priority-upgrades.js"
       - "js/finance-quality-upgrades.js"
       - "js/penzugyi/jtm-rules.js"
+      - "js/penzugyi/loan-math.js"
       - "scripts/priority-finance-math-audit.js"
       - "js/global-head.js"
       - "css/pages/priority-upgrades.css"
@@ -31,6 +32,7 @@ jobs:
           node --check js/priority-upgrades.js
           node --check js/global-head.js
           node --check js/penzugyi/jtm-rules.js
+          node --check js/penzugyi/loan-math.js
           node --check js/finance-quality-upgrades.js
       - name: Verify shared finance models
         run: node scripts/priority-finance-math-audit.js
