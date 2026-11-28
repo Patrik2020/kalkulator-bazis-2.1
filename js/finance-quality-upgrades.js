@@ -233,18 +233,7 @@
       </div>
       <p class="quality-caption">A hozam állandó éves effektív feltételezés. Infláció, adó, költség és változó befizetés nincs ebben a mérföldkő-modellben.</p>
     `);
-    const monthsToGoal = (initial, monthly, annualRate, goal) => {
-      if (initial >= goal) return 0;
-      if (monthly <= 0 && annualRate <= 0) return null;
-      const { effectiveMonthlyRate, advanceMonth } = window.KB_SAVINGS_MATH;
-      const r = effectiveMonthlyRate(annualRate);
-      let balance = initial;
-      for (let m = 1; m <= 1200; m += 1) {
-        balance = advanceMonth(balance, r, monthly);
-        if (balance >= goal) return m;
-      }
-      return null;
-    };
+    const { effectiveMonthlyRate, monthsToGoal } = window.KB_SAVINGS_MATH;
     const formatMonths = (months) => {
       if (months === null) return '100 éven belül nem érhető el';
       if (months === 0) return 'már elérted';
@@ -259,7 +248,10 @@
       const goal = parse(document.getElementById('goal')?.value);
       if (!(goal > 0 && initial >= 0 && monthly >= 0 && rate > -100)) return;
       [25, 50, 75, 100].forEach((pct) => {
-        const months = monthsToGoal(initial, monthly, rate, goal * pct / 100);
+        const target = goal * pct / 100;
+        const months = initial < target && monthly <= 0 && rate <= 0
+          ? null
+          : monthsToGoal(initial, effectiveMonthlyRate(rate), monthly, target, { allowInfiniteBalance: true });
         node.querySelector(`[data-q="m${pct}"]`).textContent = formatMonths(months);
       });
     };
